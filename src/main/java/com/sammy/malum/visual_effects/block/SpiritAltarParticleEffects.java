@@ -2,7 +2,7 @@ package com.sammy.malum.visual_effects.block;
 
 import com.sammy.malum.common.block.curiosities.obelisk.rite_pylon.*;
 import com.sammy.malum.common.block.curiosities.obelisk.runewood.*;
-import com.sammy.malum.common.block.curiosities.crafting.spirit_altar.*;
+import com.sammy.malum.common.block.curiosities.sorcery.spirit_altar.*;
 import com.sammy.malum.common.block.storage.*;
 import com.sammy.malum.common.item.spirit.*;
 import com.sammy.malum.core.systems.spirit.type.*;

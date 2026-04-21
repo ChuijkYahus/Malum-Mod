@@ -1,4 +1,4 @@
-package com.sammy.malum.common.block.curiosities.crafting.soul_brazier;
+package com.sammy.malum.common.block.curiosities.sorcery.soul_brazier;
 
 import com.sammy.malum.registry.common.sound.MalumSoundEvents;
 import team.lodestar.lodestone.systems.sound.CachedBlockEntitySoundInstance;

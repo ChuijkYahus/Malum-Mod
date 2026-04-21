@@ -3,7 +3,7 @@ package com.sammy.malum.client.renderer.block;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.math.Axis;
 import com.sammy.malum.client.renderer.entity.FloatingItemRenderer;
-import com.sammy.malum.common.block.curiosities.crafting.soul_brazier.SoulBrazierBlockEntity;
+import com.sammy.malum.common.block.curiosities.sorcery.soul_brazier.SoulBrazierBlockEntity;
 import com.sammy.malum.common.item.spirit.SpiritShardItem;
 import com.sammy.malum.core.systems.spirit.type.*;
 import net.minecraft.client.Minecraft;

@@ -2,7 +2,7 @@ package com.sammy.malum.visual_effects.networked.brazier;
 
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
-import com.sammy.malum.common.block.curiosities.crafting.soul_brazier.*;
+import com.sammy.malum.common.block.curiosities.sorcery.soul_brazier.*;
 import com.sammy.malum.visual_effects.block.SoulBindingBrazierParticleEffects;
 import com.sammy.malum.visual_effects.networked.*;
 import io.netty.buffer.ByteBuf;

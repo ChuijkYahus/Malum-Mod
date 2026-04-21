@@ -18,7 +18,7 @@ import net.neoforged.neoforge.common.conditions.NotCondition;
 import net.neoforged.neoforge.common.conditions.TagEmptyCondition;
 import net.neoforged.neoforge.common.crafting.SizedIngredient;
 
-import static com.sammy.malum.registry.common.MalumContent.Artifice.*;
+import static com.sammy.malum.registry.common.MalumContent.AlchemyAndMetallics.*;
 import static com.sammy.malum.registry.common.MalumContent.Materials.*;
 import static com.sammy.malum.registry.common.magic.MalumSpiritTypes.*;
 import static net.minecraft.data.recipes.ShapedRecipeBuilder.shaped;

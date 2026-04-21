@@ -2,7 +2,7 @@ package com.sammy.malum.common.block.curiosities.obelisk.rite_pylon;
 
 import com.sammy.malum.common.block.*;
 import com.sammy.malum.common.block.curiosities.obelisk.*;
-import com.sammy.malum.common.block.curiosities.crafting.spirit_altar.*;
+import com.sammy.malum.common.block.curiosities.sorcery.spirit_altar.*;
 import com.sammy.malum.common.item.spirit.*;
 import com.sammy.malum.core.systems.registry.rite.*;
 import com.sammy.malum.core.systems.rite.effect.*;
@@ -34,7 +34,7 @@ import java.util.function.*;
 
 public class ArcanaPylonBlockEntity extends ObeliskCoreBlockEntity implements IAltarAccelerator, IInventoryCapabilityProvider {
 
-    public static final Supplier<MultiBlockStructure> STRUCTURE = () -> (MultiBlockStructure.of(new MultiBlockStructure.StructurePiece(0, 1, 0, MalumContent.Progression.ARCANA_PYLON_COMPONENT.get().defaultBlockState())));
+    public static final Supplier<MultiBlockStructure> STRUCTURE = () -> (MultiBlockStructure.of(new MultiBlockStructure.StructurePiece(0, 1, 0, MalumContent.Sorcery.ARCANA_PYLON_COMPONENT.get().defaultBlockState())));
     private static final IAltarAccelerator.AltarAcceleratorType ARCANA_PYLON = new IAltarAccelerator.AltarAcceleratorType(4, "arcana_pylon");
 
     private static final HashMap<Holder<SpiritArcanaType>, RiteEffectHolder<? extends SpiritRiteEmpowermentEffect<?>>> RITE_EMPOWERMENT_EFFECTS = new HashMap<>() {{

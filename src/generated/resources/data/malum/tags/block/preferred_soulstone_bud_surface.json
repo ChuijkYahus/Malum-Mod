@@ -50,14 +50,14 @@
     },
     "#malum:natural_soulstone_bud_surface",
     "#minecraft:base_stone_overworld",
-    "malum:waveform_runewood_totem_base",
-    "malum:waveform_soulwood_totem_base",
+    "malum:conjuncture_crystallarium",
     "malum:wavecharger",
     "malum:wavebanker",
     "malum:wavemaker",
     "malum:wavebreaker",
     "malum:gust_igniter",
     "malum:wind_tunnel",
-    "malum:conjuncture_crystallarium"
+    "malum:waveform_runewood_totem_base",
+    "malum:waveform_soulwood_totem_base"
   ]
 }

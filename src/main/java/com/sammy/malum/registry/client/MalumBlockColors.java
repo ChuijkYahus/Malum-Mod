@@ -30,6 +30,6 @@ public class MalumBlockColors {
             int green = color.getGreen();
             int blue = color.getBlue();
             return red << 16 | green << 8 | blue;
-        }, MalumContent.Progression.SPIRIT_MOTE.get());
+        }, MalumContent.Sorcery.SPIRIT_MOTE.get());
     }
 }

@@ -1,4 +1,4 @@
-package com.sammy.malum.common.block.curiosities.crafting.soul_brazier;
+package com.sammy.malum.common.block.curiosities.sorcery.soul_brazier;
 
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;

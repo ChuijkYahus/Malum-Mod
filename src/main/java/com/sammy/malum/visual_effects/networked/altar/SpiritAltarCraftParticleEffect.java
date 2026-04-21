@@ -1,6 +1,6 @@
 package com.sammy.malum.visual_effects.networked.altar;
 
-import com.sammy.malum.common.block.curiosities.crafting.spirit_altar.SpiritAltarBlockEntity;
+import com.sammy.malum.common.block.curiosities.sorcery.spirit_altar.SpiritAltarBlockEntity;
 import com.sammy.malum.visual_effects.block.SpiritAltarParticleEffects;
 import com.sammy.malum.visual_effects.networked.MalumNetworkedParticleEffectColorData;
 import com.sammy.malum.visual_effects.networked.MalumNetworkedParticleEffectType;

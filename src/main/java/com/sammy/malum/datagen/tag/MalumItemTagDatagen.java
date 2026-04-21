@@ -26,7 +26,7 @@ import team.lodestar.lodestone.modules.datagen.providers.tag.LodestoneItemTagsSy
 import java.util.HashSet;
 import java.util.concurrent.*;
 
-import static com.sammy.malum.registry.common.MalumContent.Artifice.*;
+import static com.sammy.malum.registry.common.MalumContent.AlchemyAndMetallics.*;
 import static com.sammy.malum.registry.common.MalumContent.Blight.BLIGHTED_GUNK;
 import static com.sammy.malum.registry.common.MalumContent.BlockSets.*;
 import static com.sammy.malum.registry.common.MalumContent.CompactBlocks.*;
@@ -35,7 +35,6 @@ import static com.sammy.malum.registry.common.MalumContent.*;
 import static com.sammy.malum.registry.common.MalumContent.Gear.*;
 import static com.sammy.malum.registry.common.MalumContent.Materials.*;
 import static com.sammy.malum.registry.common.MalumContent.Spirits.*;
-import static com.sammy.malum.registry.common.MalumContent.Totemancy.*;
 import static com.sammy.malum.registry.common.MalumContent.Vanity.*;
 import static com.sammy.malum.registry.common.MalumTags.Items.*;
 import static com.sammy.malum.registry.common.MalumContent.BLOCKS;
@@ -189,9 +188,9 @@ public class MalumItemTagDatagen extends LodestoneItemTagsSystem {
         tag(RUNES_VOID, MadnessRuneCurioItem.class);
         tag(RUNES_WOODEN, TotemicRuneCurioItem.class);
 
-        tag(IS_TOTEMIC_TOOL).add(TOTEMIC_STAFF.get());
-        tag(IS_REDSTONE_TOOL).add(ARTIFICERS_CLAW.get()).addOptional(ResourceLocation.parse("create:wrench"));
-        tag(IS_ARTIFICE_TOOL).add(TUNING_FORK.get()).addOptional(ResourceLocation.parse("create:wrench"));
+        tag(IS_TOTEMIC_TOOL).add(Totemancy.TOTEMIC_STAFF.get());
+        tag(IS_REDSTONE_TOOL).add(Artifice.ARTIFICERS_CLAW.get()).addOptional(ResourceLocation.parse("create:wrench"));
+        tag(IS_ARTIFICE_TOOL).add(Focusing.TUNING_FORK.get()).addOptional(ResourceLocation.parse("create:wrench"));
         tag(COUNTS_AS_EMPTY_HAND).addOptional(ResourceLocation.parse("mowziesmobs:earthrend_gauntlet"));
 
         tag(SAPBALLS).add(RUNIC_SAPBALL.get(), AZOIC_SAPBALL.get());
@@ -253,7 +252,7 @@ public class MalumItemTagDatagen extends LodestoneItemTagsSystem {
                         RING_OF_GRUESOME_CONCENTRATION.get(), NECKLACE_OF_THE_HIDDEN_BLADE.get(),
                         NECKLACE_OF_THE_WATCHER.get(), BELT_OF_THE_LIMITLESS.get())
                 // Augments
-                .add(STELLAR_MECHANISM.get())
+                .add(Focusing.STELLAR_MECHANISM.get())
                 // Aesthetica
                 .add(AESTHETICA.get());
 

@@ -1,6 +1,7 @@
-package com.sammy.malum.common.block.curiosities.crafting.runic_workbench;
+package com.sammy.malum.common.block.curiosities.sorcery.runic_workbench;
 
 import com.sammy.malum.common.block.storage.*;
+import com.sammy.malum.common.block.storage.pedestal.*;
 import com.sammy.malum.common.item.spirit.*;
 import com.sammy.malum.common.recipe.RuneworkingRecipe.*;
 import com.sammy.malum.registry.common.*;
@@ -24,8 +25,6 @@ import team.lodestar.lodestone.modules.toolkit.recipe.LodestoneRecipeSearch;
 @SuppressWarnings("DataFlowIssue")
 public class RunicWorkbenchBlockEntity extends MalumItemHolderBlockEntity {
 
-    public static final Vec3 RUNIC_WORKBENCH_ITEM_OFFSET = new Vec3(0.5f, 1.25f, 0.5f);
-
     protected int progress = 0;
     protected RunicWorkbenchRecipeInput input;
 
@@ -35,6 +34,7 @@ public class RunicWorkbenchBlockEntity extends MalumItemHolderBlockEntity {
 
     public RunicWorkbenchBlockEntity(BlockPos pos, BlockState state) {
         this(MalumBlockEntities.RUNIC_WORKBENCH.get(), pos, state);
+        inventory.attachDisplayData(RunicWorkbenchItemDisplayData::new);
     }
 
     @Override

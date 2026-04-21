@@ -171,8 +171,8 @@ public abstract class AbstractProgressionCodexScreen extends AbstractMalumCodexS
 
     public void renderObjects(GuiGraphics graphics, int mouseX, int mouseY, float partialTicks) {
         float delta = minecraft.getTimer().getGameTimeDeltaPartialTick(true);
-        float x = Mth.lerp(delta, oldObjectXOffset, objectXOffset);
-        float y = Mth.lerp(delta, oldObjectYOffset, objectYOffset);
+        float x = Mth.lerp(delta, oldObjectXOffset, objectXOffset) - 16;
+        float y = Mth.lerp(delta, oldObjectYOffset, objectYOffset) - 16;
 
         mouseX -= getGuiLeft();
         mouseY -= getGuiTop();

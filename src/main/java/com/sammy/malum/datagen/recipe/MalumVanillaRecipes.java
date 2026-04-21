@@ -50,7 +50,7 @@ public class MalumVanillaRecipes implements IConditionBuilder {
                 .pattern("#  ")
                 .unlockedBy("has_soulstone", hasSoulstone)
                 .save(output);
-        shaped(RecipeCategory.MISC, MalumContent.Progression.SPIRIT_ALTAR)
+        shaped(RecipeCategory.MISC, MalumContent.Sorcery.SPIRIT_ALTAR)
                 .define('Z', Tags.Items.INGOTS_GOLD)
                 .define('Y', REFINED_SOULSTONE)
                 .define('X', RUNEWOOD_SET.planks.block)
@@ -59,7 +59,7 @@ public class MalumVanillaRecipes implements IConditionBuilder {
                 .pattern("XXX")
                 .unlockedBy("has_soulstone", hasSoulstone)
                 .save(output);
-        shaped(RecipeCategory.MISC, MalumContent.Progression.WEAVERS_WORKBENCH)
+        shaped(RecipeCategory.MISC, MalumContent.Sorcery.WEAVERS_WORKBENCH)
                 .define('Z', HALLOWED_GOLD_INGOT)
                 .define('Y', HEX_ASH)
                 .define('X', RUNEWOOD_SET.planks.block)
@@ -67,7 +67,7 @@ public class MalumVanillaRecipes implements IConditionBuilder {
                 .pattern("XZX")
                 .unlockedBy("has_hex_ash", RecipeDatagenCommons.has(HEX_ASH))
                 .save(output);
-        shaped(RecipeCategory.MISC, MalumContent.Progression.SOUL_BRAZIER)
+        shaped(RecipeCategory.MISC, MalumContent.Sorcery.SOUL_BRAZIER)
                 .define('Z', CTHONIC_GOLD)
                 .define('Y', HALLOWED_GOLD_INLAY)
                 .define('X', RUNEWOOD_SET.planks.block)
@@ -77,7 +77,7 @@ public class MalumVanillaRecipes implements IConditionBuilder {
                 .pattern("WXW")
                 .unlockedBy("has_soulstone", hasSoulstone)
                 .save(output);
-        shaped(RecipeCategory.MISC, MalumContent.Progression.SPIRIT_JAR)
+        shaped(RecipeCategory.MISC, MalumContent.Sorcery.SPIRIT_JAR)
                 .define('X', HALLOWED_GOLD_INGOT)
                 .define('Y', Tags.Items.GLASS_BLOCKS)
                 .pattern("X")
@@ -110,10 +110,10 @@ public class MalumVanillaRecipes implements IConditionBuilder {
                 .unlockedBy("has_hallowed_gold", hasHallowedGold).save(output);
 
         shapeless(RecipeCategory.MISC, MIMICRY_RELAY)
-                .requires(MalumContent.Artifice.IRON_METALLICS.getNode())
+                .requires(MalumContent.AlchemyAndMetallics.IRON_METALLICS.getNode())
                 .requires(CTHONIC_GOLD_FRAGMENT)
                 .requires(Tags.Items.GEMS_QUARTZ)
-                .unlockedBy("has_iron_impetus", RecipeDatagenCommons.has(MalumContent.Artifice.IRON_METALLICS.getImpetus())).save(output);
+                .unlockedBy("has_iron_impetus", RecipeDatagenCommons.has(MalumContent.AlchemyAndMetallics.IRON_METALLICS.getImpetus())).save(output);
 
         //ETHER
         etherTorch(output, ETHER_TORCH, ETHER);

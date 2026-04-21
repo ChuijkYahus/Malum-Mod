@@ -98,7 +98,6 @@ public class CodexLangDatagen {
         add(BookPage.getRecipeInfoKey(identifier), recipeDescriptor);
     }
 
-
     protected static void add(String key, String value) {
         MalumLangDatagen.lang.add(key, value);
     }

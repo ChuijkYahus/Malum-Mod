@@ -6,10 +6,15 @@ import com.sammy.malum.common.block.blight.scarstone.LargeStrangeCrystalBlock;
 import com.sammy.malum.common.block.blight.scarstone.ScarstoneBlock;
 import com.sammy.malum.common.block.blight.scarstone.StrangeCrystalBlock;
 import com.sammy.malum.common.block.blight.scarstone.StrangeRootBlock;
-import com.sammy.malum.common.block.curiosities.artifice.crystallarium.ConjunctureCrystallariumBlock;
+import com.sammy.malum.common.block.curiosities.artifice.crystallarium.*;
+import com.sammy.malum.common.block.curiosities.artifice.gust_igniter.*;
+import com.sammy.malum.common.block.curiosities.artifice.gust_igniter.wind_tunnel.*;
+import com.sammy.malum.common.block.curiosities.artifice.redstone.wavebanker.*;
+import com.sammy.malum.common.block.curiosities.artifice.redstone.wavebreaker.*;
+import com.sammy.malum.common.block.curiosities.artifice.redstone.wavecharger.*;
+import com.sammy.malum.common.block.curiosities.artifice.redstone.wavemaker.*;
+import com.sammy.malum.common.block.curiosities.sorcery.soul_brazier.*;
 import com.sammy.malum.common.block.curiosities.decor.banner.SoulwovenBannerBlock;
-import com.sammy.malum.common.block.curiosities.artifice.gust_igniter.GustIgniterBlock;
-import com.sammy.malum.common.block.curiosities.artifice.gust_igniter.wind_tunnel.WindTunnelBlock;
 import com.sammy.malum.common.block.curiosities.decor.mana_mote.ManaMoteBlock;
 import com.sammy.malum.common.block.curiosities.fluid.SapFilledCauldronBlock;
 import com.sammy.malum.common.block.curiosities.obelisk.ObeliskComponentBlock;
@@ -20,16 +25,11 @@ import com.sammy.malum.common.block.curiosities.obelisk.rite_pylon.ArcanaPylonCo
 import com.sammy.malum.common.block.curiosities.obelisk.rite_pylon.ArcanaPylonCoreBlock;
 import com.sammy.malum.common.block.curiosities.obelisk.runewood.RunewoodObeliskBlockEntity;
 import com.sammy.malum.common.block.curiosities.obelisk.runewood.RunewoodObeliskCoreBlock;
-import com.sammy.malum.common.block.curiosities.artifice.redstone.wavebanker.WaveBankerBlock;
-import com.sammy.malum.common.block.curiosities.artifice.redstone.wavebreaker.WaveBreakerBlock;
-import com.sammy.malum.common.block.curiosities.artifice.redstone.wavecharger.WaveChargerBlock;
-import com.sammy.malum.common.block.curiosities.artifice.redstone.wavemaker.WaveMakerBlock;
 import com.sammy.malum.common.block.curiosities.artifice.repair_pylon.RepairPylonComponentBlock;
 import com.sammy.malum.common.block.curiosities.artifice.repair_pylon.RepairPylonCoreBlock;
 import com.sammy.malum.common.block.curiosities.artifice.repair_pylon.RepairPylonCoreBlockEntity;
-import com.sammy.malum.common.block.curiosities.crafting.runic_workbench.RunicWorkbenchBlock;
-import com.sammy.malum.common.block.curiosities.crafting.soul_brazier.SoulBrazierBlock;
-import com.sammy.malum.common.block.curiosities.crafting.spirit_altar.SpiritAltarBlock;
+import com.sammy.malum.common.block.curiosities.sorcery.runic_workbench.RunicWorkbenchBlock;
+import com.sammy.malum.common.block.curiosities.sorcery.spirit_altar.SpiritAltarBlock;
 import com.sammy.malum.common.block.curiosities.artifice.spirit_catalyzer.SpiritCatalyzerComponentBlock;
 import com.sammy.malum.common.block.curiosities.artifice.spirit_catalyzer.SpiritCatalyzerCoreBlock;
 import com.sammy.malum.common.block.curiosities.artifice.spirit_catalyzer.SpiritCatalyzerCoreBlockEntity;
@@ -199,11 +199,13 @@ public class MalumContent {
         Spirits.init();
         CompactBlocks.init();
         Materials.init();
-        BlockSets.init();
         Blight.init();
-        Totemancy.init();
+        BlockSets.init();
+        Sorcery.init();
         Artifice.init();
-        Progression.init();
+        Focusing.init();
+        AlchemyAndMetallics.init();
+        Totemancy.init();
         Gear.init();
         DungeonGear.init();
         DungeonBlockSets.init();
@@ -218,7 +220,7 @@ public class MalumContent {
 
     public static final DeferredItem<Item> ARCANE_ELEGY = register("music_disc_arcane_elegy", () -> MalumItemProperties.GEAR().rarity(RARE), ArcaneElegyMusicDiscItem::new);
     public static final DeferredItem<Item> AESTHETICA = register("music_disc_aesthetica", () -> MalumItemProperties.GEAR().rarity(RARE), AestheticaMusicDiscItem::new);
-    //region hidden items
+
     public static final DeferredItem<Item> SOUL_OF_A_SCYTHE = register("soul_of_a_scythe", MalumItemProperties::GEAR, TemporarilyDisabledItem::new);
     public static final DeferredItem<Item> SOUL_OF_THE_ANCHOR = register("soul_of_the_anchor", MalumItemProperties::GEAR, TemporarilyDisabledItem::new);
     public static final DeferredItem<Item> TOKEN_OF_GRATITUDE = register("token_of_gratitude", MalumItemProperties::GEAR, CurioTokenOfGratitude::new);
@@ -241,6 +243,7 @@ public class MalumContent {
         public static void init() {
 
         }
+
         public static final DeferredItem<SpiritShardItem> SACRED_SPIRIT = register("sacred_spirit", MalumItemProperties::DEFAULT, (p) -> new SpiritShardItem(p, MalumSpiritTypes.SACRED_SPIRIT));
         public static final DeferredItem<SpiritShardItem> WICKED_SPIRIT = register("wicked_spirit", MalumItemProperties::DEFAULT, (p) -> new SpiritShardItem(p, MalumSpiritTypes.WICKED_SPIRIT));
         public static final DeferredItem<SpiritShardItem> ARCANE_SPIRIT = register("arcane_spirit", MalumItemProperties::DEFAULT, (p) -> new SpiritShardItem(p, MalumSpiritTypes.ARCANE_SPIRIT));
@@ -258,6 +261,7 @@ public class MalumContent {
         public static void init() {
 
         }
+
         public static final BlockBlockItemHolder<Block, BlockItem> BLOCK_OF_RAW_SOULSTONE = registerBlock("block_of_raw_soulstone", () -> new LodestoneDirectionalBlock(MalumStorageBlockProperties.SOULSTONE_BLOCK(true)));
         public static final BlockBlockItemHolder<Block, BlockItem> BLOCK_OF_REFINED_SOULSTONE = registerBlock("block_of_refined_soulstone", () -> new LodestoneDirectionalBlock(MalumStorageBlockProperties.SOULSTONE_BLOCK(false)));
         public static final BlockBlockItemHolder<Block, BlockItem> BLOCK_OF_RAW_BRILLIANCE = registerBlock("block_of_raw_brilliance", () -> new LodestoneDirectionalBlock(MalumStorageBlockProperties.BRILLIANCE_BLOCK(true)));
@@ -300,6 +304,7 @@ public class MalumContent {
         public static void init() {
 
         }
+
         public static final BlockBlockItemHolder<Block, BlockItem> DEEPSLATE_SOULSTONE_ORE = registerBlock("deepslate_soulstone_ore", () -> new DropExperienceBlock(UniformInt.of(14, 18), MalumOreBlockProperties.SOULSTONE_ORE(true)));
         public static final BlockBlockItemHolder<Block, BlockItem> SOULSTONE_ORE = registerBlock("soulstone_ore", () -> new DropExperienceBlock(UniformInt.of(14, 18), MalumOreBlockProperties.SOULSTONE_ORE(false)));
         public static final BlockBlockItemHolder<Block, BlockItem> BRILLIANT_DEEPSLATE = registerBlock("brilliant_deepslate", () -> new DropExperienceBlock(UniformInt.of(16, 26), MalumOreBlockProperties.BRILLIANCE_ORE(true).setCutout()));
@@ -388,11 +393,35 @@ public class MalumContent {
         public static final DeferredItem<Item> FUSED_CONSCIOUSNESS = register("fused_consciousness", MalumItemProperties::DEFAULT, (p) -> new FusedConsciousnessItem(p.rarity(RARE)));
     }
 
+    public static class Blight {
+
+        public static void init() {
+
+        }
+
+        public static final BlockBlockItemHolder<Block, BlockItem> COLUMNAR_BLIGHT = registerBlock("columnar_blight", () -> new ColumnarBlightBlock(MalumBlightBlockProperties.BLIGHTED_EARTH()));
+        public static final BlockBlockItemHolder<Block, BlockItem> BLIGHTED_EARTH = registerBlock("blighted_earth", () -> new BlightedEarthBlock(MalumBlightBlockProperties.BLIGHTED_EARTH()));
+
+        public static final BlockBlockItemHolder<Block, BlockItem> BLIGHT = registerBlock("blight", () -> new BlightedCoverageBlock(MalumBlightBlockProperties.BLIGHTED_COVERING()));
+        public static final DeferredBlock<Block> CLINGING_BLIGHT = registerBlockNoItem("clinging_blight", () -> new CreepingBlightBlock(MalumBlightBlockProperties.CLINGING_BLIGHT()));
+        public static final BlockBlockItemHolder<Block, BlockItem> BLIGHTED_GUNK = registerBlock("blighted_growth", "blighted_gunk", () -> new BlightedPlantBlock(MalumBlightBlockProperties.BLIGHTED_PLANTS()), BlightedGunkItem::new);
+
+        public static final BlockBlockItemHolder<Block, BlockItem> BLIGHTPEARL = registerBlock("blightpearl", () -> new BlightedPlantBlock(MalumBlightBlockProperties.BLIGHTED_PLANTS()));
+        public static final BlockBlockItemHolder<Block, BlockItem> BLIGHTROOT = registerBlock("blightroot", () -> new BlightedPlantBlock(MalumBlightBlockProperties.BLIGHTED_PLANTS()));
+
+        public static final BlockBlockItemHolder<Block, BlockItem> SCARSTONE = registerBlock("scarstone", () -> new ScarstoneBlock(MalumBlightBlockProperties.SCARSTONE()));
+        public static final BlockBlockItemHolder<Block, BlockItem> STRANGE_CRYSTAL = registerBlock("strange_crystal", () -> new StrangeCrystalBlock(MalumBlightBlockProperties.STRANGE_CRYSTAL()));
+        public static final BlockBlockItemHolder<Block, BlockItem> LARGE_STRANGE_CRYSTAL = registerBlock("large_strange_crystal", () -> new LargeStrangeCrystalBlock(MalumBlightBlockProperties.STRANGE_CRYSTAL()));
+        public static final BlockBlockItemHolder<Block, BlockItem> STRANGEROOT = registerBlock("strangeroot", () -> new StrangeRootBlock(MalumBlightBlockProperties.STRANGEROOT()));
+
+    }
+
     public static class BlockSets {
 
         public static void init() {
 
         }
+
         public static final BlockBlockItemHolder<Block, BlockItem> SACRED_SPIRITED_GLASS = registerBlock("sacred_spirited_glass", () -> new SpiritedGlassBlock(SPIRITED_GLASS()));
         public static final BlockBlockItemHolder<Block, BlockItem> WICKED_SPIRITED_GLASS = registerBlock("wicked_spirited_glass", () -> new SpiritedGlassBlock(SPIRITED_GLASS()));
         public static final BlockBlockItemHolder<Block, BlockItem> ARCANE_SPIRITED_GLASS = registerBlock("arcane_spirited_glass", () -> new SpiritedGlassBlock(SPIRITED_GLASS()));
@@ -472,48 +501,31 @@ public class MalumContent {
         public static final BlockBlockItemHolder<Block, BlockItem> THE_VESSEL = registerBlock("the_vessel", () -> new TheVessel(TWISTED_ROCK()));
     }
 
-    public static class Blight {
+    public static class Sorcery {
 
         public static void init() {
 
         }
-        public static final BlockBlockItemHolder<Block, BlockItem> COLUMNAR_BLIGHT = registerBlock("columnar_blight", () -> new ColumnarBlightBlock(MalumBlightBlockProperties.BLIGHTED_EARTH()));
-        public static final BlockBlockItemHolder<Block, BlockItem> BLIGHTED_EARTH = registerBlock("blighted_earth", () -> new BlightedEarthBlock(MalumBlightBlockProperties.BLIGHTED_EARTH()));
 
-        public static final BlockBlockItemHolder<Block, BlockItem> BLIGHT = registerBlock("blight", () -> new BlightedCoverageBlock(MalumBlightBlockProperties.BLIGHTED_COVERING()));
-        public static final DeferredBlock<Block> CLINGING_BLIGHT = registerBlockNoItem("clinging_blight", () -> new CreepingBlightBlock(MalumBlightBlockProperties.CLINGING_BLIGHT()));
-        public static final BlockBlockItemHolder<Block, BlockItem> BLIGHTED_GUNK = registerBlock("blighted_growth", "blighted_gunk", () -> new BlightedPlantBlock(MalumBlightBlockProperties.BLIGHTED_PLANTS()), BlightedGunkItem::new);
+        public static final BlockBlockItemHolder<Block, BlockItem> SPIRIT_ALTAR = registerBlock("spirit_altar", () -> new SpiritAltarBlock<>(RUNEWOOD_IMPLEMENT()));
+        public static final BlockBlockItemHolder<Block, BlockItem> SPIRIT_JAR = registerBlock("spirit_jar", () -> new SpiritJarBlock<>(SPIRIT_JAR()), SpiritJarItem::new);
 
-        public static final BlockBlockItemHolder<Block, BlockItem> BLIGHTPEARL = registerBlock("blightpearl", () -> new BlightedPlantBlock(MalumBlightBlockProperties.BLIGHTED_PLANTS()));
-        public static final BlockBlockItemHolder<Block, BlockItem> BLIGHTROOT = registerBlock("blightroot", () -> new BlightedPlantBlock(MalumBlightBlockProperties.BLIGHTED_PLANTS()));
+        public static final BlockBlockItemHolder<Block, BlockItem> RUNIC_WORKBENCH = registerBlock("runic_workbench", () -> new RunicWorkbenchBlock<>(RUNEWOOD_IMPLEMENT()));
+        public static final BlockBlockItemHolder<Block, BlockItem> WEAVERS_WORKBENCH = registerBlock("weavers_workbench", () -> new WeaversWorkbenchBlock<>(MalumWoodBlockProperties.RUNEWOOD().setCutout().noOcclusion()));
 
-        public static final BlockBlockItemHolder<Block, BlockItem> SCARSTONE = registerBlock("scarstone", () -> new ScarstoneBlock(MalumBlightBlockProperties.SCARSTONE()));
-        public static final BlockBlockItemHolder<Block, BlockItem> STRANGE_CRYSTAL = registerBlock("strange_crystal", () -> new StrangeCrystalBlock(MalumBlightBlockProperties.STRANGE_CRYSTAL()));
-        public static final BlockBlockItemHolder<Block, BlockItem> LARGE_STRANGE_CRYSTAL = registerBlock("large_strange_crystal", () -> new LargeStrangeCrystalBlock(MalumBlightBlockProperties.STRANGE_CRYSTAL()));
-        public static final BlockBlockItemHolder<Block, BlockItem> STRANGEROOT = registerBlock("strangeroot", () -> new StrangeRootBlock(MalumBlightBlockProperties.STRANGEROOT()));
+        public static final BlockBlockItemHolder<Block, BlockItem> SOUL_BRAZIER = registerBlock("soulbinding_brazier", () -> new SoulBrazierBlock<>(SOUL_BRAZIER()));
 
-    }
+        public static final BlockBlockItemHolder<Block, MultiBlockItem> RUNEWOOD_OBELISK = registerMultiBlock("runewood_obelisk", () -> new RunewoodObeliskCoreBlock(MalumWoodBlockProperties.RUNEWOOD().setCutout().noOcclusion()), RunewoodObeliskBlockEntity.STRUCTURE);
+        public static final DeferredHolder<Block, ObeliskComponentBlock> RUNEWOOD_OBELISK_COMPONENT = registerBlockNoItem("runewood_obelisk_component", () -> new ObeliskComponentBlock(MalumWoodBlockProperties.RUNEWOOD().setCutout().lootFrom(RUNEWOOD_OBELISK).noOcclusion()));
 
-    public static class Totemancy {
+        public static final BlockBlockItemHolder<Block, MultiBlockItem> BRILLIANT_OBELISK = registerMultiBlock("brilliant_obelisk", () -> new BrillianceObeliskCoreBlock(MalumWoodBlockProperties.RUNEWOOD().setCutout().noOcclusion()), BrilliantObeliskBlockEntity.STRUCTURE);
+        public static final DeferredHolder<Block, ObeliskComponentBlock> BRILLIANT_OBELISK_COMPONENT = registerBlockNoItem("brilliant_obelisk_component", () -> new ObeliskComponentBlock(MalumWoodBlockProperties.RUNEWOOD().setCutout().lootFrom(BRILLIANT_OBELISK).noOcclusion()));
 
-        public static void init() {
+        public static final BlockBlockItemHolder<Block, MultiBlockItem> ARCANA_PYLON = registerMultiBlock("arcana_pylon", () -> new ArcanaPylonCoreBlock(MalumWoodBlockProperties.SOULWOOD().setCutout().noOcclusion()), ArcanaPylonBlockEntity.STRUCTURE);
+        public static final DeferredHolder<Block, ArcanaPylonComponentBlock> ARCANA_PYLON_COMPONENT = registerBlockNoItem("arcana_pylon_component", () -> new ArcanaPylonComponentBlock(MalumWoodBlockProperties.SOULWOOD().setCutout().lootFrom(ARCANA_PYLON).noOcclusion()));
 
-        }
-        public static final DeferredItem<Item> TOTEMIC_STAFF = register("totemic_staff", MalumItemProperties::GEAR, TinkeringToolItem::new);
 
-        public static final BlockBlockItemHolder<Block, BlockItem> RUNEWOOD_TOTEM_BASE = registerBlock("runewood_totem_base", () -> new TotemBaseBlock<>(MalumWoodBlockProperties.RUNEWOOD().addTag(IS_RITE_IMMUNE).noOcclusion(), false));
-        public static final BlockBlockItemHolder<Block, BlockItem> SOULWOOD_TOTEM_BASE = registerBlock("soulwood_totem_base", () -> new TotemBaseBlock<>(MalumWoodBlockProperties.SOULWOOD().addTag(IS_RITE_IMMUNE).noOcclusion(), true));
-
-        public static final BlockBlockItemHolder<Block, BlockItem> WAVEFORM_RUNEWOOD_TOTEM_BASE = registerBlock("waveform_runewood_totem_base", () -> new WaveformTotemBaseBlock<>(COPPER_ARTIFICE().addTag(IS_RITE_IMMUNE).noOcclusion(), false));
-        public static final BlockBlockItemHolder<Block, BlockItem> WAVEFORM_SOULWOOD_TOTEM_BASE = registerBlock("waveform_soulwood_totem_base", () -> new WaveformTotemBaseBlock<>(COPPER_ARTIFICE().addTag(IS_RITE_IMMUNE).noOcclusion(), true));
-
-        public static final DeferredBlock<Block> RUNEWOOD_TOTEM_POLE = registerBlockNoItem("runewood_totem_pole", () -> new TotemPoleBlock<>(MalumWoodBlockProperties.RUNEWOOD().addTag(IS_RITE_IMMUNE).noOcclusion(), BlockSets.RUNEWOOD_SET.log, false));
-        public static final DeferredBlock<Block> SOULWOOD_TOTEM_POLE = registerBlockNoItem("soulwood_totem_pole", () -> new TotemPoleBlock<>(MalumWoodBlockProperties.SOULWOOD().addTag(IS_RITE_IMMUNE).noOcclusion(), BlockSets.SOULWOOD_SET.log, true));
-
-        public static final BlockBlockItemHolder<Block, BlockItem> RITE_ANCHOR = registerBlock("rite_anchor", () -> new RiteAnchorBlock(TAINTED_ROCK_TOTEMANCY()));
-        public static final BlockBlockItemHolder<Block, BlockItem> RITE_UNWEAVER = registerBlock("rite_unweaver", () -> new RiteUnweaverBlock(TWISTED_ROCK_TOTEMANCY()));
-        public static final BlockBlockItemHolder<Block, BlockItem> RITE_SPREADER = registerBlock("rite_spreader", () -> new RiteSpreaderBlock(TAINTED_ROCK_TOTEMANCY()));
-        public static final BlockBlockItemHolder<Block, BlockItem> RITE_CHANNEL = registerBlock("rite_channel", () -> new RiteChannelBlock(TAINTED_ROCK_TOTEMANCY()));
+        public static final DeferredBlock<Block> SPIRIT_MOTE = registerBlockNoItem("spirit_mote", () -> new ManaMoteBlock(MalumStorageBlockProperties.MANA_MOTE_BLOCK()));
 
     }
 
@@ -522,6 +534,9 @@ public class MalumContent {
         public static void init() {
 
         }
+
+        public static final BlockBlockItemHolder<Block, BlockItem> CONJUNCTURE_CRYSTALLARIUM = registerBlock("conjuncture_crystallarium", () -> new ConjunctureCrystallariumBlock<>(COPPER_ARTIFICE()));
+
         public static final DeferredItem<Item> ARTIFICERS_CLAW = register("artificers_claw", MalumItemProperties::GEAR, TinkeringToolItem::new);
 
         public static final BlockBlockItemHolder<Block, BlockItem> WAVECHARGER = registerBlock("wavecharger", () -> new WaveChargerBlock(COPPER_ARTIFICE()));
@@ -531,6 +546,14 @@ public class MalumContent {
 
         public static final BlockBlockItemHolder<Block, BlockItem> GUST_IGNITER = registerBlock("gust_igniter", () -> new GustIgniterBlock(COPPER_ARTIFICE()));
         public static final BlockBlockItemHolder<Block, BlockItem> WIND_TUNNEL = registerBlock("wind_tunnel", () -> new WindTunnelBlock(COPPER_ARTIFICE()));
+
+    }
+
+    public static class Focusing {
+
+        public static void init() {
+
+        }
 
         public static final DeferredItem<Item> TUNING_FORK = register("tuning_fork", MalumItemProperties::GEAR, TinkeringToolItem::new);
 
@@ -542,6 +565,29 @@ public class MalumContent {
 
         public static final BlockBlockItemHolder<Block, MultiBlockItem> REPAIR_PYLON = registerMultiBlock("repair_pylon", () -> new RepairPylonCoreBlock<>(ARCANE_ROCK_ARTIFICE()), RepairPylonCoreBlockEntity.STRUCTURE);
         public static final DeferredHolder<Block, RepairPylonComponentBlock> REPAIR_PYLON_COMPONENT = registerBlockNoItem("repair_pylon_component", () -> new RepairPylonComponentBlock(ARCANE_ROCK_ARTIFICE().lootFrom(REPAIR_PYLON)));
+
+        public static final DeferredItem<Item> MENDING_DIFFUSER = register("mending_diffuser", MalumItemProperties::DEFAULT, MendingDiffuserItem::new);
+        public static final DeferredItem<Item> IMPURITY_STABILIZER = register("impurity_stabilizer", MalumItemProperties::DEFAULT, ImpurityStabilizer::new);
+        public static final DeferredItem<Item> SHIELDING_APPARATUS = register("shielding_apparatus", MalumItemProperties::DEFAULT, ShieldingApparatusItem::new);
+        public static final DeferredItem<Item> WARPING_ENGINE = register("warping_engine", MalumItemProperties::DEFAULT, WarpingEngineItem::new);
+        public static final DeferredItem<Item> ACCELERATING_INLAY = register("accelerating_inlay", MalumItemProperties::DEFAULT, AcceleratingInlayItem::new);
+        public static final DeferredItem<Item> PRISMATIC_FOCUS_LENS = register("prismatic_focus_lens", MalumItemProperties::DEFAULT, PrismaticFocusLensItem::new);
+        public static final DeferredItem<Item> BLAZING_DIODE = register("blazing_diode", MalumItemProperties::DEFAULT, BlazingDiodeItem::new);
+        public static final DeferredItem<Item> INTRICATE_ASSEMBLY = register("intricate_assembly", MalumItemProperties::DEFAULT, IntricateAssemblyItem::new);
+
+        public static final DeferredItem<Item> SYMPATHY_DRIVE = register("sympathy_drive", MalumItemProperties::DEFAULT, SympathyDrive::new);
+        public static final DeferredItem<Item> SUSPICIOUS_DEVICE = register("suspicious_device", MalumItemProperties::DEFAULT, SuspiciousDeviceItem::new);
+        public static final DeferredItem<Item> CAUSTIC_CATALYST = register("caustic_catalyst", MalumItemProperties::DEFAULT, CausticCatalystItem::new);
+        public static final DeferredItem<Item> RESONANCE_TUNER = register("resonance_tuner", MalumItemProperties::DEFAULT, ResonanceTuner::new);
+
+        public static final DeferredItem<Item> STELLAR_MECHANISM = register("stellar_mechanism", MalumItemProperties::DEFAULT, StellarMechanismItem::new);
+    }
+
+    public static class AlchemyAndMetallics {
+
+        public static void init() {
+
+        }
 
         public static final DeferredItem<Item> ALCHEMICAL_IMPETUS = register("alchemical_impetus", MalumItemProperties::IMPETUS, ImpetusItem::new);
         public static final DeferredItem<Item> FRACTURED_ALCHEMICAL_IMPETUS = register("fractured_alchemical_impetus", MalumItemProperties::IMPETUS, FracturedImpetusItem::new);
@@ -561,52 +607,29 @@ public class MalumContent {
         public static final MetallicsItemRegistryBundle ALUMINIUM_METALLICS = new MetallicsItemRegistryBundle("aluminium");
         public static final MetallicsItemRegistryBundle NICKEL_METALLICS = new MetallicsItemRegistryBundle("nickel");
 
-        public static final DeferredItem<Item> MENDING_DIFFUSER = register("mending_diffuser", MalumItemProperties::DEFAULT, MendingDiffuserItem::new);
-        public static final DeferredItem<Item> IMPURITY_STABILIZER = register("impurity_stabilizer", MalumItemProperties::DEFAULT, ImpurityStabilizer::new);
-        public static final DeferredItem<Item> SHIELDING_APPARATUS = register("shielding_apparatus", MalumItemProperties::DEFAULT, ShieldingApparatusItem::new);
-        public static final DeferredItem<Item> WARPING_ENGINE = register("warping_engine", MalumItemProperties::DEFAULT, WarpingEngineItem::new);
-
-        public static final DeferredItem<Item> ACCELERATING_INLAY = register("accelerating_inlay", MalumItemProperties::DEFAULT, AcceleratingInlayItem::new);
-        public static final DeferredItem<Item> PRISMATIC_FOCUS_LENS = register("prismatic_focus_lens", MalumItemProperties::DEFAULT, PrismaticFocusLensItem::new);
-        public static final DeferredItem<Item> BLAZING_DIODE = register("blazing_diode", MalumItemProperties::DEFAULT, BlazingDiodeItem::new);
-        public static final DeferredItem<Item> INTRICATE_ASSEMBLY = register("intricate_assembly", MalumItemProperties::DEFAULT, IntricateAssemblyItem::new);
-
-        public static final DeferredItem<Item> SYMPATHY_DRIVE = register("sympathy_drive", MalumItemProperties::DEFAULT, SympathyDrive::new);
-        public static final DeferredItem<Item> SUSPICIOUS_DEVICE = register("suspicious_device", MalumItemProperties::DEFAULT, SuspiciousDeviceItem::new);
-        public static final DeferredItem<Item> CAUSTIC_CATALYST = register("caustic_catalyst", MalumItemProperties::DEFAULT, CausticCatalystItem::new);
-        public static final DeferredItem<Item> RESONANCE_TUNER = register("resonance_tuner", MalumItemProperties::DEFAULT, ResonanceTuner::new);
-
-        public static final DeferredItem<Item> STELLAR_MECHANISM = register("stellar_mechanism", MalumItemProperties::DEFAULT, StellarMechanismItem::new);
-
-
     }
 
-    public static class Progression {
+    public static class Totemancy {
 
         public static void init() {
 
         }
-        public static final BlockBlockItemHolder<Block, BlockItem> SPIRIT_ALTAR = registerBlock("spirit_altar", () -> new SpiritAltarBlock<>(RUNEWOOD_IMPLEMENT()));
-        public static final BlockBlockItemHolder<Block, BlockItem> SPIRIT_JAR = registerBlock("spirit_jar", () -> new SpiritJarBlock<>(SPIRIT_JAR()), SpiritJarItem::new);
 
-        public static final BlockBlockItemHolder<Block, BlockItem> RUNIC_WORKBENCH = registerBlock("runic_workbench", () -> new RunicWorkbenchBlock<>(RUNEWOOD_IMPLEMENT()));
-        public static final BlockBlockItemHolder<Block, BlockItem> CONJUNCTURE_CRYSTALLARIUM = registerBlock("conjuncture_crystallarium", () -> new ConjunctureCrystallariumBlock<>(COPPER_ARTIFICE()));
+        public static final DeferredItem<Item> TOTEMIC_STAFF = register("totemic_staff", MalumItemProperties::GEAR, TinkeringToolItem::new);
 
-        public static final BlockBlockItemHolder<Block, BlockItem> WEAVERS_WORKBENCH = registerBlock("weavers_workbench", () -> new WeaversWorkbenchBlock<>(MalumWoodBlockProperties.RUNEWOOD().setCutout().noOcclusion()));
+        public static final BlockBlockItemHolder<Block, BlockItem> RUNEWOOD_TOTEM_BASE = registerBlock("runewood_totem_base", () -> new TotemBaseBlock<>(MalumWoodBlockProperties.RUNEWOOD().addTag(IS_RITE_IMMUNE).noOcclusion(), false));
+        public static final BlockBlockItemHolder<Block, BlockItem> SOULWOOD_TOTEM_BASE = registerBlock("soulwood_totem_base", () -> new TotemBaseBlock<>(MalumWoodBlockProperties.SOULWOOD().addTag(IS_RITE_IMMUNE).noOcclusion(), true));
 
-        public static final BlockBlockItemHolder<Block, BlockItem> SOUL_BRAZIER = registerBlock("soulbinding_brazier", () -> new SoulBrazierBlock<>(SOUL_BRAZIER()));
+        public static final BlockBlockItemHolder<Block, BlockItem> WAVEFORM_RUNEWOOD_TOTEM_BASE = registerBlock("waveform_runewood_totem_base", () -> new WaveformTotemBaseBlock<>(COPPER_ARTIFICE().addTag(IS_RITE_IMMUNE).noOcclusion(), false));
+        public static final BlockBlockItemHolder<Block, BlockItem> WAVEFORM_SOULWOOD_TOTEM_BASE = registerBlock("waveform_soulwood_totem_base", () -> new WaveformTotemBaseBlock<>(COPPER_ARTIFICE().addTag(IS_RITE_IMMUNE).noOcclusion(), true));
 
-        public static final BlockBlockItemHolder<Block, MultiBlockItem> RUNEWOOD_OBELISK = registerMultiBlock("runewood_obelisk", () -> new RunewoodObeliskCoreBlock(MalumWoodBlockProperties.RUNEWOOD().setCutout().noOcclusion()), RunewoodObeliskBlockEntity.STRUCTURE);
-        public static final DeferredHolder<Block, ObeliskComponentBlock> RUNEWOOD_OBELISK_COMPONENT = registerBlockNoItem("runewood_obelisk_component", () -> new ObeliskComponentBlock(MalumWoodBlockProperties.RUNEWOOD().setCutout().lootFrom(RUNEWOOD_OBELISK).noOcclusion()));
+        public static final DeferredBlock<Block> RUNEWOOD_TOTEM_POLE = registerBlockNoItem("runewood_totem_pole", () -> new TotemPoleBlock<>(MalumWoodBlockProperties.RUNEWOOD().addTag(IS_RITE_IMMUNE).noOcclusion(), BlockSets.RUNEWOOD_SET.log, false));
+        public static final DeferredBlock<Block> SOULWOOD_TOTEM_POLE = registerBlockNoItem("soulwood_totem_pole", () -> new TotemPoleBlock<>(MalumWoodBlockProperties.SOULWOOD().addTag(IS_RITE_IMMUNE).noOcclusion(), BlockSets.SOULWOOD_SET.log, true));
 
-        public static final BlockBlockItemHolder<Block, MultiBlockItem> BRILLIANT_OBELISK = registerMultiBlock("brilliant_obelisk", () -> new BrillianceObeliskCoreBlock(MalumWoodBlockProperties.RUNEWOOD().setCutout().noOcclusion()), BrilliantObeliskBlockEntity.STRUCTURE);
-        public static final DeferredHolder<Block, ObeliskComponentBlock> BRILLIANT_OBELISK_COMPONENT = registerBlockNoItem("brilliant_obelisk_component", () -> new ObeliskComponentBlock(MalumWoodBlockProperties.RUNEWOOD().setCutout().lootFrom(BRILLIANT_OBELISK).noOcclusion()));
-
-        public static final BlockBlockItemHolder<Block, MultiBlockItem> ARCANA_PYLON = registerMultiBlock("arcana_pylon", () -> new ArcanaPylonCoreBlock(MalumWoodBlockProperties.SOULWOOD().setCutout().noOcclusion()), ArcanaPylonBlockEntity.STRUCTURE);
-        public static final DeferredHolder<Block, ArcanaPylonComponentBlock> ARCANA_PYLON_COMPONENT = registerBlockNoItem("arcana_pylon_component", () -> new ArcanaPylonComponentBlock(MalumWoodBlockProperties.SOULWOOD().setCutout().lootFrom(ARCANA_PYLON).noOcclusion()));
-
-        public static final DeferredBlock<Block> SPIRIT_MOTE = registerBlockNoItem("spirit_mote", () -> new ManaMoteBlock(MalumStorageBlockProperties.MANA_MOTE_BLOCK()));
-
+        public static final BlockBlockItemHolder<Block, BlockItem> RITE_ANCHOR = registerBlock("rite_anchor", () -> new RiteAnchorBlock(TAINTED_ROCK_TOTEMANCY()));
+        public static final BlockBlockItemHolder<Block, BlockItem> RITE_UNWEAVER = registerBlock("rite_unweaver", () -> new RiteUnweaverBlock(TWISTED_ROCK_TOTEMANCY()));
+        public static final BlockBlockItemHolder<Block, BlockItem> RITE_SPREADER = registerBlock("rite_spreader", () -> new RiteSpreaderBlock(TAINTED_ROCK_TOTEMANCY()));
+        public static final BlockBlockItemHolder<Block, BlockItem> RITE_CHANNEL = registerBlock("rite_channel", () -> new RiteChannelBlock(TAINTED_ROCK_TOTEMANCY()));
     }
 
     public static class Gear {
@@ -743,7 +766,6 @@ public class MalumContent {
         public static final DeferredItem<Item> SHAPED_SLAB = register("shaped_slab", MalumItemProperties::GEAR, (p) -> new ShapedSlabSwordItem(ARCHAIC_SLATE, 2.5f, -0.8f, p));
         public static final DeferredItem<Item> BROKEN_BLADE = register("broken_blade", MalumItemProperties::GEAR, (p) -> new BrokenBladeSwordItem(ARCHAIC_SLATE, -0.5f, -0.6f, p));
         public static final DeferredItem<Item> IRON_CROWN = register("iron_crown", MalumItemProperties::DEFAULT, Item::new);
-
     }
 
     public static class DungeonBlockSets {

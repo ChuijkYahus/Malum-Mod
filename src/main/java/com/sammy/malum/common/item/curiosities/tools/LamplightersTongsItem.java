@@ -41,7 +41,7 @@ public class LamplightersTongsItem extends Item {
         if (spiritShard.matches(MalumSpiritTypes.UMBRAL_SPIRIT)) {
             return super.useOn(context);
         }
-        var state = MalumContent.Progression.SPIRIT_MOTE.get().getStateForPlacement(context);
+        var state = MalumContent.Sorcery.SPIRIT_MOTE.get().getStateForPlacement(context);
         if (state == null || !canPlace(context, state)) {
             return super.useOn(context);
         }

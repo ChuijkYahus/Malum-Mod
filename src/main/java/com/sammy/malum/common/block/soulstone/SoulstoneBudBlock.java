@@ -31,13 +31,6 @@ public class SoulstoneBudBlock extends ArchaicSoulstoneBudBlock {
 
     public static final IntegerProperty STAGE = IntegerProperty.create("stage", 0, 3);
 
-    public static final VoxelShape[] SHAPES = new VoxelShape[] {
-            Shapes.box(5/16f, 0, 5/16f, 11/16f, 6/16f, 11/16f),
-            Shapes.box(4/16f, 0, 4/16f, 12/16f, 8/16f, 12/16f),
-            Shapes.box(3/16f, 0, 3/16f, 13/16f, 10/16f, 13/16f),
-            Shapes.box(1/16f, 0, 1/16f, 15/16f, 14/16f, 15/16f)
-    };
-
     public SoulstoneBudBlock(Properties builder) {
         super(builder.lightLevel(s -> s.getValue(STAGE)*3));
     }
@@ -63,12 +56,13 @@ public class SoulstoneBudBlock extends ArchaicSoulstoneBudBlock {
     @Override
     protected boolean canSurvive(BlockState state, LevelReader level, BlockPos pos) {
         var attachedPos = getAttachedPos(state, pos);
-        if (!Block.canSupportCenter(level, attachedPos, state.getValue(FACING))) {
-            return false;
-        }
         var attachedState = level.getBlockState(attachedPos);
         if (attachedState.getBlock() instanceof MovingPistonBlock) {
             return true;
+        }
+
+        if (!Block.canSupportCenter(level, attachedPos, state.getValue(FACING))) {
+            return false;
         }
         return attachedState.is(MalumTags.Blocks.PREFERRED_SOULSTONE_BUD_SURFACE);
     }

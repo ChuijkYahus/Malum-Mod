@@ -1,4 +1,4 @@
-package com.sammy.malum.common.block.curiosities.crafting.runic_workbench;
+package com.sammy.malum.common.block.curiosities.sorcery.runic_workbench;
 
 import net.minecraft.core.*;
 import net.minecraft.world.item.context.*;

@@ -31,8 +31,8 @@ public class ConjunctureCrystallariumParticleEffects {
             .lifetime(200);
 
     private static final InstanceFormat POS_COLOR = new InstanceFormat.Builder()
-            .add(3, StandardInstanceWriters.POSITION)
-            .add(4, StandardInstanceWriters.COLOR)
+            .add(StandardInstanceWriters.POSITION)
+            .add(StandardInstanceWriters.COLOR)
             .build();
 
     private static final ParticleSpec SPEC2 = ParticleBuilder.create()
@@ -49,22 +49,22 @@ public class ConjunctureCrystallariumParticleEffects {
             .build();
 
     public static void passiveCrystallariumParticles(ConjunctureCrystallariumBlockEntity crystallarium) {
-        if (crystallarium.getBlockPos().getX() % 2 == 0) {
-
-            int divisions = 8;
-            float size = 20;
-            var profile = SphericalDistributionProfile.centeredOn(crystallarium.getBlockPos(), size)
-                    .weighedDistance(Easing.BOUNCE_IN_OUT)
-                    .weighedAngle(Easing.QUINTIC_IN, divisions);
-            var chain = new ParticleSpawnContextChain(profile);
-            var ctx = new ParticleSpawnContext().lifetime(40);
-            profile.outline();
-
-            ParticleHandler.spawn(SPEC2, chain.apply(ctx), 10);
-
-
-            return;
-        }
+//        if (crystallarium.getBlockPos().getX() % 2 == 0) {
+//
+//            int divisions = 8;
+//            float size = 20;
+//            var profile = SphericalDistributionProfile.centeredOn(crystallarium.getBlockPos(), size)
+//                    .weighedDistance(Easing.BOUNCE_IN_OUT)
+//                    .weighedAngle(Easing.QUINTIC_IN, divisions);
+//            var chain = new ParticleSpawnContextChain(profile);
+//            var ctx = new ParticleSpawnContext().lifetime(40);
+//            profile.outline();
+//
+//            ParticleHandler.spawn(SPEC2, chain.apply(ctx), 10);
+//
+//
+//            return;
+//        }
         for (int i = 0; i < 3; i++) {
             var profile = CuboidDistributionProfile.centeredOn(crystallarium.getBlockPos().relative(Direction.NORTH, i*16), 8).weighed(Easing.QUINTIC_IN);
             if (i == 1) {
@@ -77,8 +77,5 @@ public class ConjunctureCrystallariumParticleEffects {
             var ctx = new ParticleSpawnContext().delay(40 * i).lifetime(100);
             ParticleHandler.spawn(SPEC2, chain.apply(ctx));
         }
-
-
-
     }
 }

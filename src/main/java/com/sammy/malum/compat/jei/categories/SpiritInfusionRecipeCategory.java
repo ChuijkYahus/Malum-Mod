@@ -32,7 +32,7 @@ public class SpiritInfusionRecipeCategory implements IRecipeCategory<SpiritInfus
 
     public SpiritInfusionRecipeCategory(IGuiHelper guiHelper) {
         overlay = guiHelper.createDrawable(malumPath("textures/gui/spirit_infusion_jei.png"), 0, 0, 142, 185);
-        icon = guiHelper.createDrawableIngredient(VanillaTypes.ITEM_STACK, new ItemStack(MalumContent.Progression.SPIRIT_ALTAR.get()));
+        icon = guiHelper.createDrawableIngredient(VanillaTypes.ITEM_STACK, new ItemStack(MalumContent.Sorcery.SPIRIT_ALTAR.get()));
     }
 
     @Override

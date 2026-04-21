@@ -1,4 +1,4 @@
-package com.sammy.malum.common.block.curiosities.crafting.spirit_altar;
+package com.sammy.malum.common.block.curiosities.sorcery.spirit_altar;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.level.BlockGetter;

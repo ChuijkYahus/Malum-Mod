@@ -1,4 +1,4 @@
-package com.sammy.malum.common.block.curiosities.crafting.spirit_altar;
+package com.sammy.malum.common.block.curiosities.sorcery.spirit_altar;
 
 import com.sammy.malum.common.block.storage.IMalumSpecialItemAccessPoint;
 import com.sammy.malum.common.recipe.SpiritInfusionRecipe;
@@ -22,7 +22,7 @@ import java.util.List;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
-import static com.sammy.malum.common.block.curiosities.crafting.spirit_altar.SpiritAltarBlockEntity.*;
+import static com.sammy.malum.common.block.curiosities.sorcery.spirit_altar.SpiritAltarBlockEntity.*;
 
 public class AltarCraftingHelper {
 	public record Ranking(int inputItemCount, int spiritStackCount, int spiritItemCount, int ingredientStackCount, int ingredientItemCount) implements Comparable<Ranking> {

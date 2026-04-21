@@ -1,5 +1,6 @@
 package com.sammy.malum.registry.common.block.properties;
 
+import com.sammy.malum.common.block.soulstone.*;
 import com.sammy.malum.registry.common.MalumTags;
 import com.sammy.malum.registry.common.sound.*;
 import net.minecraft.world.level.block.state.BlockBehaviour;
@@ -32,7 +33,7 @@ public class MalumOreBlockProperties {
                 .randomTicks()
                 .dynamicShape()
                 .mapColor(TERRACOTTA_PURPLE)
-                .offsetType(BlockBehaviour.OffsetType.XZ)
+                .offsetFunction(SoulstoneBudBlock.BUD_OFFSET)
                 .strength(4F, 3.0F)
                 .sound(SOULSTONE_BUD);
     }
@@ -46,8 +47,8 @@ public class MalumOreBlockProperties {
                 .randomTicks()
                 .dynamicShape()
                 .mapColor(TERRACOTTA_PURPLE)
-                .offsetType(BlockBehaviour.OffsetType.XZ)
-                .strength(6F, 3.0F)
+                .offsetFunction(ArchaicSoulstoneBudBlock.BUD_OFFSET)
+                .strength(4F, 3.0F)
                 .sound(SOULSTONE_BUD);
     }
 

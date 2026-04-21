@@ -1,4 +1,4 @@
-package com.sammy.malum.common.block.curiosities.crafting.spirit_altar;
+package com.sammy.malum.common.block.curiosities.sorcery.spirit_altar;
 
 import com.sammy.malum.registry.common.sound.*;
 import team.lodestar.lodestone.systems.sound.*;

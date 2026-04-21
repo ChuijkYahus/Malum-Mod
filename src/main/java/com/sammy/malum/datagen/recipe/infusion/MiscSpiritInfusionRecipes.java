@@ -10,7 +10,7 @@ import net.neoforged.neoforge.common.Tags;
 import net.neoforged.neoforge.common.crafting.SizedIngredient;
 
 import static com.sammy.malum.registry.common.MalumContent.BlockSets.*;
-import static com.sammy.malum.registry.common.MalumContent.Progression.*;
+import static com.sammy.malum.registry.common.MalumContent.Sorcery.*;
 import static com.sammy.malum.registry.common.magic.MalumSpiritTypes.*;
 
 public class MiscSpiritInfusionRecipes {

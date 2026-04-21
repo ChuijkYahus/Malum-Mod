@@ -12,6 +12,7 @@ import com.sammy.malum.core.systems.registry.*;
 import com.sammy.malum.core.systems.rite.*;
 import com.sammy.malum.core.systems.rite.effect.SpiritRiteEffectTag;
 import com.sammy.malum.core.systems.spirit.type.*;
+import com.sammy.malum.datagen.lang.effect.*;
 import com.sammy.malum.registry.common.*;
 import com.sammy.malum.registry.common.MalumContent;
 import com.sammy.malum.registry.common.enchantment.*;
@@ -23,8 +24,7 @@ import net.minecraft.resources.*;
 import net.minecraft.world.damagesource.*;
 import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.entity.ai.attributes.Attribute;
-import net.minecraft.world.item.BlockItem;
-import net.minecraft.world.item.ItemNameBlockItem;
+import net.minecraft.world.item.*;
 import net.minecraft.world.item.enchantment.Enchantment;
 import net.minecraft.world.level.block.WallSignBlock;
 import net.minecraft.world.level.block.WallTorchBlock;
@@ -58,6 +58,12 @@ public class MalumLangDatagen extends LanguageProvider {
         CodexLangDatagen.generateEntries();
         IntroductionChapterLangDatagen.generateEntries();
 
+        CreativeTabLangDatagen.addTranslations();
+
+        EffectKeywordLangDatagen.addTranslations();
+        CurioEffectLangDatagen.addTranslations();
+        GeasEffectLangDatagen.addTranslations();
+        
         var blocks = new HashSet<>(BLOCKS.getEntries());
         var items = new HashSet<>(MalumContent.ITEMS.getEntries());
         var sounds = new HashSet<>(SOUND_EVENTS.getEntries());
@@ -69,7 +75,6 @@ public class MalumLangDatagen extends LanguageProvider {
         var geasa = new HashSet<>(GEAS_TYPES.getEntries());
         var soulwovenBanners = SoulwovenBannerPatternDataComponent.REGISTERED_PATTERNS;
         var crucibleAttributes = ArtificeAttributeType.CRUCIBLE_ATTRIBUTES;
-        var categories = ((CategorizedCreativeTab)MalumCreativeTabs.CONTENT.get()).getCategories().values();
 
         add(DataHelper.take(blocks, MalumContent.DungeonBlockSets.ODD_SCRIPTURES_I.block()).get(), "Odd Scriptures I");
 
@@ -145,11 +150,6 @@ public class MalumLangDatagen extends LanguageProvider {
         crucibleAttributes.forEach(a -> {
             String name = DataHelper.toTitleCase(a.getId().getPath(), "_");
             add(a.getLangKey(), name);
-        });
-        categories.forEach(a -> {
-            String name = DataHelper.toTitleCase(a.id(), "_");
-            name = name.replaceAll("And", "&");
-            add(a.getHeaderLangKey(), name);
         });
 
 
@@ -267,9 +267,6 @@ public class MalumLangDatagen extends LanguageProvider {
         add("malum.waveform_artifice.guide.1", "Use Left Button To Modify Unit Type");
         add("malum.waveform_artifice.guide.0", "Release Right Button To Confirm");
 
-        add("malum.gui.ritual.type", "Ritual Type: ");
-        add("malum.gui.ritual.tier", "Ritual Tier: ");
-
         add("jukebox_song.malum.arcane_elegy", "Kultik - Arcane Elegy");
         add("jukebox_song.malum.aesthetica", "Kultik - Aesthetica");
 
@@ -282,147 +279,6 @@ public class MalumLangDatagen extends LanguageProvider {
         add("malum.effect.positive", "+%s");
         add("malum.effect.negative", "-%s");
 
-        addEffectKeyword(KeywordTooltipHandler.AVARICE, "Avarice; Gradually Increases Fortune");
-        addEffectKeyword(KeywordTooltipHandler.SOUL_WARD, "Soul Ward; Absorbs Damage, Recharges Over Time");
-        addEffectKeyword(KeywordTooltipHandler.ARCANE_RESONANCE, "Arcane Resonance; Enhances Spirit-Collection Effects");
-
-        addEffectKeyword(KeywordTooltipHandler.GLUTTONY, "Gluttony; Enhances Magic Damage, Kills Sprout Damaging Locusts");
-        addEffectKeyword(KeywordTooltipHandler.TRIAL_OF_FAITH, "Trial of Faith; Enhances Healing, Recovering Health Grows Damaging Locusts");
-        addEffectKeyword(KeywordTooltipHandler.DESPERATE_NEED, "Desperate Need; Enhances Scythe Damage, Scythe Damage Forms Damaging Locusts");
-
-        addCurioEffect("scythe_execution", "Scythes Exploit Wounds");
-        addCurioEffect("crits", "Critical Strikes");
-        addCurioEffect("low_health_speed", "Speed at Low Health");
-        addCurioEffect("shorten_negative_effect", "Shortens Negative Effects");
-        addCurioEffect("burning_damage", "Burning Damage");
-
-        addCurioEffect("scythe_chain", "Deadlier Scythe Sweeping");
-        addCurioEffect("silence", "Silences Attackers");
-        addCurioEffect("always_sprint", "Sprinting Always Available");
-        addCurioEffect("extend_positive_effect", "Extends Positive Effects");
-        addCurioEffect("burning_resistance", "Damage Resistance When Ablaze");
-
-        addCurioEffect("totem_effect", "Grants %s");
-
-        addCurioEffect("friendly_enemies", "Reduces Enemy Aggression");
-
-        addCurioEffect("spirits_heal", "Spirit Collection Replenishes Health");
-        addCurioEffect("spirits_extend_effect", "Spirit Collection Aids Potion Durations");
-        addCurioEffect("spirits_weave_mana", "Spirit Collection Recovers Soul Ward");
-        addCurioEffect("spirits_weave_mana_irons_spellbooks", "Spirit Collection Recovers Spell Mana [Iron's Spellbooks]");
-        addCurioEffect("spirits_xp", "Spirit Collection Generates Experience Points");
-
-        addCurioEffect("hunger_drain", "Actively Drains Hunger");
-        addCurioEffect("spirits_gluttony", "Spirit Collection Generates Gluttony");
-        addCurioEffect("eat_rotten", "Rotten Foods are Tastier");
-        addCurioEffect("rotten_gluttony", "Eating Rotten Food Generates Gluttony");
-        addCurioEffect("rot_multiplicity", "Sprout More Gluttony Locusts");
-
-        addCurioEffect("ore_prospecting", "Collecting Precious Minerals Sometimes Grants Avarice");
-        addCurioEffect("enchanted_explosions", "Explosions Are Enchanted With %s");
-        addCurioEffect("avarice_healing", "Avarice Recovers Health And Hunger");
-        addCurioEffect("bigger_explosions", "Enhances Explosion Blast Radius");
-
-        addCurioEffect("no_sweep", "Disables Scythe Sweeping");
-        addCurioEffect("enhanced_maneuvers", "Augments Rebound and Ascension");
-        addCurioEffect("ascension_launch", "Ascension Launches Targets Upwards");
-        addCurioEffect("lower_ascension_damage", "Ascension Suffers a Damage Penalty");
-        addCurioEffect("rebound_maelstrom", "Rebound Creates A Windborne Maelstrom");
-        addCurioEffect("longer_rebound_cooldown", "Rebound Suffers a Longer Cooldown");
-        addCurioEffect("scythe_counterattack", "Powerful Scythe Counterattack When Struck");
-        addCurioEffect("pacifist_recharge", "Cooldown Extends if the Scythe is Used");
-
-        addCurioEffect("soul_ward_magic_resilience", "Soul Ward Reroutes Magic");
-        addCurioEffect("soul_ward_long_shatter_cooldown", "Lengthy Soul Ward Recharge upon Disintegration");
-        addCurioEffect("soul_ward_complete_absorption", "Soul Ward Absorbs All Damage");
-        addCurioEffect("soul_ward_escalating_integrity", "Soul Ward Gains Integrity When Nearing Disintegration");
-
-        addCurioEffect("full_health_fake_collection", "Striking Full Health Targets Triggers Spirit Collection Effects");
-        addCurioEffect("spirits_add_health", "Spirit Collection Grants Extra Hearts");
-        addCurioEffect("spirits_weave_resonance", "Spirit Collection Generates Arcane Resonance");
-        addCurioEffect("spirits_weave_resonance_irons_spellbooks", "Spirit Collection Reduces Spell Cooldown [Iron's Spellbooks]");
-
-
-        addGeasEffect("faster_natural_healing", "Saturation Heals Faster");
-        addGeasEffect("spirits_absorption", "Spirit Collection Grants Absorption");
-        addGeasEffect("passive_healing", "Passively Recover Health");
-        addGeasEffect("healing_aura", "Healing is Shared with Nearby Creatures");
-        addGeasEffect("healing_aura_no_filter", "Shared Healing Heals All, Ally or Not");
-        addGeasEffect("first_hit_bonus", "Blasts Healthy Enemies With Wicked Energy");
-        addGeasEffect("aggressive_enemies", "Increases Enemy Aggression");
-        addGeasEffect("scythe_combo", "Scythe Cuts Create Combo-Attacks");
-        addGeasEffect("only_scythe", "Regular Weapons Crumble In Your Hands");
-        addGeasEffect("damage_buildup", "Taking Damage Charges Up Wrath");
-        addGeasEffect("damage_release", "Wrath Is Released When Striking A Target");
-        addGeasEffect("more_damage", "All Incoming Damage Is Doubled");
-        addGeasEffect("chained_spirit_bonus", "Repeated Soul Shatters Yield Extra Arcana");
-        addGeasEffect("hunger_as_withdrawal", "Addiction to Slaughter");
-        addGeasEffect("spirits_magic_boost", "Spirit Collection Amplifies Magic");
-        addGeasEffect("oops_all_magic", "All Incoming Damage Functions As Magic");
-        addGeasEffect("more_runes", "2 Rune Slots");
-        addGeasEffect("rune_vulnerability", "Each Equipped Rune Dampens Healing, Armor and Magic Resistance");
-        addGeasEffect("more_saturation", "Meals Provide Extra Saturation");
-        addGeasEffect("food_effect_cleanse", "Eating Cleanses Negative Effects");
-        addGeasEffect("faster_starving", "Starvation Occurs Faster");
-        addGeasEffect("high_hunger_more_armor", "Being Well Fed Provides Extra Armor");
-        addGeasEffect("low_hunger_less_armor", "Starvation Halves Armor");
-        addGeasEffect("no_armor_druid_armor", "The Absence of Equipped Armour Grants Armor And Enhances Healing");
-        addGeasEffect("no_armor", "Equipped Armour Shackles You When Vulnerable");
-        addGeasEffect("bonus_reach", "Avoiding Harm Increases Reach");
-        addGeasEffect("fragile_reach", "Reach Effect Faces Cooldown When Struck");
-        addGeasEffect("fragile_reach_slowdown", "Cooldown State Reduces Movement Speed");
-        addGeasEffect("water_agility", "You Move and Swing Faster In Water");
-        addGeasEffect("water_damage_resistance", "You Take Reduced Damage in Water");
-        addGeasEffect("conduit_bonus", "Conduit Power Recovers Health And Amplifies Listed Effects");
-        addGeasEffect("fish_healing", "You Cannot Heal Outside Of Water");
-        addGeasEffect("buffered_damage", "Half Of Incoming Damage Is Buffered");
-        addGeasEffect("buffered_damage_non_lethal", "Buffered Damage Is Applied Overtime And Cannot Kill You");
-        addGeasEffect("buffered_damage_more_overall", "Buffered Damage Is Amplified");
-        addGeasEffect("movement_acceleration", "Sprinting Builds Up Extra Momentum");
-        addGeasEffect("knockback_also_accelerates", "High Momentum Amplifies Received Knockback");
-        addGeasEffect("faster_draw_time", "Successful Ranged Damage Builds Up Extra Draw Speed");
-        addGeasEffect("missing_halts_draw_time", "Missing Inverts The Benefit");
-        addGeasEffect("soul_ward_on_hit", "Magic Damage Recovers Soul Ward");
-        addGeasEffect("incoming_fall_damage_auto_attack", "Taking Fall Damage Attacks Nearby Targets");
-        addGeasEffect("outgoing_fall_damage_auto_attack", "Outgoing Fall Damage Attacks Targets Regardless Of Distance");
-        addGeasEffect("more_knockback", "Doubles Incoming Knockback");
-        addGeasEffect("rocket_jumping", "Wind Gusts Are Enhanced And Grant Ascension");
-        addGeasEffect("wind_gliding", "Ascension Effect Improves Aerial Manoeuvrability");
-        addGeasEffect("weak_legs", "Fall Damage Is Amplified");
-//        addGeasEffect("ore_prospecting", "Collecting Precious Minerals Grants Avarice");
-//        addGeasEffect("avarice_healing", "Attaining Avarice Recovers Health");
-//        addGeasEffect("avarice_combustion", "Avarice Engulfs You In Flames When Struck");
-        addGeasEffect("hotter_fire", "Fire Effects You Apply Are Accelerated");
-        addGeasEffect("extinguish_hurt", "Being Extinguished Hurts You");
-        addGeasEffect("vastly_bigger_explosions", "Greatly Enhances Explosions");
-        addGeasEffect("explosion_lover", "Explosions Grant Avarice");
-        addGeasEffect("avarice_explosions", "Avarice Further Enhances Explosions And Grants Fortune Chance");
-        addGeasEffect("avarice_vulnerability", "Avarice Increases Explosive Damage Taken");
-        addGeasEffect("trial_of_faith", "Gluttony Becomes Trial of Faith");
-        addGeasEffect("rotten_healing", "Eating Rotten Foods Heals You");
-        addGeasEffect("no_passive_healing", "Saturation And Hunger No Longer Restore Health");
-        addGeasEffect("no_normal_foods", "You Must Only Eat Rot");
-        addGeasEffect("desperate_need", "Gluttony Becomes Desperate Need");
-        addGeasEffect("desperate_need_vulnerability", "Desperate Need Amplifies Damage Taken");
-        addGeasEffect("desperate_need_poison", "Starvation Brings Poison");
-        addGeasEffect("wyrd_reconstruction", "Death Triggers Resurrection");
-        addGeasEffect("wyrd_reconstruction_spirits", "Resurrection Repeatedly Activates Spirit-Collection Effects");
-        addGeasEffect("wyrd_reconstruction_cooldown", "Arcane Resonance is Dampened Until Recharged");
-        addGeasEffect("spirits_hunger", "Spirit Collection Drains Hunger");
-        addGeasEffect("malignant_crit_leech", "Malignant Deliverance Leeches Life Essence");
-        addGeasEffect("malignant_crit_healing_overexertion", "Repeated Activations Gradually Diminish All Healing");
-        addGeasEffect("malignant_crit_combo", "Malignant Deliverance Repeatedly Slashes Targets");
-        addGeasEffect("malignant_crit_combo_reinforcement", "Slashes Grow Stronger Through Malignant Conversion");
-        addGeasEffect("malignant_crit_aegis_rerouting", "Malignant Deliverance Recharges Malignant Aegis");
-        addGeasEffect("malignant_crit_reduced_damage", "Recharge Reduces Malignant Deliverance Damage");
-        addGeasEffect("staff_homing", "Staff Projectiles Home In on Targets");
-        addGeasEffect("staff_autofire", "Staff Charges Automatically Fire");
-        addGeasEffect("inverted_heart", "Injuries, Emotions, Senses are Shared with Witnesses");
-        addGeasEffect("inverted_heart_arcane_resonance", "Arcane Resonance Favors Influence Radius");
-        addGeasEffect("gleeful_target", "Ailments, Blessings, Curses are Paused When Struck");
-        addGeasEffect("gleeful_target_arcane_resonance", "Arcane Resonance Aids Stasis Duration");
-        addGeasEffect("presence_breaker", "Refusal, Detachment, Exile is Forced onto Targets");
-        addGeasEffect("presence_breaker_arcane_resonance", "Arcane Resonance Favors Exile Duration");
 
         addMiscEffect("soulwoven_pouch_collection", "Collects Spirit Arcana");
         addMiscEffect("ravenous_pouch_collection", "Snatches Items Already In Storage");
@@ -462,9 +318,6 @@ public class MalumLangDatagen extends LanguageProvider {
         add("malum.jei.weeping_well", "The Weeping Well");
         add("malum.jei.spirit_transmutation", "The Unchained Rite");
 
-        add("malum.itemGroup.spirit_arcana", "Malum: Study of Miracles");
-        add("malum.itemGroup.geas", "Malum: Sworn Oaths");
-        add("malum.itemGroup.cosmetics", "Malum: One's True Self");
 
         addPlayerlessDeathMessage(MalumDamageTypes.CULTIST_MAGIC, "%1$s met their end", "%1$s met their end while trying to escape %2$s");
 
@@ -575,17 +428,6 @@ public class MalumLangDatagen extends LanguageProvider {
                 .replaceAll("Soul Stained", "Soulstained")
                 .replaceAll("Soul Hunter", "Soulhunter");
         return Character.toUpperCase(s.charAt(0)) + s.substring(1);
-    }
-
-    public void addEffectKeyword(KeywordTooltipHandler.TooltipKeyword keyword, String name) {
-        add(keyword.getLangKey(), name);
-    }
-    public void addCurioEffect(String identifier, String name) {
-        add("malum.effect.curio." + identifier, name);
-    }
-
-    public void addGeasEffect(String identifier, String name) {
-        add("malum.effect.geas." + identifier, name);
     }
 
     public void addRiteEffect(String identifier, String name) {
