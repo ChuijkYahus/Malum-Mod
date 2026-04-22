@@ -1,6 +1,7 @@
 package com.sammy.malum.client.screen.codex.pages.text;
 
 import com.sammy.malum.MalumMod;
+import com.sammy.malum.client.screen.codex.display.*;
 import com.sammy.malum.client.screen.codex.helper.*;
 import com.sammy.malum.client.screen.codex.pages.*;
 import com.sammy.malum.client.screen.codex.screens.*;
@@ -18,8 +19,13 @@ public class HeadlineTextPage extends BookPage {
     }
 
     public HeadlineTextPage(String headline, String text) {
-        this.headline = Component.translatable(BookPage.HEADLINE + "." + headline);
-        this.text = Component.translatable(BookPage.TEXT + "." + text);
+        if (PageSelectionPage.FLAG) {
+            this.headline = Component.translatable(DisplayedGizmo.TITLE + headline);
+        }
+        else {
+            this.headline = Component.translatable(BookPage.HEADLINE + headline);
+        }
+        this.text = Component.translatable(BookPage.TEXT + text);
     }
 
     @Override

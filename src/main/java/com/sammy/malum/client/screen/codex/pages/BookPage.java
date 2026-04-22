@@ -16,8 +16,8 @@ import java.util.stream.*;
 
 public abstract class BookPage {
 
-    public static final String TEXT = "malum.gui.book.entry.page.text";
-    public static final String HEADLINE = "malum.gui.book.entry.page.headline";
+    public static final String TEXT = "malum.gui.book.entry.page.text.";
+    public static final String HEADLINE = "malum.gui.book.entry.page.headline.";
 
     public static String getRecipeInfoHeadlineKey(String recipeType) {
         return "malum.gui.book.entry.page.info." + recipeType + ".headline";

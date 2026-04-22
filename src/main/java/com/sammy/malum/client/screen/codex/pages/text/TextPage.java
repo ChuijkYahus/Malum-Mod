@@ -11,7 +11,7 @@ public class TextPage extends BookPage {
     public final Component text;
 
     public TextPage(String text) {
-        this.text = Component.translatable(BookPage.TEXT + "." + text);
+        this.text = Component.translatable(BookPage.TEXT + text);
     }
 
     @Override

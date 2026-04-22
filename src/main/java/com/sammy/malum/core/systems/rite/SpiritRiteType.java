@@ -137,7 +137,7 @@ public class SpiritRiteType {
     }
 
     public String getCodexEntryLangKey() {
-        return BookPage.TEXT + "." + getName();
+        return BookPage.TEXT + getName();
     }
 
     public String getName() {

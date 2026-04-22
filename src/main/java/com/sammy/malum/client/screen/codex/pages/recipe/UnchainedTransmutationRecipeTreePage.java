@@ -38,7 +38,7 @@ public class UnchainedTransmutationRecipeTreePage extends BookPage {
     private final List<Ingredient> itemTree = new ArrayList<>();
 
     public UnchainedTransmutationRecipeTreePage(String headline, Item start) {
-        this.headline = Component.translatable(BookPage.HEADLINE + "." + headline);
+        this.headline = Component.translatable(BookPage.HEADLINE + headline);
 
         Level level = Minecraft.getInstance().level;
         if (level != null) {

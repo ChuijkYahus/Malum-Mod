@@ -1,11 +1,11 @@
 {
   "parent": "minecraft:recipes/root",
   "criteria": {
-    "has_soulstone": {
+    "has_blazing_quartz": {
       "conditions": {
         "items": [
           {
-            "items": "malum:raw_soulstone"
+            "items": "malum:blazing_quartz"
           }
         ]
       },
@@ -13,7 +13,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "malum:soulstone_blasting"
+        "recipe": "malum:blazing_quartz_ore_blasting"
       },
       "trigger": "minecraft:recipe_unlocked"
     }
@@ -21,12 +21,12 @@
   "requirements": [
     [
       "has_the_recipe",
-      "has_soulstone"
+      "has_blazing_quartz"
     ]
   ],
   "rewards": {
     "recipes": [
-      "malum:soulstone_blasting"
+      "malum:blazing_quartz_ore_blasting"
     ]
   }
 }

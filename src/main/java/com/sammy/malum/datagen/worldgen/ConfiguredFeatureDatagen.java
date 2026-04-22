@@ -38,7 +38,7 @@ public class ConfiguredFeatureDatagen {
                     target(REPLACE_STONE, simple(SOULSTONE_ORE.get())),
                     target(REPLACE_DEEPSLATE, simple(DEEPSLATE_SOULSTONE_ORE.get()))
             ), 20, 12, 0f, true),
-            new OreLayer(target(REPLACE_STONES, simple(TUFF)), 24, 16, 0.2f, false)
+            new OreLayer(target(REPLACE_STONES, simple(TUFF)), 28, 16, 0.2f, false)
     );
 
     public static final LayeredOreFeatureDecorator SOULSTONE_DECOR =

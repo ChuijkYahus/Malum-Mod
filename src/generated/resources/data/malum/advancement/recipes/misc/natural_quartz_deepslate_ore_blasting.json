@@ -1,11 +1,11 @@
 {
   "parent": "minecraft:recipes/root",
   "criteria": {
-    "has_soulstone": {
+    "has_natural_quartz": {
       "conditions": {
         "items": [
           {
-            "items": "malum:raw_soulstone"
+            "items": "malum:natural_quartz"
           }
         ]
       },
@@ -13,7 +13,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "malum:soulstone_deepslate_smelting"
+        "recipe": "malum:natural_quartz_deepslate_ore_blasting"
       },
       "trigger": "minecraft:recipe_unlocked"
     }
@@ -21,12 +21,12 @@
   "requirements": [
     [
       "has_the_recipe",
-      "has_soulstone"
+      "has_natural_quartz"
     ]
   ],
   "rewards": {
     "recipes": [
-      "malum:soulstone_deepslate_smelting"
+      "malum:natural_quartz_deepslate_ore_blasting"
     ]
   }
 }

@@ -25,7 +25,7 @@ public class UnchainedTransmutationRecipePage extends BookPage {
     private final List<UnchainedTransmutationRecipe> recipes = new ArrayList<>();
 
     public UnchainedTransmutationRecipePage(String headline, Predicate<UnchainedTransmutationRecipe> predicate) {
-        this.headline = Component.translatable(BookPage.HEADLINE + "." + headline);
+        this.headline = Component.translatable(BookPage.HEADLINE + headline);
         var level = Minecraft.getInstance().level;
         if (level == null) {
             return;

@@ -13,7 +13,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "malum:soulstone_deepslate_blasting"
+        "recipe": "malum:soulstone_ore_blasting"
       },
       "trigger": "minecraft:recipe_unlocked"
     }
@@ -26,7 +26,7 @@
   ],
   "rewards": {
     "recipes": [
-      "malum:soulstone_deepslate_blasting"
+      "malum:soulstone_ore_blasting"
     ]
   }
 }

@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:blasting",
+  "category": "misc",
+  "cookingtime": 100,
+  "experience": 0.5,
+  "ingredient": {
+    "item": "malum:soulstone_bud"
+  },
+  "result": {
+    "count": 4,
+    "id": "malum:refined_soulstone"
+  }
+}

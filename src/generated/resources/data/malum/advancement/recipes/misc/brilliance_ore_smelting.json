@@ -13,7 +13,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "malum:brilliance_deepslate_smelting"
+        "recipe": "malum:brilliance_ore_smelting"
       },
       "trigger": "minecraft:recipe_unlocked"
     }
@@ -26,7 +26,7 @@
   ],
   "rewards": {
     "recipes": [
-      "malum:brilliance_deepslate_smelting"
+      "malum:brilliance_ore_smelting"
     ]
   }
 }
