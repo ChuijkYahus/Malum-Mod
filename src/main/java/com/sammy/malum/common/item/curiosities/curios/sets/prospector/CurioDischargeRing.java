@@ -12,7 +12,7 @@ import java.util.function.Consumer;
 public class CurioDischargeRing extends MalumCurioItem {
 
     public CurioDischargeRing(Properties builder) {
-        super(builder, MalumTrinketType.METALLIC);
+        super(builder, MalumTrinketFamily.AVARICE);
     }
 
     @Override

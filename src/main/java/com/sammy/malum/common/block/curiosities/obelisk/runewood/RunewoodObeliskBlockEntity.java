@@ -1,7 +1,7 @@
 package com.sammy.malum.common.block.curiosities.obelisk.runewood;
 
 import com.sammy.malum.common.block.curiosities.obelisk.*;
-import com.sammy.malum.common.block.curiosities.crafting.spirit_altar.*;
+import com.sammy.malum.common.block.curiosities.sorcery.spirit_altar.*;
 import com.sammy.malum.core.systems.spirit.type.*;
 import com.sammy.malum.registry.common.MalumContent;
 import com.sammy.malum.registry.common.block.*;
@@ -17,7 +17,7 @@ public class RunewoodObeliskBlockEntity extends ObeliskCoreBlockEntity implement
     private static final Vec3 OBELISK_PARTICLE_OFFSET = new Vec3(0.5f, 2f, 0.5f);
 
     private static final AltarAcceleratorType OBELISK = new AltarAcceleratorType(4, "obelisk");
-    public static final Supplier<MultiBlockStructure> STRUCTURE = () -> (MultiBlockStructure.of(new MultiBlockStructure.StructurePiece(0, 1, 0, MalumContent.Progression.RUNEWOOD_OBELISK_COMPONENT.get().defaultBlockState())));
+    public static final Supplier<MultiBlockStructure> STRUCTURE = () -> (MultiBlockStructure.of(new MultiBlockStructure.StructurePiece(0, 1, 0, MalumContent.Sorcery.RUNEWOOD_OBELISK_COMPONENT.get().defaultBlockState())));
 
     public RunewoodObeliskBlockEntity(BlockPos pos, BlockState state) {
         super(MalumBlockEntities.RUNEWOOD_OBELISK.get(), STRUCTURE.get(), pos, state);

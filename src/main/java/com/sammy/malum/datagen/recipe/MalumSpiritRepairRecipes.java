@@ -4,23 +4,20 @@ import com.sammy.malum.*;
 import com.sammy.malum.common.recipe.spirit_repair.*;
 import com.sammy.malum.datagen.recipe.builder.*;
 import com.sammy.malum.registry.common.MalumContent;
-import com.sammy.malum.registry.common.MalumContent.Artifice;
-import com.sammy.malum.registry.common.item.MalumItemProperties;
 import net.minecraft.data.recipes.*;
 import net.minecraft.tags.*;
-import net.minecraft.world.item.*;
 import net.neoforged.neoforge.common.Tags;
 import net.neoforged.neoforge.common.conditions.IConditionBuilder;
 import net.neoforged.neoforge.common.crafting.*;
 
-import static com.sammy.malum.registry.common.MalumContent.Artifice.*;
+import static com.sammy.malum.registry.common.MalumContent.AlchemyAndMetallics.*;
 import static com.sammy.malum.registry.common.magic.MalumSpiritTypes.*;
 import static net.minecraft.world.item.Items.*;
 
 public class MalumSpiritRepairRecipes implements IConditionBuilder {
 
     protected static void buildRecipes(RecipeOutput recipeOutput) {
-        var has = MalumRecipes.has(REPAIR_PYLON.get());
+        var has = MalumRecipes.has(MalumContent.Focusing.REPAIR_PYLON.get());
 
         new SpiritRepairRecipeBuilder(SizedIngredient.of(ItemTags.PLANKS, 4), 0.5f)
                 .withRegex(SpiritRepairRegexData.simple("wooden_.+"))

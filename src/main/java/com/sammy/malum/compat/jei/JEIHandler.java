@@ -98,11 +98,11 @@ public class JEIHandler implements IModPlugin {
 
     @Override
     public void registerRecipeCatalysts(IRecipeCatalystRegistration registry) {
-        registry.addRecipeCatalyst(new ItemStack(MalumContent.Progression.SPIRIT_ALTAR.get()), SPIRIT_INFUSION);
-        registry.addRecipeCatalyst(new ItemStack(MalumContent.Artifice.SPIRIT_CRUCIBLE.get()), FOCUSING);
-        registry.addRecipeCatalyst(new ItemStack(MalumContent.Artifice.REPAIR_PYLON.get()), SPIRIT_REPAIR);
+        registry.addRecipeCatalyst(new ItemStack(MalumContent.Sorcery.SPIRIT_ALTAR.get()), SPIRIT_INFUSION);
+        registry.addRecipeCatalyst(new ItemStack(MalumContent.Focusing.SPIRIT_CRUCIBLE.get()), FOCUSING);
+        registry.addRecipeCatalyst(new ItemStack(MalumContent.Focusing.REPAIR_PYLON.get()), SPIRIT_REPAIR);
         registry.addRecipeCatalyst(new ItemStack(MalumContent.Totemancy.SOULWOOD_TOTEM_BASE.get()), TRANSMUTATION);
-        registry.addRecipeCatalyst(new ItemStack(MalumContent.Progression.RUNIC_WORKBENCH.get()), RUNEWORKING);
+        registry.addRecipeCatalyst(new ItemStack(MalumContent.Sorcery.RUNIC_WORKBENCH.get()), RUNEWORKING);
         registry.addRecipeCatalyst(new ItemStack(MalumContent.WeepingWell.VOID_DEPOT.get()), VOID_FAVOR);
     }
 

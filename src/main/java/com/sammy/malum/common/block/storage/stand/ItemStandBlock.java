@@ -9,12 +9,10 @@ import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
-import net.minecraft.world.level.block.state.properties.BlockStateProperties;
-import net.minecraft.world.level.block.state.properties.DirectionProperty;
-import net.minecraft.world.phys.shapes.CollisionContext;
-import net.minecraft.world.phys.shapes.VoxelShape;
+import net.minecraft.world.level.block.state.properties.*;
+import net.minecraft.world.phys.shapes.*;
 import net.neoforged.neoforge.items.ItemHandlerHelper;
-import team.lodestar.lodestone.modules.toolkit.block.WaterLoggedEntityBlock;
+import team.lodestar.lodestone.modules.toolkit.block.*;
 
 
 @SuppressWarnings("NullableProblems")
@@ -22,12 +20,7 @@ public class ItemStandBlock<T extends ItemStandBlockEntity> extends WaterLoggedE
 
     public static DirectionProperty FACING = BlockStateProperties.FACING;
 
-    public static final VoxelShape UP = Block.box(4, 0, 4, 12, 2, 12);
-    public static final VoxelShape DOWN = Block.box(4, 14, 4, 12, 16, 12);
-    public static final VoxelShape SOUTH = Block.box(4, 4, 0, 12, 12, 2);
-    public static final VoxelShape NORTH = Block.box(4, 4, 14, 12, 12, 16);
-    public static final VoxelShape WEST = Block.box(14, 4, 4, 16, 12, 12);
-    public static final VoxelShape EAST = Block.box(0, 4, 4, 2, 12, 12);
+    protected static final VoxelShapeRotator SHAPES = new VoxelShapeRotator(box(4, 0, 4, 12, 2, 12));
 
     public ItemStandBlock(Properties properties) {
         super(properties);
@@ -50,27 +43,7 @@ public class ItemStandBlock<T extends ItemStandBlockEntity> extends WaterLoggedE
 
     @Override
     public VoxelShape getShape(BlockState state, BlockGetter level, BlockPos pos, CollisionContext context) {
-        switch (state.getValue(FACING)) {
-            case UP -> {
-                return UP;
-            }
-            case DOWN -> {
-                return DOWN;
-            }
-            case SOUTH -> {
-                return SOUTH;
-            }
-            case NORTH -> {
-                return NORTH;
-            }
-            case WEST -> {
-                return WEST;
-            }
-            case EAST -> {
-                return EAST;
-            }
-        }
-        return super.getShape(state, level, pos, context);
+        return SHAPES.getShape(state);
     }
 
     @Override
@@ -82,6 +55,7 @@ public class ItemStandBlock<T extends ItemStandBlockEntity> extends WaterLoggedE
     @SuppressWarnings("DataFlowIssue")
     @Override
     public BlockState getStateForPlacement(BlockPlaceContext context) {
-        return super.getStateForPlacement(context). setValue(FACING, context.getClickedFace());
+        return super.getStateForPlacement(context).setValue(FACING, context.getClickedFace());
     }
+
 }

@@ -1,20 +1,18 @@
 package com.sammy.malum.datagen.recipe.infusion;
 
 import com.sammy.malum.datagen.recipe.builder.*;
-import com.sammy.malum.registry.common.*;
 import com.sammy.malum.registry.common.MalumContent;
 import net.minecraft.data.recipes.*;
 import net.neoforged.neoforge.common.crafting.*;
 
 import static com.sammy.malum.registry.common.MalumContent.BlockSets.*;
-import static com.sammy.malum.registry.common.MalumContent.Progression.*;
-import static com.sammy.malum.registry.common.MalumContent.Totemancy.*;
+import static com.sammy.malum.registry.common.MalumContent.Sorcery.*;
 import static com.sammy.malum.registry.common.magic.MalumSpiritTypes.*;
 
 public class TotemicSpiritInfusionRecipes {
 
     public static void buildRecipes(RecipeOutput recipeOutput) {
-        new SpiritInfusionRecipeBuilder(RUNEWOOD_SET.log, 4, RUNEWOOD_TOTEM_BASE, 4)
+        new SpiritInfusionRecipeBuilder(RUNEWOOD_SET.log, 4, MalumContent.Totemancy.RUNEWOOD_TOTEM_BASE, 4)
                 .addExtraItem(RUNEWOOD_SET.planks.block, 6)
                 .addExtraItem(MalumContent.Materials.HEX_ASH, 2)
                 .addSpirit(AERIAL_SPIRIT, 2)
@@ -24,7 +22,7 @@ public class TotemicSpiritInfusionRecipes {
                 .addSpirit(ELDRITCH_SPIRIT, 2)
                 .save(recipeOutput);
 
-        new SpiritInfusionRecipeBuilder(SOULWOOD_SET.planks.block, 4, SOULWOOD_TOTEM_BASE, 4)
+        new SpiritInfusionRecipeBuilder(SOULWOOD_SET.planks.block, 4, MalumContent.Totemancy.SOULWOOD_TOTEM_BASE, 4)
                 .addExtraItem(SOULWOOD_SET.planks.block, 6)
                 .addExtraItem(MalumContent.Materials.HEX_ASH, 2)
                 .addSpirit(AERIAL_SPIRIT, 2)
@@ -34,7 +32,7 @@ public class TotemicSpiritInfusionRecipes {
                 .addSpirit(ELDRITCH_SPIRIT, 2)
                 .save(recipeOutput);
 
-        new SpiritInfusionRecipeBuilder(net.minecraft.world.item.Items.COPPER_BLOCK, 4, WAVEFORM_RUNEWOOD_TOTEM_BASE, 4)
+        new SpiritInfusionRecipeBuilder(net.minecraft.world.item.Items.COPPER_BLOCK, 4, MalumContent.Totemancy.WAVEFORM_RUNEWOOD_TOTEM_BASE, 4)
                 .addExtraItem(net.minecraft.world.item.Items.REDSTONE, 8)
                 .addExtraItem(SizedIngredient.of(RUNEWOOD_SET.planks.block, 6))
                 .addExtraItem(RUNEWOOD_SET.planks.block, 4)
@@ -47,7 +45,7 @@ public class TotemicSpiritInfusionRecipes {
                 .addSpirit(ELDRITCH_SPIRIT, 2)
                 .save(recipeOutput);
 
-        new SpiritInfusionRecipeBuilder(net.minecraft.world.item.Items.COPPER_BLOCK, 4, WAVEFORM_SOULWOOD_TOTEM_BASE, 4)
+        new SpiritInfusionRecipeBuilder(net.minecraft.world.item.Items.COPPER_BLOCK, 4, MalumContent.Totemancy.WAVEFORM_SOULWOOD_TOTEM_BASE, 4)
                 .addExtraItem(net.minecraft.world.item.Items.REDSTONE, 8)
                 .addExtraItem(SizedIngredient.of(SOULWOOD_SET.planks.block, 6))
                 .addExtraItem(SOULWOOD_SET.planks.block, 4)
@@ -70,7 +68,7 @@ public class TotemicSpiritInfusionRecipes {
                 .addSpirit(INFERNAL_SPIRIT, 8)
                 .save(recipeOutput);
 
-        new SpiritInfusionRecipeBuilder(RUNEWOOD_SET.planks.block, 4, RITE_ANCHOR, 4)
+        new SpiritInfusionRecipeBuilder(RUNEWOOD_SET.planks.block, 4, MalumContent.Totemancy.RITE_ANCHOR, 4)
                 .addExtraItem(MalumContent.Materials.REFINED_SOULSTONE, 8)
                 .addExtraItem(MalumContent.Materials.HEX_ASH, 4)
                 .addExtraItem(SOULWOOD_SET.planks.block, 2)
@@ -82,7 +80,7 @@ public class TotemicSpiritInfusionRecipes {
                 .addSpirit(ARCANE_SPIRIT, 4)
                 .save(recipeOutput);
 
-        new SpiritInfusionRecipeBuilder(RUNEWOOD_SET.planks.block, 4, RITE_UNWEAVER, 4)
+        new SpiritInfusionRecipeBuilder(RUNEWOOD_SET.planks.block, 4, MalumContent.Totemancy.RITE_UNWEAVER, 4)
                 .addExtraItem(MalumContent.Materials.SOUL_STAINED_STEEL_PLATING, 6)
                 .addExtraItem(SOULWOOD_SET.planks.block, 2)
                 .addExtraItem(TWISTED_ROCK_SET.rock.block, 2)
@@ -90,7 +88,7 @@ public class TotemicSpiritInfusionRecipes {
                 .addSpirit(ARCANE_SPIRIT, 8)
                 .save(recipeOutput);
 
-        new SpiritInfusionRecipeBuilder(RUNEWOOD_SET.planks.block, 4, RITE_SPREADER, 4)
+        new SpiritInfusionRecipeBuilder(RUNEWOOD_SET.planks.block, 4, MalumContent.Totemancy.RITE_SPREADER, 4)
                 .addExtraItem(MalumContent.Materials.CONVOLUTED_LENS, 2)
                 .addExtraItem(net.minecraft.world.item.Items.COPPER_INGOT, 4)
                 .addExtraItem(SOULWOOD_SET.planks.block, 2)
@@ -99,7 +97,7 @@ public class TotemicSpiritInfusionRecipes {
                 .addSpirit(ELDRITCH_SPIRIT, 8)
                 .save(recipeOutput);
 
-        new SpiritInfusionRecipeBuilder(RUNEWOOD_SET.planks.block, 4, RITE_CHANNEL, 4)
+        new SpiritInfusionRecipeBuilder(RUNEWOOD_SET.planks.block, 4, MalumContent.Totemancy.RITE_CHANNEL, 4)
                 .addExtraItem(MalumContent.Materials.HALLOWED_GOLD_INLAY, 2)
                 .addExtraItem(net.minecraft.world.item.Items.COPPER_INGOT, 4)
                 .addExtraItem(SOULWOOD_SET.planks.block, 2)

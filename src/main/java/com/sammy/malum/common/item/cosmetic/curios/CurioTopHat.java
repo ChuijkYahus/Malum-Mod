@@ -6,6 +6,6 @@ import team.lodestar.lodestone.handlers.*;
 public class CurioTopHat extends MalumCurioItem implements ItemEventHandler.IEventResponder {
 
     public CurioTopHat(Properties builder) {
-        super(builder, MalumTrinketType.CLOTH);
+        super(builder, MalumTrinketFamily.CLOTH);
     }
 }

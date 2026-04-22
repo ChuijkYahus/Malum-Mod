@@ -11,7 +11,7 @@ import top.theillusivec4.curios.api.SlotContext;
 
 public class CurioGildedRing extends MalumCurioItem {
     public CurioGildedRing(Properties builder) {
-        super(builder, MalumTrinketType.GILDED);
+        super(builder, MalumTrinketFamily.GILDED);
     }
 
     @Override

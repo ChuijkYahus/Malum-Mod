@@ -12,14 +12,13 @@ import net.minecraft.world.item.*;
 import net.minecraft.world.phys.*;
 import net.neoforged.neoforge.event.entity.living.*;
 import net.neoforged.neoforge.event.tick.*;
-import team.lodestar.lodestone.helpers.*;
 import team.lodestar.lodestone.modules.core.easing.Easing;
 
 import java.util.function.*;
 
 public class CurioWatcherNecklace extends MalumCurioItem implements IMalumEventResponder, IVoidItem {
     public CurioWatcherNecklace(Properties builder) {
-        super(builder, MalumTrinketType.VOID);
+        super(builder, MalumTrinketFamily.VOID);
     }
 
     @Override

@@ -16,6 +16,7 @@ import com.sammy.malum.common.geas.pact.wicked.*;
 import com.sammy.malum.common.item.cosmetic.curios.*;
 import com.sammy.malum.common.item.curiosities.curios.runes.madness.*;
 import com.sammy.malum.common.item.curiosities.curios.runes.miracle.*;
+import com.sammy.malum.common.item.curiosities.curios.sets.elemental.*;
 import com.sammy.malum.common.item.curiosities.curios.sets.esoteric.*;
 import com.sammy.malum.common.item.curiosities.curios.sets.rotten.*;
 import com.sammy.malum.common.item.curiosities.curios.sets.weeping.*;
@@ -215,6 +216,6 @@ public class RuntimeEventHandler {
 
     @SubscribeEvent(priority = EventPriority.HIGHEST)
     public static void onExplosionKnockback(ExplosionKnockbackEvent event) {
-        CloudSkipperGeas.onExplosionKnockback(event);
+        CurioWindweaverNecklace.onExplosionKnockback(event);
     }
 }

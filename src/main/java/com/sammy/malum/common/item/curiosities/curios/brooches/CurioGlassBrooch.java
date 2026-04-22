@@ -4,7 +4,6 @@ import com.google.common.collect.*;
 import com.sammy.malum.MalumMod;
 import com.sammy.malum.common.item.curiosities.curios.*;
 import net.minecraft.core.Holder;
-import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.ai.attributes.*;
 import net.minecraft.world.item.*;
 import top.theillusivec4.curios.api.*;
@@ -12,7 +11,7 @@ import top.theillusivec4.curios.api.*;
 public class CurioGlassBrooch extends MalumCurioItem {
 
     public CurioGlassBrooch(Properties builder) {
-        super(builder, MalumTrinketType.METALLIC);
+        super(builder, MalumTrinketFamily.METALLIC);
     }
 
     @Override

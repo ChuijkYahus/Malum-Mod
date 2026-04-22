@@ -39,6 +39,9 @@ public abstract class BookPage {
     public void renderLate(CodexEntryScreen screen, GuiGraphics guiGraphics, int left, int top, int mouseX, int mouseY, float partialTicks, boolean isRepeat) {
     }
 
+    public void tick(CodexEntryScreen screen, int left, int top, boolean isRepeat) {
+    }
+
     public void click(CodexEntryScreen screen, int left, int top, double mouseX, double mouseY, double relativeMouseX, double relativeMouseY) {
     }
 

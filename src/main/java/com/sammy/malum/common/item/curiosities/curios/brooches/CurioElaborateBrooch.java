@@ -15,7 +15,7 @@ public class CurioElaborateBrooch extends MalumCurioItem {
     public static final ResourceLocation ELABORATE_BROOCH_BELT = MalumMod.malumPath("elaborate_brooch_belt");
 
     public CurioElaborateBrooch(Properties builder) {
-        super(builder, MalumTrinketType.ORNATE);
+        super(builder, MalumTrinketFamily.ORNATE);
     }
 
     @Override

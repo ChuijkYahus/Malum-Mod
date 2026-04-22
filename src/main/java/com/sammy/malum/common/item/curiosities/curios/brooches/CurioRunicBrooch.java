@@ -15,7 +15,7 @@ public class CurioRunicBrooch extends MalumCurioItem {
     public static final ResourceLocation RUNIC_BROOCH_RUNE = MalumMod.malumPath("runic_brooch_rune");
 
     public CurioRunicBrooch(Properties builder) {
-        super(builder, MalumTrinketType.GILDED);
+        super(builder, MalumTrinketFamily.GILDED);
     }
 
     @Override

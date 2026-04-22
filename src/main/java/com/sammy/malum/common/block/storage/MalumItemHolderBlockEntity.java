@@ -4,6 +4,7 @@ import com.sammy.malum.common.block.*;
 import com.sammy.malum.common.item.spirit.*;
 import com.sammy.malum.visual_effects.*;
 import net.minecraft.core.*;
+import net.minecraft.world.*;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.*;
 import net.minecraft.world.level.block.state.*;
@@ -14,7 +15,7 @@ import team.lodestar.lodestone.modules.toolkit.inventory.LodestoneItemStackHandl
 
 import java.util.Optional;
 
-public abstract class MalumItemHolderBlockEntity extends ItemHolderBlockEntity implements IMalumSpecialItemAccessPoint {
+public abstract class MalumItemHolderBlockEntity extends ItemHolderBlockEntity implements IMalumSpecialItemAccessPoint, Clearable {
 
     public MalumItemHolderBlockEntity(LodestoneBlockEntityType<? extends MalumItemHolderBlockEntity> type, BlockPos pos, BlockState state) {
         super(type, pos, state);
@@ -42,4 +43,10 @@ public abstract class MalumItemHolderBlockEntity extends ItemHolderBlockEntity i
         if (inventory.getStackInSlot(0).getItem() instanceof SpiritShardItem item) {
             SpiritLightSpecs.rotatingLightSpecs(level, getItemPos(), item, 0.4f, 2);
         }
-    }}
+    }
+
+    @Override
+    public void clearContent() {
+        inventory.clear();
+    }
+}

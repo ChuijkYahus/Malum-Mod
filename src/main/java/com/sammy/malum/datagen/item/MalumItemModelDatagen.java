@@ -5,7 +5,6 @@ import com.sammy.malum.common.item.curiosities.curios.runes.*;
 import com.sammy.malum.common.item.spirit.*;
 import com.sammy.malum.datagen.MalumMetallicsDatagen;
 import com.sammy.malum.registry.common.MalumContent;
-import com.sammy.malum.registry.common.MalumContent.Vanity;
 import net.minecraft.data.*;
 import net.minecraft.world.item.*;
 import net.neoforged.neoforge.common.data.*;
@@ -49,9 +48,9 @@ public class MalumItemModelDatagen extends LodestoneItemModelSystem {
         MalumItemModelSmithTypes.GENERATED_ITEM.act(data, items.stream().filter(i -> i.get() instanceof AbstractRuneCurioItem).collect(Collectors.toList()));
 
         setTexturePath("alchemy/");
-        MalumItemModelSmithTypes.IMPETUS_ITEM.act(data, MalumContent.Artifice.ALCHEMICAL_IMPETUS, MalumContent.Artifice.FRACTURED_ALCHEMICAL_IMPETUS);
-        MalumItemModelSmithTypes.IMPETUS_ITEM.act(data, MalumContent.Artifice.ZEPHYR_IMPETUS, MalumContent.Artifice.FRACTURED_ZEPHYR_IMPETUS);
-        MalumItemModelSmithTypes.IMPETUS_ITEM.act(data, MalumContent.Artifice.IFRIT_IMPETUS, MalumContent.Artifice.FRACTURED_IFRIT_IMPETUS);
+        MalumItemModelSmithTypes.IMPETUS_ITEM.act(data, MalumContent.AlchemyAndMetallics.ALCHEMICAL_IMPETUS, MalumContent.AlchemyAndMetallics.FRACTURED_ALCHEMICAL_IMPETUS);
+        MalumItemModelSmithTypes.IMPETUS_ITEM.act(data, MalumContent.AlchemyAndMetallics.ZEPHYR_IMPETUS, MalumContent.AlchemyAndMetallics.FRACTURED_ZEPHYR_IMPETUS);
+        MalumItemModelSmithTypes.IMPETUS_ITEM.act(data, MalumContent.AlchemyAndMetallics.IFRIT_IMPETUS, MalumContent.AlchemyAndMetallics.FRACTURED_IFRIT_IMPETUS);
 
         setTexturePath("alchemy/metallics/");
         MalumMetallicsDatagen.MALUM.addItemModels(data);
@@ -62,7 +61,7 @@ public class MalumItemModelDatagen extends LodestoneItemModelSystem {
         MalumItemModelSmithTypes.UMBRAL_SPIRIT_ITEM.act(data, MalumContent.Spirits.UMBRAL_SPIRIT);
         MalumItemModelSmithTypes.HANDHELD_OVERLAY_ITEM.act(data, MalumContent.Gear.UNWINDING_CHAOS, MalumContent.Gear.SUNDERING_ANCHOR).forEach(result -> result.addModelLayerData().emissive(15, 15, 1));
         MalumItemModelSmithTypes.LARGE_HANDHELD_ITEM.act(data, MalumContent.Gear.CRUDE_SCYTHE, MalumContent.Gear.SOUL_STAINED_STEEL_SCYTHE, MalumContent.Gear.RAVENOUS_SCYTHE, MalumContent.Gear.EDGE_OF_DELIVERANCE, MalumContent.Gear.WEIGHT_OF_WORLDS, MalumContent.DungeonGear.SHAPED_SLAB);
-        MalumItemModelSmithTypes.HANDHELD_ITEM.act(data, MalumContent.Gear.SOUL_STAINED_STEEL_KNIFE, MalumContent.Gear.GLUTTONOUS_BLUDGEON, MalumContent.Artifice.TUNING_FORK, MalumContent.Gear.LAMPLIGHTERS_TONGS, MalumContent.Artifice.ARTIFICERS_CLAW, MalumContent.Totemancy.TOTEMIC_STAFF);
+        MalumItemModelSmithTypes.HANDHELD_ITEM.act(data, MalumContent.Gear.SOUL_STAINED_STEEL_KNIFE, MalumContent.Gear.GLUTTONOUS_BLUDGEON, MalumContent.Focusing.TUNING_FORK, MalumContent.Gear.LAMPLIGHTERS_TONGS, MalumContent.Artifice.ARTIFICERS_CLAW, MalumContent.Totemancy.TOTEMIC_STAFF);
         MalumItemModelSmithTypes.HANDHELD_ITEM.act(data, MalumContent.Gear.MNEMONIC_HEX_STAFF, MalumContent.Gear.EROSION_SCEPTER);
         MalumItemModelSmithTypes.SPELLWEAVING_TOOL.act(data, MalumContent.Gear.SPELLWEAVING_PICKAXE, MalumContent.Gear.SPELLWEAVING_AXE);
         MalumItemModelSmithTypes.CATALYST_LOBBER.act(data, MalumContent.Gear.CATALYST_LOBBER);

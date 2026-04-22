@@ -16,7 +16,7 @@ import java.util.function.Consumer;
 
 public class CurioNarrowEdgeNecklace extends MalumCurioItem {
     public CurioNarrowEdgeNecklace(Properties builder) {
-        super(builder, MalumTrinketType.METALLIC);
+        super(builder, MalumTrinketFamily.METALLIC);
     }
 
     @Override

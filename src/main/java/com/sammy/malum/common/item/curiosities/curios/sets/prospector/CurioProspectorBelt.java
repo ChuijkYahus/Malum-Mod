@@ -22,7 +22,7 @@ import java.util.function.Consumer;
 public class CurioProspectorBelt extends MalumCurioItem {
 
     public CurioProspectorBelt(Properties builder) {
-        super(builder, MalumTrinketType.METALLIC);
+        super(builder, MalumTrinketFamily.AVARICE);
     }
 
     @SuppressWarnings("DataFlowIssue")

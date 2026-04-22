@@ -112,15 +112,10 @@ public class CodexEntryScreen extends AbstractMalumCodexScreen {
     @Override
     public boolean mouseClicked(double mouseX, double mouseY, int button) {
         iterateOnAllObjects(o -> o.click(this, mouseX, mouseY));
-        
-        int pageTop = getPageTop();
-        int leftPageLeft = getLeftPageLeft();
-        int rightPageLeft = getRightPageLeft();
 
-        var leftPage = getLeftPage();
-        var rightPage = getRightPage();
-        tryClick(leftPage, pageTop, leftPageLeft, mouseX, mouseY);
-        tryClick(rightPage, pageTop, rightPageLeft, mouseX, mouseY);
+        int pageTop = getPageTop();
+        tryClick(getLeftPage(), pageTop, getLeftPageLeft(), mouseX, mouseY);
+        tryClick(getRightPage(), pageTop, getRightPageLeft(), mouseX, mouseY);
 
         textJump += 1f;
 
@@ -138,6 +133,11 @@ public class CodexEntryScreen extends AbstractMalumCodexScreen {
     public void tick() {
         super.tick();
         iterateOnAllObjects(o -> o.tick(this));
+
+        int pageTop = getPageTop();
+        tickPage(getLeftPage(), pageTop, getLeftPageLeft());
+        tickPage(getRightPage(), pageTop, getRightPageLeft());
+
         textJump = Math.max(textJump - 0.1f, 0);
     }
 
@@ -204,6 +204,15 @@ public class CodexEntryScreen extends AbstractMalumCodexScreen {
             return;
         }
         objects.renderObjectsLate(this, guiGraphics, mouseX, mouseY, partialTicks);
+    }
+
+    public void tickPage(BookPage page, int pageTop, int pageLeft) {
+        if (page == null) {
+            return;
+        }
+        var leftPage = getLeftPage();
+        boolean isRepeat = !page.equals(leftPage) && page.getClass().equals(leftPage.getClass());
+        page.tick(this, pageLeft, pageTop, isRepeat);
     }
 
     public void tryClick(BookPage page, int pageTop, int pageLeft, double mouseX, double mouseY) {

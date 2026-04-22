@@ -16,15 +16,15 @@ public class MalumBlockSoundDatagen extends MalumSoundDatagenWrapper {
     public void registerSounds() {
 
         //Derealized Ores
-        addMetallicsSounds(MalumContent.Artifice.IRON_METALLICS, 1);
-        addMetallicsSounds(MalumContent.Artifice.COPPER_METALLICS, 1.4f);
-        addMetallicsSounds(MalumContent.Artifice.GOLD_METALLICS, 0.8f);
-        addMetallicsSounds(MalumContent.Artifice.ZINC_METALLICS, 1.2f);
+        addMetallicsSounds(MalumContent.AlchemyAndMetallics.IRON_METALLICS, 1);
+        addMetallicsSounds(MalumContent.AlchemyAndMetallics.COPPER_METALLICS, 1.4f);
+        addMetallicsSounds(MalumContent.AlchemyAndMetallics.GOLD_METALLICS, 0.8f);
+        addMetallicsSounds(MalumContent.AlchemyAndMetallics.ZINC_METALLICS, 1.2f);
 
-        addMetallicsSounds(MalumContent.Artifice.LEAD_METALLICS, 0.7f);
-        addMetallicsSounds(MalumContent.Artifice.SILVER_METALLICS, 1.45f);
-        addMetallicsSounds(MalumContent.Artifice.ALUMINIUM_METALLICS, 1.6f);
-        addMetallicsSounds(MalumContent.Artifice.NICKEL_METALLICS, 1.25f);
+        addMetallicsSounds(MalumContent.AlchemyAndMetallics.LEAD_METALLICS, 0.7f);
+        addMetallicsSounds(MalumContent.AlchemyAndMetallics.SILVER_METALLICS, 1.45f);
+        addMetallicsSounds(MalumContent.AlchemyAndMetallics.ALUMINIUM_METALLICS, 1.6f);
+        addMetallicsSounds(MalumContent.AlchemyAndMetallics.NICKEL_METALLICS, 1.25f);
 
         //Soulstone
         add(MalumBlockSoundEvents.SOULSTONE_BUD, "block/ore/soulstone/bud");

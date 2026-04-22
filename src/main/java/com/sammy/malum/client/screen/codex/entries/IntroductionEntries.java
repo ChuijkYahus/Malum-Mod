@@ -1,6 +1,7 @@
 package com.sammy.malum.client.screen.codex.entries;
 
 import com.sammy.malum.client.screen.codex.pages.*;
+import com.sammy.malum.client.screen.codex.pages.display.*;
 import com.sammy.malum.client.screen.codex.pages.recipe.vanilla.*;
 import com.sammy.malum.client.screen.codex.pages.text.*;
 import com.sammy.malum.client.screen.codex.screens.progression.*;
@@ -96,15 +97,24 @@ public class IntroductionEntries {
         );
 
         screen.addEntry("soulstone", 0, 4, b -> b
-                .configureWidget(w -> w.setIcon(item(REFINED_SOULSTONE)))
-                .addPage(new HeadlineTextGizmoPage("soulstone", item(REFINED_SOULSTONE)))
-                .addPage(new TextPage("soulstone.2"))
-                .addPage(PageSelectionPage.create(s -> s
-                                .add(item(REFINED_SOULSTONE), new SmeltingPage(item(RAW_SOULSTONE), item(REFINED_SOULSTONE)))
-                                .add(item(BLOCK_OF_REFINED_SOULSTONE), CraftingPage.fullBlock(item(BLOCK_OF_REFINED_SOULSTONE), item(REFINED_SOULSTONE)))
-                                .add(item(BLOCK_OF_RAW_SOULSTONE), CraftingPage.fullBlock(item(BLOCK_OF_RAW_SOULSTONE), item(RAW_SOULSTONE)))
+                        .configureWidget(w -> w.setIcon(item(REFINED_SOULSTONE)))
+                        .addPage(new HeadlineTextGizmoPage("soulstone", item(REFINED_SOULSTONE)))
+                        .addPage(new TextPage("soulstone.2"))
+                        .addPage(PageSelectionPage.create(s -> s
+                                        .add(item(REFINED_SOULSTONE), new SmeltingPage(item(RAW_SOULSTONE), item(REFINED_SOULSTONE)))
+                                        .add(item(BLOCK_OF_REFINED_SOULSTONE), CraftingPage.fullBlock(item(BLOCK_OF_REFINED_SOULSTONE), item(REFINED_SOULSTONE)))
+                                        .add(item(BLOCK_OF_RAW_SOULSTONE), CraftingPage.fullBlock(item(BLOCK_OF_RAW_SOULSTONE), item(RAW_SOULSTONE)))
+                                )
                         )
-                )
+//                .addReference(new EntryReference(UMBRAL_SPIRIT, soulstoneAndBrillianceReexamination))
+        );
+
+        screen.addEntry("soulstone_buds", 1, 6, b -> b
+                        .configureWidget(w -> w.setIcon(item(SOULSTONE_BUD)))
+                        .addPage(new HeadlineTextGizmoPage("soulstone_buds", item(SOULSTONE_BUD)))
+                        .addPage(new TextPage("soulstone_buds.2"))
+                        .addPage(new HeadlineTextGizmoPage("soulstone_buds", item(REALIZED_SOULSTONE_BUD)))
+                        .addPage(new SoulstoneGrowthStagePage())
 //                .addReference(new EntryReference(UMBRAL_SPIRIT, soulstoneAndBrillianceReexamination))
         );
 

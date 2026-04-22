@@ -88,7 +88,7 @@ public class AvariceMarkData {
         ItemEntity entity = event.getItemEntity();
         entity.getExistingData(MalumAttachmentTypes.AVARICE_MARK).ifPresent(data -> {
             if (data.hasAvariceMark()) {
-                applyAvarice(event.getPlayer(), data.carriedAvarice*event.getOriginalStack().getCount());
+                applyAvarice(event.getPlayer(), data.carriedAvarice);
             }
         });
     }
@@ -121,7 +121,7 @@ public class AvariceMarkData {
             volume -= Math.min(instance.getAmplifier()*0.05f, 0.5f);
         }
         if (CurioHeartyAvariceRing.hasHeartyRing(target)) {
-            target.heal(amount*2);
+            target.heal(4);
             if (target instanceof Player player) {
                 player.getFoodData().eat(1, 2f);
             }

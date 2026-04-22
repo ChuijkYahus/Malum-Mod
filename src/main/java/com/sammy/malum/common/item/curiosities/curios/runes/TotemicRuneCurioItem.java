@@ -3,7 +3,6 @@ package com.sammy.malum.common.item.curiosities.curios.runes;
 import com.sammy.malum.core.helpers.*;
 import com.sammy.malum.core.systems.registry.rite.*;
 import com.sammy.malum.core.systems.registry.SpiritHolder;
-import com.sammy.malum.core.systems.rite.*;
 import com.sammy.malum.core.systems.rite.effect.*;
 import com.sammy.malum.core.systems.spirit.type.SpiritArcanaType;
 import net.minecraft.network.chat.*;
@@ -18,7 +17,7 @@ public class TotemicRuneCurioItem extends AbstractRuneCurioItem {
     protected final RiteEffectHolder<? extends SpiritRitePotionEffect<?>> effect;
 
     public TotemicRuneCurioItem(Properties builder, RiteEffectHolder<? extends SpiritRitePotionEffect<?>> effect, SpiritHolder<SpiritArcanaType> spirit) {
-        super(builder, spirit, MalumTrinketType.TOTEMIC_RUNE);
+        super(builder, spirit, MalumTrinketFamily.TOTEMIC_RUNE);
         this.effect = effect;
     }
 

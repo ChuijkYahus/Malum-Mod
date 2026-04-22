@@ -3,7 +3,6 @@ package com.sammy.malum;
 import com.sammy.malum.compat.attributelib.*;
 import com.sammy.malum.compat.create.*;
 import com.sammy.malum.compat.farmersdelight.*;
-import com.sammy.malum.compat.irons_spellbooks.*;
 import com.sammy.malum.compat.tetra.*;
 import com.sammy.malum.config.*;
 import com.sammy.malum.registry.common.*;
@@ -56,7 +55,6 @@ public class MalumMod {
         TetraCompat.init();
         FarmersDelightCompat.init();
         AttributeLibCompat.init();
-        IronsSpellsCompat.init();
         CreateCompat.init();
 
 

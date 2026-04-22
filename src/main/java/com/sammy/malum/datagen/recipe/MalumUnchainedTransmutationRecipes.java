@@ -3,9 +3,9 @@ package com.sammy.malum.datagen.recipe;
 import com.mojang.datafixers.util.*;
 import com.sammy.malum.*;
 import com.sammy.malum.datagen.recipe.builder.*;
+import com.sammy.malum.registry.common.*;
 import com.sammy.malum.registry.common.MalumContent.Blight;
 import com.sammy.malum.registry.common.MalumContent.BlockSets;
-import com.sammy.malum.registry.common.MalumContent.Totemancy;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.data.recipes.*;
 import net.minecraft.world.item.BlockItem;
@@ -20,7 +20,7 @@ import static com.sammy.malum.registry.common.MalumContent.BlockSets.SOULWOOD_SE
 public class MalumUnchainedTransmutationRecipes {
 
     private static final List<Pair<BlockBlockItemHolder<Block, BlockItem>, BlockBlockItemHolder<Block, BlockItem>>> SOULWOOD_TRANSMUTATIONS = List.of(
-            new Pair<>(Totemancy.RUNEWOOD_TOTEM_BASE, Totemancy.SOULWOOD_TOTEM_BASE),
+            new Pair<>(MalumContent.Totemancy.RUNEWOOD_TOTEM_BASE, MalumContent.Totemancy.SOULWOOD_TOTEM_BASE),
             new Pair<>(BlockSets.RUNEWOOD_SAPLING, BlockSets.SOULWOOD_SAPLING),
             new Pair<>(BlockSets.RUNEWOOD_LEAVES, BlockSets.SOULWOOD_LEAVES),
             new Pair<>(RUNEWOOD_SET.strippedLog, SOULWOOD_SET.strippedLog),

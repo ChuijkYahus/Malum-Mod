@@ -3,6 +3,7 @@ package com.sammy.malum.common.category;
 import com.sammy.malum.*;
 import com.sammy.malum.common.item.banner.SoulwovenBannerBlockItem;
 import com.sammy.malum.core.handlers.hiding.*;
+import com.sammy.malum.registry.common.*;
 import net.minecraft.resources.*;
 import net.minecraft.world.item.*;
 import team.lodestar.lodestone.modules.toolkit.creative_tab.CategorizedCreativeTab;
@@ -11,7 +12,6 @@ import team.lodestar.lodestone.modules.toolkit.creative_tab.CreativeTabCategory;
 import java.util.*;
 
 import static com.sammy.malum.registry.common.MalumContent.*;
-import static com.sammy.malum.registry.common.MalumContent.Progression.*;
 
 public class MalumCreativeTab extends CategorizedCreativeTab {
 
@@ -68,20 +68,34 @@ public class MalumCreativeTab extends CategorizedCreativeTab {
                                 Spirits.UMBRAL_SPIRIT
                         ).nextLine()
                         .addItems(
-                                ENCYCLOPEDIA_ARCANA,
-                                ENCYCLOPEDIA_ESOTERICA,
-                                SPIRIT_ALTAR,
-                                RUNIC_WORKBENCH,
-                                CONJUNCTURE_CRYSTALLARIUM,
-                                SOUL_BRAZIER
+                                MalumContent.ENCYCLOPEDIA_ARCANA,
+                                MalumContent.ENCYCLOPEDIA_ESOTERICA,
+                                Sorcery.SPIRIT_ALTAR,
+                                Sorcery.SPIRIT_JAR,
+                                Sorcery.RUNIC_WORKBENCH,
+                                Sorcery.WEAVERS_WORKBENCH,
+                                Sorcery.RUNEWOOD_OBELISK,
+                                Sorcery.BRILLIANT_OBELISK,
+                                Sorcery.ARCANA_PYLON
                         ).nextLine()
                         .addItems(
-                                SPIRIT_JAR,
-                                RUNEWOOD_OBELISK,
-                                BRILLIANT_OBELISK,
-                                ARCANA_PYLON
+                                Artifice.ARTIFICERS_CLAW,
+                                Artifice.CONJUNCTURE_CRYSTALLARIUM,
+                                Artifice.WAVECHARGER,
+                                Artifice.WAVEBANKER,
+                                Artifice.WAVEMAKER,
+                                Artifice.WAVEBREAKER,
+                                Artifice.GUST_IGNITER,
+                                Artifice.WIND_TUNNEL
                         ).nextLine()
                         .addItems(
+                                Focusing.TUNING_FORK,
+                                Focusing.SPIRIT_CRUCIBLE,
+                                Focusing.SPIRIT_CATALYZER,
+                                Focusing.REPAIR_PYLON
+                        ).nextLine()
+                        .addItems(
+                                Totemancy.TOTEMIC_STAFF,
                                 Totemancy.RUNEWOOD_TOTEM_BASE,
                                 Totemancy.SOULWOOD_TOTEM_BASE,
                                 Totemancy.WAVEFORM_RUNEWOOD_TOTEM_BASE,
@@ -166,11 +180,14 @@ public class MalumCreativeTab extends CategorizedCreativeTab {
                         ).nextLine()
                         .addItems(
                                 Gear.NECKLACE_OF_MYSTIC_POTENCY,
-                                Gear.NECKLACE_OF_THE_NARROW_EDGE
+                                Gear.NECKLACE_OF_THE_NARROW_EDGE,
+                                Gear.NECKLACE_OF_THE_WINDWEAVER
                         )
                         .addItems(
                                 Gear.BELT_OF_THE_STARVED,
                                 Gear.BELT_OF_THE_PROSPECTOR,
+                                Gear.BELT_OF_THE_TIDEBOUND,
+                                Gear.BELT_OF_OPULENT_INOCULATION,
                                 Gear.BELT_OF_THE_MAGEBANE
                         ).nextLine()
                         .addItems(

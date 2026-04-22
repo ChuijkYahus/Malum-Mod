@@ -18,22 +18,22 @@ public class MalumCreativeTabs {
 
     public static final DeferredHolder<CreativeModeTab, CreativeModeTab> CONTENT = CREATIVE_MODE_TABS.register("malum_content",
             () -> CategorizedCreativeTab.builder(MalumCreativeTab::new)
-                    .title(Component.translatable(MalumMod.MALUM + ".itemGroup.spirit_arcana"))
+                    .title(Component.translatable(MalumMod.MALUM + ".itemGroup.malum_content"))
                     .withTabsBefore(CreativeModeTabs.SPAWN_EGGS)
-                    .icon(() -> MalumContent.Progression.SPIRIT_ALTAR.getItem().getDefaultInstance()).build()
+                    .icon(MalumContent.Sorcery.SPIRIT_ALTAR::getDefaultInstance).build()
     );
 
-    public static final DeferredHolder<CreativeModeTab, CreativeModeTab> ARTIFICE = CREATIVE_MODE_TABS.register("malum_artifice",
-            () -> CategorizedCreativeTab.builder(MalumArtificeTab::new)
+    public static final DeferredHolder<CreativeModeTab, CreativeModeTab> ALCHEMY_AND_METALLICS = CREATIVE_MODE_TABS.register("malum_alchemy_and_metallics",
+            () -> CategorizedCreativeTab.builder(MalumAlchemyAndMetallicsTab::new)
                     .title(Component.translatable(MalumMod.MALUM + ".itemGroup.malum_artifice"))
                     .withTabsBefore(CONTENT.getId())
-                    .icon(() -> MalumContent.Artifice.SPIRIT_CRUCIBLE.getItem().getDefaultInstance()).build()
+                    .icon(MalumContent.AlchemyAndMetallics.ALCHEMICAL_IMPETUS::toStack).build()
     );
 
     public static final DeferredHolder<CreativeModeTab, CreativeModeTab> GEAS = CREATIVE_MODE_TABS.register("malum_geas",
             () -> CreativeModeTab.builder()
                     .title(Component.translatable(MalumMod.MALUM + ".itemGroup.geas"))
-                    .withTabsBefore(ARTIFICE.getId())
+                    .withTabsBefore(ALCHEMY_AND_METALLICS.getId())
                     .displayItems((p, o) -> {
                         for (DeferredHolder<GeasEffectType, ? extends GeasEffectType> geasType : MalumGeasEffectTypes.GEAS_TYPES.getEntries()) {
                             var geasEffectType = geasType.get();
@@ -52,6 +52,6 @@ public class MalumCreativeTabs {
             () -> CreativeModeTab.builder()
                     .title(Component.translatable(MalumMod.MALUM + ".itemGroup.cosmetics"))
                     .withTabsBefore(GEAS.getId())
-                    .icon(() -> MalumContent.Progression.WEAVERS_WORKBENCH.getItem().getDefaultInstance()).build()
+                    .icon(() -> MalumContent.Sorcery.WEAVERS_WORKBENCH.getItem().getDefaultInstance()).build()
     );
 }

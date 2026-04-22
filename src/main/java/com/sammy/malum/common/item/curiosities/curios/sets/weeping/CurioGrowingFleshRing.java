@@ -19,7 +19,7 @@ import java.util.function.Consumer;
 
 public class CurioGrowingFleshRing extends MalumCurioItem implements IVoidItem, IMalumEventResponder {
     public CurioGrowingFleshRing(Properties builder) {
-        super(builder, MalumTrinketType.VOID);
+        super(builder, MalumTrinketFamily.VOID);
     }
 
     @Override

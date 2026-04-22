@@ -15,7 +15,7 @@ import java.util.function.Consumer;
 
 public class MalumCurioItem extends AbstractMalumCurioItem implements ICurioItem {
 
-    public MalumCurioItem(Properties properties, MalumTrinketType type) {
+    public MalumCurioItem(Properties properties, MalumTrinketFamily type) {
         super(properties, type);
     }
 

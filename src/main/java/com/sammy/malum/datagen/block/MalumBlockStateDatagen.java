@@ -16,7 +16,6 @@ import net.minecraft.world.level.block.*;
 import net.neoforged.neoforge.client.model.generators.ModelFile;
 import net.neoforged.neoforge.common.data.*;
 import team.lodestar.lodestone.modules.datagen.BlockStateSmithTypes;
-import team.lodestar.lodestone.modules.datagen.ItemModelSmithTypes;
 import team.lodestar.lodestone.modules.datagen.providers.block.LodestoneBlockStateSystem;
 import team.lodestar.lodestone.modules.datagen.providers.item.LodestoneItemModelSystem;
 import team.lodestar.lodestone.modules.datagen.smith.blockstate.BlockStateSystemData;
@@ -30,8 +29,7 @@ import static com.sammy.malum.registry.common.MalumContent.Artifice.*;
 import static com.sammy.malum.registry.common.MalumContent.CompactBlocks.*;
 import static com.sammy.malum.registry.common.MalumContent.DungeonBlockSets.*;
 import static com.sammy.malum.registry.common.MalumContent.Materials.*;
-import static com.sammy.malum.registry.common.MalumContent.Progression.*;
-import static com.sammy.malum.registry.common.MalumContent.Totemancy.*;
+import static com.sammy.malum.registry.common.MalumContent.Sorcery.*;
 import static com.sammy.malum.registry.common.MalumContent.WeepingWell.*;
 import static team.lodestar.lodestone.modules.datagen.ItemModelSmithTypes.*;
 
@@ -105,7 +103,7 @@ public class MalumBlockStateDatagen extends LodestoneBlockStateSystem {
 
         BlockStateSmithTypes.POTTED_PLANT.act(data, BlockSets.POTTED_RUNEWOOD_SAPLING, BlockSets.POTTED_AZURE_RUNEWOOD_SAPLING);
         BlockStateSmithTypes.CROSS_MODEL_BLOCK.act(data, BlockSets.RUNEWOOD_SAPLING, BlockSets.AZURE_RUNEWOOD_SAPLING);
-        MalumBlockStateSmithTypes.TOTEM_POLE.act(data, RUNEWOOD_TOTEM_POLE);
+        MalumBlockStateSmithTypes.TOTEM_POLE.act(data, Totemancy.RUNEWOOD_TOTEM_POLE);
 
         setTexturePath("runewood/leaves/");
         MalumBlockStateSmithTypes.STAGED_LEAVES.act(data, BlockSets.RUNEWOOD_LEAVES, BlockSets.AZURE_RUNEWOOD_LEAVES);
@@ -116,7 +114,7 @@ public class MalumBlockStateDatagen extends LodestoneBlockStateSystem {
 
         BlockStateSmithTypes.POTTED_PLANT.act(data, BlockSets.POTTED_SOULWOOD_SAPLING);
         BlockStateSmithTypes.CROSS_MODEL_BLOCK.act(data, BlockSets.SOULWOOD_SAPLING);
-        MalumBlockStateSmithTypes.TOTEM_POLE.act(data, SOULWOOD_TOTEM_POLE);
+        MalumBlockStateSmithTypes.TOTEM_POLE.act(data, Totemancy.SOULWOOD_TOTEM_POLE);
 
         setTexturePath("soulwood/leaves/");
         MalumBlockStateSmithTypes.STAGED_LEAVES.act(data, BlockSets.SOULWOOD_LEAVES);
@@ -214,9 +212,9 @@ public class MalumBlockStateDatagen extends LodestoneBlockStateSystem {
         itemModelProvider.setTexturePath("");
         setTexturePath("");
 
-        BlockStateSmithTypes.CUSTOM_MODEL.act(data, BLOCK_MODEL_ITEM, this::simpleBlock, models()::cubeBottomTop, RITE_ANCHOR, RITE_UNWEAVER);
-        BlockStateSmithTypes.CUSTOM_MODEL.act(data, BLOCK_MODEL_ITEM, this::directionalBlock, models()::cubeBottomTop, RITE_SPREADER);
-        MalumBlockStateSmithTypes.RITE_CHANNEL.act(data, RITE_CHANNEL);
+        BlockStateSmithTypes.CUSTOM_MODEL.act(data, BLOCK_MODEL_ITEM, this::simpleBlock, models()::cubeBottomTop, Totemancy.RITE_ANCHOR, Totemancy.RITE_UNWEAVER);
+        BlockStateSmithTypes.CUSTOM_MODEL.act(data, BLOCK_MODEL_ITEM, this::directionalBlock, models()::cubeBottomTop, Totemancy.RITE_SPREADER);
+        MalumBlockStateSmithTypes.RITE_CHANNEL.act(data, Totemancy.RITE_CHANNEL);
 
         BlockStateSmithTypes.CUSTOM_MODEL.act(data, BLOCK_MODEL_ITEM, this::simpleBlock, models()::predefinedModel, SPIRIT_ALTAR, SOUL_BRAZIER, OMINOUS_ALTAR);
 
@@ -230,16 +228,16 @@ public class MalumBlockStateDatagen extends LodestoneBlockStateSystem {
                 RUNEWOOD_OBELISK, RUNEWOOD_OBELISK_COMPONENT,
                 BRILLIANT_OBELISK, BRILLIANT_OBELISK_COMPONENT,
                 ARCANA_PYLON, ARCANA_PYLON_COMPONENT,
-                SPIRIT_CRUCIBLE, SPIRIT_CRUCIBLE_COMPONENT, REPAIR_PYLON,
+                Focusing.SPIRIT_CRUCIBLE, Focusing.SPIRIT_CRUCIBLE_COMPONENT, Focusing.REPAIR_PYLON,
                 OMINOUS_OBELISK, OMINOUS_OBELISK_COMPONENT);
 
         BlockStateSmithTypes.CUSTOM_MODEL.act(data, BLOCK_MODEL_ITEM, this::simpleBlock, this::totemBaseModel,
-                RUNEWOOD_TOTEM_BASE, SOULWOOD_TOTEM_BASE, WAVEFORM_RUNEWOOD_TOTEM_BASE, WAVEFORM_SOULWOOD_TOTEM_BASE);
+                Totemancy.RUNEWOOD_TOTEM_BASE, Totemancy.SOULWOOD_TOTEM_BASE, Totemancy.WAVEFORM_RUNEWOOD_TOTEM_BASE, Totemancy.WAVEFORM_SOULWOOD_TOTEM_BASE);
 
         BlockStateSmithTypes.CUSTOM_MODEL.act(data, NO_DATAGEN, this::horizontalBlock, models()::predefinedModel,
-                SPIRIT_CATALYZER, SPIRIT_CATALYZER_COMPONENT);
+                Focusing.SPIRIT_CATALYZER, Focusing.SPIRIT_CATALYZER_COMPONENT);
 
-        MalumBlockStateSmithTypes.REPAIR_PYLON_COMPONENT.act(data, REPAIR_PYLON_COMPONENT);
+        MalumBlockStateSmithTypes.REPAIR_PYLON_COMPONENT.act(data, Focusing.REPAIR_PYLON_COMPONENT);
 
         BlockStateSmithTypes.CUSTOM_MODEL.act(data, BLOCK_MODEL_ITEM, this::simpleBlock, models()::predefinedModel,
                 VOID_CONDUIT, VOID_DEPOT);

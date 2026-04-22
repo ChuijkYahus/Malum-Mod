@@ -1,7 +1,6 @@
 package com.sammy.malum.common.effect;
 
 import com.sammy.malum.*;
-import com.sammy.malum.compat.irons_spellbooks.*;
 import com.sammy.malum.registry.common.*;
 import net.minecraft.world.effect.*;
 import net.minecraft.world.entity.*;
@@ -22,7 +21,6 @@ public class SilencedEffect extends MobEffect {
         addAttributeModifier(MalumAttributes.SOUL_WARD_RECOVERY_GAIN, id, ratio, AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL);
 
         addAttributeModifier(MalumAttributes.ARCANE_RESONANCE, id, ratio, AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL);
-        IronsSpellsCompat.addSilencedNegativeAttributeModifiers(this);
     }
 
     @Override

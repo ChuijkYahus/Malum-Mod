@@ -25,7 +25,7 @@ import java.util.function.*;
 
 public class SpiritCatalyzerCoreBlockEntity extends MultiBlockCoreEntity implements IArtificeModifierSource, IInventoryCapabilityProvider {
 
-    public static final Supplier<HorizontalDirectionStructure> STRUCTURE = () -> (HorizontalDirectionStructure.of(new MultiBlockStructure.StructurePiece(0, 1, 0, MalumContent.Artifice.SPIRIT_CATALYZER_COMPONENT.get().defaultBlockState())));
+    public static final Supplier<HorizontalDirectionStructure> STRUCTURE = () -> (HorizontalDirectionStructure.of(new MultiBlockStructure.StructurePiece(0, 1, 0, MalumContent.Focusing.SPIRIT_CATALYZER_COMPONENT.get().defaultBlockState())));
     public static final Vec3 CATALYZER_ITEM_OFFSET = new Vec3(0.5f, 2f, 0.5f);
     public static final Vec3 CATALYZER_AUGMENT_OFFSET = new Vec3(0.5f, 2.75f, 0.5f);
 

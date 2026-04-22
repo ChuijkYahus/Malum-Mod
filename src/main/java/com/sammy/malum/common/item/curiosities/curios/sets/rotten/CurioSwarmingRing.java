@@ -9,7 +9,7 @@ import java.util.function.*;
 public class CurioSwarmingRing extends MalumCurioItem {
 
     public CurioSwarmingRing(Properties builder) {
-        super(builder, MalumTrinketType.ROTTEN);
+        super(builder, MalumTrinketFamily.ROTTEN);
     }
 
     @Override

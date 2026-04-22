@@ -21,7 +21,7 @@ public class CurioGluttonousBrooch extends MalumCurioItem {
     public static final ResourceLocation GLUTTONOUS_BROOCH_BELT = MalumMod.malumPath("gluttonous_brooch_belt");
 
     public CurioGluttonousBrooch(Properties builder) {
-        super(builder, MalumTrinketType.ROTTEN);
+        super(builder, MalumTrinketFamily.ROTTEN);
     }
 
     @Override

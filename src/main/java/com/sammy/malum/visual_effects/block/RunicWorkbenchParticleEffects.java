@@ -1,7 +1,7 @@
 package com.sammy.malum.visual_effects.block;
 
 import com.sammy.malum.client.*;
-import com.sammy.malum.common.block.curiosities.crafting.runic_workbench.*;
+import com.sammy.malum.common.block.curiosities.sorcery.runic_workbench.*;
 import com.sammy.malum.registry.common.*;
 import com.sammy.malum.registry.common.magic.*;
 import com.sammy.malum.visual_effects.SpiritLightSpecs;

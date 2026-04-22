@@ -13,7 +13,7 @@ import java.util.function.Consumer;
 public class CurioHoarderRing extends MalumCurioItem {
 
     public CurioHoarderRing(Properties builder) {
-        super(builder, MalumTrinketType.METALLIC);
+        super(builder, MalumTrinketFamily.METALLIC);
     }
 
     @Override

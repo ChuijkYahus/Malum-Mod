@@ -21,7 +21,7 @@ import static com.sammy.malum.registry.common.MalumTags.Items.*;
 public class CurioVoraciousRing extends MalumCurioItem {
 
     public CurioVoraciousRing(Properties builder) {
-        super(builder, MalumTrinketType.ROTTEN);
+        super(builder, MalumTrinketFamily.ROTTEN);
     }
 
     @Override

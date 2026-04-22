@@ -44,8 +44,8 @@ public class RepairPylonCoreBlockEntity extends MultiBlockCoreEntity implements 
     private static final int VERTICAL_RANGE = 4;
 
     public static final Supplier<MultiBlockStructure> STRUCTURE = () -> (MultiBlockStructure.of(
-            new MultiBlockStructure.StructurePiece(0, 1, 0, MalumContent.Artifice.REPAIR_PYLON_COMPONENT.get().defaultBlockState()),
-            new MultiBlockStructure.StructurePiece(0, 2, 0, MalumContent.Artifice.REPAIR_PYLON_COMPONENT.get().defaultBlockState().setValue(RepairPylonComponentBlock.TOP, true))));
+            new MultiBlockStructure.StructurePiece(0, 1, 0, MalumContent.Focusing.REPAIR_PYLON_COMPONENT.get().defaultBlockState()),
+            new MultiBlockStructure.StructurePiece(0, 2, 0, MalumContent.Focusing.REPAIR_PYLON_COMPONENT.get().defaultBlockState().setValue(RepairPylonComponentBlock.TOP, true))));
 
     public static final StringRepresentable.EnumCodec<RepairPylonState> CODEC = StringRepresentable.fromEnum(RepairPylonState::values);
 

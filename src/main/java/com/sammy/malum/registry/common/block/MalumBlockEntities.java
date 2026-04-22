@@ -26,9 +26,9 @@ import com.sammy.malum.common.block.curiosities.artifice.redstone.wavecharger.Wa
 import com.sammy.malum.common.block.curiosities.artifice.redstone.wavebreaker.WaveBreakerBlock;
 import com.sammy.malum.common.block.curiosities.artifice.redstone.wavebreaker.WaveBreakerBlockEntity;
 import com.sammy.malum.common.block.curiosities.artifice.repair_pylon.*;
-import com.sammy.malum.common.block.curiosities.crafting.runic_workbench.*;
-import com.sammy.malum.common.block.curiosities.crafting.soul_brazier.*;
-import com.sammy.malum.common.block.curiosities.crafting.spirit_altar.*;
+import com.sammy.malum.common.block.curiosities.sorcery.runic_workbench.*;
+import com.sammy.malum.common.block.curiosities.sorcery.soul_brazier.*;
+import com.sammy.malum.common.block.curiosities.sorcery.spirit_altar.*;
 import com.sammy.malum.common.block.curiosities.artifice.spirit_crucible.*;
 import com.sammy.malum.common.block.curiosities.artifice.spirit_catalyzer.*;
 import com.sammy.malum.common.block.curiosities.totem.*;
@@ -72,22 +72,22 @@ public class MalumBlockEntities {
     public static final Supplier<LodestoneBlockEntityType<VoidConduitBlockEntity>> VOID_CONDUIT = BLOCK_ENTITY_TYPES.register("void_conduit", () -> create(VoidConduitBlockEntity::new, MalumContent.WeepingWell.VOID_CONDUIT).setTickerType(Type.BOTH).build());
     public static final Supplier<LodestoneBlockEntityType<VoidDepotBlockEntity>> VOID_DEPOT = BLOCK_ENTITY_TYPES.register("void_depot", () -> create(VoidDepotBlockEntity::new, MalumContent.WeepingWell.VOID_DEPOT).setTickerType(Type.CLIENT).build());
 
-    public static final Supplier<LodestoneBlockEntityType<SpiritAltarBlockEntity>> SPIRIT_ALTAR = BLOCK_ENTITY_TYPES.register("spirit_altar", () -> create(SpiritAltarBlockEntity::new, MalumContent.Progression.SPIRIT_ALTAR).setTickerType(Type.BOTH).build());
-    public static final Supplier<LodestoneBlockEntityType<SpiritJarBlockEntity>> SPIRIT_JAR = BLOCK_ENTITY_TYPES.register("spirit_jar", () -> create(SpiritJarBlockEntity::new, MalumContent.Progression.SPIRIT_JAR).setTickerType(Type.CLIENT).build());
+    public static final Supplier<LodestoneBlockEntityType<SpiritAltarBlockEntity>> SPIRIT_ALTAR = BLOCK_ENTITY_TYPES.register("spirit_altar", () -> create(SpiritAltarBlockEntity::new, MalumContent.Sorcery.SPIRIT_ALTAR).setTickerType(Type.BOTH).build());
+    public static final Supplier<LodestoneBlockEntityType<SpiritJarBlockEntity>> SPIRIT_JAR = BLOCK_ENTITY_TYPES.register("spirit_jar", () -> create(SpiritJarBlockEntity::new, MalumContent.Sorcery.SPIRIT_JAR).setTickerType(Type.CLIENT).build());
 
-    public static final Supplier<LodestoneBlockEntityType<RunicWorkbenchBlockEntity>> RUNIC_WORKBENCH = BLOCK_ENTITY_TYPES.register("runic_workbench", () -> create(RunicWorkbenchBlockEntity::new, MalumContent.Progression.RUNIC_WORKBENCH).setTickerType(Type.SERVER).build());
-    public static final Supplier<LodestoneBlockEntityType<ConjunctureCrystallariumBlockEntity>> CONJUNCTURE_CRYSTALLARIUM = BLOCK_ENTITY_TYPES.register("conjuncture_crystallarium", () -> create(ConjunctureCrystallariumBlockEntity::new, MalumContent.Progression.CONJUNCTURE_CRYSTALLARIUM).setTickerType(Type.BOTH).build());
+    public static final Supplier<LodestoneBlockEntityType<RunicWorkbenchBlockEntity>> RUNIC_WORKBENCH = BLOCK_ENTITY_TYPES.register("runic_workbench", () -> create(RunicWorkbenchBlockEntity::new, MalumContent.Sorcery.RUNIC_WORKBENCH).setTickerType(Type.SERVER).build());
+    public static final Supplier<LodestoneBlockEntityType<ConjunctureCrystallariumBlockEntity>> CONJUNCTURE_CRYSTALLARIUM = BLOCK_ENTITY_TYPES.register("conjuncture_crystallarium", () -> create(ConjunctureCrystallariumBlockEntity::new, MalumContent.Artifice.CONJUNCTURE_CRYSTALLARIUM).setTickerType(Type.BOTH).build());
 
-    public static final Supplier<LodestoneBlockEntityType<WeaversWorkbenchBlockEntity>> WEAVERS_WORKBENCH = BLOCK_ENTITY_TYPES.register("weavers_workbench", () -> create(WeaversWorkbenchBlockEntity::new, MalumContent.Progression.WEAVERS_WORKBENCH).build());
-    public static final Supplier<LodestoneBlockEntityType<SoulBrazierBlockEntity>> SOUL_BRAZIER = BLOCK_ENTITY_TYPES.register("soulbinding_brazier", () -> create(SoulBrazierBlockEntity::new, MalumContent.Progression.SOUL_BRAZIER).setTickerType(Type.BOTH).build());
+    public static final Supplier<LodestoneBlockEntityType<WeaversWorkbenchBlockEntity>> WEAVERS_WORKBENCH = BLOCK_ENTITY_TYPES.register("weavers_workbench", () -> create(WeaversWorkbenchBlockEntity::new, MalumContent.Sorcery.WEAVERS_WORKBENCH).build());
+    public static final Supplier<LodestoneBlockEntityType<SoulBrazierBlockEntity>> SOUL_BRAZIER = BLOCK_ENTITY_TYPES.register("soulbinding_brazier", () -> create(SoulBrazierBlockEntity::new, MalumContent.Sorcery.SOUL_BRAZIER).setTickerType(Type.BOTH).build());
 
-    public static final Supplier<LodestoneBlockEntityType<RunewoodObeliskBlockEntity>> RUNEWOOD_OBELISK = BLOCK_ENTITY_TYPES.register("runewood_obelisk", () -> create(RunewoodObeliskBlockEntity::new, MalumContent.Progression.RUNEWOOD_OBELISK).build());
-    public static final Supplier<LodestoneBlockEntityType<BrilliantObeliskBlockEntity>> BRILLIANT_OBELISK = BLOCK_ENTITY_TYPES.register("brilliant_obelisk", () -> create(BrilliantObeliskBlockEntity::new, MalumContent.Progression.BRILLIANT_OBELISK).build());
-    public static final Supplier<LodestoneBlockEntityType<ArcanaPylonBlockEntity>> ARCANA_PYLON = BLOCK_ENTITY_TYPES.register("arcana_pylon", () -> create(ArcanaPylonBlockEntity::new, MalumContent.Progression.ARCANA_PYLON).setTickerType(Type.BOTH).build());
+    public static final Supplier<LodestoneBlockEntityType<RunewoodObeliskBlockEntity>> RUNEWOOD_OBELISK = BLOCK_ENTITY_TYPES.register("runewood_obelisk", () -> create(RunewoodObeliskBlockEntity::new, MalumContent.Sorcery.RUNEWOOD_OBELISK).build());
+    public static final Supplier<LodestoneBlockEntityType<BrilliantObeliskBlockEntity>> BRILLIANT_OBELISK = BLOCK_ENTITY_TYPES.register("brilliant_obelisk", () -> create(BrilliantObeliskBlockEntity::new, MalumContent.Sorcery.BRILLIANT_OBELISK).build());
+    public static final Supplier<LodestoneBlockEntityType<ArcanaPylonBlockEntity>> ARCANA_PYLON = BLOCK_ENTITY_TYPES.register("arcana_pylon", () -> create(ArcanaPylonBlockEntity::new, MalumContent.Sorcery.ARCANA_PYLON).setTickerType(Type.BOTH).build());
 
-    public static final Supplier<LodestoneBlockEntityType<SpiritCrucibleCoreBlockEntity>> SPIRIT_CRUCIBLE = BLOCK_ENTITY_TYPES.register("spirit_crucible", () -> create(SpiritCrucibleCoreBlockEntity::new, MalumContent.Artifice.SPIRIT_CRUCIBLE).setTickerType(Type.BOTH).build());
-    public static final Supplier<LodestoneBlockEntityType<SpiritCatalyzerCoreBlockEntity>> SPIRIT_CATALYZER = BLOCK_ENTITY_TYPES.register("spirit_catalyzer", () -> create(SpiritCatalyzerCoreBlockEntity::new, MalumContent.Artifice.SPIRIT_CATALYZER).setTickerType(Type.BOTH).build());
-    public static final Supplier<LodestoneBlockEntityType<RepairPylonCoreBlockEntity>> REPAIR_PYLON = BLOCK_ENTITY_TYPES.register("repair_pylon", () -> create(RepairPylonCoreBlockEntity::new, MalumContent.Artifice.REPAIR_PYLON).setTickerType(Type.BOTH).build());
+    public static final Supplier<LodestoneBlockEntityType<SpiritCrucibleCoreBlockEntity>> SPIRIT_CRUCIBLE = BLOCK_ENTITY_TYPES.register("spirit_crucible", () -> create(SpiritCrucibleCoreBlockEntity::new, MalumContent.Focusing.SPIRIT_CRUCIBLE).setTickerType(Type.BOTH).build());
+    public static final Supplier<LodestoneBlockEntityType<SpiritCatalyzerCoreBlockEntity>> SPIRIT_CATALYZER = BLOCK_ENTITY_TYPES.register("spirit_catalyzer", () -> create(SpiritCatalyzerCoreBlockEntity::new, MalumContent.Focusing.SPIRIT_CATALYZER).setTickerType(Type.BOTH).build());
+    public static final Supplier<LodestoneBlockEntityType<RepairPylonCoreBlockEntity>> REPAIR_PYLON = BLOCK_ENTITY_TYPES.register("repair_pylon", () -> create(RepairPylonCoreBlockEntity::new, MalumContent.Focusing.REPAIR_PYLON).setTickerType(Type.BOTH).build());
 
     public static final Supplier<LodestoneBlockEntityType<EtherBlockEntity>> ETHER = BLOCK_ENTITY_TYPES.register("ether", () -> create(EtherBlockEntity::new, MalumContent.BlockSets.ETHER, MalumContent.BlockSets.IRIDESCENT_ETHER).setTickerType(Type.CLIENT).build());
     public static final Supplier<LodestoneBlockEntityType<EtherCandleBlockEntity>> ETHER_CANDLE = BLOCK_ENTITY_TYPES.register("ether_candle", () -> create(EtherCandleBlockEntity::new, MalumContent.BlockSets.ETHER_CANDLE, MalumContent.BlockSets.IRIDESCENT_ETHER_CANDLE).setTickerType(Type.CLIENT).build());

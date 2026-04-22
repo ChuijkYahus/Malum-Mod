@@ -12,7 +12,7 @@ import top.theillusivec4.curios.api.*;
 
 public class CurioEndlessRing extends MalumCurioItem implements IVoidItem {
     public CurioEndlessRing(Properties builder) {
-        super(builder, MalumTrinketType.VOID);
+        super(builder, MalumTrinketFamily.VOID);
     }
 
     @Override

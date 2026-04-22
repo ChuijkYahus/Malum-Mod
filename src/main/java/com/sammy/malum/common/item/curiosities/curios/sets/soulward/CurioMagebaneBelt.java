@@ -22,7 +22,7 @@ import java.util.function.Consumer;
 public class CurioMagebaneBelt extends MalumCurioItem implements IMalumEventResponder {
 
     public CurioMagebaneBelt(Properties builder) {
-        super(builder, MalumTrinketType.ORNATE);
+        super(builder, MalumTrinketFamily.ORNATE);
     }
 
     @Override

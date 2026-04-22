@@ -32,7 +32,7 @@ public class SpiritFocusingRecipeCategory implements IRecipeCategory<SpiritFocus
 
     public SpiritFocusingRecipeCategory(IGuiHelper guiHelper) {
         overlay = guiHelper.createDrawable(MalumMod.malumPath("textures/gui/spirit_focusing_jei.png"), 0, 0, 142, 185);
-        icon = guiHelper.createDrawableIngredient(VanillaTypes.ITEM_STACK, new ItemStack(MalumContent.Artifice.SPIRIT_CRUCIBLE.get()));
+        icon = guiHelper.createDrawableIngredient(VanillaTypes.ITEM_STACK, new ItemStack(MalumContent.Focusing.SPIRIT_CRUCIBLE.get()));
     }
 
     @Override

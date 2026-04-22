@@ -1,7 +1,6 @@
 package com.sammy.malum.common.item.curiosities.armor;
 
 import com.sammy.malum.MalumMod;
-import com.sammy.malum.compat.irons_spellbooks.IronsSpellsCompat;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.EquipmentSlotGroup;
 import net.minecraft.world.entity.ai.attributes.AttributeModifier;
@@ -26,7 +25,6 @@ public class SoulHunterArmorItem extends MalumArmorItem {
         attributes.add(LodestoneAttributes.MAGIC_PROFICIENCY,
                 new AttributeModifier(resourcelocation, 0.15f, AttributeModifier.Operation.ADD_MULTIPLIED_BASE),
                 group);
-        IronsSpellsCompat.addSoulHunterSpellPower(attributes, group);
         return attributes.build().modifiers();
     }
 

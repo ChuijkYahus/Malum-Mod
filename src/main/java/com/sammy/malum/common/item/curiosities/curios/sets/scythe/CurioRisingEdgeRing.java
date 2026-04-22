@@ -19,7 +19,7 @@ public class CurioRisingEdgeRing extends MalumCurioItem {
     );
 
     public CurioRisingEdgeRing(Properties builder) {
-        super(builder, MalumTrinketType.METALLIC);
+        super(builder, MalumTrinketFamily.METALLIC);
     }
 
     @Override

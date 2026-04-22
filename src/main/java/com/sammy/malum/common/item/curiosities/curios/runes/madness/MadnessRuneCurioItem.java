@@ -6,6 +6,6 @@ import com.sammy.malum.core.systems.spirit.type.*;
 
 public class MadnessRuneCurioItem extends AbstractRuneCurioItem {
     public MadnessRuneCurioItem(Properties builder, SpiritHolder<SpiritArcanaType> spirit) {
-        super(builder, spirit, MalumTrinketType.VOID_RUNE);
+        super(builder, spirit, MalumTrinketFamily.VOID_RUNE);
     }
 }

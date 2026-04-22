@@ -17,7 +17,7 @@ import net.minecraft.world.item.ItemStack;
 
 public class SpiritJarItemRenderer extends BlockEntityWithoutLevelRenderer {
 
-    private final SpiritJarBlockEntity jar = new SpiritJarBlockEntity(BlockPos.ZERO, MalumContent.Progression.SPIRIT_JAR.get().defaultBlockState());
+    private final SpiritJarBlockEntity jar = new SpiritJarBlockEntity(BlockPos.ZERO, MalumContent.Sorcery.SPIRIT_JAR.get().defaultBlockState());
 
     private final BlockEntityRenderDispatcher blockEntityRenderDispatcher;
 
@@ -34,7 +34,7 @@ public class SpiritJarItemRenderer extends BlockEntityWithoutLevelRenderer {
             poseStack.popPose();
             poseStack.pushPose();
 
-            BakedModel model = Minecraft.getInstance().getBlockRenderer().getBlockModel(MalumContent.Progression.SPIRIT_JAR.get().defaultBlockState());
+            BakedModel model = Minecraft.getInstance().getBlockRenderer().getBlockModel(MalumContent.Sorcery.SPIRIT_JAR.get().defaultBlockState());
             model = model.applyTransform(ctx, poseStack, isLeftHand(ctx));
             poseStack.translate(-.5, -.5, -.5);
 

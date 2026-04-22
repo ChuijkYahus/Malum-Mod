@@ -9,7 +9,7 @@ import team.lodestar.lodestone.systems.model.armor.*;
 public class MalumClientExtensions {
     public static void registerClientExtensions(RegisterClientExtensionsEvent event) {
         event.registerItem(new SpiritJarClientItemExtensions(),
-                MalumContent.Progression.SPIRIT_JAR.asItem());
+                MalumContent.Sorcery.SPIRIT_JAR.asItem());
 
         event.registerItem(new GeasClientItemExtension(),
                 MalumContent.GEAS);
@@ -31,6 +31,6 @@ public class MalumClientExtensions {
                 MalumContent.Gear.MALIGNANT_STRONGHOLD_BOOTS);
 
         event.registerBlock(new ManaMoteBlockClientExtension(),
-                MalumContent.Progression.SPIRIT_MOTE);
+                MalumContent.Sorcery.SPIRIT_MOTE);
     }
 }

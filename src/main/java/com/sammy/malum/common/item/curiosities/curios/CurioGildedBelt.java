@@ -12,7 +12,7 @@ import top.theillusivec4.curios.api.SlotContext;
 public class CurioGildedBelt extends MalumCurioItem {
 
     public CurioGildedBelt(Properties builder) {
-        super(builder, MalumTrinketType.GILDED);
+        super(builder, MalumTrinketFamily.GILDED);
     }
 
     @Override

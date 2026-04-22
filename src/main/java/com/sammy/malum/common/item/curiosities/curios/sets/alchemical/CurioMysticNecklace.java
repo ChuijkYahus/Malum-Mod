@@ -12,7 +12,7 @@ import top.theillusivec4.curios.api.*;
 
 public class CurioMysticNecklace extends MalumCurioItem implements IMalumEventResponder {
     public CurioMysticNecklace(Properties builder) {
-        super(builder, MalumTrinketType.GILDED);
+        super(builder, MalumTrinketFamily.GILDED);
     }
 
     @Override

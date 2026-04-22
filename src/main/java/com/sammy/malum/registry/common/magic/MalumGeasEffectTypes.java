@@ -26,6 +26,7 @@ public class MalumGeasEffectTypes {
     public static final DeferredGeasTypes GEAS_TYPES = DeferredGeasTypes.create(MalumMod.MALUM);
     public static final Registry<GeasEffectType> GEAS_TYPES_REGISTRY = GEAS_TYPES.makeRegistry(builder -> builder.sync(true).defaultKey(MalumMod.malumPath("creed_of_the_blight_eater")));
 
+
     public static final GeasHolder<GeasEffectType> PACT_OF_DEFIANCE = GEAS_TYPES.register("pact_of_defiance", () -> new GeasEffectType(DefianceGeas::new, SACRED_SPIRIT, EARTHEN_SPIRIT));
     public static final GeasHolder<GeasEffectType> PACT_OF_THE_PARASITE = GEAS_TYPES.register("pact_of_the_parasite", () -> new GeasEffectType(ParasiteGeas::new, SACRED_SPIRIT, INFERNAL_SPIRIT));
     public static final GeasHolder<GeasEffectType> PACT_OF_THE_LIFEWEAVER = GEAS_TYPES.register("pact_of_the_lifeweaver", () -> new GeasEffectType(LifeweaverGeas::new, SACRED_SPIRIT, ELDRITCH_SPIRIT));
@@ -49,7 +50,6 @@ public class MalumGeasEffectTypes {
 
     public static final GeasHolder<GeasEffectType> PACT_OF_THE_WINDSWEPT = GEAS_TYPES.register("pact_of_the_windswept", () -> new GeasEffectType(WindsweptGeas::new, AERIAL_SPIRIT, ARCANE_SPIRIT));
     public static final GeasHolder<GeasEffectType> PACT_OF_THE_CONTINUING_SHOT = GEAS_TYPES.register("pact_of_the_continuing_shot", () -> new GeasEffectType(ContinuingShotGeas::new, AERIAL_SPIRIT, INFERNAL_SPIRIT));
-    public static final GeasHolder<GeasEffectType> PACT_OF_THE_CLOUDSKIPPER = GEAS_TYPES.register("pact_of_the_cloudskipper", () -> new GeasEffectType(CloudSkipperGeas::new, AERIAL_SPIRIT, SACRED_SPIRIT));
     public static final GeasHolder<GeasEffectType> PACT_OF_THE_SKYBREAKER = GEAS_TYPES.register("pact_of_the_skybreaker", () -> new GeasEffectType(SkyBreakerGeas::new, AERIAL_SPIRIT, EARTHEN_SPIRIT));
 
     public static final GeasHolder<GeasEffectType> PACT_OF_CONTENTEDNESS = GEAS_TYPES.register("pact_of_contentedness", () -> new GeasEffectType(ContentednessGeas::new, EARTHEN_SPIRIT, AQUEOUS_SPIRIT));

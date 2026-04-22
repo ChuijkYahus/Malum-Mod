@@ -39,7 +39,7 @@ public class SpiritCrucibleCoreBlockEntity extends MultiBlockCoreEntity implemen
 
     public static final Vec3 CRUCIBLE_ITEM_OFFSET = new Vec3(0f, 1.1f, 0f);
     public static final Vec3 CRUCIBLE_CORE_AUGMENT_OFFSET = new Vec3(0f, 2.5f, 0f);
-    public static final Supplier<MultiBlockStructure> STRUCTURE = () -> (MultiBlockStructure.of(new MultiBlockStructure.StructurePiece(0, 1, 0, MalumContent.Artifice.SPIRIT_CRUCIBLE_COMPONENT.get().defaultBlockState())));
+    public static final Supplier<MultiBlockStructure> STRUCTURE = () -> (MultiBlockStructure.of(new MultiBlockStructure.StructurePiece(0, 1, 0, MalumContent.Focusing.SPIRIT_CRUCIBLE_COMPONENT.get().defaultBlockState())));
 
     public MalumBlockItemStackHandler inventory;
     public MalumBlockItemStackHandler spiritInventory;

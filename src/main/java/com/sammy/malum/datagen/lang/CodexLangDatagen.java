@@ -98,7 +98,6 @@ public class CodexLangDatagen {
         add(BookPage.getRecipeInfoKey(identifier), recipeDescriptor);
     }
 
-
     protected static void add(String key, String value) {
         MalumLangDatagen.lang.add(key, value);
     }
@@ -991,17 +990,6 @@ public class CodexLangDatagen {
                 """
                         That which you impose on others shall come back twice over.
                          -Incoming Knockback is Doubled""");
-
-        addSimpleEntryHeader("pact_of_the_cloudskipper", "Pact of The Cloudskipper", "To rise above all");
-        addGeasDetails(MalumGeasEffectTypes.PACT_OF_THE_CLOUDSKIPPER,
-                scaled(0.8f) + """
-                        Gravity; The greatest force to leverage against.
-                         -Wind Gusts Provide Greater Propulsion and Grant Ascension
-                         -Ascension State Grants Greater Aerial Manoeuvrability""",
-                """
-                        That which you rely on shall eventually crush you.
-                         -Fall Damage Taken is Doubled""");
-
 
         addSimpleEntryHeader("pact_of_contentedness", "Pact of Contentedness", "To seek satisfaction");
         addGeasDetails(MalumGeasEffectTypes.PACT_OF_CONTENTEDNESS,

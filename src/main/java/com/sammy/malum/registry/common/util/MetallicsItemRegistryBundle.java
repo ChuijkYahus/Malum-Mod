@@ -34,14 +34,14 @@ import static net.minecraft.tags.BlockTags.BEACON_BASE_BLOCKS;
 public class MetallicsItemRegistryBundle {
 
     public static List<MetallicsItemRegistryBundle> getMalumMetallics() {
-        return List.of(MalumContent.Artifice.IRON_METALLICS,
-                MalumContent.Artifice.COPPER_METALLICS,
-                MalumContent.Artifice.GOLD_METALLICS,
-                MalumContent.Artifice.ZINC_METALLICS,
-                MalumContent.Artifice.LEAD_METALLICS,
-                MalumContent.Artifice.SILVER_METALLICS,
-                MalumContent.Artifice.ALUMINIUM_METALLICS,
-                MalumContent.Artifice.NICKEL_METALLICS);
+        return List.of(MalumContent.AlchemyAndMetallics.IRON_METALLICS,
+                MalumContent.AlchemyAndMetallics.COPPER_METALLICS,
+                MalumContent.AlchemyAndMetallics.GOLD_METALLICS,
+                MalumContent.AlchemyAndMetallics.ZINC_METALLICS,
+                MalumContent.AlchemyAndMetallics.LEAD_METALLICS,
+                MalumContent.AlchemyAndMetallics.SILVER_METALLICS,
+                MalumContent.AlchemyAndMetallics.ALUMINIUM_METALLICS,
+                MalumContent.AlchemyAndMetallics.NICKEL_METALLICS);
     }
 
     protected final String id;
