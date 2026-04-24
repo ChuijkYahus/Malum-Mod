@@ -39,8 +39,8 @@ public class EdgeOfDeliveranceItem extends MalumScytheItem {
 
     @Override
     public void modifyAttributeTooltipEvent(AddAttributeTooltipsEvent event) {
-        event.addTooltipLines(ComponentHelper.positiveEffect("edge_of_deliverance_crit"));
-        event.addTooltipLines(ComponentHelper.negativeEffect("edge_of_deliverance_unpowered_attack"));
+        event.addTooltipLines(EffectComponentHelper.positiveItemEffect("edge_of_deliverance_crit"));
+        event.addTooltipLines(EffectComponentHelper.negativeItemEffect("edge_of_deliverance_unpowered_attack"));
     }
 
     @Override

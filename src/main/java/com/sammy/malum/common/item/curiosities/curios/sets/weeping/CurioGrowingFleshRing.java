@@ -24,7 +24,7 @@ public class CurioGrowingFleshRing extends MalumCurioItem implements IVoidItem, 
 
     @Override
     public void addExtraTooltipLines(Consumer<Component> consumer) {
-        consumer.accept(ComponentHelper.positiveCurioEffect("spirits_add_health"));
+        consumer.accept(EffectComponentHelper.positiveCurioEffect("spirits_add_health"));
     }
 
     @Override

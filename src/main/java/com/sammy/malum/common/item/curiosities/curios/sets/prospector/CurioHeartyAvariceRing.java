@@ -17,7 +17,7 @@ public class CurioHeartyAvariceRing extends MalumCurioItem {
 
     @Override
     public void addExtraTooltipLines(Consumer<Component> consumer, TooltipContext context) {
-        consumer.accept(ComponentHelper.positiveCurioEffect("avarice_healing"));
+        consumer.accept(EffectComponentHelper.positiveCurioEffect("avarice_healing"));
     }
 
     public static boolean hasHeartyRing(LivingEntity entity) {

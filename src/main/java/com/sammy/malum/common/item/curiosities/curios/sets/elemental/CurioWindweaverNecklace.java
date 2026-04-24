@@ -1,10 +1,8 @@
  package com.sammy.malum.common.item.curiosities.curios.sets.elemental;
 
- import com.sammy.malum.common.geas.pact.aerial.*;
  import com.sammy.malum.common.item.*;
  import com.sammy.malum.common.item.curiosities.curios.*;
  import com.sammy.malum.core.helpers.*;
- import com.sammy.malum.core.systems.geas.*;
  import com.sammy.malum.registry.common.*;
  import net.minecraft.network.chat.*;
  import net.minecraft.world.effect.*;
@@ -16,7 +14,6 @@
  import team.lodestar.lodestone.helpers.*;
  import top.theillusivec4.curios.api.*;
 
- import java.util.*;
  import java.util.function.*;
 
  public class CurioWindweaverNecklace extends MalumCurioItem implements IMalumEventResponder {
@@ -27,8 +24,8 @@
 
      @Override
      public void addExtraTooltipLines(Consumer<Component> consumer) {
-         consumer.accept(ComponentHelper.positiveCurioEffect("windweaver_ascension"));
-         consumer.accept(ComponentHelper.positiveCurioEffect("windweaver_gliding"));
+         consumer.accept(EffectComponentHelper.positiveCurioEffect("windweaver_ascension"));
+         consumer.accept(EffectComponentHelper.positiveCurioEffect("windweaver_gliding"));
      }
 
      @Override

@@ -26,10 +26,10 @@ public class BlastweaverGeas extends GeasEffect {
 
     @Override
     public void addTooltipComponents(LivingEntity entity, Consumer<Component> tooltipAcceptor, TooltipFlag tooltipFlag) {
-        tooltipAcceptor.accept(ComponentHelper.positiveGeasEffect("vastly_bigger_explosions"));
-        tooltipAcceptor.accept(ComponentHelper.positiveGeasEffect("explosion_lover"));
-        tooltipAcceptor.accept(ComponentHelper.positiveGeasEffect("avarice_explosions"));
-        tooltipAcceptor.accept(ComponentHelper.negativeGeasEffect("avarice_vulnerability"));
+        tooltipAcceptor.accept(EffectComponentHelper.positiveGeasEffect("vastly_bigger_explosions"));
+        tooltipAcceptor.accept(EffectComponentHelper.positiveGeasEffect("explosion_lover"));
+        tooltipAcceptor.accept(EffectComponentHelper.positiveGeasEffect("avarice_explosions"));
+        tooltipAcceptor.accept(EffectComponentHelper.negativeGeasEffect("avarice_vulnerability"));
     }
 
     @Override

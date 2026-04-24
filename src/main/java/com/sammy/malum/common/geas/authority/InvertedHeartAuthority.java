@@ -37,8 +37,8 @@ public class InvertedHeartAuthority extends GeasEffect {
 
     @Override
     public void addTooltipComponents(LivingEntity entity, Consumer<Component> tooltipAcceptor, TooltipFlag tooltipFlag) {
-        tooltipAcceptor.accept(ComponentHelper.positiveGeasEffect("inverted_heart"));
-        tooltipAcceptor.accept(ComponentHelper.positiveGeasEffect("inverted_heart_arcane_resonance"));
+        tooltipAcceptor.accept(EffectComponentHelper.positiveGeasEffect("inverted_heart"));
+        tooltipAcceptor.accept(EffectComponentHelper.positiveGeasEffect("inverted_heart_arcane_resonance"));
         super.addTooltipComponents(entity, tooltipAcceptor, tooltipFlag);
     }
 

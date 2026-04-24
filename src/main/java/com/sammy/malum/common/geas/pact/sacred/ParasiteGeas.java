@@ -24,7 +24,7 @@ public class ParasiteGeas extends GeasEffect {
 
     @Override
     public void addTooltipComponents(LivingEntity entity, Consumer<Component> tooltipAcceptor, TooltipFlag tooltipFlag) {
-        tooltipAcceptor.accept(ComponentHelper.positiveGeasEffect("spirits_absorption"));
+        tooltipAcceptor.accept(EffectComponentHelper.positiveGeasEffect("spirits_absorption"));
         super.addTooltipComponents(entity, tooltipAcceptor, tooltipFlag);
     }
     @Override

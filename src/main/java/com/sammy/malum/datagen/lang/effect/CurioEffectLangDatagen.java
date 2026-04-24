@@ -1,5 +1,6 @@
 package com.sammy.malum.datagen.lang.effect;
 
+import com.sammy.malum.core.helpers.*;
 import com.sammy.malum.datagen.lang.*;
 
 public class CurioEffectLangDatagen {
@@ -66,7 +67,7 @@ public class CurioEffectLangDatagen {
     }
 
     public static void addCurioEffect(String identifier, String name) {
-        add("malum.effect.curio." + identifier, name);
+        add(EffectComponentHelper.CURIO + identifier, name);
     }
 
 

@@ -38,8 +38,8 @@ public class LoneDruidGeas extends GeasEffect {
 
     @Override
     public void addTooltipComponents(LivingEntity entity, Consumer<Component> tooltipAcceptor, TooltipFlag tooltipFlag) {
-        tooltipAcceptor.accept(ComponentHelper.positiveGeasEffect("no_armor_druid_armor"));
-        tooltipAcceptor.accept(ComponentHelper.negativeGeasEffect("no_armor"));
+        tooltipAcceptor.accept(EffectComponentHelper.positiveGeasEffect("no_armor_druid_armor"));
+        tooltipAcceptor.accept(EffectComponentHelper.negativeGeasEffect("no_armor"));
     }
 
     @Override

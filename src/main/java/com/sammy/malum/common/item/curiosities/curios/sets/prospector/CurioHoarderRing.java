@@ -18,7 +18,7 @@ public class CurioHoarderRing extends MalumCurioItem {
 
     @Override
     public void addExtraTooltipLines(Consumer<Component> consumer) {
-        consumer.accept(ComponentHelper.positiveCurioEffect("explosion_drops_collected"));
+        consumer.accept(EffectComponentHelper.positiveCurioEffect("explosion_drops_collected"));
     }
 
     public static boolean hasHoarderRing(LivingEntity entity) {

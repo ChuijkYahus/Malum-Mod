@@ -26,7 +26,7 @@ public class CurioStarvedBelt extends MalumCurioItem implements IMalumEventRespo
 
     @Override
     public void addExtraTooltipLines(Consumer<Component> consumer) {
-        consumer.accept(ComponentHelper.positiveCurioEffect("spirits_gluttony"));
+        consumer.accept(EffectComponentHelper.positiveCurioEffect("spirits_gluttony"));
     }
 
     @Override

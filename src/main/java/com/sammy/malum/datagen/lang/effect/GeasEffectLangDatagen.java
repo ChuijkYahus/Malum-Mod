@@ -1,6 +1,7 @@
 package com.sammy.malum.datagen.lang.effect;
 
 import com.sammy.malum.core.handlers.*;
+import com.sammy.malum.core.helpers.*;
 import com.sammy.malum.datagen.lang.*;
 
 public class GeasEffectLangDatagen {
@@ -109,7 +110,7 @@ public class GeasEffectLangDatagen {
     }
 
     public static void addGeasEffect(String identifier, String name) {
-        add("malum.effect.geas." + identifier, name);
+        add(EffectComponentHelper.GEAS + identifier, name);
     }
 
     protected static void add(String key, String value) {

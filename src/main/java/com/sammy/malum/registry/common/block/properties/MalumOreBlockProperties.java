@@ -1,12 +1,6 @@
 package com.sammy.malum.registry.common.block.properties;
 
 import com.sammy.malum.common.block.soulstone.*;
-import com.sammy.malum.registry.common.MalumTags;
-import com.sammy.malum.registry.common.sound.*;
-import net.minecraft.world.level.block.state.BlockBehaviour;
-import net.minecraft.world.level.material.*;
-import net.neoforged.neoforge.common.*;
-import net.neoforged.neoforge.common.Tags.*;
 import team.lodestar.lodestone.modules.toolkit.block.*;
 
 import static com.sammy.malum.registry.common.MalumTags.Blocks.NATURAL_SOULSTONE_BUD_SURFACE;
@@ -33,7 +27,7 @@ public class MalumOreBlockProperties {
                 .randomTicks()
                 .dynamicShape()
                 .mapColor(TERRACOTTA_PURPLE)
-                .offsetFunction(SoulstoneBudBlock.BUD_OFFSET)
+                .offsetFunction(SoulstoneBudCommons.BUD_OFFSET)
                 .strength(4F, 3.0F)
                 .sound(SOULSTONE_BUD);
     }
@@ -47,7 +41,7 @@ public class MalumOreBlockProperties {
                 .randomTicks()
                 .dynamicShape()
                 .mapColor(TERRACOTTA_PURPLE)
-                .offsetFunction(ArchaicSoulstoneBudBlock.BUD_OFFSET)
+                .offsetFunction(SoulstoneBudCommons.BUD_OFFSET)
                 .strength(4F, 3.0F)
                 .sound(SOULSTONE_BUD);
     }

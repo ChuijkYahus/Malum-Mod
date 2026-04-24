@@ -1,7 +1,7 @@
 package com.sammy.malum.common.category;
 
 import com.sammy.malum.*;
-import com.sammy.malum.common.item.banner.SoulwovenBannerBlockItem;
+import com.sammy.malum.common.block.curiosities.decor.banner.SoulwovenBannerBlockItem;
 import com.sammy.malum.core.handlers.hiding.*;
 import com.sammy.malum.registry.common.*;
 import net.minecraft.resources.*;

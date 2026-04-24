@@ -25,7 +25,7 @@ public class RuneUnnaturalStaminaItem extends MadnessRuneCurioItem {
 
     @Override
     public void addExtraTooltipLines(Consumer<Component> consumer) {
-        consumer.accept(ComponentHelper.positiveCurioEffect("always_sprint"));
+        consumer.accept(EffectComponentHelper.positiveCurioEffect("always_sprint"));
     }
 
     @Override

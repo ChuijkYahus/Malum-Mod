@@ -20,7 +20,7 @@ public class RuneTwinnedDurationItem extends MadnessRuneCurioItem {
 
     @Override
     public void addExtraTooltipLines(Consumer<Component> consumer) {
-        consumer.accept(ComponentHelper.positiveCurioEffect("extend_positive_effect"));
+        consumer.accept(EffectComponentHelper.positiveCurioEffect("extend_positive_effect"));
     }
 
     public static void scaleDuration(MobEffectEvent.Added event) {

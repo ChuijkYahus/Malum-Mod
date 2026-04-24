@@ -27,8 +27,8 @@ public class CombustionGeas extends GeasEffect {
 
     @Override
     public void addTooltipComponents(LivingEntity entity, Consumer<Component> tooltipAcceptor, TooltipFlag tooltipFlag) {
-        tooltipAcceptor.accept(ComponentHelper.positiveGeasEffect("hotter_fire"));
-        tooltipAcceptor.accept(ComponentHelper.negativeGeasEffect("extinguish_hurt"));
+        tooltipAcceptor.accept(EffectComponentHelper.positiveGeasEffect("hotter_fire"));
+        tooltipAcceptor.accept(EffectComponentHelper.negativeGeasEffect("extinguish_hurt"));
     }
 
     @Override

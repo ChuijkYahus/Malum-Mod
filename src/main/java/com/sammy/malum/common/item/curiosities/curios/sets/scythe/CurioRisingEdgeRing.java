@@ -24,8 +24,8 @@ public class CurioRisingEdgeRing extends MalumCurioItem {
 
     @Override
     public void addExtraTooltipLines(Consumer<Component> consumer) {
-        consumer.accept(ComponentHelper.positiveCurioEffect("ascension_launch"));
-        consumer.accept(ComponentHelper.negativeCurioEffect("lower_ascension_damage"));
+        consumer.accept(EffectComponentHelper.positiveCurioEffect("ascension_launch"));
+        consumer.accept(EffectComponentHelper.negativeCurioEffect("lower_ascension_damage"));
     }
 
     public static void launchEntity(LivingEntity attacker, LivingEntity target, boolean isUppercut) {

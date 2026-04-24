@@ -67,8 +67,7 @@ import com.sammy.malum.common.block.flora.wood.soulwood.HangingSoulwoodLeavesBlo
 import com.sammy.malum.common.block.flora.wood.soulwood.SoulwoodLeavesBlock;
 import com.sammy.malum.common.block.flora.wood.soulwood.SoulwoodSaplingBlock;
 import com.sammy.malum.common.block.flora.wood.MalumSaplingBlock;
-import com.sammy.malum.common.block.soulstone.ArchaicSoulstoneBudBlock;
-import com.sammy.malum.common.block.soulstone.SoulstoneBudBlock;
+import com.sammy.malum.common.block.soulstone.*;
 import com.sammy.malum.common.block.storage.jar.SpiritJarBlock;
 import com.sammy.malum.common.block.storage.pedestal.ItemPedestalBlock;
 import com.sammy.malum.common.block.storage.stand.ItemStandBlock;
@@ -81,7 +80,7 @@ import com.sammy.malum.common.item.BrillianceChunkItem;
 import com.sammy.malum.common.item.GeasItem;
 import com.sammy.malum.common.item.augment.*;
 import com.sammy.malum.common.item.augment.core.*;
-import com.sammy.malum.common.item.banner.SoulwovenBannerBlockItem;
+import com.sammy.malum.common.block.curiosities.decor.banner.SoulwovenBannerBlockItem;
 import com.sammy.malum.common.item.codex.EncyclopediaArcanaItem;
 import com.sammy.malum.common.item.codex.EncyclopediaEsotericaItem;
 import com.sammy.malum.common.item.cosmetic.curios.CurioTokenOfGratitude;
@@ -145,7 +144,6 @@ import com.sammy.malum.common.item.spirit.SpiritShardItem;
 import com.sammy.malum.common.item.spirit.UmbralSpiritShardItem;
 import com.sammy.malum.compat.farmersdelight.FarmersDelightCompat;
 import com.sammy.malum.core.enumextension.MalumEnumParams;
-import com.sammy.malum.datagen.block.*;
 import com.sammy.malum.registry.common.block.MalumBlockSetTypes;
 
 import com.sammy.malum.registry.common.block.properties.*;
@@ -322,7 +320,7 @@ public class MalumContent {
 
         public static final DeferredBlock<ArchaicSoulstoneBudBlock> ARCHAIC_SOULSTONE_BUD = registerBlockNoItem("archaic_soulstone_bud", () -> new ArchaicSoulstoneBudBlock(MalumOreBlockProperties.ARCHAIC_SOULSTONE_BUD()));
         public static final BlockBlockItemHolder<SoulstoneBudBlock, BlockItem> SOULSTONE_BUD = registerBlock("soulstone_bud", () -> new SoulstoneBudBlock(MalumOreBlockProperties.SOULSTONE_BUD()));
-        public static final DeferredItem<Item> REALIZED_SOULSTONE_BUD = register("realized_soulstone_bud", MalumItemProperties::DEFAULT, Item::new);
+        public static final DeferredItem<Item> REALIZED_SOULSTONE_BUD = register("realized_soulstone_bud", MalumItemProperties::DEFAULT, SoulstoneBudItem::new);
 
 
         public static final DeferredItem<Item> RAW_BRILLIANCE = register("raw_brilliance", MalumItemProperties::DEFAULT, Item::new);

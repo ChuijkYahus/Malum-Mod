@@ -26,8 +26,8 @@ public class ShatteringAddictGeas extends GeasEffect {
     @Override
     public void addTooltipComponents(LivingEntity entity, Consumer<Component> tooltipAcceptor, TooltipFlag tooltipFlag) {
         super.addTooltipComponents(entity, tooltipAcceptor, tooltipFlag);
-        tooltipAcceptor.accept(ComponentHelper.positiveGeasEffect("chained_spirit_bonus"));
-        tooltipAcceptor.accept(ComponentHelper.negativeGeasEffect("hunger_as_withdrawal"));
+        tooltipAcceptor.accept(EffectComponentHelper.positiveGeasEffect("chained_spirit_bonus"));
+        tooltipAcceptor.accept(EffectComponentHelper.negativeGeasEffect("hunger_as_withdrawal"));
     }
 
     @Override

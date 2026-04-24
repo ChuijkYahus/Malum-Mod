@@ -23,7 +23,7 @@ public class CurioWatcherNecklace extends MalumCurioItem implements IMalumEventR
 
     @Override
     public void addExtraTooltipLines(Consumer<Component> consumer) {
-        consumer.accept(ComponentHelper.positiveCurioEffect("full_health_fake_collection"));
+        consumer.accept(EffectComponentHelper.positiveCurioEffect("full_health_fake_collection"));
     }
 
     @Override

@@ -15,6 +15,7 @@ import net.minecraft.world.item.*;
 import javax.annotation.*;
 import java.util.*;
 
+//TODO: Define patterns actually as a data map or smth, storing the texturePath and translationKey here rather than just an id that points to said information kinda sucks
 public record SoulwovenBannerPatternDataComponent(ResourceLocation type, ResourceLocation texturePath, String translationKey) {
 
     public static Codec<SoulwovenBannerPatternDataComponent> CODEC = RecordCodecBuilder.create(instance -> instance.group(

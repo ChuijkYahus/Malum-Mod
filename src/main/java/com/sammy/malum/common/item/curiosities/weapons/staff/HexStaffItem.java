@@ -2,7 +2,7 @@ package com.sammy.malum.common.item.curiosities.weapons.staff;
 
 import com.sammy.malum.common.entity.bolt.*;
 import com.sammy.malum.common.item.spirit.ISpiritAffiliatedItem;
-import com.sammy.malum.core.helpers.ComponentHelper;
+import com.sammy.malum.core.helpers.EffectComponentHelper;
 import com.sammy.malum.core.systems.spirit.type.*;
 import com.sammy.malum.registry.common.*;
 import com.sammy.malum.registry.common.magic.*;
@@ -34,7 +34,7 @@ public class HexStaffItem extends AbstractStaffItem implements ISpiritAffiliated
 
     @Override
     public void modifyAttributeTooltipEvent(AddAttributeTooltipsEvent event) {
-        event.addTooltipLines(ComponentHelper.positiveEffect("hex_bolts"));
+        event.addTooltipLines(EffectComponentHelper.positiveItemEffect("hex_bolts"));
     }
 
     @Override

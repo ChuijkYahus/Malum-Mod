@@ -59,6 +59,8 @@ public class MalumLangDatagen extends LanguageProvider {
         IntroductionChapterLangDatagen.generateEntries();
 
         CreativeTabLangDatagen.addTranslations();
+        WaveformInterfaceLangDatagen.addTranslations();
+        SoulstoneMetallicsLangDatagen.addTranslations();
 
         EffectKeywordLangDatagen.addTranslations();
         CurioEffectLangDatagen.addTranslations();
@@ -236,34 +238,6 @@ public class MalumLangDatagen extends LanguageProvider {
 
         addGeasDescription(MalumGeasEffectTypes.CREED_OF_THE_BLIGHT_EATER, "Mmmm... Blight... So Tasty..");
 
-
-        add("malum.waveform_artifice.wavecharger", "Redstone Step Duration");
-        add("malum.waveform_artifice.wavebanker", "Redstone Pulse Duration");
-        add("malum.waveform_artifice.wavemaker", "Redstone Pulse Interval");
-        add("malum.waveform_artifice.wavebreaker", "Redstone Pulse Delay");
-
-        add("malum.waveform_artifice.gust_igniter", "Gust Strength");
-        add("malum.waveform_artifice.wind_tunnel", "Tunnel Length");
-
-        add("malum.waveform_artifice.gust_igniter.default", "Rising Gust");
-        add("malum.waveform_artifice.gust_igniter.alt", "Lifting Gust");
-
-        add("malum.waveform_artifice.wind_tunnel.default", "Outward Flow");
-        add("malum.waveform_artifice.wind_tunnel.alt", "Inward Flow");
-
-        add("malum.waveform_artifice.value_display", ": %1$s %2$s");
-
-        add("malum.waveform_artifice.redstone_tick", "Redstone Tick");
-        add("malum.waveform_artifice.second", "Second");
-        add("malum.waveform_artifice.minute", "Minute");
-        add("malum.waveform_artifice.redstone_tick_plural", "Redstone Ticks");
-        add("malum.waveform_artifice.second_plural", "Seconds");
-        add("malum.waveform_artifice.minute_plural", "Minutes");
-
-        add("malum.waveform_artifice.guide.2", "Scroll To Fine Tune Value");
-        add("malum.waveform_artifice.guide.1", "Use Left Button To Modify Unit Type");
-        add("malum.waveform_artifice.guide.0", "Release Right Button To Confirm");
-
         add("jukebox_song.malum.arcane_elegy", "Kultik - Arcane Elegy");
         add("jukebox_song.malum.aesthetica", "Kultik - Aesthetica");
 
@@ -272,40 +246,6 @@ public class MalumLangDatagen extends LanguageProvider {
 
         add("curios.identifier.rune", "Rune");
         add("curios.modifiers.rune", "When equipped:");
-
-        add("malum.effect.positive", "+%s");
-        add("malum.effect.negative", "-%s");
-
-
-        addMiscEffect("soulwoven_pouch_collection", "Collects Spirit Arcana");
-        addMiscEffect("ravenous_pouch_collection", "Snatches Items Already In Storage");
-        addMiscEffect("ravenous_pouch_drop", "Retains A Minimum When Emptied");
-        addMiscEffect("ravenous_scythe_gluttony", "Amasses Gluttony From Struck Targets");
-        addMiscEffect("gluttonous_bludgeon_locusts", "Sprouts Damaging Locusts When Hitting Targets");
-        addMiscEffect("soul_based_damage", "Deals Soul-Rending Damage");
-        addMiscEffect("weight_of_worlds_crit", "Sometimes Strikes With Critical Force");
-        addMiscEffect("weight_of_worlds_kill", "Kills Guarantee a Critical Strike");
-        addMiscEffect("edge_of_deliverance_crit", "Follow-up Strikes Hit Critically");
-        addMiscEffect("edge_of_deliverance_unpowered_attack", "Non-Critical Strikes Deal Reduced Damage");
-        addMiscEffect("hex_bolts", "Charges a Burst of Mnemonic Blades");
-        addMiscEffect("erosive_spread", "Charges a Spread of Eroding Sub-munitions");
-        addMiscEffect("erosive_silence", "Erosion Damage Silences Targets");
-        addMiscEffect("unwinding_chaos_volley", "Charges a Volley of Composite Energy");
-        addMiscEffect("unwinding_chaos_burn", "Burn Damage Recovers Charges");
-        addMiscEffect("sundering_anchor_damage_split", "Damage is Split Between Several Cuts");
-        addMiscEffect("sundering_anchor_hatred", "Each Cut Applies Hatred");
-
-        addMiscEffect("wayne_june.0", "The Iron Crown. Enigmatic, and Ubiquitous");
-        addMiscEffect("wayne_june.1", "A Semi-Circle, Radiating Five Points of Power. A Symbol Hidden Deep in the Iconography of Every Ancient Empire");
-        addMiscEffect("wayne_june.2", "The Point of No Return Welcomes You, With Open Arms");
-        addMiscEffect("wayne_june.3", "The Greatest Horror It Would Seem, Is Nothing At All");
-        addMiscEffect("wayne_june.4", "An Ocean of Emptiness, Slowly Swallowing the World");
-        addMiscEffect("wayne_june.5", "A Nebulous Nightmare, an Apocalypse that Only We Can Oppose");
-        addMiscEffect("wayne_june.6", "Stagnant And Sprawling, This Hellish Abyss Extends Beyond Sanity Itself");
-        addMiscEffect("wayne_june.7", "We Travel Through The Incalculable Dimensions Of Human Weakness");
-        addMiscEffect("wayne_june.8", "Success, So Long Pursued, Is Rewarded Only With Creeping Revalation");
-        addMiscEffect("wayne_june.9", "You Have Cowered In Your Cowering Denial Long Enough");
-        addMiscEffect("wayne_june.10", "Let Us Drag Your Agglutinated Indignities Out Into The Light");
 
         add("malum.jei.spirit_infusion", "Spirit Infusion");
         add("malum.jei.spirit_focusing", "Spirit Focusing");
@@ -429,10 +369,6 @@ public class MalumLangDatagen extends LanguageProvider {
 
     public void addRiteEffect(String identifier, String name) {
         add("malum.effect.rite." + identifier, name);
-    }
-
-    public void addMiscEffect(String identifier, String name) {
-        add("malum.effect." + identifier, name);
     }
 
     public void addRiteTag(SpiritRiteEffectTag tag, String name) {

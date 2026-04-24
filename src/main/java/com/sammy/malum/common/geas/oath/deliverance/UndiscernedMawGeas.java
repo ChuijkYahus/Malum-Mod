@@ -27,8 +27,8 @@ public class UndiscernedMawGeas extends GeasEffect {
 
     @Override
     public void addTooltipComponents(LivingEntity entity, Consumer<Component> tooltipAcceptor, TooltipFlag tooltipFlag) {
-        tooltipAcceptor.accept(ComponentHelper.positiveGeasEffect("malignant_crit_leech"));
-        tooltipAcceptor.accept(ComponentHelper.negativeGeasEffect("malignant_crit_healing_overexertion"));
+        tooltipAcceptor.accept(EffectComponentHelper.positiveGeasEffect("malignant_crit_leech"));
+        tooltipAcceptor.accept(EffectComponentHelper.negativeGeasEffect("malignant_crit_healing_overexertion"));
         super.addTooltipComponents(entity, tooltipAcceptor, tooltipFlag);
     }
 

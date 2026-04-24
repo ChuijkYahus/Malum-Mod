@@ -25,7 +25,7 @@ public class RuneRadialEmpowermentItem extends MadnessRuneCurioItem implements I
 
     @Override
     public void addExtraTooltipLines(Consumer<Component> consumer) {
-        consumer.accept(ComponentHelper.positiveCurioEffect("scythe_chain"));
+        consumer.accept(EffectComponentHelper.positiveCurioEffect("scythe_chain"));
     }
 
     @Override

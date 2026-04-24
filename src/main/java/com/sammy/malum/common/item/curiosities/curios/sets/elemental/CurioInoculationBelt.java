@@ -15,7 +15,7 @@
 
      @Override
      public void addExtraTooltipLines(Consumer<Component> consumer) {
-         consumer.accept(ComponentHelper.positiveCurioEffect("inoculation_effect_duration"));
-         consumer.accept(ComponentHelper.positiveCurioEffect("inoculation_effect_buff"));
+         consumer.accept(EffectComponentHelper.positiveCurioEffect("inoculation_effect_duration"));
+         consumer.accept(EffectComponentHelper.positiveCurioEffect("inoculation_effect_buff"));
      }
  }

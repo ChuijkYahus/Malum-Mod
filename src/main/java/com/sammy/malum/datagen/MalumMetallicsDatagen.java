@@ -1,6 +1,9 @@
 package com.sammy.malum.datagen;
 
+import com.sammy.malum.client.screen.codex.pages.*;
+import com.sammy.malum.common.data.component.soulstone.*;
 import com.sammy.malum.common.data.map.SoulstoneOreConversionMap;
+import com.sammy.malum.datagen.lang.*;
 import com.sammy.malum.registry.common.util.MetallicsItemRegistryBundle;
 import com.sammy.malum.datagen.block.MalumBlockStateSmithTypes;
 import com.sammy.malum.datagen.item.MalumItemModelSmithTypes;
@@ -54,14 +57,17 @@ public class MalumMetallicsDatagen {
 
     public void addSoulstoneConversions(DataMapProvider.Builder<SoulstoneOreConversionMap, Block> builder) {
         for (MetallicsItemRegistryBundle metallic : metallics) {
+            var metalData = new StoredInSoulstoneMetal(metallic.getId(), metallic.getNuggetTag());
             var map = new SoulstoneOreConversionMap(List.of(
                     new SoulstoneOreConversionMap.SoulstoneOreConversion(
                             Optional.of(new TagMatchTest(Tags.Blocks.ORES_IN_GROUND_STONE)),
-                            metallic.getOre().get().defaultBlockState()
+                            metallic.getOre().get().defaultBlockState(),
+                            metalData
                     ),
                     new SoulstoneOreConversionMap.SoulstoneOreConversion(
                             Optional.of(new TagMatchTest(Tags.Blocks.ORES_IN_GROUND_DEEPSLATE)),
-                            metallic.getDeepslateOre().get().defaultBlockState()
+                            metallic.getDeepslateOre().get().defaultBlockState(),
+                            metalData
                     )
             ));
             var oreTag = metallic.getOreTag();
