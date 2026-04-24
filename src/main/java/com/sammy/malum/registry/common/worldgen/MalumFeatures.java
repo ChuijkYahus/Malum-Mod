@@ -1,6 +1,7 @@
 package com.sammy.malum.registry.common.worldgen;
 
 import com.sammy.malum.common.worldgen.ore.*;
+import com.sammy.malum.common.worldgen.sanctuary.feature.*;
 import com.sammy.malum.common.worldgen.tree.*;
 import net.minecraft.core.registries.*;
 import net.minecraft.resources.*;
@@ -14,6 +15,10 @@ import static com.sammy.malum.MalumMod.*;
 public class MalumFeatures {
 
     public static final DeferredRegister<Feature<?>> FEATURE_TYPES = DeferredRegister.create(BuiltInRegistries.FEATURE, MALUM);
+
+    public static final DeferredHolder<Feature<?>, SanctuaryPillarFeature> SANCTUARY_PILLAR = FEATURE_TYPES.register("sanctuary_pillar", SanctuaryPillarFeature::new);
+    public static final DeferredHolder<Feature<?>, SanctuaryWallFeature> SANCTUARY_WALL = FEATURE_TYPES.register("sanctuary_wall", SanctuaryWallFeature::new);
+
 
     public static final DeferredHolder<Feature<?>, RunewoodTreeFeature> RUNEWOOD_TREE = FEATURE_TYPES.register("runewood_tree", RunewoodTreeFeature::new);
     public static final DeferredHolder<Feature<?>, SoulwoodTreeFeature> SOULWOOD_TREE = FEATURE_TYPES.register("soulwood_tree", SoulwoodTreeFeature::new);
@@ -35,6 +40,10 @@ public class MalumFeatures {
         public static final ResourceKey<ConfiguredFeature<?, ?>> RUNEWOOD_TREE = registerKey("runewood_tree");
         public static final ResourceKey<ConfiguredFeature<?, ?>> AZURE_RUNEWOOD_TREE = registerKey("azure_runewood_tree");
         public static final ResourceKey<ConfiguredFeature<?, ?>> SOULWOOD_TREE = registerKey("soulwood_tree");
+
+        public static final ResourceKey<ConfiguredFeature<?, ?>> SANCTUARY_PILLAR = registerKey("sanctuary_pillar");
+        public static final ResourceKey<ConfiguredFeature<?, ?>> SANCTUARY_WALL = registerKey("sanctuary_wall");
+
 
         public static ResourceKey<ConfiguredFeature<?, ?>> registerKey(String name) {
             return ResourceKey.create(Registries.CONFIGURED_FEATURE, malumPath(name));

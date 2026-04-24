@@ -106,6 +106,10 @@ public class MalumBlockSoundDatagen extends MalumSoundDatagenWrapper {
         add(MalumBlockSoundEvents.WILD_WITCHHAZEL, "block/flora/witchhazel");
         add(MalumBlockSoundEvents.WITCHHAZEL, "block/flora/witchhazel");
 
+        //Sanctuary
+        add(MalumBlockSoundEvents.TRODDEN_STONE, "block/sanctuary/trodden_stone");
+
+
         //Runewood
         add(MalumBlockSoundEvents.RUNEWOOD, "block/runewood");
         add(MalumBlockSoundEvents.RUNEWOOD_HANGING_SIGN, "block/runewood/hanging_sign");

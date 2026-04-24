@@ -81,7 +81,7 @@ public class CodexLangDatagen {
         add("malum.gui.book.entry." + identifier + ".description", tooltip);
     }
 
-    protected static void addTitleAndSnippet(String identifier, String title, String snippet) {
+    protected static void addGizmoTitleAndSnippet(String identifier, String title, String snippet) {
         add(DisplayedGizmo.TITLE + identifier, title);
         addSnippet(identifier, snippet);
     }

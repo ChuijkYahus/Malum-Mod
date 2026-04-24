@@ -78,6 +78,15 @@ public class MalumBlockProperties {
                 .noOcclusion();
     }
 
+    public static LodestoneBlockProperties TRODDEN_STONE() {
+        return new LodestoneBlockProperties()
+                .strength(1F, 9.0F)
+                .sound(MalumBlockSoundEvents.TRODDEN_STONE)
+                .mapColor(MapColor.COLOR_GRAY)
+                .requiresCorrectToolForDrops()
+                .needsPickaxe();
+    }
+
     public static LodestoneBlockProperties TAINTED_ROCK() {
         return new LodestoneBlockProperties()
                 .addTag(TAINTED_ROCK)

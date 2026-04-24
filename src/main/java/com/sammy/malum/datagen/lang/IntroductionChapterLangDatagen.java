@@ -5,6 +5,7 @@ public class IntroductionChapterLangDatagen extends CodexLangDatagen {
     public static void generateEntries() {
 
 
+        addGizmoTitleAndSnippet("introduction", "Introduction", "The soul, oh how truly marvelous it is");
         addSimpleEntryHeader("introduction", "Introduction", "On the nature of souls");
         addPages("introduction",
                 "\"Within our world, every living being has a soul. That soul is consciousness, what animates the body, and the meeting point between matter and magic. These represent our existence; as the body is presented to the physical world, so the soul is to the arcane.\"",
@@ -13,42 +14,43 @@ public class IntroductionChapterLangDatagen extends CodexLangDatagen {
                 "So far, what I have described is basic. But I have found a way to separate, and then condense, the impulse of a soul into a physical form I call a spirit crystal. Upon the death of it's vessel, the soul fizzles out and merges with the surrounding area, it 'dies' so to speak. However, with precise timing, the soul can be 'shattered' just before it's natural death, shedding it's stored essence. This forms the basis of my research.",
                 "The natures of the soul I condense influence the crystal's properties. Each soul is slightly different, and that can result in changes to the crystals formed. It is unorthodox by many standards, and yet, I feel a strange sensation, as if a great discovery was just made clear to me. I believe these spirit crystals to be just the breakthrough I need.");
 
-        addTitleAndSnippet("icon.soul_shard", "Spirit Crystals", "The foundation of sorcery");
+        addGizmoTitleAndSnippet("icon.soul_shard", "Spirit Crystals", "The foundation of sorcery");
         addSimpleEntryHeader("spirit_crystals", "Spirit Crystals", "Matter and magic");
         addPages("spirit_crystals",
                 "The soul is a notoriously fickle thing. Even confirming its existence is difficult, requiring the highest thaumaturgies to get a reading. That is what sets spirit arcana apart from other magic. We don't need grand assemblies and esoteric artifice to see a soul. Simply destroying it is proof enough.",
                 "A material I have named Soulstone is the means by which we do so. It appears mundane until refined, but once it is rid of impurities, it seems... out of phase with the world. By creating a blade using it as a core, I should be able to strike not only the physical form, but also the soul, shattering it to energy before it can disperse.",
                 "These energies, as previously noted, have different 'frequencies' of sorts. A being burning with light would have a soul that reflects that radiance, and a being prone to adaptation would have a soul as malleable as itself. Occasionally, the energy has no flavor to it at all, leaving only the raw impulse of creation behind. That type of crystal bears further study.");
 
+        addGizmoTitleAndSnippet("runewood", "Runewood", "It basks in the glorious hues of the sun");
         addSimpleEntryHeader("runewood", "Runewood", "Arcane oak");
         addPages("runewood",
                 "Runewood is a strange mix of magic and nature that has always stood out amongst the many trees of the overworld. While pretty, I am more interested in practicality. Runewood is soaked in magic, and as such, can serve as the basis for the arcane.");
 
-        addTitleAndSnippet("runewood.placement", "Runewood's Habitat", "Where to locate");
+        addGizmoTitleAndSnippet("runewood.placement", "Runewood's Habitat", "Where to locate");
         addPages("runewood.placement",
                 "The tree is predominantly found within large open plains and sometimes forests. It is rare, but not outrageously so. It stands taller than most trees found within the same climate and thus can be easily identified by its leaves, proudly displaying an orange-yellow palette soaked in hues of the sun.");
-        addTitleAndSnippet("runewood.genesis", "Runewood's Genesis", "How it came to be");
+        addGizmoTitleAndSnippet("runewood.genesis", "Runewood's Genesis", "How it came to be");
         addPages("runewood.genesis",
                 "The exact origins of the tree are yet unknown to me. It has clear ancestral connection rooted in that of Oak, yes, however the reason behind that connection remains rather enigmatic. Given the arcana involved, it may be impossible to tell the true origin of Runewood.");
-        addTitleAndSnippet("runewood.azure", "Runewood's Brilliant Blue", "A twin sister");
+        addGizmoTitleAndSnippet("runewood.azure", "Runewood's Brilliant Blue", "A twin sister");
         addPages("runewood.azure",
                 "During recent travel I came across another discovery. Azure Runewood, as I have named it, is a variant of the tree that adapted to grow in a colder climate. Its arcane composition and looks are all mostly the same, though its crown took on a bluish appearance. It can be found in most colder biomes.");
 
         addHeadline("runewood.arcane_charcoal", "Arcane Charcoal");
         addPages("runewood.arcane_charcoal",
                 "Runewood's charcoal, as magic-infused as it is, burns with an arcane fervor for longer than regular charcoal. When fed to a furnace it is capable of supporting its flame for exactly twice as long. This makes it rather useful for fueling any smelting I need to do.");
-        addTitleAndSnippet("runewood.arcane_charcoal.smelting", "Runewood's Pyrolysis", "When broken down in a furnace, the leftover arcana of Runewood remains imbued in the resulting charcoal.");
-        addTitleAndSnippet("runewood.arcane_charcoal.compacting", "Compacting Arcane Charcoal", "Arcane Charcoal can be compacted into a block form.");
+        addGizmoTitleAndSnippet("runewood.arcane_charcoal.smelting", "Runewood's Pyrolysis", "When broken down in a furnace, the leftover arcana of Runewood remains imbued in the resulting charcoal.");
+        addGizmoTitleAndSnippet("runewood.arcane_charcoal.compacting", "Compacting Arcane Charcoal", "Arcane Charcoal can be compacted into a block form.");
 
 
         addHeadline("runewood.runic_sap", "Runic Sap");
         addPages("runewood.runic_sap",
                 "Runewood trees tend to have a buildup of sticky sap on the sides of their lower logs. When this happens, if you strip off the bark, you'll be able to bottle the sap. In terms of taste, it is a bit like honey, sweet but with a more earthly flavor, but where it shines most is it's rejuvenating aftertaste.");
-        addTitleAndSnippet("runewood.runic_sap.stripping", "Stripping Sappy Runewood", "When stripped using an axe, Sappy Runewood exposes it's stored sap for collection.");
-        addTitleAndSnippet("runewood.runic_sap.bottling", "Harvesting Runic Sap", "Sap can be collected and stored within a bottle.");
-        addTitleAndSnippet("runewood.runic_sap.mixing", "Mixing Runic Sapballs", "Mixing Runic Sap together with dough thickens it's composition and yields Sapballs");
+        addGizmoTitleAndSnippet("runewood.runic_sap.stripping", "Stripping Sappy Runewood", "When stripped using an axe, Sappy Runewood exposes it's stored sap for collection.");
+        addGizmoTitleAndSnippet("runewood.runic_sap.bottling", "Harvesting Runic Sap", "Sap can be collected and stored within a bottle.");
+        addGizmoTitleAndSnippet("runewood.runic_sap.mixing", "Mixing Runic Sapballs", "Mixing Runic Sap together with dough thickens it's composition and yields Sapballs");
 
-        addTitleAndSnippet("icon.overworld", "Arcane Wonders", "Where we all gather");
+        addGizmoTitleAndSnippet("icon.overworld", "Arcane Wonders", "Where we all gather");
         addSimpleEntryHeader("arcane_wonders", "Arcane Wonders", "The world around us");
         addPages("arcane_wonders",
                 "After having carved open a few samples of raw Soulstone, I've been able to notice signs of a pattern. Both Runewood and Soulstone appear to be two instances of magic influence spanning the world, brought into existence through the same exact principle.",
@@ -59,22 +61,22 @@ public class IntroductionChapterLangDatagen extends CodexLangDatagen {
         addSimpleEntryHeader("soulstone", "Soulstone", "Out of phase");
         addPages("soulstone",
                 "Sometimes, it appears that matter can be charged with the energies of a soul, despite not having a soul of its own. This serves as the basis for spirit arcana and sorcery as a whole - the ensouling of the soulless, a means of taking what is static and showing it a new purpose.");
-        addTitleAndSnippet("soulstone.synopsis", "Soulstone's Existence", "It's truth");
+        addGizmoTitleAndSnippet("soulstone.synopsis", "Soulstone's Existence", "It's truth");
         addPages("soulstone.synopsis",
                 "Soulstone is an ore that exists more in the arcane than the physical, and, when refined, presents many uses for my magic. Refined Soulstone strongly radiates it's internal pool of arcana upon physical contact. The sensation builds up rather slowly and while uncomfortable, does not appear to have any true repercussions that can be observed through just touch.");
-        addTitleAndSnippet("soulstone.ore_deposits", "Soulstone' Deposits", "Where to locate");
+        addGizmoTitleAndSnippet("soulstone.ore_deposits", "Soulstone' Deposits", "Where to locate");
         addPages("soulstone.ore_deposits",
                 "Soulstone ore deposits can be found exclusively underground, forming most commonly in the deepslate layer. To be as precise as can be with my current knowledge at hand, the ore can generate starting from approximately fourteen blocks beneath sea level, continuing to appear all the way down until bedrock.");
-        addTitleAndSnippet("soulstone.buds", "Soulstone' Buds", "Odd formations");
+        addGizmoTitleAndSnippet("soulstone.buds", "Soulstone' Buds", "Odd formations");
         addPages("soulstone.buds",
                 "Ore deposits of Soulstone take shape through a natural process of assimilation with other, existing metal deposits. Seemingly so, as a result said process, the ore forms Buds which stick out outwards and support the growth of a small Soulstone shard.");
 
         addHeadline("soulstone.refinement", "Refinement of Soulstone");
         addPages("soulstone.refinement",
                 "Soulstone is a naturally excellent source of magic, but in that excellence there is still impurity. Like any other mineral, it must first be refined before being given a proper use. Both Raw Soulstone and Soulstone Buds can be processed into Refined Soulstone.");
-        addTitleAndSnippet("soulstone.refinement.smelting", "Refinement of Soulstone", "When processed in a furnace or blast furnace, soulstone sheds it's impurities and takes on a bright purple shine.");
-        addTitleAndSnippet("soulstone.refinement.raw_compacting", "Compacting Raw Soulstone", "Raw Soulstone can be compacted into a block form.");
-        addTitleAndSnippet("soulstone.refinement.refined_compacting", "Compacting Refined Soulstone", "Refined Soulstone can be compacted into a block form.");
+        addGizmoTitleAndSnippet("soulstone.refinement.smelting", "Refinement of Soulstone", "When processed in a furnace or blast furnace, soulstone sheds it's impurities and takes on a bright purple shine.");
+        addGizmoTitleAndSnippet("soulstone.refinement.raw_compacting", "Compacting Raw Soulstone", "Raw Soulstone can be compacted into a block form.");
+        addGizmoTitleAndSnippet("soulstone.refinement.refined_compacting", "Compacting Refined Soulstone", "Refined Soulstone can be compacted into a block form.");
 
 
         addSimpleEntryHeader("scythes", "Scythes", "Harvest");

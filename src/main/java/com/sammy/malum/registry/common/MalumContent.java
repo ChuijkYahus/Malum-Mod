@@ -145,6 +145,7 @@ import com.sammy.malum.common.item.spirit.SpiritShardItem;
 import com.sammy.malum.common.item.spirit.UmbralSpiritShardItem;
 import com.sammy.malum.compat.farmersdelight.FarmersDelightCompat;
 import com.sammy.malum.core.enumextension.MalumEnumParams;
+import com.sammy.malum.datagen.block.*;
 import com.sammy.malum.registry.common.block.MalumBlockSetTypes;
 
 import com.sammy.malum.registry.common.block.properties.*;
@@ -157,6 +158,7 @@ import com.sammy.malum.registry.common.sound.MalumBlockSoundEvents;
 import com.sammy.malum.registry.common.util.MetallicsItemRegistryBundle;
 import com.sammy.malum.registry.common.util.RockBlockSet;
 import com.sammy.malum.registry.common.util.WoodBlockSet;
+import com.sammy.malum.registry.common.util.data.*;
 import com.sammy.malum.registry.common.worldgen.MalumTreeGrowers;
 import net.minecraft.util.valueproviders.UniformInt;
 import net.minecraft.world.food.FoodProperties;
@@ -466,6 +468,11 @@ public class MalumContent {
         public static final BlockBlockItemHolder<Block, BlockItem> IRIDESCENT_ETHER_CRESSET = MalumContent.registerBlock("iridescent_ether_cresset",
                 () -> new EtherCressetBlock<>(MalumEtherBlockProperties.ETHER_CRESSET()), EtherCressetItem::iridescent);
 
+
+        public static final BlockBundle TRODDEN_STONE = new BlockBundle("trodden_stone", MalumBlockProperties::TRODDEN_STONE);
+        public static final BlockBundleWithWall TRODDEN_STONE_BRICKS = new BlockBundleWithWall("trodden_stone_bricks", MalumBlockProperties::TRODDEN_STONE);
+        public static final BlockBundle POLISHED_TRODDEN_STONE = new BlockBundle("polished_trodden_stone", MalumBlockProperties::TRODDEN_STONE);
+
         public static final RockBlockSet TAINTED_ROCK_SET = new RockBlockSet("tainted_rock", MalumBlockProperties::TAINTED_ROCK, MalumBlockProperties::TAINTED_ROCK_BRICKS, MalumBlockProperties::CHISELED_TAINTED_ROCK);
         public static final RockBlockSet TWISTED_ROCK_SET = new RockBlockSet("twisted_rock", MalumBlockProperties::TWISTED_ROCK, MalumBlockProperties::TWISTED_ROCK_BRICKS, MalumBlockProperties::CHISELED_TWISTED_ROCK);
 
@@ -480,7 +487,6 @@ public class MalumContent {
         public static final WoodBlockSet RUNEWOOD_SET = new WoodBlockSet("runewood", "gilded", () -> MalumBlockSetTypes.RUNEWOOD, MalumWoodBlockProperties::RUNEWOOD);
         public static final DeferredItem<Item> RUNEWOOD_BOAT = register("runewood_boat", () -> MalumItemProperties.DEFAULT().stacksTo(1), (p) -> new BoatItem(false, MalumEnumParams.RUNEWOOD_BOAT_TYPE.getValue(), p));
         public static final DeferredItem<Item> RUNEWOOD_CHEST_BOAT = register("runewood_chest_boat", () -> MalumItemProperties.DEFAULT().stacksTo(1), (p) -> new BoatItem(true, MalumEnumParams.RUNEWOOD_BOAT_TYPE.getValue(), p));
-
 
         public static final BlockBlockItemHolder<Block, BlockItem> SOULWOOD_SAPLING = registerBlock("soulwood_sapling", () -> new SoulwoodSaplingBlock(MalumTreeGrowers.SOULWOOD, MalumWoodBlockProperties.SOULWOOD_SAPLING()));
         public static final BlockBlockItemHolder<Block, BlockItem> SOULWOOD_LEAVES = registerBlock("soulwood_leaves", () -> new SoulwoodLeavesBlock(MalumWoodBlockProperties.SOULWOOD_LEAVES()));

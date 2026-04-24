@@ -7,9 +7,7 @@ import com.sammy.malum.registry.common.MalumContent;
 import com.sammy.malum.registry.common.MalumContent.*;
 import com.sammy.malum.registry.common.util.RockBlockSet;
 import com.sammy.malum.registry.common.util.WoodBlockSet;
-import com.sammy.malum.registry.common.util.data.BlockBundle;
-import com.sammy.malum.registry.common.util.data.BlockBundleWithWall;
-import com.sammy.malum.registry.common.util.data.ItemlessBlockBundle;
+import com.sammy.malum.registry.common.util.data.*;
 import net.minecraft.data.*;
 import net.minecraft.resources.*;
 import net.minecraft.world.level.block.*;
@@ -65,6 +63,11 @@ public class MalumBlockStateDatagen extends LodestoneBlockStateSystem {
                 BlockSets.SACRED_VARNISHED_TERRACOTTA, BlockSets.WICKED_VARNISHED_TERRACOTTA, BlockSets.ARCANE_VARNISHED_TERRACOTTA, BlockSets.ELDRITCH_VARNISHED_TERRACOTTA,
                 BlockSets.AERIAL_VARNISHED_TERRACOTTA, BlockSets.AQUEOUS_VARNISHED_TERRACOTTA, BlockSets.EARTHEN_VARNISHED_TERRACOTTA, BlockSets.INFERNAL_VARNISHED_TERRACOTTA,
                 BlockSets.NULL_VARNISHED_TERRACOTTA);
+
+        setTexturePath("sanctuary/trodden_stone/");
+        generateVariedBlockBundle(data, BlockSets.TRODDEN_STONE);
+        generateBlockBundle(data, BlockSets.TRODDEN_STONE_BRICKS);
+        generateBlockBundle(data, BlockSets.POLISHED_TRODDEN_STONE);
 
         setTexturePath("arcane_rock/tainted/");
         generateRockSet(data, BlockSets.TAINTED_ROCK_SET);
@@ -253,18 +256,50 @@ public class MalumBlockStateDatagen extends LodestoneBlockStateSystem {
         BlockStateSmithTypes.CUSTOM_MODEL.act(data, NO_DATAGEN, this::simpleBlock, this::cubeModelAirTexture, SPIRIT_MOTE);
     }
 
+    public void generateVariedBlockBundle(BlockStateSystemData data, BlockBundle bundle) {
+        VariedBlockStateSmithTypes.VARIED_FULL_BLOCK.act(data, bundle.block);
+        VariedBlockStateSmithTypes.VARIED_STAIRS_BLOCK.act(data, bundle.stairs);
+        VariedBlockStateSmithTypes.VARIED_SLAB_BLOCK.act(data, bundle.slab);
+        if (bundle instanceof BlockBundleWithWall wall) {
+            //TODO: Varied wall
+//            BlockStateSmithTypes.WALL_BLOCK.act(data, wall.wall);
+        }
+    }
+
+    public void generateBlockBundle(BlockStateSystemData data, BlockBundle bundle) {
+        BlockStateSmithTypes.FULL_BLOCK.act(data, bundle.block);
+        BlockStateSmithTypes.STAIRS_BLOCK.act(data, bundle.stairs);
+        BlockStateSmithTypes.SLAB_BLOCK.act(data, bundle.slab);
+        if (bundle instanceof BlockBundleWithWall wall) {
+            BlockStateSmithTypes.WALL_BLOCK.act(data, wall.wall);
+        }
+    }
+
+    public void generateVariedBlockBundle(BlockStateSystemData data, ItemlessBlockBundle bundle) {
+        VariedBlockStateSmithTypes.VARIED_FULL_BLOCK.act(data, NO_DATAGEN, bundle.block);
+        VariedBlockStateSmithTypes.VARIED_STAIRS_BLOCK.act(data, NO_DATAGEN, bundle.stairs);
+        VariedBlockStateSmithTypes.VARIED_SLAB_BLOCK.act(data, NO_DATAGEN, bundle.slab);
+        if (bundle instanceof ItemlessBlockBundleWithWall wall) {
+            //TODO: Varied wall
+//            BlockStateSmithTypes.WALL_BLOCK.act(data, NO_DATAGEN, wall.wall);
+        }
+    }
+
+    public void generateBlockBundle(BlockStateSystemData data, ItemlessBlockBundle bundle) {
+        BlockStateSmithTypes.FULL_BLOCK.act(data, NO_DATAGEN, bundle.block);
+        BlockStateSmithTypes.STAIRS_BLOCK.act(data, NO_DATAGEN, bundle.stairs);
+        BlockStateSmithTypes.SLAB_BLOCK.act(data, NO_DATAGEN, bundle.slab);
+        if (bundle instanceof ItemlessBlockBundleWithWall wall) {
+            BlockStateSmithTypes.WALL_BLOCK.act(data, NO_DATAGEN, wall.wall);
+        }
+    }
+
     public void generateRockSet(BlockStateSystemData data, RockBlockSet set) {
-        var blocks = new BlockBundle[] {
+        for (BlockBundle bundle : new BlockBundle[] {
                 set.rock, set.polishedRock, set.bricks,
                 set.tiles//, set.grid, set.mosaic
-        };
-        for (BlockBundle bundle : blocks) {
-            BlockStateSmithTypes.FULL_BLOCK.act(data, bundle.block);
-            BlockStateSmithTypes.STAIRS_BLOCK.act(data, bundle.stairs);
-            BlockStateSmithTypes.SLAB_BLOCK.act(data, bundle.slab);
-            if (bundle instanceof BlockBundleWithWall wall) {
-                BlockStateSmithTypes.WALL_BLOCK.act(data, wall.wall);
-            }
+        }) {
+            generateBlockBundle(data, bundle);
         }
 
         MalumBlockStateSmithTypes.COLUMN.act(data, set.column);
@@ -279,31 +314,18 @@ public class MalumBlockStateDatagen extends LodestoneBlockStateSystem {
     }
 
     public void generateWoodSet(BlockStateSystemData data, WoodBlockSet set) {
-        var blockSets = new BlockBundle[] {
+        for (BlockBundle bundle : new BlockBundle[]{
                 set.boards, set.verticalBoards, set.blocks,
                 set.planks, set.verticalPlanks, set.tiles
-        };
-        for (BlockBundle bundle : blockSets) {
-            BlockStateSmithTypes.FULL_BLOCK.act(data, bundle.block);
-            BlockStateSmithTypes.STAIRS_BLOCK.act(data, bundle.stairs);
-            BlockStateSmithTypes.SLAB_BLOCK.act(data, bundle.slab);
-            if (bundle instanceof BlockBundleWithWall wall) {
-                BlockStateSmithTypes.WALL_BLOCK.act(data, wall.wall);
-            }
+        }) {
+            generateBlockBundle(data, bundle);
         }
-        var carvedSets = new ItemlessBlockBundle[] {
+        for (ItemlessBlockBundle bundle : new ItemlessBlockBundle[]{
                 set.carvedBoards, set.carvedVerticalBoards, set.carvedBlocks,
                 set.carvedPlanks, set.carvedVerticalPlanks, set.carvedTiles
-        };
-        for (ItemlessBlockBundle carved : carvedSets) {
-            VariedBlockStateSmithTypes.VARIED_FULL_BLOCK.act(data, carved.block);
-            VariedBlockStateSmithTypes.VARIED_STAIRS_BLOCK.act(data, carved.stairs);
-            VariedBlockStateSmithTypes.VARIED_SLAB_BLOCK.act(data, carved.slab);
-//            if (carved instanceof BlockBundleWithWall wall) {
-//                BlockStateSmithTypes.WALL_BLOCK.act(data, wall.wall);
-//            }
+        }) {
+            generateVariedBlockBundle(data, bundle);
         }
-
 
         BlockStateSmithTypes.LOG_BLOCK.act(data,
                 set.log,

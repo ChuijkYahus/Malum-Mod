@@ -15,6 +15,9 @@ public class BlockBundleWithWall extends BlockBundle {
 
     public final BlockBlockItemHolder<Block, BlockItem> wall;
 
+    public BlockBundleWithWall(String name, Supplier<LodestoneBlockProperties> properties) {
+        this(name, properties, createTag(name, "blocks"), createTag(name, "slabs"), createTag(name, "stairs"), createTag(name, "walls"));
+    }
     public BlockBundleWithWall(String name, Supplier<LodestoneBlockProperties> properties,
                                TagKey<Block> blocksTag, TagKey<Block> slabsTag, TagKey<Block> stairsTag, TagKey<Block> wallsTag) {
         super(name, properties, blocksTag, slabsTag, stairsTag);

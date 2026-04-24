@@ -201,7 +201,7 @@ public class MalumVanillaRecipes implements IConditionBuilder {
         smeltAndBlast(output, malumPath("soulstone_ore"), Ingredient.of(SOULSTONE_ORE), RecipeCategory.MISC, hasSoulstone, REFINED_SOULSTONE, 2, 0.25f);
         smeltAndBlast(output, malumPath("soulstone_deepslate_ore"), Ingredient.of(DEEPSLATE_SOULSTONE_ORE), RecipeCategory.MISC, hasSoulstone, REFINED_SOULSTONE, 2, 0.25f);
         smeltAndBlast(output, malumPath("raw_soulstone"), Ingredient.of(RAW_SOULSTONE), RecipeCategory.MISC, hasSoulstone, REFINED_SOULSTONE, 2, 0.25f);
-        smeltAndBlast(output, malumPath("soulstone_bud"), Ingredient.of(SOULSTONE_BUD), RecipeCategory.MISC, hasSoulstone, REFINED_SOULSTONE, 4, 0.5f);
+        smeltAndBlast(output, malumPath("soulstone_bud"), Ingredient.of(SOULSTONE_BUD), RecipeCategory.MISC, hasSoulstone, REFINED_SOULSTONE, 2, 0.5f);
         smeltAndBlast(output, malumPath("realized_soulstone_bud"), Ingredient.of(REALIZED_SOULSTONE_BUD), RecipeCategory.MISC, hasSoulstone, REFINED_SOULSTONE, 16, 2f);
 
         //FULL BLOCKS

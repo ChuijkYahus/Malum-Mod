@@ -14,17 +14,19 @@ import team.lodestar.lodestone.modules.datagen.DatagenSystemCommons;
 import team.lodestar.lodestone.modules.datagen.ItemModelSmithTypes;
 import team.lodestar.lodestone.modules.datagen.providers.block.LodestoneBlockStateSystem;
 import team.lodestar.lodestone.modules.datagen.smith.blockstate.BlockStateSmith;
-import team.lodestar.lodestone.modules.datagen.smith.itemmodel.ItemModelSmith;
+import team.lodestar.lodestone.modules.datagen.smith.itemmodel.*;
 
 import java.util.ArrayList;
 
 public class VariedBlockStateSmithTypes {
 
-    public static BlockStateSmith<Block> VARIED_FULL_BLOCK = new BlockStateSmith<>(Block.class, ItemModelSmithTypes.NO_DATAGEN, VariedBlockStateSmithTypes::variedBlock);
+    public static final ConfiguredItemModelSmith AFFIXED = ItemModelSmithTypes.BLOCK_MODEL_ITEM.addModelPathAffix("0");
 
-    public static BlockStateSmith<StairBlock> VARIED_STAIRS_BLOCK = new BlockStateSmith<>(StairBlock.class, ItemModelSmithTypes.NO_DATAGEN, VariedBlockStateSmithTypes::variedStairsBlock);
+    public static BlockStateSmith<Block> VARIED_FULL_BLOCK = new BlockStateSmith<>(Block.class, AFFIXED, VariedBlockStateSmithTypes::variedBlock);
 
-    public static BlockStateSmith<SlabBlock> VARIED_SLAB_BLOCK = new BlockStateSmith<>(SlabBlock.class, ItemModelSmithTypes.NO_DATAGEN, VariedBlockStateSmithTypes::variedSlabBlock);
+    public static BlockStateSmith<StairBlock> VARIED_STAIRS_BLOCK = new BlockStateSmith<>(StairBlock.class, AFFIXED, VariedBlockStateSmithTypes::variedStairsBlock);
+
+    public static BlockStateSmith<SlabBlock> VARIED_SLAB_BLOCK = new BlockStateSmith<>(SlabBlock.class, AFFIXED, VariedBlockStateSmithTypes::variedSlabBlock);
 
     public static void variedBlock(Block block, LodestoneBlockStateSystem provider) {
         var name = provider.getBlockName(block);

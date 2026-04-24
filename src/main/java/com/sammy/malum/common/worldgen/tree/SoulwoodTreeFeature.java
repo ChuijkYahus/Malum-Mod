@@ -111,7 +111,7 @@ public class SoulwoodTreeFeature extends Feature<NoneFeatureConfiguration> {
                     if (rand.nextFloat() < 0.75f) {
                         twistDirectionIndex++;
                     }
-                    if (!canPlace(level, mutable)) {
+                    if (!canPlaceTree(level, mutable)) {
                         return false;
                     }
                     treeLayer.add(mutable, soulwoodLog);
@@ -120,7 +120,7 @@ public class SoulwoodTreeFeature extends Feature<NoneFeatureConfiguration> {
                     remainingTwists--;
                 }
             }
-            if (!canPlace(level, mutable)) {
+            if (!canPlaceTree(level, mutable)) {
                 return false;
             }
             treeLayer.add(mutable, i == 0 ? blightedSoulwoodLog : soulwoodLog);
@@ -136,7 +136,7 @@ public class SoulwoodTreeFeature extends Feature<NoneFeatureConfiguration> {
             int sideTrunkHeight = getSideTrunkHeight(rand);
             mutable.set(sidePos);
             for (int j = 0; j < sideTrunkHeight; j++) {
-                if (!canPlace(level, mutable)) {
+                if (!canPlaceTree(level, mutable)) {
                     return false;
                 }
                 treeLayer.add(mutable, soulwoodLog);
@@ -146,7 +146,7 @@ public class SoulwoodTreeFeature extends Feature<NoneFeatureConfiguration> {
             treeLayer.add(lowestLog, blightedSoulwoodLog);
 
             var clingingBlightPos = lowestLog.relative(direction);
-            if (canPlace(level, clingingBlightPos)) {
+            if (canPlaceTree(level, clingingBlightPos)) {
                 rootsLayer.add(clingingBlightPos, makeClingingBlight(BlightType.CLINGING_BLIGHT, direction.getOpposite())).addPlacementCondition(PlacementCondition.CAN_SURVIVE);
             }
 
@@ -159,7 +159,7 @@ public class SoulwoodTreeFeature extends Feature<NoneFeatureConfiguration> {
                 var roots = makeClingingBlight(SOULWOOD_ROOTS, rootsDirection);
                 mutable.set(rootPos);
                 for (int k = 0; k < 4; k++) {
-                    if (!canPlace(level, mutable)) {
+                    if (!canPlaceTree(level, mutable)) {
                         if (k == 2) {
                             mutable.set(rootPos);
                         }
@@ -185,7 +185,7 @@ public class SoulwoodTreeFeature extends Feature<NoneFeatureConfiguration> {
             mutable.move(Direction.DOWN, downwardsBranchOffset);
             for (int j = 1; j < branchLength; j++) {
                 mutable.move(direction);
-                if (!canPlace(level, mutable)) {
+                if (!canPlaceTree(level, mutable)) {
                     return false;
                 }
                 Direction.Axis axis = direction.getAxis();
@@ -205,7 +205,7 @@ public class SoulwoodTreeFeature extends Feature<NoneFeatureConfiguration> {
                 }
             }
             for (int j = 0; j < branchHeight; j++) {
-                if (!canPlace(level, mutable)) {
+                if (!canPlaceTree(level, mutable)) {
                     return false;
                 }
                 treeLayer.add(mutable, soulwoodLog);
@@ -241,7 +241,7 @@ public class SoulwoodTreeFeature extends Feature<NoneFeatureConfiguration> {
         for (LodestoneWorldgenBuilderEntry entry : leaves.getEntries()) {
             BlockPos position = entry.position();
             BlockPos below = position.below();
-            if (!canPlace(level, below) || leaves.containsKey(below)) {
+            if (!canPlaceTree(level, below) || leaves.containsKey(below)) {
                 continue;
             }
             BlockState state = entry.blockState();

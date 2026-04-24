@@ -1,5 +1,8 @@
 {
   "values": [
+    "malum:trodden_stone_stairs",
+    "malum:trodden_stone_bricks_stairs",
+    "malum:polished_trodden_stone_stairs",
     "malum:tainted_rock_stairs",
     "malum:polished_tainted_rock_stairs",
     "malum:tainted_rock_bricks_stairs",

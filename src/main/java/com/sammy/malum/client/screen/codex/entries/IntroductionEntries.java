@@ -7,6 +7,7 @@ import com.sammy.malum.client.screen.codex.pages.text.*;
 import com.sammy.malum.client.screen.codex.screens.progression.*;
 import com.sammy.malum.registry.common.*;
 import net.minecraft.world.item.*;
+import net.minecraft.world.level.block.*;
 
 import static com.sammy.malum.client.screen.codex.WidgetDesignType.*;
 import static com.sammy.malum.client.screen.codex.WidgetDesignType.FillingType.*;
@@ -38,7 +39,7 @@ public class IntroductionEntries {
 
         screen.addEntry("introduction", 0, 0, b -> b
                 .configureWidget(w -> w
-                        .setIcon(item(ENCYCLOPEDIA_ARCANA))
+                        .setIcon(item(ENCYCLOPEDIA_ARCANA).addTitleAndSnippet("introduction"))
                         .setDesign(GILDED, RUNEWOOD, PAPER)
                         .setOrigin()
                 )
@@ -61,7 +62,7 @@ public class IntroductionEntries {
         );
 
         screen.addEntry("runewood", 0, 2, b -> b
-                .configureWidget(w -> w.setIcon(item(RUNEWOOD_SAPLING)))
+                .configureWidget(w -> w.setIcon(item(RUNEWOOD_SAPLING).addTitleAndSnippet("runewood")))
                 .addPage(new HeadlineTextGizmoPage("runewood", item(RUNEWOOD_SAPLING)))
                 .addPage(PageSelectionPage.create(s -> s
                                 .add(item(GRASS_BLOCK).addTitleAndSnippet("runewood.placement"),
@@ -115,7 +116,7 @@ public class IntroductionEntries {
                 .addPage(PageSelectionPage.create(s -> s
                                 .add(item(REFINED_SOULSTONE).addTitleAndSnippet("soulstone.refinement.smelting"), new CyclingPage(
                                         new SmeltingPage(item(RAW_SOULSTONE), item(REFINED_SOULSTONE, 2)),
-                                        new SmeltingPage(item(SOULSTONE_BUD), item(REFINED_SOULSTONE, 4))
+                                        new SmeltingPage(item(SOULSTONE_BUD), item(REFINED_SOULSTONE, 2))
                                 ))
                                 .add(item(BLOCK_OF_REFINED_SOULSTONE).addTitleAndSnippet("soulstone.refinement.refined_compacting"),
                                         CraftingPage.fullBlock(item(BLOCK_OF_REFINED_SOULSTONE), item(REFINED_SOULSTONE)))
@@ -124,7 +125,6 @@ public class IntroductionEntries {
                         )
                 )
         );
-
         screen.addEntry("soulstone_buds", 2, 5, b -> b
                         .configureWidget(w -> w.setIcon(item(SOULSTONE_BUD)))
                         .addPage(new HeadlineTextGizmoPage("soulstone_buds", item(SOULSTONE_BUD)))

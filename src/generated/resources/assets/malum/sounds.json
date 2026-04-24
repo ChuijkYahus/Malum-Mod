@@ -11491,6 +11491,65 @@
     ],
     "subtitle": "malum.subtitle.totemic_weight"
   },
+  "trodden_stone_break": {
+    "sounds": [
+      "malum:block/sanctuary/trodden_stone/break1",
+      "malum:block/sanctuary/trodden_stone/break2",
+      "malum:block/sanctuary/trodden_stone/break3",
+      "malum:block/sanctuary/trodden_stone/break4",
+      "malum:block/sanctuary/trodden_stone/break5",
+      "malum:block/sanctuary/trodden_stone/break6",
+      "malum:block/sanctuary/trodden_stone/break7",
+      "malum:block/sanctuary/trodden_stone/break8"
+    ],
+    "subtitle": "malum.subtitle.trodden_stone_break"
+  },
+  "trodden_stone_fall": {
+    "sounds": [
+      "malum:block/sanctuary/trodden_stone/step1",
+      "malum:block/sanctuary/trodden_stone/step2",
+      "malum:block/sanctuary/trodden_stone/step3",
+      "malum:block/sanctuary/trodden_stone/step4",
+      "malum:block/sanctuary/trodden_stone/step5",
+      "malum:block/sanctuary/trodden_stone/step6"
+    ],
+    "subtitle": "malum.subtitle.trodden_stone_fall"
+  },
+  "trodden_stone_hit": {
+    "sounds": [
+      "malum:block/sanctuary/trodden_stone/step1",
+      "malum:block/sanctuary/trodden_stone/step2",
+      "malum:block/sanctuary/trodden_stone/step3",
+      "malum:block/sanctuary/trodden_stone/step4",
+      "malum:block/sanctuary/trodden_stone/step5",
+      "malum:block/sanctuary/trodden_stone/step6"
+    ],
+    "subtitle": "malum.subtitle.trodden_stone_hit"
+  },
+  "trodden_stone_place": {
+    "sounds": [
+      "malum:block/sanctuary/trodden_stone/break1",
+      "malum:block/sanctuary/trodden_stone/break2",
+      "malum:block/sanctuary/trodden_stone/break3",
+      "malum:block/sanctuary/trodden_stone/break4",
+      "malum:block/sanctuary/trodden_stone/break5",
+      "malum:block/sanctuary/trodden_stone/break6",
+      "malum:block/sanctuary/trodden_stone/break7",
+      "malum:block/sanctuary/trodden_stone/break8"
+    ],
+    "subtitle": "malum.subtitle.trodden_stone_place"
+  },
+  "trodden_stone_step": {
+    "sounds": [
+      "malum:block/sanctuary/trodden_stone/step1",
+      "malum:block/sanctuary/trodden_stone/step2",
+      "malum:block/sanctuary/trodden_stone/step3",
+      "malum:block/sanctuary/trodden_stone/step4",
+      "malum:block/sanctuary/trodden_stone/step5",
+      "malum:block/sanctuary/trodden_stone/step6"
+    ],
+    "subtitle": "malum.subtitle.trodden_stone_step"
+  },
   "tuning_fork_tinkers": {
     "sounds": [
       "malum:curiosities/augments/tinker1",

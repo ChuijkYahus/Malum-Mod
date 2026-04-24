@@ -1,0 +1,88 @@
+{
+  "variants": {
+    "type=bottom,waterlogged=false": [
+      {
+        "model": "malum:block/trodden_stone_slab0"
+      },
+      {
+        "model": "malum:block/trodden_stone_slab1"
+      },
+      {
+        "model": "malum:block/trodden_stone_slab2"
+      },
+      {
+        "model": "malum:block/trodden_stone_slab3"
+      }
+    ],
+    "type=bottom,waterlogged=true": [
+      {
+        "model": "malum:block/trodden_stone_slab0"
+      },
+      {
+        "model": "malum:block/trodden_stone_slab1"
+      },
+      {
+        "model": "malum:block/trodden_stone_slab2"
+      },
+      {
+        "model": "malum:block/trodden_stone_slab3"
+      }
+    ],
+    "type=double,waterlogged=false": [
+      {
+        "model": "minecraft:trodden_stone0"
+      },
+      {
+        "model": "minecraft:trodden_stone1"
+      },
+      {
+        "model": "minecraft:trodden_stone2"
+      },
+      {
+        "model": "minecraft:trodden_stone3"
+      }
+    ],
+    "type=double,waterlogged=true": [
+      {
+        "model": "minecraft:trodden_stone0"
+      },
+      {
+        "model": "minecraft:trodden_stone1"
+      },
+      {
+        "model": "minecraft:trodden_stone2"
+      },
+      {
+        "model": "minecraft:trodden_stone3"
+      }
+    ],
+    "type=top,waterlogged=false": [
+      {
+        "model": "malum:block/trodden_stone_slab0_top"
+      },
+      {
+        "model": "malum:block/trodden_stone_slab1_top"
+      },
+      {
+        "model": "malum:block/trodden_stone_slab2_top"
+      },
+      {
+        "model": "malum:block/trodden_stone_slab3_top"
+      }
+    ],
+    "type=top,waterlogged=true": [
+      {
+        "model": "malum:block/trodden_stone_slab0_top"
+      },
+      {
+        "model": "malum:block/trodden_stone_slab1_top"
+      },
+      {
+        "model": "malum:block/trodden_stone_slab2_top"
+      },
+      {
+        "model": "malum:block/trodden_stone_slab3_top"
+      }
+    ]
+  }
+}

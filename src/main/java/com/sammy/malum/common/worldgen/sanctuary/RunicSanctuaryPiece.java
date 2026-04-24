@@ -1,12 +1,16 @@
-package com.sammy.malum.common.worldgen.springs;
+package com.sammy.malum.common.worldgen.sanctuary;
 
 import com.sammy.malum.common.worldgen.WorldgenHelper;
-import com.sammy.malum.registry.common.worldgen.MalumStructureTypes;
+import com.sammy.malum.registry.common.worldgen.*;
+import com.sammy.malum.registry.common.worldgen.MalumFeatures.*;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.core.registries.*;
+import net.minecraft.data.worldgen.features.*;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.util.Mth;
 import net.minecraft.util.RandomSource;
+import net.minecraft.util.random.*;
 import net.minecraft.world.level.ChunkPos;
 import net.minecraft.world.level.StructureManager;
 import net.minecraft.world.level.WorldGenLevel;
@@ -15,6 +19,7 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.chunk.ChunkGenerator;
 import net.minecraft.world.level.levelgen.Heightmap;
 import net.minecraft.world.level.levelgen.XoroshiroRandomSource;
+import net.minecraft.world.level.levelgen.feature.*;
 import net.minecraft.world.level.levelgen.structure.BoundingBox;
 import net.minecraft.world.level.levelgen.structure.StructurePiece;
 import net.minecraft.world.level.levelgen.structure.pieces.StructurePieceSerializationContext;
@@ -25,17 +30,19 @@ import team.lodestar.lodestone.modules.core.easing.Easing;
 import java.util.ArrayList;
 import java.util.List;
 
-public class RunicSanctuaryPiece extends StructurePiece {
-    protected EnchantedSpringsData springsData;
+import static net.minecraft.util.random.WeightedEntry.wrap;
 
-    protected RunicSanctuaryPiece(EnchantedSpringsData springsData, BoundingBox boundingBox) {
+public class RunicSanctuaryPiece extends StructurePiece {
+    protected SanctuaryGenerationData springsData;
+
+    protected RunicSanctuaryPiece(SanctuaryGenerationData springsData, BoundingBox boundingBox) {
         super(MalumStructureTypes.StructurePieceTypes.RUNIC_SANCTUARY.get(), 0, boundingBox);
         this.springsData = springsData;
     }
 
     public RunicSanctuaryPiece(CompoundTag tag) {
         super(MalumStructureTypes.StructurePieceTypes.RUNIC_SANCTUARY.get(), tag);
-        this.springsData = EnchantedSpringsData.load(tag);
+        this.springsData = SanctuaryGenerationData.load(tag);
     }
 
     @Override
@@ -48,12 +55,12 @@ public class RunicSanctuaryPiece extends StructurePiece {
 //        var unsafeBoundingBox = new UnsafeBoundingBox();
         var mutable = new BlockPos.MutableBlockPos();
 
-        var center = springsData.getCenter();
+        var center = springsData.center();
         int centerHeight = level.getHeight(Heightmap.Types.WORLD_SURFACE_WG, center.getX(), center.getZ()) + 5;
 
         var noiseSampler = new ImprovedNoise(new XoroshiroRandomSource(level.getSeed()));
 
-        record FeatureData(float heightDelta, BlockPos pos) {
+        record FeatureData(float delta, BlockPos pos) {
 
         }
         List<FeatureData> featureData = new ArrayList<>();
@@ -64,7 +71,7 @@ public class RunicSanctuaryPiece extends StructurePiece {
                 float xOffset = center.getX() - blockX;
                 float zOffset = center.getZ() - blockZ;
                 float dist = Mth.sqrt(xOffset * xOffset + zOffset * zOffset);
-                float delta = 1 - (dist / springsData.radius);
+                float delta = 1 - (dist / springsData.radius());
 
                 int height = level.getHeight(Heightmap.Types.WORLD_SURFACE, blockX, blockZ);
                 mutable.set(blockX, height, blockZ);
@@ -81,7 +88,6 @@ public class RunicSanctuaryPiece extends StructurePiece {
                 displaced = Mth.clamp(displaced, 0, 1);
                 int springHeight = 14;
                 int raisedAmount = Mth.floor(Easing.QUINTIC_OUT.lerp(displaced, 0, springHeight));
-                float raisedDelta = raisedAmount / (float) springHeight;
                 int desiredAdjustment = centerHeight + raisedAmount - height;
 
                 int adjustment = Math.round(displaced * desiredAdjustment);
@@ -89,22 +95,49 @@ public class RunicSanctuaryPiece extends StructurePiece {
                 shift(level, mutable, adjustment);
 
                 BlockPos posForFeature = mutable.relative(Direction.UP, adjustment);
-                featureData.add(new FeatureData(raisedDelta, posForFeature));
+                featureData.add(new FeatureData(delta, posForFeature));
             }
         }
 
-//        var registryAccess = level.registryAccess().registryOrThrow(Registries.CONFIGURED_FEATURE);
-//        var holder = registryAccess.getHolder(MalumFeatures.ConfiguredFeatures.RUNEWOOD_TREE).orElseThrow().value();
-//        int features = Easing.SINE_IN_OUT.asValueDistribution(random.nextFloat(), 4, 12);
-//        features = Math.min(features, featureData.size());
-//        if (features > 0) {
-//            featureData = WorldgenHelper.shuffle(featureData, random);
-//            for (int i = 0; i < features; i++) {
-//                BlockPos position = featureData.get(i);
-//                level.setBlock(position, Blocks.RED_WOOL.defaultBlockState(), 2);
-//                holder.place(level, generator, random, position);
-//            }
-//        }
+        var registryAccess = level.registryAccess().registryOrThrow(Registries.CONFIGURED_FEATURE);
+
+
+        int featureAmount = Easing.SINE_IN_OUT.asValueDistribution(random.nextFloat(), 12, 24);
+        featureAmount = Math.min(featureAmount, featureData.size());
+        if (featureAmount > 0) {
+            featureData = WorldgenHelper.shuffle(featureData, random);
+            for (int i = 0; i < featureAmount; i++) {
+                var data = featureData.get(i);
+                var position = data.pos;
+                float delta = data.delta;
+
+                int randomBullshitWeight = 8;
+                int rarerBullshitWeight = 1;
+
+                int runewoodWeight = 40;
+                int pillarWeight = (int) (60 * Easing.EXPO_IN_OUT.ease(delta));
+                int wallWeight = (int) (20 * Easing.CIRC_OUT.ease(delta));
+
+                var weighed = WeightedRandomList.create(
+                        wrap(VegetationFeatures.PATCH_GRASS, randomBullshitWeight),
+                        wrap(VegetationFeatures.PATCH_TALL_GRASS, randomBullshitWeight),
+                        wrap(VegetationFeatures.FLOWER_MEADOW, randomBullshitWeight),
+                        wrap(VegetationFeatures.TREES_FLOWER_FOREST, randomBullshitWeight),
+
+                        wrap(VegetationFeatures.PATCH_SUNFLOWER, rarerBullshitWeight),
+                        wrap(VegetationFeatures.PATCH_PUMPKIN, rarerBullshitWeight),
+
+                        wrap(ConfiguredFeatures.RUNEWOOD_TREE, runewoodWeight),
+                        wrap(ConfiguredFeatures.SANCTUARY_PILLAR, pillarWeight),
+                        wrap(ConfiguredFeatures.SANCTUARY_WALL, wallWeight)
+                );
+
+                var feature = weighed.getRandom(random).orElseThrow().data();
+                var holder = registryAccess.getHolder(feature).orElseThrow().value();
+
+                holder.place(level, generator, random, position);
+            }
+        }
     }
 
     public static void shift(WorldGenLevel level, BlockPos startPos, int offset) {

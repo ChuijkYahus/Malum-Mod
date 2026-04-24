@@ -2,6 +2,7 @@ package com.sammy.malum.datagen;
 
 import com.sammy.malum.*;
 import com.sammy.malum.datagen.worldgen.*;
+import com.sammy.malum.datagen.worldgen.configured.*;
 import net.minecraft.core.*;
 import net.minecraft.core.registries.*;
 import net.minecraft.data.*;

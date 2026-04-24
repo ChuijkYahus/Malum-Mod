@@ -1,4 +1,4 @@
-package com.sammy.malum.common.worldgen.springs;
+package com.sammy.malum.common.worldgen.sanctuary;
 
 import com.mojang.serialization.*;
 import com.mojang.serialization.codecs.*;
@@ -12,13 +12,13 @@ import org.jetbrains.annotations.*;
 
 import java.util.*;
 
-public class EnchantedSpringsStructure extends Structure {
+public class RunicSanctuaryStructure extends Structure {
 
-    public static final MapCodec<EnchantedSpringsStructure> CODEC = RecordCodecBuilder.mapCodec(builder ->
+    public static final MapCodec<RunicSanctuaryStructure> CODEC = RecordCodecBuilder.mapCodec(builder ->
             builder.group(settingsCodec(builder))
-                    .apply(builder, EnchantedSpringsStructure::new));
+                    .apply(builder, RunicSanctuaryStructure::new));
 
-    public EnchantedSpringsStructure(StructureSettings settings) {
+    public RunicSanctuaryStructure(StructureSettings settings) {
         super(settings);
     }
 
@@ -37,17 +37,16 @@ public class EnchantedSpringsStructure extends Structure {
         int baseHeight = chunkGenerator.getBaseHeight(blockX, blockZ, Heightmap.Types.WORLD_SURFACE_WG, levelHeightAccessor, randomState);
         var center = new BlockPos(blockX, baseHeight, blockZ);
 
-        int radius = random.nextIntBetweenInclusive(48, 64);
-        int springRadius = random.nextIntBetweenInclusive(16, 32);
+        int radius = random.nextIntBetweenInclusive(24, 32);
 
-        var data = new EnchantedSpringsData(center, radius, springRadius);
+        var data = new SanctuaryGenerationData(center, radius);
         return Optional.of(new Structure.GenerationStub(center, (b) -> createGrovePieces(b, context, data)));
     }
 
-    private void createGrovePieces(StructurePiecesBuilder piecesBuilder, GenerationContext context, EnchantedSpringsData config) {
+    private void createGrovePieces(StructurePiecesBuilder piecesBuilder, GenerationContext context, SanctuaryGenerationData config) {
         var levelHeightAccessor = context.heightAccessor();
         var chunkPos = context.chunkPos();
-        int radius = SectionPos.blockToSectionCoord(config.radius) + 1;
+        int radius = SectionPos.blockToSectionCoord(config.radius()) + 1;
 
         for (int chunkX = -radius; chunkX <= radius; chunkX++) {
             for (int chunkZ = -radius; chunkZ <= radius; chunkZ++) {
