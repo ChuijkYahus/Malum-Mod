@@ -19,7 +19,7 @@ public class RuneCullingItem extends MiracleRuneCurioItem implements ItemEventHa
 
     @Override
     public void addExtraTooltipLines(Consumer<Component> consumer) {
-        consumer.accept(ComponentHelper.positiveCurioEffect("scythe_execution"));
+        consumer.accept(EffectComponentHelper.positiveCurioEffect("scythe_execution"));
     }
 
     @Override

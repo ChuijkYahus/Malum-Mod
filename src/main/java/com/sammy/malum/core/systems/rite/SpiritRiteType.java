@@ -5,7 +5,7 @@ import com.mojang.datafixers.util.Pair;
 import com.mojang.serialization.*;
 import com.sammy.malum.client.screen.codex.pages.BookPage;
 import com.sammy.malum.common.block.curiosities.totem.*;
-import com.sammy.malum.core.helpers.ComponentHelper;
+import com.sammy.malum.core.helpers.EffectComponentHelper;
 import com.sammy.malum.core.systems.registry.*;
 import com.sammy.malum.core.systems.registry.rite.*;
 import com.sammy.malum.core.systems.rite.effect.*;
@@ -106,7 +106,7 @@ public class SpiritRiteType {
         MutableComponent effect = Component.translatable(getEffectLangKey());
         String text = effect.getString();
         String[] parts = text.split("\n");
-        return Arrays.stream(parts).map(p -> ComponentHelper.riteEffect(p, this)).toList();
+        return Arrays.stream(parts).map(p -> EffectComponentHelper.riteEffect(p, this)).toList();
     }
 
     public MutableComponent getTags() {
@@ -137,7 +137,7 @@ public class SpiritRiteType {
     }
 
     public String getCodexEntryLangKey() {
-        return BookPage.TEXT + "." + getName();
+        return BookPage.TEXT + getName();
     }
 
     public String getName() {

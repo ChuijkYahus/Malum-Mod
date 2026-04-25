@@ -4,6 +4,7 @@ import com.mojang.serialization.Codec;
 import com.sammy.malum.MalumMod;
 import com.sammy.malum.common.data.component.*;
 import com.sammy.malum.common.data.component.pouch.*;
+import com.sammy.malum.common.data.component.soulstone.*;
 import com.sammy.malum.common.item.curiosities.TemporarilyDisabledItem.Disabled;
 import net.minecraft.core.component.DataComponentType;
 import net.minecraft.core.registries.Registries;
@@ -16,6 +17,10 @@ import java.util.function.UnaryOperator;
 
 public class MalumDataComponents {
     public static final DeferredRegister<DataComponentType<?>> COMPONENTS = DeferredRegister.create(Registries.DATA_COMPONENT_TYPE, MalumMod.MALUM);
+
+
+    public static final DeferredHolder<DataComponentType<?>, DataComponentType<SoulstoneBudDataComponent>> SOULSTONE_BUD_DATA = register("soulstone_bud_data", builder ->
+            builder.persistent(SoulstoneBudDataComponent.CODEC).networkSynchronized(SoulstoneBudDataComponent.STREAM_CODEC));
 
     public static final DeferredHolder<DataComponentType<?>, DataComponentType<SoulwovenPouchContentsComponent>> SOULWOVEN_POUCH_CONTENTS = register("soulwoven_pouch_data", builder ->
             builder.persistent(SoulwovenPouchContentsComponent.CODEC).networkSynchronized(SoulwovenPouchContentsComponent.STREAM_CODEC));

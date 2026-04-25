@@ -1,6 +1,6 @@
 package com.sammy.malum.datagen.worldgen;
 
-import com.sammy.malum.common.worldgen.springs.EnchantedSpringsStructure;
+import com.sammy.malum.common.worldgen.sanctuary.RunicSanctuaryStructure;
 import com.sammy.malum.common.worldgen.well.*;
 import com.sammy.malum.registry.common.*;
 import com.sammy.malum.registry.common.worldgen.*;
@@ -19,8 +19,8 @@ public class StructureDatagen {
 
     public static void structureBootstrap(BootstrapContext<Structure> context) {
         structure(context, MalumStructureTypes.StructureKeys.WEEPING_WELL, WeepingWellStructure::new, MalumTags.Biomes.HAS_WEEPING_WELL, GenerationStep.Decoration.UNDERGROUND_STRUCTURES, TerrainAdjustment.NONE);
-        structure(context, MalumStructureTypes.StructureKeys.RUNIC_SANCTUARY, EnchantedSpringsStructure::new, MalumTags.Biomes.HAS_RUNIC_SANCTUARY, GenerationStep.Decoration.SURFACE_STRUCTURES, TerrainAdjustment.NONE);
-        structure(context, MalumStructureTypes.StructureKeys.AZURE_SANCTUARY, EnchantedSpringsStructure::new, MalumTags.Biomes.HAS_AZURE_SANCTUARY, GenerationStep.Decoration.SURFACE_STRUCTURES, TerrainAdjustment.NONE);
+        structure(context, MalumStructureTypes.StructureKeys.RUNIC_SANCTUARY, RunicSanctuaryStructure::new, MalumTags.Biomes.HAS_RUNIC_SANCTUARY, GenerationStep.Decoration.SURFACE_STRUCTURES, TerrainAdjustment.NONE);
+        structure(context, MalumStructureTypes.StructureKeys.AZURE_SANCTUARY, RunicSanctuaryStructure::new, MalumTags.Biomes.HAS_AZURE_SANCTUARY, GenerationStep.Decoration.SURFACE_STRUCTURES, TerrainAdjustment.NONE);
     }
 
     public static void structureSetBootstrap(BootstrapContext<StructureSet> context) {

@@ -212,6 +212,9 @@ public class MalumBlockLootTables extends LootTableProvider {
                                                     .setProperties(StatePropertiesPredicate.Builder.properties()
                                                             .hasProperty(SoulstoneBudBlock.STAGE, 3))
                                             )
+                                            .apply(CopyComponentsFunction.copyComponents(CopyComponentsFunction.Source.BLOCK_ENTITY)
+                                                    .include(MalumDataComponents.SOULSTONE_BUD_DATA.get())
+                                            )
                                             .otherwise(LootItem.lootTableItem(block))
                                     )
                     )
@@ -224,11 +227,13 @@ public class MalumBlockLootTables extends LootTableProvider {
                             LootPool.lootPool()
                                     .setRolls(ConstantValue.exactly(1.0F))
                                     .add(LootItem.lootTableItem(block)
-                                            .apply(CopyNameFunction.copyName(CopyNameFunction.NameSource.BLOCK_ENTITY))
                                             .apply(CopyComponentsFunction.copyComponents(CopyComponentsFunction.Source.BLOCK_ENTITY)
                                                     .include(MalumDataComponents.SECONDARY_DYED_COLOR.get())
                                                     .include(DataComponents.DYED_COLOR)
-                                            ))));
+                                            )
+                                    )
+                    )
+            );
         }
 
         protected LootTable.Builder createBannerDrop(Block block) {

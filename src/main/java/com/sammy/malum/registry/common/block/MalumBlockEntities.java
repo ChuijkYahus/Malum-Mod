@@ -42,6 +42,7 @@ import com.sammy.malum.common.block.curiosities.weavers_workbench.*;
 import com.sammy.malum.common.block.curiosities.weeping_well.*;
 import com.sammy.malum.common.block.dungeon.curiosities.*;
 import com.sammy.malum.common.block.ether.*;
+import com.sammy.malum.common.block.soulstone.*;
 import com.sammy.malum.common.block.storage.jar.*;
 import com.sammy.malum.common.block.storage.pedestal.*;
 import com.sammy.malum.common.block.storage.stand.*;
@@ -68,6 +69,8 @@ import static team.lodestar.lodestone.modules.toolkit.blockentity.LodestoneBlock
 
 public class MalumBlockEntities {
     public static final DeferredRegister<BlockEntityType<?>> BLOCK_ENTITY_TYPES = DeferredRegister.create(BuiltInRegistries.BLOCK_ENTITY_TYPE, MALUM);
+
+    public static final Supplier<LodestoneBlockEntityType<SoulstoneBudBlockEntity>> SOULSTONE_BUD = BLOCK_ENTITY_TYPES.register("soulstone_bud", () -> create(SoulstoneBudBlockEntity::new, MalumContent.Materials.SOULSTONE_BUD).build());
 
     public static final Supplier<LodestoneBlockEntityType<VoidConduitBlockEntity>> VOID_CONDUIT = BLOCK_ENTITY_TYPES.register("void_conduit", () -> create(VoidConduitBlockEntity::new, MalumContent.WeepingWell.VOID_CONDUIT).setTickerType(Type.BOTH).build());
     public static final Supplier<LodestoneBlockEntityType<VoidDepotBlockEntity>> VOID_DEPOT = BLOCK_ENTITY_TYPES.register("void_depot", () -> create(VoidDepotBlockEntity::new, MalumContent.WeepingWell.VOID_DEPOT).setTickerType(Type.CLIENT).build());

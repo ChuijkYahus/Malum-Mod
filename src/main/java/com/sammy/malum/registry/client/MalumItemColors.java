@@ -1,9 +1,8 @@
 package com.sammy.malum.registry.client;
 
 import com.sammy.malum.MalumMod;
-import com.sammy.malum.common.block.flora.wood.StagedLeavesBlock;
 import com.sammy.malum.common.data.component.ItemSkinComponent;
-import com.sammy.malum.common.item.banner.SoulwovenBannerBlockItem;
+import com.sammy.malum.common.block.curiosities.decor.banner.SoulwovenBannerBlockItem;
 import com.sammy.malum.common.item.curiosities.pouch.RavenousPouchItem;
 import com.sammy.malum.common.item.curiosities.pouch.SoulwovenPouchItem;
 import com.sammy.malum.common.item.curiosities.tools.CatalystLobberItem;
@@ -12,7 +11,6 @@ import com.sammy.malum.common.item.ether.EtherItem;
 import com.sammy.malum.common.item.spirit.SpiritShardItem;
 import com.sammy.malum.registry.common.MalumContent;
 import net.minecraft.client.renderer.item.ItemProperties;
-import net.minecraft.world.item.BlockItem;
 import net.neoforged.bus.api.EventPriority;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.event.lifecycle.FMLClientSetupEvent;

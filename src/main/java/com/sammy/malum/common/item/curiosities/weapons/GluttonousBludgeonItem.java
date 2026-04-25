@@ -40,7 +40,7 @@ public class GluttonousBludgeonItem extends LodestoneCombatItem implements IMalu
 
     @Override
     public void modifyAttributeTooltipEvent(AddAttributeTooltipsEvent event) {
-        event.addTooltipLines(ComponentHelper.positiveEffect("gluttonous_bludgeon_locusts"));
+        event.addTooltipLines(EffectComponentHelper.positiveItemEffect("gluttonous_bludgeon_locusts"));
     }
 
     @Override

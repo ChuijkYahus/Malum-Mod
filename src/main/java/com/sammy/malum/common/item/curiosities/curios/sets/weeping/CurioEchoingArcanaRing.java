@@ -21,7 +21,7 @@ public class CurioEchoingArcanaRing extends MalumCurioItem implements IVoidItem,
 
     @Override
     public void addExtraTooltipLines(Consumer<Component> consumer) {
-        consumer.accept(ComponentHelper.positiveCurioEffect("spirits_weave_resonance"));
+        consumer.accept(EffectComponentHelper.positiveCurioEffect("spirits_weave_resonance"));
     }
 
     @Override

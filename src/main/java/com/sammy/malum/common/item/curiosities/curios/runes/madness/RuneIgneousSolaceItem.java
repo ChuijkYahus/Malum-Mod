@@ -18,7 +18,7 @@ public class RuneIgneousSolaceItem extends MadnessRuneCurioItem implements ItemE
 
     @Override
     public void addExtraTooltipLines(Consumer<Component> consumer) {
-        consumer.accept(ComponentHelper.positiveCurioEffect("burning_resistance"));
+        consumer.accept(EffectComponentHelper.positiveCurioEffect("burning_resistance"));
     }
 
     @Override

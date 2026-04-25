@@ -2,7 +2,7 @@ package com.sammy.malum.common.geas.pact.sacred;
 
 import com.google.common.collect.Multimap;
 import com.sammy.malum.core.handlers.GeasEffectHandler;
-import com.sammy.malum.core.helpers.ComponentHelper;
+import com.sammy.malum.core.helpers.EffectComponentHelper;
 import com.sammy.malum.core.systems.geas.GeasEffect;
 import com.sammy.malum.registry.common.MalumAttributes;
 import com.sammy.malum.registry.common.magic.MalumGeasEffectTypes;
@@ -24,7 +24,7 @@ public class DefianceGeas extends GeasEffect {
 
     @Override
     public void addTooltipComponents(LivingEntity entity, Consumer<Component> tooltipAcceptor, TooltipFlag tooltipFlag) {
-        tooltipAcceptor.accept(ComponentHelper.positiveGeasEffect("faster_natural_healing"));
+        tooltipAcceptor.accept(EffectComponentHelper.positiveGeasEffect("faster_natural_healing"));
         super.addTooltipComponents(entity, tooltipAcceptor, tooltipFlag);
     }
     @Override

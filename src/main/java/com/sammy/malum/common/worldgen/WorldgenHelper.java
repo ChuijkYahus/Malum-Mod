@@ -3,6 +3,7 @@ package com.sammy.malum.common.worldgen;
 import com.google.common.collect.*;
 import com.sammy.malum.common.block.flora.wood.MalumLeavesBlock;
 import net.minecraft.core.*;
+import net.minecraft.tags.*;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.level.*;
 import net.minecraft.world.level.block.state.*;
@@ -21,6 +22,33 @@ public class WorldgenHelper {
             list.set(j, temp);
         }
         return list;
+    }
+
+
+    //TODO: duplicate code smells
+    public static boolean canPlace(WorldGenLevel level, BlockPos pos) {
+        if (level.isOutsideBuildHeight(pos)) {
+            return false;
+        }
+        BlockState state = level.getBlockState(pos);
+        if (state.is(BlockTags.FEATURES_CANNOT_REPLACE)) {
+            return false;
+        }
+        return level.isEmptyBlock(pos) || state.canBeReplaced();
+    }
+
+    public static boolean canPlaceTree(WorldGenLevel level, BlockPos pos) {
+        if (level.isOutsideBuildHeight(pos)) {
+            return false;
+        }
+        BlockState state = level.getBlockState(pos);
+        if (state.is(BlockTags.FEATURES_CANNOT_REPLACE)) {
+            return false;
+        }
+        if (state.is(BlockTags.REPLACEABLE_BY_TREES)) {
+            return true;
+        }
+        return level.isEmptyBlock(pos) || state.canBeReplaced();
     }
 
     public static void updateLeaves(LevelAccessor pLevel, Collection<BlockPos> logPositions) {

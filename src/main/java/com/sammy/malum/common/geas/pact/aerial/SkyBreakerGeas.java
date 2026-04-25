@@ -26,9 +26,9 @@ public class SkyBreakerGeas extends GeasEffect {
 
     @Override
     public void addTooltipComponents(LivingEntity entity, Consumer<Component> tooltipAcceptor, TooltipFlag tooltipFlag) {
-        tooltipAcceptor.accept(ComponentHelper.positiveGeasEffect("incoming_fall_damage_auto_attack"));
-        tooltipAcceptor.accept(ComponentHelper.positiveGeasEffect("outgoing_fall_damage_auto_attack"));
-        tooltipAcceptor.accept(ComponentHelper.negativeGeasEffect("more_knockback"));
+        tooltipAcceptor.accept(EffectComponentHelper.positiveGeasEffect("incoming_fall_damage_auto_attack"));
+        tooltipAcceptor.accept(EffectComponentHelper.positiveGeasEffect("outgoing_fall_damage_auto_attack"));
+        tooltipAcceptor.accept(EffectComponentHelper.negativeGeasEffect("more_knockback"));
         super.addTooltipComponents(entity, tooltipAcceptor, tooltipFlag);
     }
 

@@ -1,8 +1,8 @@
 package com.sammy.malum.registry.common.worldgen;
 
 import com.sammy.malum.*;
-import com.sammy.malum.common.worldgen.springs.RunicSanctuaryPiece;
-import com.sammy.malum.common.worldgen.springs.EnchantedSpringsStructure;
+import com.sammy.malum.common.worldgen.sanctuary.RunicSanctuaryPiece;
+import com.sammy.malum.common.worldgen.sanctuary.RunicSanctuaryStructure;
 import com.sammy.malum.common.worldgen.well.*;
 import net.minecraft.core.*;
 import net.minecraft.core.registries.*;
@@ -30,7 +30,7 @@ public class MalumStructureTypes {
         public static final DeferredRegister<StructureType<?>> STRUCTURE_TYPES = DeferredRegister.create(BuiltInRegistries.STRUCTURE_TYPE.key(), MalumMod.MALUM);
 
         public static final DeferredHolder<StructureType<?>, StructureType<WeepingWellStructure>> WEEPING_WELL = STRUCTURE_TYPES.register("weeping_well", () -> () -> WeepingWellStructure.CODEC);
-        public static final Supplier<StructureType<EnchantedSpringsStructure>> RUNIC_SANCTUARY = STRUCTURE_TYPES.register("runic_sanctuary", ()-> ()-> EnchantedSpringsStructure.CODEC);
+        public static final Supplier<StructureType<RunicSanctuaryStructure>> RUNIC_SANCTUARY = STRUCTURE_TYPES.register("runic_sanctuary", ()-> ()-> RunicSanctuaryStructure.CODEC);
 
     }
 

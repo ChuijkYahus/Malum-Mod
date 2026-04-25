@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/stairs",
+  "textures": {
+    "bottom": "malum:block/sanctuary/trodden_stone/trodden_stone2",
+    "side": "malum:block/sanctuary/trodden_stone/trodden_stone2",
+    "top": "malum:block/sanctuary/trodden_stone/trodden_stone2"
+  }
+}

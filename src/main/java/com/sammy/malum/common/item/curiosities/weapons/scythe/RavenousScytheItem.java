@@ -25,7 +25,7 @@ public class RavenousScytheItem extends MagicScytheItem {
 
     @Override
     public void modifyAttributeTooltipEvent(AddAttributeTooltipsEvent event) {
-        event.addTooltipLines(ComponentHelper.positiveEffect("ravenous_scythe_gluttony"));
+        event.addTooltipLines(EffectComponentHelper.positiveItemEffect("ravenous_scythe_gluttony"));
     }
 
     @Override

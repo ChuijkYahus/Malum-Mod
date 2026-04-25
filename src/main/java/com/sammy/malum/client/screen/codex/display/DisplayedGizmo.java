@@ -21,6 +21,9 @@ import java.util.function.Supplier;
 
 public abstract class DisplayedGizmo {
 
+    public static final String TITLE = "malum.gui.book.snippet.title.";
+    public static final String SNIPPET = "malum.gui.book.snippet.";
+
     protected final List<Component> components = new ArrayList<>();
 
     public void render(AbstractMalumCodexScreen screen, GuiGraphics guiGraphics, int x, int y, int mouseX, int mouseY) {
@@ -45,11 +48,11 @@ public abstract class DisplayedGizmo {
     }
 
     public DisplayedGizmo addTitle(String id) {
-        return addText(Component.translatable("malum.gui.book.snippet.title." + id).withStyle(ChatFormatting.GOLD));
+        return addText(Component.translatable(TITLE + id).withStyle(ChatFormatting.GOLD));
     }
 
     public DisplayedGizmo addSnippet(String id) {
-        return addText(Component.translatable("malum.gui.book.snippet." + id).withStyle(ChatFormatting.GRAY, ChatFormatting.ITALIC));
+        return addText(Component.translatable(SNIPPET + id).withStyle(ChatFormatting.GRAY, ChatFormatting.ITALIC));
     }
 
     public DisplayedGizmo addText(Component component) {
@@ -65,6 +68,10 @@ public abstract class DisplayedGizmo {
 
     public static DisplayedItem item(ItemLike item) {
         return new DisplayedItem(item.asItem().getDefaultInstance());
+    }
+
+    public static DisplayedItem item(ItemLike item, int count) {
+        return new DisplayedItem(new ItemStack(item, count));
     }
 
     public static DisplayedItem item(ItemStack stack) {

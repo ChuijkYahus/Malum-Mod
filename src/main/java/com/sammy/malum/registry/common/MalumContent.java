@@ -67,8 +67,7 @@ import com.sammy.malum.common.block.flora.wood.soulwood.HangingSoulwoodLeavesBlo
 import com.sammy.malum.common.block.flora.wood.soulwood.SoulwoodLeavesBlock;
 import com.sammy.malum.common.block.flora.wood.soulwood.SoulwoodSaplingBlock;
 import com.sammy.malum.common.block.flora.wood.MalumSaplingBlock;
-import com.sammy.malum.common.block.soulstone.ArchaicSoulstoneBudBlock;
-import com.sammy.malum.common.block.soulstone.SoulstoneBudBlock;
+import com.sammy.malum.common.block.soulstone.*;
 import com.sammy.malum.common.block.storage.jar.SpiritJarBlock;
 import com.sammy.malum.common.block.storage.pedestal.ItemPedestalBlock;
 import com.sammy.malum.common.block.storage.stand.ItemStandBlock;
@@ -81,7 +80,7 @@ import com.sammy.malum.common.item.BrillianceChunkItem;
 import com.sammy.malum.common.item.GeasItem;
 import com.sammy.malum.common.item.augment.*;
 import com.sammy.malum.common.item.augment.core.*;
-import com.sammy.malum.common.item.banner.SoulwovenBannerBlockItem;
+import com.sammy.malum.common.block.curiosities.decor.banner.SoulwovenBannerBlockItem;
 import com.sammy.malum.common.item.codex.EncyclopediaArcanaItem;
 import com.sammy.malum.common.item.codex.EncyclopediaEsotericaItem;
 import com.sammy.malum.common.item.cosmetic.curios.CurioTokenOfGratitude;
@@ -157,6 +156,7 @@ import com.sammy.malum.registry.common.sound.MalumBlockSoundEvents;
 import com.sammy.malum.registry.common.util.MetallicsItemRegistryBundle;
 import com.sammy.malum.registry.common.util.RockBlockSet;
 import com.sammy.malum.registry.common.util.WoodBlockSet;
+import com.sammy.malum.registry.common.util.data.*;
 import com.sammy.malum.registry.common.worldgen.MalumTreeGrowers;
 import net.minecraft.util.valueproviders.UniformInt;
 import net.minecraft.world.food.FoodProperties;
@@ -320,7 +320,7 @@ public class MalumContent {
 
         public static final DeferredBlock<ArchaicSoulstoneBudBlock> ARCHAIC_SOULSTONE_BUD = registerBlockNoItem("archaic_soulstone_bud", () -> new ArchaicSoulstoneBudBlock(MalumOreBlockProperties.ARCHAIC_SOULSTONE_BUD()));
         public static final BlockBlockItemHolder<SoulstoneBudBlock, BlockItem> SOULSTONE_BUD = registerBlock("soulstone_bud", () -> new SoulstoneBudBlock(MalumOreBlockProperties.SOULSTONE_BUD()));
-        public static final DeferredItem<Item> REALIZED_SOULSTONE_BUD = register("realized_soulstone_bud", MalumItemProperties::DEFAULT, Item::new);
+        public static final DeferredItem<Item> REALIZED_SOULSTONE_BUD = register("realized_soulstone_bud", MalumItemProperties::DEFAULT, SoulstoneBudItem::new);
 
 
         public static final DeferredItem<Item> RAW_BRILLIANCE = register("raw_brilliance", MalumItemProperties::DEFAULT, Item::new);
@@ -466,6 +466,11 @@ public class MalumContent {
         public static final BlockBlockItemHolder<Block, BlockItem> IRIDESCENT_ETHER_CRESSET = MalumContent.registerBlock("iridescent_ether_cresset",
                 () -> new EtherCressetBlock<>(MalumEtherBlockProperties.ETHER_CRESSET()), EtherCressetItem::iridescent);
 
+
+        public static final BlockBundle TRODDEN_STONE = new BlockBundle("trodden_stone", MalumBlockProperties::TRODDEN_STONE);
+        public static final BlockBundleWithWall TRODDEN_STONE_BRICKS = new BlockBundleWithWall("trodden_stone_bricks", MalumBlockProperties::TRODDEN_STONE);
+        public static final BlockBundle POLISHED_TRODDEN_STONE = new BlockBundle("polished_trodden_stone", MalumBlockProperties::TRODDEN_STONE);
+
         public static final RockBlockSet TAINTED_ROCK_SET = new RockBlockSet("tainted_rock", MalumBlockProperties::TAINTED_ROCK, MalumBlockProperties::TAINTED_ROCK_BRICKS, MalumBlockProperties::CHISELED_TAINTED_ROCK);
         public static final RockBlockSet TWISTED_ROCK_SET = new RockBlockSet("twisted_rock", MalumBlockProperties::TWISTED_ROCK, MalumBlockProperties::TWISTED_ROCK_BRICKS, MalumBlockProperties::CHISELED_TWISTED_ROCK);
 
@@ -480,7 +485,6 @@ public class MalumContent {
         public static final WoodBlockSet RUNEWOOD_SET = new WoodBlockSet("runewood", "gilded", () -> MalumBlockSetTypes.RUNEWOOD, MalumWoodBlockProperties::RUNEWOOD);
         public static final DeferredItem<Item> RUNEWOOD_BOAT = register("runewood_boat", () -> MalumItemProperties.DEFAULT().stacksTo(1), (p) -> new BoatItem(false, MalumEnumParams.RUNEWOOD_BOAT_TYPE.getValue(), p));
         public static final DeferredItem<Item> RUNEWOOD_CHEST_BOAT = register("runewood_chest_boat", () -> MalumItemProperties.DEFAULT().stacksTo(1), (p) -> new BoatItem(true, MalumEnumParams.RUNEWOOD_BOAT_TYPE.getValue(), p));
-
 
         public static final BlockBlockItemHolder<Block, BlockItem> SOULWOOD_SAPLING = registerBlock("soulwood_sapling", () -> new SoulwoodSaplingBlock(MalumTreeGrowers.SOULWOOD, MalumWoodBlockProperties.SOULWOOD_SAPLING()));
         public static final BlockBlockItemHolder<Block, BlockItem> SOULWOOD_LEAVES = registerBlock("soulwood_leaves", () -> new SoulwoodLeavesBlock(MalumWoodBlockProperties.SOULWOOD_LEAVES()));

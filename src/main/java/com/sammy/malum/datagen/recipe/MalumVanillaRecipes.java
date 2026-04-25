@@ -4,6 +4,7 @@ import com.mojang.datafixers.util.Pair;
 import com.sammy.malum.common.data.component.*;
 import com.sammy.malum.registry.common.MalumContent;
 
+import net.minecraft.advancements.*;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.data.recipes.*;
 import net.minecraft.world.item.*;
@@ -30,16 +31,21 @@ public class MalumVanillaRecipes implements IConditionBuilder {
 
     protected static void buildRecipes(RecipeOutput output) {
         var hasBlight = RecipeDatagenCommons.has(MalumContent.Blight.BLIGHTED_GUNK);
-        var hasSoulstone = RecipeDatagenCommons.has(RAW_SOULSTONE);
         var hasHallowedGold = RecipeDatagenCommons.has(HALLOWED_GOLD_INGOT);
         var hasSoulStainedSteel = RecipeDatagenCommons.has(SOUL_STAINED_STEEL_INGOT);
+
+        Pair<String, Criterion<?>> hasBrilliance = Pair.of("has_brilliance", RecipeDatagenCommons.has(RAW_BRILLIANCE));
+        Pair<String, Criterion<?>> hasSoulstone = Pair.of("has_soulstone", RecipeDatagenCommons.has(RAW_SOULSTONE));
+
+        Pair<String, Criterion<?>> hasBlazingQuartz = Pair.of("has_blazing_quartz", RecipeDatagenCommons.has(BLAZING_QUARTZ));
+        Pair<String, Criterion<?>> hasNaturalQuartz = Pair.of("has_natural_quartz", RecipeDatagenCommons.has(NATURAL_QUARTZ));
 
 
         //KEY ITEMS
         shapeless(RecipeCategory.MISC, MalumContent.ENCYCLOPEDIA_ARCANA)
                 .requires(BOOK)
                 .requires(REFINED_SOULSTONE)
-                .unlockedBy("has_soulstone", hasSoulstone)
+                .unlockedBy("has_soulstone", RecipeDatagenCommons.has(RAW_SOULSTONE))
                 .save(output);
         shaped(RecipeCategory.MISC, MalumContent.Gear.CRUDE_SCYTHE)
                 .define('#', Tags.Items.RODS_WOODEN)
@@ -48,7 +54,7 @@ public class MalumVanillaRecipes implements IConditionBuilder {
                 .pattern("XXY")
                 .pattern(" #X")
                 .pattern("#  ")
-                .unlockedBy("has_soulstone", hasSoulstone)
+                .unlockedBy("has_soulstone", RecipeDatagenCommons.has(RAW_SOULSTONE))
                 .save(output);
         shaped(RecipeCategory.MISC, MalumContent.Sorcery.SPIRIT_ALTAR)
                 .define('Z', Tags.Items.INGOTS_GOLD)
@@ -57,7 +63,7 @@ public class MalumVanillaRecipes implements IConditionBuilder {
                 .pattern(" Y ")
                 .pattern("ZXZ")
                 .pattern("XXX")
-                .unlockedBy("has_soulstone", hasSoulstone)
+                .unlockedBy("has_soulstone", RecipeDatagenCommons.has(RAW_SOULSTONE))
                 .save(output);
         shaped(RecipeCategory.MISC, MalumContent.Sorcery.WEAVERS_WORKBENCH)
                 .define('Z', HALLOWED_GOLD_INGOT)
@@ -75,7 +81,7 @@ public class MalumVanillaRecipes implements IConditionBuilder {
                 .pattern("YZY")
                 .pattern("XXX")
                 .pattern("WXW")
-                .unlockedBy("has_soulstone", hasSoulstone)
+                .unlockedBy("has_hallowed_gold", hasHallowedGold)
                 .save(output);
         shaped(RecipeCategory.MISC, MalumContent.Sorcery.SPIRIT_JAR)
                 .define('X', HALLOWED_GOLD_INGOT)
@@ -165,7 +171,7 @@ public class MalumVanillaRecipes implements IConditionBuilder {
         RecipeDatagenCommons.blockIngotExchange(output, MALIGNANT_PEWTER_INGOT, BLOCK_OF_MALIGNANT_PEWTER);
         RecipeDatagenCommons.ingotNuggetExchange(output, MALIGNANT_PEWTER_NUGGET, MALIGNANT_PEWTER_INGOT);
         plating(output, MALIGNANT_PEWTER_NUGGET, MALIGNANT_PEWTER_INGOT, MALIGNANT_PEWTER_PLATING);
-        
+
         //TOOLS
         shaped(RecipeCategory.MISC, MalumContent.Gear.SOUL_STAINED_STEEL_HOE).define('#', Tags.Items.RODS_WOODEN).define('X', SOUL_STAINED_STEEL_INGOT).pattern("XX").pattern(" #").pattern(" #").unlockedBy("has_soul_stained_steel", hasSoulStainedSteel).save(output);
         shaped(RecipeCategory.MISC, MalumContent.Gear.SOUL_STAINED_STEEL_PICKAXE).define('#', Tags.Items.RODS_WOODEN).define('X', SOUL_STAINED_STEEL_INGOT).pattern("XXX").pattern(" # ").pattern(" # ").unlockedBy("has_soul_stained_steel", hasSoulStainedSteel).save(output);
@@ -183,46 +189,20 @@ public class MalumVanillaRecipes implements IConditionBuilder {
         shaped(RecipeCategory.MISC, MalumContent.Gear.RUNIC_BROOCH).define('X', HALLOWED_GOLD_INLAY).define('Y', BLOCK_OF_HALLOWED_GOLD).define('Z', Tags.Items.LEATHERS).pattern(" Z ").pattern("ZXZ").pattern(" Y ").unlockedBy("has_hallowed_gold", hasHallowedGold).save(output);
         shaped(RecipeCategory.MISC, MalumContent.Gear.ELABORATE_BROOCH).define('X', SOUL_STAINED_STEEL_PLATING).define('Y', BLOCK_OF_SOUL_STAINED_STEEL).define('Z', Tags.Items.LEATHERS).pattern(" Z ").pattern("ZXZ").pattern(" Y ").unlockedBy("has_soul_stained_steel", hasSoulStainedSteel).save(output);
 
-        smeltAndBlast(output, malumPath("blazing_quartz"), Ingredient.of(BLAZING_QUARTZ_ORE), RecipeCategory.MISC,
-                Pair.of("has_blazing_quartz", RecipeDatagenCommons.has(BLAZING_QUARTZ)),
-                BLAZING_QUARTZ, 0.25f
-        );
+        smeltAndBlast(output, malumPath("blazing_quartz_ore"), Ingredient.of(BLAZING_QUARTZ_ORE), RecipeCategory.MISC, hasBlazingQuartz, BLAZING_QUARTZ, 0.25f);
 
-        smeltAndBlast(output, malumPath("natural_quartz"), Ingredient.of(NATURAL_QUARTZ_ORE), RecipeCategory.MISC,
-                Pair.of("has_natural_quartz", RecipeDatagenCommons.has(NATURAL_QUARTZ)),
-                NATURAL_QUARTZ, 0.25f
-        );
-        smeltAndBlast(output, malumPath("natural_quartz_deepslate"), Ingredient.of(DEEPSLATE_QUARTZ_ORE), RecipeCategory.MISC,
-                Pair.of("has_natural_quartz", RecipeDatagenCommons.has(NATURAL_QUARTZ)),
-                NATURAL_QUARTZ, 0.25f
-        );
+        smeltAndBlast(output, malumPath("natural_quartz_ore"), Ingredient.of(NATURAL_QUARTZ_ORE), RecipeCategory.MISC, hasNaturalQuartz, NATURAL_QUARTZ, 0.25f);
+        smeltAndBlast(output, malumPath("natural_quartz_deepslate_ore"), Ingredient.of(DEEPSLATE_QUARTZ_ORE), RecipeCategory.MISC, hasNaturalQuartz, NATURAL_QUARTZ, 0.25f);
 
-        smeltAndBlast(output, malumPath("brilliance"), Ingredient.of(BRILLIANT_STONE), RecipeCategory.MISC,
-                Pair.of("has_brilliance", RecipeDatagenCommons.has(RAW_BRILLIANCE)),
-                REFINED_BRILLIANCE, 2, 1f
-        );
-        smeltAndBlast(output, malumPath("brilliance_deepslate"), Ingredient.of(BRILLIANT_DEEPSLATE), RecipeCategory.MISC,
-                Pair.of("has_brilliance", RecipeDatagenCommons.has(RAW_BRILLIANCE)),
-                REFINED_BRILLIANCE, 2, 1f
-        );
+        smeltAndBlast(output, malumPath("brilliance_ore"), Ingredient.of(BRILLIANT_STONE), RecipeCategory.MISC, hasBrilliance, REFINED_BRILLIANCE, 2, 1f);
+        smeltAndBlast(output, malumPath("brilliance_deepslate_ore"), Ingredient.of(BRILLIANT_DEEPSLATE), RecipeCategory.MISC, hasBrilliance, REFINED_BRILLIANCE, 2, 1f);
+        smeltAndBlast(output, malumPath("raw_brilliance"), Ingredient.of(RAW_BRILLIANCE), RecipeCategory.MISC, hasBrilliance, REFINED_BRILLIANCE, 2, 1f);
 
-        smeltAndBlast(output, malumPath("soulstone"), Ingredient.of(SOULSTONE_ORE), RecipeCategory.MISC,
-                Pair.of("has_soulstone", hasSoulstone),
-                REFINED_SOULSTONE, 2, 0.25f
-        );
-        smeltAndBlast(output, malumPath("soulstone_deepslate"), Ingredient.of(DEEPSLATE_SOULSTONE_ORE), RecipeCategory.MISC,
-                Pair.of("has_soulstone", hasSoulstone),
-                REFINED_SOULSTONE, 2, 0.25f
-        );
-
-        smeltAndBlast(output, malumPath("raw_brilliance"), Ingredient.of(RAW_BRILLIANCE), RecipeCategory.MISC,
-                Pair.of("has_brilliance", RecipeDatagenCommons.has(RAW_BRILLIANCE)),
-                REFINED_BRILLIANCE, 2, 1f
-        );
-        smeltAndBlast(output, malumPath("raw_soulstone"), Ingredient.of(RAW_SOULSTONE), RecipeCategory.MISC,
-                Pair.of("has_soulstone", hasSoulstone),
-                REFINED_SOULSTONE, 2, 0.25f
-        );
+        smeltAndBlast(output, malumPath("soulstone_ore"), Ingredient.of(SOULSTONE_ORE), RecipeCategory.MISC, hasSoulstone, REFINED_SOULSTONE, 2, 0.25f);
+        smeltAndBlast(output, malumPath("soulstone_deepslate_ore"), Ingredient.of(DEEPSLATE_SOULSTONE_ORE), RecipeCategory.MISC, hasSoulstone, REFINED_SOULSTONE, 2, 0.25f);
+        smeltAndBlast(output, malumPath("raw_soulstone"), Ingredient.of(RAW_SOULSTONE), RecipeCategory.MISC, hasSoulstone, REFINED_SOULSTONE, 2, 0.25f);
+        smeltAndBlast(output, malumPath("soulstone_bud"), Ingredient.of(SOULSTONE_BUD), RecipeCategory.MISC, hasSoulstone, REFINED_SOULSTONE, 2, 0.5f);
+        smeltAndBlast(output, malumPath("realized_soulstone_bud"), Ingredient.of(REALIZED_SOULSTONE_BUD), RecipeCategory.MISC, hasSoulstone, REFINED_SOULSTONE, 16, 2f);
 
         //FULL BLOCKS
         RecipeDatagenCommons.blockIngotExchange(output, RAW_SOULSTONE, BLOCK_OF_RAW_SOULSTONE);

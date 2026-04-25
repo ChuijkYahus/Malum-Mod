@@ -24,7 +24,7 @@ public class TotemicRuneCurioItem extends AbstractRuneCurioItem {
     @Override
     public void addExtraTooltipLines(Consumer<Component> consumer) {
         Component effectName = effect.value().getEffect().value().getDisplayName();
-        consumer.accept(ComponentHelper.positiveCurioEffect("totem_effect", effectName));
+        consumer.accept(EffectComponentHelper.positiveCurioEffect("totem_effect", effectName));
     }
 
     @Override

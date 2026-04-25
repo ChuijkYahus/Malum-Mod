@@ -15,8 +15,8 @@
 
      @Override
      public void addExtraTooltipLines(Consumer<Component> consumer) {
-         consumer.accept(ComponentHelper.positiveCurioEffect("tidebound_resilience"));
-         consumer.accept(ComponentHelper.positiveCurioEffect("tidebound_agility"));
-         consumer.accept(ComponentHelper.positiveCurioEffect("tidebound_conduit"));
+         consumer.accept(EffectComponentHelper.positiveCurioEffect("tidebound_resilience"));
+         consumer.accept(EffectComponentHelper.positiveCurioEffect("tidebound_agility"));
+         consumer.accept(EffectComponentHelper.positiveCurioEffect("tidebound_conduit"));
      }
  }

@@ -18,7 +18,7 @@ public class RuneVolatileDistortionItem extends MiracleRuneCurioItem implements 
 
     @Override
     public void addExtraTooltipLines(Consumer<Component> consumer) {
-        consumer.accept(ComponentHelper.positiveCurioEffect("crits"));
+        consumer.accept(EffectComponentHelper.positiveCurioEffect("crits"));
     }
 
     @Override

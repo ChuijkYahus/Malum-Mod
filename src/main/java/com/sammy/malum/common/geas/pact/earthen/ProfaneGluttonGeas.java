@@ -32,9 +32,9 @@ public class ProfaneGluttonGeas extends GeasEffect {
 
     @Override
     public void addTooltipComponents(LivingEntity entity, Consumer<Component> tooltipAcceptor, TooltipFlag tooltipFlag) {
-        tooltipAcceptor.accept(ComponentHelper.positiveGeasEffect("desperate_need"));
-        tooltipAcceptor.accept(ComponentHelper.negativeGeasEffect("desperate_need_vulnerability"));
-        tooltipAcceptor.accept(ComponentHelper.negativeGeasEffect("desperate_need_poison"));
+        tooltipAcceptor.accept(EffectComponentHelper.positiveGeasEffect("desperate_need"));
+        tooltipAcceptor.accept(EffectComponentHelper.negativeGeasEffect("desperate_need_vulnerability"));
+        tooltipAcceptor.accept(EffectComponentHelper.negativeGeasEffect("desperate_need_poison"));
         super.addTooltipComponents(entity, tooltipAcceptor, tooltipFlag);
     }
 

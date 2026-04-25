@@ -35,8 +35,8 @@ public class WindsweptGeas extends GeasEffect {
     @Override
     public void addTooltipComponents(LivingEntity entity, Consumer<Component> tooltipAcceptor, TooltipFlag tooltipFlag) {
         super.addTooltipComponents(entity, tooltipAcceptor, tooltipFlag);
-        tooltipAcceptor.accept(ComponentHelper.positiveGeasEffect("movement_acceleration"));
-        tooltipAcceptor.accept(ComponentHelper.negativeGeasEffect("knockback_also_accelerates"));
+        tooltipAcceptor.accept(EffectComponentHelper.positiveGeasEffect("movement_acceleration"));
+        tooltipAcceptor.accept(EffectComponentHelper.negativeGeasEffect("knockback_also_accelerates"));
     }
 
     public static void scaleKnockback(LivingKnockBackEvent event) {

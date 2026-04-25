@@ -36,8 +36,8 @@ public class UnmakersDisdainGeas extends GeasEffect {
     }
     @Override
     public void addTooltipComponents(LivingEntity entity, Consumer<Component> tooltipAcceptor, TooltipFlag tooltipFlag) {
-        tooltipAcceptor.accept(ComponentHelper.positiveGeasEffect("malignant_crit_combo"));
-        tooltipAcceptor.accept(ComponentHelper.positiveGeasEffect("malignant_crit_combo_reinforcement"));
+        tooltipAcceptor.accept(EffectComponentHelper.positiveGeasEffect("malignant_crit_combo"));
+        tooltipAcceptor.accept(EffectComponentHelper.positiveGeasEffect("malignant_crit_combo_reinforcement"));
         super.addTooltipComponents(entity, tooltipAcceptor, tooltipFlag);
     }
 

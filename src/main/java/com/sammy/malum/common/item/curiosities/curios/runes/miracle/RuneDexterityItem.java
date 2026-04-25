@@ -24,7 +24,7 @@ public class RuneDexterityItem extends MiracleRuneCurioItem {
 
     @Override
     public void addExtraTooltipLines(Consumer<Component> consumer) {
-        consumer.accept(ComponentHelper.positiveCurioEffect("low_health_speed"));
+        consumer.accept(EffectComponentHelper.positiveCurioEffect("low_health_speed"));
     }
 
     @Override

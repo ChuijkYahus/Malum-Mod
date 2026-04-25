@@ -1,6 +1,6 @@
 package com.sammy.malum.events;
 
-import com.sammy.malum.common.item.banner.*;
+import com.sammy.malum.common.block.curiosities.decor.banner.*;
 import com.sammy.malum.core.handlers.*;
 import com.sammy.malum.registry.common.MalumDataMaps;
 import com.sammy.malum.registry.common.MalumContent;

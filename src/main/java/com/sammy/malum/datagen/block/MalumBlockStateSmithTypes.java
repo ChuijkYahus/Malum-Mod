@@ -52,12 +52,13 @@ public class MalumBlockStateSmithTypes {
         provider.directionalBlock(block, model);
     });
 
-    public static BlockStateSmith<ArchaicSoulstoneBudBlock> SOULSTONE_BUD = new BlockStateSmith<>(ArchaicSoulstoneBudBlock.class, ItemModelSmithTypes.GENERATED_ITEM, (block, provider) -> {
+    public static BlockStateSmith<Block> SOULSTONE_BUD = new BlockStateSmith<>(Block.class, ItemModelSmithTypes.GENERATED_ITEM, (block, provider) -> {
         String name = provider.getBlockName(block);
         String path = "block/soulstone/" + name;
         provider.getVariantBuilder(block).forAllStates(s -> {
             var direction = s.getValue(SoulstoneBudBlock.FACING);
-            int stage = s.getValue(block.getStage());
+            var stageProperty = block instanceof SoulstoneBudBlock ? SoulstoneBudBlock.STAGE : ArchaicSoulstoneBudBlock.STAGE;
+            int stage = s.getValue(stageProperty);
             var model = provider.models().getExistingFile(malumPath(path + stage));
             return ConfiguredModel.builder().modelFile(model)
                     .rotationX(direction == Direction.DOWN ? 180 : direction.getAxis().isHorizontal() ? 90 : 0)

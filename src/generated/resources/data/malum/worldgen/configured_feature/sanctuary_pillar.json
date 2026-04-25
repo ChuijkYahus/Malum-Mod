@@ -1,0 +1,9 @@
+{
+  "type": "malum:sanctuary_pillar",
+  "config": {
+    "block": "malum:trodden_stone",
+    "maxHeight": 6,
+    "minHeight": 2,
+    "topBlock": "malum:polished_trodden_stone"
+  }
+}

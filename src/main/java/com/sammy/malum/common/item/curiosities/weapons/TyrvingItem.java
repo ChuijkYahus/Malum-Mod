@@ -42,7 +42,7 @@ public class TyrvingItem extends LodestoneSwordItem implements IMalumEventRespon
 
     @Override
     public void modifyAttributeTooltipEvent(AddAttributeTooltipsEvent event) {
-        event.addTooltipLines(ComponentHelper.positiveEffect("soul_based_damage"));
+        event.addTooltipLines(EffectComponentHelper.positiveItemEffect("soul_based_damage"));
     }
 
     @Override

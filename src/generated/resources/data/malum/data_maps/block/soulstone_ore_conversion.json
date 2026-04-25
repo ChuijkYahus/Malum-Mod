@@ -7,6 +7,10 @@
             "predicate_type": "minecraft:tag_match",
             "tag": "c:ores_in_ground/stone"
           },
+          "metalData": {
+            "id": "aluminium",
+            "nuggetForm": "c:nuggets/aluminium"
+          },
           "result": {
             "Name": "malum:derealized_aluminium_ore"
           }
@@ -15,6 +19,10 @@
           "condition": {
             "predicate_type": "minecraft:tag_match",
             "tag": "c:ores_in_ground/deepslate"
+          },
+          "metalData": {
+            "id": "aluminium",
+            "nuggetForm": "c:nuggets/aluminium"
           },
           "result": {
             "Name": "malum:deepslate_derealized_aluminium_ore"
@@ -29,6 +37,10 @@
             "predicate_type": "minecraft:tag_match",
             "tag": "c:ores_in_ground/stone"
           },
+          "metalData": {
+            "id": "copper",
+            "nuggetForm": "c:nuggets/copper"
+          },
           "result": {
             "Name": "malum:derealized_copper_ore"
           }
@@ -37,6 +49,10 @@
           "condition": {
             "predicate_type": "minecraft:tag_match",
             "tag": "c:ores_in_ground/deepslate"
+          },
+          "metalData": {
+            "id": "copper",
+            "nuggetForm": "c:nuggets/copper"
           },
           "result": {
             "Name": "malum:deepslate_derealized_copper_ore"
@@ -51,6 +67,10 @@
             "predicate_type": "minecraft:tag_match",
             "tag": "c:ores_in_ground/stone"
           },
+          "metalData": {
+            "id": "gold",
+            "nuggetForm": "c:nuggets/gold"
+          },
           "result": {
             "Name": "malum:derealized_gold_ore"
           }
@@ -59,6 +79,10 @@
           "condition": {
             "predicate_type": "minecraft:tag_match",
             "tag": "c:ores_in_ground/deepslate"
+          },
+          "metalData": {
+            "id": "gold",
+            "nuggetForm": "c:nuggets/gold"
           },
           "result": {
             "Name": "malum:deepslate_derealized_gold_ore"
@@ -73,6 +97,10 @@
             "predicate_type": "minecraft:tag_match",
             "tag": "c:ores_in_ground/stone"
           },
+          "metalData": {
+            "id": "iron",
+            "nuggetForm": "c:nuggets/iron"
+          },
           "result": {
             "Name": "malum:derealized_iron_ore"
           }
@@ -81,6 +109,10 @@
           "condition": {
             "predicate_type": "minecraft:tag_match",
             "tag": "c:ores_in_ground/deepslate"
+          },
+          "metalData": {
+            "id": "iron",
+            "nuggetForm": "c:nuggets/iron"
           },
           "result": {
             "Name": "malum:deepslate_derealized_iron_ore"
@@ -95,6 +127,10 @@
             "predicate_type": "minecraft:tag_match",
             "tag": "c:ores_in_ground/stone"
           },
+          "metalData": {
+            "id": "lead",
+            "nuggetForm": "c:nuggets/lead"
+          },
           "result": {
             "Name": "malum:derealized_lead_ore"
           }
@@ -103,6 +139,10 @@
           "condition": {
             "predicate_type": "minecraft:tag_match",
             "tag": "c:ores_in_ground/deepslate"
+          },
+          "metalData": {
+            "id": "lead",
+            "nuggetForm": "c:nuggets/lead"
           },
           "result": {
             "Name": "malum:deepslate_derealized_lead_ore"
@@ -117,6 +157,10 @@
             "predicate_type": "minecraft:tag_match",
             "tag": "c:ores_in_ground/stone"
           },
+          "metalData": {
+            "id": "nickel",
+            "nuggetForm": "c:nuggets/nickel"
+          },
           "result": {
             "Name": "malum:derealized_nickel_ore"
           }
@@ -125,6 +169,10 @@
           "condition": {
             "predicate_type": "minecraft:tag_match",
             "tag": "c:ores_in_ground/deepslate"
+          },
+          "metalData": {
+            "id": "nickel",
+            "nuggetForm": "c:nuggets/nickel"
           },
           "result": {
             "Name": "malum:deepslate_derealized_nickel_ore"
@@ -139,6 +187,10 @@
             "predicate_type": "minecraft:tag_match",
             "tag": "c:ores_in_ground/stone"
           },
+          "metalData": {
+            "id": "silver",
+            "nuggetForm": "c:nuggets/silver"
+          },
           "result": {
             "Name": "malum:derealized_silver_ore"
           }
@@ -147,6 +199,10 @@
           "condition": {
             "predicate_type": "minecraft:tag_match",
             "tag": "c:ores_in_ground/deepslate"
+          },
+          "metalData": {
+            "id": "silver",
+            "nuggetForm": "c:nuggets/silver"
           },
           "result": {
             "Name": "malum:deepslate_derealized_silver_ore"
@@ -161,6 +217,10 @@
             "predicate_type": "minecraft:tag_match",
             "tag": "c:ores_in_ground/stone"
           },
+          "metalData": {
+            "id": "zinc",
+            "nuggetForm": "c:nuggets/zinc"
+          },
           "result": {
             "Name": "malum:derealized_zinc_ore"
           }
@@ -169,6 +229,10 @@
           "condition": {
             "predicate_type": "minecraft:tag_match",
             "tag": "c:ores_in_ground/deepslate"
+          },
+          "metalData": {
+            "id": "zinc",
+            "nuggetForm": "c:nuggets/zinc"
           },
           "result": {
             "Name": "malum:deepslate_derealized_zinc_ore"

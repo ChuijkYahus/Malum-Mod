@@ -40,8 +40,8 @@ public class WeightOfWorldsItem extends LodestoneAxeItem implements ItemEventHan
 
     @Override
     public void modifyAttributeTooltipEvent(AddAttributeTooltipsEvent event) {
-        event.addTooltipLines(ComponentHelper.positiveEffect("weight_of_worlds_crit"));
-        event.addTooltipLines(ComponentHelper.positiveEffect("weight_of_worlds_kill"));
+        event.addTooltipLines(EffectComponentHelper.positiveItemEffect("weight_of_worlds_crit"));
+        event.addTooltipLines(EffectComponentHelper.positiveItemEffect("weight_of_worlds_kill"));
     }
 
     @Override

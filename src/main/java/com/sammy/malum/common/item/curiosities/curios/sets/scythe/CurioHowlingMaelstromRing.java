@@ -21,8 +21,8 @@ public class CurioHowlingMaelstromRing extends MalumCurioItem implements IMalumE
 
     @Override
     public void addExtraTooltipLines(Consumer<Component> consumer) {
-        consumer.accept(ComponentHelper.positiveCurioEffect("rebound_maelstrom"));
-        consumer.accept(ComponentHelper.negativeCurioEffect("longer_rebound_cooldown"));
+        consumer.accept(EffectComponentHelper.positiveCurioEffect("rebound_maelstrom"));
+        consumer.accept(EffectComponentHelper.negativeCurioEffect("longer_rebound_cooldown"));
     }
 
     public static void handleMaelstrom(ServerLevel serverLevel, LivingEntity scytheOwner, AbstractScytheProjectileEntity projectile) {

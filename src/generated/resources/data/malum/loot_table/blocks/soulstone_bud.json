@@ -23,6 +23,15 @@
                   }
                 }
               ],
+              "functions": [
+                {
+                  "function": "minecraft:copy_components",
+                  "include": [
+                    "malum:soulstone_bud_data"
+                  ],
+                  "source": "block_entity"
+                }
+              ],
               "name": "malum:realized_soulstone_bud"
             },
             {

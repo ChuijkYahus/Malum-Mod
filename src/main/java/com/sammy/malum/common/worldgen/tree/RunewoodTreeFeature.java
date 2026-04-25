@@ -1,8 +1,6 @@
 package com.sammy.malum.common.worldgen.tree;
 
-import com.sammy.malum.common.block.flora.wood.MalumLeavesBlock;
 import com.sammy.malum.common.block.flora.wood.StagedLeavesBlock;
-import com.sammy.malum.common.worldgen.WorldgenHelper;
 import net.minecraft.core.*;
 import net.minecraft.tags.*;
 import net.minecraft.util.*;
@@ -11,11 +9,7 @@ import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.*;
 import net.minecraft.world.level.block.state.properties.IntegerProperty;
 import net.minecraft.world.level.levelgen.feature.*;
-import net.minecraft.world.phys.Vec2;
-import net.neoforged.neoforge.registries.DeferredBlock;
-import org.joml.Vector2f;
 import org.joml.Vector2i;
-import org.joml.Vector3f;
 import team.lodestar.lodestone.systems.worldgen.*;
 
 import java.util.*;
@@ -80,7 +74,7 @@ public class RunewoodTreeFeature extends Feature<RunewoodTreeConfiguration> {
         var mutable = new BlockPos.MutableBlockPos().set(pos);
 
         for (int i = 0; i <= trunkHeight; i++) { //Main Trunk
-            if (!canPlace(level, mutable)) {
+            if (!canPlaceTree(level, mutable)) {
                 return false;
             }
             treeLayer.add(mutable, runewoodLog);
@@ -90,7 +84,7 @@ public class RunewoodTreeFeature extends Feature<RunewoodTreeConfiguration> {
             var direction = Direction.from2DDataValue(i);
             int sideTrunkHeight = getSideTrunkHeight(rand);
             for (int j = 0; j < sideTrunkHeight; j++) {
-                if (!canPlace(level, mutable)) {
+                if (!canPlaceTree(level, mutable)) {
                     return false;
                 }
                 treeLayer.add(mutable, runewoodLog);
@@ -113,13 +107,13 @@ public class RunewoodTreeFeature extends Feature<RunewoodTreeConfiguration> {
 
             for (int j = 0; j < branchLength; j++) {
                 mutable.move(direction);
-                if (!canPlace(level, mutable)) {
+                if (!canPlaceTree(level, mutable)) {
                     return false;
                 }
                 treeLayer.add(mutable, runewoodLog.setValue(RotatedPillarBlock.AXIS, direction.getAxis()));
             }
             for (int j = 0; j < branchHeight; j++) {
-                if (!canPlace(level, mutable)) {
+                if (!canPlaceTree(level, mutable)) {
                     return false;
                 }
                 treeLayer.add(mutable, runewoodLog);
@@ -184,7 +178,7 @@ public class RunewoodTreeFeature extends Feature<RunewoodTreeConfiguration> {
         var mutable = pos.mutable();
         while (true) {
             mutable.move(Direction.DOWN);
-            if (!canPlace(level, mutable)) {
+            if (!canPlaceTree(level, mutable)) {
                 return mutable.above();
             }
             consumer.accept(mutable.immutable());
@@ -225,7 +219,7 @@ public class RunewoodTreeFeature extends Feature<RunewoodTreeConfiguration> {
             if (level.getRandom().nextFloat() < 0.35f) {
                 continue;
             }
-            if (!canPlace(level, below)) {
+            if (!canPlaceTree(level, below)) {
                 continue;
             }
             BlockState state = entry.blockState();
@@ -248,16 +242,5 @@ public class RunewoodTreeFeature extends Feature<RunewoodTreeConfiguration> {
         for (Map.Entry<BlockPos, BlockState> entry : toAdd.entrySet()) {
             leaves.add(entry.getKey(), entry.getValue());
         }
-    }
-
-    public static boolean canPlace(WorldGenLevel level, BlockPos pos) {
-        if (level.isOutsideBuildHeight(pos)) {
-            return false;
-        }
-        BlockState state = level.getBlockState(pos);
-        if (state.is(BlockTags.REPLACEABLE_BY_TREES)) {
-            return true;
-        }
-        return level.isEmptyBlock(pos) || state.canBeReplaced();
     }
 }

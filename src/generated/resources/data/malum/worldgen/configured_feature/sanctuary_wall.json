@@ -1,0 +1,12 @@
+{
+  "type": "malum:sanctuary_wall",
+  "config": {
+    "block": "malum:trodden_stone",
+    "maxHeight": 3,
+    "maxWidth": 8,
+    "minHeight": 1,
+    "minWidth": 4,
+    "topBlock": "malum:polished_trodden_stone",
+    "wallFilling": "malum:trodden_stone_bricks"
+  }
+}

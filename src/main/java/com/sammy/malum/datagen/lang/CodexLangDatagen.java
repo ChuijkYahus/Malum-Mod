@@ -1,5 +1,6 @@
 package com.sammy.malum.datagen.lang;
 
+import com.sammy.malum.client.screen.codex.display.*;
 import com.sammy.malum.client.screen.codex.pages.*;
 import com.sammy.malum.core.systems.geas.*;
 import com.sammy.malum.core.systems.registry.rite.RiteHolder;
@@ -66,7 +67,7 @@ public class CodexLangDatagen {
     }
 
     protected static void addPage(String identifier, String page) {
-        add(BookPage.TEXT + "." + identifier, page);
+        add(BookPage.TEXT + identifier, page);
     }
 
     protected static void addPages(String identifier, String... pages) {
@@ -80,17 +81,17 @@ public class CodexLangDatagen {
         add("malum.gui.book.entry." + identifier + ".description", tooltip);
     }
 
-    protected static void addTitleAndSnippet(String identifier, String title, String snippet) {
-        add("malum.gui.book.snippet.title." + identifier, title);
+    protected static void addGizmoTitleAndSnippet(String identifier, String title, String snippet) {
+        add(DisplayedGizmo.TITLE + identifier, title);
         addSnippet(identifier, snippet);
     }
 
     protected static void addSnippet(String identifier, String tooltip) {
-        add("malum.gui.book.snippet." + identifier, tooltip);
+        add(DisplayedGizmo.SNIPPET + identifier, tooltip);
     }
 
     protected static void addHeadline(String identifier, String tooltip) {
-        add(BookPage.HEADLINE + "." + identifier, tooltip);
+        add(BookPage.HEADLINE + identifier, tooltip);
     }
 
     protected static void addRecipeInfo(String identifier, String recipeName, String recipeDescriptor) {

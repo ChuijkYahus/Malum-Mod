@@ -1,11 +1,11 @@
 {
   "parent": "minecraft:recipes/root",
   "criteria": {
-    "has_soulstone": {
+    "has_hallowed_gold": {
       "conditions": {
         "items": [
           {
-            "items": "malum:raw_soulstone"
+            "items": "malum:hallowed_gold_ingot"
           }
         ]
       },
@@ -21,7 +21,7 @@
   "requirements": [
     [
       "has_the_recipe",
-      "has_soulstone"
+      "has_hallowed_gold"
     ]
   ],
   "rewards": {
