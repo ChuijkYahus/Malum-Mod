@@ -1,5 +1,6 @@
 package com.sammy.malum.datagen.block;
 
+import com.sammy.malum.*;
 import net.minecraft.core.Direction;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.block.Block;
@@ -20,7 +21,7 @@ import java.util.ArrayList;
 
 public class VariedBlockStateSmithTypes {
 
-    public static final ConfiguredItemModelSmith AFFIXED = ItemModelSmithTypes.BLOCK_MODEL_ITEM.addModelPathAffix("0");
+    public static final ConfiguredItemModelSmith AFFIXED = ItemModelSmithTypes.BLOCK_MODEL_ITEM.addModelParentAffix("0");
 
     public static BlockStateSmith<Block> VARIED_FULL_BLOCK = new BlockStateSmith<>(Block.class, AFFIXED, VariedBlockStateSmithTypes::variedBlock);
 
@@ -31,13 +32,13 @@ public class VariedBlockStateSmithTypes {
     public static void variedBlock(Block block, LodestoneBlockStateSystem provider) {
         var name = provider.getBlockName(block);
 
-        ArrayList<ResourceLocation> textures = gatherTextures(provider, name);
+        var textures = gatherTextures(provider, name);
 
         int amount = textures.size();
         ConfiguredModel.Builder<?> builder = ConfiguredModel.builder();
         for (int i = 0; i < amount; i++) {
             var texture = textures.get(i);
-            ModelFile modelFile = provider.models().cubeAll(texture.getPath(), texture);
+            ModelFile modelFile = provider.models().cubeAll(name+i, texture);
             builder.modelFile(modelFile);
             if (i != amount -1) {
                 builder = builder.nextModel();
@@ -50,18 +51,17 @@ public class VariedBlockStateSmithTypes {
         var name = provider.getBlockName(block);
         var baseTextureName = name.replace("_slab", "");
 
-        ArrayList<ResourceLocation> textures = gatherTextures(provider, baseTextureName);
+        var textures = gatherTextures(provider, baseTextureName);
 
         ArrayList<ModelFile> models = new ArrayList<>();
-        for (ResourceLocation texture : textures) {
-            var path = texture.getPath();
-            var index = path.substring(path.length()-1);
-            var modelName = name + index;
-            models.add(new ModelFile.UncheckedModelFile(baseTextureName+index));
+        for (int i = 0; i < textures.size(); i++) {
+            var texture = textures.get(i);
+            var modelName = name + i;
+            models.add(new ModelFile.UncheckedModelFile(MalumMod.malumPath(baseTextureName + i)));
             models.add(provider.models().slab(modelName, texture, texture, texture));
             models.add(provider.models().slabTop(modelName + "_top", texture, texture, texture));
         }
-        
+
         int amount = textures.size();
         provider.getVariantBuilder(block).forAllStates(state -> {
             var type = state.getValue(SlabBlock.TYPE);
@@ -89,10 +89,9 @@ public class VariedBlockStateSmithTypes {
         ArrayList<ResourceLocation> textures = gatherTextures(provider, baseTextureName);
 
         ArrayList<ModelFile> models = new ArrayList<>();
-        for (ResourceLocation texture : textures) {
-            var path = texture.getPath();
-            var index = path.substring(path.length()-1);
-            var modelName = name + index;
+        for (int i = 0, texturesSize = textures.size(); i < texturesSize; i++) {
+            var texture = textures.get(i);
+            var modelName = name + i;
             models.add(provider.models().stairs(modelName, texture, texture, texture));
             models.add(provider.models().stairsInner(modelName + "_inner", texture, texture, texture));
             models.add(provider.models().stairsOuter(modelName + "_outer", texture, texture, texture));

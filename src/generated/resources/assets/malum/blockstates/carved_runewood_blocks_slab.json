@@ -24,24 +24,24 @@
     ],
     "type=double,waterlogged=false": [
       {
-        "model": "minecraft:carved_runewood_blocks0"
+        "model": "malum:carved_runewood_blocks0"
       },
       {
-        "model": "minecraft:carved_runewood_blocks1"
+        "model": "malum:carved_runewood_blocks1"
       },
       {
-        "model": "minecraft:carved_runewood_blocks2"
+        "model": "malum:carved_runewood_blocks2"
       }
     ],
     "type=double,waterlogged=true": [
       {
-        "model": "minecraft:carved_runewood_blocks0"
+        "model": "malum:carved_runewood_blocks0"
       },
       {
-        "model": "minecraft:carved_runewood_blocks1"
+        "model": "malum:carved_runewood_blocks1"
       },
       {
-        "model": "minecraft:carved_runewood_blocks2"
+        "model": "malum:carved_runewood_blocks2"
       }
     ],
     "type=top,waterlogged=false": [

@@ -24,24 +24,24 @@
     ],
     "type=double,waterlogged=false": [
       {
-        "model": "minecraft:carved_vertical_soulwood_boards0"
+        "model": "malum:carved_vertical_soulwood_boards0"
       },
       {
-        "model": "minecraft:carved_vertical_soulwood_boards1"
+        "model": "malum:carved_vertical_soulwood_boards1"
       },
       {
-        "model": "minecraft:carved_vertical_soulwood_boards2"
+        "model": "malum:carved_vertical_soulwood_boards2"
       }
     ],
     "type=double,waterlogged=true": [
       {
-        "model": "minecraft:carved_vertical_soulwood_boards0"
+        "model": "malum:carved_vertical_soulwood_boards0"
       },
       {
-        "model": "minecraft:carved_vertical_soulwood_boards1"
+        "model": "malum:carved_vertical_soulwood_boards1"
       },
       {
-        "model": "minecraft:carved_vertical_soulwood_boards2"
+        "model": "malum:carved_vertical_soulwood_boards2"
       }
     ],
     "type=top,waterlogged=false": [

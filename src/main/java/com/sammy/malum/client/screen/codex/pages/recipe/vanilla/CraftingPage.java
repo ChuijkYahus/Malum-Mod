@@ -10,7 +10,7 @@ import net.minecraft.resources.ResourceLocation;
 import team.lodestar.lodestone.systems.rendering.VFXBuilders;
 
 import java.util.*;
-import java.util.function.Consumer;
+import java.util.function.*;
 
 public class CraftingPage extends BookPage {
 
@@ -26,6 +26,15 @@ public class CraftingPage extends BookPage {
             Arrays.fill(inputs, display);
             return this;
         }
+
+        @SafeVarargs
+        public final CraftingGridContents fill(DisplayedGizmo display, BiConsumer<CraftingGridContents, DisplayedGizmo>... fillers) {
+            for (BiConsumer<CraftingGridContents, DisplayedGizmo> filler : fillers) {
+                filler.accept(this, display);
+            }
+            return this;
+        }
+
         public CraftingGridContents topLeft(DisplayedGizmo display) {
             return set(0, display);
         }
@@ -61,12 +70,11 @@ public class CraftingPage extends BookPage {
         public CraftingGridContents bottomRight(DisplayedGizmo display) {
             return set(8, display);
         }
-        
+
         public CraftingGridContents set(int index, DisplayedGizmo display) {
             inputs[index] = display;
             return this;
         }
-        
     }
     private final DisplayedGizmo output;
     private final CraftingGridContents gridContents;
@@ -93,13 +101,13 @@ public class CraftingPage extends BookPage {
                         .setShader(GameRenderer::getPositionTexColorShader);
         for (int x = 0; x < 3; x++) {
             for (int y = 0; y < 3; y++) {
-                int index = x * 3 + y;
+                int index = x + y * 3;
                 var display = gridContents.inputs[index];
                 if (display == null) {
                     continue;
                 }
-                int itemPosX = left + 43 + y * 20;
-                int itemPosY = top + 50 + x * 20;
+                int itemPosX = left + 43 + x * 20;
+                int itemPosY = top + 50 + y * 20;
 
                 segments.setPositionWithWidth(itemPosX, itemPosY, 16, 16)
                         .setUVWithWidth(x*20, y*20, 18, 18, 58, 58)

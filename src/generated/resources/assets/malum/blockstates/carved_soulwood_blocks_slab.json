@@ -24,24 +24,24 @@
     ],
     "type=double,waterlogged=false": [
       {
-        "model": "minecraft:carved_soulwood_blocks0"
+        "model": "malum:carved_soulwood_blocks0"
       },
       {
-        "model": "minecraft:carved_soulwood_blocks1"
+        "model": "malum:carved_soulwood_blocks1"
       },
       {
-        "model": "minecraft:carved_soulwood_blocks2"
+        "model": "malum:carved_soulwood_blocks2"
       }
     ],
     "type=double,waterlogged=true": [
       {
-        "model": "minecraft:carved_soulwood_blocks0"
+        "model": "malum:carved_soulwood_blocks0"
       },
       {
-        "model": "minecraft:carved_soulwood_blocks1"
+        "model": "malum:carved_soulwood_blocks1"
       },
       {
-        "model": "minecraft:carved_soulwood_blocks2"
+        "model": "malum:carved_soulwood_blocks2"
       }
     ],
     "type=top,waterlogged=false": [

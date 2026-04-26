@@ -3,6 +3,7 @@ package com.sammy.malum.client.screen.codex.entries;
 import com.sammy.malum.client.screen.codex.pages.*;
 import com.sammy.malum.client.screen.codex.pages.display.*;
 import com.sammy.malum.client.screen.codex.pages.recipe.vanilla.*;
+import com.sammy.malum.client.screen.codex.pages.recipe.vanilla.CraftingPage.*;
 import com.sammy.malum.client.screen.codex.pages.text.*;
 import com.sammy.malum.client.screen.codex.screens.progression.*;
 import com.sammy.malum.registry.common.*;
@@ -18,6 +19,7 @@ import static com.sammy.malum.registry.common.MalumContent.*;
 import static com.sammy.malum.registry.common.MalumContent.AlchemyAndMetallics.*;
 import static com.sammy.malum.registry.common.MalumContent.BlockSets.*;
 import static com.sammy.malum.registry.common.MalumContent.CompactBlocks.*;
+import static com.sammy.malum.registry.common.MalumContent.Gear.*;
 import static com.sammy.malum.registry.common.MalumContent.Materials.*;
 import static net.minecraft.world.item.Items.*;
 
@@ -126,16 +128,39 @@ public class IntroductionEntries {
                 )
         );
         screen.addEntry("soulstone_buds", 2, 5, b -> b
-                        .configureWidget(w -> w.setIcon(item(SOULSTONE_BUD)))
-                        .addPage(new HeadlineTextGizmoPage("soulstone_buds", item(SOULSTONE_BUD)))
-                        .addPage(new TextPage("soulstone_buds.2"))
-                        .addPage(new HeadlineTextGizmoPage("soulstone_buds", item(REALIZED_SOULSTONE_BUD)))
-                        .addPage(new SoulstoneGrowthStagePage())
+                .configureWidget(w -> w.setIcon(item(SOULSTONE_BUD)))
+                .addPage(new HeadlineTextGizmoPage("soulstone_buds", item(SOULSTONE_BUD)))
+                .addPage(new TextPage("soulstone_buds.2"))
+                .addPage(new HeadlineTextGizmoPage("soulstone_buds", item(REALIZED_SOULSTONE_BUD)))
+                .addPage(new SoulstoneGrowthStagePage())
         );
 
         screen.addEntry("derealized_metal", 3, 4, b -> b
-                        .configureWidget(w -> w.setIcon(item(IRON_METALLICS.getDerealizedMetal())))
+                .configureWidget(w -> w.setIcon(item(IRON_METALLICS.getDerealizedMetal())))
         );
+
+        screen.addEntry("scythes", 0, 6, b -> b
+                .configureWidget(w -> w.setIcon(item(CRUDE_SCYTHE)))
+                .addPage(new HeadlineTextGizmoPage("scythes", item(CRUDE_SCYTHE)))
+                .addPage(new TextPage("scythes.2"))
+                .addPage(new TextPage("scythes.3"))
+                .addPage(new CraftingPage(item(CRUDE_SCYTHE), c -> c
+                        .fill(item(IRON_INGOT), CraftingGridContents::topLeft, CraftingGridContents::top, CraftingGridContents::middleRight)
+                        .fill(item(STICK), CraftingGridContents::middle, CraftingGridContents::bottomLeft)
+                        .fill(item(REFINED_SOULSTONE), CraftingGridContents::topRight)
+                ))
+//                .addReference(new EntryReference(ENCHANTED_BOOK,
+//                        BookEntry.create("scythes.enchanting")
+//                                .addPage(new HeadlineTextPage("scythes.enchanting"))
+//                                .addPage(new HeadlineTextPage("scythes.enchanting.spirit_plunder"))
+//                                .addPage(new HeadlineTextPage("scythes.enchanting.haunted"))
+//                                .addPage(new HeadlineTextPage("scythes.enchanting.animated"))
+//                                .addPage(new HeadlineTextPage("scythes.enchanting.rebound"))
+//                                .addPage(new HeadlineTextPage("scythes.enchanting.ascension"))
+//                ))
+        );
+
+
 
 
 //        screen.addEntry("natural_quartz", 3, 1, b -> b
@@ -177,17 +202,6 @@ public class IntroductionEntries {
 ////                .addReference(new EntryReference(UMBRAL_SPIRIT, cthonicGoldReexamination))
 //        );
 //
-//        screen.addEntry("soulstone", -1, 2, b -> b
-//                .configureWidget(w -> w.setIcon(REFINED_SOULSTONE))
-//                .addPage(new HeadlineTextItemPage("soulstone", REFINED_SOULSTONE.get()))
-//                .addPage(new TextPage("soulstone.2"))
-//                .addPage(new SmeltingPage(new ItemStack(RAW_SOULSTONE.get()), new ItemStack(REFINED_SOULSTONE.get(), 2)))
-//                .addPage(new CyclingPage(
-//                        CraftingPage.fullPage(BLOCK_OF_SOULSTONE.get(), REFINED_SOULSTONE.get()),
-//                        CraftingPage.fullPage(BLOCK_OF_RAW_SOULSTONE.get(), RAW_SOULSTONE.get())
-//                ))
-////                .addReference(new EntryReference(UMBRAL_SPIRIT, soulstoneAndBrillianceReexamination))
-//        );
 //
 //        screen.addEntry("scythes", 0, 3, b -> b
 //                .configureWidget(w -> w.setIcon(CRUDE_SCYTHE))

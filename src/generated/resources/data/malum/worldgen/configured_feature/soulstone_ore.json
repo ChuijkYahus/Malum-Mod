@@ -52,7 +52,9 @@
       {
         "discard_chance_on_air_exposure": 0.0,
         "discard_feature_if_empty": true,
-        "height": 12,
+        "height": 16,
+        "maxBlocks": 8,
+        "minBlocks": 5,
         "targets": [
           {
             "state_provider": {
@@ -82,8 +84,43 @@
         "width": 20
       },
       {
+        "discard_chance_on_air_exposure": 0.25,
+        "height": 28,
+        "maxBlocks": 12,
+        "minBlocks": 7,
+        "targets": [
+          {
+            "state_provider": {
+              "type": "minecraft:simple_state_provider",
+              "state": {
+                "Name": "malum:soulstone_ore"
+              }
+            },
+            "target": {
+              "predicate_type": "minecraft:tag_match",
+              "tag": "minecraft:stone_ore_replaceables"
+            }
+          },
+          {
+            "state_provider": {
+              "type": "minecraft:simple_state_provider",
+              "state": {
+                "Name": "malum:deepslate_soulstone_ore"
+              }
+            },
+            "target": {
+              "predicate_type": "minecraft:tag_match",
+              "tag": "minecraft:deepslate_ore_replaceables"
+            }
+          }
+        ],
+        "width": 28
+      },
+      {
         "discard_chance_on_air_exposure": 0.2,
-        "height": 16,
+        "height": 24,
+        "maxBlocks": 40,
+        "minBlocks": 20,
         "targets": [
           {
             "state_provider": {
@@ -98,7 +135,7 @@
             }
           }
         ],
-        "width": 28
+        "width": 32
       }
     ]
   }
