@@ -156,8 +156,7 @@ public class LayeredOreFeature extends Feature<LayeredOreConfiguration> {
 
         if (decoratorOptional.isPresent()) {
             var decorator = decoratorOptional.get();
-            var positions = blockMap.values().stream().map(feedback -> feedback.placedBlocks).flatMap(m -> m.keySet().stream()).toList();
-            var shuffled = WorldgenHelper.shuffle(positions, random);
+            var shuffled = WorldgenHelper.shuffle(exhaustedPositions, random);
             var mutable = new BlockPos.MutableBlockPos();
 
             int min = decorator.minDecorations();

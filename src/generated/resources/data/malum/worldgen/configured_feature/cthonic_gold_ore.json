@@ -20,8 +20,8 @@
           }
         }
       ],
-      "max_decorations": 6,
-      "min_decorations": 4
+      "max_decorations": 5,
+      "min_decorations": 2
     },
     "ore_layers": [
       {
@@ -115,8 +115,8 @@
       {
         "discard_chance_on_air_exposure": 0.2,
         "height": 24,
-        "maxBlocks": 30,
-        "minBlocks": 10,
+        "maxBlocks": 50,
+        "minBlocks": 30,
         "targets": [
           {
             "state_provider": {

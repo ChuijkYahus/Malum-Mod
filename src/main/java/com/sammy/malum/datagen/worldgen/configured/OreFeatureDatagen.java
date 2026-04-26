@@ -62,11 +62,11 @@ public class OreFeatureDatagen {
                     target(REPLACE_STONE, simple(GOLD_ORE)),
                     target(REPLACE_DEEPSLATE, simple(DEEPSLATE_GOLD_ORE))
             ), 16, 24, 4, 16, 0.5f, false),
-            new OreLayer(target(REPLACE_STONES, simple(GRANITE)), 24, 24, 10, 30, 0.2f, false)
+            new OreLayer(target(REPLACE_STONES, simple(GRANITE)), 24, 24, 30, 50, 0.2f, false)
     );
 
     public static final LayeredOreFeatureDecorator CTHONIC_GOLD_DECOR =
-            new LayeredOreFeatureDecorator(target(REPLACE_AIR, simple(CTHONIC_GOLD_FRAGMENT.get())), 4, 6);
+            new LayeredOreFeatureDecorator(target(REPLACE_AIR, simple(CTHONIC_GOLD_FRAGMENT.get())), 2, 5);
 
     public static final List<OreConfiguration.TargetBlockState> BRILLIANT_TARGET_LIST = List.of(
             OreConfiguration.target(REPLACE_STONE, BRILLIANT_STONE.get().defaultBlockState()),
@@ -93,6 +93,7 @@ public class OreFeatureDatagen {
     private static ConfiguredFeature<?, ?> addLayeredOreConfig(List<OreLayer> layers) {
         return addLayeredOreConfig(layers, null);
     }
+
     private static ConfiguredFeature<?, ?> addLayeredOreConfig(List<OreLayer> layers, LayeredOreFeatureDecorator decorator) {
         return new ConfiguredFeature<>(MalumFeatures.LAYERED_ORE.get(), new LayeredOreConfiguration(layers, Optional.ofNullable(decorator)));
     }
