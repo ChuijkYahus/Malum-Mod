@@ -67,7 +67,7 @@ public abstract class AbstractProgressionCodexScreen extends AbstractMalumCodexS
     protected int voidFadeoutCounter;
 
     public final EntryObjectHandler progressionObjects = new EntryObjectHandler();
-    public final List<PlacedBookEntry> entries = new ArrayList<>();
+    public final EntryStorage entryStorage = new EntryStorage();
 
     protected final int backgroundImageWidth;
     protected final int backgroundImageHeight;
@@ -92,8 +92,8 @@ public abstract class AbstractProgressionCodexScreen extends AbstractMalumCodexS
     public abstract void setupEntries();
 
     @Override
-    public List<PlacedBookEntry> getEntries() {
-        return entries;
+    public EntryStorage getEntryStorage() {
+        return entryStorage;
     }
 
     @Override

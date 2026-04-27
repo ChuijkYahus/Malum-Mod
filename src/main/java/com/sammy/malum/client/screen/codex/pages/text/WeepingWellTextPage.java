@@ -50,7 +50,7 @@ public class WeepingWellTextPage extends BookPage {
     }
 
     public String translationKey() {
-        return BookPage.TEXT + translationKey;
+        return textKey(translationKey);
     }
 
     @Override

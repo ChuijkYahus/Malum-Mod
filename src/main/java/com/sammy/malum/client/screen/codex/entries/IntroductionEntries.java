@@ -3,23 +3,24 @@ package com.sammy.malum.client.screen.codex.entries;
 import com.sammy.malum.client.screen.codex.pages.*;
 import com.sammy.malum.client.screen.codex.pages.display.*;
 import com.sammy.malum.client.screen.codex.pages.recipe.vanilla.*;
-import com.sammy.malum.client.screen.codex.pages.recipe.vanilla.CraftingPage.*;
-import com.sammy.malum.client.screen.codex.pages.text.*;
 import com.sammy.malum.client.screen.codex.screens.progression.*;
-import com.sammy.malum.registry.common.*;
+import com.sammy.malum.registry.common.MalumContent.*;
 import net.minecraft.world.item.*;
-import net.minecraft.world.level.block.*;
 
 import static com.sammy.malum.client.screen.codex.WidgetDesignType.*;
 import static com.sammy.malum.client.screen.codex.WidgetDesignType.FillingType.*;
 import static com.sammy.malum.client.screen.codex.WidgetDesignType.FillingType.PAPER;
 import static com.sammy.malum.client.screen.codex.WidgetDesignType.FrameType.RUNEWOOD;
 import static com.sammy.malum.client.screen.codex.display.DisplayedGizmo.item;
-import static com.sammy.malum.registry.common.MalumContent.*;
+import static com.sammy.malum.client.screen.codex.pages.InteractionPage.*;
+import static com.sammy.malum.client.screen.codex.pages.recipe.vanilla.CraftingPage.*;
+import static com.sammy.malum.client.screen.codex.pages.text.HeadlineTextGizmoPage.headlineTextGizmoPage;
+import static com.sammy.malum.client.screen.codex.pages.text.HeadlineTextPage.headlineText;
+import static com.sammy.malum.client.screen.codex.pages.text.TextPage.textPage;
 import static com.sammy.malum.registry.common.MalumContent.AlchemyAndMetallics.*;
 import static com.sammy.malum.registry.common.MalumContent.BlockSets.*;
 import static com.sammy.malum.registry.common.MalumContent.CompactBlocks.*;
-import static com.sammy.malum.registry.common.MalumContent.Gear.*;
+import static com.sammy.malum.registry.common.MalumContent.ENCYCLOPEDIA_ARCANA;
 import static com.sammy.malum.registry.common.MalumContent.Materials.*;
 import static net.minecraft.world.item.Items.*;
 
@@ -29,156 +30,168 @@ public class IntroductionEntries {
         Item EMPTY = ItemStack.EMPTY.getItem();
 
 //        var soulstoneAndBrillianceReexamination = BookEntry.create("spirit_minerals.reexamination")
-//                .addPage(new HeadlineTextPage("spirit_minerals.reexamination"))
-//                .addPage(new TextPage("spirit_minerals.reexamination.2"))
+//                .addPage(headlineText("spirit_minerals.reexamination"))
+//                .addPage(text("spirit_minerals.reexamination.2"))
 //                .afterUmbralCrystal();
 //
 //        var cthonicGoldReexamination = BookEntry.create("cthonic_gold.reexamination")
-//                .addPage(new HeadlineTextPage("cthonic_gold.reexamination"))
-//                .addPage(new TextPage("cthonic_gold.reexamination.2"))
+//                .addPage(headlineText("cthonic_gold.reexamination"))
+//                .addPage(text("cthonic_gold.reexamination.2"))
 //                .afterUmbralCrystal();
 
 
-        screen.addEntry("introduction", 0, 0, b -> b
-                .configureWidget(w -> w
-                        .setIcon(item(ENCYCLOPEDIA_ARCANA).addTitleAndSnippet("introduction"))
-                        .setDesign(GILDED, RUNEWOOD, PAPER)
-                        .setOrigin()
-                )
-                .addPage(new HeadlineTextGizmoPage("introduction", item(ENCYCLOPEDIA_ARCANA)))
-                .addPage(new TextPage("introduction.2"))
-                .addPage(new TextPage("introduction.3"))
-                .addPage(new TextPage("introduction.4"))
-                .addPage(new TextPage("introduction.5"))
-        );
+        screen.addEntry("introduction", 0, 0)
+                .configureWidget(w -> w.setIcon(item(ENCYCLOPEDIA_ARCANA)).setDesign(GILDED, RUNEWOOD, PAPER).setOrigin())
+                .addPage(headlineTextGizmoPage("introduction", item(ENCYCLOPEDIA_ARCANA)))
+                .addPage(textPage("introduction.2"))
+                .addPage(textPage("introduction.3"))
+                .addPage(textPage("introduction.4"))
+                .addPage(textPage("introduction.5"));
 
-        screen.addEntry("spirit_crystals", 1, 1, b -> b
+        screen.addEntry("spirit_crystals", 1, 1)
+                .configureWidget(w -> w.setIcon(CodexCommons.SOUL_SHARD).setDesign(SMALL, RUNEWOOD, DARK))
+                .addPage(headlineTextGizmoPage("spirit_crystals", CodexCommons.SOUL_SHARD))
+                .addPage(textPage("spirit_crystals.2"))
+                .addPage(textPage("spirit_crystals.3"));
+
+        screen.addEntry("runewood", 0, 2)
+                .configureWidget(w -> w.setIcon(item(RUNEWOOD_SAPLING)))
+                .addPage(headlineTextGizmoPage("runewood", item(RUNEWOOD_SAPLING)))
+                .addPage(PageSelectionPage.create(s -> s
+                                .add(item(GRASS_BLOCK), headlineText("runewood.placement"))
+                                .add(item(RUNEWOOD_SAPLING), headlineText("runewood.genesis"))
+                                .add(item(AZURE_RUNEWOOD_SAPLING), headlineText("runewood.azure"))
+                        )
+                )
+                .addPage(headlineTextGizmoPage("runewood.arcane_charcoal", item(ARCANE_CHARCOAL)))
+                .addPage(PageSelectionPage.create(s -> s
+                                .add(item(ARCANE_CHARCOAL).setId("runewood.arcane_charcoal.smelting"),
+                                        new SmeltingPage(item(RUNEWOOD_SET.log), item(ARCANE_CHARCOAL)))
+                                .add(item(BLOCK_OF_ARCANE_CHARCOAL).setId("runewood.arcane_charcoal.compacting"),
+                                        compacting(item(BLOCK_OF_ARCANE_CHARCOAL), item(ARCANE_CHARCOAL)))
+                        )
+                )
+                .addPage(headlineTextGizmoPage("runewood.runic_sap", item(RUNIC_SAP_BOTTLE)))
+                .addPage(PageSelectionPage.create(s -> s
+                                .add(item(RUNEWOOD_SET.strippedSappyLog).setId("runewood.runic_sap.stripping"),
+                                        stripping(item(RUNEWOOD_SET.sappyLog), item(RUNEWOOD_SET.strippedSappyLog)))
+                                .add(item(RUNIC_SAP_BOTTLE).setId("runewood.runic_sap.bottling"),
+                                        bottling(item(RUNEWOOD_SET.strippedSappyLog), item(RUNIC_SAP_BOTTLE)))
+                                .add(item(RUNIC_SAPBALL).setId("runewood.runic_sap.mixing"),
+                                        crafting(item(RUNIC_SAPBALL), c -> c.top(item(WHEAT)).middle(item(RUNIC_SAP_BOTTLE))))
+                        )
+                );
+
+        screen.addEntry("arcane_wonders", -1, 3)
                 .configureWidget(w -> w
-                        .setIcon(EntryCommons.SOUL_SHARD)
+                        .setIcon(CodexCommons.OVERWORLD)
                         .setDesign(SMALL, RUNEWOOD, DARK)
                 )
-                .configureWidget(w -> w.setDesign(SMALL, RUNEWOOD, DARK))
-                .addPage(new HeadlineTextGizmoPage("spirit_crystals", EntryCommons.SOUL_SHARD))
-                .addPage(new TextPage("spirit_crystals.2"))
-                .addPage(new TextPage("spirit_crystals.3"))
-        );
+                .addPage(headlineTextGizmoPage("arcane_wonders", CodexCommons.OVERWORLD))
+                .addPage(textPage("arcane_wonders.2"))
+                .addPage(textPage("arcane_wonders.3"))
+                .addPage(textPage("arcane_wonders.4"));
 
-        screen.addEntry("runewood", 0, 2, b -> b
-                .configureWidget(w -> w.setIcon(item(RUNEWOOD_SAPLING).addTitleAndSnippet("runewood")))
-                .addPage(new HeadlineTextGizmoPage("runewood", item(RUNEWOOD_SAPLING)))
+        screen.addEntry("soulstone", 0, 4)
+                .configureWidget(w -> w.setIcon(CodexCommons.RAW_SOULSTONE))
+                .addPage(headlineTextGizmoPage("soulstone", CodexCommons.RAW_SOULSTONE))
                 .addPage(PageSelectionPage.create(s -> s
-                                .add(item(GRASS_BLOCK).addTitleAndSnippet("runewood.placement"),
-                                        new HeadlineTextPage("runewood.placement"))
-                                .add(item(RUNEWOOD_SAPLING).addTitleAndSnippet("runewood.genesis"),
-                                        new HeadlineTextPage("runewood.genesis"))
-                                .add(item(AZURE_RUNEWOOD_SAPLING).addTitleAndSnippet("runewood.azure"),
-                                        new HeadlineTextPage("runewood.azure"))
+                                .addHeadline(item(SOULSTONE_ORE), "soulstone.synopsis")
+                                .addHeadline(item(RAW_SOULSTONE), "soulstone.ore_deposits")
+                                .addHeadline(item(SOULSTONE_BUD), "soulstone.buds")
                         )
                 )
-                .addPage(new HeadlineTextGizmoPage("runewood.arcane_charcoal", item(ARCANE_CHARCOAL)))
+                .addPage(headlineTextGizmoPage("soulstone.refinement", CodexCommons.REFINED_SOULSTONE))
                 .addPage(PageSelectionPage.create(s -> s
-                                .add(item(ARCANE_CHARCOAL).addTitleAndSnippet("runewood.arcane_charcoal.smelting"), new SmeltingPage(item(RUNEWOOD_SET.log), item(ARCANE_CHARCOAL)))
-                                .add(item(BLOCK_OF_ARCANE_CHARCOAL).addTitleAndSnippet("runewood.arcane_charcoal.compacting"), CraftingPage.fullBlock(item(BLOCK_OF_ARCANE_CHARCOAL), item(ARCANE_CHARCOAL)))
-                        )
-                )
-                .addPage(new HeadlineTextGizmoPage("runewood.runic_sap", item(RUNIC_SAP_BOTTLE)))
-                .addPage(PageSelectionPage.create(s -> s
-                                .add(item(RUNEWOOD_SET.strippedSappyLog).addTitleAndSnippet("runewood.runic_sap.stripping"), InteractionPage.stripping(item(RUNEWOOD_SET.sappyLog), item(RUNEWOOD_SET.strippedSappyLog)))
-                                .add(item(RUNIC_SAP_BOTTLE).addTitleAndSnippet("runewood.runic_sap.bottling"), InteractionPage.bottling(item(RUNEWOOD_SET.strippedSappyLog), item(RUNIC_SAP_BOTTLE)))
-                                .add(item(RUNIC_SAPBALL).addTitleAndSnippet("runewood.runic_sap.mixing"), new CraftingPage(item(RUNIC_SAPBALL), c -> c.top(item(WHEAT)).middle(item(RUNIC_SAP_BOTTLE))))
-                        )
-                )
-        );
-
-        screen.addEntry("arcane_wonders", -1, 3, b -> b
-                .configureWidget(w -> w
-                        .setIcon(EntryCommons.OVERWORLD)
-                        .setDesign(SMALL, RUNEWOOD, DARK)
-                )
-                .addPage(new HeadlineTextGizmoPage("arcane_wonders", EntryCommons.OVERWORLD))
-                .addPage(new TextPage("arcane_wonders.2"))
-                .addPage(new TextPage("arcane_wonders.3"))
-                .addPage(new TextPage("arcane_wonders.4"))
-        );
-
-        screen.addEntry("soulstone", 0, 4, b -> b
-                .configureWidget(w -> w.setIcon(item(REFINED_SOULSTONE)))
-                .addPage(new HeadlineTextGizmoPage("soulstone", item(RAW_SOULSTONE)))
-                .addPage(PageSelectionPage.create(s -> s
-                                .add(item(SOULSTONE_ORE).addTitleAndSnippet("soulstone.synopsis"),
-                                        new HeadlineTextPage("soulstone.synopsis"))
-                                .add(item(RAW_SOULSTONE).addTitleAndSnippet("soulstone.ore_deposits"),
-                                        new HeadlineTextPage("soulstone.ore_deposits"))
-                                .add(item(SOULSTONE_BUD).addTitleAndSnippet("soulstone.buds"),
-                                        new HeadlineTextPage("soulstone.buds"))
-                        )
-                )
-
-                .addPage(new HeadlineTextGizmoPage("soulstone.refinement", item(REFINED_SOULSTONE)))
-                .addPage(PageSelectionPage.create(s -> s
-                                .add(item(REFINED_SOULSTONE).addTitleAndSnippet("soulstone.refinement.smelting"), new CyclingPage(
+                                .add(item(REFINED_SOULSTONE).setId("soulstone.refinement.smelting"), new CyclingPage(
                                         new SmeltingPage(item(RAW_SOULSTONE), item(REFINED_SOULSTONE, 2)),
                                         new SmeltingPage(item(SOULSTONE_BUD), item(REFINED_SOULSTONE, 2))
                                 ))
-                                .add(item(BLOCK_OF_REFINED_SOULSTONE).addTitleAndSnippet("soulstone.refinement.refined_compacting"),
-                                        CraftingPage.fullBlock(item(BLOCK_OF_REFINED_SOULSTONE), item(REFINED_SOULSTONE)))
-                                .add(item(BLOCK_OF_RAW_SOULSTONE).addTitleAndSnippet("soulstone.refinement.raw_compacting"),
-                                        CraftingPage.fullBlock(item(BLOCK_OF_RAW_SOULSTONE), item(RAW_SOULSTONE)))
+                                .add(item(BLOCK_OF_REFINED_SOULSTONE).setId("soulstone.refinement.refined_compacting"),
+                                        compacting(item(BLOCK_OF_REFINED_SOULSTONE), CodexCommons.REFINED_SOULSTONE))
+                                .add(item(BLOCK_OF_RAW_SOULSTONE).setId("soulstone.refinement.raw_compacting"),
+                                        compacting(item(BLOCK_OF_RAW_SOULSTONE), CodexCommons.RAW_SOULSTONE))
                         )
-                )
-        );
-        screen.addEntry("soulstone_buds", 2, 5, b -> b
+                );
+
+        screen.addEntry("soulstone_buds", 2, 5)
                 .configureWidget(w -> w.setIcon(item(SOULSTONE_BUD)))
-                .addPage(new HeadlineTextGizmoPage("soulstone_buds", item(SOULSTONE_BUD)))
-                .addPage(new TextPage("soulstone_buds.2"))
-                .addPage(new HeadlineTextGizmoPage("soulstone_buds", item(REALIZED_SOULSTONE_BUD)))
-                .addPage(new SoulstoneGrowthStagePage())
-        );
+                .addPage(headlineTextGizmoPage("soulstone_buds", CodexCommons.SOULSTONE_BUD))
+                .addPage(textPage("soulstone_buds.2"))
+                .addPage(headlineTextGizmoPage("realizing_soulstone_buds", CodexCommons.REALIZED_SOULSTONE_BUD))
+                .addPage(new SoulstoneGrowthStagePage());
 
-        screen.addEntry("derealized_metal", 3, 4, b -> b
-                .configureWidget(w -> w.setIcon(item(IRON_METALLICS.getDerealizedMetal())))
-        );
+        screen.addEntry("derealized_metal", 3, 4)
+                .configureWidget(w -> w.setIcon(item(IRON_METALLICS.getDerealizedMetal())));
 
-        screen.addEntry("scythes", 0, 6, b -> b
-                .configureWidget(w -> w.setIcon(item(CRUDE_SCYTHE)))
-                .addPage(new HeadlineTextGizmoPage("scythes", item(CRUDE_SCYTHE)))
-                .addPage(new TextPage("scythes.2"))
-                .addPage(new TextPage("scythes.3"))
-                .addPage(new CraftingPage(item(CRUDE_SCYTHE), c -> c
-                        .fill(item(IRON_INGOT), CraftingGridContents::topLeft, CraftingGridContents::top, CraftingGridContents::middleRight)
+        screen.addEntry("scythes", 0, 6).configureWidget(w -> w.setIcon(CodexCommons.CRUDE_SCYTHE))
+                .addPage(headlineTextGizmoPage("scythes", CodexCommons.CRUDE_SCYTHE))
+                .addPage(textPage("scythes.2"))
+                .addPage(textPage("scythes.3"))
+                .addPage(crafting(CodexCommons.CRUDE_SCYTHE, c -> c
+                        .fill(item(IRON_INGOT), CraftingGridContents::topLeft, CraftingGridContents::top, CraftingGridContents::right)
                         .fill(item(STICK), CraftingGridContents::middle, CraftingGridContents::bottomLeft)
                         .fill(item(REFINED_SOULSTONE), CraftingGridContents::topRight)
-                ))
-//                .addReference(new EntryReference(ENCHANTED_BOOK,
-//                        BookEntry.create("scythes.enchanting")
-//                                .addPage(new HeadlineTextPage("scythes.enchanting"))
-//                                .addPage(new HeadlineTextPage("scythes.enchanting.spirit_plunder"))
-//                                .addPage(new HeadlineTextPage("scythes.enchanting.haunted"))
-//                                .addPage(new HeadlineTextPage("scythes.enchanting.animated"))
-//                                .addPage(new HeadlineTextPage("scythes.enchanting.rebound"))
-//                                .addPage(new HeadlineTextPage("scythes.enchanting.ascension"))
+                ));
+
+        screen.addEntry("spirit_infusion", 0, 8)
+                .configureWidget(w -> w.setIcon(CodexCommons.SPIRIT_ALTAR))
+                .addPage(headlineTextGizmoPage("spirit_infusion", CodexCommons.SPIRIT_ALTAR))
+                .addPage(textPage("spirit_infusion.2"))
+                .addPage(textPage("spirit_infusion.3"))
+                .addPage(PageSelectionPage.create(s -> s
+                                .add(CodexCommons.SPIRIT_ALTAR, crafting(CodexCommons.SPIRIT_ALTAR, c -> c
+                                        .fill(item(REFINED_SOULSTONE), CraftingGridContents::top)
+                                        .fill(item(GOLD_INGOT), CraftingGridContents::left, CraftingGridContents::right)
+                                        .fill(item(RUNEWOOD_SET.planks.block), CraftingGridContents::middle, CraftingGridContents::bottomLayer)
+                                ))
+                                .add(item(RUNEWOOD_SET.itemPedestal).setId("spirit_infusion.item_pedestal"), CraftingPage.pedestal(RUNEWOOD_SET))
+                                .add(item(RUNEWOOD_SET.itemStand).setId("spirit_infusion.item_stand"), CraftingPage.stand(RUNEWOOD_SET))
+
+                        )
+                );
+
+
+        //        screen.addEntry("spirit_infusion", 0, 5)
+//                .configureWidget(w -> w.setIcon(SPIRIT_ALTAR).setDesign(GILDED, RUNEWOOD, PAPER))
+//                .addPage(headlineText("spirit_infusion"))
+//                .addPage(new CraftingPage(SPIRIT_ALTAR.get(), AIR, REFINED_SOULSTONE.get(), AIR, GOLD_INGOT, RUNEWOOD_SET.planks.block.get(), GOLD_INGOT, RUNEWOOD_SET.planks.block.get(), RUNEWOOD_SET.planks.block.get(), RUNEWOOD_SET.planks.block.get()))
+//                .addPage(text("spirit_infusion.2"))
+//                .addPage(text("spirit_infusion.3"))
+//                .addPage(CraftingPage.itemPedestalPage(RUNEWOOD_ITEM_PEDESTAL.get(), RUNEWOOD_SET.planks.block.get(), RUNEWOOD_PLANKS_SLAB.get()))
+//                .addPage(CraftingPage.itemStandPage(RUNEWOOD_ITEM_STAND.get(), RUNEWOOD_SET.planks.block.get(), RUNEWOOD_PLANKS_SLAB.get()))
+//                .addReference(new EntryReference(HEX_ASH.get(),
+//                        BookEntry.create("spirit_infusion.hex_ash")
+//                                .addPage(headlineText("spirit_infusion.hex_ash"))
+//                                .addPage(SpiritInfusionPage.fromOutput(HEX_ASH.get()))
 //                ))
-        );
+//                .addReference(new EntryReference(LIVING_FLESH.get(), BookEntry.create("spirit_infusion.living_flesh")
+//                        .addPage(headlineText("spirit_infusion.living_flesh"))
+//                        .addPage(SpiritInfusionPage.fromOutput(LIVING_FLESH.get()))
+//                ))
+//                .addReference(new EntryReference(ALCHEMICAL_CALX.get(), BookEntry.create("spirit_infusion.alchemical_calx")
+//                        .addPage(headlineText("spirit_infusion.alchemical_calx"))
+//                        .addPage(SpiritInfusionPage.fromOutput(ALCHEMICAL_CALX.get()))
+//                ))
+//        );
 
 
-
-
-//        screen.addEntry("natural_quartz", 3, 1, b -> b
+//        screen.addEntry("natural_quartz", 3, 1)
 //                .configureWidget(w -> w.setIcon(NATURAL_QUARTZ).setDesign(SMALL, RUNEWOOD, PAPER))
 //                .addPage(new HeadlineTextItemPage("natural_quartz", NATURAL_QUARTZ.get()))
 //        );
 //
-//        screen.addEntry("blazing_quartz", 4, 2, b -> b
+//        screen.addEntry("blazing_quartz", 4, 2)
 //                .configureWidget(w -> w.setIcon(BLAZING_QUARTZ).setDesign(SMALL, RUNEWOOD, PAPER))
 //                .addPage(new HeadlineTextItemPage("blazing_quartz", BLAZING_QUARTZ.get()))
 //                .addPage(CraftingPage.fullPage(BLOCK_OF_BLAZING_QUARTZ.get(), BLAZING_QUARTZ.get()))
 //        );
 //
-//        screen.addEntry("brilliance", -3, 1, b -> b
+//        screen.addEntry("brilliance", -3, 1)
 //                .configureWidget(w -> w.setIcon(RAW_BRILLIANCE).setDesign(SMALL, RUNEWOOD, PAPER))
 //                .addPage(new HeadlineTextItemPage("brilliance", RAW_BRILLIANCE.get()))
-//                .addPage(new TextPage("brilliance.2"))
-//                .addPage(new TextPage("brilliance.3"))
+//                .addPage(text("brilliance.2"))
+//                .addPage(text("brilliance.3"))
 //                .addPage(PageSelectionPage.create(s -> s
 //                                .add(REFINED_BRILLIANCE.get(), new SmeltingPage(RAW_BRILLIANCE.get().getDefaultInstance(), new ItemStack(REFINED_BRILLIANCE.get(), 2))
 //                                )
@@ -193,111 +206,111 @@ public class IntroductionEntries {
 ////                .addReference(new EntryReference(UMBRAL_SPIRIT, soulstoneAndBrillianceReexamination))
 //        );
 //
-//        screen.addEntry("cthonic_gold", -4, 2, b -> b
+//        screen.addEntry("cthonic_gold", -4, 2)
 //                .configureWidget(w -> w.setIcon(CTHONIC_GOLD).setDesign(SMALL, RUNEWOOD, PAPER))
 //                .addPage(new HeadlineTextItemPage("cthonic_gold", CTHONIC_GOLD.get()))
-//                .addPage(new TextPage("cthonic_gold.2"))
-//                .addPage(new TextPage("cthonic_gold.3"))
-//                .addPage(new TextPage("cthonic_gold.4"))
+//                .addPage(text("cthonic_gold.2"))
+//                .addPage(text("cthonic_gold.3"))
+//                .addPage(text("cthonic_gold.4"))
 ////                .addReference(new EntryReference(UMBRAL_SPIRIT, cthonicGoldReexamination))
 //        );
 //
 //
-//        screen.addEntry("scythes", 0, 3, b -> b
+//        screen.addEntry("scythes", 0, 3)
 //                .configureWidget(w -> w.setIcon(CRUDE_SCYTHE))
-//                .addPage(new HeadlineTextPage("scythes"))
+//                .addPage(headlineText("scythes"))
 //                .addPage(CraftingPage.scythePage(MalumItems.CRUDE_SCYTHE.get(), Items.IRON_INGOT, REFINED_SOULSTONE.get()))
-//                .addPage(new TextPage("scythes.2"))
+//                .addPage(text("scythes.2"))
 //                .addReference(new EntryReference(ENCHANTED_BOOK,
 //                        BookEntry.create("scythes.enchanting")
-//                                .addPage(new HeadlineTextPage("scythes.enchanting"))
-//                                .addPage(new HeadlineTextPage("scythes.enchanting.spirit_plunder"))
-//                                .addPage(new HeadlineTextPage("scythes.enchanting.haunted"))
-//                                .addPage(new HeadlineTextPage("scythes.enchanting.animated"))
-//                                .addPage(new HeadlineTextPage("scythes.enchanting.rebound"))
-//                                .addPage(new HeadlineTextPage("scythes.enchanting.ascension"))
+//                                .addPage(headlineText("scythes.enchanting"))
+//                                .addPage(headlineText("scythes.enchanting.spirit_plunder"))
+//                                .addPage(headlineText("scythes.enchanting.haunted"))
+//                                .addPage(headlineText("scythes.enchanting.animated"))
+//                                .addPage(headlineText("scythes.enchanting.rebound"))
+//                                .addPage(headlineText("scythes.enchanting.ascension"))
 //                ))
 //        );
 //
-//        screen.addEntry("spirit_infusion", 0, 5, b -> b
+//        screen.addEntry("spirit_infusion", 0, 5)
 //                .configureWidget(w -> w.setIcon(SPIRIT_ALTAR).setDesign(GILDED, RUNEWOOD, PAPER))
-//                .addPage(new HeadlineTextPage("spirit_infusion"))
+//                .addPage(headlineText("spirit_infusion"))
 //                .addPage(new CraftingPage(SPIRIT_ALTAR.get(), AIR, REFINED_SOULSTONE.get(), AIR, GOLD_INGOT, RUNEWOOD_SET.planks.block.get(), GOLD_INGOT, RUNEWOOD_SET.planks.block.get(), RUNEWOOD_SET.planks.block.get(), RUNEWOOD_SET.planks.block.get()))
-//                .addPage(new TextPage("spirit_infusion.2"))
-//                .addPage(new TextPage("spirit_infusion.3"))
+//                .addPage(text("spirit_infusion.2"))
+//                .addPage(text("spirit_infusion.3"))
 //                .addPage(CraftingPage.itemPedestalPage(RUNEWOOD_ITEM_PEDESTAL.get(), RUNEWOOD_SET.planks.block.get(), RUNEWOOD_PLANKS_SLAB.get()))
 //                .addPage(CraftingPage.itemStandPage(RUNEWOOD_ITEM_STAND.get(), RUNEWOOD_SET.planks.block.get(), RUNEWOOD_PLANKS_SLAB.get()))
 //                .addReference(new EntryReference(HEX_ASH.get(),
 //                        BookEntry.create("spirit_infusion.hex_ash")
-//                                .addPage(new HeadlineTextPage("spirit_infusion.hex_ash"))
+//                                .addPage(headlineText("spirit_infusion.hex_ash"))
 //                                .addPage(SpiritInfusionPage.fromOutput(HEX_ASH.get()))
 //                ))
 //                .addReference(new EntryReference(LIVING_FLESH.get(), BookEntry.create("spirit_infusion.living_flesh")
-//                        .addPage(new HeadlineTextPage("spirit_infusion.living_flesh"))
+//                        .addPage(headlineText("spirit_infusion.living_flesh"))
 //                        .addPage(SpiritInfusionPage.fromOutput(LIVING_FLESH.get()))
 //                ))
 //                .addReference(new EntryReference(ALCHEMICAL_CALX.get(), BookEntry.create("spirit_infusion.alchemical_calx")
-//                        .addPage(new HeadlineTextPage("spirit_infusion.alchemical_calx"))
+//                        .addPage(headlineText("spirit_infusion.alchemical_calx"))
 //                        .addPage(SpiritInfusionPage.fromOutput(ALCHEMICAL_CALX.get()))
 //                ))
 //        );
 //
-//        screen.addEntry("esoteric_reaping", 0, 6, b -> b
+//        screen.addEntry("esoteric_reaping", 0, 6)
 //                .configureWidget(w -> w.setIcon(GRIM_TALC))
-//                .addPage(new HeadlineTextPage("esoteric_reaping"))
-//                .addPage(new TextPage("esoteric_reaping.2"))
+//                .addPage(headlineText("esoteric_reaping"))
+//                .addPage(text("esoteric_reaping.2"))
 //                .addReference(new EntryReference(ROTTING_ESSENCE.get(), BookEntry.create("esoteric_reaping.rotting_essence")
 //                        .addPage(new HeadlineTextItemPage("esoteric_reaping.rotting_essence", ROTTING_ESSENCE.get()))
-//                        .addPage(new TextPage("esoteric_reaping.rotting_essence.2"))
+//                        .addPage(text("esoteric_reaping.rotting_essence.2"))
 //                ))
 //                .addReference(new EntryReference(GRIM_TALC.get(), BookEntry.create("esoteric_reaping.grim_talc")
 //                        .addPage(new HeadlineTextItemPage("esoteric_reaping.grim_talc", GRIM_TALC.get()))
 //                ))
 //                .addReference(new EntryReference(EERIE_WEAVE.get(), BookEntry.create("esoteric_reaping.eerie_weave")
 //                        .addPage(new HeadlineTextItemPage("esoteric_reaping.eerie_weave", EERIE_WEAVE.get()))
-//                        .addPage(new TextPage("esoteric_reaping.eerie_weave.2"))
+//                        .addPage(text("esoteric_reaping.eerie_weave.2"))
 //                ))
 //                .addReference(new EntryReference(WARP_FLUX.get(), BookEntry.create("esoteric_reaping.warp_flux")
 //                        .addPage(new HeadlineTextItemPage("esoteric_reaping.warp_flux", WARP_FLUX.get()))
-////                        .addPage(new TextPage("esoteric_reaping.warp_flux.2"))
+////                        .addPage(text("esoteric_reaping.warp_flux.2"))
 //                ))
 //                .addReference(new EntryReference(WIND_NUCLEUS.get(), BookEntry.create("esoteric_reaping.core_keeping")
-//                        .addPage(new HeadlineTextPage("esoteric_reaping.core_keeping"))
-//                        .addPage(new TextPage("esoteric_reaping.core_keeping.2"))
-//                        .addPage(new TextPage("esoteric_reaping.core_keeping.3"))
-//                        .addPage(new TextPage("esoteric_reaping.core_keeping.4"))
+//                        .addPage(headlineText("esoteric_reaping.core_keeping"))
+//                        .addPage(text("esoteric_reaping.core_keeping.2"))
+//                        .addPage(text("esoteric_reaping.core_keeping.3"))
+//                        .addPage(text("esoteric_reaping.core_keeping.4"))
 //                        .addPage(new HeadlineTextItemPage("esoteric_reaping.core_keeping.wind_nucleus", WIND_NUCLEUS.get()))
 //                        .addPage(new HeadlineTextItemPage("esoteric_reaping.core_keeping.pyre_nucleus", PYRE_NUCLEUS.get()))
 //                ))
 //        );
 //
-//        screen.addEntry("primary_arcana", -2, 4, b -> b
+//        screen.addEntry("primary_arcana", -2, 4)
 //                .configureWidget(w -> w.setIcon(SACRED_SPIRIT))
 //                .addPage(new HeadlineTextItemPage("primary_arcana.sacred", "primary_arcana.sacred.1", SACRED_SPIRIT.get()))
-//                .addPage(new TextPage("primary_arcana.sacred.2"))
+//                .addPage(text("primary_arcana.sacred.2"))
 //                .addPage(new HeadlineTextItemPage("primary_arcana.wicked", "primary_arcana.wicked.1", WICKED_SPIRIT.get()))
-//                .addPage(new TextPage("primary_arcana.wicked.2"))
+//                .addPage(text("primary_arcana.wicked.2"))
 //                .addPage(new HeadlineTextItemPage("primary_arcana.arcane", "primary_arcana.arcane.1", ARCANE_SPIRIT.get()))
-//                .addPage(new TextPage("primary_arcana.arcane.2"))
-//                .addPage(new TextPage("primary_arcana.arcane.3"))
+//                .addPage(text("primary_arcana.arcane.2"))
+//                .addPage(text("primary_arcana.arcane.3"))
 //        );
 //
-//        screen.addEntry("elemental_arcana", 2, 4, b -> b
+//        screen.addEntry("elemental_arcana", 2, 4)
 //                .configureWidget(w -> w.setIcon(EARTHEN_SPIRIT))
 //                .addPage(new HeadlineTextItemPage("elemental_arcana.aerial", "elemental_arcana.aerial.1", AERIAL_SPIRIT.get()))
-//                .addPage(new TextPage("elemental_arcana.aerial.2"))
+//                .addPage(text("elemental_arcana.aerial.2"))
 //                .addPage(new HeadlineTextItemPage("elemental_arcana.earthen", "elemental_arcana.earthen.1", EARTHEN_SPIRIT.get()))
-//                .addPage(new TextPage("elemental_arcana.earthen.2"))
+//                .addPage(text("elemental_arcana.earthen.2"))
 //                .addPage(new HeadlineTextItemPage("elemental_arcana.infernal", "elemental_arcana.infernal.1", INFERNAL_SPIRIT.get()))
-//                .addPage(new TextPage("elemental_arcana.infernal.2"))
+//                .addPage(text("elemental_arcana.infernal.2"))
 //                .addPage(new HeadlineTextItemPage("elemental_arcana.aqueous", "elemental_arcana.aqueous.1", AQUEOUS_SPIRIT.get()))
-//                .addPage(new TextPage("elemental_arcana.aqueous.2"))
+//                .addPage(text("elemental_arcana.aqueous.2"))
 //        );
 //
-//        screen.addEntry("eldritch_arcana", 0, 7, b -> b
+//        screen.addEntry("eldritch_arcana", 0, 7)
 //                .configureWidget(w -> w.setIcon(ELDRITCH_SPIRIT))
 //                .addPage(new HeadlineTextItemPage("eldritch_arcana", "eldritch_arcana.1", ELDRITCH_SPIRIT.get()))
-//                .addPage(new TextPage("eldritch_arcana.2"))
+//                .addPage(text("eldritch_arcana.2"))
 //        );
     }
 }

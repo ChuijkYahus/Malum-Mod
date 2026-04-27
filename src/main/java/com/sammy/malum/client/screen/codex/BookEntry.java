@@ -56,7 +56,7 @@ public class BookEntry {
     }
 
     public String descriptionTranslationKey() {
-        return "malum.gui.book.entry." + identifier + ".description";
+        return "malum.gui.book.entry." + identifier + ".subtext";
     }
 
     public boolean hasContents() {

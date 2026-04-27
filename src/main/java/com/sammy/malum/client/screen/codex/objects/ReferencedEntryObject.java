@@ -25,6 +25,6 @@ public class ReferencedEntryObject extends AbstractSelectableEntryObject<CodexEn
         int entryY = getOffsetYPosition();
         var poseStack = guiGraphics.pose();
         renderTexture(LINK, poseStack, entryX, entryY, 0, flipped ? 26 : 0, width, height, 36, 52);
-        displayedGizmo.render(screen, guiGraphics, entryX + 5, entryY + 5, mouseX, mouseY);
+        displayedGizmo.render(screen, this, guiGraphics, entryX + 5, entryY + 5, mouseX, mouseY);
     }
 }

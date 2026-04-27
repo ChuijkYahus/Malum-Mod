@@ -9,8 +9,8 @@ import java.util.*;
 public class SubspaceEntryObjectHandler extends EntryObjectHandler {
 
     @Override
-    public void setupEntryObjects(AbstractProgressionCodexScreen screen, List<PlacedBookEntry> entries) {
-        super.setupEntryObjects(screen, entries);
+    public void setupEntryObjects(AbstractProgressionCodexScreen screen, EntryStorage entryStorage) {
+        super.setupEntryObjects(screen, entryStorage);
         for (BookObject<AbstractProgressionCodexScreen> object : objects) {
             //A bit ugly, ideally this should be part of some sorta builder, but who cares
             object.isInSubspace = true;

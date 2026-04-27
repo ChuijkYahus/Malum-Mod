@@ -10,8 +10,12 @@ import net.minecraft.resources.ResourceLocation;
 public class TextPage extends BookPage {
     public final Component text;
 
-    public TextPage(String text) {
-        this.text = Component.translatable(BookPage.TEXT + text);
+    public static TextPage textPage(String text) {
+        return new TextPage(text);
+    }
+
+    protected TextPage(String text) {
+        this.text = Component.translatable(textKey(text));
     }
 
     @Override

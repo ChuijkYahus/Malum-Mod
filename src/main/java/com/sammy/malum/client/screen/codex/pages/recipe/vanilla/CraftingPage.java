@@ -1,9 +1,10 @@
 package com.sammy.malum.client.screen.codex.pages.recipe.vanilla;
 
 import com.sammy.malum.*;
-import com.sammy.malum.client.screen.codex.display.DisplayedGizmo;
+import com.sammy.malum.client.screen.codex.display.*;
 import com.sammy.malum.client.screen.codex.pages.*;
 import com.sammy.malum.client.screen.codex.screens.*;
+import com.sammy.malum.registry.common.util.*;
 import net.minecraft.client.gui.*;
 import net.minecraft.client.renderer.GameRenderer;
 import net.minecraft.resources.ResourceLocation;
@@ -12,7 +13,9 @@ import team.lodestar.lodestone.systems.rendering.VFXBuilders;
 import java.util.*;
 import java.util.function.*;
 
-public class CraftingPage extends BookPage {
+import static com.sammy.malum.client.screen.codex.display.DisplayedGizmo.item;
+
+public class CraftingPage extends BookPage implements IGizmoHolder {
 
     public static final ResourceLocation CRAFTING_SEGMENTS = MalumMod.malumPath("textures/gui/book/entry_elements/crafting_segments.png");
 
@@ -35,6 +38,18 @@ public class CraftingPage extends BookPage {
             return this;
         }
 
+        public CraftingGridContents topLayer(DisplayedGizmo display) {
+            return topLeft(display).top(display).topRight(display);
+        }
+
+        public CraftingGridContents middleLayer(DisplayedGizmo display) {
+            return left(display).middle(display).right(display);
+        }
+
+        public CraftingGridContents bottomLayer(DisplayedGizmo display) {
+            return bottomLeft(display).bottom(display).bottomRight(display);
+        }
+
         public CraftingGridContents topLeft(DisplayedGizmo display) {
             return set(0, display);
         }
@@ -47,7 +62,7 @@ public class CraftingPage extends BookPage {
             return set(2, display);
         }
 
-        public CraftingGridContents middleLeft(DisplayedGizmo display) {
+        public CraftingGridContents left(DisplayedGizmo display) {
             return set(3, display);
         }
 
@@ -55,7 +70,7 @@ public class CraftingPage extends BookPage {
             return set(4, display);
         }
 
-        public CraftingGridContents middleRight(DisplayedGizmo display) {
+        public CraftingGridContents right(DisplayedGizmo display) {
             return set(5, display);
         }
 
@@ -76,14 +91,36 @@ public class CraftingPage extends BookPage {
             return this;
         }
     }
+
     private final DisplayedGizmo output;
     private final CraftingGridContents gridContents;
 
-    public static CraftingPage fullBlock(DisplayedGizmo block, DisplayedGizmo input) {
+
+    public static CraftingPage pedestal(WoodBlockSet set) {
+        return pedestal(item(set.itemPedestal), item(set.planks.block), item(set.planks.slab));
+    }
+
+    public static CraftingPage pedestal(DisplayedGizmo pedestal, DisplayedGizmo block, DisplayedGizmo slab) {
+        return new CraftingPage(pedestal, c -> c.topLayer(slab).middle(block).bottomLayer(slab));
+    }
+
+    public static CraftingPage stand(WoodBlockSet set) {
+        return stand(item(set.itemPedestal), item(set.planks.block), item(set.planks.slab));
+    }
+
+    public static CraftingPage stand(DisplayedGizmo pedestal, DisplayedGizmo block, DisplayedGizmo slab) {
+        return new CraftingPage(pedestal, c -> c.middleLayer(slab).bottomLayer(block));
+    }
+
+    public static CraftingPage compacting(DisplayedGizmo block, DisplayedGizmo input) {
         return new CraftingPage(block, c -> c.fill(input));
     }
 
-    public CraftingPage(DisplayedGizmo output, Consumer<CraftingGridContents> builder) {
+    public static CraftingPage crafting(DisplayedGizmo block, Consumer<CraftingGridContents> builder) {
+        return new CraftingPage(block, builder);
+    }
+
+    protected CraftingPage(DisplayedGizmo output, Consumer<CraftingGridContents> builder) {
         this.output = output;
         this.gridContents = new CraftingGridContents();
         builder.accept(gridContents);
@@ -113,10 +150,10 @@ public class CraftingPage extends BookPage {
                         .setUVWithWidth(x*20, y*20, 18, 18, 58, 58)
                         .blit(guiGraphics.pose());
 
-                display.render(screen, guiGraphics, itemPosX, itemPosY, mouseX, mouseY);
+                display.render(screen, this, guiGraphics, itemPosX, itemPosY, mouseX, mouseY);
             }
         }
 
-        output.render(screen, guiGraphics, left + 63, top + 162, mouseX, mouseY);
+        output.render(screen, this, guiGraphics, left + 63, top + 162, mouseX, mouseY);
     }
 }

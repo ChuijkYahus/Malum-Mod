@@ -93,14 +93,14 @@ public class ProgressionEntryObject extends AbstractSelectableEntryObject<Abstra
             design.getFillingTexture().ifPresent(texture -> renderTexture(texture, poseStack, left, top, 0, 0, 64, 64));
         }
         if (displayedGizmo != null) {
-            displayedGizmo.render(screen, guiGraphics, centerX-8, centerY-8, mouseX, mouseY);
+            displayedGizmo.render(screen, this, guiGraphics, centerX-8, centerY-8, mouseX, mouseY);
         }
     }
 
     @Override
     public List<Component> gatherTooltip(AbstractProgressionCodexScreen screen) {
         var tooltip = super.gatherTooltip(screen);
-        ImmutableList<EntryReference> references = entry.references;
+        var references = entry.references;
         for (int i = references.size()-1; i >=0; i--) {
             EntryReference reference = references.get(i);
             if (reference.entry.shouldShow()) {

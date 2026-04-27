@@ -8,21 +8,15 @@ import java.util.function.*;
 
 public interface PlacedEntryAcceptor {
 
-    default void addEntry(String identifier, int xOffset, int yOffset) {
-        addEntry(identifier, xOffset, yOffset, b -> {
-        });
-    }
-
-    default void addEntry(String identifier, int xOffset, int yOffset, Consumer<PlacedBookEntryBuilder> modifier) {
+    default PlacedBookEntryBuilder addEntry(String identifier, int xOffset, int yOffset) {
         var builder = PlacedBookEntry.create(identifier, xOffset, yOffset);
-        modifier.accept(builder);
-        if (builder.hasFragment()) {
-            getEntries().add(builder.buildFragment());
-        }
-        final PlacedBookEntry build = builder.build();
-
-        getEntries().add(build);
+        getEntryStorage().add(builder);
+        return builder;
     }
 
-    Collection<PlacedBookEntry> getEntries();
+    default void bakeEntries() {
+        getEntryStorage().bakeEntries();
+    }
+
+    EntryStorage getEntryStorage();
 }

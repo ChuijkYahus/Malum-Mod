@@ -17,7 +17,6 @@ import net.minecraft.resources.*;
 import net.minecraft.util.*;
 import org.joml.*;
 import org.lwjgl.opengl.*;
-import team.lodestar.lodestone.helpers.*;
 import team.lodestar.lodestone.registry.client.*;
 import team.lodestar.lodestone.modules.core.easing.Easing;
 import team.lodestar.lodestone.systems.particle.builder.*;
@@ -49,7 +48,7 @@ public class SubspaceEntryObject extends ProgressionEntryObject {
     protected final ScreenParticleHolder entryParticles = new ScreenParticleHolder();
     protected final ScreenParticleHolder subspaceParticles = new ScreenParticleHolder();
     protected final SubspaceEntryObjectHandler objects = new SubspaceEntryObjectHandler();
-    protected final List<PlacedBookEntry> entries;
+    protected final EntryStorage entryStorage;
     protected final int subspaceSize;
     @Nullable
     protected final SpiritRiteType riteType;
@@ -59,11 +58,11 @@ public class SubspaceEntryObject extends ProgressionEntryObject {
     protected boolean isActive = false;
     protected int activeDuration;
 
-    public SubspaceEntryObject(BookEntry entry, int posX, int posY, List<PlacedBookEntry> entries, int subspaceSize) {
+    public SubspaceEntryObject(BookEntry entry, int posX, int posY, EntryStorage entryStorage, int subspaceSize) {
         super(entry, posX, posY);
-        this.entries = ImmutableList.copyOf(entries);
+        this.entryStorage = entryStorage;
         this.subspaceSize = subspaceSize;
-        this.riteType = entries.stream().findAny().map(RiteEntryObject::getRiteTypeFromEntry).flatMap(o -> o).orElse(null);
+        this.riteType = entryStorage.getEntries().stream().findAny().map(RiteEntryObject::getRiteTypeFromEntry).flatMap(o -> o).orElse(null);
     }
 
     @Override
@@ -114,7 +113,7 @@ public class SubspaceEntryObject extends ProgressionEntryObject {
             renderRiteIcon(riteType, pose, getOffsetXPosition() + 8, getOffsetYPosition() + 8);
         }
         else {
-            Set<SpiritLike> spirits = entries.stream().map(e -> e.associatedSpirit).filter(Objects::nonNull).collect(Collectors.toSet());
+            Set<SpiritLike> spirits = entryStorage.getEntries().stream().map(e -> e.associatedSpirit).filter(Objects::nonNull).collect(Collectors.toSet());
             for (int i = 0; i < 2; i++) {
                 var texture = i == 0 ? ICON_LEFT_TEXTURE : ICON_RIGHT_TEXTURE;
                 var spirit = spirits.stream().findFirst().orElse(entry.associatedSpirit);
@@ -187,7 +186,7 @@ public class SubspaceEntryObject extends ProgressionEntryObject {
     @Override
     public boolean tryClick(AbstractProgressionCodexScreen screen, double mouseX, double mouseY) {
         if (!assembledObjects) {
-            objects.setupEntryObjects(screen, entries);
+            objects.setupEntryObjects(screen, entryStorage);
             assembledObjects = true;
         }
         if (isActive) {
@@ -355,7 +354,7 @@ public class SubspaceEntryObject extends ProgressionEntryObject {
 
     public static class SubspaceWidgetSupplier implements PlacedBookEntry.WidgetSupplier, PlacedEntryAcceptor {
 
-        protected final List<PlacedBookEntry> entries = new ArrayList<>();
+        protected final EntryStorage entryStorage = new EntryStorage();
 
         protected int size = 160;
 
@@ -368,13 +367,13 @@ public class SubspaceEntryObject extends ProgressionEntryObject {
         }
 
         @Override
-        public List<PlacedBookEntry> getEntries() {
-            return entries;
+        public EntryStorage getEntryStorage() {
+            return entryStorage;
         }
 
         @Override
         public ProgressionEntryObject getBookObject(BookEntry entry, int x, int y) {
-            return new SubspaceEntryObject(entry, x, y, entries, size);
+            return new SubspaceEntryObject(entry, x, y, entryStorage, size);
         }
     }
 }

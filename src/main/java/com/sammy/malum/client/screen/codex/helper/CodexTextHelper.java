@@ -23,22 +23,25 @@ import java.util.function.*;
 import static com.sammy.malum.client.screen.codex.display.CodexTextRenderer.DEFAULT_TEXT_COLOR;
 import static net.minecraft.util.FastColor.ARGB32.color;
 
-@Deprecated
 public class CodexTextHelper {
     public static final Function<GuiGraphics, LodestoneBufferWrapper> WRAPPER_FUNCTION = Util.memoize(guiGraphics -> new LodestoneBufferWrapper(LodestoneRenderTypes.ADDITIVE_TEXT, guiGraphics.bufferSource));
 
+    @Deprecated
     public static void renderWrappingText(GuiGraphics guiGraphics, String text, float x, float y, int width) {
         renderWrappingText(guiGraphics, Component.translatable(text), x, y, width);
     }
 
+    @Deprecated
     public static void renderWrappingText(GuiGraphics guiGraphics, Component text, float x, float y, int width) {
         renderWrappingText(guiGraphics, DEFAULT_TEXT_COLOR, text, x, y, width);
     }
 
+    @Deprecated
     public static void renderWrappingText(GuiGraphics guiGraphics, CodexTextRenderer.TextColorData colorData, String text, float x, float y, int width) {
         renderWrappingText(guiGraphics, colorData, Component.translatable(text), x, y, width);
     }
 
+    @Deprecated
     public static void renderWrappingText(GuiGraphics guiGraphics, CodexTextRenderer.TextColorData colorData, Component text, float x, float y, int width) {
         float scale = 1;
         String translated = text.getString();
@@ -51,6 +54,7 @@ public class CodexTextHelper {
         renderWrappingText(guiGraphics, colorData, text, x, y, width, scale);
     }
 
+    @Deprecated
     public static void renderWrappingText(GuiGraphics guiGraphics, CodexTextRenderer.TextColorData colorData, Component text, float x, float y, int width, float scaleMultiplier) {
         Font font = Minecraft.getInstance().font;
         var wrapped = wrapText(text, (int) (width / scaleMultiplier));
@@ -67,6 +71,7 @@ public class CodexTextHelper {
         }
     }
 
+    @Deprecated
     public static void renderHeadline(GuiGraphics graphics, Component component, int left, int top) {
         int width = Minecraft.getInstance().font.width(component.getString());
         float scale = 1f;
@@ -84,22 +89,27 @@ public class CodexTextHelper {
         renderText(graphics, component, textLeft - width / 2f, textTop, scale);
     }
 
+    @Deprecated
     public static void renderText(GuiGraphics guiGraphics, Component component, float x, float y) {
         renderText(guiGraphics, DEFAULT_TEXT_COLOR, component, x, y, 0.4f);
     }
 
+    @Deprecated
     public static void renderText(GuiGraphics guiGraphics, Component component, float x, float y, float scale) {
         renderText(guiGraphics, DEFAULT_TEXT_COLOR, component, x, y, 0.4f, scale);
     }
 
+    @Deprecated
     public static void renderText(GuiGraphics guiGraphics, CodexTextRenderer.TextColorData colorData, Component component, float x, float y, float glow) {
         renderText(guiGraphics, colorData, component, x, y, glow, 1f);
     }
 
+    @Deprecated
     public static void renderText(GuiGraphics guiGraphics, CodexTextRenderer.TextColorData colorData, Component component, float x, float y, float glow, float scale) {
         renderRawText(guiGraphics, colorData, component.getVisualOrderText(), x, y, glow, scale);
     }
 
+    @Deprecated
     private static void renderRawText(GuiGraphics guiGraphics, CodexTextRenderer.TextColorData colorData, FormattedCharSequence text, float x, float y, float glowMultiplier, float scaleMultiplier) {
         var minecraft = Minecraft.getInstance();
         var poseStack = guiGraphics.pose();
@@ -329,13 +339,12 @@ public class CodexTextHelper {
         return lines;
     }
 
-    private static StringBuilder applyModifiers(StringBuilder word, AtomicBoolean italic, AtomicBoolean bold, AtomicBoolean strikethrough, AtomicBoolean underline, AtomicBoolean obfuscated) {
+    private static void applyModifiers(StringBuilder word, AtomicBoolean italic, AtomicBoolean bold, AtomicBoolean strikethrough, AtomicBoolean underline, AtomicBoolean obfuscated) {
         if (italic.get()) word.append(ChatFormatting.ITALIC);
         if (bold.get()) word.append(ChatFormatting.BOLD);
         if (strikethrough.get()) word.append(ChatFormatting.STRIKETHROUGH);
         if (underline.get()) word.append(ChatFormatting.UNDERLINE);
         if (obfuscated.get()) word.append(ChatFormatting.OBFUSCATED);
-        return word;
     }
 
     private static Optional<ChatFormatting> findModifier(char modifierChar, AtomicBoolean italic, AtomicBoolean bold, AtomicBoolean strikethrough, AtomicBoolean underline, AtomicBoolean obfuscated) {

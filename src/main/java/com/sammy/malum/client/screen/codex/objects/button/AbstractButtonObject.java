@@ -1,7 +1,6 @@
 package com.sammy.malum.client.screen.codex.objects.button;
 
-import com.sammy.malum.client.screen.codex.display.CodexOutlineRenderer;
-import com.sammy.malum.client.screen.codex.display.DisplayedGizmo;
+import com.sammy.malum.client.screen.codex.display.*;
 import com.sammy.malum.client.screen.codex.objects.BookObject;
 import com.sammy.malum.client.screen.codex.screens.CodexEntryScreen;
 import com.sammy.malum.registry.common.sound.MalumSoundEvents;
@@ -11,7 +10,7 @@ import team.lodestar.lodestone.helpers.DataHelper;
 
 import static com.sammy.malum.client.screen.codex.helper.CodexRenderHelper.renderTexture;
 
-public abstract class AbstractButtonObject extends BookObject<CodexEntryScreen> {
+public abstract class AbstractButtonObject extends BookObject<CodexEntryScreen> implements IGizmoHolder {
 
     protected final ResourceLocation base;
     protected final ResourceLocation hover;
@@ -62,7 +61,7 @@ public abstract class AbstractButtonObject extends BookObject<CodexEntryScreen> 
         renderTexture(texture, poseStack, x, y, 0, 0, width, height);
         if (gizmo != null) {
             int offset = getGizmoOffset();
-            gizmo.render(screen, guiGraphics, x + offset, y + offset, mouseX, mouseY);
+            gizmo.render(screen, this, guiGraphics, x + offset, y + offset, mouseX, mouseY);
         }
     }
 

@@ -1,14 +1,14 @@
 package com.sammy.malum.client.screen.codex.pages;
 
 import com.sammy.malum.MalumMod;
-import com.sammy.malum.client.screen.codex.display.DisplayedGizmo;
+import com.sammy.malum.client.screen.codex.display.*;
 import com.sammy.malum.client.screen.codex.screens.CodexEntryScreen;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.renderer.GameRenderer;
 import net.minecraft.resources.ResourceLocation;
 import team.lodestar.lodestone.systems.rendering.VFXBuilders;
 
-public class InteractionPage extends BookPage {
+public class InteractionPage extends BookPage implements IGizmoHolder {
 
     public enum InteractionType {
         STRIPPING("stripping"),
@@ -46,8 +46,8 @@ public class InteractionPage extends BookPage {
 
     @Override
     public void render(CodexEntryScreen screen, GuiGraphics guiGraphics, int left, int top, int mouseX, int mouseY, float partialTicks, boolean isRepeat) {
-        upperDisplay.render(screen, guiGraphics, left + 63, top + 70, mouseX, mouseY);
-        lowerDisplay.render(screen, guiGraphics, left + 63, top + 162, mouseX, mouseY);
+        upperDisplay.render(screen, this, guiGraphics, left + 63, top + 70, mouseX, mouseY);
+        lowerDisplay.render(screen, this, guiGraphics, left + 63, top + 162, mouseX, mouseY);
 
         var interactionIconTexture = MalumMod.malumPath("textures/gui/book/entry_elements/interaction_" + interactionType.name + ".png");
 

@@ -17,16 +17,17 @@ public class EntryObjectHandler extends BookObjectHandler<AbstractProgressionCod
     }
 
     public void setupEntryObjects(AbstractProgressionCodexScreen screen) {
-        setupEntryObjects(screen, screen.getEntries());
+        setupEntryObjects(screen, screen.entryStorage);
     }
 
-    public void setupEntryObjects(AbstractProgressionCodexScreen screen, List<PlacedBookEntry> entries) {
+    public void setupEntryObjects(AbstractProgressionCodexScreen screen, EntryStorage entryStorage) {
         objects.clear();
         entryObjectMap.clear();
 
+        var baked = entryStorage.bakeEntries();
         ArrayList<ProgressionEntryObject> objects = new ArrayList<>();
         ArrayList<SubspaceEntryObject> subspaceObjects = new ArrayList<>();
-        for (PlacedBookEntry entry : entries) {
+        for (PlacedBookEntry entry : baked) {
             var data = entry.getWidgetData();
             var bookObject = data.widgetSupplier().getBookObject(entry, data.xOffset(), -data.yOffset());
             var config = data.widgetConfig();

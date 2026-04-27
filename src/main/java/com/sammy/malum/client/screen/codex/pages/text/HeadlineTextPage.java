@@ -9,23 +9,31 @@ import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.*;
 
-public class HeadlineTextPage extends BookPage {
+public class HeadlineTextPage extends BookPage implements IGizmoHolder {
 
     protected final Component headline;
     protected final Component text;
 
-    public HeadlineTextPage(String text) {
-        this(text, text +".1");
+    protected final String id;
+
+
+    public static HeadlineTextPage headlineText(String text) {
+        return new HeadlineTextPage(text, text +".1");
     }
 
-    public HeadlineTextPage(String headline, String text) {
+    public static HeadlineTextPage headlineText(String headline, String text) {
+        return new HeadlineTextPage(headline, text);
+    }
+
+    protected HeadlineTextPage(String headline, String text) {
         if (PageSelectionPage.FLAG) {
-            this.headline = Component.translatable(DisplayedGizmo.TITLE + headline);
+            this.headline = Component.translatable(DisplayedGizmo.title(headline));
         }
         else {
-            this.headline = Component.translatable(BookPage.HEADLINE + headline);
+            this.headline = Component.translatable(headlineKey(headline));
         }
-        this.text = Component.translatable(BookPage.TEXT + text);
+        this.text = Component.translatable(textKey(text));
+        this.id = headline;
     }
 
     @Override
@@ -37,5 +45,10 @@ public class HeadlineTextPage extends BookPage {
     public void render(CodexEntryScreen screen, GuiGraphics guiGraphics, int left, int top, int mouseX, int mouseY, float partialTicks, boolean isRepeat) {
         CodexTextHelper.renderHeadline(guiGraphics, headline, left, top);
         CodexTextHelper.renderWrappingText(guiGraphics, text, left + 6, top + 32, 140);
+    }
+
+    @Override
+    public String getGizmoId() {
+        return id;
     }
 }
