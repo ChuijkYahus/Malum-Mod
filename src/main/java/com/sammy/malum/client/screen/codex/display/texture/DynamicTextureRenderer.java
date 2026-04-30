@@ -12,6 +12,7 @@ import com.sammy.malum.*;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.renderer.GameRenderer;
+import net.minecraft.client.renderer.ShaderInstance;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
@@ -100,6 +101,15 @@ public class DynamicTextureRenderer {
     }
 
     /**
+     * Draws a flax GUI-like item onto this texture with the given size
+     *
+     * @param texture texture you want to draw
+     */
+    public RenderableDynamicTexture requestTexture(ResourceLocation texture, boolean updateEachFrame) {
+        return requestTexture(t -> drawTexture(t, texture), updateEachFrame);
+    }
+
+    /**
      * Gets a texture object on which you'll be able to directly draw onto as its in essence a frame buffer
      * Remember to call isInitialized() as the returned texture might be empty
      * For practical purposes you are only interested to call something like buffer.getBuffer(RenderType.entityCutout(texture.getTextureLocation()));
@@ -161,6 +171,22 @@ public class DynamicTextureRenderer {
     }
 
     protected void drawTexture(RenderableDynamicTexture tex, ResourceLocation texture) {
+        drawTexture(tex, GameRenderer::getPositionTexColorShader, texture);
+    }
+
+    protected void drawTexture(RenderableDynamicTexture tex, Supplier<ShaderInstance> shader, ResourceLocation texture) {
+        drawAsInGUI(tex, s -> {
+            var pose = s.pose();
+            VFXBuilders.createScreen()
+                    .setPositionWithWidth(0, 0, size, size)
+                    .setUV(0, 1, 1, 0)
+                    .setTexture(texture)
+                    .setShader(GameRenderer::getPositionTexColorShader)
+                    .blit(pose);
+        });
+    }
+
+    protected void drawOutline(RenderableDynamicTexture tex, ResourceLocation texture) {
         drawAsInGUI(tex, s -> {
             var pose = s.pose().last();
             RenderSystem.setShaderTexture(0, texture);

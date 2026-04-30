@@ -78,12 +78,12 @@ public class CodexOutlineRenderer {
         RenderSystem.defaultBlendFunc();
 
         float darknessAlpha = Math.min(effectStrength * 2.5f, 1f);
-        renderOutline(poseStack, outlineTexture, distortionIntensity, darknessAlpha, i -> Color.BLACK);
+        renderOutline(poseStack, outlineTexture, 6, distortionIntensity, darknessAlpha, i -> Color.BLACK);
 
         if (effectStrength >= 0.5f) {
             float glowAlpha = (effectStrength - 0.5f) * 2f;
             RenderSystem.blendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE);
-            renderOutline(poseStack, glowTexture, distortionIntensity, glowAlpha, this::getSpiritColor);
+            renderOutline(poseStack, glowTexture, 4, distortionIntensity, glowAlpha, this::getSpiritColor);
         }
 
         RenderSystem.defaultBlendFunc();
@@ -94,9 +94,11 @@ public class CodexOutlineRenderer {
      * @param distortion Controls how much wobbliness the shader used is to apply. Lower values result in more distortion
      * @param glow Controls the range and opacity of applied light
      */
-    protected void renderOutline(PoseStack poseStack, ResourceLocation texture, float distortion, float glow, Int2ObjectFunction<Color> colorSupplier) {
+    protected void renderOutline(PoseStack poseStack, ResourceLocation texture, int outlineWidth, float distortion, float glow, Int2ObjectFunction<Color> colorSupplier) {
         var minecraft = Minecraft.getInstance();
         float delta = minecraft.getTimer().getGameTimeDeltaPartialTick(true);
+
+
         var light = LodestoneShaders.RADIAL_DISTORTED_SCREEN_LIGHT.getShaderInstance();
         light.safeGetUniform("YFrequency").set(24f);
         light.safeGetUniform("XFrequency").set(32f);
