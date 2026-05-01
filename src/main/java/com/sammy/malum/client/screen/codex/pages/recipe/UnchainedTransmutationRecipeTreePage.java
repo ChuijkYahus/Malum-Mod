@@ -69,7 +69,7 @@ public class UnchainedTransmutationRecipeTreePage extends BookPage {
 
     @Override
     public void render(CodexEntryScreen screen, GuiGraphics guiGraphics, int left, int top, int mouseX, int mouseY, float partialTicks, boolean isRepeat) {
-        CodexTextHelper.renderHeadline(guiGraphics, headline, left, top);
+//        CodexTextHelper.renderHeadline(guiGraphics, headline, left, top);
         if (!isRepeat) {
             if (ScreenParticleHandler.canSpawnParticles) {
                 TRANSMUTATION_PARTICLES.tick();

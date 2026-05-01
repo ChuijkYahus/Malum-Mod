@@ -9,6 +9,7 @@ import com.mojang.blaze3d.platform.NativeImage;
 import com.mojang.blaze3d.systems.RenderSystem;
 import com.mojang.blaze3d.vertex.*;
 import com.sammy.malum.*;
+import com.sammy.malum.registry.client.MalumShaders;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.renderer.GameRenderer;
@@ -16,7 +17,6 @@ import net.minecraft.client.renderer.ShaderInstance;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
-import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import org.joml.Matrix4f;
 import team.lodestar.lodestone.systems.rendering.*;
@@ -46,19 +46,28 @@ public class DynamicTextureRenderer {
                         }
                     });
 
-    protected final ResourceLocation texturePath;
-    protected int size;
+    public final ResourceLocation texturePath;
+    public int width;
+    public int height;
+
+    public static DynamicTextureRenderer create(ResourceLocation texturePath) {
+        return new DynamicTextureRenderer(texturePath);
+    }
 
     public DynamicTextureRenderer(ResourceLocation texturePath) {
         this.texturePath = texturePath;
     }
 
     public DynamicTextureRenderer setTextureSize(int size) {
-        this.size = size;
+        return setTextureSize(size, size);
+    }
+
+    public DynamicTextureRenderer setTextureSize(int width, int height) {
+        this.width = width;
+        this.height = height;
         return this;
     }
 
-    //clears the texture cache and forge all to be re-rendered
     public static void clearCache() {
         TEXTURE_CACHE.invalidateAll();
     }
@@ -70,7 +79,7 @@ public class DynamicTextureRenderer {
     }
 
     public RenderableDynamicTexture requestFlatItemStackTexture(ItemStack stack) {
-        return requestTexture(t -> drawItem(t, stack), true);
+        return drawAndRequestTexture(t -> drawItem(t, stack), true);
     }
 
     public RenderableDynamicTexture requestFlatItemTexture(Item item) {
@@ -81,15 +90,9 @@ public class DynamicTextureRenderer {
         return requestFlatItemTexture(item, postProcessing, false);
     }
 
-    /**
-     * Draws a flax GUI-like item onto this texture with the given size
-     *
-     * @param item           item you want to draw
-     * @param postProcessing some extra drawing functions to be applied on the native image. Can be slow as its cpu sided
-     */
-    public RenderableDynamicTexture requestFlatItemTexture(Item item,
-                                                           @Nullable Consumer<NativeImage> postProcessing, boolean updateEachFrame) {
-        return requestTexture(t -> {
+
+    public RenderableDynamicTexture requestFlatItemTexture(Item item, @Nullable Consumer<NativeImage> postProcessing, boolean updateEachFrame) {
+        return drawAndRequestTexture(t -> {
             drawItem(t, item.getDefaultInstance());
             if (postProcessing != null) {
                 t.download();
@@ -100,36 +103,24 @@ public class DynamicTextureRenderer {
         }, updateEachFrame);
     }
 
-    /**
-     * Draws a flax GUI-like item onto this texture with the given size
-     *
-     * @param texture texture you want to draw
-     */
-    public RenderableDynamicTexture requestTexture(ResourceLocation texture, boolean updateEachFrame) {
-        return requestTexture(t -> drawTexture(t, texture), updateEachFrame);
+
+    public RenderableDynamicTexture requestOutline(ResourceLocation texture, int sourceWidth, int sourceHeight, int outlineWidth, boolean updateEachFrame) {
+        return drawAndRequestTexture(t -> drawOutline(t, texture, sourceWidth, sourceHeight, outlineWidth), updateEachFrame);
     }
 
-    /**
-     * Gets a texture object on which you'll be able to directly draw onto as its in essence a frame buffer
-     * Remember to call isInitialized() as the returned texture might be empty
-     * For practical purposes you are only interested to call something like buffer.getBuffer(RenderType.entityCutout(texture.getTextureLocation()));
-     *
-     * @param textureDrawingFunction this is the function responsible to draw things onto this texture
-     * @return texture instance
-     */
-    public RenderableDynamicTexture requestTexture(Consumer<RenderableDynamicTexture> textureDrawingFunction, boolean updateEachFrame) {
-        var t = requestTexture((rl) -> new RenderableDynamicTexture(rl, size, textureDrawingFunction));
+    public RenderableDynamicTexture requestTexture(ResourceLocation texture, boolean updateEachFrame) {
+        return drawAndRequestTexture(t -> drawTexture(t, texture), updateEachFrame);
+    }
+
+    public RenderableDynamicTexture drawAndRequestTexture(Consumer<RenderableDynamicTexture> textureDrawingFunction, boolean updateEachFrame) {
+        var t = requestTexture((rl) -> new RenderableDynamicTexture(rl, width, height, textureDrawingFunction));
         if (t != null && updateEachFrame) {
             t.setUpdateNextTick(true);
         }
         return t;
     }
 
-    /**
-     * Gets a texture object on which you'll be able to directly draw onto as its in essence a frame buffer
-     * Remember to call isInitialized() as the returned texture might be empty
-     * For practical purposes you are only interested to call something like buffer.getBuffer(RenderType.entityCutout(texture.getTextureLocation()));
-     * **/
+
     public <T extends RenderableDynamicTexture> T requestTexture(
             Function<ResourceLocation, T> textureSupplier
     ) {
@@ -166,50 +157,53 @@ public class DynamicTextureRenderer {
         return t;
     }
 
-    protected void drawItem(RenderableDynamicTexture tex, ItemStack stack) {
+    public void drawItem(RenderableDynamicTexture tex, ItemStack stack) {
         drawAsInGUI(tex, g -> g.renderFakeItem(stack, 0, 0));
     }
 
-    protected void drawTexture(RenderableDynamicTexture tex, ResourceLocation texture) {
+    public void drawTexture(RenderableDynamicTexture tex, ResourceLocation texture) {
         drawTexture(tex, GameRenderer::getPositionTexColorShader, texture);
     }
 
-    protected void drawTexture(RenderableDynamicTexture tex, Supplier<ShaderInstance> shader, ResourceLocation texture) {
-        drawAsInGUI(tex, s -> {
-            var pose = s.pose();
-            VFXBuilders.createScreen()
-                    .setPositionWithWidth(0, 0, size, size)
-                    .setUV(0, 1, 1, 0)
-                    .setTexture(texture)
-                    .setShader(GameRenderer::getPositionTexColorShader)
-                    .blit(pose);
-        });
+    public void drawOutline(RenderableDynamicTexture tex, ResourceLocation texture, int sourceWidth, int sourceHeight, int outlineWidth) {
+        var outline = MalumShaders.OUTLINED_HUD_ELEMENT.getShaderInstance();
+        outline.safeGetUniform("OutlineWidth").set(outlineWidth);
+        outline.safeGetUniform("SourceTextureSize").set((float)sourceWidth, (float)sourceHeight);
+        outline.safeGetUniform("OutputTextureSize").set((float)width, (float)height);
+        drawTexture(tex, MalumShaders.OUTLINED_HUD_ELEMENT::getShaderInstance, texture);
+        outline.setUniformDefaults();
     }
 
-    protected void drawOutline(RenderableDynamicTexture tex, ResourceLocation texture) {
+    public void drawTexture(RenderableDynamicTexture tex, Supplier<ShaderInstance> shader, ResourceLocation texture) {
         drawAsInGUI(tex, s -> {
+
             var pose = s.pose().last();
             RenderSystem.setShaderTexture(0, texture);
-            RenderSystem.disableDepthTest();
+            RenderSystem.enableDepthTest();
             RenderSystem.depthMask(false);
-            RenderSystem.disableBlend();
-            RenderSystem.setShader(GameRenderer::getPositionTexColorShader);
+            RenderSystem.enableBlend();
+            RenderSystem.setShader(shader);
             RenderSystem.setShaderColor(1.0F, 1.0F, 1.0F, 1);
             var tesselator = Tesselator.getInstance();
             var builder = tesselator.begin(VertexFormat.Mode.QUADS, DefaultVertexFormat.POSITION_TEX);
-            builder.addVertex(pose, 0, size, 0).setUv(0, 0);
-            builder.addVertex(pose, size, size, 0).setUv(1, 0);
-            builder.addVertex(pose, size, 0, 0).setUv(1, 1);
+            builder.addVertex(pose, 0, height, 0).setUv(0, 0);
+            builder.addVertex(pose, width, height, 0).setUv(1, 0);
+            builder.addVertex(pose, width, 0, 0).setUv(1, 1);
             builder.addVertex(pose, 0, 0, 0).setUv(0, 1);
 
             BufferUploader.drawWithShader(builder.buildOrThrow());
+
+            VFXBuilders.createScreen()
+                    .setPositionWithWidth(0, 0, width, height)
+                    .setUV(0, 1, 1, 0)
+                    .setFormat(DefaultVertexFormat.POSITION_TEX)
+                    .setTexture(texture)
+                    .setShader(shader)
+                    .blit(s.pose());
         });
     }
 
-    /**
-     * Coordinates here are from 0 to 1
-     */
-    protected void drawNormalized(RenderableDynamicTexture tex, Consumer<PoseStack> drawFunction) {
+    public void drawNormalized(RenderableDynamicTexture tex, Consumer<PoseStack> drawFunction) {
         drawAsInGUI(tex, g -> {
             var s = g.pose();
             float scale = 1f / 16f;
@@ -219,10 +213,6 @@ public class DynamicTextureRenderer {
         });
     }
 
-    /**
-     * Utility method that sets up an environment akin to gui rendering with a box from 0 t0 16.
-     * If you render an item at 0,0 it will be centered
-     */
     public void drawAsInGUI(RenderableDynamicTexture tex, Consumer<GuiGraphics> drawFunction) {
         //fog bs that idk why its needed with flywheel. MC gui code doesnt need that
         float fogStart = RenderSystem.getShaderFogStart();
@@ -242,7 +232,7 @@ public class DynamicTextureRenderer {
         //save old projection and sets new orthographic
         RenderSystem.backupProjectionMatrix();
         //like this so object center is exactly at 0 0 0
-        Matrix4f matrix4f = new Matrix4f().setOrtho(0.0F, size, size, 0, -1000.0F, 1000);
+        Matrix4f matrix4f = new Matrix4f().setOrtho(0.0F, width, height, 0, -1000.0F, 1000);
         RenderSystem.setProjectionMatrix(matrix4f, VertexSorting.ORTHOGRAPHIC_Z);
 
         //model view stuff

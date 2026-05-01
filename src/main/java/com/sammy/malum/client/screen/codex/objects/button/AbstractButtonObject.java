@@ -16,8 +16,6 @@ public abstract class AbstractButtonObject extends BookObject<CodexEntryScreen> 
     protected final ResourceLocation hover;
     protected final ResourceLocation pressed;
     protected final ResourceLocation active;
-    protected final ResourceLocation glow;
-    protected final ResourceLocation outline;
 
     protected final DisplayedGizmo gizmo;
     protected final int buttonIndex;
@@ -31,8 +29,6 @@ public abstract class AbstractButtonObject extends BookObject<CodexEntryScreen> 
         this.hover = baseTexture.withSuffix("_hover.png");
         this.pressed = baseTexture.withSuffix("_pressed.png");
         this.active = baseTexture.withSuffix("_active.png");
-        this.glow = baseTexture.withSuffix("_glow.png");
-        this.outline = baseTexture.withSuffix("_outline.png");
 
         this.gizmo = gizmo;
         this.buttonIndex = buttonIndex;
@@ -53,10 +49,12 @@ public abstract class AbstractButtonObject extends BookObject<CodexEntryScreen> 
         int xOffset = (64 - width)/2;
         int yOffset = (64 - height)/2;
 
-        CodexOutlineRenderer.create(glow, outline, x-xOffset, y-yOffset)
+        CodexOutlineRenderer.create(texture, x-xOffset, y-yOffset, width, height)
                 .setEffectStrength(oldOutlineVisibility, outlineVisibility, 1f)
                 .setDistortion(50f)
                 .setOffset(buttonIndex * 600)
+                .setOutlineWidth(4)
+                .setShadowWidth(5)
                 .renderOutline(poseStack);
         renderTexture(texture, poseStack, x, y, 0, 0, width, height);
         if (gizmo != null) {

@@ -6,12 +6,8 @@ uniform sampler2D Sampler0;
 uniform sampler2D Sampler1;
 uniform sampler2D Sampler2;
 
-uniform float LumiTransparency;
 uniform float GameTime;
 
-uniform vec4 ColorModulator;
-
-in vec4 vertexColor;
 in vec2 texCoord0;
 
 out vec4 fragColor;
@@ -28,6 +24,5 @@ void main() {
     float lumi = 0.21 * cutoutColor.r + 0.71 * cutoutColor.g + 0.07 * cutoutColor.b;
     vec4 combinedColor = textureColor;
     combinedColor += targetColor * lumi;
-    vec4 color = transformColor(combinedColor, LumiTransparency, vertexColor, ColorModulator);
     fragColor = combinedColor;
 }

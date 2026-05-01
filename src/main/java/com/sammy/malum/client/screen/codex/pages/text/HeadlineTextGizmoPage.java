@@ -1,12 +1,9 @@
 package com.sammy.malum.client.screen.codex.pages.text;
 
 import com.sammy.malum.client.screen.codex.display.*;
-import com.sammy.malum.client.screen.codex.helper.*;
 import com.sammy.malum.client.screen.codex.screens.*;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.resources.ResourceLocation;
-
-import static com.sammy.malum.client.screen.codex.helper.CodexTextHelper.renderHeadline;
 
 public class HeadlineTextGizmoPage extends HeadlineTextPage {
 
@@ -31,8 +28,9 @@ public class HeadlineTextGizmoPage extends HeadlineTextPage {
 
     @Override
     public void render(CodexEntryScreen screen, GuiGraphics guiGraphics, int left, int top, int mouseX, int mouseY, float partialTicks, boolean isRepeat) {
-        renderHeadline(guiGraphics, headline, left, top);
-        CodexTextHelper.renderWrappingText(guiGraphics, text, left + 6, top + 87, 140);
+        CodexTextRenderer.create()
+                .renderHeadline(guiGraphics, headline, left, top)
+                .renderHeadlineGizmoPageContents(guiGraphics, text, left, top);
         displayedGizmo.render(screen, this, guiGraphics, left + 63, top + 45, mouseX, mouseY);
     }
 }

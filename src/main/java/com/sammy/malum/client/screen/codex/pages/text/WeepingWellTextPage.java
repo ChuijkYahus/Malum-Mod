@@ -57,8 +57,8 @@ public class WeepingWellTextPage extends BookPage {
     public void render(CodexEntryScreen screen, GuiGraphics guiGraphics, int left, int top, int mouseX, int mouseY, float partialTicks, boolean isRepeat) {
         final ClientLevel level = Minecraft.getInstance().level;
         Component component = Component.translatable(headlineTranslationKey());
-        CodexTextHelper.renderText(guiGraphics, component, left + 70 - Minecraft.getInstance().font.width(component.getString()) / 2f, top + 5);
-        CodexTextHelper.renderWrappingText(guiGraphics, translationKey(), left + 6, top + 75, 130);
+//        CodexTextHelper.renderText(guiGraphics, component, left + 70 - Minecraft.getInstance().font.width(component.getString()) / 2f, top + 5);
+//        CodexTextHelper.renderWrappingText(guiGraphics, translationKey(), left + 6, top + 75, 130);
         if (!isRepeat) {
             if (ScreenParticleHandler.canSpawnParticles) {
                 ITEM_PARTICLES.tick();

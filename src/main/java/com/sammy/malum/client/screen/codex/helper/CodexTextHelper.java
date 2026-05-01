@@ -26,68 +26,6 @@ import static net.minecraft.util.FastColor.ARGB32.color;
 public class CodexTextHelper {
     public static final Function<GuiGraphics, LodestoneBufferWrapper> WRAPPER_FUNCTION = Util.memoize(guiGraphics -> new LodestoneBufferWrapper(LodestoneRenderTypes.ADDITIVE_TEXT, guiGraphics.bufferSource));
 
-    @Deprecated
-    public static void renderWrappingText(GuiGraphics guiGraphics, String text, float x, float y, int width) {
-        renderWrappingText(guiGraphics, Component.translatable(text), x, y, width);
-    }
-
-    @Deprecated
-    public static void renderWrappingText(GuiGraphics guiGraphics, Component text, float x, float y, int width) {
-        renderWrappingText(guiGraphics, DEFAULT_TEXT_COLOR, text, x, y, width);
-    }
-
-    @Deprecated
-    public static void renderWrappingText(GuiGraphics guiGraphics, CodexTextRenderer.TextColorData colorData, String text, float x, float y, int width) {
-        renderWrappingText(guiGraphics, colorData, Component.translatable(text), x, y, width);
-    }
-
-    @Deprecated
-    public static void renderWrappingText(GuiGraphics guiGraphics, CodexTextRenderer.TextColorData colorData, Component text, float x, float y, int width) {
-        float scale = 1;
-        String translated = text.getString();
-        if (translated.startsWith("$m")) {
-            final int i = translated.indexOf("/$");
-            float value = Float.parseFloat(translated.substring(3, i));
-            text = Component.literal(translated.substring(i + 2));
-            scale = value;
-        }
-        renderWrappingText(guiGraphics, colorData, text, x, y, width, scale);
-    }
-
-    @Deprecated
-    public static void renderWrappingText(GuiGraphics guiGraphics, CodexTextRenderer.TextColorData colorData, Component text, float x, float y, int width, float scaleMultiplier) {
-        Font font = Minecraft.getInstance().font;
-        var wrapped = wrapText(text, (int) (width / scaleMultiplier));
-        for (int i = 0; i < wrapped.size(); i++) {
-            String currentLine = wrapped.get(i);
-            float textX = x;
-            float textY = y;
-            if (scaleMultiplier != 1) {
-                textX /= scaleMultiplier;
-                textY /= scaleMultiplier;
-            }
-            var charSequence = FormattedCharSequence.forward(currentLine, Style.EMPTY);
-            renderRawText(guiGraphics, colorData, charSequence, textX, textY + i * (font.lineHeight + 1), 0.2f, scaleMultiplier);
-        }
-    }
-
-    @Deprecated
-    public static void renderHeadline(GuiGraphics graphics, Component component, int left, int top) {
-        int width = Minecraft.getInstance().font.width(component.getString());
-        float scale = 1f;
-        if (width > 100) {
-            scale -= (width - 100) / 200f;
-        }
-        float textLeft = left + 72;
-        float textTop = top + 7;
-
-        if (scale != 1) {
-            textLeft /= scale;
-            textTop /= scale;
-            textTop += 5 * (1 - scale);
-        }
-        renderText(graphics, component, textLeft - width / 2f, textTop, scale);
-    }
 
     @Deprecated
     public static void renderText(GuiGraphics guiGraphics, Component component, float x, float y) {
@@ -185,80 +123,8 @@ public class CodexTextHelper {
         }
     }
 
-    public static MutableComponent convertToComponent(String text) {
-        return convertToComponent(text, UnaryOperator.identity());
-    }
-
-    public static MutableComponent convertToComponent(String text, UnaryOperator<Style> styleModifier) {
-        text = Component.translatable(text).getString();
-
-        MutableComponent raw = Component.empty();
-
-        boolean italic = false;
-        boolean bold = false;
-        boolean strikethrough = false;
-        boolean underline = false;
-        boolean obfuscated = false;
-
-        StringBuilder line = new StringBuilder();
-        for (int i = 0; i < text.length(); i++) {
-            char chr = text.charAt(i);
-            if (chr == '$') {
-                if (i != text.length() - 1) {
-                    char peek = text.charAt(i + 1);
-                    switch (peek) {
-                        case 'i' -> {
-                            line = commitComponent(raw, italic, bold, strikethrough, underline, obfuscated, line, styleModifier);
-                            italic = true;
-                            i++;
-                        }
-                        case 'b' -> {
-                            line = commitComponent(raw, italic, bold, strikethrough, underline, obfuscated, line, styleModifier);
-                            bold = true;
-                            i++;
-                        }
-                        case 's' -> {
-                            line = commitComponent(raw, italic, bold, strikethrough, underline, obfuscated, line, styleModifier);
-                            strikethrough = true;
-                            i++;
-                        }
-                        case 'u' -> {
-                            line = commitComponent(raw, italic, bold, strikethrough, underline, obfuscated, line, styleModifier);
-                            underline = true;
-                            i++;
-                        }
-                        case 'k' -> {
-                            line = commitComponent(raw, italic, bold, strikethrough, underline, obfuscated, line, styleModifier);
-                            obfuscated = true;
-                            i++;
-                        }
-                        default -> line.append(chr);
-                    }
-                } else {
-                    line.append(chr);
-                }
-            } else if (chr == '/') {
-                if (i != text.length() - 1) {
-                    char peek = text.charAt(i + 1);
-                    if (peek == '$') {
-                        line = commitComponent(raw, italic, bold, strikethrough, underline, obfuscated, line, styleModifier);
-                        italic = bold = strikethrough = underline = obfuscated = false;
-                        i++;
-                    } else
-                        line.append(chr);
-                } else
-                    line.append(chr);
-            } else {
-                line.append(chr);
-            }
-        }
-        commitComponent(raw, italic, bold, strikethrough, underline, obfuscated, line, styleModifier);
-
-        return raw;
-    }
-
     public static List<Component> wrapComponent(Component source, MutableComponent header, int width) {
-        var wrapped = wrapText(source, width).stream().map(Component::literal).toList();
+        var wrapped = wrapComponent(source, width);
         var result = new ArrayList<Component>();
         for (MutableComponent mutableComponent : wrapped) {
             result.add(header.copy().append(mutableComponent.setStyle(source.getStyle())));
@@ -266,8 +132,8 @@ public class CodexTextHelper {
         return result;
     }
 
-    public static List<Component> wrapComponent(Component source, int width) {
-        return wrapText(source, width).stream().map(Component::literal).peek(component -> component.setStyle(source.getStyle())).map(Component.class::cast).toList();
+    public static List<MutableComponent> wrapComponent(Component source, int width) {
+        return wrapText(source, width).stream().map(CodexTextHelper::convertToComponent).peek(component -> component.setStyle(source.getStyle())).map(MutableComponent.class::cast).toList();
     }
 
     public static List<String> wrapText(Component component, int width) {
@@ -339,6 +205,74 @@ public class CodexTextHelper {
         return lines;
     }
 
+    public static MutableComponent convertToComponent(String text) {
+        text = Component.translatable(text).getString();
+
+        MutableComponent raw = Component.empty();
+
+        boolean italic = false;
+        boolean bold = false;
+        boolean strikethrough = false;
+        boolean underline = false;
+        boolean obfuscated = false;
+
+        StringBuilder line = new StringBuilder();
+        for (int i = 0; i < text.length(); i++) {
+            char chr = text.charAt(i);
+            if (chr == '$') {
+                if (i != text.length() - 1) {
+                    char peek = text.charAt(i + 1);
+                    switch (peek) {
+                        case 'i' -> {
+                            line = commitComponent(raw, italic, bold, strikethrough, underline, obfuscated, line);
+                            italic = true;
+                            i++;
+                        }
+                        case 'b' -> {
+                            line = commitComponent(raw, italic, bold, strikethrough, underline, obfuscated, line);
+                            bold = true;
+                            i++;
+                        }
+                        case 's' -> {
+                            line = commitComponent(raw, italic, bold, strikethrough, underline, obfuscated, line);
+                            strikethrough = true;
+                            i++;
+                        }
+                        case 'u' -> {
+                            line = commitComponent(raw, italic, bold, strikethrough, underline, obfuscated, line);
+                            underline = true;
+                            i++;
+                        }
+                        case 'k' -> {
+                            line = commitComponent(raw, italic, bold, strikethrough, underline, obfuscated, line);
+                            obfuscated = true;
+                            i++;
+                        }
+                        default -> line.append(chr);
+                    }
+                } else {
+                    line.append(chr);
+                }
+            } else if (chr == '/') {
+                if (i != text.length() - 1) {
+                    char peek = text.charAt(i + 1);
+                    if (peek == '$') {
+                        line = commitComponent(raw, italic, bold, strikethrough, underline, obfuscated, line);
+                        italic = bold = strikethrough = underline = obfuscated = false;
+                        i++;
+                    } else
+                        line.append(chr);
+                } else
+                    line.append(chr);
+            } else {
+                line.append(chr);
+            }
+        }
+        commitComponent(raw, italic, bold, strikethrough, underline, obfuscated, line);
+
+        return raw;
+    }
+
     private static void applyModifiers(StringBuilder word, AtomicBoolean italic, AtomicBoolean bold, AtomicBoolean strikethrough, AtomicBoolean underline, AtomicBoolean obfuscated) {
         if (italic.get()) word.append(ChatFormatting.ITALIC);
         if (bold.get()) word.append(ChatFormatting.BOLD);
@@ -373,10 +307,8 @@ public class CodexTextHelper {
         return Optional.empty();
     }
 
-    private static StringBuilder commitComponent(MutableComponent component, boolean italic, boolean bold, boolean strikethrough, boolean underline, boolean obfuscated, StringBuilder line, UnaryOperator<Style> styleModifier) {
-        component.append(Component.literal(line.toString())
-                .withStyle((style) -> style.withItalic(italic).withBold(bold).withStrikethrough(strikethrough).withUnderlined(underline).withObfuscated(obfuscated))
-                .withStyle(styleModifier));
+    private static StringBuilder commitComponent(MutableComponent component, boolean italic, boolean bold, boolean strikethrough, boolean underline, boolean obfuscated, StringBuilder line) {
+        component.append(Component.literal(line.toString()).withStyle((style) -> style.withItalic(italic).withBold(bold).withStrikethrough(strikethrough).withUnderlined(underline).withObfuscated(obfuscated)));
         line = new StringBuilder();
         return line;
     }

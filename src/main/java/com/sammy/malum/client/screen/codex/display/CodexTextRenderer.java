@@ -1,6 +1,7 @@
 package com.sammy.malum.client.screen.codex.display;
 
 import com.mojang.blaze3d.systems.*;
+import com.sammy.malum.client.screen.codex.helper.CodexTextHelper;
 import com.sammy.malum.client.screen.codex.screens.*;
 import net.minecraft.*;
 import net.minecraft.client.*;
@@ -33,6 +34,7 @@ public class CodexTextRenderer {
     protected Minecraft minecraft = Minecraft.getInstance();
     protected Font font = minecraft.font;
 
+    protected boolean isCentered = false;
     protected float scale = 1f;
     protected float glowStrength = 0.4f;
     protected TextColorData textColor = DEFAULT_TEXT_COLOR;
@@ -56,31 +58,56 @@ public class CodexTextRenderer {
         return this;
     }
 
-    public void renderWrappingText(GuiGraphics guiGraphics, Component text, float x, float y, int width) {
-        float appliedScale = scale;
-        var translated = text.getString();
-        if (translated.startsWith("$m")) {
-            int i = translated.indexOf("/$");
-            float value = Float.parseFloat(translated.substring(3, i));
-            text = Component.literal(translated.substring(i + 2));
-            appliedScale = value;
-        }
+    public CodexTextRenderer setCentered(boolean centered) {
+        isCentered = centered;
+        return this;
+    }
 
+    public CodexTextRenderer renderHeadlineTextPageContents(GuiGraphics guiGraphics, Component text, float x, float y) {
+        return renderWrappingText(guiGraphics, text, x + 6, y + 32, 140);
+    }
+
+    public CodexTextRenderer renderHeadlineGizmoPageContents(GuiGraphics guiGraphics, Component text, float x, float y) {
+        return renderWrappingText(guiGraphics, text, x + 6, y + 87, 140);
+    }
+
+    public CodexTextRenderer renderPageContents(GuiGraphics guiGraphics, Component text, float x, float y) {
+        return renderWrappingText(guiGraphics, text, x + 6, y + 4, 140);
+    }
+
+    public CodexTextRenderer renderWrappingText(GuiGraphics guiGraphics, Component text, float x, float y, int width) {
+        text = applyScaleAndUpdate(text);
         var font = Minecraft.getInstance().font;
-        var wrapped = wrapText(text, (int) (width / appliedScale));
+        var wrapped = wrapComponent(text, (int) (width /scale));
         for (int i = 0; i < wrapped.size(); i++) {
-            String currentLine = wrapped.get(i);
-            var charSequence = FormattedCharSequence.forward(currentLine, Style.EMPTY);
+            var currentLine = wrapped.get(i);
             float offset = i * (font.lineHeight + 1) * scale;
-            renderText(guiGraphics, charSequence, x, y + offset);
+            renderText(guiGraphics, currentLine, x, y + offset);
         }
+        return this;
     }
 
-    public void renderText(GuiGraphics guiGraphics, Component text, float x, float y) {
-        renderText(guiGraphics, text.getVisualOrderText(), x, y);
+    public CodexTextRenderer renderHeadline(GuiGraphics guiGraphics, Component headline, float x, float y) {
+        int width = Minecraft.getInstance().font.width(headline.getString());
+        float scaling = 1f;
+        if (width > 100) {
+            scaling -= (width - 100) / 200f;
+        }
+
+        float oldScale = scale;
+        boolean oldCentered = isCentered;
+        return setScale(scale * scaling)
+                .setCentered(true)
+                .renderText(guiGraphics, headline.getVisualOrderText(), x+72, y+11)
+                .setCentered(oldCentered)
+                .setScale(oldScale);
     }
 
-    public void renderText(GuiGraphics guiGraphics, FormattedCharSequence text, float x, float y) {
+    public CodexTextRenderer renderText(GuiGraphics guiGraphics, Component text, float x, float y) {
+        return renderText(guiGraphics, text.getVisualOrderText(), x, y);
+    }
+
+    public CodexTextRenderer renderText(GuiGraphics guiGraphics, FormattedCharSequence text, float x, float y) {
         var poseStack = guiGraphics.pose();
         float guiScale = (float) minecraft.getWindow().getGuiScale();
         float screenWidth = minecraft.getWindow().getScreenWidth();
@@ -95,15 +122,20 @@ public class CodexTextRenderer {
         var projection = new Vector4f(1, 1, 0, 1);
         projection.mul(poseStack.last().pose());
 
-        poseStack.translate(-font.width(text) / 2f, -font.lineHeight/2f, 0);
-
+        int width = font.width(text);
+        int height = font.lineHeight;
+        if (isCentered) {
+            poseStack.translate(-width / 2f, -height / 2f, 0);
+        }
         float relativeX = projection.x * guiScale / screenWidth;
         float relativeY = projection.y * guiScale / screenHeight;
+        float relativeXMax = (projection.x+width) * guiScale / screenWidth;
+        float relativeYMax = (projection.y+height) * guiScale / screenHeight;
         float mouseX = (float) (minecraft.mouseHandler.xpos() / screenWidth);
         float mouseY = (float) (minecraft.mouseHandler.ypos() / screenHeight);
 
-        float differenceX = Mth.abs(relativeX - mouseX) * 10;
-        float differenceY = Mth.abs(relativeY - mouseY) * 10;
+        float differenceX = Math.min(Math.abs(relativeX - mouseX), Mth.abs(relativeXMax-mouseX)) * 5;
+        float differenceY = Math.min(Math.abs(relativeY - mouseY), Mth.abs(relativeYMax-mouseY)) * 10;
         float horizontalDelta = Math.clamp(1 - differenceX, 0, 1);
         float verticalDelta = Math.clamp(1 - differenceY, 0, 1);
         float delta = Easing.QUINTIC_OUT.ease(horizontalDelta) * Easing.QUINTIC_OUT.ease(verticalDelta);
@@ -143,12 +175,25 @@ public class CodexTextRenderer {
 
 
             RenderSystem.defaultBlendFunc();
+            RenderSystem.disableBlend();
         }
         poseStack.popPose();
+        return this;
     }
 
     protected void drawInBatch(MultiBufferSource buffer, Matrix4f pose, FormattedCharSequence text, float x, float y, int color) {
         font.drawInBatch(text, x, y, color, false, pose, buffer, NORMAL, 0, 15728880);
+    }
+
+    public Component applyScaleAndUpdate(Component text) {
+        var translated = text.getString();
+        if (translated.startsWith("$m")) {
+            int i = translated.indexOf("/$");
+            float value = Float.parseFloat(translated.substring(3, i));
+            text = Component.literal(translated.substring(i + 2));
+            setScale(value);
+        }
+        return text;
     }
 
     public record TextColorData(Color primaryColor, Color secondaryColor, Color glowStart, Color glowEnd) {

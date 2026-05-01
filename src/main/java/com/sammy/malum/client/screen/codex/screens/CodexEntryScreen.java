@@ -3,6 +3,7 @@ package com.sammy.malum.client.screen.codex.screens;
 import com.sammy.malum.*;
 import com.sammy.malum.client.screen.codex.*;
 import com.sammy.malum.client.screen.codex.handlers.*;
+import com.sammy.malum.client.screen.codex.objects.ArrowObject;
 import com.sammy.malum.client.screen.codex.pages.BookPage;
 import com.sammy.malum.client.screen.codex.screens.progression.*;
 import com.sammy.malum.config.*;
@@ -59,10 +60,10 @@ public class CodexEntryScreen extends AbstractMalumCodexScreen {
         this.parentScreen = parentScreen;
         this.openEntry = openEntry;
         addPageObjects();
-//        int left = -21;
-//        int right = BOOK_WIDTH - 15;
-//        entryObjects.add(new ArrowObject(left, 150, false));
-//        entryObjects.add(new ArrowObject(right, 150, true));
+        int left = 13;
+        int right = BOOK_WIDTH - 52;
+        codexObjects.add(new ArrowObject(left, 233, false));
+        codexObjects.add(new ArrowObject(right, 233, true));
 
 //        var references = openEntry.references;
 //        if (references != null) {

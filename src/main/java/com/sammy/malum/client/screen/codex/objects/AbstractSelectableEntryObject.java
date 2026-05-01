@@ -54,8 +54,8 @@ public abstract class AbstractSelectableEntryObject<T extends AbstractMalumCodex
 
     public List<Component> gatherTooltip(T screen) {
         return new ArrayList<>(List.of(
-                CodexTextHelper.convertToComponent(entry.translationKey(), entry.titleStyle),
-                CodexTextHelper.convertToComponent(entry.descriptionTranslationKey(), entry.subtitleStyle)));
+                CodexTextHelper.convertToComponent(entry.translationKey()).withStyle(entry.titleStyle),
+                CodexTextHelper.convertToComponent(entry.descriptionTranslationKey()).withStyle(entry.subtitleStyle)));
     }
 
     @Override

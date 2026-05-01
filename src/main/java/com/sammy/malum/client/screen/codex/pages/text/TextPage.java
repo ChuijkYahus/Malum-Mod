@@ -1,6 +1,6 @@
 package com.sammy.malum.client.screen.codex.pages.text;
 
-import com.sammy.malum.client.screen.codex.helper.*;
+import com.sammy.malum.client.screen.codex.display.CodexTextRenderer;
 import com.sammy.malum.client.screen.codex.pages.*;
 import com.sammy.malum.client.screen.codex.screens.*;
 import net.minecraft.client.gui.*;
@@ -25,6 +25,7 @@ public class TextPage extends BookPage {
 
     @Override
     public void render(CodexEntryScreen screen, GuiGraphics guiGraphics, int left, int top, int mouseX, int mouseY, float partialTicks, boolean isRepeat) {
-        CodexTextHelper.renderWrappingText(guiGraphics, text, left + 6, top + 5, 130);
+        CodexTextRenderer.create()
+                .renderPageContents(guiGraphics, text, left, top);
     }
 }

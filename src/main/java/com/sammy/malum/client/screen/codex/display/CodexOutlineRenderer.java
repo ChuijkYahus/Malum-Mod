@@ -2,7 +2,8 @@ package com.sammy.malum.client.screen.codex.display;
 
 import com.mojang.blaze3d.systems.RenderSystem;
 import com.mojang.blaze3d.vertex.PoseStack;
-import com.sammy.malum.client.screen.codex.WidgetDesignType;
+import com.sammy.malum.client.screen.codex.WidgetDesign;
+import com.sammy.malum.client.screen.codex.display.texture.DynamicTextureRenderer;
 import com.sammy.malum.core.systems.spirit.type.SpiritArcanaType;
 import com.sammy.malum.registry.common.magic.MalumSpiritTypes;
 import it.unimi.dsi.fastutil.ints.Int2ObjectFunction;
@@ -17,33 +18,41 @@ import java.awt.*;
 
 public class CodexOutlineRenderer {
 
+    protected final ResourceLocation sourceTexture;
     protected final ResourceLocation glowTexture;
     protected final ResourceLocation outlineTexture;
+
     protected final int left;
     protected final int top;
-    protected final int width;
-    protected final int height;
+    protected final int width, sourceWidth;
+    protected final int height, sourceHeight;
+    protected float distortion = 35f;
+    private int outlineWidth = 5;
+    private int shadowWidth = 7;
+    protected int offset;
 
     protected float effectStrength;
 
-    protected float distortion = 35f;
-    protected int offset;
 
-    public static CodexOutlineRenderer create(WidgetDesignType designType, int left, int top) {
-        return new CodexOutlineRenderer(designType.getGlowTexture(), designType.getOutlineTexture(), left, top, 64, 64);
+    public static CodexOutlineRenderer create(WidgetDesign design, int left, int top, int sourceWidth, int sourceHeight) {
+        return new CodexOutlineRenderer(design.getFrameTexture().orElseThrow(), left, top, sourceWidth, sourceHeight, 64, 64);
     }
 
-    public static CodexOutlineRenderer create(ResourceLocation glowTexture, ResourceLocation outlineTexture, int left, int top) {
-        return new CodexOutlineRenderer(glowTexture, outlineTexture, left, top, 64, 64);
+    public static CodexOutlineRenderer create(ResourceLocation sourceTexture, int left, int top, int sourceWidth, int sourceHeight) {
+        return new CodexOutlineRenderer(sourceTexture, left, top, sourceWidth, sourceHeight, 64, 64);
     }
 
-    protected CodexOutlineRenderer(ResourceLocation glowTexture, ResourceLocation outlineTexture, int left, int top, int width, int height) {
-        this.glowTexture = glowTexture;
-        this.outlineTexture = outlineTexture;
+    protected CodexOutlineRenderer(ResourceLocation sourceTexture, int left, int top, int sourceWidth, int sourceHeight, int width, int height) {
+        this.sourceTexture = sourceTexture;
+        this.glowTexture = sourceTexture.withPath(p -> p.replace(".png", "_glow.png"));
+        this.outlineTexture = sourceTexture.withPath(p -> p.replace(".png", "_outline.png"));
+
         this.left = left;
         this.top = top;
         this.width = width;
+        this.sourceWidth = sourceWidth;
         this.height = height;
+        this.sourceHeight = sourceHeight;
     }
 
     public CodexOutlineRenderer setEffectStrength(float oldStrength, float effectStrength, float total) {
@@ -68,6 +77,16 @@ public class CodexOutlineRenderer {
         return this;
     }
 
+    public CodexOutlineRenderer setOutlineWidth(int outlineWidth) {
+        this.outlineWidth = outlineWidth;
+        return this;
+    }
+
+    public CodexOutlineRenderer setShadowWidth(int shadowWidth) {
+        this.shadowWidth = shadowWidth;
+        return this;
+    }
+
     public void renderOutline(PoseStack poseStack) {
         if (effectStrength <= 0 || effectStrength > 1) {
             return;
@@ -78,12 +97,12 @@ public class CodexOutlineRenderer {
         RenderSystem.defaultBlendFunc();
 
         float darknessAlpha = Math.min(effectStrength * 2.5f, 1f);
-        renderOutline(poseStack, outlineTexture, 6, distortionIntensity, darknessAlpha, i -> Color.BLACK);
+        renderOutline(poseStack, outlineTexture, shadowWidth, distortionIntensity, darknessAlpha, i -> Color.BLACK);
 
         if (effectStrength >= 0.5f) {
             float glowAlpha = (effectStrength - 0.5f) * 2f;
             RenderSystem.blendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE);
-            renderOutline(poseStack, glowTexture, 4, distortionIntensity, glowAlpha, this::getSpiritColor);
+            renderOutline(poseStack, glowTexture, outlineWidth, distortionIntensity, glowAlpha, this::getSpiritColor);
         }
 
         RenderSystem.defaultBlendFunc();
@@ -94,12 +113,16 @@ public class CodexOutlineRenderer {
      * @param distortion Controls how much wobbliness the shader used is to apply. Lower values result in more distortion
      * @param glow Controls the range and opacity of applied light
      */
-    protected void renderOutline(PoseStack poseStack, ResourceLocation texture, int outlineWidth, float distortion, float glow, Int2ObjectFunction<Color> colorSupplier) {
+    protected void renderOutline(PoseStack poseStack, ResourceLocation output, int outlineWidth, float distortion, float glow, Int2ObjectFunction<Color> colorSupplier) {
         var minecraft = Minecraft.getInstance();
         float delta = minecraft.getTimer().getGameTimeDeltaPartialTick(true);
 
-
+        var dynamicTexture = DynamicTextureRenderer.create(output).setTextureSize(width, height).requestOutline(sourceTexture, sourceWidth, sourceHeight, outlineWidth, true);
+        if (dynamicTexture == null) {
+            return;
+        }
         var light = LodestoneShaders.RADIAL_DISTORTED_SCREEN_LIGHT.getShaderInstance();
+        RenderSystem.setShaderTexture(0, dynamicTexture.getRenderTarget().getColorTextureId());
         light.safeGetUniform("YFrequency").set(24f);
         light.safeGetUniform("XFrequency").set(32f);
         light.safeGetUniform("Speed").set(2000f);
@@ -108,7 +131,6 @@ public class CodexOutlineRenderer {
         light.safeGetUniform("Width").set(80f);
         light.safeGetUniform("Height").set(80f);
         var builder = VFXBuilders.createScreen()
-                .setTexture(texture)
                 .setPositionWithWidth(left, top, width, height)
                 .setShader(light);
         float time = (minecraft.level.getGameTime() + delta) * 0.4f + offset % 3600;

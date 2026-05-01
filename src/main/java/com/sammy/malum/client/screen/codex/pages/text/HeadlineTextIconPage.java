@@ -1,7 +1,7 @@
 package com.sammy.malum.client.screen.codex.pages.text;
 
 import com.sammy.malum.*;
-import com.sammy.malum.client.screen.codex.helper.*;
+import com.sammy.malum.client.screen.codex.display.CodexTextRenderer;
 import com.sammy.malum.client.screen.codex.screens.*;
 import com.sammy.malum.core.systems.spirit.type.*;
 import net.minecraft.client.*;
@@ -11,7 +11,6 @@ import net.minecraft.resources.*;
 
 import static com.sammy.malum.MalumMod.malumPath;
 import static com.sammy.malum.client.screen.codex.helper.CodexRenderHelper.*;
-import static com.sammy.malum.client.screen.codex.helper.CodexTextHelper.renderHeadline;
 
 @Deprecated
 public class HeadlineTextIconPage extends HeadlineTextPage {
@@ -45,8 +44,9 @@ public class HeadlineTextIconPage extends HeadlineTextPage {
     public void render(CodexEntryScreen screen, GuiGraphics guiGraphics, int left, int top, int mouseX, int mouseY, float partialTicks, boolean isRepeat) {
         int iconX = left + 63;
         int iconY = top + 38;
-        renderHeadline(guiGraphics, headline, left, top);
-        CodexTextHelper.renderWrappingText(guiGraphics, text, left + 6, top + 87, 140);
+        CodexTextRenderer.create()
+                .renderHeadline(guiGraphics, headline, left, top)
+                .renderHeadlineGizmoPageContents(guiGraphics, text, left, top);
 
         renderSpiritIcon(icon, guiGraphics.pose(), spirit, false, iconX, iconY);
         renderSpiritIcon(GLOW_TEXTURE, guiGraphics.pose(), spirit, false, iconX - 8, iconY - 8, 32, 32);
