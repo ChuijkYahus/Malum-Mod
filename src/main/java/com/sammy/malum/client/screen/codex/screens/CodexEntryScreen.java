@@ -60,10 +60,10 @@ public class CodexEntryScreen extends AbstractMalumCodexScreen {
         this.parentScreen = parentScreen;
         this.openEntry = openEntry;
         addPageObjects();
-        int left = 13;
-        int right = BOOK_WIDTH - 52;
-        codexObjects.add(new ArrowObject(left, 233, false));
-        codexObjects.add(new ArrowObject(right, 233, true));
+        int left = 11;
+        int right = BOOK_WIDTH - 50;
+        codexObjects.add(new ArrowObject(left, 228, false));
+        codexObjects.add(new ArrowObject(right, 228, true));
 
 //        var references = openEntry.references;
 //        if (references != null) {
