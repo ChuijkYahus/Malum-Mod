@@ -1,36 +1,21 @@
 package com.sammy.malum.client.screen.codex.pages;
 
 import com.sammy.malum.client.screen.codex.*;
+import com.sammy.malum.client.screen.codex.display.DisplayedGizmo;
 import net.minecraft.world.item.*;
 
 import java.util.function.*;
 
 public final class EntryReference {
-    public final ItemStack icon;
+    public final DisplayedGizmo gizmo;
     public final BookEntry entry;
 
-    public EntryReference(ItemStack icon, BookEntry entry) {
-        this.icon = icon;
+    public EntryReference(DisplayedGizmo gizmo, BookEntry entry) {
+        this.gizmo = gizmo;
         this.entry = entry;
     }
 
-    public EntryReference(Item icon, BookEntry entry) {
-        this(icon.getDefaultInstance(), entry);
-    }
-
-    public EntryReference(ItemStack icon, BookEntryBuilder builder) {
-        this(icon, builder.build());
-    }
-
-    public EntryReference(Supplier<? extends Item> icon, BookEntry entry) {
-        this(icon.get(), entry);
-    }
-
-    public EntryReference(Item icon, BookEntryBuilder builder) {
-        this(icon, builder.build());
-    }
-
-    public EntryReference(Supplier<? extends Item> icon, BookEntryBuilder builder) {
-        this(icon.get(), builder);
+    public EntryReference(DisplayedGizmo gizmo, BookEntryBuilder builder) {
+        this(gizmo.noTooltip(), builder.build());
     }
 }

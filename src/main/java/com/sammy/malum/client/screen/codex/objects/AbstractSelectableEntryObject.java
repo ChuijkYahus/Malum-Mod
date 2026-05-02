@@ -5,12 +5,9 @@ import com.sammy.malum.client.screen.codex.display.*;
 import com.sammy.malum.client.screen.codex.helper.*;
 import com.sammy.malum.client.screen.codex.pages.EntryReference;
 import com.sammy.malum.client.screen.codex.screens.*;
-import com.sammy.malum.core.systems.geas.*;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiGraphics;
-import net.minecraft.core.*;
 import net.minecraft.network.chat.Component;
-import net.minecraft.world.item.*;
 
 import java.util.*;
 import java.util.function.*;
@@ -29,7 +26,7 @@ public abstract class AbstractSelectableEntryObject<T extends AbstractMalumCodex
     public AbstractSelectableEntryObject(EntryReference reference, int posY, int width, int height, int posX) {
         super(posX, posY, width, height);
         this.entry = reference.entry;
-        this.displayedGizmo = new DisplayedGizmo.DisplayedItem(reference.icon);
+        this.displayedGizmo = reference.gizmo;
     }
 
     @Override

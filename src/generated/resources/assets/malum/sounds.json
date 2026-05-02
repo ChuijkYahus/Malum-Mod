@@ -142,6 +142,24 @@
     ],
     "subtitle": "malum.subtitle.altar_skitters_away"
   },
+  "arcana_bookmark_hover": {
+    "sounds": [
+      "malum:codex/bookmark/hover1",
+      "malum:codex/bookmark/hover2",
+      "malum:codex/bookmark/hover3",
+      "malum:codex/bookmark/hover4"
+    ],
+    "subtitle": "malum.subtitle.arcana_bookmark_hover"
+  },
+  "arcana_bookmark_unhover": {
+    "sounds": [
+      "malum:codex/bookmark/unhover1",
+      "malum:codex/bookmark/unhover2",
+      "malum:codex/bookmark/unhover3",
+      "malum:codex/bookmark/unhover4"
+    ],
+    "subtitle": "malum.subtitle.arcana_bookmark_unhover"
+  },
   "arcana_button_click": {
     "sounds": [
       "malum:codex/button/click1",

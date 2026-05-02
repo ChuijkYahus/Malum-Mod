@@ -14,9 +14,11 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.renderer.GameRenderer;
 import net.minecraft.client.renderer.ShaderInstance;
+import net.minecraft.core.Holder;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.level.ItemLike;
 import org.jetbrains.annotations.Nullable;
 import org.joml.Matrix4f;
 import team.lodestar.lodestone.systems.rendering.*;
@@ -52,6 +54,11 @@ public class DynamicTextureRenderer {
 
     public static DynamicTextureRenderer create(ResourceLocation texturePath) {
         return new DynamicTextureRenderer(texturePath);
+    }
+    public static DynamicTextureRenderer create(ItemLike itemLike) {
+        var holder = itemLike.asItem().builtInRegistryHolder();
+        var path = holder.key().location();
+        return new DynamicTextureRenderer(path.withPrefix("generated/").withSuffix(".png"));
     }
 
     public DynamicTextureRenderer(ResourceLocation texturePath) {
@@ -89,7 +96,6 @@ public class DynamicTextureRenderer {
     public RenderableDynamicTexture requestFlatItemTexture(Item item, @Nullable Consumer<NativeImage> postProcessing) {
         return requestFlatItemTexture(item, postProcessing, false);
     }
-
 
     public RenderableDynamicTexture requestFlatItemTexture(Item item, @Nullable Consumer<NativeImage> postProcessing, boolean updateEachFrame) {
         return drawAndRequestTexture(t -> {

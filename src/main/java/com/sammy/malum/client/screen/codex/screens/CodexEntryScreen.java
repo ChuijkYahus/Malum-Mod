@@ -4,7 +4,9 @@ import com.sammy.malum.*;
 import com.sammy.malum.client.screen.codex.*;
 import com.sammy.malum.client.screen.codex.handlers.*;
 import com.sammy.malum.client.screen.codex.objects.ArrowObject;
+import com.sammy.malum.client.screen.codex.objects.ReferencedEntryObject;
 import com.sammy.malum.client.screen.codex.pages.BookPage;
+import com.sammy.malum.client.screen.codex.pages.EntryReference;
 import com.sammy.malum.client.screen.codex.screens.progression.*;
 import com.sammy.malum.config.*;
 import com.sammy.malum.registry.common.sound.*;
@@ -31,8 +33,8 @@ public class CodexEntryScreen extends AbstractMalumCodexScreen {
 
     public static final ResourceLocation ITEM_SOCKET = MalumMod.malumPath("textures/gui/book/entry_elements/item_sockets.png");
 
-    public static final int BOOK_WIDTH = 352;
-    public static final int BOOK_HEIGHT = 272;
+    public static final int BOOK_WIDTH = 384;
+    public static final int BOOK_HEIGHT = 304;
 
 
     public static final int PAGE_WIDTH = 142;
@@ -46,6 +48,7 @@ public class CodexEntryScreen extends AbstractMalumCodexScreen {
     protected final BookEntry openEntry;
     protected int openPageIndex;
 
+    protected final BookObjectHandler<CodexEntryScreen> bookmarks = new BookObjectHandler<>();
     protected final BookObjectHandler<CodexEntryScreen> codexObjects = new BookObjectHandler<>();
 
     protected BookObjectHandler<CodexEntryScreen> leftPageObjects;
@@ -60,21 +63,25 @@ public class CodexEntryScreen extends AbstractMalumCodexScreen {
         this.parentScreen = parentScreen;
         this.openEntry = openEntry;
         addPageObjects();
-        int left = 11;
-        int right = BOOK_WIDTH - 50;
-        codexObjects.add(new ArrowObject(left, 228, false));
-        codexObjects.add(new ArrowObject(right, 228, true));
+        int inset = 20;
+        int left = -inset;
+        int right = BOOK_WIDTH - (38 - inset);
+        bookmarks.add(new ArrowObject(left, 228, false));
+        bookmarks.add(new ArrowObject(right, 228, true));
 
-//        var references = openEntry.references;
-//        if (references != null) {
-//            int counter = 0;
-//            for (EntryReference reference : references) {
-//                if (reference.entry.shouldShow()) {
-//                    entryObjects.add(new ReferencedEntryObject(right, 15 + counter * 30, true, reference));
-//                    counter++;
-//                }
-//            }
-//        }
+        var references = openEntry.references;
+        if (references != null) {
+            int counter = 0;
+            for (int i = 0; i < references.size(); i++) {
+                EntryReference reference = references.get(i);
+                if (reference.entry.shouldShow()) {
+                    int yPos = 28 + counter * 34;
+                    bookmarks.add(new ReferencedEntryObject(left, yPos, false, reference));
+                    bookmarks.add(new ReferencedEntryObject(right, yPos, true, reference));
+                    counter++;
+                }
+            }
+        }
     }
 
     @Override
@@ -92,6 +99,9 @@ public class CodexEntryScreen extends AbstractMalumCodexScreen {
         var rightPage = getRightPage();
 
         renderTexture(FRAME_TEXTURE, poseStack, guiLeft, guiTop, 0, 0, BOOK_WIDTH, BOOK_HEIGHT);
+
+        bookmarks.renderObjects(this, guiGraphics, guiLeft, guiTop, mouseX, mouseY, partialTicks);
+
         renderTexture(PAPER_TEXTURE, poseStack, guiLeft, guiTop, 0, 0, BOOK_WIDTH, BOOK_HEIGHT);
 
         renderPageBackground(guiGraphics, leftPage, pageTop, leftPageLeft);
@@ -104,6 +114,7 @@ public class CodexEntryScreen extends AbstractMalumCodexScreen {
         renderPageContents(guiGraphics, leftPage, pageTop, leftPageLeft, mouseX, mouseY, partialTicks);
         renderPageContents(guiGraphics, rightPage, pageTop, rightPageLeft, mouseX, mouseY, partialTicks);
 
+        bookmarks.renderObjectsLate(this, guiGraphics, mouseX, mouseY, partialTicks);
         codexObjects.renderObjectsLate(this, guiGraphics, mouseX, mouseY, partialTicks);
         renderPageObjects(guiGraphics, leftPage, leftPageObjects, pageTop, leftPageLeft, mouseX, mouseY, partialTicks, false);
         renderPageObjects(guiGraphics, rightPage, rightPageObjects, pageTop, rightPageLeft, mouseX, mouseY, partialTicks, false);
@@ -284,6 +295,7 @@ public class CodexEntryScreen extends AbstractMalumCodexScreen {
     }
 
     public void iterateOnAllObjects(Consumer<BookObjectHandler<CodexEntryScreen>> acceptor) {
+        acceptor.accept(bookmarks);
         acceptor.accept(codexObjects);
         if (leftPageObjects != null) {
             acceptor.accept(leftPageObjects);
@@ -321,17 +333,17 @@ public class CodexEntryScreen extends AbstractMalumCodexScreen {
 
     public int getPageTop() {
         int guiTop = getGuiTop();
-        return guiTop + 24;
+        return guiTop + 28;
     }
 
     public int getLeftPageLeft() {
         int guiLeft = getGuiLeft();
-        return guiLeft + 13;
+        return guiLeft + 29;
     }
 
     public int getRightPageLeft() {
         int guiLeft = getGuiLeft();
-        return guiLeft + 197;
+        return guiLeft + 213;
     }
 
     public int getGuiLeft() {

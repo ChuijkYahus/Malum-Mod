@@ -2603,6 +2603,8 @@
   "malum.subtitle.altar_hurt": "Altar hurt",
   "malum.subtitle.altar_idle": "Altar idle",
   "malum.subtitle.altar_skitters_away": "Altar skitters away",
+  "malum.subtitle.arcana_bookmark_hover": "Arcana bookmark hover",
+  "malum.subtitle.arcana_bookmark_unhover": "Arcana bookmark unhover",
   "malum.subtitle.arcana_button_click": "Arcana button click",
   "malum.subtitle.arcana_button_hover": "Arcana button hover",
   "malum.subtitle.arcana_button_unclick": "Arcana button unclick",
