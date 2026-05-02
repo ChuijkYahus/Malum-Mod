@@ -135,19 +135,18 @@ public class IntroductionEntries {
                         .fill(item(STICK), CraftingGridContents::middle, CraftingGridContents::bottomLeft)
                         .fill(item(REFINED_SOULSTONE), CraftingGridContents::topRight)
                 ))
-                .addReference(new EntryReference(item(HEX_ASH),
+                .addLeftReference(new EntryReference(item(HEX_ASH),
+                        BookEntry.create("scythes.enchanting")
+                                .addPage(headlineText("spirit_infusion.hex_ash"))
+                ))
+                .addLeftReference(new EntryReference(item(LIVING_FLESH),
                         BookEntry.create("spirit_infusion.hex_ash")
                                 .addPage(headlineText("spirit_infusion.hex_ash"))
                 ))
-                .addReference(new EntryReference(item(LIVING_FLESH),
+                .addLeftReference(new EntryReference(item(GRIM_TALC),
                         BookEntry.create("spirit_infusion.hex_ash")
                                 .addPage(headlineText("spirit_infusion.hex_ash"))
-                ))
-                .addReference(new EntryReference(item(GRIM_TALC),
-                        BookEntry.create("spirit_infusion.hex_ash")
-                                .addPage(headlineText("spirit_infusion.hex_ash"))
-                ))
-        ;
+                ));
 
         screen.addEntry("spirit_infusion", 0, 8)
                 .configureWidget(w -> w.setIcon(CodexCommons.SPIRIT_ALTAR))

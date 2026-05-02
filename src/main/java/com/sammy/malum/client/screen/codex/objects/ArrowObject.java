@@ -37,7 +37,7 @@ public class ArrowObject extends BookObject<CodexEntryScreen> {
         heldDelta = DataHelper.approach(heldDelta, isHoveredOver ? 1 : 0, 0.75f);
         if (wasHoveredOver != isHoveredOver) {
             var sound = isHoveredOver ? MalumSoundEvents.ARCANA_BOOKMARK_HOVER : MalumSoundEvents.ARCANA_BOOKMARK_UNHOVER;
-            screen.playSound(sound, 0.25f, 1);
+            screen.playSound(sound, 1, 1);
         }
     }
 

@@ -113,6 +113,8 @@ public class CodexTextRenderer {
         float screenWidth = minecraft.getWindow().getScreenWidth();
         float screenHeight = minecraft.getWindow().getScreenHeight();
 
+        RenderSystem.enableBlend();
+        RenderSystem.defaultBlendFunc();
         poseStack.pushPose();
         poseStack.translate(x, y, 0);
         if (scale != 1) {
@@ -156,26 +158,27 @@ public class CodexTextRenderer {
 
         drawInBatch(buffer, pose, text, 0, 0, color(255, dark));
 
-        int alpha = Mth.floor(255 * Easing.QUARTIC_IN.lerp(delta, 0.4f, 1) * glowStrength);
-        if (alpha > 15) {
-            float color = Easing.CUBIC_IN.ease(delta);
-            Color start = textColor.glowStart();
-            Color end = textColor.glowEnd();
-            int r = (int) Mth.lerp(color, start.getRed(), end.getRed());
-            int g = (int) Mth.lerp(color, start.getGreen(), end.getGreen());
-            int b = (int) Mth.lerp(color, start.getBlue(), end.getBlue());
-            buffer = WRAPPER_FUNCTION.apply(guiGraphics);
-            RenderSystem.enableBlend();
-            drawInBatch(buffer, pose, text, 0f, 0, color(alpha, r, g, b));
+        if (delta > 0.025f) {
+            int alpha = Mth.floor(255 * Easing.QUARTIC_IN.lerp(delta, 0.4f, 1) * glowStrength);
+            alpha = Mth.clamp(alpha, 0, 255);
+            if (alpha > 15) {
+                float color = Easing.CUBIC_IN.ease(delta);
+                Color start = textColor.glowStart();
+                Color end = textColor.glowEnd();
+                int r = (int) Mth.lerp(color, start.getRed(), end.getRed());
+                int g = (int) Mth.lerp(color, start.getGreen(), end.getGreen());
+                int b = (int) Mth.lerp(color, start.getBlue(), end.getBlue());
+                buffer = WRAPPER_FUNCTION.apply(guiGraphics);
+                drawInBatch(buffer, pose, text, 0f, 0, color(alpha, r, g, b));
 
-            drawInBatch(buffer, pose, text, 1f, 0, color(alpha / 2, r, g, b));
-            drawInBatch(buffer, pose, text, -1f, 0, color(alpha / 3, r, g, b));
-            drawInBatch(buffer, pose, text, 0, 1f, color(alpha / 2, r, g, b));
-            drawInBatch(buffer, pose, text, 0, -1f, color(alpha / 3, r, g, b));
+                drawInBatch(buffer, pose, text, 1f, 0, color(alpha / 2, r, g, b));
+                drawInBatch(buffer, pose, text, -1f, 0, color(alpha / 3, r, g, b));
+                drawInBatch(buffer, pose, text, 0, 1f, color(alpha / 2, r, g, b));
+                drawInBatch(buffer, pose, text, 0, -1f, color(alpha / 3, r, g, b));
 
 
-            RenderSystem.defaultBlendFunc();
-            RenderSystem.disableBlend();
+                RenderSystem.disableBlend();
+            }
         }
         poseStack.popPose();
         return this;

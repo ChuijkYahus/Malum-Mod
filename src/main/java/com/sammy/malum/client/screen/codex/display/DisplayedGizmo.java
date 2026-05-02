@@ -3,11 +3,8 @@ package com.sammy.malum.client.screen.codex.display;
 import com.mojang.blaze3d.platform.GlStateManager;
 import com.mojang.blaze3d.systems.RenderSystem;
 import com.mojang.blaze3d.vertex.PoseStack;
-import com.mojang.datafixers.util.*;
 import com.sammy.malum.MalumMod;
 import com.sammy.malum.client.screen.codex.display.texture.DynamicTextureRenderer;
-import com.sammy.malum.client.screen.codex.objects.*;
-import com.sammy.malum.client.screen.codex.objects.progression.*;
 import com.sammy.malum.client.screen.codex.pages.*;
 import com.sammy.malum.client.screen.codex.pages.text.*;
 import com.sammy.malum.client.screen.codex.screens.AbstractMalumCodexScreen;
@@ -24,10 +21,8 @@ import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.ItemLike;
-import team.lodestar.lodestone.systems.particle.render_types.LodestoneWorldParticleRenderType;
 import team.lodestar.lodestone.systems.rendering.VFXBuilders;
 
-import javax.annotation.*;
 import java.awt.*;
 import java.util.*;
 import java.util.List;
@@ -146,7 +141,7 @@ public abstract class DisplayedGizmo {
                 y -= 1;
             }
             var dynamicTexture = DynamicTextureRenderer.create(itemDisplay.getItem())
-                    .setTextureSize(16, 16).requestFlatItemTexture(itemDisplay.getItem());
+                    .setTextureSize(16, 16).requestFlatItemTexture(itemDisplay.getItem().getDefaultInstance());
             if (dynamicTexture == null) {
                 return;
             }
@@ -162,10 +157,11 @@ public abstract class DisplayedGizmo {
             if (isHoveredOver) {
                 RenderSystem.enableBlend();
                 RenderSystem.blendFunc(GlStateManager.SourceFactor.SRC_ALPHA, GlStateManager.DestFactor.ONE);
+                float alphaScale = color.getRed() / 255f;
                 builder
                         .setColor(MalumSpiritTypes.ARCANE_COLORS().primaryColor())
                         .multiplyColor(color.getRed(), color.getBlue(), color.getGreen())
-                        .setAlpha(0.3f * color.getRed()/255f)
+                        .setAlpha(0.3f * alphaScale)
                         .blit(stack);
                 RenderSystem.defaultBlendFunc();
             }

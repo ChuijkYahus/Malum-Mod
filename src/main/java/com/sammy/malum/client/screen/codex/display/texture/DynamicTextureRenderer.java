@@ -14,8 +14,8 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.renderer.GameRenderer;
 import net.minecraft.client.renderer.ShaderInstance;
-import net.minecraft.core.Holder;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.ItemLike;
@@ -48,13 +48,16 @@ public class DynamicTextureRenderer {
                         }
                     });
 
-    public final ResourceLocation texturePath;
-    public int width;
-    public int height;
+    protected final ResourceLocation texturePath;
+    protected int width, height;
+    protected float hScale = 1, vScale = 1;
+
+    protected Consumer<NativeImage> postProcessing;
 
     public static DynamicTextureRenderer create(ResourceLocation texturePath) {
         return new DynamicTextureRenderer(texturePath);
     }
+
     public static DynamicTextureRenderer create(ItemLike itemLike) {
         var holder = itemLike.asItem().builtInRegistryHolder();
         var path = holder.key().location();
@@ -69,10 +72,16 @@ public class DynamicTextureRenderer {
         return setTextureSize(size, size);
     }
 
+
     public DynamicTextureRenderer setTextureSize(int width, int height) {
         this.width = width;
         this.height = height;
         return this;
+    }
+
+    public void setScale(float scale) {
+        this.hScale = scale;
+        this.vScale = scale;
     }
 
     public static void clearCache() {
@@ -85,28 +94,24 @@ public class DynamicTextureRenderer {
         return ifPresent == null || !ifPresent.isDone() ? null : (T) ifPresent.join();
     }
 
-    public RenderableDynamicTexture requestFlatItemStackTexture(ItemStack stack) {
-        return drawAndRequestTexture(t -> drawItem(t, stack), true);
+    public RenderableDynamicTexture requestFlatItemTexture(ItemLike item) {
+        return requestFlatItemTexture(item, false);
     }
 
-    public RenderableDynamicTexture requestFlatItemTexture(Item item) {
-        return requestFlatItemTexture(item, null);
+    public RenderableDynamicTexture requestFlatItemTexture(ItemLike item, boolean updateEachFrame) {
+        return requestFlatItemTexture(item.asItem().getDefaultInstance(), updateEachFrame);
     }
 
-    public RenderableDynamicTexture requestFlatItemTexture(Item item, @Nullable Consumer<NativeImage> postProcessing) {
-        return requestFlatItemTexture(item, postProcessing, false);
+    public RenderableDynamicTexture requestFlatItemTexture(ItemStack stack) {
+        return requestFlatItemTexture(stack, false);
     }
 
-    public RenderableDynamicTexture requestFlatItemTexture(Item item, @Nullable Consumer<NativeImage> postProcessing, boolean updateEachFrame) {
-        return drawAndRequestTexture(t -> {
-            drawItem(t, item.getDefaultInstance());
-            if (postProcessing != null) {
-                t.download();
-                NativeImage img = t.getPixels();
-                postProcessing.accept(img);
-                t.upload();
-            }
-        }, updateEachFrame);
+    public RenderableDynamicTexture requestFlatItemTexture(ItemStack stack, boolean updateEachFrame) {
+        if (stack.getItem() instanceof BlockItem) {
+            setTextureSize(64);
+            setScale(4);
+        }
+        return drawAndRequestTexture(t -> drawItem(t, stack), updateEachFrame);
     }
 
 
@@ -182,7 +187,6 @@ public class DynamicTextureRenderer {
 
     public void drawTexture(RenderableDynamicTexture tex, Supplier<ShaderInstance> shader, ResourceLocation texture) {
         drawAsInGUI(tex, s -> {
-
             var pose = s.pose().last();
             RenderSystem.setShaderTexture(0, texture);
             RenderSystem.enableDepthTest();
@@ -238,7 +242,7 @@ public class DynamicTextureRenderer {
         //save old projection and sets new orthographic
         RenderSystem.backupProjectionMatrix();
         //like this so object center is exactly at 0 0 0
-        Matrix4f matrix4f = new Matrix4f().setOrtho(0.0F, width, height, 0, -1000.0F, 1000);
+        Matrix4f matrix4f = new Matrix4f().setOrtho(0.0F, width/hScale, height/vScale, 0, -1000.0F, 1000);
         RenderSystem.setProjectionMatrix(matrix4f, VertexSorting.ORTHOGRAPHIC_Z);
 
         //model view stuff
@@ -254,6 +258,12 @@ public class DynamicTextureRenderer {
         //item renderer needs a new pose stack as it applies its last to render system itself. for the rest tbh idk
         GuiGraphics guiGraphics = new GuiGraphics(mc, mc.renderBuffers().bufferSource());
         drawFunction.accept(guiGraphics);
+        if (postProcessing != null) {
+            tex.download();
+            NativeImage img = tex.getPixels();
+            postProcessing.accept(img);
+            tex.upload();
+        }
         guiGraphics.flush();
 
         //reset stuff

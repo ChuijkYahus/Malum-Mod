@@ -88,22 +88,22 @@ public class MalumScytheItem extends LodestoneCombatItem implements IMalumEventR
     public static void trySweep(LivingEntity attacker, LivingEntity target, float baseDamage) {
         var level = attacker.level();
         var sweeping = attacker.getAttribute(Attributes.SWEEPING_DAMAGE_RATIO);
-        if (sweeping != null) {
-            //TODO: Scythes can't get sweeping edge, but they can still benefit from the sweeping here
-            float sweepingRatio = (float) sweeping.getValue();
-            float damage = baseDamage * (0.5f + sweepingRatio * 0.33f);
-            float radius = 1 + sweepingRatio * 0.25f;
-            level.getEntities(attacker, target.getBoundingBox().inflate(radius)).forEach(e -> {
-                if (e instanceof LivingEntity sweepTarget) {
-                    if (sweepTarget.isAlive() && sweepTarget != target) {
-                        sweepTarget.hurt((DamageTypeHelper.create(level, MalumDamageTypes.SCYTHE_SWEEP, attacker)), damage);
-                        sweepTarget.knockback(0.4F,
-                                Mth.sin(attacker.getYRot() * ((float) Math.PI / 180F)),
-                                (-Mth.cos(attacker.getYRot() * ((float) Math.PI / 180F))));
-                    }
-                }
-            });
+        if (sweeping == null) {
+            return;
         }
+        float sweepingRatio = (float) sweeping.getValue();
+        float damage = baseDamage * (0.5f + sweepingRatio * 0.33f);
+        float radius = 1 + sweepingRatio * 0.25f;
+        level.getEntities(attacker, target.getBoundingBox().inflate(radius)).forEach(e -> {
+            if (e instanceof LivingEntity sweepTarget) {
+                if (sweepTarget.isAlive() && sweepTarget != target) {
+                    sweepTarget.hurt((DamageTypeHelper.create(level, MalumDamageTypes.SCYTHE_SWEEP, attacker)), damage);
+                    sweepTarget.knockback(0.4F,
+                            Mth.sin(attacker.getYRot() * ((float) Math.PI / 180F)),
+                            (-Mth.cos(attacker.getYRot() * ((float) Math.PI / 180F))));
+                }
+            }
+        });
     }
 
     public static ScytheDamage getScytheDamage(DamageSource source, LivingEntity attacker) {

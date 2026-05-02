@@ -18,7 +18,8 @@ public class BookEntryBuilder {
     protected final boolean isVoid;
 
     protected List<BookPage> pages = new ArrayList<>();
-    protected List<EntryReference> references = new ArrayList<>();
+    protected List<EntryReference> leftBookmarks = new ArrayList<>();
+    protected List<EntryReference> rightBookmarks = new ArrayList<>();
     protected BooleanSupplier condition = () -> true;
     protected SpiritLike associatedSpirit;
     protected UnaryOperator<Style> titleStyle;
@@ -43,8 +44,13 @@ public class BookEntryBuilder {
         return this;
     }
 
-    public BookEntryBuilder addReference(EntryReference reference) {
-        references.add(reference);
+    public BookEntryBuilder addLeftReference(EntryReference reference) {
+        leftBookmarks.add(reference);
+        return this;
+    }
+
+    public BookEntryBuilder addRightReference(EntryReference reference) {
+        leftBookmarks.add(reference);
         return this;
     }
 
@@ -92,7 +98,7 @@ public class BookEntryBuilder {
 
     public BookEntry build() {
         ImmutableList<BookPage> bookPages = ImmutableList.copyOf(pages);
-        ImmutableList<EntryReference> entryReferences = ImmutableList.copyOf(references);
+        ImmutableList<EntryReference> entryReferences = ImmutableList.copyOf(leftBookmarks);
         return new BookEntry(identifier, isVoid, bookPages, entryReferences, condition, associatedSpirit, false, titleStyle, subtitleStyle, hasTooltip);
     }
 }

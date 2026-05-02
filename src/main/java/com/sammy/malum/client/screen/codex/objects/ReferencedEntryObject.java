@@ -1,6 +1,7 @@
 package com.sammy.malum.client.screen.codex.objects;
 
 import com.sammy.malum.*;
+import com.sammy.malum.client.screen.codex.display.texture.DynamicTextureRenderer;
 import com.sammy.malum.client.screen.codex.pages.*;
 import com.sammy.malum.client.screen.codex.screens.*;
 import com.sammy.malum.registry.common.sound.MalumSoundEvents;
@@ -8,6 +9,7 @@ import net.minecraft.client.gui.*;
 import net.minecraft.client.renderer.GameRenderer;
 import net.minecraft.resources.*;
 import net.minecraft.util.Mth;
+import org.spongepowered.asm.mixin.Dynamic;
 import team.lodestar.lodestone.helpers.DataHelper;
 import team.lodestar.lodestone.modules.core.easing.Easing;
 import team.lodestar.lodestone.systems.rendering.VFXBuilders;
@@ -36,7 +38,7 @@ public class ReferencedEntryObject extends AbstractSelectableEntryObject<CodexEn
         heldDelta = DataHelper.approach(heldDelta, isHoveredOver ? 1 : 0, 0.75f);
         if (wasHoveredOver != isHoveredOver) {
             var sound = isHoveredOver ? MalumSoundEvents.ARCANA_BOOKMARK_HOVER : MalumSoundEvents.ARCANA_BOOKMARK_UNHOVER;
-            screen.playSound(sound, 0.25f, 1);
+            screen.playSound(sound, 1, 1);
         }
     }
 
