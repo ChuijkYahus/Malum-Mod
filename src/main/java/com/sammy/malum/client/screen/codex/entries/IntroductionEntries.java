@@ -134,22 +134,10 @@ public class IntroductionEntries {
                         .fill(item(IRON_INGOT), CraftingGridContents::topLeft, CraftingGridContents::top, CraftingGridContents::right)
                         .fill(item(STICK), CraftingGridContents::middle, CraftingGridContents::bottomLeft)
                         .fill(item(REFINED_SOULSTONE), CraftingGridContents::topRight)
-                ))
-                .addLeftReference(new EntryReference(item(HEX_ASH),
-                        BookEntry.create("scythes.enchanting")
-                                .addPage(headlineText("spirit_infusion.hex_ash"))
-                ))
-                .addLeftReference(new EntryReference(item(LIVING_FLESH),
-                        BookEntry.create("spirit_infusion.hex_ash")
-                                .addPage(headlineText("spirit_infusion.hex_ash"))
-                ))
-                .addLeftReference(new EntryReference(item(GRIM_TALC),
-                        BookEntry.create("spirit_infusion.hex_ash")
-                                .addPage(headlineText("spirit_infusion.hex_ash"))
                 ));
 
         screen.addEntry("spirit_infusion", 0, 8)
-                .configureWidget(w -> w.setIcon(CodexCommons.SPIRIT_ALTAR))
+                .configureWidget(w -> w.setIcon(CodexCommons.SPIRIT_ALTAR).setDesign(GILDED, RUNEWOOD, PAPER))
                 .addPage(headlineTextGizmoPage("spirit_infusion", CodexCommons.SPIRIT_ALTAR))
                 .addPage(textPage("spirit_infusion.2"))
                 .addPage(textPage("spirit_infusion.3"))
@@ -164,6 +152,58 @@ public class IntroductionEntries {
 
                         )
                 );
+
+        screen.addEntry("common_reagents", 1, 9).configureWidget(w -> w.setIcon(CodexCommons.ALCHEMICAL_CALX))
+                .addPage(headlineText("common_reagents"))
+                .addPage(textPage("common_reagents.2"))
+                .addRightReference(new EntryReference(CodexCommons.HEX_ASH,
+                        BookEntry.create("common_reagents.hex_ash")
+                                .addPage(headlineTextGizmoPage("common_reagents.hex_ash", CodexCommons.HEX_ASH))
+                ))
+                .addRightReference(new EntryReference(CodexCommons.LIVING_FLESH,
+                        BookEntry.create("common_reagents.living_flesh")
+                                .addPage(headlineTextGizmoPage("common_reagents.living_flesh", CodexCommons.LIVING_FLESH))
+                ))
+                .addRightReference(new EntryReference(CodexCommons.ALCHEMICAL_CALX,
+                        BookEntry.create("common_reagents.alchemical_calx")
+                                .addPage(headlineTextGizmoPage("common_reagents.alchemical_calx", CodexCommons.ALCHEMICAL_CALX))
+                ));
+
+        screen.addEntry("esoteric_reaping", -1, 9).configureWidget(w -> w.setIcon(CodexCommons.EERIE_WEAVE))
+                .addPage(headlineText("esoteric_reaping"))
+                .addPage(textPage("esoteric_reaping.2"))
+                .addRightReference(new EntryReference(CodexCommons.GRIM_TALC,
+                        BookEntry.create("esoteric_reaping.grim_talc")
+                                .addPage(headlineTextGizmoPage("esoteric_reaping.grim_talc", CodexCommons.GRIM_TALC))
+                ))
+                .addRightReference(new EntryReference(CodexCommons.ROTTING_ESSENCE,
+                        BookEntry.create("esoteric_reaping.rotting_essence")
+                                .addPage(headlineTextGizmoPage("esoteric_reaping.rotting_essence", CodexCommons.ROTTING_ESSENCE))
+                ))
+                .addRightReference(new EntryReference(CodexCommons.EERIE_WEAVE,
+                        BookEntry.create("esoteric_reaping.eerie_weave")
+                                .addPage(headlineTextGizmoPage("esoteric_reaping.eerie_weave", CodexCommons.EERIE_WEAVE))
+                ))
+                .addRightReference(new EntryReference(CodexCommons.WARP_FLUX,
+                        BookEntry.create("esoteric_reaping.warp_flux")
+                                .addPage(headlineTextGizmoPage("esoteric_reaping.warp_flux", CodexCommons.WARP_FLUX))
+                ))
+
+                .addLeftReference(new EntryReference(CodexCommons.CORE_KEEPING,
+                        BookEntry.create("common_reagents.core_keeping")
+                                .addPage(headlineTextGizmoPage("common_reagents.core_keeping", CodexCommons.CORE_KEEPING))
+                                .addPage(textPage("common_reagents.core_keeping.2"))
+                                .addPage(textPage("common_reagents.core_keeping.3"))
+                                .addPage(textPage("common_reagents.core_keeping.4"))
+                                .addRightReference(new EntryReference(CodexCommons.WIND_NUCLEUS,
+                                        BookEntry.create("common_reagents.core_keeping.wind_nucleus")
+                                                .addPage(headlineTextGizmoPage("common_reagents.core_keeping.wind_nucleus", CodexCommons.WIND_NUCLEUS))
+                                ))
+                                .addRightReference(new EntryReference(CodexCommons.PYRE_NUCLEUS,
+                                        BookEntry.create("common_reagents.core_keeping.pyre_nucleus")
+                                                .addPage(headlineTextGizmoPage("common_reagents.core_keeping.pyre_nucleus", CodexCommons.PYRE_NUCLEUS))
+                                ))
+                ));
 
 
         //        screen.addEntry("spirit_infusion", 0, 5)

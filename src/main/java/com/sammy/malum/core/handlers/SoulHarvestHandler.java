@@ -2,12 +2,13 @@ package com.sammy.malum.core.handlers;
 
 import com.mojang.serialization.*;
 import com.sammy.malum.common.data.attachment.*;
+import com.sammy.malum.common.data.custom.reaping.ReapingDropsData;
+import com.sammy.malum.common.data.custom.spirit.EntitySpiritDropData;
+import com.sammy.malum.common.data.custom.reaping.ReapingDataReloadListener;
 import com.sammy.malum.common.entity.spirit.*;
 import com.sammy.malum.common.item.*;
 import com.sammy.malum.config.*;
-import com.sammy.malum.core.listeners.*;
 import com.sammy.malum.core.systems.events.*;
-import com.sammy.malum.core.systems.spirit.*;
 import com.sammy.malum.registry.common.*;
 import com.sammy.malum.registry.common.MalumContent;
 import com.sammy.malum.registry.common.sound.*;
@@ -61,9 +62,9 @@ public class SoulHarvestHandler {
     }
 
     public static void dropSpiritInfusedDrops(LivingEntity target) {
-        List<ReapingDataReloadListener.MalumReapingDropsData> data = ReapingDataReloadListener.REAPING_DATA.get(BuiltInRegistries.ENTITY_TYPE.getKey(target.getType()));
+        List<ReapingDropsData> data = ReapingDataReloadListener.REAPING_DATA.get(BuiltInRegistries.ENTITY_TYPE.getKey(target.getType()));
         if (data != null) {
-            for (ReapingDataReloadListener.MalumReapingDropsData dropData : data) {
+            for (ReapingDropsData dropData : data) {
                 Level level = target.level();
                 var random = level.random;
                 if (random.nextFloat() < dropData.chance()) {

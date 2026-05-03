@@ -22,7 +22,7 @@ public class MalumBlockProperties {
                 .pushReaction(PushReaction.DESTROY);
     }
 
-    public static LodestoneBlockProperties RUNEWOOD_IMPLEMENT() {
+    public static LodestoneBlockProperties  RUNEWOOD_IMPLEMENT() {
         return MalumWoodBlockProperties.RUNEWOOD()
                 .strength(2.5f, 64f)
                 .instrument(NoteBlockInstrument.XYLOPHONE)

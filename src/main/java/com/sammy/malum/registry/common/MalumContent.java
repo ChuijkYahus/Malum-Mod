@@ -36,6 +36,7 @@ import com.sammy.malum.common.block.curiosities.artifice.spirit_catalyzer.Spirit
 import com.sammy.malum.common.block.curiosities.artifice.spirit_crucible.SpiritCrucibleComponentBlock;
 import com.sammy.malum.common.block.curiosities.artifice.spirit_crucible.SpiritCrucibleCoreBlock;
 import com.sammy.malum.common.block.curiosities.artifice.spirit_crucible.SpiritCrucibleCoreBlockEntity;
+import com.sammy.malum.common.block.curiosities.sorcery.wand_tinkerer.WandTinkererBlock;
 import com.sammy.malum.common.block.curiosities.totem.TotemBaseBlock;
 import com.sammy.malum.common.block.curiosities.totem.TotemPoleBlock;
 import com.sammy.malum.common.block.curiosities.totem.anchor.RiteAnchorBlock;
@@ -515,6 +516,7 @@ public class MalumContent {
         public static final BlockBlockItemHolder<Block, BlockItem> SPIRIT_ALTAR = registerBlock("spirit_altar", () -> new SpiritAltarBlock<>(RUNEWOOD_IMPLEMENT()));
         public static final BlockBlockItemHolder<Block, BlockItem> SPIRIT_JAR = registerBlock("spirit_jar", () -> new SpiritJarBlock<>(SPIRIT_JAR()), SpiritJarItem::new);
 
+        public static final BlockBlockItemHolder<Block, BlockItem> WAND_TINKERER = registerBlock("wand_tinkerer", () -> new WandTinkererBlock<>(RUNEWOOD_IMPLEMENT()));
         public static final BlockBlockItemHolder<Block, BlockItem> RUNIC_WORKBENCH = registerBlock("runic_workbench", () -> new RunicWorkbenchBlock<>(RUNEWOOD_IMPLEMENT()));
         public static final BlockBlockItemHolder<Block, BlockItem> WEAVERS_WORKBENCH = registerBlock("weavers_workbench", () -> new WeaversWorkbenchBlock<>(MalumWoodBlockProperties.RUNEWOOD().setCutout().noOcclusion()));
 

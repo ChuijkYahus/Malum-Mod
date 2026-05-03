@@ -76,7 +76,7 @@ public class IntroductionChapterLangDatagen extends CodexLangDatagen {
         addEntryLang("scythes", "Scythes", "Harvest", "Reap");
         addPages("scythes",
                 "After several inert attempts, I have socketed Soulstone into a weapon that can reliably harvest these spirit crystals. The long blade allows time for the body to die before I strike the soul, while also providing a wide sweep attack. It isn't as sharp as a sword, but for my purposes, it will do nicely.",
-                "With each slash of the scythe, a figurative 'wound' is etched at the point of impact with the soul. This wound brings the soul into disorder, causing it to shatter immediately once its vessel is slain. The actual cause of death does not matter, simply wounding a target's soul through the use of arcana will enable spirit collection until the wound is naturally mended.",
+                "With each slash of the scythe, a figurative 'wound' is etched at the point of impact with the soul. This wound brings the soul into disorder, and for as long as the soul is in such a state during the moment of its vessel's death, the soul will shatter. The actual cause of death does not matter, simply wounding a target's soul through the use of arcana enables spirit collection. If the soul however is left to recover, the wound will close and the soul will be permitted a natural end.",
                 "What I had managed to do before with careful, painstaking experiments, the scythe did in a matter of seconds. The souls of the monsters I slew shattered, streaming bits of deeply hued matter towards me: the spirit crystals. Finally, my research can begin in earnest.");
 
 
@@ -125,14 +125,18 @@ public class IntroductionChapterLangDatagen extends CodexLangDatagen {
                 "By using Runewood's natural magic as a base, I have designed the altar that will serve as the basis for my magecraft - the Spirit Altar. It is the other piece of the equation, the use for the arcana. By infusing them into items, and using the energies to effect other fusions, I can begin to explore this.",
                 "To use the altar, I must lay the item I wish to infuse on top of it, along with an appropriate set of arcana. If I wish to fuse other items in the process, I must place them on some form of Runewood item holder. They must be within four blocks of the altar to work.",
                 "Once all the arcana are present, the power within the crystals will begin to flow into the central item. If other items are fused in, they are pulled in during this process. When all of that is done, the product of the infusion will appear. It " + italic("is") + " rather slow, though...");
-        addEntryLang("spirit_infusion.hex_ash", "Hex Ash", "Obligatory magic powder");
-        addPages("spirit_infusion.hex_ash",
+
+        addEntryLang("common_reagents", "Common Reagents", "Applied sorcery");
+        addPages("common_reagents", "");
+
+        addEntryLang("common_reagents.hex_ash", "Hex Ash", "Obligatory magic powder");
+        addPages("common_reagents.hex_ash",
                 "My first product with this process is a powder I call Hex Ash, after its color. It is a simple and useful grit, with the niter and sulfur mostly transmuted by the raw arcana, leaving a mixture of reagent and carbon.");
-        addEntryLang("spirit_infusion.living_flesh", "Living Flesh", "Please don't try to eat it");
-        addPages("spirit_infusion.living_flesh",
+        addEntryLang("common_reagents.living_flesh", "Living Flesh", "Please don't try to eat it");
+        addPages("common_reagents.living_flesh",
                 "Next, for the sake of understanding how spirit arcana interacts with living substance, I have created... " + italic("something") + " which is now known as Living Flesh. It is a disgusting meaty chunk completely unfit for human consumption. Who knows if I'll end up finding a proper use for it.");
-        addEntryLang("spirit_infusion.alchemical_calx", "Alchemical Calx", "Clay 2");
-        addPages("spirit_infusion.alchemical_calx",
+        addEntryLang("common_reagents.alchemical_calx", "Alchemical Calx", "Clay 2");
+        addPages("common_reagents.alchemical_calx",
                 "Lastly, I have created an experimental substrate I named Alchemical Calx. It's initially strong and tallow-like, but when met with a lesser amount of force it turns extremely malleable. It's bound to prove an useful ingredient.");
 
 

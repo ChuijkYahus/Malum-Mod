@@ -1,8 +1,8 @@
 package com.sammy.malum.common.item.curiosities.curios.sets.esoteric;
 
+import com.sammy.malum.common.data.custom.spirit.EntitySpiritDropData;
 import com.sammy.malum.common.item.curiosities.curios.*;
 import com.sammy.malum.core.helpers.*;
-import com.sammy.malum.core.systems.spirit.*;
 import com.sammy.malum.registry.common.MalumContent;
 import com.sammy.malum.registry.common.magic.*;
 import net.minecraft.network.chat.*;

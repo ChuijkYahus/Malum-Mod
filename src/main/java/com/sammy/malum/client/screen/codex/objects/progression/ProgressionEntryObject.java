@@ -1,6 +1,5 @@
 package com.sammy.malum.client.screen.codex.objects.progression;
 
-import com.google.common.collect.*;
 import com.mojang.blaze3d.vertex.*;
 import com.sammy.malum.client.screen.codex.*;
 import com.sammy.malum.client.screen.codex.display.CodexOutlineRenderer;
@@ -99,7 +98,7 @@ public class ProgressionEntryObject extends AbstractSelectableEntryObject<Abstra
     @Override
     public List<Component> gatherTooltip(AbstractProgressionCodexScreen screen) {
         var tooltip = super.gatherTooltip(screen);
-        var references = entry.references;
+        var references = entry.leftBookmarks;
         for (int i = references.size()-1; i >=0; i--) {
             EntryReference reference = references.get(i);
             if (reference.entry.shouldShow()) {

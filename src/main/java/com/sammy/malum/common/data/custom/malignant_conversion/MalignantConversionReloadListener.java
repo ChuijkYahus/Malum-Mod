@@ -1,7 +1,6 @@
-package com.sammy.malum.core.listeners;
+package com.sammy.malum.common.data.custom.malignant_conversion;
 
 import com.google.gson.*;
-import com.mojang.datafixers.util.*;
 import com.sammy.malum.*;
 import net.minecraft.core.*;
 import net.minecraft.core.registries.*;
@@ -10,7 +9,6 @@ import net.minecraft.server.packs.resources.*;
 import net.minecraft.util.profiling.*;
 import net.minecraft.world.entity.ai.attributes.*;
 import net.neoforged.neoforge.event.*;
-import org.w3c.dom.*;
 
 import java.util.*;
 import java.util.stream.*;
@@ -105,10 +103,4 @@ public class MalignantConversionReloadListener extends SimpleJsonResourceReloadL
         return Optional.of(attributeHolder.get());
     }
 
-    public record MalignantConversionData(Holder<Attribute> sourceAttribute, double consumptionRatio, boolean ignoreBaseValue, List<MalignantConversionAttributePayout> payoutData) {
-    }
-
-    public record MalignantConversionAttributePayout(Holder<Attribute> attribute, double ratio) {
-
-    }
 }

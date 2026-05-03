@@ -2,6 +2,11 @@ package com.sammy.malum.events;
 
 import com.sammy.malum.common.block.storage.jar.*;
 import com.sammy.malum.common.data.attachment.AvariceMarkData;
+import com.sammy.malum.common.data.custom.malignant_conversion.MalignantConversionReloadListener;
+import com.sammy.malum.common.data.custom.reaping.ReapingDataReloadListener;
+import com.sammy.malum.common.data.custom.spellweaving.SpellweavingEqualityReloadListener;
+import com.sammy.malum.common.data.custom.spirit.SpiritDataReloadListener;
+import com.sammy.malum.common.data.custom.wand_parts.WandPartTypeDataReloadListener;
 import com.sammy.malum.common.effect.ascension.*;
 import com.sammy.malum.common.effect.rite.aura.*;
 import com.sammy.malum.common.effect.rite.aura.soulwood.*;
@@ -24,7 +29,6 @@ import com.sammy.malum.common.item.curiosities.pouch.*;
 import com.sammy.malum.common.item.curiosities.tools.spellweaver.*;
 import com.sammy.malum.compat.tetra.*;
 import com.sammy.malum.core.handlers.*;
-import com.sammy.malum.core.listeners.*;
 import net.neoforged.bus.api.*;
 import net.neoforged.fml.common.*;
 import net.neoforged.neoforge.event.*;
@@ -111,6 +115,7 @@ public class RuntimeEventHandler {
 
     @SubscribeEvent
     public static void registerListeners(AddReloadListenerEvent event) {
+        WandPartTypeDataReloadListener.register(event);
         SpellweavingEqualityReloadListener.register(event);
         SpiritDataReloadListener.register(event);
         ReapingDataReloadListener.register(event);

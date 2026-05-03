@@ -1,4 +1,4 @@
-package com.sammy.malum.core.listeners;
+package com.sammy.malum.common.data.custom.spirit;
 
 import com.google.gson.*;
 import com.mojang.datafixers.util.*;
@@ -6,7 +6,6 @@ import com.mojang.serialization.JsonOps;
 import com.sammy.malum.MalumMod;
 import com.sammy.malum.core.systems.recipe.SpiritIngredient;
 import com.sammy.malum.core.systems.registry.*;
-import com.sammy.malum.core.systems.spirit.*;
 import com.sammy.malum.registry.common.magic.MalumSpiritTypes;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.resources.ResourceLocation;

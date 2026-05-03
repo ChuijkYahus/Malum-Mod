@@ -68,6 +68,7 @@ public class MalumLangDatagen extends LanguageProvider {
         GeasEffectLangDatagen.addTranslations();
         ItemEffectLangDatagen.addTranslations();
 
+        add("container.malum.wand_tinkerer", "Wand Tinkerer");
         add("container.malum.conjuncture_crystallarium", "Conjuncture Crystallarium");
 
         var blocks = new HashSet<>(BLOCKS.getEntries());

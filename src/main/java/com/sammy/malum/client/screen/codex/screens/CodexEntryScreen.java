@@ -4,9 +4,8 @@ import com.sammy.malum.*;
 import com.sammy.malum.client.screen.codex.*;
 import com.sammy.malum.client.screen.codex.handlers.*;
 import com.sammy.malum.client.screen.codex.objects.ArrowObject;
-import com.sammy.malum.client.screen.codex.objects.ReferencedEntryObject;
+import com.sammy.malum.client.screen.codex.objects.EntryReferenceObject;
 import com.sammy.malum.client.screen.codex.pages.BookPage;
-import com.sammy.malum.client.screen.codex.pages.EntryReference;
 import com.sammy.malum.client.screen.codex.screens.progression.*;
 import com.sammy.malum.config.*;
 import com.sammy.malum.registry.common.sound.*;
@@ -69,17 +68,24 @@ public class CodexEntryScreen extends AbstractMalumCodexScreen {
         bookmarks.add(new ArrowObject(left, 228, false));
         bookmarks.add(new ArrowObject(right, 228, true));
 
-        var references = openEntry.references;
-        if (references != null) {
-            int counter = 0;
-            for (int i = 0; i < references.size(); i++) {
-                EntryReference reference = references.get(i);
-                if (reference.entry.shouldShow()) {
-                    int yPos = 28 + counter * 34;
-                    bookmarks.add(new ReferencedEntryObject(left, yPos, false, reference));
-                    bookmarks.add(new ReferencedEntryObject(right, yPos, true, reference));
-                    counter++;
-                }
+        var leftBookmarks = openEntry.leftBookmarks;
+        int counter = 0;
+        for (int i = 0; i < leftBookmarks.size(); i++) {
+            var reference = leftBookmarks.get(i);
+            if (reference.entry.shouldShow()) {
+                int yPos = 28 + counter * 34;
+                bookmarks.add(new EntryReferenceObject(left, yPos, false, reference));
+                counter++;
+            }
+        }
+        var rightBookmarks = openEntry.rightBookmarks;
+        counter = 0;
+        for (int i = 0; i < rightBookmarks.size(); i++) {
+            var reference = rightBookmarks.get(i);
+            if (reference.entry.shouldShow()) {
+                int yPos = 28 + counter * 34;
+                bookmarks.add(new EntryReferenceObject(right, yPos, true, reference));
+                counter++;
             }
         }
     }

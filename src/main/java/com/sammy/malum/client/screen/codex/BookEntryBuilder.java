@@ -50,7 +50,7 @@ public class BookEntryBuilder {
     }
 
     public BookEntryBuilder addRightReference(EntryReference reference) {
-        leftBookmarks.add(reference);
+        rightBookmarks.add(reference);
         return this;
     }
 
@@ -97,8 +97,9 @@ public class BookEntryBuilder {
     }
 
     public BookEntry build() {
-        ImmutableList<BookPage> bookPages = ImmutableList.copyOf(pages);
-        ImmutableList<EntryReference> entryReferences = ImmutableList.copyOf(leftBookmarks);
-        return new BookEntry(identifier, isVoid, bookPages, entryReferences, condition, associatedSpirit, false, titleStyle, subtitleStyle, hasTooltip);
+        var pages = ImmutableList.copyOf(this.pages);
+        var leftBookmarks = ImmutableList.copyOf(this.leftBookmarks);
+        var rightBookmarks = ImmutableList.copyOf(this.rightBookmarks);
+        return new BookEntry(identifier, isVoid, pages, leftBookmarks, rightBookmarks, condition, associatedSpirit, false, titleStyle, subtitleStyle, hasTooltip);
     }
 }

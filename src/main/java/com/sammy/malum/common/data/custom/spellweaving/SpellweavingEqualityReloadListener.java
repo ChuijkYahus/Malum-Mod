@@ -1,15 +1,11 @@
-package com.sammy.malum.core.listeners;
+package com.sammy.malum.common.data.custom.spellweaving;
 
 import com.google.gson.*;
-import com.mojang.serialization.*;
-import com.sammy.malum.*;
 import net.minecraft.core.*;
 import net.minecraft.core.registries.*;
 import net.minecraft.resources.*;
 import net.minecraft.server.packs.resources.*;
 import net.minecraft.util.profiling.*;
-import net.minecraft.world.entity.ai.attributes.*;
-import net.minecraft.world.item.crafting.*;
 import net.minecraft.world.level.block.*;
 import net.neoforged.neoforge.event.*;
 
@@ -44,7 +40,4 @@ public class SpellweavingEqualityReloadListener extends SimpleJsonResourceReload
         }
     }
 
-    public record SpellweavingEqualityData(List<Holder<Block>> equalBlocks) {
-
-    }
 }

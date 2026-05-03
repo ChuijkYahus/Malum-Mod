@@ -1,7 +1,6 @@
 package com.sammy.malum.client.screen.codex.objects;
 
 import com.sammy.malum.*;
-import com.sammy.malum.client.screen.codex.display.texture.DynamicTextureRenderer;
 import com.sammy.malum.client.screen.codex.pages.*;
 import com.sammy.malum.client.screen.codex.screens.*;
 import com.sammy.malum.registry.common.sound.MalumSoundEvents;
@@ -9,14 +8,13 @@ import net.minecraft.client.gui.*;
 import net.minecraft.client.renderer.GameRenderer;
 import net.minecraft.resources.*;
 import net.minecraft.util.Mth;
-import org.spongepowered.asm.mixin.Dynamic;
 import team.lodestar.lodestone.helpers.DataHelper;
 import team.lodestar.lodestone.modules.core.easing.Easing;
 import team.lodestar.lodestone.systems.rendering.VFXBuilders;
 
 import java.awt.*;
 
-public class ReferencedEntryObject extends AbstractSelectableEntryObject<CodexEntryScreen> {
+public class EntryReferenceObject extends AbstractSelectableEntryObject<CodexEntryScreen> {
 
     public static final ResourceLocation LEFT = MalumMod.malumPath("textures/gui/book/buttons/bookmark_left.png");
     public static final ResourceLocation RIGHT = MalumMod.malumPath("textures/gui/book/buttons/bookmark_right.png");
@@ -26,7 +24,7 @@ public class ReferencedEntryObject extends AbstractSelectableEntryObject<CodexEn
     protected float oldHeldDelta;
     protected float heldDelta;
 
-    public ReferencedEntryObject(int posX, int posY, boolean flipped, EntryReference entryReference) {
+    public EntryReferenceObject(int posX, int posY, boolean flipped, EntryReference entryReference) {
         super(entryReference, posY, 32, 26, posX);
         this.flipped = flipped;
     }

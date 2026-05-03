@@ -24,7 +24,8 @@ public class BookEntry {
     public final String identifier;
     public final boolean isVoid;
     public final ImmutableList<BookPage> pages;
-    public final ImmutableList<EntryReference> references;
+    public final ImmutableList<EntryReference> leftBookmarks;
+    public final ImmutableList<EntryReference> rightBookmarks;
     public final BooleanSupplier condition;
 
     public final @Nullable SpiritLike associatedSpirit;
@@ -36,13 +37,14 @@ public class BookEntry {
 
 
     public BookEntry(String identifier, boolean isVoid,
-                     ImmutableList<BookPage> pages, ImmutableList<EntryReference> references, BooleanSupplier condition,
+                     ImmutableList<BookPage> pages, ImmutableList<EntryReference> leftBookmarks, ImmutableList<EntryReference> rightBookmarks, BooleanSupplier condition,
                      @Nullable SpiritLike associatedSpirit, boolean isFragment,
                      UnaryOperator<Style> titleStyle, UnaryOperator<Style> subtitleStyle, boolean hasTooltip) {
         this.identifier = identifier;
         this.isVoid = isVoid;
         this.pages = pages;
-        this.references = references;
+        this.leftBookmarks = leftBookmarks;
+        this.rightBookmarks = rightBookmarks;
         this.condition = condition;
         this.associatedSpirit = associatedSpirit;
         this.isFragment = isFragment;

@@ -72,12 +72,15 @@ public class MalumCreativeTab extends CategorizedCreativeTab {
                                 MalumContent.ENCYCLOPEDIA_ESOTERICA,
                                 Sorcery.SPIRIT_ALTAR,
                                 Sorcery.SPIRIT_JAR,
-                                Sorcery.RUNIC_WORKBENCH,
-                                Sorcery.WEAVERS_WORKBENCH,
                                 Sorcery.RUNEWOOD_OBELISK,
                                 Sorcery.BRILLIANT_OBELISK,
                                 Sorcery.ARCANA_PYLON
                         ).nextLine()
+                        .addItems(
+                                Sorcery.WAND_TINKERER,
+                                Sorcery.RUNIC_WORKBENCH,
+                                Sorcery.WEAVERS_WORKBENCH
+                        )
                         .addItems(
                                 Artifice.ARTIFICERS_CLAW,
                                 Artifice.CONJUNCTURE_CRYSTALLARIUM,
