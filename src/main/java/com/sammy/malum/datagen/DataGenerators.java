@@ -8,6 +8,7 @@ import com.sammy.malum.datagen.tag.MalumItemTagDatagen;
 import com.sammy.malum.datagen.lang.*;
 import com.sammy.malum.datagen.recipe.*;
 import com.sammy.malum.datagen.tag.*;
+import com.sammy.malum.datagen.wand.WandMaterialTypeDatagen;
 import com.sammy.malum.datagen.wand.WandPartTypeDatagen;
 import net.minecraft.core.*;
 import net.minecraft.data.DataGenerator;
@@ -58,6 +59,7 @@ public class DataGenerators {
         var recipeDatagen = new MalumRecipes(output, registryProvider);
 
         var wandPartTypes = new WandPartTypeDatagen(output, registryProvider, helper);
+        var wandMaterialTypes = new WandMaterialTypeDatagen(output, registryProvider, helper);
 
         generator.addProvider(includeClient, itemModelsDatagen);
         generator.addProvider(includeClient, blockStateDatagen);
@@ -80,5 +82,6 @@ public class DataGenerators {
         generator.addProvider(includeServer, recipeDatagen);
 
         generator.addProvider(includeServer, wandPartTypes);
+        generator.addProvider(includeServer, wandMaterialTypes);
     }
 }

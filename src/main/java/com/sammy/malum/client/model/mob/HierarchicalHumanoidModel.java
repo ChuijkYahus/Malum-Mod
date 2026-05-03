@@ -61,7 +61,7 @@ public abstract class HierarchicalHumanoidModel<T extends LivingEntity> extends 
         try {
             return root.getChild(name);
         } catch (Exception ignored) {
-            ModelPart body = root.getChild("body");
+            var body = root.getChild("body");
             if (body.hasChild(name)) {
                 return body.getChild(name);
             }

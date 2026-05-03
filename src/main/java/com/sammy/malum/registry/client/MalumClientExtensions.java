@@ -1,6 +1,9 @@
 package com.sammy.malum.registry.client;
 
 import com.sammy.malum.client.extensions.*;
+import com.sammy.malum.client.model.MalignantStrongholdArmorModel;
+import com.sammy.malum.client.model.SoulHunterArmorModel;
+import com.sammy.malum.client.model.SoulStainedSteelArmorModel;
 import com.sammy.malum.common.block.curiosities.decor.mana_mote.*;
 import com.sammy.malum.registry.common.MalumContent;
 import net.neoforged.neoforge.client.extensions.common.*;
@@ -14,17 +17,17 @@ public class MalumClientExtensions {
         event.registerItem(new GeasClientItemExtension(),
                 MalumContent.GEAS);
 
-        event.registerItem(new LodestoneArmorClientItemExtensions(() -> MalumArmorModels.SOUL_HUNTER_ARMOR),
+        event.registerItem(new LodestoneArmorClientItemExtensions(() -> SoulHunterArmorModel.MODEL.getModel()),
                 MalumContent.Gear.SOUL_HUNTER_CLOAK,
                 MalumContent.Gear.SOUL_HUNTER_ROBE,
                 MalumContent.Gear.SOUL_HUNTER_LEGGINGS,
                 MalumContent.Gear.SOUL_HUNTER_BOOTS);
-        event.registerItem(new LodestoneArmorClientItemExtensions(() -> MalumArmorModels.SOUL_STAINED_ARMOR),
+        event.registerItem(new LodestoneArmorClientItemExtensions(() -> SoulStainedSteelArmorModel.MODEL.getModel()),
                 MalumContent.Gear.SOUL_STAINED_STEEL_HELMET,
                 MalumContent.Gear.SOUL_STAINED_STEEL_CHESTPLATE,
                 MalumContent.Gear.SOUL_STAINED_STEEL_LEGGINGS,
                 MalumContent.Gear.SOUL_STAINED_STEEL_BOOTS);
-        event.registerItem(new MalignantArmorItemExtensions(() -> MalumArmorModels.MALIGNANT_LEAD_ARMOR),
+        event.registerItem(new MalignantArmorItemExtensions(() -> MalignantStrongholdArmorModel.MODEL.getModel()),
                 MalumContent.Gear.MALIGNANT_STRONGHOLD_HELMET,
                 MalumContent.Gear.MALIGNANT_STRONGHOLD_CHESTPLATE,
                 MalumContent.Gear.MALIGNANT_STRONGHOLD_LEGGINGS,

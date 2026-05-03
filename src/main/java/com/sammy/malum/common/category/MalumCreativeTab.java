@@ -253,7 +253,7 @@ public class MalumCreativeTab extends CategorizedCreativeTab {
                         )
                         .addItems(
                                 Materials.EBONY_STALK,
-                                Materials.EBONY,
+                                Materials.CALCIFIED_EBONY,
                                 Materials.WILD_WITCHHAZEL,
                                 Materials.WITCHHAZEL
                         ).nextLine()

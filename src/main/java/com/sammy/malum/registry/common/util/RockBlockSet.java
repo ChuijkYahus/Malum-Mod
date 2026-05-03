@@ -5,12 +5,14 @@ import com.sammy.malum.common.block.curiosities.decor.ColumnBlock;
 import com.sammy.malum.common.block.storage.pedestal.ItemPedestalBlock;
 import com.sammy.malum.common.block.storage.stand.ItemStandBlock;
 import com.sammy.malum.registry.common.MalumContent;
+import com.sammy.malum.registry.common.util.data.BlockBundle;
 import com.sammy.malum.registry.common.util.data.BlockBundleWithWall;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.properties.BlockSetType;
+import team.lodestar.lodestone.modules.core.util.BlockItemTagKey;
 import team.lodestar.lodestone.modules.toolkit.block.BlockBlockItemHolder;
 import team.lodestar.lodestone.modules.toolkit.block.LodestoneBlockProperties;
 import team.lodestar.lodestone.modules.toolkit.creative_tab.CreativeTabCategoryBuilder;
@@ -28,10 +30,10 @@ public class RockBlockSet {
         return name.replace("%s", id);
     }
 
-    public final TagKey<Block> blocksTag;
-    public final TagKey<Block> stairsTag;
-    public final TagKey<Block> slabsTag;
-    public final TagKey<Block> wallsTag;
+    public final BlockItemTagKey blocksTag;
+    public final BlockItemTagKey stairsTag;
+    public final BlockItemTagKey slabsTag;
+    public final BlockItemTagKey wallsTag;
 
     public final BlockBundleWithWall rock, polishedRock, bricks;
     public final BlockBundleWithWall tiles, grid, mosaic;
@@ -49,10 +51,10 @@ public class RockBlockSet {
                         Supplier<LodestoneBlockProperties> chiseledProperties) {
         this.id = id;
 
-        blocksTag = createTag("%s_blocks");
-        stairsTag = createTag("%s_stairs");
-        slabsTag = createTag("%s_slabs");
-        wallsTag = createTag("%s_walls");
+        blocksTag = createTag("blocks");
+        stairsTag = createTag("stairs");
+        slabsTag = createTag("slabs");
+        wallsTag = createTag("walls");
 
         rock = new BlockBundleWithWall(name("%s"), rockProperties, blocksTag, slabsTag, stairsTag, wallsTag);
         polishedRock = new BlockBundleWithWall(name("polished_%s"), rockProperties, blocksTag, slabsTag, stairsTag, wallsTag);
@@ -74,8 +76,8 @@ public class RockBlockSet {
 
     }
 
-    protected TagKey<Block> createTag(String tag) {
-        return BlockTags.create(MalumMod.malumPath(name("%s_" + tag)));
+    protected BlockItemTagKey createTag(String tag) {
+        return BlockBundle.createTag(id, tag);
     }
 
     public void addToCreativeTab(CreativeTabCategoryBuilder builder) {

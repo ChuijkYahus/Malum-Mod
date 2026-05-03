@@ -84,8 +84,6 @@ import com.sammy.malum.common.item.augment.core.*;
 import com.sammy.malum.common.block.curiosities.decor.banner.SoulwovenBannerBlockItem;
 import com.sammy.malum.common.item.codex.EncyclopediaArcanaItem;
 import com.sammy.malum.common.item.codex.EncyclopediaEsotericaItem;
-import com.sammy.malum.common.item.cosmetic.curios.CurioTokenOfGratitude;
-import com.sammy.malum.common.item.cosmetic.curios.CurioTopHat;
 import com.sammy.malum.common.item.curiosities.TemporarilyDisabledItem;
 import com.sammy.malum.common.item.curiosities.armor.MalignantStrongholdArmorItem;
 import com.sammy.malum.common.item.curiosities.armor.SoulHunterArmorItem;
@@ -225,7 +223,6 @@ public class MalumContent {
 
     public static final DeferredItem<Item> SOUL_OF_A_SCYTHE = register("soul_of_a_scythe", MalumItemProperties::GEAR, TemporarilyDisabledItem::new);
     public static final DeferredItem<Item> SOUL_OF_THE_ANCHOR = register("soul_of_the_anchor", MalumItemProperties::GEAR, TemporarilyDisabledItem::new);
-    public static final DeferredItem<Item> TOKEN_OF_GRATITUDE = register("token_of_gratitude", MalumItemProperties::GEAR, CurioTokenOfGratitude::new);
 
     public static <T extends Item> DeferredItem<T> register(String name, Supplier<LodestoneItemProperties> propertySupplier, Function<LodestoneItemProperties, T> function) {
         return ITEMS.register(name, () -> {
@@ -350,7 +347,7 @@ public class MalumContent {
 
         public static final DeferredBlock<Block> EBONY_SAPLING = registerBlockNoItem("ebony_sapling", () -> new EbonySaplingBlock(MalumFloraBlockProperties.EBONY_SAPLING()));
         public static final BlockBlockItemHolder<Block, BlockItem> EBONY_STALK = registerItemNameBlock("ebony", "ebony_stalk", () -> new EbonyStalkBlock(MalumFloraBlockProperties.EBONY()));
-        public static final DeferredItem<Item> EBONY = register("ebony", MalumItemProperties::DEFAULT, Item::new);
+        public static final DeferredItem<Item> CALCIFIED_EBONY = register("calcified_ebony", MalumItemProperties::DEFAULT, Item::new);
 
         public static final BlockBlockItemHolder<Block, BlockItem> WILD_WITCHHAZEL = registerBlock("wild_witchhazel", () -> new WildWitchhazelPlantBlock(MalumFloraBlockProperties.WILD_WITCHHAZEL()));
         public static final BlockBlockItemHolder<Block, BlockItem> WITCHHAZEL = registerBlock("witchhazel", () -> new WitchhazelCropBlock(MalumFloraBlockProperties.WITCHHAZEL_CROP()));
@@ -866,10 +863,6 @@ public class MalumContent {
 
         }
         public static final DeferredItem<Item> ESOTERIC_SPOOL = register("esoteric_spool", MalumItemProperties::DEFAULT, Item::new);
-        public static final DeferredItem<Item> ANCIENT_WEAVE = register("ancient_weave", MalumItemProperties::DEFAULT, p -> skinHoldingItem(p, ItemSkinComponent.ANCIENT_CLOTH));
-        public static final DeferredItem<Item> CORNERED_WEAVE = register("cornered_weave", MalumItemProperties::DEFAULT, p -> skinHoldingItem(p, ItemSkinComponent.COMMANDO));
-        public static final DeferredItem<Item> MECHANICAL_WEAVE_V1 = register("mechanical_weave_v1", MalumItemProperties::DEFAULT, p -> skinHoldingItem(p, ItemSkinComponent.BLUE_MACHINE));
-        public static final DeferredItem<Item> MECHANICAL_WEAVE_V2 = register("mechanical_weave_v2", MalumItemProperties::DEFAULT, p -> skinHoldingItem(p, ItemSkinComponent.RED_MACHINE));
 
         public static final DeferredItem<Item> ACE_PRIDEWEAVE = register("ace_prideweave", MalumItemProperties::DEFAULT, p -> skinHoldingItem(p, ItemSkinComponent.ACE));
         public static final DeferredItem<Item> AGENDER_PRIDEWEAVE = register("agender_prideweave", MalumItemProperties::DEFAULT, p -> skinHoldingItem(p, ItemSkinComponent.AGENDER));
@@ -890,8 +883,7 @@ public class MalumContent {
         public static final DeferredItem<Item> PRIDE_PRIDEWEAVE = register("pride_prideweave", MalumItemProperties::DEFAULT, p -> skinHoldingItem(p, ItemSkinComponent.PRIDE));
         public static final DeferredItem<Item> TRANS_PRIDEWEAVE = register("trans_prideweave", MalumItemProperties::DEFAULT, p -> skinHoldingItem(p, ItemSkinComponent.TRANS));
 
-        public static final DeferredItem<Item> TOPHAT = register("tophat", MalumItemProperties::GEAR, CurioTopHat::new);
-
+        
     }
 
 

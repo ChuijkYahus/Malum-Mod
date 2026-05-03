@@ -41,14 +41,6 @@ public record ItemSkinComponent(ResourceLocation name, int id) {
     public static final ItemSkinComponent PRIDE = register("pride");
     public static final ItemSkinComponent TRANS = register("trans");
 
-    public static final ItemSkinComponent BLUE_MACHINE = register("v1");
-    public static final ItemSkinComponent RED_MACHINE = register("v2");
-
-    public static final ItemSkinComponent COMMANDO = register("commando");
-
-    public static final ItemSkinComponent ANCIENT_CLOTH = register("ancient_soul_hunter");
-    public static final ItemSkinComponent ANCIENT_METAL = register("ancient_soul_stained_steel");
-
     public static ItemSkinComponent register(String name) {
         return register(MalumMod.malumPath(name));
     }

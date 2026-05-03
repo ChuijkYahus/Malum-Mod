@@ -1,11 +1,9 @@
 package com.sammy.malum.client.model;
-// Made with Blockbench 3.9.2
-// Exported for Minecraft version 1.15 - 1.16 with MCP mappings
-// Paste this class into your mod and generate all required imports
 
 
 import com.google.common.collect.*;
 import com.sammy.malum.*;
+import com.sammy.malum.registry.client.MalumModels;
 import net.minecraft.client.*;
 import net.minecraft.client.model.*;
 import net.minecraft.client.model.geom.*;
@@ -17,7 +15,9 @@ import team.lodestar.lodestone.systems.model.*;
 import team.lodestar.lodestone.systems.model.armor.*;
 
 public class MalignantStrongholdArmorModel extends LodestoneArmorModel {
-    public static final ModelLayerLocation LAYER = new ModelLayerLocation(MalumMod.malumPath("malignant_lead_armor"), "main");
+
+    public static MalumModels.ModelHolder<MalignantStrongholdArmorModel> MODEL = new MalumModels.ModelHolder<>("malignant_stronghold", MalignantStrongholdArmorModel::new, MalignantStrongholdArmorModel::createBodyLayer);
+
 
     public ModelPart scarf;
     public CachedModelPart lowerScarf;

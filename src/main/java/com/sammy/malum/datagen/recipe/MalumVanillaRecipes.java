@@ -226,7 +226,7 @@ public class MalumVanillaRecipes implements IConditionBuilder {
         RecipeDatagenCommons.blockIngotExchange(output, ALCHEMICAL_CALX, BLOCK_OF_ALCHEMICAL_CALX);
         RecipeDatagenCommons.blockIngotExchange(output, ARCANE_CHARCOAL, BLOCK_OF_ARCANE_CHARCOAL);
 
-        RecipeDatagenCommons.blockIngotExchange(output, EBONY, BLOCK_OF_EBONY);
+        RecipeDatagenCommons.blockIngotExchange(output, CALCIFIED_EBONY, BLOCK_OF_EBONY);
         RecipeDatagenCommons.blockIngotExchange(output, WITCHHAZEL, CRATE_OF_WITCHHAZEL);
 
         RecipeDatagenCommons.blockIngotExchange(output, NULL_SLATE, BLOCK_OF_NULL_SLATE);
@@ -250,11 +250,6 @@ public class MalumVanillaRecipes implements IConditionBuilder {
 
 
         //WEAVES
-        weaveRecipe(output, BLIGHTED_GUNK, ANCIENT_WEAVE);
-        weaveRecipe(output, IRON_INGOT, CORNERED_WEAVE);
-        weaveRecipe(output, LAPIS_LAZULI, MECHANICAL_WEAVE_V1);
-        weaveRecipe(output, REDSTONE, MECHANICAL_WEAVE_V2);
-
         weaveRecipe(output, BREAD, ACE_PRIDEWEAVE);
         weaveRecipe(output, BOOK, AGENDER_PRIDEWEAVE);
         weaveRecipe(output, ARROW, ARO_PRIDEWEAVE);

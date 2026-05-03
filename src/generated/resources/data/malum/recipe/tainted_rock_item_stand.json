@@ -3,10 +3,10 @@
   "category": "misc",
   "key": {
     "X": {
-      "tag": "malum:tainted_rock_tainted_rock_blocks"
+      "tag": "malum:tainted_rock_blocks"
     },
     "Y": {
-      "tag": "malum:tainted_rock_tainted_rock_slabs"
+      "tag": "malum:tainted_rock_slabs"
     }
   },
   "pattern": [

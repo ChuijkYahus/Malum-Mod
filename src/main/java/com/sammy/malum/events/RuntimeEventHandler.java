@@ -6,6 +6,7 @@ import com.sammy.malum.common.data.custom.malignant_conversion.MalignantConversi
 import com.sammy.malum.common.data.custom.reaping.ReapingDataReloadListener;
 import com.sammy.malum.common.data.custom.spellweaving.SpellweavingEqualityReloadListener;
 import com.sammy.malum.common.data.custom.spirit.SpiritDataReloadListener;
+import com.sammy.malum.common.data.custom.wand_parts.WandMaterialTypeDataReloadListener;
 import com.sammy.malum.common.data.custom.wand_parts.WandPartTypeDataReloadListener;
 import com.sammy.malum.common.effect.ascension.*;
 import com.sammy.malum.common.effect.rite.aura.*;
@@ -18,7 +19,6 @@ import com.sammy.malum.common.geas.pact.infernal.*;
 import com.sammy.malum.common.geas.pact.earthen.ProfaneAsceticGeas;
 import com.sammy.malum.common.geas.pact.sacred.*;
 import com.sammy.malum.common.geas.pact.wicked.*;
-import com.sammy.malum.common.item.cosmetic.curios.*;
 import com.sammy.malum.common.item.curiosities.curios.runes.madness.*;
 import com.sammy.malum.common.item.curiosities.curios.runes.miracle.*;
 import com.sammy.malum.common.item.curiosities.curios.sets.elemental.*;
@@ -44,7 +44,6 @@ public class RuntimeEventHandler {
 
     @SubscribeEvent
     public static void onEntityJoin(EntityJoinLevelEvent event) {
-        CurioTokenOfGratitude.giveItem(event);
         SoulDataHandler.syncData(event);
         GeasEffectHandler.syncGeas(event);
         TetraCompat.entityJoin(event);
@@ -116,6 +115,8 @@ public class RuntimeEventHandler {
     @SubscribeEvent
     public static void registerListeners(AddReloadListenerEvent event) {
         WandPartTypeDataReloadListener.register(event);
+        WandMaterialTypeDataReloadListener.register(event);
+
         SpellweavingEqualityReloadListener.register(event);
         SpiritDataReloadListener.register(event);
         ReapingDataReloadListener.register(event);

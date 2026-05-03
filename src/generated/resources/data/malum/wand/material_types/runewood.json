@@ -1,0 +1,13 @@
+{
+  "id": "malum:runewood",
+  "ingredient": {
+    "tag": "malum:runewood_planks"
+  },
+  "validGroups": [
+    "core",
+    "head",
+    "base",
+    "bauble",
+    "ornament"
+  ]
+}

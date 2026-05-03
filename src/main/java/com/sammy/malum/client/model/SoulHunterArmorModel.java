@@ -2,10 +2,9 @@ package com.sammy.malum.client.model;
 
 
 import com.google.common.collect.ImmutableList;
-import com.sammy.malum.MalumMod;
+import com.sammy.malum.registry.client.MalumModels;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.model.HumanoidModel;
-import net.minecraft.client.model.geom.ModelLayerLocation;
 import net.minecraft.client.model.geom.ModelPart;
 import net.minecraft.client.model.geom.PartPose;
 import net.minecraft.client.model.geom.builders.*;
@@ -16,7 +15,8 @@ import net.minecraft.world.entity.LivingEntity;
 import team.lodestar.lodestone.systems.model.armor.*;
 
 public class SoulHunterArmorModel extends LodestoneArmorModel {
-    public static ModelLayerLocation LAYER = new ModelLayerLocation(MalumMod.malumPath("soul_hunter_armor"), "main");
+
+    public static MalumModels.ModelHolder<SoulHunterArmorModel> MODEL = new MalumModels.ModelHolder<>("soul_hunter_armor", SoulHunterArmorModel::new, SoulHunterArmorModel::createBodyLayer);
 
     public CachedModelPart cape;
     public CachedModelPart hood;

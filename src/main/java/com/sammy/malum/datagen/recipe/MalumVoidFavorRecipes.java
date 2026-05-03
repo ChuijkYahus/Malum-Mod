@@ -53,9 +53,6 @@ public class MalumVoidFavorRecipes {
         new VoidFavorRecipeBuilder(Ingredient.of(THE_DEVICE), THE_VESSEL, 1)
                 .save(recipeOutput);
 
-        new VoidFavorRecipeBuilder(BLACK_WOOL, TOPHAT, 1)
-                .save(recipeOutput);
-
         new VoidFavorRecipeBuilder(ARCANE_ELEGY, AESTHETICA, 1)
                 .save(recipeOutput);
     }

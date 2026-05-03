@@ -27,7 +27,6 @@
     "client.AccessorFont",
     "client.CreativeModeInventoryScreenMixin",
     "client.CreativeModeTabMixin",
-    "client.ElytraLayerMixin",
     "client.FontStringRenderOutputMixin",
     "client.GlyphRenderTypesMixin",
     "client.ItemInHandLayerMixin",

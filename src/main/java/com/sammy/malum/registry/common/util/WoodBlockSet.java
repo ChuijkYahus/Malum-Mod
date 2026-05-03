@@ -23,6 +23,7 @@ import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.properties.BlockSetType;
 import net.neoforged.neoforge.event.BlockEntityTypeAddBlocksEvent;
 import net.neoforged.neoforge.registries.DeferredBlock;
+import team.lodestar.lodestone.modules.core.util.BlockItemTagKey;
 import team.lodestar.lodestone.modules.toolkit.block.BlockBlockItemHolder;
 import team.lodestar.lodestone.modules.toolkit.block.LodestoneBlockProperties;
 import team.lodestar.lodestone.modules.toolkit.creative_tab.CreativeTabCategoryBuilder;
@@ -42,10 +43,10 @@ public class WoodBlockSet {
         return name.replace("%s", id);
     }
 
-    public final TagKey<Block> allLogsTag, logsTag, strippedLogsTag;
+    public final BlockItemTagKey allLogsTag, logsTag, strippedLogsTag;
 
-    public final TagKey<Block> boardsTag, boardStairsTag, boardSlabsTag, boardWallsTag;
-    public final TagKey<Block> planksTag, plankStairsTag, plankSlabsTag;
+    public final BlockItemTagKey boardsTag, boardStairsTag, boardSlabsTag, boardWallsTag;
+    public final BlockItemTagKey planksTag, plankStairsTag, plankSlabsTag;
 
     public final BlockBlockItemHolder<Block, BlockItem> strippedLog, strippedWood, strippedSappyLog;
 
@@ -144,8 +145,8 @@ public class WoodBlockSet {
         sign = registerBlock(name("%s_sign"), () -> new StandingSignBlock(MalumWoodTypes.RUNEWOOD, itemHolderProperties.noCollission()), (b, p) -> new SignItem(p, b, wallSign.get()));
     }
 
-    protected TagKey<Block> createTag(String tag) {
-        return BlockTags.create(MalumMod.malumPath(id + "_" + tag));
+    protected BlockItemTagKey createTag(String tag) {
+        return BlockBundle.createTag(id, tag);
     }
 
     public void addToCreativeTab(CreativeTabCategoryBuilder builder) {

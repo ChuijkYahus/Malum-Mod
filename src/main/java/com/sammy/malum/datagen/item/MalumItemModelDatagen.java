@@ -39,10 +39,6 @@ public class MalumItemModelDatagen extends LodestoneItemModelSystem {
                 GENDERQUEER_PRIDEWEAVE, INTERSEX_PRIDEWEAVE, LESBIAN_PRIDEWEAVE, PAN_PRIDEWEAVE, PLURAL_PRIDEWEAVE,
                 POLY_PRIDEWEAVE, PRIDE_PRIDEWEAVE, TRANS_PRIDEWEAVE
         );
-        setTexturePath("cosmetic/weaves/");
-        MalumItemModelSmithTypes.GENERATED_ITEM.act(data,
-                ANCIENT_WEAVE, CORNERED_WEAVE, MECHANICAL_WEAVE_V1, MECHANICAL_WEAVE_V2
-        );
 
         setTexturePath("runes/");
         MalumItemModelSmithTypes.GENERATED_ITEM.act(data, items.stream().filter(i -> i.get() instanceof AbstractRuneCurioItem).collect(Collectors.toList()));

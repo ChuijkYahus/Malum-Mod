@@ -19,6 +19,11 @@ public class WandPartTypeDataReloadListener extends CodecBasedReloadListener<Res
     }
 
     @Override
+    public Codec<ResourceLocation> getKeyCodec() {
+        return ResourceLocation.CODEC;
+    }
+
+    @Override
     public Codec<WandPartType> getCodec() {
         return WandPartType.DIRECT_CODEC;
     }
