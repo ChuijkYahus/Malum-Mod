@@ -16,7 +16,6 @@ public class WandTinkererScreen extends AbstractMalumContainerScreen<WandTinkere
 
     private static final ResourceLocation TEXTURE = MalumMod.malumPath("textures/gui/container/wand_tinkerer.png");
 
-
     public WandTinkererScreen(WandTinkererContainer menu, Inventory inventory, Component title) {
         super(menu, inventory, title);
         leftPos = 0;
@@ -33,4 +32,6 @@ public class WandTinkererScreen extends AbstractMalumContainerScreen<WandTinkere
     public ResourceLocation getBackgroundTexture() {
         return TEXTURE;
     }
+
+
 }

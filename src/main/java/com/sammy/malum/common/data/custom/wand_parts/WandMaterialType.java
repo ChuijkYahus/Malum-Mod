@@ -27,4 +27,6 @@ public record WandMaterialType(ResourceLocation id, Ingredient ingredient, List<
             );
 
     public static final StreamCodec<RegistryFriendlyByteBuf, List<WandMaterialType>> LIST_STREAM_CODEC = STREAM_CODEC.apply(ByteBufCodecs.list());
+
+
 }

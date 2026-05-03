@@ -1,4 +1,5 @@
 {
   "group": "core",
-  "id": "malum:short_core"
+  "id": "malum:short_core",
+  "materialCost": 2
 }

@@ -53,7 +53,7 @@ public class MalumItemModelDatagen extends LodestoneItemModelSystem {
 
         setTexturePath("");
 
-        MalumItemModelSmithTypes.BUILTIN_ENTITY_ITEM.act(data, MalumContent.GEAS);
+        MalumItemModelSmithTypes.BUILTIN_ENTITY_ITEM.act(data, MalumContent.GEAS, MalumContent.WAND);
         MalumItemModelSmithTypes.UMBRAL_SPIRIT_ITEM.act(data, MalumContent.Spirits.UMBRAL_SPIRIT);
         MalumItemModelSmithTypes.HANDHELD_OVERLAY_ITEM.act(data, MalumContent.Gear.UNWINDING_CHAOS, MalumContent.Gear.SUNDERING_ANCHOR).forEach(result -> result.addModelLayerData().emissive(15, 15, 1));
         MalumItemModelSmithTypes.LARGE_HANDHELD_ITEM.act(data, MalumContent.Gear.CRUDE_SCYTHE, MalumContent.Gear.SOUL_STAINED_STEEL_SCYTHE, MalumContent.Gear.RAVENOUS_SCYTHE, MalumContent.Gear.EDGE_OF_DELIVERANCE, MalumContent.Gear.WEIGHT_OF_WORLDS, MalumContent.DungeonGear.SHAPED_SLAB);

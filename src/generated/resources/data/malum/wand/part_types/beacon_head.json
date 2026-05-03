@@ -1,4 +1,6 @@
 {
+  "coreTier": 2,
   "group": "head",
-  "id": "malum:beacon_head"
+  "id": "malum:beacon_head",
+  "materialCost": 4
 }

@@ -3,19 +3,25 @@ package com.sammy.malum.client.model.item;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
 import com.sammy.malum.MalumMod;
+import com.sammy.malum.common.data.custom.wand_parts.WandMaterialType;
 import com.sammy.malum.common.data.custom.wand_parts.WandPartType;
 import com.sammy.malum.registry.client.MalumModels;
+import net.minecraft.Util;
 import net.minecraft.client.model.Model;
 import net.minecraft.client.model.geom.ModelPart;
 import net.minecraft.client.model.geom.PartPose;
 import net.minecraft.client.model.geom.builders.*;
 import net.minecraft.client.renderer.RenderType;
+import net.minecraft.resources.ResourceLocation;
 
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.Optional;
+import java.util.function.Function;
 
 @SuppressWarnings("FieldCanBeLocal")
 public class WandPartsModel extends Model {
+
 
 	public static MalumModels.ModelHolder<WandPartsModel> MODEL = new MalumModels.ModelHolder<>("wand_parts", WandPartsModel::new, WandPartsModel::createWandParts);
 
@@ -31,7 +37,7 @@ public class WandPartsModel extends Model {
 	 * @return The model part to render
 	 */
 	public static Optional<ModelPart> getModelPart(WandPartType partType) {
-		if (partType.id().getNamespace().equals(MalumMod.MALUM)) {
+		if (partType.isMalum()) {
 			WandPartsModel wandPartsModel = MODEL.getModel();
 			var group = switch (partType.group()) {
 				case CORE -> wandPartsModel.cores;
@@ -46,14 +52,15 @@ public class WandPartsModel extends Model {
 		return Optional.empty();
 	}
 
+
 	/**.
 	 * @return The name of the model part that should be used for a wand
 	 */
-	public static String getModelPartName(WandPartType partType) {
+	protected static String getModelPartName(WandPartType partType) {
 		return partType.id().getPath() + "_" + partType.group().name;
 	}
 
-	public static ModelPart getPart(ModelPart part, String name) {
+	protected static ModelPart getPart(ModelPart part, String name) {
 		try {
 			return part.getChild(name);
 		} catch (Exception ignored) {

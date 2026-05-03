@@ -2,7 +2,12 @@ package com.sammy.malum.client.renderer.item;
 
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
+import com.sammy.malum.client.model.item.WandPartsModel;
 import com.sammy.malum.common.block.storage.jar.SpiritJarBlockEntity;
+import com.sammy.malum.common.data.component.WandPartsComponent;
+import com.sammy.malum.common.data.custom.wand_parts.WandMaterialType;
+import com.sammy.malum.common.data.custom.wand_parts.WandPartType;
+import com.sammy.malum.common.item.curiosities.WandItem;
 import com.sammy.malum.common.item.spirit.SpiritJarItem;
 import com.sammy.malum.registry.common.MalumContent;
 import com.sammy.malum.registry.common.item.MalumDataComponents;
@@ -15,10 +20,28 @@ import net.minecraft.client.renderer.blockentity.BlockEntityRenderDispatcher;
 import net.minecraft.client.renderer.entity.ItemRenderer;
 import net.minecraft.client.resources.model.BakedModel;
 import net.minecraft.core.BlockPos;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.ItemDisplayContext;
 import net.minecraft.world.item.ItemStack;
+import team.lodestar.lodestone.registry.client.LodestoneRenderTypes;
+import team.lodestar.lodestone.registry.client.LodestoneShaders;
+import team.lodestar.lodestone.systems.rendering.LodestoneRenderType;
+import team.lodestar.lodestone.systems.rendering.StateShards;
+import team.lodestar.lodestone.systems.rendering.rendeertype.RenderTypeProvider;
+import team.lodestar.lodestone.systems.rendering.rendeertype.RenderTypeToken;
+
+import java.util.Map;
+import java.util.Set;
+
+import static com.mojang.blaze3d.vertex.DefaultVertexFormat.POSITION_COLOR_TEX_LIGHTMAP;
+import static com.mojang.blaze3d.vertex.VertexFormat.Mode.QUADS;
 
 public class WandItemRenderer extends BlockEntityWithoutLevelRenderer {
+
+    public static final RenderTypeProvider WAND_CUTOUT = new RenderTypeProvider((token) ->
+            LodestoneRenderTypes.createGenericRenderType(token, "wand_texture", POSITION_COLOR_TEX_LIGHTMAP,
+                    QUADS, LodestoneRenderTypes.builder(token, StateShards.NORMAL_TRANSPARENCY, LodestoneShaders.LODESTONE_TEXTURE, LodestoneRenderTypes.NO_CULL, LodestoneRenderTypes.LIGHTMAP)));
+
 
     private final BlockEntityRenderDispatcher blockEntityRenderDispatcher;
 
@@ -27,9 +50,30 @@ public class WandItemRenderer extends BlockEntityWithoutLevelRenderer {
         this.blockEntityRenderDispatcher = pBlockEntityRenderDispatcher;
     }
 
+    public ResourceLocation getPartTexture(WandMaterialType material) {
+        return material.id().withPath("item/wand/").withSuffix("_parts.png");
+    }
+
     @Override
     public void renderByItem(ItemStack stack, ItemDisplayContext ctx, PoseStack poseStack, MultiBufferSource buffer, int light, int overlay) {
-        if (stack.getItem() instanceof SpiritJarItem) {
+        if (stack.getItem() instanceof WandItem) {
+            var data = stack.get(MalumDataComponents.WAND_PARTS);
+            if (data == null) {
+                return;
+            }
+            var parts = data.parts().entrySet();
+            for (Map.Entry<WandPartType, WandMaterialType> entry : parts) {
+                var part = entry.getKey();
+                var material = entry.getValue();
+                var optional = WandPartsModel.getModelPart(part);
+                if (optional.isEmpty()) {
+                    continue;
+                }
+                var texture = getPartTexture(material);
+                var renderType = WAND_CUTOUT.apply(RenderTypeToken.createToken(texture)).getRenderType();
+                var model = optional.get();
+                model.render(poseStack, buffer.getBuffer(renderType), light, overlay);
+            }
 //            ItemRenderer renderer = Minecraft.getInstance().getItemRenderer();
 //
 //            // Pop off the transformations applied by ItemRenderer before calling this

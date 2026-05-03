@@ -22,9 +22,22 @@ public class WandTinkererContainer extends LodestoneBlockEntityContainer<WandTin
         this(containerId, playerInventory, ContainerLevelAccess.NULL);
     }
 
-    public WandTinkererContainer(int containerId, Inventory playerInventory, final ContainerLevelAccess access) {
+    public WandTinkererContainer(int containerId, Inventory playerInventory, ContainerLevelAccess access) {
         super(MalumContainers.WAND_TINKERER.get(), containerId, playerInventory, access);
+
+        if (blockEntity != null) {
+            var itemHandler = getItemStackHandler();
+            for (int x = 0; x < 4; x++) {
+                for (int y = 0; y < 4; y++) {
+                    int slotX = 56 + x * 16;
+                    int slotY = 23 + y * 16;
+                    addSlot(new SlotItemHandler(itemHandler, 0, slotX, slotY));
+                }
+            }
+        }
     }
+
+
 
     @Override
     public int[] getPlayerInventoryTopLeft() {
@@ -38,6 +51,8 @@ public class WandTinkererContainer extends LodestoneBlockEntityContainer<WandTin
 
     @Override
     public LodestoneItemStackBlockHandler getItemStackHandler() {
-        return blockEntity.inventory;
+        return blockEntity.buffer;
     }
+
+
 }

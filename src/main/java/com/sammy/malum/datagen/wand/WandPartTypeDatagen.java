@@ -21,17 +21,33 @@ public final class WandPartTypeDatagen extends JsonCodecProvider<WandPartType> {
 
     @Override
     protected void gather() {
-        add(WandPartGroup.CORE, "short", "medium", "long");
-        add(WandPartGroup.HEAD, "cap", "orb", "beacon");
+        add(WandPartGroup.CORE, "short", 0, 2);
+        add(WandPartGroup.CORE, "medium", 1, 4);
+        add(WandPartGroup.CORE, "long", 2, 6);
+
+        add(WandPartGroup.HEAD, "cap", 0, 1);
+        add(WandPartGroup.HEAD, "orb", 1, 2);
+        add(WandPartGroup.HEAD, "beacon", 2, 4);
+
         add(WandPartGroup.BASE, "simple");
-        add(WandPartGroup.BAUBLE, "loop", "spike");
-        add(WandPartGroup.ORNAMENT, "lower", "middle", "upper");
+
+        add(WandPartGroup.BAUBLE, "loop");
+        add(WandPartGroup.BAUBLE, "spike");
+
+        add(WandPartGroup.ORNAMENT, "lower", 0);
+        add(WandPartGroup.ORNAMENT, "middle", 1);
+        add(WandPartGroup.ORNAMENT, "upper", 2);
     }
 
-    public void add(WandPartGroup group, String... types) {
-        for (String type : types) {
-            var id = MalumMod.malumPath(group.getIdForPart(type));
-            unconditional(id, new WandPartType(group, id));
-        }
+    public void add(WandPartGroup group, String name) {
+        add(group, name, 0, 1);
+    }
+
+    public void add(WandPartGroup group, String name, int tier) {
+        add(group, name, tier, 1);
+    }
+    public void add(WandPartGroup group, String name, int tier, int cost) {
+        var id = MalumMod.malumPath(group.getIdForPart(name));
+        unconditional(id, new WandPartType(group, id, tier, cost));
     }
 }
