@@ -70,4 +70,8 @@ public abstract class CodecBasedReloadListener<K, T> extends SimpleJsonResourceR
     public T get(K key) {
         return data.get(key);
     }
+
+    public Map<K, T> getValues() {
+        return data;
+    }
 }

@@ -250,6 +250,15 @@
     ],
     "subtitle": "malum.subtitle.arcana_entry_unhovered"
   },
+  "arcana_gizmo_hover": {
+    "sounds": [
+      "malum:codex/gizmo/hover1",
+      "malum:codex/gizmo/hover2",
+      "malum:codex/gizmo/hover3",
+      "malum:codex/gizmo/hover4"
+    ],
+    "subtitle": "malum.subtitle.arcana_gizmo_hover"
+  },
   "arcana_page_flipped": {
     "sounds": [
       "malum:codex/book_page_turn1",

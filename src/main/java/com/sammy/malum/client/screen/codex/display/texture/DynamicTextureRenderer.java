@@ -79,9 +79,10 @@ public class DynamicTextureRenderer {
         return this;
     }
 
-    public void setScale(float scale) {
+    public DynamicTextureRenderer setScale(float scale) {
         this.hScale = scale;
         this.vScale = scale;
+        return this;
     }
 
     public static void clearCache() {
@@ -188,21 +189,9 @@ public class DynamicTextureRenderer {
     public void drawTexture(RenderableDynamicTexture tex, Supplier<ShaderInstance> shader, ResourceLocation texture) {
         drawAsInGUI(tex, s -> {
             var pose = s.pose().last();
-            RenderSystem.setShaderTexture(0, texture);
             RenderSystem.enableDepthTest();
             RenderSystem.depthMask(false);
             RenderSystem.enableBlend();
-            RenderSystem.setShader(shader);
-            RenderSystem.setShaderColor(1.0F, 1.0F, 1.0F, 1);
-            var tesselator = Tesselator.getInstance();
-            var builder = tesselator.begin(VertexFormat.Mode.QUADS, DefaultVertexFormat.POSITION_TEX);
-            builder.addVertex(pose, 0, height, 0).setUv(0, 0);
-            builder.addVertex(pose, width, height, 0).setUv(1, 0);
-            builder.addVertex(pose, width, 0, 0).setUv(1, 1);
-            builder.addVertex(pose, 0, 0, 0).setUv(0, 1);
-
-            BufferUploader.drawWithShader(builder.buildOrThrow());
-
             VFXBuilders.createScreen()
                     .setPositionWithWidth(0, 0, width, height)
                     .setUV(0, 1, 1, 0)

@@ -4,6 +4,7 @@ import com.mojang.serialization.Codec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
 import com.sammy.malum.MalumMod;
 import com.sammy.malum.common.data.component.WandPartsComponent;
+import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.network.RegistryFriendlyByteBuf;
 import net.minecraft.network.codec.ByteBufCodecs;
@@ -17,18 +18,16 @@ import java.util.List;
 public record WandPartType(WandPartGroup group, ResourceLocation id, int coreTier, int materialCost) {
 
     public enum WandPartGroup implements StringRepresentable {
-        CORE("core", true),
-        HEAD("head", true),
-        BASE("base", true),
-        BAUBLE("bauble", true),
-        ORNAMENT("ornament", false);
+        CORE("core"),
+        HEAD("head"),
+        BASE("base"),
+        BAUBLE("bauble"),
+        ORNAMENT("ornament");
 
         public final String name;
-        public final boolean onlyOne;
 
-        WandPartGroup(String name, boolean onlyOne) {
+        WandPartGroup(String name) {
             this.name = name;
-            this.onlyOne = onlyOne;
         }
 
         @Override
@@ -39,6 +38,23 @@ public record WandPartType(WandPartGroup group, ResourceLocation id, int coreTie
         public String getIdForPart(String partName) {
             return partName + "_" + name;
         }
+
+        public void save(CompoundTag tag) {
+            tag.putString("group", name);
+        }
+
+        public static WandPartGroup load(CompoundTag tag) {
+            return get(tag.getString("group"));
+        }
+
+        public static WandPartGroup get(String name) {
+            for (WandPartGroup value : WandPartGroup.values()) {
+                if (value.name.equals(name)) {
+                    return value;
+                }
+            }
+            return CORE;
+        }
     }
 
     public boolean isMalum() {
@@ -47,9 +63,6 @@ public record WandPartType(WandPartGroup group, ResourceLocation id, int coreTie
 
     public boolean canApply(WandPartsComponent component) {
         if (coreTier > component.getCoreTier()) {
-            return false;
-        }
-        if (group.onlyOne && component.getPart(group).isPresent()) {
             return false;
         }
         return !component.hasPart(this);

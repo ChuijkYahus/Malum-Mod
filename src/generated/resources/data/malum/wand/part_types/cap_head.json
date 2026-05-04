@@ -1,4 +1,5 @@
 {
   "group": "head",
-  "id": "malum:cap_head"
+  "id": "malum:cap_head",
+  "materialCost": 3
 }

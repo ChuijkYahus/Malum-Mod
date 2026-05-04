@@ -1,15 +1,12 @@
 package com.sammy.malum.registry.common;
 
-import com.sammy.malum.MalumMod;
 import com.sammy.malum.client.screen.container.*;
+import com.sammy.malum.client.screen.container.tinkerer.WandTinkererScreen;
 import com.sammy.malum.common.block.curiosities.artifice.crystallarium.*;
 import com.sammy.malum.common.block.curiosities.sorcery.wand_tinkerer.WandTinkererContainer;
 import com.sammy.malum.common.container.WeaversWorkbenchContainer;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.world.inventory.MenuType;
-import net.neoforged.api.distmarker.Dist;
-import net.neoforged.bus.api.SubscribeEvent;
-import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.neoforge.client.event.*;
 import net.neoforged.neoforge.common.extensions.*;
 import net.neoforged.neoforge.registries.DeferredHolder;

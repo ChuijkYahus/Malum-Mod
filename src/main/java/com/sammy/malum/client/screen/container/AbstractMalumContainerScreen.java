@@ -16,6 +16,7 @@ import javax.annotation.Nonnull;
 
 public abstract class AbstractMalumContainerScreen<T extends AbstractContainerMenu> extends AbstractContainerScreen<T> {
 
+
     public AbstractMalumContainerScreen(T menu, Inventory inventory, Component title) {
         super(menu, inventory, title);
         leftPos = 0;

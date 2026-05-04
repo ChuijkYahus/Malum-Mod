@@ -31,6 +31,7 @@ public class CodexOutlineRenderer {
     private int shadowWidth = 7;
     protected int offset;
 
+    protected float effectAlpha;
     protected float effectStrength;
 
 
@@ -40,6 +41,10 @@ public class CodexOutlineRenderer {
 
     public static CodexOutlineRenderer create(ResourceLocation sourceTexture, int left, int top, int sourceWidth, int sourceHeight) {
         return new CodexOutlineRenderer(sourceTexture, left, top, sourceWidth, sourceHeight, 64, 64);
+    }
+
+    public static CodexOutlineRenderer create(ResourceLocation sourceTexture, int left, int top, int sourceWidth, int sourceHeight, int width, int height) {
+        return new CodexOutlineRenderer(sourceTexture, left, top, sourceWidth, sourceHeight, width, height);
     }
 
     protected CodexOutlineRenderer(ResourceLocation sourceTexture, int left, int top, int sourceWidth, int sourceHeight, int width, int height) {
@@ -64,6 +69,11 @@ public class CodexOutlineRenderer {
 
     public CodexOutlineRenderer setEffectStrength(float effectStrength) {
         this.effectStrength = effectStrength;
+        return this;
+    }
+
+    public CodexOutlineRenderer setEffectAlpha(float effectAlpha) {
+        this.effectAlpha = effectAlpha;
         return this;
     }
 

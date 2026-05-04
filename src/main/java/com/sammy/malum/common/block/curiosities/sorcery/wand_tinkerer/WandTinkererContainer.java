@@ -1,9 +1,12 @@
 package com.sammy.malum.common.block.curiosities.sorcery.wand_tinkerer;
 
+import com.sammy.malum.common.data.custom.wand_parts.WandPartType;
 import com.sammy.malum.registry.common.MalumContainers;
+import com.sammy.malum.registry.common.item.MalumDataComponents;
 import net.minecraft.network.RegistryFriendlyByteBuf;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.entity.player.Inventory;
+import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.ContainerLevelAccess;
 import net.minecraft.world.item.ItemStack;
 import net.neoforged.neoforge.items.SlotItemHandler;
@@ -24,24 +27,28 @@ public class WandTinkererContainer extends LodestoneBlockEntityContainer<WandTin
 
     public WandTinkererContainer(int containerId, Inventory playerInventory, ContainerLevelAccess access) {
         super(MalumContainers.WAND_TINKERER.get(), containerId, playerInventory, access);
-
         if (blockEntity != null) {
             var itemHandler = getItemStackHandler();
-            for (int x = 0; x < 4; x++) {
-                for (int y = 0; y < 4; y++) {
-                    int slotX = 56 + x * 16;
-                    int slotY = 23 + y * 16;
-                    addSlot(new SlotItemHandler(itemHandler, 0, slotX, slotY));
+
+            addSlot(new SlotItemHandler(itemHandler, 0, 199, 64) {
+                @Override
+                public boolean mayPlace(ItemStack stack) {
+                    return false;
                 }
-            }
+
+                @Override
+                public boolean mayPickup(Player playerIn) {
+                    ItemStack item = getItem();
+                    var component = item.get(MalumDataComponents.WAND_PARTS);
+                    return component != null && component.isValid();
+                }
+            });
         }
     }
 
-
-
     @Override
     public int[] getPlayerInventoryTopLeft() {
-        return new int[]{8, 133};
+        return new int[]{8, 144};
     }
 
     @Override
@@ -51,8 +58,6 @@ public class WandTinkererContainer extends LodestoneBlockEntityContainer<WandTin
 
     @Override
     public LodestoneItemStackBlockHandler getItemStackHandler() {
-        return blockEntity.buffer;
+        return blockEntity.wandOutput;
     }
-
-
 }

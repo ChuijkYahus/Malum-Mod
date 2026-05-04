@@ -25,18 +25,20 @@ public final class WandPartTypeDatagen extends JsonCodecProvider<WandPartType> {
         add(WandPartGroup.CORE, "medium", 1, 4);
         add(WandPartGroup.CORE, "long", 2, 6);
 
-        add(WandPartGroup.HEAD, "cap", 0, 1);
-        add(WandPartGroup.HEAD, "orb", 1, 2);
-        add(WandPartGroup.HEAD, "beacon", 2, 4);
+        add(WandPartGroup.HEAD, "cap", 0, 3);
+        add(WandPartGroup.HEAD, "orb", 1, 6);
+        add(WandPartGroup.HEAD, "beacon", 2, 9);
 
-        add(WandPartGroup.BASE, "simple");
+        add(WandPartGroup.BASE, "simple", 0, 1);
+        add(WandPartGroup.BASE, "carved", 0, 2);
+        add(WandPartGroup.BASE, "spiked", 0, 3);
+        add(WandPartGroup.BASE, "grid_loop", 0, 4);
 
-        add(WandPartGroup.BAUBLE, "loop");
-        add(WandPartGroup.BAUBLE, "spike");
+        add(WandPartGroup.BAUBLE, "carved", 0, 2);
 
-        add(WandPartGroup.ORNAMENT, "lower", 0);
-        add(WandPartGroup.ORNAMENT, "middle", 1);
-        add(WandPartGroup.ORNAMENT, "upper", 2);
+        add(WandPartGroup.ORNAMENT, "simple", 0, 2);
+        add(WandPartGroup.ORNAMENT, "carved", 1, 4);
+        add(WandPartGroup.ORNAMENT, "spiked", 2, 6);
     }
 
     public void add(WandPartGroup group, String name) {

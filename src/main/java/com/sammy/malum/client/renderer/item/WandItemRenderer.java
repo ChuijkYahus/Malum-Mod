@@ -2,6 +2,7 @@ package com.sammy.malum.client.renderer.item;
 
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
+import com.mojang.math.Axis;
 import com.sammy.malum.client.model.item.WandPartsModel;
 import com.sammy.malum.common.block.storage.jar.SpiritJarBlockEntity;
 import com.sammy.malum.common.data.component.WandPartsComponent;
@@ -51,7 +52,7 @@ public class WandItemRenderer extends BlockEntityWithoutLevelRenderer {
     }
 
     public ResourceLocation getPartTexture(WandMaterialType material) {
-        return material.id().withPath("item/wand/").withSuffix("_parts.png");
+        return material.id().withPrefix("textures/item/wand/").withSuffix("_parts.png");
     }
 
     @Override
@@ -61,45 +62,52 @@ public class WandItemRenderer extends BlockEntityWithoutLevelRenderer {
             if (data == null) {
                 return;
             }
-            var parts = data.parts().entrySet();
-            for (Map.Entry<WandPartType, WandMaterialType> entry : parts) {
-                var part = entry.getKey();
-                var material = entry.getValue();
-                var optional = WandPartsModel.getModelPart(part);
-                if (optional.isEmpty()) {
-                    continue;
-                }
-                var texture = getPartTexture(material);
-                var renderType = WAND_CUTOUT.apply(RenderTypeToken.createToken(texture)).getRenderType();
-                var model = optional.get();
-                model.render(poseStack, buffer.getBuffer(renderType), light, overlay);
+            if (!data.isValid()) {
+                return;
             }
-//            ItemRenderer renderer = Minecraft.getInstance().getItemRenderer();
-//
-//            // Pop off the transformations applied by ItemRenderer before calling this
-//            poseStack.popPose();
-//            poseStack.pushPose();
-//
-//            BakedModel model = Minecraft.getInstance().getBlockRenderer().getBlockModel(MalumContent.Sorcery.SPIRIT_JAR.get().defaultBlockState());
-//            model = model.applyTransform(ctx, poseStack, isLeftHand(ctx));
-//            poseStack.translate(-.5, -.5, -.5);
-//
-//            boolean glint = stack.hasFoil();
-//            for (BakedModel pass : model.getRenderPasses(stack, true)) {
-//                for (RenderType type : pass.getRenderTypes(stack, true)) {
-//                    VertexConsumer consumer = ItemRenderer.getFoilBufferDirect(buffer, type, true, glint);
-//                    renderer.renderModelLists(pass, stack, light, overlay, poseStack, consumer);
-//                }
-//            }
-//
-//            if (stack.has(MalumDataComponents.SPIRIT_JAR_CONTENTS)) {
-//                jar.contents = stack.get(MalumDataComponents.SPIRIT_JAR_CONTENTS);
-//                this.blockEntityRenderDispatcher.renderItem(jar, poseStack, buffer, light, overlay);
-//            }
-        }
-    }
 
-    public static boolean isLeftHand(ItemDisplayContext ctx) {
-        return ctx == ItemDisplayContext.FIRST_PERSON_LEFT_HAND || ctx == ItemDisplayContext.THIRD_PERSON_LEFT_HAND;
+            poseStack.translate(0.5F, 0f, 0.5F);
+            poseStack.scale(1.0F, -1.0F, -1.0F);
+            if (ctx.equals(ItemDisplayContext.GUI)) {
+                poseStack.mulPose(Axis.YP.rotationDegrees(-135));
+                poseStack.mulPose(Axis.XP.rotationDegrees(45));
+                poseStack.translate(0.8F, -0.2f, -0.15F);
+            }
+            else {
+                poseStack.translate(0F, 0f, -0.125F);
+            }
+            var parts = data.parts().entrySet();
+
+
+            int coreTier = -1;
+            for (Map.Entry<WandPartType, WandMaterialType> entry : parts) {
+                WandPartType part = entry.getKey();
+                if (part.group().equals(WandPartType.WandPartGroup.CORE)) {
+                    coreTier = part.coreTier();
+                }
+            }
+            poseStack.translate(0f, -0.05f * coreTier, 0f);
+            if (coreTier >= 0) {
+                for (Map.Entry<WandPartType, WandMaterialType> entry : parts) {
+                    var part = entry.getKey();
+                    var material = entry.getValue();
+                    var optional = WandPartsModel.getModelPart(part);
+                    if (optional.isEmpty()) {
+                        continue;
+                    }
+                    var texture = getPartTexture(material);
+                    var renderType = WAND_CUTOUT.apply(RenderTypeToken.createToken(texture)).getRenderType();
+                    var model = optional.get();
+                    poseStack.pushPose();
+                    if (part.group().equals(WandPartType.WandPartGroup.HEAD)) {
+                        int inverse = 2 - coreTier;
+                        poseStack.translate(0f, 0.25f * inverse, 0f);
+                    }
+                    model.render(poseStack, buffer.getBuffer(renderType), light, overlay);
+
+                    poseStack.popPose();
+                }
+            }
+        }
     }
 }
