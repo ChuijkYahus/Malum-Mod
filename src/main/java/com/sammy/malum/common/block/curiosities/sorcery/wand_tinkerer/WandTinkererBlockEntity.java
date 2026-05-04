@@ -174,11 +174,11 @@ public class WandTinkererBlockEntity extends LodestoneBlockEntity implements IIn
         var inventory = getInventory(group);
         var nonEmpty = inventory.getNonEmptyStacks();
         int highestCost = 0;
-        for (WandPartType part : WandPartTypeDataReloadListener.DATA.getValues().values()) {
+        for (WandPartType part : WandPartTypeDataReloadListener.DATA.getMap().values()) {
             if (!part.group().equals(group)) {
                 continue;
             }
-            for (WandMaterialType material : WandMaterialTypeDataReloadListener.DATA.getValues().values()) {
+            for (WandMaterialType material : WandMaterialTypeDataReloadListener.DATA.getMap().values()) {
                 var materialCost = part.materialCost();
                 int i;
                 for (i = 0; i < nonEmpty.size(); i++) {

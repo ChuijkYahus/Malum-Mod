@@ -7,8 +7,6 @@ import com.google.gson.JsonParseException;
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.JsonOps;
 import com.sammy.malum.MalumMod;
-import com.sammy.malum.common.data.custom.wand_parts.WandPartType;
-import com.sammy.malum.common.data.custom.wand_parts.WandPartTypeDataReloadListener;
 import net.minecraft.resources.RegistryOps;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.packs.resources.ResourceManager;
@@ -16,6 +14,7 @@ import net.minecraft.server.packs.resources.SimpleJsonResourceReloadListener;
 import net.minecraft.util.profiling.ProfilerFiller;
 import team.lodestar.lodestone.modules.toolkit.codec.LodestoneCodecs;
 
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Optional;
@@ -71,7 +70,12 @@ public abstract class CodecBasedReloadListener<K, T> extends SimpleJsonResourceR
         return data.get(key);
     }
 
-    public Map<K, T> getValues() {
+    public Map<K, T> getMap() {
         return data;
     }
+
+    public Collection<T> getValues() {
+        return getMap().values();
+    }
+
 }
