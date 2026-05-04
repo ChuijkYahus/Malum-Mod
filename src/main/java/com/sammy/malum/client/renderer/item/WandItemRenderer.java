@@ -1,38 +1,30 @@
 package com.sammy.malum.client.renderer.item;
 
 import com.mojang.blaze3d.vertex.PoseStack;
-import com.mojang.blaze3d.vertex.VertexConsumer;
 import com.mojang.math.Axis;
 import com.sammy.malum.client.model.item.WandPartsModel;
-import com.sammy.malum.common.block.storage.jar.SpiritJarBlockEntity;
-import com.sammy.malum.common.data.component.WandPartsComponent;
 import com.sammy.malum.common.data.custom.wand_parts.WandMaterialType;
 import com.sammy.malum.common.data.custom.wand_parts.WandPartType;
 import com.sammy.malum.common.item.curiosities.WandItem;
-import com.sammy.malum.common.item.spirit.SpiritJarItem;
-import com.sammy.malum.registry.common.MalumContent;
+import com.sammy.malum.registry.client.MalumModels;
 import com.sammy.malum.registry.common.item.MalumDataComponents;
-import net.minecraft.client.Minecraft;
 import net.minecraft.client.model.geom.EntityModelSet;
+import net.minecraft.client.model.geom.ModelPart;
 import net.minecraft.client.renderer.BlockEntityWithoutLevelRenderer;
 import net.minecraft.client.renderer.MultiBufferSource;
-import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.blockentity.BlockEntityRenderDispatcher;
-import net.minecraft.client.renderer.entity.ItemRenderer;
-import net.minecraft.client.resources.model.BakedModel;
-import net.minecraft.core.BlockPos;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.ItemDisplayContext;
 import net.minecraft.world.item.ItemStack;
 import team.lodestar.lodestone.registry.client.LodestoneRenderTypes;
 import team.lodestar.lodestone.registry.client.LodestoneShaders;
-import team.lodestar.lodestone.systems.rendering.LodestoneRenderType;
 import team.lodestar.lodestone.systems.rendering.StateShards;
 import team.lodestar.lodestone.systems.rendering.rendeertype.RenderTypeProvider;
 import team.lodestar.lodestone.systems.rendering.rendeertype.RenderTypeToken;
 
+import java.util.Collections;
 import java.util.Map;
-import java.util.Set;
+import java.util.Optional;
 
 import static com.mojang.blaze3d.vertex.DefaultVertexFormat.POSITION_COLOR_TEX_LIGHTMAP;
 import static com.mojang.blaze3d.vertex.VertexFormat.Mode.QUADS;
@@ -42,6 +34,7 @@ public class WandItemRenderer extends BlockEntityWithoutLevelRenderer {
     public static final RenderTypeProvider WAND_CUTOUT = new RenderTypeProvider((token) ->
             LodestoneRenderTypes.createGenericRenderType(token, "wand_texture", POSITION_COLOR_TEX_LIGHTMAP,
                     QUADS, LodestoneRenderTypes.builder(token, StateShards.NORMAL_TRANSPARENCY, LodestoneShaders.LODESTONE_TEXTURE, LodestoneRenderTypes.NO_CULL, LodestoneRenderTypes.LIGHTMAP)));
+    public static MalumModels.ModelHolder<WandPartsModel> MODEL = new MalumModels.ModelHolder<>("wand_parts", WandPartsModel::new, WandPartsModel::createWandParts);
 
 
     private final BlockEntityRenderDispatcher blockEntityRenderDispatcher;
@@ -49,6 +42,41 @@ public class WandItemRenderer extends BlockEntityWithoutLevelRenderer {
     public WandItemRenderer(BlockEntityRenderDispatcher pBlockEntityRenderDispatcher, EntityModelSet pEntityModelSet) {
         super(pBlockEntityRenderDispatcher, pEntityModelSet);
         this.blockEntityRenderDispatcher = pBlockEntityRenderDispatcher;
+    }
+
+    /**
+     * Maps a part type to it's model part.
+     * Mixin here to add custom part handling.
+     * @return The model part to render
+     */
+    public static Optional<ModelPart> getModelPart(WandPartType partType) {
+        if (partType.isMalum()) {
+            WandPartsModel wandPartsModel = MODEL.getModel();
+            var group = switch (partType.group()) {
+                case CORE -> wandPartsModel.cores;
+                case HEAD -> wandPartsModel.heads;
+                case BASE -> wandPartsModel.bases;
+                case BAUBLE -> wandPartsModel.baubles;
+                case ORNAMENT -> wandPartsModel.ornaments;
+            };
+            return Optional.of(getPart(group, partType.id().getPath()));
+        }
+        return Optional.empty();
+    }
+
+    /**.
+     * @return The name of the model part that should be used for a wand
+     */
+    protected static String getModelPartName(WandPartType partType) {
+        return partType.id().getPath() + "_" + partType.group().name;
+    }
+
+    protected static ModelPart getPart(ModelPart part, String name) {
+        try {
+            return part.getChild(name);
+        } catch (Exception ignored) {
+            return new ModelPart(Collections.emptyList(), Collections.emptyMap());
+        }
     }
 
     public ResourceLocation getPartTexture(WandMaterialType material) {
@@ -91,7 +119,7 @@ public class WandItemRenderer extends BlockEntityWithoutLevelRenderer {
                 for (Map.Entry<WandPartType, WandMaterialType> entry : parts) {
                     var part = entry.getKey();
                     var material = entry.getValue();
-                    var optional = WandPartsModel.getModelPart(part);
+                    var optional = getModelPart(part);
                     if (optional.isEmpty()) {
                         continue;
                     }

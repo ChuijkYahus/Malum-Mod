@@ -5,23 +5,28 @@ import com.sammy.malum.client.model.*;
 import com.sammy.malum.client.model.cosmetic.pride.PridewearArmorModel;
 import com.sammy.malum.client.model.cosmetic.pride.SlimPridewearArmorModel;
 
-import com.sammy.malum.client.model.item.WandPartsModel;
 import com.sammy.malum.client.model.mob.altar.AltarModel;
 import com.sammy.malum.client.model.mob.believer.BelieverModel;
 import com.sammy.malum.client.model.mob.cardinal.CardinalModel;
 import com.sammy.malum.client.model.mob.cherub.CherubModel;
 import com.sammy.malum.client.model.mob.evangelist.EvangelistModel;
+import com.sammy.malum.client.renderer.item.WandItemRenderer;
 import net.minecraft.client.model.Model;
 import net.minecraft.client.model.geom.ModelLayerLocation;
 import net.minecraft.client.model.geom.ModelPart;
 import net.minecraft.client.model.geom.builders.LayerDefinition;
 import net.minecraft.resources.ResourceLocation;
 import net.neoforged.neoforge.client.event.*;
+import team.lodestar.lodestone.modules.rendering.handlers.ModelHandler;
+import team.lodestar.lodestone.systems.model.IRenderableModel;
+import team.lodestar.lodestone.systems.model.obj.ObjModel;
 
 import java.util.function.Function;
 import java.util.function.Supplier;
 
 public class MalumModels {
+
+    public static final IRenderableModel WAND_PARTS = ModelHandler.register(MalumMod.malumPath("models/wand/wand_parts"));
 
     public static void registerLayerDefinitions(EntityRenderersEvent.RegisterLayerDefinitions event) {
         event.registerLayerDefinition(AltarModel.LAYER, AltarModel::createBodyLayer);
@@ -30,7 +35,7 @@ public class MalumModels {
         event.registerLayerDefinition(CardinalModel.LAYER, CardinalModel::createBodyLayer);
         event.registerLayerDefinition(EvangelistModel.LAYER, EvangelistModel::createBodyLayer);
 
-        WandPartsModel.MODEL.register(event);
+        WandItemRenderer.MODEL.register(event);
 
         SoulHunterArmorModel.MODEL.register(event);
         SoulStainedSteelArmorModel.MODEL.register(event);
@@ -41,7 +46,7 @@ public class MalumModels {
     }
 
     public static void addLayers(EntityRenderersEvent.AddLayers event) {
-        WandPartsModel.MODEL.bake(event);
+        WandItemRenderer.MODEL.bake(event);
 
         SoulHunterArmorModel.MODEL.bake(event);
         SoulStainedSteelArmorModel.MODEL.bake(event);

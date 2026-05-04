@@ -2,22 +2,15 @@ package com.sammy.malum.client.model.item;
 
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
-import com.sammy.malum.common.data.custom.wand_parts.WandPartType;
-import com.sammy.malum.registry.client.MalumModels;
 import net.minecraft.client.model.Model;
 import net.minecraft.client.model.geom.ModelPart;
 import net.minecraft.client.model.geom.PartPose;
 import net.minecraft.client.model.geom.builders.*;
 import net.minecraft.client.renderer.RenderType;
 
-import java.util.Collections;
-import java.util.Optional;
-
 @SuppressWarnings("FieldCanBeLocal")
 public class WandPartsModel extends Model {
 
-
-	public static MalumModels.ModelHolder<WandPartsModel> MODEL = new MalumModels.ModelHolder<>("wand_parts", WandPartsModel::new, WandPartsModel::createWandParts);
 
 	private final ModelPart cores;
 	private final ModelPart heads;
@@ -25,41 +18,6 @@ public class WandPartsModel extends Model {
 	private final ModelPart baubles;
 	private final ModelPart ornaments;
 
-	/**
-	 * Maps a part type to it's model part.
-	 * Mixin here to add custom part handling.
-	 * @return The model part to render
-	 */
-	public static Optional<ModelPart> getModelPart(WandPartType partType) {
-		if (partType.isMalum()) {
-			WandPartsModel wandPartsModel = MODEL.getModel();
-			var group = switch (partType.group()) {
-				case CORE -> wandPartsModel.cores;
-				case HEAD -> wandPartsModel.heads;
-				case BASE -> wandPartsModel.bases;
-				case BAUBLE -> wandPartsModel.baubles;
-				case ORNAMENT -> wandPartsModel.ornaments;
-			};
-			return Optional.of(getPart(group, partType.id().getPath()));
-		}
-		return Optional.empty();
-	}
-
-
-	/**.
-	 * @return The name of the model part that should be used for a wand
-	 */
-	protected static String getModelPartName(WandPartType partType) {
-		return partType.id().getPath() + "_" + partType.group().name;
-	}
-
-	protected static ModelPart getPart(ModelPart part, String name) {
-		try {
-			return part.getChild(name);
-		} catch (Exception ignored) {
-			return new ModelPart(Collections.emptyList(), Collections.emptyMap());
-		}
-	}
 
 	public WandPartsModel(ModelPart root) {
 		super(RenderType::entityCutoutNoCull);
