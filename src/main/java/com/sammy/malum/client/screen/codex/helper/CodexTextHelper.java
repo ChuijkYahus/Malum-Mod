@@ -1,6 +1,7 @@
 package com.sammy.malum.client.screen.codex.helper;
 
 import com.mojang.blaze3d.systems.*;
+import com.sammy.malum.client.screen.codex.display.*;
 import com.sammy.malum.client.screen.codex.screens.*;
 import net.minecraft.*;
 import net.minecraft.client.*;
@@ -16,91 +17,38 @@ import team.lodestar.lodestone.systems.rendering.*;
 import java.awt.*;
 import java.util.*;
 import java.util.List;
+import java.util.concurrent.atomic.*;
 import java.util.function.*;
 
-import static com.sammy.malum.config.ClientConfig.BOOK_THEME;
+import static com.sammy.malum.client.screen.codex.display.CodexTextRenderer.DEFAULT_TEXT_COLOR;
 import static net.minecraft.util.FastColor.ARGB32.color;
 
 public class CodexTextHelper {
     public static final Function<GuiGraphics, LodestoneBufferWrapper> WRAPPER_FUNCTION = Util.memoize(guiGraphics -> new LodestoneBufferWrapper(LodestoneRenderTypes.ADDITIVE_TEXT, guiGraphics.bufferSource));
-    public static final TextColorData DEFAULT_TEXT_COLOR = new TextColorData(new Color(138, 79, 58), new Color(65, 41, 8), new Color(20, 44, 60), new Color(227, 39, 228));
-    public static final TextColorData GEAS_POSITIVE_COLOR = new TextColorData(new Color(18, 52, 141), new Color(118, 52, 141), new Color(20, 44, 120), new Color(100, 100, 240));
-    public static final TextColorData GEAS_NEGATIVE_COLOR = new TextColorData(new Color(141, 18, 52), new Color(118, 52, 141), new Color(120, 44, 20), new Color(240, 100, 100));
 
-    public static void renderWrappingText(GuiGraphics guiGraphics, String text, float x, float y, int width) {
-        renderWrappingText(guiGraphics, Component.translatable(text), x, y, width);
-    }
 
-    public static void renderWrappingText(GuiGraphics guiGraphics, Component text, float x, float y, int width) {
-        renderWrappingText(guiGraphics, DEFAULT_TEXT_COLOR, text, x, y, width);
-    }
-
-    public static void renderWrappingText(GuiGraphics guiGraphics, TextColorData colorData, String text, float x, float y, int width) {
-        renderWrappingText(guiGraphics, colorData, Component.translatable(text), x, y, width);
-    }
-
-    public static void renderWrappingText(GuiGraphics guiGraphics, TextColorData colorData, Component text, float x, float y, int width) {
-        float scale = 1;
-        String translated = text.getString();
-        if (translated.startsWith("$m")) {
-            final int i = translated.indexOf("/$");
-            float value = Float.parseFloat(translated.substring(3, i));
-            text = Component.literal(translated.substring(i + 2));
-            scale = value;
-        }
-        renderWrappingText(guiGraphics, colorData, text, x, y, width, scale);
-    }
-
-    public static void renderWrappingText(GuiGraphics guiGraphics, TextColorData colorData, Component text, float x, float y, int width, float scaleMultiplier) {
-        Font font = Minecraft.getInstance().font;
-        var wrapped = wrapText(text, (int) (width / scaleMultiplier));
-        for (int i = 0; i < wrapped.size(); i++) {
-            String currentLine = wrapped.get(i);
-            float textX = x;
-            float textY = y;
-            if (scaleMultiplier != 1) {
-                textX /= scaleMultiplier;
-                textY /= scaleMultiplier;
-            }
-            renderRawText(guiGraphics, colorData, currentLine, textX, textY + i * (font.lineHeight + 1), 0.2f, scaleMultiplier);
-        }
-    }
-
-    public static void renderHeadline(GuiGraphics graphics, Component component, int left, int top) {
-        int width = Minecraft.getInstance().font.width(component.getString());
-        float scale = 1f;
-        if (width > 100) {
-            scale -= (width - 100) / 200f;
-        }
-        float textLeft = left + 72;
-        float textTop = top + 7;
-
-        if (scale != 1) {
-            textLeft /= scale;
-            textTop /= scale;
-            textTop += 5 * (1 - scale);
-        }
-        renderText(graphics, component, textLeft - width / 2f, textTop, scale);
-    }
-
+    @Deprecated
     public static void renderText(GuiGraphics guiGraphics, Component component, float x, float y) {
         renderText(guiGraphics, DEFAULT_TEXT_COLOR, component, x, y, 0.4f);
     }
 
+    @Deprecated
     public static void renderText(GuiGraphics guiGraphics, Component component, float x, float y, float scale) {
-        renderRawText(guiGraphics, DEFAULT_TEXT_COLOR, component.getString(), x, y, 0.4f, scale);
+        renderText(guiGraphics, DEFAULT_TEXT_COLOR, component, x, y, 0.4f, scale);
     }
 
-    public static void renderText(GuiGraphics guiGraphics, TextColorData colorData, Component component, float x, float y, float glow) {
+    @Deprecated
+    public static void renderText(GuiGraphics guiGraphics, CodexTextRenderer.TextColorData colorData, Component component, float x, float y, float glow) {
         renderText(guiGraphics, colorData, component, x, y, glow, 1f);
     }
 
-    public static void renderText(GuiGraphics guiGraphics, TextColorData colorData, Component component, float x, float y, float glow, float scale) {
-        String text = component.getString();
-        renderRawText(guiGraphics, colorData, text, x, y, glow, scale);
+    @Deprecated
+    public static void renderText(GuiGraphics guiGraphics, CodexTextRenderer.TextColorData colorData, Component component, float x, float y, float glow, float scale) {
+        renderRawText(guiGraphics, colorData, component.getVisualOrderText(), x, y, glow, scale);
     }
 
-    private static void renderRawText(GuiGraphics guiGraphics, TextColorData colorData, String text, float x, float y, float glowMultiplier, float scaleMultiplier) {
+    @Deprecated
+    private static void renderRawText(GuiGraphics guiGraphics, CodexTextRenderer.TextColorData colorData, FormattedCharSequence text, float x, float y, float glowMultiplier, float scaleMultiplier) {
         var minecraft = Minecraft.getInstance();
         var poseStack = guiGraphics.pose();
         var font = minecraft.font;
@@ -134,60 +82,130 @@ public class CodexTextHelper {
             glowMultiplier *= (float) (1 + jumpDelta);
         }
 
-        if (BOOK_THEME.getConfigValue().equals(BookTheme.EASY_READING)) {
-            Color color = colorData.secondaryColor();
-            guiGraphics.drawString(font, text, x, y, 0, false);
-            font.drawInBatch(text, x, y, color(1, color.getRGB()), false, poseStack.last().pose(),
-                    guiGraphics.bufferSource, Font.DisplayMode.NORMAL, 0, 15728880, font.isBidirectional());
-        } else {
-            Color gray = colorData.primaryColor();
-            Color dark = colorData.secondaryColor();
+        Color gray = colorData.primaryColor();
+        Color dark = colorData.secondaryColor();
 
-            guiGraphics.drawString(font, text, x - 1f, y, color(64, gray.getRGB()), false);
-            guiGraphics.drawString(font, text, x + 1f, y, color(32, gray.getRGB()), false);
-            guiGraphics.drawString(font, text, x, y - 1f, color(32, gray.getRGB()), false);
-            guiGraphics.drawString(font, text, x, y + 1f, color(92, gray.getRGB()), false);
+        guiGraphics.drawString(font, text, x - 1f, y, color(64, gray.getRGB()), false);
+        guiGraphics.drawString(font, text, x + 1f, y, color(32, gray.getRGB()), false);
+        guiGraphics.drawString(font, text, x, y - 1f, color(32, gray.getRGB()), false);
+        guiGraphics.drawString(font, text, x, y + 1f, color(92, gray.getRGB()), false);
 
-            guiGraphics.drawString(font, text, x, y, color(255, dark.getRGB()), false);
+        guiGraphics.drawString(font, text, x, y, color(255, dark.getRGB()), false);
 
-            int alpha = Mth.floor(255 * Easing.QUARTIC_IN.lerp(delta, 0.4f, 1) * glowMultiplier);
-            if (alpha > 15) {
-                float color = Easing.CUBIC_IN.ease(delta);
-                Color start = colorData.glowStart();
-                Color end = colorData.glowEnd();
-                int r = (int) Mth.lerp(color, start.getRed(), end.getRed());
-                int g = (int) Mth.lerp(color, start.getGreen(), end.getGreen());
-                int b = (int) Mth.lerp(color, start.getBlue(), end.getBlue());
-                var buffer = WRAPPER_FUNCTION.apply(guiGraphics);
-                var pose = poseStack.last().pose();
-                RenderSystem.enableBlend();
-                font.drawInBatch(text, x, y, color(alpha, r, g, b), false, pose,
-                        buffer, Font.DisplayMode.NORMAL, 0, 15728880, font.isBidirectional());
+        int alpha = Mth.floor(255 * Easing.QUARTIC_IN.lerp(delta, 0.4f, 1) * glowMultiplier);
+        if (alpha > 15) {
+            float color = Easing.CUBIC_IN.ease(delta);
+            Color start = colorData.glowStart();
+            Color end = colorData.glowEnd();
+            int r = (int) Mth.lerp(color, start.getRed(), end.getRed());
+            int g = (int) Mth.lerp(color, start.getGreen(), end.getGreen());
+            int b = (int) Mth.lerp(color, start.getBlue(), end.getBlue());
+            var buffer = WRAPPER_FUNCTION.apply(guiGraphics);
+            var pose = poseStack.last().pose();
+            RenderSystem.enableBlend();
+            font.drawInBatch(text, x, y, color(alpha, r, g, b), false, pose,
+                    buffer, Font.DisplayMode.NORMAL, 0, 15728880);
 
-                font.drawInBatch(text, x + 1f, y, color(alpha / 2, r, g, b), false, pose,
-                        buffer, Font.DisplayMode.NORMAL, 0, 15728880, font.isBidirectional());
-                font.drawInBatch(text, x - 1f, y, color(alpha / 3, r, g, b), false, pose,
-                        buffer, Font.DisplayMode.NORMAL, 0, 15728880, font.isBidirectional());
-                font.drawInBatch(text, x, y + 1f, color(alpha / 2, r, g, b), false, pose,
-                        buffer, Font.DisplayMode.NORMAL, 0, 15728880, font.isBidirectional());
-                font.drawInBatch(text, x, y - 1f, color(alpha / 3, r, g, b), false, pose,
-                        buffer, Font.DisplayMode.NORMAL, 0, 15728880, font.isBidirectional());
+            font.drawInBatch(text, x + 1f, y, color(alpha / 2, r, g, b), false, pose,
+                    buffer, Font.DisplayMode.NORMAL, 0, 15728880);
+            font.drawInBatch(text, x - 1f, y, color(alpha / 3, r, g, b), false, pose,
+                    buffer, Font.DisplayMode.NORMAL, 0, 15728880);
+            font.drawInBatch(text, x, y + 1f, color(alpha / 2, r, g, b), false, pose,
+                    buffer, Font.DisplayMode.NORMAL, 0, 15728880);
+            font.drawInBatch(text, x, y - 1f, color(alpha / 3, r, g, b), false, pose,
+                    buffer, Font.DisplayMode.NORMAL, 0, 15728880);
 
 
-                RenderSystem.defaultBlendFunc();
-            }
+            RenderSystem.defaultBlendFunc();
         }
         if (scaleMultiplier != 1) {
             poseStack.popPose();
         }
     }
 
-
-    public static MutableComponent convertToComponent(String text) {
-        return convertToComponent(text, UnaryOperator.identity());
+    public static List<Component> wrapComponent(Component source, MutableComponent header, int width) {
+        var wrapped = wrapComponent(source, width);
+        var result = new ArrayList<Component>();
+        for (MutableComponent mutableComponent : wrapped) {
+            result.add(header.copy().append(mutableComponent.setStyle(source.getStyle())));
+        }
+        return result;
     }
 
-    public static MutableComponent convertToComponent(String text, UnaryOperator<Style> styleModifier) {
+    public static List<MutableComponent> wrapComponent(Component source, int width) {
+        return wrapText(source, width).stream().map(CodexTextHelper::convertToComponent).peek(component -> component.setStyle(source.getStyle())).map(MutableComponent.class::cast).toList();
+    }
+
+    public static List<String> wrapText(Component component, int width) {
+        var font = Minecraft.getInstance().font;
+        var text = component.getString() + "\n";
+        var lines = new ArrayList<String>();
+
+        var italic = new AtomicBoolean();
+        var bold = new AtomicBoolean();
+        var strikethrough = new AtomicBoolean();
+        var underline = new AtomicBoolean();
+        var obfuscated = new AtomicBoolean();
+
+        var line = new StringBuilder();
+        var word = new StringBuilder();
+
+        for (int i = 0; i < text.length(); i++) {
+            char chr = text.charAt(i);
+            if (chr == ' ' || chr == '\n') {
+                if (!line.isEmpty()) {
+                    int currentWidth = font.width(line.toString());
+                    int addedWidth = font.width(word.toString());
+                    if (currentWidth + addedWidth > width) {
+                        lines.add(line.toString());
+                        line = new StringBuilder();
+                        applyModifiers(line, italic, bold, strikethrough, underline, obfuscated);
+                    }
+                }
+
+                line.append(word).append(" ");
+                word = new StringBuilder();
+                applyModifiers(word, italic, bold, strikethrough, underline, obfuscated);
+            }
+            else if (chr == '$') {
+                if (i != text.length() - 1) {
+                    char peek = text.charAt(i + 1);
+                    var optional = findModifier(peek, italic, bold, strikethrough, underline, obfuscated);
+                    if (optional.isPresent()) {
+                        word.append(optional.get());
+                        i++;
+                        continue;
+                    }
+                }
+            }
+            else if (chr == '/') {
+                if (i != text.length() - 1) {
+                    char peek = text.charAt(i + 1);
+                    if (peek == '$') {
+                        word.append(ChatFormatting.RESET);
+                        italic.set(false);
+                        bold.set(false);
+                        strikethrough.set(false);
+                        underline.set(false);
+                        obfuscated.set(false);
+                        i++;
+                        continue;
+                    }
+                }
+            }
+
+            if (chr == ' ' || chr == '\n') {
+                continue;
+            }
+            word.append(chr);
+        }
+        if (!line.isEmpty()) {
+            lines.add(line.toString());
+        }
+        return lines;
+    }
+
+    public static MutableComponent convertToComponent(String text) {
         text = Component.translatable(text).getString();
 
         MutableComponent raw = Component.empty();
@@ -206,27 +224,27 @@ public class CodexTextHelper {
                     char peek = text.charAt(i + 1);
                     switch (peek) {
                         case 'i' -> {
-                            line = commitComponent(raw, italic, bold, strikethrough, underline, obfuscated, line, styleModifier);
+                            line = commitComponent(raw, italic, bold, strikethrough, underline, obfuscated, line);
                             italic = true;
                             i++;
                         }
                         case 'b' -> {
-                            line = commitComponent(raw, italic, bold, strikethrough, underline, obfuscated, line, styleModifier);
+                            line = commitComponent(raw, italic, bold, strikethrough, underline, obfuscated, line);
                             bold = true;
                             i++;
                         }
                         case 's' -> {
-                            line = commitComponent(raw, italic, bold, strikethrough, underline, obfuscated, line, styleModifier);
+                            line = commitComponent(raw, italic, bold, strikethrough, underline, obfuscated, line);
                             strikethrough = true;
                             i++;
                         }
                         case 'u' -> {
-                            line = commitComponent(raw, italic, bold, strikethrough, underline, obfuscated, line, styleModifier);
+                            line = commitComponent(raw, italic, bold, strikethrough, underline, obfuscated, line);
                             underline = true;
                             i++;
                         }
                         case 'k' -> {
-                            line = commitComponent(raw, italic, bold, strikethrough, underline, obfuscated, line, styleModifier);
+                            line = commitComponent(raw, italic, bold, strikethrough, underline, obfuscated, line);
                             obfuscated = true;
                             i++;
                         }
@@ -239,7 +257,7 @@ public class CodexTextHelper {
                 if (i != text.length() - 1) {
                     char peek = text.charAt(i + 1);
                     if (peek == '$') {
-                        line = commitComponent(raw, italic, bold, strikethrough, underline, obfuscated, line, styleModifier);
+                        line = commitComponent(raw, italic, bold, strikethrough, underline, obfuscated, line);
                         italic = bold = strikethrough = underline = obfuscated = false;
                         i++;
                     } else
@@ -250,121 +268,48 @@ public class CodexTextHelper {
                 line.append(chr);
             }
         }
-        commitComponent(raw, italic, bold, strikethrough, underline, obfuscated, line, styleModifier);
+        commitComponent(raw, italic, bold, strikethrough, underline, obfuscated, line);
 
         return raw;
     }
 
-    public static List<Component> wrapComponent(Component source, MutableComponent header, int width) {
-        var wrapped = wrapText(source, width).stream().map(Component::literal).toList();
-        var result = new ArrayList<Component>();
-        for (MutableComponent mutableComponent : wrapped) {
-            result.add(header.copy().append(mutableComponent.setStyle(source.getStyle())));
-        }
-        return result;
+    private static void applyModifiers(StringBuilder word, AtomicBoolean italic, AtomicBoolean bold, AtomicBoolean strikethrough, AtomicBoolean underline, AtomicBoolean obfuscated) {
+        if (italic.get()) word.append(ChatFormatting.ITALIC);
+        if (bold.get()) word.append(ChatFormatting.BOLD);
+        if (strikethrough.get()) word.append(ChatFormatting.STRIKETHROUGH);
+        if (underline.get()) word.append(ChatFormatting.UNDERLINE);
+        if (obfuscated.get()) word.append(ChatFormatting.OBFUSCATED);
     }
 
-    public static List<Component> wrapComponent(Component source, int width) {
-        return wrapText(source, width).stream().map(Component::literal).peek(component -> component.setStyle(source.getStyle())).map(Component.class::cast).toList();
-    }
-
-    public static List<String> wrapText(Component component, int width) {
-        Font font = Minecraft.getInstance().font;
-        String text = component.getString() + "\n";
-        List<String> lines = new ArrayList<>();
-
-        boolean italic = false;
-        boolean bold = false;
-        boolean strikethrough = false;
-        boolean underline = false;
-        boolean obfuscated = false;
-
-        StringBuilder line = new StringBuilder();
-        StringBuilder word = new StringBuilder();
-        for (int i = 0; i < text.length(); i++) {
-            char chr = text.charAt(i);
-            if (chr == ' ' || chr == '\n') {
-                if (!word.isEmpty()) {
-                    if (font.width(line.toString()) + font.width(word.toString()) > width) {
-                        line = newLine(lines, italic, bold, strikethrough, underline, obfuscated, line);
-                    }
-                    line.append(word).append(' ');
-                    word = new StringBuilder();
-                }
-
-                String noFormatting = ChatFormatting.stripFormatting(line.toString());
-
-                if (chr == '\n' && noFormatting != null) {
-                    line = newLine(lines, italic, bold, strikethrough, underline, obfuscated, line);
-                }
-            } else if (chr == '$') {
-                if (i != text.length() - 1) {
-                    char peek = text.charAt(i + 1);
-                    switch (peek) {
-                        case 'i' -> {
-                            word.append(ChatFormatting.ITALIC);
-                            italic = true;
-                            i++;
-                        }
-                        case 'b' -> {
-                            word.append(ChatFormatting.BOLD);
-                            bold = true;
-                            i++;
-                        }
-                        case 's' -> {
-                            word.append(ChatFormatting.STRIKETHROUGH);
-                            strikethrough = true;
-                            i++;
-                        }
-                        case 'u' -> {
-                            word.append(ChatFormatting.UNDERLINE);
-                            underline = true;
-                            i++;
-                        }
-                        case 'k' -> {
-                            word.append(ChatFormatting.OBFUSCATED);
-                            obfuscated = true;
-                            i++;
-                        }
-                        default -> word.append(chr);
-                    }
-                } else {
-                    word.append(chr);
-                }
-            } else if (chr == '/') {
-                if (i != text.length() - 1) {
-                    char peek = text.charAt(i + 1);
-                    if (peek == '$') {
-                        italic = bold = strikethrough = underline = obfuscated = false;
-                        word.append(ChatFormatting.RESET);
-                        i++;
-                    } else
-                        word.append(chr);
-                } else
-                    word.append(chr);
-            } else {
-                word.append(chr);
+    private static Optional<ChatFormatting> findModifier(char modifierChar, AtomicBoolean italic, AtomicBoolean bold, AtomicBoolean strikethrough, AtomicBoolean underline, AtomicBoolean obfuscated) {
+        switch (modifierChar) {
+            case 'i' -> {
+                italic.set(true);
+                return Optional.of(ChatFormatting.ITALIC);
+            }
+            case 'b' -> {
+                bold.set(true);
+                return Optional.of(ChatFormatting.BOLD);
+            }
+            case 's' -> {
+                strikethrough.set(true);
+                return Optional.of(ChatFormatting.STRIKETHROUGH);
+            }
+            case 'u' -> {
+                underline.set(true);
+                return Optional.of(ChatFormatting.UNDERLINE);
+            }
+            case 'k' -> {
+                obfuscated.set(true);
+                return Optional.of(ChatFormatting.OBFUSCATED);
             }
         }
-        return lines;
+        return Optional.empty();
     }
 
-    private static StringBuilder commitComponent(MutableComponent component, boolean italic, boolean bold, boolean strikethrough, boolean underline, boolean obfuscated, StringBuilder line, UnaryOperator<Style> styleModifier) {
-        component.append(Component.literal(line.toString())
-                .withStyle((style) -> style.withItalic(italic).withBold(bold).withStrikethrough(strikethrough).withUnderlined(underline).withObfuscated(obfuscated))
-                .withStyle(styleModifier));
+    private static StringBuilder commitComponent(MutableComponent component, boolean italic, boolean bold, boolean strikethrough, boolean underline, boolean obfuscated, StringBuilder line) {
+        component.append(Component.literal(line.toString()).withStyle((style) -> style.withItalic(italic).withBold(bold).withStrikethrough(strikethrough).withUnderlined(underline).withObfuscated(obfuscated)));
         line = new StringBuilder();
-        return line;
-    }
-
-    private static StringBuilder newLine(List<String> lines, boolean italic, boolean bold, boolean strikethrough, boolean underline, boolean obfuscated, StringBuilder line) {
-        lines.add(line.toString());
-        line = new StringBuilder();
-        if (italic) line.append(ChatFormatting.ITALIC);
-        if (bold) line.append(ChatFormatting.BOLD);
-        if (strikethrough) line.append(ChatFormatting.STRIKETHROUGH);
-        if (underline) line.append(ChatFormatting.UNDERLINE);
-        if (obfuscated) line.append(ChatFormatting.OBFUSCATED);
         return line;
     }
 
@@ -372,6 +317,4 @@ public class CodexTextHelper {
         DEFAULT, EASY_READING;
     }
 
-    public record TextColorData(Color primaryColor, Color secondaryColor, Color glowStart, Color glowEnd) {
-    }
 }

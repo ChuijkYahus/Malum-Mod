@@ -1,10 +1,9 @@
 package com.sammy.malum.client.model.cosmetic.pride;
-// Made with Blockbench 3.9.2
-// Exported for Minecraft version 1.15 - 1.16 with MCP mappings
-// Paste this class into your mod and generate all required imports
 
 
 import com.sammy.malum.MalumMod;
+import com.sammy.malum.client.model.MalignantStrongholdArmorModel;
+import com.sammy.malum.registry.client.MalumModels;
 import net.minecraft.client.model.HumanoidModel;
 import net.minecraft.client.model.geom.ModelLayerLocation;
 import net.minecraft.client.model.geom.ModelPart;
@@ -13,7 +12,9 @@ import net.minecraft.client.model.geom.builders.*;
 import team.lodestar.lodestone.systems.model.armor.*;
 
 public class PridewearArmorModel extends LodestoneArmorModel {
-    public static ModelLayerLocation LAYER = new ModelLayerLocation(MalumMod.malumPath("pridewear"), "main");
+
+    public static MalumModels.ModelHolder<PridewearArmorModel> MODEL = new MalumModels.ModelHolder<>("pridewear", PridewearArmorModel::new, PridewearArmorModel::createBodyLayer);
+
 
     public PridewearArmorModel(ModelPart root) {
         super(root);

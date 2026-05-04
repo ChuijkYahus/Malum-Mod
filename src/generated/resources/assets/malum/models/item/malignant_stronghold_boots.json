@@ -108,36 +108,6 @@
       "predicate": {
         "malum:item_skin": 17.0
       }
-    },
-    {
-      "model": "malum:item/v1_feet",
-      "predicate": {
-        "malum:item_skin": 18.0
-      }
-    },
-    {
-      "model": "malum:item/v2_feet",
-      "predicate": {
-        "malum:item_skin": 19.0
-      }
-    },
-    {
-      "model": "malum:item/commando_feet",
-      "predicate": {
-        "malum:item_skin": 20.0
-      }
-    },
-    {
-      "model": "malum:item/ancient_soul_hunter_feet",
-      "predicate": {
-        "malum:item_skin": 21.0
-      }
-    },
-    {
-      "model": "malum:item/ancient_soul_stained_steel_feet",
-      "predicate": {
-        "malum:item_skin": 22.0
-      }
     }
   ],
   "textures": {

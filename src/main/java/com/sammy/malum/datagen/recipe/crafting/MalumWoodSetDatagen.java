@@ -31,14 +31,12 @@ public class MalumWoodSetDatagen implements IConditionBuilder {
             ItemLike boat,
             ItemLike metalNugget
     ) {
-        var allLogsTag = ItemTags.create(set.allLogsTag.location());
-        var logsTag = ItemTags.create(set.logsTag.location());
+        var allLogsTag = set.allLogsTag.itemTag();
+        var logsTag = set.logsTag.itemTag();
 
-        var boardsTag = ItemTags.create(set.boardsTag.location());
-        var planksTag = ItemTags.create(set.planksTag.location());
-        var plankSlabTag = ItemTags.create(set.plankSlabsTag.location());
-
-
+        var boardsTag = set.boardsTag.itemTag();
+        var planksTag = set.planksTag.itemTag();
+        var plankSlabTag = set.plankSlabsTag.itemTag();
 
         shapelessPlanks(recipeOutput, set.planks.block, allLogsTag);
         shapedBoards(recipeOutput, set.boards.block, logsTag);

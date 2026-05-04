@@ -1,7 +1,6 @@
 package com.sammy.malum.client.screen.codex.objects.button;
 
-import com.sammy.malum.client.screen.codex.display.CodexOutlineRenderer;
-import com.sammy.malum.client.screen.codex.display.DisplayedGizmo;
+import com.sammy.malum.client.screen.codex.display.*;
 import com.sammy.malum.client.screen.codex.objects.BookObject;
 import com.sammy.malum.client.screen.codex.screens.CodexEntryScreen;
 import com.sammy.malum.registry.common.sound.MalumSoundEvents;
@@ -11,14 +10,12 @@ import team.lodestar.lodestone.helpers.DataHelper;
 
 import static com.sammy.malum.client.screen.codex.helper.CodexRenderHelper.renderTexture;
 
-public abstract class AbstractButtonObject extends BookObject<CodexEntryScreen> {
+public abstract class AbstractButtonObject extends BookObject<CodexEntryScreen> implements IGizmoHolder {
 
     protected final ResourceLocation base;
     protected final ResourceLocation hover;
     protected final ResourceLocation pressed;
     protected final ResourceLocation active;
-    protected final ResourceLocation glow;
-    protected final ResourceLocation outline;
 
     protected final DisplayedGizmo gizmo;
     protected final int buttonIndex;
@@ -32,8 +29,6 @@ public abstract class AbstractButtonObject extends BookObject<CodexEntryScreen> 
         this.hover = baseTexture.withSuffix("_hover.png");
         this.pressed = baseTexture.withSuffix("_pressed.png");
         this.active = baseTexture.withSuffix("_active.png");
-        this.glow = baseTexture.withSuffix("_glow.png");
-        this.outline = baseTexture.withSuffix("_outline.png");
 
         this.gizmo = gizmo;
         this.buttonIndex = buttonIndex;
@@ -54,15 +49,20 @@ public abstract class AbstractButtonObject extends BookObject<CodexEntryScreen> 
         int xOffset = (64 - width)/2;
         int yOffset = (64 - height)/2;
 
-        CodexOutlineRenderer.create(glow, outline, x-xOffset, y-yOffset)
+        CodexOutlineRenderer.create(texture, x-xOffset, y-yOffset, width, height)
                 .setEffectStrength(oldOutlineVisibility, outlineVisibility, 1f)
                 .setDistortion(50f)
                 .setOffset(buttonIndex * 600)
+                .setOutlineWidth(4)
+                .setShadowWidth(5)
                 .renderOutline(poseStack);
         renderTexture(texture, poseStack, x, y, 0, 0, width, height);
         if (gizmo != null) {
             int offset = getGizmoOffset();
-            gizmo.render(screen, guiGraphics, x + offset, y + offset, mouseX, mouseY);
+            if (isHoveredOver) {
+                gizmo.setHoveredOver();
+            }
+            gizmo.render(screen, this, guiGraphics, x + offset, y + offset, mouseX, mouseY);
         }
     }
 

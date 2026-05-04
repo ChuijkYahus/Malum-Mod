@@ -1,6 +1,5 @@
 package com.sammy.malum.client.screen.codex.objects.progression;
 
-import com.google.common.collect.*;
 import com.mojang.blaze3d.vertex.*;
 import com.sammy.malum.client.screen.codex.*;
 import com.sammy.malum.client.screen.codex.display.CodexOutlineRenderer;
@@ -85,22 +84,21 @@ public class ProgressionEntryObject extends AbstractSelectableEntryObject<Abstra
         int centerY = getCenterY();
         renderTexture(WIDGET_FADE_TEXTURE, poseStack, centerX - 29, centerY - 29, 0, 0, 58, 58);
         if (design != null) {
-            var designType = design.getDesignType();
-            CodexOutlineRenderer.create(designType, left, top)
+            CodexOutlineRenderer.create(design, left, top, 64, 64)
                     .setEffectStrength(oldOutlineVisibility, outlineVisibility, 20f)
                     .renderOutline(poseStack);
             design.getFrameTexture().ifPresent(texture -> renderTexture(texture, poseStack, left, top, 0, 0, 64, 64));
             design.getFillingTexture().ifPresent(texture -> renderTexture(texture, poseStack, left, top, 0, 0, 64, 64));
         }
         if (displayedGizmo != null) {
-            displayedGizmo.render(screen, guiGraphics, centerX-8, centerY-8, mouseX, mouseY);
+            displayedGizmo.render(screen, this, guiGraphics, centerX-8, centerY-8, mouseX, mouseY);
         }
     }
 
     @Override
     public List<Component> gatherTooltip(AbstractProgressionCodexScreen screen) {
         var tooltip = super.gatherTooltip(screen);
-        ImmutableList<EntryReference> references = entry.references;
+        var references = entry.leftBookmarks;
         for (int i = references.size()-1; i >=0; i--) {
             EntryReference reference = references.get(i);
             if (reference.entry.shouldShow()) {

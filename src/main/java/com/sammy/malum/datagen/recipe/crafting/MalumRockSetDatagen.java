@@ -22,10 +22,10 @@ public class MalumRockSetDatagen {
     public static void buildRecipes(RecipeOutput recipeOutput, RockBlockSet set) {
         var condition = RecipeDatagenCommons.has(set.rock.block);
 
-        var blockTag = ItemTags.create(set.blocksTag.location());
-        var stairTag = ItemTags.create(set.stairsTag.location());
-        var wallTag = ItemTags.create(set.wallsTag.location());
-        var slabTag = ItemTags.create(set.slabsTag.location());
+        var blockTag = set.blocksTag.itemTag();
+        var stairTag = set.stairsTag.itemTag();
+        var wallTag = set.wallsTag.itemTag();
+        var slabTag = set.slabsTag.itemTag();
 
         exchange(recipeOutput, (i, o) -> bricksLikeRecipe(recipeOutput, i, o), set.rock, set.polishedRock, set.bricks, set.tiles, set.mosaic);
 

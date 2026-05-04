@@ -36,8 +36,12 @@ public class OreFeatureDatagen {
             new OreLayer(List.of(
                     target(REPLACE_STONE, simple(SOULSTONE_ORE.get())),
                     target(REPLACE_DEEPSLATE, simple(DEEPSLATE_SOULSTONE_ORE.get()))
-            ), 20, 12, 0f, true),
-            new OreLayer(target(REPLACE_STONES, simple(TUFF)), 28, 16, 0.2f, false)
+            ), 20, 16, 5, 8, 0f, true),
+            new OreLayer(List.of(
+                    target(REPLACE_STONE, simple(SOULSTONE_ORE.get())),
+                    target(REPLACE_DEEPSLATE, simple(DEEPSLATE_SOULSTONE_ORE.get()))
+            ), 28, 28, 7, 12, 0.25f, false),
+            new OreLayer(target(REPLACE_STONES, simple(TUFF)), 32, 24, 20, 40, 0.2f, false)
     );
 
     public static final LayeredOreFeatureDecorator SOULSTONE_DECOR =
@@ -49,15 +53,20 @@ public class OreFeatureDatagen {
 
     public static final List<OreLayer> CTHONIC_GOLD_LAYERS = List.of(
             new OreLayer(target(REPLACE_STONES, simple(CTHONIC_GOLD_ORE.get())
-            ), 4, 8, 0f, true),
+            ), 12, 12, 1, 3, 0f, true),
             new OreLayer(List.of(
                     target(REPLACE_STONE, simple(GOLD_ORE)),
                     target(REPLACE_DEEPSLATE, simple(DEEPSLATE_GOLD_ORE))
-            ), 8, 16, 0.15f, false)
+            ), 20, 20, 8, 16, 0.15f, false),
+            new OreLayer(List.of(
+                    target(REPLACE_STONE, simple(GOLD_ORE)),
+                    target(REPLACE_DEEPSLATE, simple(DEEPSLATE_GOLD_ORE))
+            ), 16, 24, 4, 16, 0.5f, false),
+            new OreLayer(target(REPLACE_STONES, simple(GRANITE)), 24, 24, 30, 50, 0.2f, false)
     );
 
     public static final LayeredOreFeatureDecorator CTHONIC_GOLD_DECOR =
-            new LayeredOreFeatureDecorator(target(REPLACE_AIR, simple(CTHONIC_GOLD_FRAGMENT.get())), 4, 6);
+            new LayeredOreFeatureDecorator(target(REPLACE_AIR, simple(CTHONIC_GOLD_FRAGMENT.get())), 2, 5);
 
     public static final List<OreConfiguration.TargetBlockState> BRILLIANT_TARGET_LIST = List.of(
             OreConfiguration.target(REPLACE_STONE, BRILLIANT_STONE.get().defaultBlockState()),
@@ -84,6 +93,7 @@ public class OreFeatureDatagen {
     private static ConfiguredFeature<?, ?> addLayeredOreConfig(List<OreLayer> layers) {
         return addLayeredOreConfig(layers, null);
     }
+
     private static ConfiguredFeature<?, ?> addLayeredOreConfig(List<OreLayer> layers, LayeredOreFeatureDecorator decorator) {
         return new ConfiguredFeature<>(MalumFeatures.LAYERED_ORE.get(), new LayeredOreConfiguration(layers, Optional.ofNullable(decorator)));
     }

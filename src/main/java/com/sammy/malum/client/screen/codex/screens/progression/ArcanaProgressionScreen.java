@@ -29,11 +29,10 @@ public class ArcanaProgressionScreen extends AbstractProgressionCodexScreen {
 
     @Override
     public void setupEntries() {
-        addEntry("chronicles_of_the_void", 0, -1, b -> b
+        addEntry("chronicles_of_the_void", 0, -1)
                 .setWidgetSupplier((e, x, y) -> new ScreenOpenerObject(e, x, y, VoidProgressionScreen.SCREEN, malumPath("textures/gui/book/icons/void_button.png"), 20, 20))
                 .configureWidget(w -> w.setDesign(GRAND, RUNEWOOD, DARK).setCondition(AbstractProgressionCodexScreen::isVoidTouched))
-                .withTitleStyle(s -> s.withColor(ChatFormatting.LIGHT_PURPLE))
-        );
+                .withTitleStyle(s -> s.withColor(ChatFormatting.LIGHT_PURPLE));
 
         IntroductionEntries.setupEntries(this);
 //        ArtificeEntries.setupEntries(this);

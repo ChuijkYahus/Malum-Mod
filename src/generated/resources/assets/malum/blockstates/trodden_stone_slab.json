@@ -30,30 +30,30 @@
     ],
     "type=double,waterlogged=false": [
       {
-        "model": "minecraft:trodden_stone0"
+        "model": "malum:trodden_stone0"
       },
       {
-        "model": "minecraft:trodden_stone1"
+        "model": "malum:trodden_stone1"
       },
       {
-        "model": "minecraft:trodden_stone2"
+        "model": "malum:trodden_stone2"
       },
       {
-        "model": "minecraft:trodden_stone3"
+        "model": "malum:trodden_stone3"
       }
     ],
     "type=double,waterlogged=true": [
       {
-        "model": "minecraft:trodden_stone0"
+        "model": "malum:trodden_stone0"
       },
       {
-        "model": "minecraft:trodden_stone1"
+        "model": "malum:trodden_stone1"
       },
       {
-        "model": "minecraft:trodden_stone2"
+        "model": "malum:trodden_stone2"
       },
       {
-        "model": "minecraft:trodden_stone3"
+        "model": "malum:trodden_stone3"
       }
     ],
     "type=top,waterlogged=false": [

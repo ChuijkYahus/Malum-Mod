@@ -1,0 +1,13 @@
+{
+  "id": "malum:soulwood",
+  "ingredient": {
+    "tag": "malum:soulwood_planks"
+  },
+  "validGroups": [
+    "core",
+    "head",
+    "base",
+    "bauble",
+    "ornament"
+  ]
+}

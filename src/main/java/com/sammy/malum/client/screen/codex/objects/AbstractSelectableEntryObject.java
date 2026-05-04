@@ -1,21 +1,18 @@
 package com.sammy.malum.client.screen.codex.objects;
 
 import com.sammy.malum.client.screen.codex.*;
-import com.sammy.malum.client.screen.codex.display.DisplayedGizmo;
+import com.sammy.malum.client.screen.codex.display.*;
 import com.sammy.malum.client.screen.codex.helper.*;
 import com.sammy.malum.client.screen.codex.pages.EntryReference;
 import com.sammy.malum.client.screen.codex.screens.*;
-import com.sammy.malum.core.systems.geas.*;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiGraphics;
-import net.minecraft.core.*;
 import net.minecraft.network.chat.Component;
-import net.minecraft.world.item.*;
 
 import java.util.*;
 import java.util.function.*;
 
-public abstract class AbstractSelectableEntryObject<T extends AbstractMalumCodexScreen> extends BookObject<T> {
+public abstract class AbstractSelectableEntryObject<T extends AbstractMalumCodexScreen> extends BookObject<T> implements IGizmoHolder {
 
     public final BookEntry entry;
     public DisplayedGizmo displayedGizmo;
@@ -29,7 +26,12 @@ public abstract class AbstractSelectableEntryObject<T extends AbstractMalumCodex
     public AbstractSelectableEntryObject(EntryReference reference, int posY, int width, int height, int posX) {
         super(posX, posY, width, height);
         this.entry = reference.entry;
-        this.displayedGizmo = new DisplayedGizmo.DisplayedItem(reference.icon);
+        this.displayedGizmo = reference.gizmo;
+    }
+
+    @Override
+    public String getGizmoId() {
+        return entry.identifier;
     }
 
     @Override
@@ -49,8 +51,8 @@ public abstract class AbstractSelectableEntryObject<T extends AbstractMalumCodex
 
     public List<Component> gatherTooltip(T screen) {
         return new ArrayList<>(List.of(
-                CodexTextHelper.convertToComponent(entry.translationKey(), entry.titleStyle),
-                CodexTextHelper.convertToComponent(entry.descriptionTranslationKey(), entry.subtitleStyle)));
+                CodexTextHelper.convertToComponent(entry.translationKey()).withStyle(entry.titleStyle),
+                CodexTextHelper.convertToComponent(entry.descriptionTranslationKey()).withStyle(entry.subtitleStyle)));
     }
 
     @Override

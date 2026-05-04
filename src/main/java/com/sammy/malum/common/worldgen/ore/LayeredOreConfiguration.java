@@ -22,17 +22,21 @@ public record LayeredOreConfiguration(List<OreLayer> oreLayers, Optional<Layered
         return new LayeredTargetBlockState(target, state);
     }
 
-    public record OreLayer(List<LayeredTargetBlockState> targetStates, int width, int height, float discardChanceOnAirExposure,
-                           boolean discardFeatureIfEmpty) {
+    public record OreLayer(List<LayeredTargetBlockState> targetStates,
+                           int width, int height,
+                           int minBlocks, int maxBlocks,
+                           float discardChanceOnAirExposure, boolean discardFeatureIfEmpty) {
 
-        public OreLayer(LayeredTargetBlockState state, int width, int height, float discardChanceOnAirExposure, boolean discardFeatureIfEmpty) {
-            this(List.of(state), width, height, discardChanceOnAirExposure, discardFeatureIfEmpty);
+        public OreLayer(LayeredTargetBlockState state, int width, int height, int minBlocks, int maxBlocks, float discardChanceOnAirExposure, boolean discardFeatureIfEmpty) {
+            this(List.of(state), width, height, minBlocks, maxBlocks, discardChanceOnAirExposure, discardFeatureIfEmpty);
         }
         public static final Codec<OreLayer> CODEC = RecordCodecBuilder.create(
                 p_67849_ -> p_67849_.group(
                                 Codec.list(LayeredTargetBlockState.CODEC).fieldOf("targets").forGetter(layer -> layer.targetStates),
                                 Codec.intRange(0, 128).fieldOf("width").forGetter(layer -> layer.width),
                                 Codec.intRange(0, 256).fieldOf("height").forGetter(layer -> layer.height),
+                                Codec.intRange(0, 1024).fieldOf("minBlocks").forGetter(layer -> layer.minBlocks),
+                                Codec.intRange(0, 1024).fieldOf("maxBlocks").forGetter(layer -> layer.maxBlocks),
                                 Codec.floatRange(0.0F, 1.0F).fieldOf("discard_chance_on_air_exposure").forGetter(layer -> layer.discardChanceOnAirExposure),
                                 Codec.BOOL.optionalFieldOf("discard_feature_if_empty", false).forGetter(layer -> layer.discardFeatureIfEmpty)
                         )

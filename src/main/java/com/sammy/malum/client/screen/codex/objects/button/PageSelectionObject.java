@@ -1,7 +1,7 @@
 package com.sammy.malum.client.screen.codex.objects.button;
 
-import com.sammy.malum.client.screen.codex.display.DisplayedGizmo;
-import com.sammy.malum.client.screen.codex.pages.PageSelectionPage;
+import com.sammy.malum.client.screen.codex.display.*;
+import com.sammy.malum.client.screen.codex.pages.*;
 import com.sammy.malum.client.screen.codex.screens.CodexEntryScreen;
 
 import static com.sammy.malum.client.screen.codex.helper.CodexRenderHelper.renderTexture;
@@ -25,5 +25,14 @@ public class PageSelectionObject extends ButtonObject {
     @Override
     public boolean isSelected() {
         return page.getIndex() == buttonIndex;
+    }
+
+    @Override
+    public String getGizmoId() {
+        var page = this.page.pages.get(buttonIndex);
+        if (page instanceof IGizmoHolder holder) {
+            return holder.getGizmoId();
+        }
+        return super.getGizmoId();
     }
 }

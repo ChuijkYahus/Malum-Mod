@@ -2,7 +2,7 @@ package com.sammy.malum.client.screen.codex.pages.text;
 
 import com.mojang.datafixers.util.*;
 import com.sammy.malum.*;
-import com.sammy.malum.client.screen.codex.helper.*;
+import com.sammy.malum.client.screen.codex.display.*;
 import com.sammy.malum.client.screen.codex.pages.*;
 import com.sammy.malum.client.screen.codex.screens.*;
 import com.sammy.malum.core.systems.geas.*;
@@ -11,7 +11,6 @@ import net.minecraft.core.*;
 import net.minecraft.network.chat.*;
 import net.minecraft.resources.ResourceLocation;
 
-import static com.sammy.malum.client.screen.codex.helper.CodexTextHelper.renderWrappingText;
 
 public class GeasInfoPage extends BookPage {
 
@@ -39,8 +38,8 @@ public class GeasInfoPage extends BookPage {
         int leftStart = ((left + 14));
         int upperTopStart = ((top + 10));
         int lowerTopStart = ((top + 100));
-        renderWrappingText(guiGraphics, CodexTextHelper.GEAS_POSITIVE_COLOR, pros, leftStart, upperTopStart, 118, prosScale);
-        renderWrappingText(guiGraphics, CodexTextHelper.GEAS_NEGATIVE_COLOR, cons, leftStart, lowerTopStart, 118, consScale);
+//        renderWrappingText(guiGraphics, CodexTextRenderer.GEAS_POSITIVE_COLOR, pros, leftStart, upperTopStart, 118, prosScale);
+//        renderWrappingText(guiGraphics, CodexTextRenderer.GEAS_NEGATIVE_COLOR, cons, leftStart, lowerTopStart, 118, consScale);
     }
 
     public Pair<Component, Float> makeText(String text) {

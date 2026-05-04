@@ -19,8 +19,6 @@ import team.lodestar.lodestone.modules.toolkit.recipe.LodestoneRecipeType;
 
 import java.util.function.*;
 
-import static com.sammy.malum.client.screen.codex.helper.CodexTextHelper.renderHeadline;
-
 public class SoulBindingPage extends BookRecipePage<SpiritBasedRecipeInput, SoulBindingRecipe> {
 
     public SoulBindingPage(Predicate<SoulBindingRecipe> filter) {
@@ -38,7 +36,7 @@ public class SoulBindingPage extends BookRecipePage<SpiritBasedRecipeInput, Soul
 
     @Override
     public void render(CodexEntryScreen screen, GuiGraphics guiGraphics, int left, int top, int mouseX, int mouseY, float partialTicks, boolean isRepeat) {
-        renderHeadline(guiGraphics, Component.translatable(headlineTranslationKey()), left, top);
+//        renderHeadline(guiGraphics, Component.translatable(headlineTranslationKey()), left, top);
         CodexItemHelper.renderItem(screen, guiGraphics, recipe.result.createDefaultStack(), left + 63, top + 38, mouseX, mouseY);
         CodexItemHelper.renderIngredient(screen, guiGraphics, recipe.input, left + 63, top + 87, mouseX, mouseY);
 

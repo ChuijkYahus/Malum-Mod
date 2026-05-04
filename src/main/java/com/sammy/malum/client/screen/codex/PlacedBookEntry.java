@@ -17,10 +17,10 @@ public class PlacedBookEntry extends BookEntry {
 
     public PlacedBookEntry(String identifier, boolean isVoid,
                            BookEntryWidgetPlacementData widgetData,
-                           ImmutableList<BookPage> bookPages, ImmutableList<EntryReference> entryReferences, BooleanSupplier condition,
+                           ImmutableList<BookPage> bookPages, ImmutableList<EntryReference> leftBookmarks, ImmutableList<EntryReference> rightBookmarks, BooleanSupplier condition,
                            @Nullable SpiritLike associatedSpirit, boolean isFragment,
                            UnaryOperator<Style> titleStyle, UnaryOperator<Style> subtitleStyle, boolean hasTooltip) {
-        super(identifier, isVoid, bookPages, entryReferences, condition, associatedSpirit, isFragment, titleStyle, subtitleStyle, hasTooltip);
+        super(identifier, isVoid, bookPages, leftBookmarks, rightBookmarks, condition, associatedSpirit, isFragment, titleStyle, subtitleStyle, hasTooltip);
         this.widgetData = widgetData;
     }
 

@@ -32,8 +32,8 @@ public class SpiritRiteTextPage extends BookPage {
 
     @Override
     public void render(CodexEntryScreen screen, GuiGraphics guiGraphics, int left, int top, int mouseX, int mouseY, float partialTicks, boolean isRepeat) {
-        CodexTextHelper.renderHeadline(guiGraphics, headline, left, top);
-        CodexTextHelper.renderWrappingText(guiGraphics, text, left + 6, top + 78, 130);
+//        CodexTextHelper.renderHeadline(guiGraphics, headline, left, top);
+//        CodexTextHelper.renderWrappingText(guiGraphics, text, left + 6, top + 78, 130);
 
         int riteIconX = left + 63;
         int riteIconY = top + 38;

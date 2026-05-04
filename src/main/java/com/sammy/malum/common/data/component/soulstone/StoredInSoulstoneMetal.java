@@ -8,6 +8,7 @@ import net.minecraft.network.chat.*;
 import net.minecraft.network.codec.*;
 import net.minecraft.tags.*;
 import net.minecraft.world.item.*;
+import team.lodestar.lodestone.modules.toolkit.codec.LodestoneStreamCodecs;
 import team.lodestar.lodestone.network.*;
 
 import java.util.*;
@@ -30,22 +31,9 @@ public record StoredInSoulstoneMetal(String id, TagKey<Item> nuggetForm) {
     public static final StreamCodec<RegistryFriendlyByteBuf, StoredInSoulstoneMetal> STREAM_CODEC =
             StreamCodec.composite(
                     ByteBufCodecs.STRING_UTF8, StoredInSoulstoneMetal::id,
-                    ExtraStreamCodecs.tagStreamCodec(Registries.ITEM), StoredInSoulstoneMetal::nuggetForm,
+                    LodestoneStreamCodecs.tagStreamCodec(Registries.ITEM), StoredInSoulstoneMetal::nuggetForm,
                     StoredInSoulstoneMetal::new
             );
-
-    @Override
-    public boolean equals(Object object) {
-        if (this == object) return true;
-        if (object == null || getClass() != object.getClass()) return false;
-        StoredInSoulstoneMetal that = (StoredInSoulstoneMetal) object;
-        return Objects.equals(id, that.id);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(id, nuggetForm);
-    }
 
     public MutableComponent getComponent() {
         return Component.translatable(METAL_ENTRY + id);

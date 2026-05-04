@@ -283,7 +283,6 @@ public class MalumItemTagDatagen extends LodestoneItemTagsSystem {
                 }
             }
         }
-        tag(CHARM_CURIO).add(TOPHAT.get(), TOKEN_OF_GRATITUDE.get());
     }
 
     @Override

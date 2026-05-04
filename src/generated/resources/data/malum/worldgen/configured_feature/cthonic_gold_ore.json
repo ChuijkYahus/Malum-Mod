@@ -20,14 +20,16 @@
           }
         }
       ],
-      "max_decorations": 6,
-      "min_decorations": 4
+      "max_decorations": 5,
+      "min_decorations": 2
     },
     "ore_layers": [
       {
         "discard_chance_on_air_exposure": 0.0,
         "discard_feature_if_empty": true,
-        "height": 8,
+        "height": 12,
+        "maxBlocks": 3,
+        "minBlocks": 1,
         "targets": [
           {
             "state_provider": {
@@ -42,11 +44,13 @@
             }
           }
         ],
-        "width": 4
+        "width": 12
       },
       {
         "discard_chance_on_air_exposure": 0.15,
-        "height": 16,
+        "height": 20,
+        "maxBlocks": 16,
+        "minBlocks": 8,
         "targets": [
           {
             "state_provider": {
@@ -73,7 +77,61 @@
             }
           }
         ],
-        "width": 8
+        "width": 20
+      },
+      {
+        "discard_chance_on_air_exposure": 0.5,
+        "height": 24,
+        "maxBlocks": 16,
+        "minBlocks": 4,
+        "targets": [
+          {
+            "state_provider": {
+              "type": "minecraft:simple_state_provider",
+              "state": {
+                "Name": "minecraft:gold_ore"
+              }
+            },
+            "target": {
+              "predicate_type": "minecraft:tag_match",
+              "tag": "minecraft:stone_ore_replaceables"
+            }
+          },
+          {
+            "state_provider": {
+              "type": "minecraft:simple_state_provider",
+              "state": {
+                "Name": "minecraft:deepslate_gold_ore"
+              }
+            },
+            "target": {
+              "predicate_type": "minecraft:tag_match",
+              "tag": "minecraft:deepslate_ore_replaceables"
+            }
+          }
+        ],
+        "width": 16
+      },
+      {
+        "discard_chance_on_air_exposure": 0.2,
+        "height": 24,
+        "maxBlocks": 50,
+        "minBlocks": 30,
+        "targets": [
+          {
+            "state_provider": {
+              "type": "minecraft:simple_state_provider",
+              "state": {
+                "Name": "minecraft:granite"
+              }
+            },
+            "target": {
+              "predicate_type": "minecraft:tag_match",
+              "tag": "minecraft:base_stone_overworld"
+            }
+          }
+        ],
+        "width": 24
       }
     ]
   }

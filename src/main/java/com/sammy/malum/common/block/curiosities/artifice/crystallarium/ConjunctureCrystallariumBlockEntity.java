@@ -1,33 +1,28 @@
 package com.sammy.malum.common.block.curiosities.artifice.crystallarium;
 
-import com.sammy.malum.common.block.storage.MalumItemHolderBlockEntity;
-import com.sammy.malum.common.item.spirit.SpiritShardItem;
-import com.sammy.malum.common.recipe.RuneworkingRecipe.RunicWorkbenchRecipeInput;
-import com.sammy.malum.registry.common.MalumParticleEffectTypes;
+import com.sammy.malum.common.block.*;
 import com.sammy.malum.registry.common.block.MalumBlockEntities;
-import com.sammy.malum.registry.common.recipe.MalumRecipeTypes;
 import com.sammy.malum.visual_effects.block.ConjunctureCrystallariumParticleEffects;
-import com.sammy.malum.visual_effects.networked.runic_workbench.RunicWorkbenchEffectData;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.nbt.CompoundTag;
-import net.minecraft.server.level.ServerLevel;
-import net.minecraft.world.InteractionHand;
-import net.minecraft.world.ItemInteractionResult;
-import net.minecraft.world.entity.item.ItemEntity;
+import net.minecraft.server.level.*;
+import net.minecraft.world.*;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.inventory.*;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.state.BlockState;
-import net.minecraft.world.phys.Vec3;
-import team.lodestar.lodestone.modules.core.easing.Easing;
-import team.lodestar.lodestone.modules.toolkit.blockentity.LodestoneBlockEntityType;
-import team.lodestar.lodestone.modules.toolkit.recipe.LodestoneRecipeSearch;
+import team.lodestar.lodestone.modules.toolkit.blockentity.*;
 
-public class ConjunctureCrystallariumBlockEntity extends MalumItemHolderBlockEntity {
+import static com.sammy.malum.common.block.curiosities.artifice.crystallarium.ConjunctureCrystallariumContainer.*;
+
+public class ConjunctureCrystallariumBlockEntity extends LodestoneBlockEntity {
+
+    public MalumBlockItemStackHandler inventory;
 
     public ConjunctureCrystallariumBlockEntity(LodestoneBlockEntityType<? extends ConjunctureCrystallariumBlockEntity> type, BlockPos pos, BlockState state) {
         super(type, pos, state);
+        inventory = MalumBlockItemStackHandler.create(this, 5).build();
     }
 
     public ConjunctureCrystallariumBlockEntity(BlockPos pos, BlockState state) {
@@ -35,7 +30,28 @@ public class ConjunctureCrystallariumBlockEntity extends MalumItemHolderBlockEnt
     }
 
     @Override
+    public ItemInteractionResult onUse(Player player, InteractionHand pHand) {
+        if (player instanceof ServerPlayer serverPlayer) {
+            var container = new SimpleMenuProvider((w, p, pl) -> new ConjunctureCrystallariumContainer(w, p, ContainerLevelAccess.create(pl.level(), getBlockPos())), CONJUNCTURE_CRYSTALLARIUM);
+            serverPlayer.openMenu(container, buf -> buf.writeBlockPos(this.getBlockPos()));
+        }
+        return ItemInteractionResult.SUCCESS;
+    }
+
+    @Override
     public void clientTick(Level level) {
         ConjunctureCrystallariumParticleEffects.passiveCrystallariumParticles(this);
+    }
+
+    @Override
+    protected void saveAdditional(CompoundTag tag, HolderLookup.Provider registries) {
+        super.saveAdditional(tag, registries);
+        inventory.save(registries, tag);
+    }
+
+    @Override
+    public void loadAdditional(CompoundTag compound, HolderLookup.Provider pRegistries) {
+        inventory.load(pRegistries, compound);
+        super.loadAdditional(compound, pRegistries);
     }
 }

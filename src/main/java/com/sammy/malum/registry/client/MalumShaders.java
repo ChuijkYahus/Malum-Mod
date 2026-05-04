@@ -14,7 +14,8 @@ public class MalumShaders {
     public static ShaderRegister SHADERS = new ShaderRegister(MalumMod.MALUM);
 
     //BOOK
-    public static ShaderHolder PROGRESSION_SCREEN = SHADERS.register("book/progression_screen", DefaultVertexFormat.POSITION_TEX_COLOR);
+    public static ShaderHolder PROGRESSION_SCREEN = SHADERS.register("book/progression_screen", DefaultVertexFormat.POSITION_TEX);
+    public static ShaderHolder OUTLINED_HUD_ELEMENT = SHADERS.register("book/object_outline", DefaultVertexFormat.POSITION_TEX);
 
 
     //HUD

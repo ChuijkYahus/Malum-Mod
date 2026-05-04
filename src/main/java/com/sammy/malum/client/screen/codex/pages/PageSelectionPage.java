@@ -5,12 +5,13 @@ import com.sammy.malum.client.screen.codex.handlers.BookObjectHandler;
 import com.sammy.malum.client.screen.codex.objects.button.PageSelectionObject;
 import com.sammy.malum.client.screen.codex.screens.CodexEntryScreen;
 import net.minecraft.util.Mth;
-import net.minecraft.world.item.Item;
-import net.minecraft.world.item.ItemStack;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.function.Consumer;
+import java.util.function.*;
+
+import static com.sammy.malum.client.screen.codex.display.DisplayedGizmo.item;
+import static com.sammy.malum.client.screen.codex.pages.text.HeadlineTextPage.headlineText;
 
 public class PageSelectionPage extends CyclingPage {
 
@@ -18,8 +19,17 @@ public class PageSelectionPage extends CyclingPage {
     public static class PageSelectionBuilder {
         protected final List<Selection> data = new ArrayList<>();
 
+        public PageSelectionBuilder addHeadline(DisplayedGizmo display, String text) {
+            return add(display, headlineText(text));
+        }
+
         public PageSelectionBuilder add(DisplayedGizmo display, BookPage page) {
             data.add(new Selection(page, display));
+            return this;
+        }
+
+        public PageSelectionBuilder add(DisplayedGizmo display, Function<DisplayedGizmo, BookPage> page) {
+            data.add(new Selection(page.apply(display), display));
             return this;
         }
     }

@@ -10,7 +10,7 @@ public class ItemEffectLangDatagen {
         addPouchEffect("soulwoven_pouch_collection", "Collects Spirit Arcana");
         addPouchEffect("ravenous_pouch_collection", "Snatches Items Already In Storage");
         addPouchEffect("ravenous_pouch_drop", "Retains A Minimum When Emptied");
-        
+
         addGearEffect("ravenous_scythe_gluttony", "Amasses Gluttony From Struck Targets");
         addGearEffect("gluttonous_bludgeon_locusts", "Sprouts Damaging Locusts When Hitting Targets");
         addGearEffect("soul_based_damage", "Deals Soul-Rending Damage");

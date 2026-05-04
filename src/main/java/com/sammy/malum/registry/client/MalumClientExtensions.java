@@ -1,36 +1,34 @@
 package com.sammy.malum.registry.client;
 
 import com.sammy.malum.client.extensions.*;
+import com.sammy.malum.client.model.MalignantStrongholdArmorModel;
+import com.sammy.malum.client.model.SoulHunterArmorModel;
+import com.sammy.malum.client.model.SoulStainedSteelArmorModel;
 import com.sammy.malum.common.block.curiosities.decor.mana_mote.*;
 import com.sammy.malum.registry.common.MalumContent;
+import com.sammy.malum.registry.common.MalumContent.Sorcery;
 import net.neoforged.neoforge.client.extensions.common.*;
 import team.lodestar.lodestone.systems.model.armor.*;
 
+import static com.sammy.malum.registry.common.MalumContent.*;
+import static com.sammy.malum.registry.common.MalumContent.Gear.*;
+import static com.sammy.malum.registry.common.MalumContent.Sorcery.*;
+
 public class MalumClientExtensions {
+
     public static void registerClientExtensions(RegisterClientExtensionsEvent event) {
-        event.registerItem(new SpiritJarClientItemExtensions(),
-                MalumContent.Sorcery.SPIRIT_JAR.asItem());
+        event.registerItem(new SpiritJarItemExtension(), SPIRIT_JAR.asItem());
+        event.registerItem(new GeasItemExtension(), GEAS);
+        event.registerItem(new WandItemExtension(), WAND);
 
-        event.registerItem(new GeasClientItemExtension(),
-                MalumContent.GEAS);
-
-        event.registerItem(new LodestoneArmorClientItemExtensions(() -> MalumArmorModels.SOUL_HUNTER_ARMOR),
-                MalumContent.Gear.SOUL_HUNTER_CLOAK,
-                MalumContent.Gear.SOUL_HUNTER_ROBE,
-                MalumContent.Gear.SOUL_HUNTER_LEGGINGS,
-                MalumContent.Gear.SOUL_HUNTER_BOOTS);
-        event.registerItem(new LodestoneArmorClientItemExtensions(() -> MalumArmorModels.SOUL_STAINED_ARMOR),
-                MalumContent.Gear.SOUL_STAINED_STEEL_HELMET,
-                MalumContent.Gear.SOUL_STAINED_STEEL_CHESTPLATE,
-                MalumContent.Gear.SOUL_STAINED_STEEL_LEGGINGS,
-                MalumContent.Gear.SOUL_STAINED_STEEL_BOOTS);
-        event.registerItem(new MalignantArmorItemExtensions(() -> MalumArmorModels.MALIGNANT_LEAD_ARMOR),
-                MalumContent.Gear.MALIGNANT_STRONGHOLD_HELMET,
-                MalumContent.Gear.MALIGNANT_STRONGHOLD_CHESTPLATE,
-                MalumContent.Gear.MALIGNANT_STRONGHOLD_LEGGINGS,
-                MalumContent.Gear.MALIGNANT_STRONGHOLD_BOOTS);
+        event.registerItem(new LodestoneArmorClientItemExtensions(() -> SoulHunterArmorModel.MODEL.getModel()),
+                SOUL_HUNTER_CLOAK, SOUL_HUNTER_ROBE, SOUL_HUNTER_LEGGINGS, SOUL_HUNTER_BOOTS);
+        event.registerItem(new LodestoneArmorClientItemExtensions(() -> SoulStainedSteelArmorModel.MODEL.getModel()),
+                SOUL_STAINED_STEEL_HELMET, SOUL_STAINED_STEEL_CHESTPLATE, SOUL_STAINED_STEEL_LEGGINGS, SOUL_STAINED_STEEL_BOOTS);
+        event.registerItem(new MalignantArmorItemExtensions(() -> MalignantStrongholdArmorModel.MODEL.getModel()),
+                MALIGNANT_STRONGHOLD_HELMET, MALIGNANT_STRONGHOLD_CHESTPLATE, MALIGNANT_STRONGHOLD_LEGGINGS, MALIGNANT_STRONGHOLD_BOOTS);
 
         event.registerBlock(new ManaMoteBlockClientExtension(),
-                MalumContent.Sorcery.SPIRIT_MOTE);
+                SPIRIT_MOTE);
     }
 }

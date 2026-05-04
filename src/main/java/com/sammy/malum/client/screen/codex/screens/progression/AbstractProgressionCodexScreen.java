@@ -67,7 +67,7 @@ public abstract class AbstractProgressionCodexScreen extends AbstractMalumCodexS
     protected int voidFadeoutCounter;
 
     public final EntryObjectHandler progressionObjects = new EntryObjectHandler();
-    public final List<PlacedBookEntry> entries = new ArrayList<>();
+    public final EntryStorage entryStorage = new EntryStorage();
 
     protected final int backgroundImageWidth;
     protected final int backgroundImageHeight;
@@ -92,8 +92,8 @@ public abstract class AbstractProgressionCodexScreen extends AbstractMalumCodexS
     public abstract void setupEntries();
 
     @Override
-    public List<PlacedBookEntry> getEntries() {
-        return entries;
+    public EntryStorage getEntryStorage() {
+        return entryStorage;
     }
 
     @Override
@@ -112,33 +112,31 @@ public abstract class AbstractProgressionCodexScreen extends AbstractMalumCodexS
     }
 
     public void renderFrameCutout(GuiGraphics guiGraphics) {
-        var poseStack = guiGraphics.pose();
         int guiLeft = getGuiLeft();
         int guiTop = getGuiTop();
 
         var cutout = MalumShaders.PROGRESSION_SCREEN.getShaderInstance();
         RenderSystem.setShaderTexture(1, FRAME_CUTOUT_TEXTURE);
         RenderSystem.setShaderTexture(2, target.getColorTextureId());
-        //RenderSystem.setShaderTexture(2, 2);
-//        VFXBuilders.createScreen()
-//                .setShader(cutout)
-//                .setTexture(FRAME_TEXTURE)
-//                .setPositionWithWidth(guiLeft, guiTop, BOOK_WIDTH, BOOK_HEIGHT)
-//                .blit(poseStack);
 
         RenderSystem.setShaderTexture(0, FRAME_TEXTURE);
         RenderSystem.setShader(() -> cutout);
-        BufferBuilder bufferbuilder = Tesselator.getInstance().begin(VertexFormat.Mode.QUADS, DefaultVertexFormat.POSITION_TEX_COLOR);
-        PoseStack.Pose last = guiGraphics.pose().last();
+        var builder = Tesselator.getInstance().begin(VertexFormat.Mode.QUADS, DefaultVertexFormat.POSITION_TEX);
+        var last = guiGraphics.pose().last();
 
         Vector2ic size = new Vector2i(BOOK_WIDTH, BOOK_HEIGHT);
         Vector2ic offset = new Vector2i(0, 0);
-        bufferbuilder.addVertex(last, guiLeft + offset.x(), guiTop + offset.y(), 0).setUv(0,1).setColor(255,255,255,255);
-        bufferbuilder.addVertex(last, guiLeft + offset.x(), guiTop + size.y() + offset.y(), 0).setUv(0,0).setColor(255,255,255,255);
-        bufferbuilder.addVertex(last, guiLeft + size.x() + offset.x(), guiTop + size.y() + offset.y(), 0).setUv(1,0).setColor(255,255,255,255);
-        bufferbuilder.addVertex(last, guiLeft + size.x() + offset.x(), guiTop + offset.y(), 0).setUv(1,1).setColor(255,255,255,255);
 
-        BufferUploader.drawWithShader(bufferbuilder.buildOrThrow());
+        int x0 = guiLeft + offset.x();
+        int y0 = guiTop + offset.y();
+        int x1 = x0 + size.x();
+        int y1 = y0 + size.y();
+        builder.addVertex(last, x0, y0, 0).setUv(0,1);
+        builder.addVertex(last, x0, y1, 0).setUv(0,0);
+        builder.addVertex(last, x1, y1, 0).setUv(1,0);
+        builder.addVertex(last, x1, y0, 0).setUv(1,1);
+
+        BufferUploader.drawWithShader(builder.buildOrThrow());
 
     }
 

@@ -94,9 +94,10 @@ public class PlacedBookEntryBuilder extends BookEntryBuilder {
 
     @Override
     public PlacedBookEntry build() {
-        ImmutableList<BookPage> bookPages = ImmutableList.copyOf(pages);
-        ImmutableList<EntryReference> entryReferences = ImmutableList.copyOf(references);
-        PlacedBookEntry.BookEntryWidgetPlacementData data = new PlacedBookEntry.BookEntryWidgetPlacementData(xOffset*SPACING, yOffset*SPACING, widgetSupplier, widgetConfig);
-        return new PlacedBookEntry(identifier, isVoid, data, bookPages, entryReferences, condition, associatedSpirit, isFragment, titleStyle, subtitleStyle, hasTooltip);
+        var pages = ImmutableList.copyOf(this.pages);
+        var leftBookmarks = ImmutableList.copyOf(this.leftBookmarks);
+        var rightBookmarks = ImmutableList.copyOf(this.rightBookmarks);
+        var data = new PlacedBookEntry.BookEntryWidgetPlacementData(xOffset*SPACING, yOffset*SPACING, widgetSupplier, widgetConfig);
+        return new PlacedBookEntry(identifier, isVoid, data, pages, leftBookmarks, rightBookmarks, condition, associatedSpirit, isFragment, titleStyle, subtitleStyle, hasTooltip);
     }
 }

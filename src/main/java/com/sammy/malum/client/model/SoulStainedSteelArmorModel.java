@@ -2,6 +2,7 @@ package com.sammy.malum.client.model;
 
 
 import com.sammy.malum.MalumMod;
+import com.sammy.malum.registry.client.MalumModels;
 import net.minecraft.client.model.HumanoidModel;
 import net.minecraft.client.model.geom.ModelLayerLocation;
 import net.minecraft.client.model.geom.ModelPart;
@@ -10,7 +11,9 @@ import net.minecraft.client.model.geom.builders.*;
 import team.lodestar.lodestone.systems.model.armor.*;
 
 public class SoulStainedSteelArmorModel extends LodestoneArmorModel {
-    public static ModelLayerLocation LAYER = new ModelLayerLocation(MalumMod.malumPath("soul_stained_steel_armor"), "main");
+
+    public static MalumModels.ModelHolder<SoulStainedSteelArmorModel> MODEL = new MalumModels.ModelHolder<>("soul_stained_armor", SoulStainedSteelArmorModel::new, SoulStainedSteelArmorModel::createBodyLayer);
+
 
     public SoulStainedSteelArmorModel(ModelPart root) {
         super(root);

@@ -25,7 +25,7 @@ public class UnchainedTransmutationRecipePage extends BookPage {
     private final List<UnchainedTransmutationRecipe> recipes = new ArrayList<>();
 
     public UnchainedTransmutationRecipePage(String headline, Predicate<UnchainedTransmutationRecipe> predicate) {
-        this.headline = Component.translatable(BookPage.HEADLINE + headline);
+        this.headline = Component.translatable(headlineKey(headline));
         var level = Minecraft.getInstance().level;
         if (level == null) {
             return;
@@ -61,7 +61,7 @@ public class UnchainedTransmutationRecipePage extends BookPage {
 
     @Override
     public void render(CodexEntryScreen screen, GuiGraphics guiGraphics, int left, int top, int mouseX, int mouseY, float partialTicks, boolean isRepeat) {
-        CodexTextHelper.renderHeadline(guiGraphics, headline, left, top);
+//        CodexTextHelper.renderHeadline(guiGraphics, headline, left, top);
 
         UnchainedTransmutationRecipe recipe = recipes.get(getIndex());
         renderIngredient(screen, guiGraphics, recipe.getInput(), left + 63, top + 56, mouseX, mouseY);

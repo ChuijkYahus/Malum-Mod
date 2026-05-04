@@ -37,8 +37,8 @@ public class MalumBlockItemStackHandler extends LodestoneItemStackBlockHandler {
     }
 
     @Override
-    public InventoryInteractionResult extractItem(ServerLevel level, Player player) {
-        var result = super.extractItem(level, player);
+    public InventoryInteractionResult extractItem(ServerLevel level, Function<ItemStack, Integer> amount) {
+        var result = super.extractItem(level, amount);
         if (result.wasSuccessful()) {
             ItemStack stack = result.original();
             var soundEvent = getExtractSound(stack);

@@ -1,6 +1,7 @@
 package com.sammy.malum.datagen.lang;
 
 import com.sammy.malum.MalumMod;
+import com.sammy.malum.common.block.curiosities.artifice.crystallarium.*;
 import com.sammy.malum.common.data.component.*;
 import com.sammy.malum.common.item.*;
 import com.sammy.malum.compat.create.*;
@@ -65,6 +66,10 @@ public class MalumLangDatagen extends LanguageProvider {
         EffectKeywordLangDatagen.addTranslations();
         CurioEffectLangDatagen.addTranslations();
         GeasEffectLangDatagen.addTranslations();
+        ItemEffectLangDatagen.addTranslations();
+
+        add("container.malum.wand_tinkerer", "Wand Tinkerer");
+        add("container.malum.conjuncture_crystallarium", "Conjuncture Crystallarium");
 
         var blocks = new HashSet<>(BLOCKS.getEntries());
         var items = new HashSet<>(MalumContent.ITEMS.getEntries());

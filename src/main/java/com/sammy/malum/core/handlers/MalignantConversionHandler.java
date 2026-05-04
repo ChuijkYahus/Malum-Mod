@@ -2,8 +2,9 @@ package com.sammy.malum.core.handlers;
 
 import com.sammy.malum.*;
 import com.sammy.malum.common.data.attachment.*;
-import com.sammy.malum.core.listeners.*;
-import com.sammy.malum.core.listeners.MalignantConversionReloadListener.*;
+import com.sammy.malum.common.data.custom.malignant_conversion.MalignantConversionAttributePayout;
+import com.sammy.malum.common.data.custom.malignant_conversion.MalignantConversionData;
+import com.sammy.malum.common.data.custom.malignant_conversion.MalignantConversionReloadListener;
 import com.sammy.malum.registry.common.*;
 import com.sammy.malum.registry.common.sound.*;
 import net.minecraft.*;

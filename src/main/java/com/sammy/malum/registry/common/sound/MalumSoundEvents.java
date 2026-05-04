@@ -32,6 +32,9 @@ public class MalumSoundEvents {
     public static final DeferredHolder<SoundEvent, SoundEvent> ARCANA_BUTTON_UNHOVER = registerVariable("arcana_button_unhover");
     public static final DeferredHolder<SoundEvent, SoundEvent> ARCANA_BUTTON_CLICK = registerVariable("arcana_button_click");
     public static final DeferredHolder<SoundEvent, SoundEvent> ARCANA_BUTTON_UNCLICK = registerVariable("arcana_button_unclick");
+    public static final DeferredHolder<SoundEvent, SoundEvent> ARCANA_BOOKMARK_HOVER = registerVariable("arcana_bookmark_hover");
+    public static final DeferredHolder<SoundEvent, SoundEvent> ARCANA_BOOKMARK_UNHOVER = registerVariable("arcana_bookmark_unhover");
+    public static final DeferredHolder<SoundEvent, SoundEvent> ARCANA_GIZMO_HOVER = registerVariable("arcana_gizmo_hover");
 
     public static final DeferredHolder<SoundEvent, SoundEvent> ARCANA_SUBENTRY_OPEN = registerVariable("arcana_subentry_opened");
     public static final DeferredHolder<SoundEvent, SoundEvent> ARCANA_SUBENTRY_CLOSE = registerVariable("arcana_subentry_closed");

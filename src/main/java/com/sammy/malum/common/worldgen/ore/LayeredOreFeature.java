@@ -5,6 +5,7 @@ import com.sammy.malum.common.worldgen.*;
 import net.minecraft.core.*;
 import net.minecraft.util.*;
 import net.minecraft.world.level.*;
+import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.*;
 import net.minecraft.world.level.block.state.properties.*;
 import net.minecraft.world.level.chunk.*;
@@ -24,15 +25,15 @@ public class LayeredOreFeature extends Feature<LayeredOreConfiguration> {
         super(LayeredOreConfiguration.CODEC);
     }
 
-    public record LayerFeedback(HashMap<BlockPos, BlockState> placedBlocks, HashSet<Integer> blockHashes) {
+    public record LayerFeedback(HashMap<BlockPos, BlockState> placedBlocks) {
         public LayerFeedback() {
-            this(new HashMap<>(), new HashSet<>());
+            this(new HashMap<>());
         }
     }
 
     @Override
     public boolean place(FeaturePlaceContext<LayeredOreConfiguration> pContext) {
-        var randomsource = pContext.random();
+        var random = pContext.random();
         var blockpos = pContext.origin();
         var worldgenlevel = pContext.level();
 
@@ -45,9 +46,9 @@ public class LayeredOreFeature extends Feature<LayeredOreConfiguration> {
 
         var blockMap = new HashMap<LayeredOreConfiguration.OreLayer, LayerFeedback>();
 
-        float angle = randomsource.nextFloat() * 6.28f;
+        float angle = random.nextFloat() * 6.28f;
         float xScale = 1 + Mth.sin(angle) * 0.5f;
-        float yScale = 1 + randomsource.nextFloat() * 0.5f;
+        float yScale = 1 + random.nextFloat() * 0.5f;
         float zScale = 1 + Mth.cos(angle) * 0.5f;
         for (LayeredOreConfiguration.OreLayer layer : layers) {
             float horizontal = layer.width();
@@ -95,7 +96,7 @@ public class LayeredOreFeature extends Feature<LayeredOreConfiguration> {
                         double zDist = ((double) z + 0.5 - zCenter);
                         float theta = (float) Math.atan2(xDist, zDist);
                         float noise = (float) ((normalnoise.getValue(x + theta, y, z + theta) + 1) / 2);
-                        double threshold = Easing.SINE_IN_OUT.lerp(noise, 0.25f, 0.5f);
+                        double threshold = Easing.SINE_IN_OUT.lerp(noise, 0.25f, 0.75f);
 
                         if (abs(xDist) > xWidth * threshold || abs(yDist) > height * threshold || abs(zDist) > zWidth * threshold) {
                             continue;
@@ -103,24 +104,18 @@ public class LayeredOreFeature extends Feature<LayeredOreConfiguration> {
 
                         mutable.set(x, y, z);
 
-                        int hash = mutable.hashCode();
-                        var blockHashes = feedback.blockHashes;
-                        if (blockHashes.contains(hash)) {
-                            continue;
-                        }
-                        blockHashes.add(hash);
                         var state = worldgenlevel.getBlockState(mutable);
 
                         for (LayeredOreConfiguration.LayeredTargetBlockState placementRules : layer.targetStates()) {
-                            if (!placementRules.target().test(state, randomsource)) {
+                            if (!placementRules.target().test(state, random)) {
                                 continue;
                             }
 
-                            if (!shouldSkipAirCheck(randomsource, layer.discardChanceOnAirExposure()) && isAdjacentToAir(worldgenlevel::getBlockState, mutable)) {
+                            if (!shouldSkipAirCheck(random, layer.discardChanceOnAirExposure()) && isAdjacentToAir(worldgenlevel::getBlockState, mutable)) {
                                 continue;
                             }
 
-                            var oreState = placementRules.state().getState(randomsource, mutable);
+                            var oreState = placementRules.state().getState(random, mutable);
                             feedback.placedBlocks().put(mutable.immutable(), oreState);
                             break;
                         }
@@ -134,16 +129,34 @@ public class LayeredOreFeature extends Feature<LayeredOreConfiguration> {
             }
         }
 
-        for (int i = layers.size() - 1; i >= 0; i--) {
-            var layer = layers.get(i);
+
+        var exhaustedPositions = new HashSet<BlockPos>();
+        for (LayeredOreConfiguration.OreLayer layer : layers) {
             var map = blockMap.get(layer);
-            map.placedBlocks.forEach((pos, state) -> worldgenlevel.setBlock(pos, state, 3));
+            var toPlace = map.placedBlocks.entrySet();
+            WorldgenHelper.shuffle(toPlace, random);
+            int min = layer.minBlocks();
+            int max = layer.maxBlocks();
+            int roll = min > max ? min : Easing.SINE_IN_OUT.asWeighedRandom(random, min, max);
+            roll = Math.min(roll, toPlace.size());
+            for (Map.Entry<BlockPos, BlockState> entry : toPlace) {
+                if (roll == 0) {
+                    break;
+                }
+                var pos = entry.getKey();
+                if (exhaustedPositions.contains(pos)) {
+                    continue;
+                }
+                var state = entry.getValue();
+                worldgenlevel.setBlock(pos, state, 3);
+                exhaustedPositions.add(pos);
+                roll--;
+            }
         }
 
         if (decoratorOptional.isPresent()) {
             var decorator = decoratorOptional.get();
-            var positions = blockMap.values().stream().map(feedback -> feedback.placedBlocks).flatMap(m -> m.keySet().stream()).toList();
-            var shuffled = WorldgenHelper.shuffle(positions, randomsource);
+            var shuffled = WorldgenHelper.shuffle(exhaustedPositions, random);
             var mutable = new BlockPos.MutableBlockPos();
 
             int min = decorator.minDecorations();
@@ -151,12 +164,12 @@ public class LayeredOreFeature extends Feature<LayeredOreConfiguration> {
             if (max < min) {
                 max = min;
             }
-            int toPlace = randomsource.nextInt(min, max);
+            int toPlace = random.nextInt(min, max);
             int placed = 0;
             for (BlockPos attached : shuffled) {
                 for (Direction direction : Direction.values()) {
                     mutable.set(attached).move(direction);
-                    if (tryPlaceDecorator(worldgenlevel,decorator, mutable, direction, randomsource)) {
+                    if (tryPlaceDecorator(worldgenlevel,decorator, mutable, direction, random)) {
                         placed++;
                         break;
                     }

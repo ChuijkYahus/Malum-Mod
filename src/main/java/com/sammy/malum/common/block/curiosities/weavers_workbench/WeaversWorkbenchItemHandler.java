@@ -37,7 +37,6 @@ public class WeaversWorkbenchItemHandler extends ItemStackHandler {
         if (slot >= this.getSlots() - this.outputs) {
             return stack;
         }
-        //todo: check if item allowed
         return super.insertItem(slot, stack, simulate);
     }
 }

@@ -2,8 +2,6 @@ package com.sammy.malum.client.events;
 
 import com.sammy.malum.MalumMod;
 import com.sammy.malum.client.renderer.*;
-import com.sammy.malum.client.renderer.curio.TokenOfGratitudeRenderer;
-import com.sammy.malum.client.renderer.curio.TopHatCurioRenderer;
 import com.sammy.malum.client.renderer.renderpass.ParallelWorldRenderer;
 import com.sammy.malum.client.screen.tooltip.ClientMalumPouchTooltip;
 import com.sammy.malum.common.data.component.pouch.*;
@@ -12,7 +10,6 @@ import com.sammy.malum.registry.client.*;
 import com.sammy.malum.registry.common.MalumContainers;
 import com.sammy.malum.registry.common.MalumContent;
 import com.sammy.malum.registry.common.MalumParticles;
-import com.sammy.malum.registry.common.item.MalumItemProperties;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.bus.api.EventPriority;
 import net.neoforged.bus.api.SubscribeEvent;
@@ -31,9 +28,6 @@ public class ClientSetupHandler {
 
     @SubscribeEvent
     public static void registerExtras(FMLClientSetupEvent event) {
-        CuriosRendererRegistry.register(MalumContent.TOKEN_OF_GRATITUDE.get(), TokenOfGratitudeRenderer::new);
-        CuriosRendererRegistry.register(MalumContent.Vanity.TOPHAT.get(), TopHatCurioRenderer::new);
-
         MalumHiddenTags.registerHiddenTags();
     }
 
@@ -54,12 +48,12 @@ public class ClientSetupHandler {
 
     @SubscribeEvent
     public static void registerLayerDefinitions(EntityRenderersEvent.RegisterLayerDefinitions event) {
-        MalumArmorModels.registerLayerDefinitions(event);
+        MalumModels.registerLayerDefinitions(event);
     }
 
     @SubscribeEvent
     public static void addLayers(EntityRenderersEvent.AddLayers event) {
-        MalumArmorModels.addLayers(event);
+        MalumModels.addLayers(event);
     }
 
     @SubscribeEvent

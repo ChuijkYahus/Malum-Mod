@@ -3,9 +3,8 @@ package com.sammy.malum.datagen.sound;
 import net.minecraft.resources.*;
 import net.minecraft.sounds.*;
 import net.neoforged.neoforge.common.data.*;
-import team.lodestar.lodestone.core.sound.RegistryReadyBlockSoundType;
+import team.lodestar.lodestone.modules.core.sound.RegistryReadyBlockSoundType;
 import team.lodestar.lodestone.modules.datagen.providers.sound.BlockSoundEventBuilder;
-import team.lodestar.lodestone.modules.datagen.providers.sound.LodestoneBlockSoundEventSystem;
 import team.lodestar.lodestone.modules.datagen.providers.sound.LodestoneBlockSoundEventSystem.SoundEventBuilderBlueprint;
 
 import java.util.function.*;

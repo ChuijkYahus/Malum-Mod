@@ -8,6 +8,8 @@ import com.sammy.malum.datagen.tag.MalumItemTagDatagen;
 import com.sammy.malum.datagen.lang.*;
 import com.sammy.malum.datagen.recipe.*;
 import com.sammy.malum.datagen.tag.*;
+import com.sammy.malum.datagen.wand.WandMaterialTypeDatagen;
+import com.sammy.malum.datagen.wand.WandPartTypeDatagen;
 import net.minecraft.core.*;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.data.PackOutput;
@@ -23,10 +25,10 @@ public class DataGenerators {
 
     @SubscribeEvent
     public static void gatherData(GatherDataEvent event) {
-        DataGenerator generator = event.getGenerator();
-        PackOutput output = generator.getPackOutput();
-        CompletableFuture<HolderLookup.Provider> provider = event.getLookupProvider();
-        ExistingFileHelper helper = event.getExistingFileHelper();
+        var generator = event.getGenerator();
+        var output = generator.getPackOutput();
+        var provider = event.getLookupProvider();
+        var helper = event.getExistingFileHelper();
 
         boolean includeClient = event.includeClient();
         boolean includeServer = event.includeServer();
@@ -56,6 +58,9 @@ public class DataGenerators {
         var curioDataDatagen = new MalumCuriosThings(output, helper, registryProvider);
         var recipeDatagen = new MalumRecipes(output, registryProvider);
 
+        var wandPartTypes = new WandPartTypeDatagen(output, registryProvider, helper);
+        var wandMaterialTypes = new WandMaterialTypeDatagen(output, registryProvider, helper);
+
         generator.addProvider(includeClient, itemModelsDatagen);
         generator.addProvider(includeClient, blockStateDatagen);
         generator.addProvider(includeClient, langDatagen);
@@ -75,5 +80,8 @@ public class DataGenerators {
 
         generator.addProvider(includeServer, curioDataDatagen);
         generator.addProvider(includeServer, recipeDatagen);
+
+        generator.addProvider(includeServer, wandPartTypes);
+        generator.addProvider(includeServer, wandMaterialTypes);
     }
 }
