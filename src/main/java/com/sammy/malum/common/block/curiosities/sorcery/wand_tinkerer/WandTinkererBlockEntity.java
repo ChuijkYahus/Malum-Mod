@@ -52,9 +52,9 @@ public class WandTinkererBlockEntity extends LodestoneBlockEntity implements IIn
         super(type, pos, state);
         coreParts = MalumBlockItemStackHandler.create(this, 6).limitItemSize(1).build();
         headParts = MalumBlockItemStackHandler.create(this, 9).limitItemSize(1).build();
-        baseParts = MalumBlockItemStackHandler.create(this, 4).limitItemSize(1).build();
-        baubleParts = MalumBlockItemStackHandler.create(this, 2).limitItemSize(1).build();
-        ornamentParts = MalumBlockItemStackHandler.create(this, 6).limitItemSize(1).build();
+        baseParts = MalumBlockItemStackHandler.create(this, 1).limitItemSize(1).build();
+        baubleParts = MalumBlockItemStackHandler.create(this, 1).limitItemSize(1).build();
+        ornamentParts = MalumBlockItemStackHandler.create(this, 1).limitItemSize(1).build();
 
         wandOutput = MalumBlockItemStackHandler.create(this, 1).limitItemSize(1).build();
     }

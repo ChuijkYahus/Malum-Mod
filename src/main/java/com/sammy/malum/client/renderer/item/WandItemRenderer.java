@@ -2,11 +2,9 @@ package com.sammy.malum.client.renderer.item;
 
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.math.Axis;
-import com.sammy.malum.client.model.item.WandPartsModel;
 import com.sammy.malum.common.data.custom.wand_parts.WandMaterialType;
 import com.sammy.malum.common.data.custom.wand_parts.WandPartType;
 import com.sammy.malum.common.item.curiosities.WandItem;
-import com.sammy.malum.registry.client.MalumModels;
 import com.sammy.malum.registry.common.item.MalumDataComponents;
 import net.minecraft.client.model.geom.EntityModelSet;
 import net.minecraft.client.model.geom.ModelPart;
@@ -34,7 +32,6 @@ public class WandItemRenderer extends BlockEntityWithoutLevelRenderer {
     public static final RenderTypeProvider WAND_CUTOUT = new RenderTypeProvider((token) ->
             LodestoneRenderTypes.createGenericRenderType(token, "wand_texture", POSITION_COLOR_TEX_LIGHTMAP,
                     QUADS, LodestoneRenderTypes.builder(token, StateShards.NORMAL_TRANSPARENCY, LodestoneShaders.LODESTONE_TEXTURE, LodestoneRenderTypes.NO_CULL, LodestoneRenderTypes.LIGHTMAP)));
-    public static MalumModels.ModelHolder<WandPartsModel> MODEL = new MalumModels.ModelHolder<>("wand_parts", WandPartsModel::new, WandPartsModel::createWandParts);
 
 
     private final BlockEntityRenderDispatcher blockEntityRenderDispatcher;
@@ -50,17 +47,17 @@ public class WandItemRenderer extends BlockEntityWithoutLevelRenderer {
      * @return The model part to render
      */
     public static Optional<ModelPart> getModelPart(WandPartType partType) {
-        if (partType.isMalum()) {
-            WandPartsModel wandPartsModel = MODEL.getModel();
-            var group = switch (partType.group()) {
-                case CORE -> wandPartsModel.cores;
-                case HEAD -> wandPartsModel.heads;
-                case BASE -> wandPartsModel.bases;
-                case BAUBLE -> wandPartsModel.baubles;
-                case ORNAMENT -> wandPartsModel.ornaments;
-            };
-            return Optional.of(getPart(group, partType.id().getPath()));
-        }
+//        if (partType.isMalum()) {
+//            WandPartsModel wandPartsModel = MODEL.getModel();
+//            var group = switch (partType.group()) {
+//                case CORE -> wandPartsModel.cores;
+//                case HEAD -> wandPartsModel.heads;
+//                case BASE -> wandPartsModel.bases;
+//                case BAUBLE -> wandPartsModel.baubles;
+//                case ORNAMENT -> wandPartsModel.ornaments;
+//            };
+//            return Optional.of(getPart(group, partType.id().getPath()));
+//        }
         return Optional.empty();
     }
 
@@ -96,14 +93,7 @@ public class WandItemRenderer extends BlockEntityWithoutLevelRenderer {
 
             poseStack.translate(0.5F, 0f, 0.5F);
             poseStack.scale(1.0F, -1.0F, -1.0F);
-            if (ctx.equals(ItemDisplayContext.GUI)) {
-                poseStack.mulPose(Axis.YP.rotationDegrees(-135));
-                poseStack.mulPose(Axis.XP.rotationDegrees(45));
-                poseStack.translate(0.8F, -0.2f, -0.15F);
-            }
-            else {
-                poseStack.translate(0F, 0f, -0.125F);
-            }
+
             var parts = data.parts().entrySet();
 
 

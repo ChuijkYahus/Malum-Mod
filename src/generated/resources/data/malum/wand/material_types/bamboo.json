@@ -1,0 +1,13 @@
+{
+  "id": "malum:bamboo",
+  "ingredient": {
+    "item": "minecraft:bamboo_planks"
+  },
+  "validGroups": [
+    "core",
+    "head",
+    "base",
+    "bauble",
+    "ornament"
+  ]
+}

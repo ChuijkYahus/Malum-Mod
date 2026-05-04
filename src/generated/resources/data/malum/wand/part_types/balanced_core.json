@@ -1,6 +1,6 @@
 {
   "coreTier": 1,
   "group": "core",
-  "id": "malum:medium_core",
+  "id": "malum:balanced_core",
   "materialCost": 4
 }

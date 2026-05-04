@@ -1,0 +1,13 @@
+{
+  "id": "malum:crimson",
+  "ingredient": {
+    "item": "minecraft:crimson_planks"
+  },
+  "validGroups": [
+    "core",
+    "head",
+    "base",
+    "bauble",
+    "ornament"
+  ]
+}

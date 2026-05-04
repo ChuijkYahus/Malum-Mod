@@ -42,6 +42,7 @@ public final class WandPartTypeDatagen extends JsonCodecProvider<WandPartType> {
     public void add(WandPartGroup group, String name, int tier) {
         add(group, name, tier, 1);
     }
+    
     public void add(WandPartGroup group, String name, int tier, int cost) {
         var id = MalumMod.malumPath(group.getIdForPart(name));
         unconditional(id, new WandPartType(group, id, tier, cost));

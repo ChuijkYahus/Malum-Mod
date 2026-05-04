@@ -1,0 +1,13 @@
+{
+  "id": "malum:birch",
+  "ingredient": {
+    "item": "minecraft:birch_planks"
+  },
+  "validGroups": [
+    "core",
+    "head",
+    "base",
+    "bauble",
+    "ornament"
+  ]
+}

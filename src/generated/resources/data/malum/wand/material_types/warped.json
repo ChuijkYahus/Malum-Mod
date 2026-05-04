@@ -1,0 +1,13 @@
+{
+  "id": "malum:warped",
+  "ingredient": {
+    "item": "minecraft:warped_planks"
+  },
+  "validGroups": [
+    "core",
+    "head",
+    "base",
+    "bauble",
+    "ornament"
+  ]
+}

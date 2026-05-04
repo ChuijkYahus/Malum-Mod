@@ -1,0 +1,13 @@
+{
+  "id": "malum:mangrove",
+  "ingredient": {
+    "item": "minecraft:mangrove_planks"
+  },
+  "validGroups": [
+    "core",
+    "head",
+    "base",
+    "bauble",
+    "ornament"
+  ]
+}

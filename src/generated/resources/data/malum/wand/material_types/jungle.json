@@ -1,0 +1,13 @@
+{
+  "id": "malum:jungle",
+  "ingredient": {
+    "item": "minecraft:jungle_planks"
+  },
+  "validGroups": [
+    "core",
+    "head",
+    "base",
+    "bauble",
+    "ornament"
+  ]
+}

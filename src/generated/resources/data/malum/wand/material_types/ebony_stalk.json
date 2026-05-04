@@ -1,0 +1,9 @@
+{
+  "id": "malum:ebony_stalk",
+  "ingredient": {
+    "item": "malum:ebony_stalk"
+  },
+  "validGroups": [
+    "core"
+  ]
+}

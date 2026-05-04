@@ -26,7 +26,7 @@ import java.util.function.Supplier;
 
 public class MalumModels {
 
-    public static final IRenderableModel WAND_PARTS = ModelHandler.register(MalumMod.malumPath("models/wand/wand_parts"));
+//            public static final ObjModel WAND_PARTS = (ObjModel) ModelHandler.register(MalumMod.malumPath("models/wand/wand_parts.obj"));
 
     public static void registerLayerDefinitions(EntityRenderersEvent.RegisterLayerDefinitions event) {
         event.registerLayerDefinition(AltarModel.LAYER, AltarModel::createBodyLayer);
@@ -34,8 +34,6 @@ public class MalumModels {
         event.registerLayerDefinition(CherubModel.LAYER, CherubModel::createBodyLayer);
         event.registerLayerDefinition(CardinalModel.LAYER, CardinalModel::createBodyLayer);
         event.registerLayerDefinition(EvangelistModel.LAYER, EvangelistModel::createBodyLayer);
-
-        WandItemRenderer.MODEL.register(event);
 
         SoulHunterArmorModel.MODEL.register(event);
         SoulStainedSteelArmorModel.MODEL.register(event);
@@ -46,8 +44,6 @@ public class MalumModels {
     }
 
     public static void addLayers(EntityRenderersEvent.AddLayers event) {
-        WandItemRenderer.MODEL.bake(event);
-
         SoulHunterArmorModel.MODEL.bake(event);
         SoulStainedSteelArmorModel.MODEL.bake(event);
         MalignantStrongholdArmorModel.MODEL.bake(event);
