@@ -6,6 +6,7 @@ import com.mojang.blaze3d.systems.RenderSystem;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.sammy.malum.MalumMod;
 import com.sammy.malum.client.screen.codex.display.CodexOutlineRenderer;
+import com.sammy.malum.common.block.MalumBlockItemStackHandler;
 import com.sammy.malum.common.data.custom.wand_parts.WandMaterialType;
 import com.sammy.malum.common.data.custom.wand_parts.WandPartType;
 import com.sammy.malum.registry.common.magic.MalumSpiritTypes;
@@ -71,15 +72,17 @@ public class PartButtonWidget extends AbstractWidget {
 
         var blockEntity = screen.getMenu().blockEntity;
 
-        var nonEmptyStacks = blockEntity.getInventory(group).getNonEmptyStacks();
-        
+        MalumBlockItemStackHandler inventory = blockEntity.getInventory(group);
+        var nonEmptyStacks = inventory.getNonEmptyStacks();
+
         int size = nonEmptyStacks.size();
-        for (int i = 0; i <= size; i++) {
+        int max = Math.min(size, inventory.getSlotCount()-1);
+        for (int i = 0; i <= max; i++) {
             float delta = Mth.lerp(partialTick, oldGooberVisibility, gooberVisibility);
+            float intensity = Easing.SINE_IN_OUT.lerp(delta, 0.4f, 1f);
             if (i == size) {
-                delta = 1 - delta;
+                intensity = 0.4f;
             }
-            float intensity = Easing.SINE_IN_OUT.lerp(delta, 1f, 0.4f);
             renderGoober(stack, partialTick, FILLED, getX() + 1, getY() + 23 + i * 10, 8, 8, intensity);
         }
         float visibility = choose(0.5f, 0.8f, 1f, 1f);
@@ -91,10 +94,11 @@ public class PartButtonWidget extends AbstractWidget {
     }
 
     public void renderGoober(PoseStack stack, float partialTick, ResourceLocation texture, int x, int y, int width, int height, float intensity) {
-        float strength = Mth.lerp(partialTick, oldSymbolVisibility, symbolVisibility);
+        float strength = Mth.lerp(partialTick, oldSymbolVisibility, symbolVisibility) * intensity;
+        float distortion = 60f * strength;
         CodexOutlineRenderer.create(texture, x - 16 + width/2, y - 16 + height/2, width, height, 32, 32)
                 .setEffectStrength(strength)
-                .setDistortion(60f * strength)
+                .setDistortion(distortion)
                 .setOffset(group.ordinal() * 600)
                 .setEffectAlpha(strength)
 
@@ -109,7 +113,7 @@ public class PartButtonWidget extends AbstractWidget {
         distorted.safeGetUniform("YFrequency").set(24f);
         distorted.safeGetUniform("XFrequency").set(16f);
         distorted.safeGetUniform("Speed").set(1000f);
-        distorted.safeGetUniform("Intensity").set(80f);
+        distorted.safeGetUniform("Intensity").set(distortion);
         distorted.safeGetUniform("Width").set((float)width);
         distorted.safeGetUniform("Height").set((float)height);
 
@@ -117,7 +121,8 @@ public class PartButtonWidget extends AbstractWidget {
                 .setPositionWithWidth(x, y, width, height)
                 .setShader(distorted)
                 .setColor(MalumSpiritTypes.ARCANE_COLORS().primaryColor())
-                .setTexture(texture).setAlpha(0.5f * strength * intensity)
+                .setTexture(texture)
+                .setAlpha(0.5f * strength)
                 .blit(stack);
         RenderSystem.disableBlend();
         RenderSystem.defaultBlendFunc();

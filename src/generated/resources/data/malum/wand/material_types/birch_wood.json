@@ -1,7 +1,7 @@
 {
-  "id": "malum:oak",
+  "id": "malum:birch_wood",
   "ingredient": {
-    "item": "minecraft:oak_planks"
+    "item": "minecraft:birch_planks"
   },
   "validGroups": [
     "core",

@@ -62,7 +62,7 @@ public final class WandMaterialTypeDatagen extends JsonCodecProvider<WandMateria
 
     @SuppressWarnings({"deprecation", "DataFlowIssue"})
     public void addWood(Item planks) {
-        var id = planks.builtInRegistryHolder().getKey().location().getPath().replace("_planks", "");
+        var id = planks.builtInRegistryHolder().getKey().location().getPath().replace("_planks", "_wood");
         add(id, Ingredient.of(planks), GroupPreset.ALL);
     }
 

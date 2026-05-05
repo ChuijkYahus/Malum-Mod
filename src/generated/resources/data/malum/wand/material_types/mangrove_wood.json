@@ -1,7 +1,7 @@
 {
-  "id": "malum:bamboo",
+  "id": "malum:mangrove_wood",
   "ingredient": {
-    "item": "minecraft:bamboo_planks"
+    "item": "minecraft:mangrove_planks"
   },
   "validGroups": [
     "core",

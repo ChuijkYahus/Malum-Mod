@@ -1,6 +1,7 @@
 package com.sammy.malum.client.events;
 
 import com.sammy.malum.client.scarf.*;
+import com.sammy.malum.client.screen.container.tinkerer.WandTinkererScreen;
 import com.sammy.malum.common.item.*;
 import com.sammy.malum.common.item.augment.*;
 import com.sammy.malum.core.handlers.KeywordTooltipHandler;
@@ -30,6 +31,7 @@ public class ClientRuntimeEventHandler {
         HiddenBladeRenderHandler.tick(event);
         MalignantAegisRenderHandler.tick(event);
         SoulWardRenderHandler.tick(event);
+        WandTinkererScreen.tick(event);
         StaffAbilityRenderHandler.tick(event);
         WaveformConfigurationHandler.tick(event);
     }

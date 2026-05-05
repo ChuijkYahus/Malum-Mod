@@ -1,7 +1,7 @@
 {
-  "id": "malum:cherry",
+  "id": "malum:crimson_wood",
   "ingredient": {
-    "item": "minecraft:cherry_planks"
+    "item": "minecraft:crimson_planks"
   },
   "validGroups": [
     "core",

@@ -1,7 +1,7 @@
 {
-  "id": "malum:dark_oak",
+  "id": "malum:warped_wood",
   "ingredient": {
-    "item": "minecraft:dark_oak_planks"
+    "item": "minecraft:warped_planks"
   },
   "validGroups": [
     "core",

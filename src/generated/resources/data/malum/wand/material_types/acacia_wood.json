@@ -1,7 +1,7 @@
 {
-  "id": "malum:warped",
+  "id": "malum:acacia_wood",
   "ingredient": {
-    "item": "minecraft:warped_planks"
+    "item": "minecraft:acacia_planks"
   },
   "validGroups": [
     "core",
