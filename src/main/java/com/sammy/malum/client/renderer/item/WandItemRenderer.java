@@ -28,6 +28,7 @@ import java.util.Map;
 
 import static com.mojang.blaze3d.vertex.DefaultVertexFormat.POSITION_COLOR_TEX_LIGHTMAP;
 import static com.mojang.blaze3d.vertex.VertexFormat.Mode.QUADS;
+import static com.mojang.blaze3d.vertex.VertexFormat.Mode.TRIANGLES;
 
 public class WandItemRenderer extends BlockEntityWithoutLevelRenderer {
 
@@ -62,11 +63,13 @@ public class WandItemRenderer extends BlockEntityWithoutLevelRenderer {
         int coreTier = corePart.coreTier();
         int partTier = partType.coreTier();
         poseStack.pushPose();
+        poseStack.translate(0f, 0.1f, 0f);
         if (isCore || !isHead) {
-            poseStack.translate(-16f * coreTier, 0f, 0f);
+            poseStack.translate(1f * coreTier, 0f, 0f);
         }
         if (isHead) {
-            poseStack.translate(-16f * partTier, 0f, 0f);
+            int difference = coreTier - partTier;
+            poseStack.translate(1f * partTier, difference * 0.25f, 0f);
         }
         wandParts.renderPart(partName, poseStack, vertexConsumer, renderType);
         poseStack.popPose();
@@ -88,7 +91,7 @@ public class WandItemRenderer extends BlockEntityWithoutLevelRenderer {
     }
 
     public ResourceLocation getPartTexture(WandMaterialType material) {
-        return material.id().withPrefix("textures/item/wand/").withSuffix("_parts.png");
+        return material.id().withPrefix("textures/item/wand/").withSuffix(".png");
     }
 
     @Override
@@ -101,9 +104,7 @@ public class WandItemRenderer extends BlockEntityWithoutLevelRenderer {
             if (!data.isValid()) {
                 return;
             }
-
             poseStack.translate(0.5F, 0f, 0.5F);
-//            poseStack.scale(1.0F, -1.0F, -1.0F);
 
             var parts = data.parts().entrySet();
 

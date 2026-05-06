@@ -1,4 +1,6 @@
 # Made in Blockbench 5.1.4
-newmtl m_1cc999fc-d861-455f-81a1-3b135784d4de
-map_Kd ebony_parts.png
+newmtl m_3abd2b0f-f5e2-2783-9d93-0e884166a4af
+map_Kd mangrove_wood.png
+newmtl m_db01bca4-9894-1090-c0ce-2451c7257be7
+map_Kd calcified_ebony.png
 newmtl none
