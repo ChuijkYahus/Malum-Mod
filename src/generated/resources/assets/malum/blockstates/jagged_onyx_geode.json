@@ -1,0 +1,15 @@
+{
+  "variants": {
+    "": [
+      {
+        "model": "malum:block/jagged_onyx_geode0"
+      },
+      {
+        "model": "malum:block/jagged_onyx_geode1"
+      },
+      {
+        "model": "malum:block/jagged_onyx_geode2"
+      }
+    ]
+  }
+}

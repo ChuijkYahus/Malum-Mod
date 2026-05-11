@@ -1,0 +1,15 @@
+{
+  "variants": {
+    "": [
+      {
+        "model": "malum:block/rugged_citrine_geode0"
+      },
+      {
+        "model": "malum:block/rugged_citrine_geode1"
+      },
+      {
+        "model": "malum:block/rugged_citrine_geode2"
+      }
+    ]
+  }
+}

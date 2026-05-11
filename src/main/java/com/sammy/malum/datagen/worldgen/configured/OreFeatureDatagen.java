@@ -72,10 +72,6 @@ public class OreFeatureDatagen {
             OreConfiguration.target(REPLACE_STONE, BRILLIANT_STONE.get().defaultBlockState()),
             OreConfiguration.target(REPLACE_DEEPSLATE, BRILLIANT_DEEPSLATE.get().defaultBlockState()));
 
-    public static final List<OreConfiguration.TargetBlockState> NATURAL_QUARTZ_TARGET_LIST = List.of(
-            OreConfiguration.target(REPLACE_STONE, NATURAL_QUARTZ_ORE.get().defaultBlockState()),
-            OreConfiguration.target(REPLACE_DEEPSLATE, DEEPSLATE_QUARTZ_ORE.get().defaultBlockState()));
-
 
     public static final List<OreConfiguration.TargetBlockState> BLAZING_QUARTZ_TARGET_LIST = List.of(
             OreConfiguration.target(new TagMatchTest(BlockTags.BASE_STONE_NETHER), BLAZING_QUARTZ_ORE.get().defaultBlockState()));
@@ -86,8 +82,6 @@ public class OreFeatureDatagen {
         context.register(ConfiguredFeatures.CTHONIC_GOLD_ORE, addLayeredOreConfig(CTHONIC_GOLD_LAYERS, CTHONIC_GOLD_DECOR));
 
         context.register(ConfiguredFeatures.BRILLIANT_ORE, addOreConfig(BRILLIANT_TARGET_LIST, 4));
-        context.register(ConfiguredFeatures.NATURAL_QUARTZ_ORE, addOreConfig(NATURAL_QUARTZ_TARGET_LIST, 5));
-        context.register(ConfiguredFeatures.BLAZING_QUARTZ_ORE, addOreConfig(BLAZING_QUARTZ_TARGET_LIST, 14));
     }
 
     private static ConfiguredFeature<?, ?> addLayeredOreConfig(List<OreLayer> layers) {

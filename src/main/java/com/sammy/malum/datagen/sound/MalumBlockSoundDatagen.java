@@ -1,6 +1,7 @@
 package com.sammy.malum.datagen.sound;
 
 import com.sammy.malum.registry.common.MalumContent;
+import com.sammy.malum.registry.common.util.GeodeCrystalSet;
 import com.sammy.malum.registry.common.util.MetallicsItemRegistryBundle;
 import com.sammy.malum.registry.common.sound.*;
 
@@ -66,16 +67,6 @@ public class MalumBlockSoundDatagen extends MalumSoundDatagenWrapper {
                 .setStepHitFallSoundPaths("minecraft:block/nether_ore")
                 .modifySounds(se -> se.pitch(1.6f)));
 
-        //Natural Quartz
-        add(MalumBlockSoundEvents.NATURAL_QUARTZ_ORE, "block/ore/natural_quartz", b -> b
-                .addStepHitFallSounds(allSounds("minecraft:block/calcite/step", se -> se.pitch(1.2f))));
-        add(MalumBlockSoundEvents.NATURAL_DEEPSLATE_QUARTZ_ORE, "block/ore/natural_quartz/deepslate", b -> b
-                .addStepHitFallSounds(allSounds("minecraft:block/calcite/step", se -> se.pitch(1.4f))));
-        add(MalumBlockSoundEvents.NATURAL_QUARTZ_CLUSTER, "block/ore/natural_quartz", b -> b
-                .modifySounds(se -> se.pitch(1.4f)));
-        add(MalumBlockSoundEvents.BLOCK_OF_NATURAL_QUARTZ, "block/ore/natural_quartz", b -> b
-                .modifySounds(se -> se.pitch(1.6f)));
-
         //Cthonic Gold
         add(MalumBlockSoundEvents.BLOCK_OF_CTHONIC_GOLD, "block/ore/soulstone/deepslate", b -> b
                 .setStepHitFallSoundPaths("block/ore/soulstone")
@@ -89,6 +80,17 @@ public class MalumBlockSoundDatagen extends MalumSoundDatagenWrapper {
         add(MalumBlockSoundEvents.CTHONIC_GOLD_ORE_BREAK_MOTIF, s -> s.with(allSounds("block/ore/cthonic_gold/break")));
         add(MalumBlockSoundEvents.CTHONIC_GOLD_ORE_PLACE_MOTIF, s -> s.with(allSounds("block/ore/cthonic_gold/break")));
         add(MalumBlockSoundEvents.CTHONIC_GOLD_ORE_HIT_MOTIF, s -> s.with(allSounds("block/ore/cthonic_gold/hit")).with(allSounds("minecraft:block/nether_ore/step")));
+
+        //Geode
+        addCrystalSetSounds(MalumContent.Materials.MUNDANE_QUARTZ, 1.4f);
+
+        addCrystalSetSounds(MalumContent.Materials.VIVID_AMETRINE, 1.6f);
+        addCrystalSetSounds(MalumContent.Materials.MARINE_AGATE, 1.2f);
+        addCrystalSetSounds(MalumContent.Materials.RUGGED_CITRINE, 0.8f);
+
+        addCrystalSetSounds(MalumContent.Materials.JAGGED_ONYX, 1.6f);
+        addCrystalSetSounds(MalumContent.Materials.PERFECT_QUARTZ, 1.2f);
+        addCrystalSetSounds(MalumContent.Materials.BLAZING_CARNELIAN, 0.8f);
 
         //Metals & Misc
         add(MalumBlockSoundEvents.BLOCK_OF_ARCANE_CHARCOAL, "block/gemstone");
@@ -203,6 +205,14 @@ public class MalumBlockSoundDatagen extends MalumSoundDatagenWrapper {
                 .setBreakPlaceSoundNames("coral")
                 .setStepHitFallSoundNames("coral")
                 .setStepHitFallSoundPaths("minecraft:step"));
+    }
+
+    public void addCrystalSetSounds(GeodeCrystalSet type, float pitch) {
+//        add(type.getClusterSound(), "block/ore/geode/cluster",
+//                b -> b.modifySounds(se -> se.pitch(pitch)));
+//
+//        add(type.getGeodeSound(), "block/ore/geode",
+//                b -> b.modifySounds(se -> se.pitch(pitch)));
     }
 
     public void addMetallicsSounds(MetallicsItemRegistryBundle metallics, float pitch) {

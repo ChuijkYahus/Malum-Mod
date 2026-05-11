@@ -77,10 +77,11 @@ public class MalumCreativeTab extends CategorizedCreativeTab {
                                 Sorcery.ARCANA_PYLON
                         ).nextLine()
                         .addItems(
+                                Sorcery.MAGEHAND_COFFER,
                                 Sorcery.WAND_TINKERER,
                                 Sorcery.RUNIC_WORKBENCH,
                                 Sorcery.WEAVERS_WORKBENCH
-                        )
+                        ).nextLine()
                         .addItems(
                                 Artifice.ARTIFICERS_CLAW,
                                 Artifice.CONJUNCTURE_CRYSTALLARIUM,
@@ -333,15 +334,21 @@ public class MalumCreativeTab extends CategorizedCreativeTab {
                         .addItems(
                                 CompactBlocks.BLOCK_OF_BLAZING_QUARTZ, Materials.BLAZING_QUARTZ_ORE,
                                 Materials.BLAZING_QUARTZ
-                        )
-                        .addItems(
-                                CompactBlocks.BLOCK_OF_NATURAL_QUARTZ, Materials.DEEPSLATE_QUARTZ_ORE, Materials.NATURAL_QUARTZ_ORE,
-                                Materials.NATURAL_QUARTZ
                         ).nextLine()
                         .addItems(
                                 CompactBlocks.BLOCK_OF_CTHONIC_GOLD, Materials.CTHONIC_GOLD_ORE,
                                 Materials.CTHONIC_GOLD, Materials.CTHONIC_GOLD_FRAGMENT
                         )
+                        .addItems(Materials.MUNDANE_QUARTZ::addToCreativeTab)
+                        .nextLine()
+                        .addItems(Materials.VIVID_AMETRINE::addToCreativeTab)
+                        .addItems(Materials.JAGGED_ONYX::addToCreativeTab)
+                        .nextLine()
+                        .addItems(Materials.MARINE_AGATE::addToCreativeTab)
+                        .addItems(Materials.PERFECT_QUARTZ::addToCreativeTab)
+                        .nextLine()
+                        .addItems(Materials.RUGGED_CITRINE::addToCreativeTab)
+                        .addItems(Materials.BLAZING_CARNELIAN::addToCreativeTab)
                         .bake();
                 createCategory(ETHERWORKS_CATEGORY)
                         .addItems(

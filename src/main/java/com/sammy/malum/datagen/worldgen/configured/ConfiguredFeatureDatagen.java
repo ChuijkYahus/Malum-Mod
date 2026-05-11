@@ -10,7 +10,6 @@ public class ConfiguredFeatureDatagen {
 
     public static void bootstrap(BootstrapContext<ConfiguredFeature<?, ?>> context) {
         OreFeatureDatagen.bootstrap(context);
-        GeodeFeatureDatagen.bootstrap(context);
         TreeFeatureDatagen.bootstrap(context);
         SanctuaryFeatureDatagen.bootstrap(context);
     }

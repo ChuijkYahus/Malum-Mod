@@ -1,6 +1,7 @@
 package com.sammy.malum.registry.common.block.properties;
 
 import com.sammy.malum.common.block.soulstone.*;
+import net.minecraft.world.level.block.SoundType;
 import team.lodestar.lodestone.modules.toolkit.block.*;
 
 import static com.sammy.malum.registry.common.MalumTags.Blocks.NATURAL_SOULSTONE_BUD_SURFACE;
@@ -64,24 +65,6 @@ public class MalumOreBlockProperties {
                 .sound(isDeepslate ? DEEPSLATE_BRILLIANCE_ORE : BRILLIANCE_ORE);
     }
 
-    public static LodestoneBlockProperties NATURAL_QUARTZ_ORE(boolean isDeepslate) {
-        return ORE_PROPERTIES(isDeepslate)
-                .mapColor(TERRACOTTA_WHITE)
-                .addTags(ORE_RATES_SINGULAR, ORES_QUARTZ)
-                .strength(isDeepslate ? 6f : 4f, 3f)
-                .sound(isDeepslate ? NATURAL_DEEPSLATE_QUARTZ_ORE : NATURAL_QUARTZ_ORE);
-    }
-
-    public static LodestoneBlockProperties NATURAL_QUARTZ_CLUSTER() {
-        return new LodestoneBlockProperties()
-                .addTag(CLUSTERS)
-                .mapColor(TERRACOTTA_WHITE)
-                .needsPickaxe()
-                .requiresCorrectToolForDrops()
-                .strength(1.5F)
-                .sound(NATURAL_QUARTZ_CLUSTER);
-    }
-
     public static LodestoneBlockProperties BLAZING_QUARTZ_ORE() {
         return new LodestoneBlockProperties()
                 .mapColor(TERRACOTTA_ORANGE)
@@ -111,5 +94,26 @@ public class MalumOreBlockProperties {
                 .requiresCorrectToolForDrops()
                 .strength(4f, 9999f)
                 .sound(CTHONIC_GOLD_CLUSTER);
+    }
+
+    public static LodestoneBlockProperties CRYSTAL_GEODE(SoundType soundType) {
+        return new LodestoneBlockProperties()
+                .requiresCorrectToolForDrops()
+                .needsPickaxe()
+                .needsIron()
+                .noOcclusion()
+                .strength(2F, 64.0F)
+                .sound(soundType);
+    }
+
+    public static LodestoneBlockProperties CRYSTAL_CLUSTER(SoundType soundType) {
+        return new LodestoneBlockProperties()
+                .requiresCorrectToolForDrops()
+                .needsPickaxe()
+                .needsIron()
+                .noOcclusion()
+                .setCutout()
+                .strength(1.5F, 64.0F)
+                .sound(soundType);
     }
 }

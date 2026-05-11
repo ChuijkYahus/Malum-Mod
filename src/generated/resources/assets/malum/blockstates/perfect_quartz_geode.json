@@ -1,0 +1,15 @@
+{
+  "variants": {
+    "": [
+      {
+        "model": "malum:block/perfect_quartz_geode0"
+      },
+      {
+        "model": "malum:block/perfect_quartz_geode1"
+      },
+      {
+        "model": "malum:block/perfect_quartz_geode2"
+      }
+    ]
+  }
+}

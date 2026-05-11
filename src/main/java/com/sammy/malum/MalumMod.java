@@ -47,8 +47,8 @@ public class MalumMod {
     public static final RandomSource RANDOM = RandomSource.create();
 
     public MalumMod(IEventBus modEventBus, ModContainer modContainer) {
-        ModLoadingContext.get().getActiveContainer().registerConfig(ModConfig.Type.CLIENT, ClientConfig.SPEC);
-        ModLoadingContext.get().getActiveContainer().registerConfig(ModConfig.Type.COMMON, CommonConfig.SPEC);
+        modContainer.registerConfig(ModConfig.Type.CLIENT, ClientConfig.SPEC);
+        modContainer.registerConfig(ModConfig.Type.COMMON, CommonConfig.SPEC);
 
         NeoForgeMod.enableMergedAttributeTooltips();
 
@@ -58,9 +58,7 @@ public class MalumMod {
         CreateCompat.init();
 
 
-        //Blocks
-
-        //Items
+        //Content
         MalumContent.register(modEventBus);
         BLOCK_ENTITY_TYPES.register(modEventBus);
         CONTAINERS.register(modEventBus);

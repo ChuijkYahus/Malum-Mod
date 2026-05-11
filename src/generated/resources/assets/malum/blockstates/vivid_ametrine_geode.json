@@ -1,0 +1,15 @@
+{
+  "variants": {
+    "": [
+      {
+        "model": "malum:block/vivid_ametrine_geode0"
+      },
+      {
+        "model": "malum:block/vivid_ametrine_geode1"
+      },
+      {
+        "model": "malum:block/vivid_ametrine_geode2"
+      }
+    ]
+  }
+}

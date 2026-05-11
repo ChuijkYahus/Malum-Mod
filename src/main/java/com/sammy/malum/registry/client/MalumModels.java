@@ -26,7 +26,8 @@ import java.util.function.Supplier;
 
 public class MalumModels {
 
-    public static final ObjModel WAND_PARTS = (ObjModel) ModelHandler.register(MalumMod.malumPath("models/wand/wand_parts.obj"));
+    public static final ObjModel WAND_PARTS = (ObjModel) ModelHandler.register(MalumMod.malumPath("models/obj/wand_parts.obj"));
+    public static final ObjModel MAGEHAND = (ObjModel) ModelHandler.register(MalumMod.malumPath("models/obj/magehand.obj"));
 
     public static void registerLayerDefinitions(EntityRenderersEvent.RegisterLayerDefinitions event) {
         event.registerLayerDefinition(AltarModel.LAYER, AltarModel::createBodyLayer);

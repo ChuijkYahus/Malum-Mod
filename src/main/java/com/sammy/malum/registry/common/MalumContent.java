@@ -13,6 +13,7 @@ import com.sammy.malum.common.block.curiosities.artifice.redstone.wavebanker.*;
 import com.sammy.malum.common.block.curiosities.artifice.redstone.wavebreaker.*;
 import com.sammy.malum.common.block.curiosities.artifice.redstone.wavecharger.*;
 import com.sammy.malum.common.block.curiosities.artifice.redstone.wavemaker.*;
+import com.sammy.malum.common.block.curiosities.sorcery.magehand_coffer.MagehandCofferBlock;
 import com.sammy.malum.common.block.curiosities.sorcery.soul_brazier.*;
 import com.sammy.malum.common.block.curiosities.decor.banner.SoulwovenBannerBlock;
 import com.sammy.malum.common.block.curiosities.decor.mana_mote.ManaMoteBlock;
@@ -153,6 +154,7 @@ import com.sammy.malum.registry.common.item.MalumItemProperties;
 import com.sammy.malum.registry.common.item.MalumItemTiers;
 import com.sammy.malum.registry.common.magic.MalumSpiritTypes;
 import com.sammy.malum.registry.common.sound.MalumBlockSoundEvents;
+import com.sammy.malum.registry.common.util.GeodeCrystalSet;
 import com.sammy.malum.registry.common.util.MetallicsItemRegistryBundle;
 import com.sammy.malum.registry.common.util.RockBlockSet;
 import com.sammy.malum.registry.common.util.WoodBlockSet;
@@ -267,7 +269,6 @@ public class MalumContent {
         public static final BlockBlockItemHolder<Block, BlockItem> BLOCK_OF_REFINED_SOULSTONE = registerBlock("block_of_refined_soulstone", () -> new LodestoneDirectionalBlock(MalumStorageBlockProperties.SOULSTONE_BLOCK(false)));
         public static final BlockBlockItemHolder<Block, BlockItem> BLOCK_OF_RAW_BRILLIANCE = registerBlock("block_of_raw_brilliance", () -> new LodestoneDirectionalBlock(MalumStorageBlockProperties.BRILLIANCE_BLOCK(true)));
         public static final BlockBlockItemHolder<Block, BlockItem> BLOCK_OF_BRILLIANCE = registerBlock("block_of_brilliance", () -> new LodestoneDirectionalBlock(MalumStorageBlockProperties.BRILLIANCE_BLOCK(false)));
-        public static final BlockBlockItemHolder<Block, BlockItem> BLOCK_OF_NATURAL_QUARTZ = registerBlock("block_of_natural_quartz", () -> new LodestoneDirectionalBlock(MalumStorageBlockProperties.NATURAL_QUARTZ_BLOCK()));
         public static final BlockBlockItemHolder<Block, BlockItem> BLOCK_OF_CTHONIC_GOLD = registerBlock("block_of_cthonic_gold", () -> new LodestoneDirectionalBlock(MalumStorageBlockProperties.CTHONIC_GOLD_BLOCK()));
         public static final BlockBlockItemHolder<Block, BlockItem> BLOCK_OF_BLAZING_QUARTZ = registerBlock("block_of_blazing_quartz", () -> new LodestoneDirectionalBlock(MalumStorageBlockProperties.BLAZING_QUARTZ_BLOCK().lightLevel((b) -> 14)));
 
@@ -310,8 +311,6 @@ public class MalumContent {
         public static final BlockBlockItemHolder<Block, BlockItem> SOULSTONE_ORE = registerBlock("soulstone_ore", () -> new DropExperienceBlock(UniformInt.of(14, 18), MalumOreBlockProperties.SOULSTONE_ORE(false)));
         public static final BlockBlockItemHolder<Block, BlockItem> BRILLIANT_DEEPSLATE = registerBlock("brilliant_deepslate", () -> new DropExperienceBlock(UniformInt.of(16, 26), MalumOreBlockProperties.BRILLIANCE_ORE(true).setCutout()));
         public static final BlockBlockItemHolder<Block, BlockItem> BRILLIANT_STONE = registerBlock("brilliant_stone", () -> new DropExperienceBlock(UniformInt.of(14, 18), MalumOreBlockProperties.BRILLIANCE_ORE(false).setCutout()));
-        public static final BlockBlockItemHolder<Block, BlockItem> DEEPSLATE_QUARTZ_ORE = registerBlock("deepslate_quartz_ore", () -> new DropExperienceBlock(UniformInt.of(2, 5), MalumOreBlockProperties.NATURAL_QUARTZ_ORE(true).setCutout()));
-        public static final BlockBlockItemHolder<Block, BlockItem> NATURAL_QUARTZ_ORE = registerBlock("natural_quartz_ore", () -> new DropExperienceBlock(UniformInt.of(1, 4), MalumOreBlockProperties.NATURAL_QUARTZ_ORE(false).setCutout()));
         public static final BlockBlockItemHolder<Block, BlockItem> CTHONIC_GOLD_ORE = registerBlock("cthonic_gold_ore", () -> new DropExperienceBlock(UniformInt.of(10, 100), MalumOreBlockProperties.CTHONIC_GOLD_ORE()));
         public static final BlockBlockItemHolder<Block, BlockItem> BLAZING_QUARTZ_ORE = registerBlock("blazing_quartz_ore", () -> new DropExperienceBlock(UniformInt.of(4, 7), MalumOreBlockProperties.BLAZING_QUARTZ_ORE().setCutout().lightLevel((b) -> 6)));
 
@@ -322,11 +321,19 @@ public class MalumContent {
         public static final BlockBlockItemHolder<SoulstoneBudBlock, BlockItem> SOULSTONE_BUD = registerBlock("soulstone_bud", () -> new SoulstoneBudBlock(MalumOreBlockProperties.SOULSTONE_BUD()));
         public static final DeferredItem<Item> REALIZED_SOULSTONE_BUD = register("realized_soulstone_bud", MalumItemProperties::DEFAULT, SoulstoneBudItem::new);
 
-
         public static final DeferredItem<Item> RAW_BRILLIANCE = register("raw_brilliance", MalumItemProperties::DEFAULT, Item::new);
         public static final DeferredItem<Item> REFINED_BRILLIANCE = register("refined_brilliance", MalumItemProperties::DEFAULT, (p) -> new BrillianceChunkItem(p.food((new FoodProperties.Builder()).fast().alwaysEdible().build())));
 
-        public static final BlockBlockItemHolder<Block, BlockItem> NATURAL_QUARTZ = registerItemNameBlock("natural_quartz_cluster", "natural_quartz", () -> new AmethystClusterBlock(6, 3, MalumOreBlockProperties.NATURAL_QUARTZ_CLUSTER().setCutout()));
+        public static final GeodeCrystalSet MUNDANE_QUARTZ = new GeodeCrystalSet("mundane_quartz");
+
+        public static final GeodeCrystalSet VIVID_AMETRINE = new GeodeCrystalSet("vivid_ametrine");
+        public static final GeodeCrystalSet MARINE_AGATE = new GeodeCrystalSet("marine_agate");
+        public static final GeodeCrystalSet RUGGED_CITRINE = new GeodeCrystalSet("rugged_citrine");
+
+        public static final GeodeCrystalSet JAGGED_ONYX = new GeodeCrystalSet("jagged_onyx");
+        public static final GeodeCrystalSet PERFECT_QUARTZ = new GeodeCrystalSet("perfect_quartz");
+        public static final GeodeCrystalSet BLAZING_CARNELIAN = new GeodeCrystalSet("blazing_carnelian");
+
 
         public static final DeferredItem<Item> BLAZING_QUARTZ = register("blazing_quartz", MalumItemProperties::DEFAULT, Item::new);
 
@@ -514,6 +521,8 @@ public class MalumContent {
 
         public static final BlockBlockItemHolder<Block, BlockItem> SPIRIT_ALTAR = registerBlock("spirit_altar", () -> new SpiritAltarBlock<>(RUNEWOOD_IMPLEMENT()));
         public static final BlockBlockItemHolder<Block, BlockItem> SPIRIT_JAR = registerBlock("spirit_jar", () -> new SpiritJarBlock<>(SPIRIT_JAR()), SpiritJarItem::new);
+
+        public static final BlockBlockItemHolder<Block, BlockItem> MAGEHAND_COFFER = registerBlock("magehand_coffer", () -> new MagehandCofferBlock<>(RUNEWOOD_IMPLEMENT()));
 
         public static final BlockBlockItemHolder<Block, BlockItem> WAND_TINKERER = registerBlock("wand_tinkerer", () -> new WandTinkererBlock<>(RUNEWOOD_IMPLEMENT()));
         public static final BlockBlockItemHolder<Block, BlockItem> RUNIC_WORKBENCH = registerBlock("runic_workbench", () -> new RunicWorkbenchBlock<>(RUNEWOOD_IMPLEMENT()));

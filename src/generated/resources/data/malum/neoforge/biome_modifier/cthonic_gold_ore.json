@@ -1,6 +1,6 @@
 {
   "type": "neoforge:add_features",
-  "biomes": "#malum:has_rare_earths",
+  "biomes": "#malum:has_cthonic_gold",
   "features": "malum:cthonic_gold_ore",
   "step": "underground_ores"
 }

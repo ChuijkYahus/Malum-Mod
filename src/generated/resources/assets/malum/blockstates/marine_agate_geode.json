@@ -1,0 +1,15 @@
+{
+  "variants": {
+    "": [
+      {
+        "model": "malum:block/marine_agate_geode0"
+      },
+      {
+        "model": "malum:block/marine_agate_geode1"
+      },
+      {
+        "model": "malum:block/marine_agate_geode2"
+      }
+    ]
+  }
+}
