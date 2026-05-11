@@ -1,0 +1,13 @@
+{
+  "id": "malum:spruce_wood",
+  "ingredient": {
+    "item": "minecraft:spruce_planks"
+  },
+  "validGroups": [
+    "core",
+    "head",
+    "base",
+    "bauble",
+    "ornament"
+  ]
+}

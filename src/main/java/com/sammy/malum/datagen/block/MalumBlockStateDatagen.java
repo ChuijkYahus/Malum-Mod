@@ -1,6 +1,7 @@
 package com.sammy.malum.datagen.block;
 
 import com.sammy.malum.*;
+import com.sammy.malum.datagen.MalumCrystalDatagen;
 import com.sammy.malum.datagen.MalumMetallicsDatagen;
 import com.sammy.malum.datagen.item.*;
 import com.sammy.malum.registry.common.MalumContent;
@@ -125,8 +126,8 @@ public class MalumBlockStateDatagen extends LodestoneBlockStateSystem {
 
 
         setTexturePath("ores/");
-        BlockStateSmithTypes.FULL_BLOCK.act(data, BRILLIANT_STONE, BRILLIANT_DEEPSLATE, NATURAL_QUARTZ_ORE, DEEPSLATE_QUARTZ_ORE, CTHONIC_GOLD_ORE, BLAZING_QUARTZ_ORE);
-        BlockStateSmithTypes.CUSTOM_MODEL.act(data, GENERATED_ITEM, this::directionalBlock, fromFunction(models()::cross), NATURAL_QUARTZ, CTHONIC_GOLD_FRAGMENT);
+        BlockStateSmithTypes.FULL_BLOCK.act(data, BRILLIANT_STONE, BRILLIANT_DEEPSLATE, CTHONIC_GOLD_ORE, BLAZING_QUARTZ_ORE);
+        BlockStateSmithTypes.CUSTOM_MODEL.act(data, GENERATED_ITEM, this::directionalBlock, fromFunction(models()::cross), CTHONIC_GOLD_FRAGMENT);
 
         setTexturePath("ores/soulstone/");
         BlockStateSmithTypes.FULL_BLOCK.act(data, SOULSTONE_ORE, DEEPSLATE_SOULSTONE_ORE);
@@ -134,13 +135,16 @@ public class MalumBlockStateDatagen extends LodestoneBlockStateSystem {
         MalumBlockStateSmithTypes.SOULSTONE_BUD.act(data, NO_DATAGEN, ARCHAIC_SOULSTONE_BUD);
         MalumBlockStateSmithTypes.SOULSTONE_BUD.act(data, SOULSTONE_BUD);
 
+        setTexturePath("geode/");
+        MalumCrystalDatagen.MALUM.addBlockStates(data);
+
         setTexturePath("storage_blocks/");
         BlockStateSmithTypes.FULL_BLOCK.act(data,
                 BLOCK_OF_SOUL_STAINED_STEEL, BLOCK_OF_HALLOWED_GOLD, BLOCK_OF_MALIGNANT_PEWTER,
                 BLOCK_OF_NULL_SLATE, BLOCK_OF_VOID_SALTS, BLOCK_OF_MNEMONIC_FRAGMENT, BLOCK_OF_MALIGNANT_LEAD, BLOCK_OF_AURIC_EMBERS);
 
         MalumBlockStateSmithTypes.STORAGE_BLOCK.act(data, BLOCK_OF_REFINED_SOULSTONE, BLOCK_OF_RAW_SOULSTONE, BLOCK_OF_BRILLIANCE, BLOCK_OF_RAW_BRILLIANCE);
-        MalumBlockStateSmithTypes.STORAGE_BLOCK.act(data, BLOCK_OF_BLAZING_QUARTZ, BLOCK_OF_NATURAL_QUARTZ, BLOCK_OF_CTHONIC_GOLD);
+        MalumBlockStateSmithTypes.STORAGE_BLOCK.act(data, BLOCK_OF_BLAZING_QUARTZ, BLOCK_OF_CTHONIC_GOLD);
 
         MalumBlockStateSmithTypes.STORAGE_BLOCK.act(data, BLOCK_OF_ROTTING_ESSENCE, BLOCK_OF_GRIM_TALC, BLOCK_OF_EERIE_WEAVE, BLOCK_OF_WARP_FLUX);
         MalumBlockStateSmithTypes.STORAGE_BLOCK.act(data, BLOCK_OF_WIND_NUCLEI, BLOCK_OF_PYRE_NUCLEI);
@@ -225,7 +229,7 @@ public class MalumBlockStateDatagen extends LodestoneBlockStateSystem {
 
         BlockStateSmithTypes.CUSTOM_MODEL.act(data, BLOCK_MODEL_ITEM, this::horizontalBlock, models()::predefinedModel, WEAVERS_WORKBENCH, RUNIC_WORKBENCH);
 
-        BlockStateSmithTypes.CUSTOM_MODEL.act(data, BLOCK_MODEL_ITEM, this::horizontalBlock, models()::orientableWithBottom, CONJUNCTURE_CRYSTALLARIUM);
+        BlockStateSmithTypes.CUSTOM_MODEL.act(data, BLOCK_MODEL_ITEM, this::horizontalBlock, models()::orientableWithBottom, MAGEHAND_COFFER, CONJUNCTURE_CRYSTALLARIUM);
 
         BlockStateSmithTypes.CUSTOM_MODEL.act(data, NO_DATAGEN, this::simpleBlock, models()::predefinedModel,
                 RUNEWOOD_OBELISK, RUNEWOOD_OBELISK_COMPONENT,

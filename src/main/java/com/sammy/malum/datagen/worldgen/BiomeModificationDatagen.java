@@ -35,22 +35,12 @@ public class BiomeModificationDatagen {
         register(context, "brilliant_ore", () ->
                 addFeatureModifier(context,
                         getPlacedHolderSet(context, MalumFeatures.PlacedFeatures.ORE_BRILLIANT),
-                        MalumTags.Biomes.HAS_BRILLIANT, GenerationStep.Decoration.UNDERGROUND_ORES));
-
-        register(context, "natural_quartz_ore", () ->
-                addFeatureModifier(context,
-                        getPlacedHolderSet(context, MalumFeatures.PlacedFeatures.ORE_NATURAL_QUARTZ),
-                        MalumTags.Biomes.HAS_QUARTZ, GenerationStep.Decoration.UNDERGROUND_ORES));
+                        MalumTags.Biomes.HAS_BRILLIANCE, GenerationStep.Decoration.UNDERGROUND_ORES));
 
         register(context, "cthonic_gold_ore", () ->
                 addFeatureModifier(context,
                         getPlacedHolderSet(context, MalumFeatures.PlacedFeatures.ORE_CTHONIC_GOLD),
-                        MalumTags.Biomes.HAS_CTHONIC, GenerationStep.Decoration.UNDERGROUND_ORES));
-
-        register(context, "blazing_quartz_ore", () ->
-                addFeatureModifier(context,
-                        getPlacedHolderSet(context, MalumFeatures.PlacedFeatures.ORE_BLAZING_QUARTZ),
-                        MalumTags.Biomes.HAS_BLAZING_QUARTZ, GenerationStep.Decoration.UNDERGROUND_ORES));
+                        MalumTags.Biomes.HAS_CTHONIC_GOLD, GenerationStep.Decoration.UNDERGROUND_ORES));
 
         register(context, "runewood_tree", () ->
                 addFeatureModifier(context,
@@ -71,17 +61,8 @@ public class BiomeModificationDatagen {
                 addFeatureModifier(context,
                         getPlacedHolderSet(context, MalumFeatures.PlacedFeatures.RARE_AZURE_RUNEWOOD_TREE),
                         MalumTags.Biomes.HAS_RARE_AZURE_RUNEWOOD, GenerationStep.Decoration.VEGETAL_DECORATION));
-
-        register(context, "quartz_geode", () ->
-                addFeatureModifier(context,
-                        getPlacedHolderSet(context, MalumFeatures.PlacedFeatures.QUARTZ_GEODE_FEATURE),
-                        MalumTags.Biomes.HAS_QUARTZ, GenerationStep.Decoration.UNDERGROUND_DECORATION));
-
-        register(context, "deepslate_quartz_geode", () ->
-                addFeatureModifier(context,
-                        getPlacedHolderSet(context, MalumFeatures.PlacedFeatures.DEEPSLATE_QUARTZ_GEODE_FEATURE),
-                        MalumTags.Biomes.HAS_QUARTZ, GenerationStep.Decoration.UNDERGROUND_DECORATION));
     }
+
 
     public static HolderSet<PlacedFeature> getPlacedHolderSet(BootstrapContext<?> context, ResourceKey<PlacedFeature>... placedFeatures) {
         List<Holder<PlacedFeature>> holders = new ArrayList<>();

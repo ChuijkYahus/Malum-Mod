@@ -38,7 +38,6 @@ public class MalumVanillaRecipes implements IConditionBuilder {
         Pair<String, Criterion<?>> hasSoulstone = Pair.of("has_soulstone", RecipeDatagenCommons.has(RAW_SOULSTONE));
 
         Pair<String, Criterion<?>> hasBlazingQuartz = Pair.of("has_blazing_quartz", RecipeDatagenCommons.has(BLAZING_QUARTZ));
-        Pair<String, Criterion<?>> hasNaturalQuartz = Pair.of("has_natural_quartz", RecipeDatagenCommons.has(NATURAL_QUARTZ));
 
 
         //KEY ITEMS
@@ -191,9 +190,6 @@ public class MalumVanillaRecipes implements IConditionBuilder {
 
         smeltAndBlast(output, malumPath("blazing_quartz_ore"), Ingredient.of(BLAZING_QUARTZ_ORE), RecipeCategory.MISC, hasBlazingQuartz, BLAZING_QUARTZ, 0.25f);
 
-        smeltAndBlast(output, malumPath("natural_quartz_ore"), Ingredient.of(NATURAL_QUARTZ_ORE), RecipeCategory.MISC, hasNaturalQuartz, NATURAL_QUARTZ, 0.25f);
-        smeltAndBlast(output, malumPath("natural_quartz_deepslate_ore"), Ingredient.of(DEEPSLATE_QUARTZ_ORE), RecipeCategory.MISC, hasNaturalQuartz, NATURAL_QUARTZ, 0.25f);
-
         smeltAndBlast(output, malumPath("brilliance_ore"), Ingredient.of(BRILLIANT_STONE), RecipeCategory.MISC, hasBrilliance, REFINED_BRILLIANCE, 2, 1f);
         smeltAndBlast(output, malumPath("brilliance_deepslate_ore"), Ingredient.of(BRILLIANT_DEEPSLATE), RecipeCategory.MISC, hasBrilliance, REFINED_BRILLIANCE, 2, 1f);
         smeltAndBlast(output, malumPath("raw_brilliance"), Ingredient.of(RAW_BRILLIANCE), RecipeCategory.MISC, hasBrilliance, REFINED_BRILLIANCE, 2, 1f);
@@ -210,7 +206,6 @@ public class MalumVanillaRecipes implements IConditionBuilder {
         RecipeDatagenCommons.blockIngotExchange(output, RAW_BRILLIANCE, BLOCK_OF_RAW_BRILLIANCE);
         RecipeDatagenCommons.blockIngotExchange(output, REFINED_BRILLIANCE, BLOCK_OF_BRILLIANCE);
         RecipeDatagenCommons.blockIngotExchange(output, BLAZING_QUARTZ, BLOCK_OF_BLAZING_QUARTZ);
-        RecipeDatagenCommons.blockIngotExchange(output, NATURAL_QUARTZ, BLOCK_OF_NATURAL_QUARTZ);
         RecipeDatagenCommons.blockIngotExchange(output, CTHONIC_GOLD, BLOCK_OF_CTHONIC_GOLD);
 
         RecipeDatagenCommons.blockIngotExchange(output, ROTTING_ESSENCE, BLOCK_OF_ROTTING_ESSENCE);

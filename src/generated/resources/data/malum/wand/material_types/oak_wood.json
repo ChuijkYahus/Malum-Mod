@@ -1,0 +1,13 @@
+{
+  "id": "malum:oak_wood",
+  "ingredient": {
+    "item": "minecraft:oak_planks"
+  },
+  "validGroups": [
+    "core",
+    "head",
+    "base",
+    "bauble",
+    "ornament"
+  ]
+}

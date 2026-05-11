@@ -65,12 +65,12 @@ public class MalumItemTagDatagen extends LodestoneItemTagsSystem {
         tag(Tags.Items.GEMS).add(REFINED_SOULSTONE.get(), BLAZING_QUARTZ.get());
         tag(ItemTags.LOGS).addTag(RUNEWOOD_LOGS).addTag(SOULWOOD_LOGS);
         tag(Tags.Items.SLIME_BALLS).add(RUNIC_SAPBALL.get(), AZOIC_SAPBALL.get());
-        tag(Tags.Items.GEMS_QUARTZ).add(NATURAL_QUARTZ.asItem());
+        tag(Tags.Items.GEMS_QUARTZ).add(MUNDANE_QUARTZ.getCluster().asItem());
 
         tag(Tags.Items.RAW_MATERIALS).add(RAW_SOULSTONE.get(), RAW_BRILLIANCE.get(), CTHONIC_GOLD.get(), CTHONIC_GOLD_FRAGMENT.asItem());
         tag(Tags.Items.NUGGETS).add(HALLOWED_GOLD_NUGGET.get(), SOUL_STAINED_STEEL_NUGGET.get(), MALIGNANT_PEWTER_NUGGET.get());
         tag(Tags.Items.INGOTS).add(HALLOWED_GOLD_INGOT.get(), SOUL_STAINED_STEEL_INGOT.get(), MALIGNANT_PEWTER_INGOT.get());
-        tag(Tags.Items.GEMS).add(NATURAL_QUARTZ.asItem(), BLAZING_QUARTZ.get(), RAW_BRILLIANCE.get());
+        tag(Tags.Items.GEMS).add(MUNDANE_QUARTZ.getCluster().asItem(), BLAZING_QUARTZ.get(), RAW_BRILLIANCE.get());
         tag(Tags.Items.NUGGETS).addOptional(MalumMod.malumPath("copper_nugget"));
         tag(NUGGETS_COPPER).addOptional(MalumMod.malumPath("copper_nugget"));
 
@@ -170,7 +170,7 @@ public class MalumItemTagDatagen extends LodestoneItemTagsSystem {
                 RAW_SOULSTONE.get(), REFINED_SOULSTONE.get(),
                 RAW_BRILLIANCE.get(), REFINED_BRILLIANCE.get(),
                 BLAZING_QUARTZ.asItem(),
-                NATURAL_QUARTZ.asItem(), CTHONIC_GOLD.get(), CTHONIC_GOLD_FRAGMENT.asItem());
+                MUNDANE_QUARTZ.getCluster().asItem(), CTHONIC_GOLD.get(), CTHONIC_GOLD_FRAGMENT.asItem());
 
         tag(AUGMENTS, AugmentItem.class);
         tag(CORE_AUGMENTS, CoreAugmentItem.class);

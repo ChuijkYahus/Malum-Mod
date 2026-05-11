@@ -17,6 +17,7 @@ import com.sammy.malum.common.block.ether.*;
 import com.sammy.malum.common.block.flora.EbonyStalkBlock;
 import com.sammy.malum.common.block.flora.wood.MalumHangingLeavesBlock;
 import com.sammy.malum.common.block.flora.wood.MalumLeavesBlock;
+import com.sammy.malum.common.block.geode.GeodeCrystalClusterBlock;
 import com.sammy.malum.common.block.soulstone.ArchaicSoulstoneBudBlock;
 import com.sammy.malum.common.block.soulstone.SoulstoneBudBlock;
 import com.sammy.malum.datagen.item.MalumItemModelSmithTypes;
@@ -65,6 +66,19 @@ public class MalumBlockStateSmithTypes {
                     .rotationY(direction.getAxis().isVertical() ? 0 : (((int) direction.toYRot() + 180)) % 360)
                     .build();
         });
+    });
+
+    public static BlockStateSmith<GeodeCrystalClusterBlock> GEODE_CRYSTAL_CLUSTER = new BlockStateSmith<>(GeodeCrystalClusterBlock.class, ItemModelSmithTypes.GENERATED_ITEM, (block, provider) -> {
+        var name = provider.getBlockName(block);
+
+        provider.getVariantBuilder(block).forAllStatesExcept(s -> {
+            int value = s.getValue(GeodeCrystalClusterBlock.AGE);
+            String indexed = name + "_" + value;
+            ResourceLocation texture = provider.getBlockTexture(indexed);
+            var model = provider.models().cross(indexed, texture);
+            return ConfiguredModel.builder().modelFile(model).build();
+
+        }, MalumLeavesBlock.WATERLOGGED);
     });
 
     public static BlockStateSmith<MalumLeavesBlock> STAGED_LEAVES = new BlockStateSmith<>(MalumLeavesBlock.class, ItemModelSmithTypes.BLOCK_MODEL_ITEM.addModelParentAffix("3"), (block, provider) -> {

@@ -52,9 +52,9 @@ public class WandTinkererBlockEntity extends LodestoneBlockEntity implements IIn
         super(type, pos, state);
         coreParts = MalumBlockItemStackHandler.create(this, 6).limitItemSize(1).build();
         headParts = MalumBlockItemStackHandler.create(this, 9).limitItemSize(1).build();
-        baseParts = MalumBlockItemStackHandler.create(this, 4).limitItemSize(1).build();
-        baubleParts = MalumBlockItemStackHandler.create(this, 2).limitItemSize(1).build();
-        ornamentParts = MalumBlockItemStackHandler.create(this, 6).limitItemSize(1).build();
+        baseParts = MalumBlockItemStackHandler.create(this, 1).limitItemSize(1).build();
+        baubleParts = MalumBlockItemStackHandler.create(this, 1).limitItemSize(1).build();
+        ornamentParts = MalumBlockItemStackHandler.create(this, 1).limitItemSize(1).build();
 
         wandOutput = MalumBlockItemStackHandler.create(this, 1).limitItemSize(1).build();
     }
@@ -174,11 +174,11 @@ public class WandTinkererBlockEntity extends LodestoneBlockEntity implements IIn
         var inventory = getInventory(group);
         var nonEmpty = inventory.getNonEmptyStacks();
         int highestCost = 0;
-        for (WandPartType part : WandPartTypeDataReloadListener.DATA.getValues().values()) {
+        for (WandPartType part : WandPartTypeDataReloadListener.DATA.getMap().values()) {
             if (!part.group().equals(group)) {
                 continue;
             }
-            for (WandMaterialType material : WandMaterialTypeDataReloadListener.DATA.getValues().values()) {
+            for (WandMaterialType material : WandMaterialTypeDataReloadListener.DATA.getMap().values()) {
                 var materialCost = part.materialCost();
                 int i;
                 for (i = 0; i < nonEmpty.size(); i++) {

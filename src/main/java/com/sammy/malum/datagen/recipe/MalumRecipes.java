@@ -1,5 +1,6 @@
 package com.sammy.malum.datagen.recipe;
 
+import com.sammy.malum.datagen.MalumCrystalDatagen;
 import com.sammy.malum.datagen.MalumMetallicsDatagen;
 import com.sammy.malum.datagen.recipe.crafting.*;
 import com.sammy.malum.datagen.recipe.infusion.*;
@@ -45,6 +46,7 @@ public class MalumRecipes extends VanillaRecipeProvider {
         MiscSpiritInfusionRecipes.buildRecipes(recipeOutput);
 
         MalumMetallicsDatagen.MALUM.buildMetallicsRecipes(recipeOutput);
+        MalumCrystalDatagen.MALUM.buildCrystalRecipes(recipeOutput);
 
         MalumRuneworkingRecipes.buildRecipes(recipeOutput);
         MalumSpiritFocusingRecipes.buildRecipes(recipeOutput);

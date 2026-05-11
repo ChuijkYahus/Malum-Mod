@@ -22,7 +22,7 @@ public final class WandPartTypeDatagen extends JsonCodecProvider<WandPartType> {
     @Override
     protected void gather() {
         add(WandPartGroup.CORE, "short", 0, 2);
-        add(WandPartGroup.CORE, "medium", 1, 4);
+        add(WandPartGroup.CORE, "balanced", 1, 4);
         add(WandPartGroup.CORE, "long", 2, 6);
 
         add(WandPartGroup.HEAD, "cap", 0, 3);
@@ -30,15 +30,9 @@ public final class WandPartTypeDatagen extends JsonCodecProvider<WandPartType> {
         add(WandPartGroup.HEAD, "beacon", 2, 9);
 
         add(WandPartGroup.BASE, "simple", 0, 1);
-        add(WandPartGroup.BASE, "carved", 0, 2);
-        add(WandPartGroup.BASE, "spiked", 0, 3);
-        add(WandPartGroup.BASE, "grid_loop", 0, 4);
+        add(WandPartGroup.BAUBLE, "simple", 0, 1);
+        add(WandPartGroup.ORNAMENT, "simple", 0, 1);
 
-        add(WandPartGroup.BAUBLE, "carved", 0, 2);
-
-        add(WandPartGroup.ORNAMENT, "simple", 0, 2);
-        add(WandPartGroup.ORNAMENT, "carved", 1, 4);
-        add(WandPartGroup.ORNAMENT, "spiked", 2, 6);
     }
 
     public void add(WandPartGroup group, String name) {
@@ -48,6 +42,7 @@ public final class WandPartTypeDatagen extends JsonCodecProvider<WandPartType> {
     public void add(WandPartGroup group, String name, int tier) {
         add(group, name, tier, 1);
     }
+
     public void add(WandPartGroup group, String name, int tier, int cost) {
         var id = MalumMod.malumPath(group.getIdForPart(name));
         unconditional(id, new WandPartType(group, id, tier, cost));

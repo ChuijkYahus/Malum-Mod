@@ -6,6 +6,7 @@ import net.minecraft.network.RegistryFriendlyByteBuf;
 import net.minecraft.network.codec.ByteBufCodecs;
 import net.minecraft.network.codec.StreamCodec;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.Ingredient;
 
 import java.util.List;
@@ -29,4 +30,19 @@ public record WandMaterialType(ResourceLocation id, Ingredient ingredient, List<
     public static final StreamCodec<RegistryFriendlyByteBuf, List<WandMaterialType>> LIST_STREAM_CODEC = STREAM_CODEC.apply(ByteBufCodecs.list());
 
 
+    public boolean isValid(ItemStack material, WandPartType partType) {
+        return isValid(material, partType.group());
+    }
+
+    public boolean isValid(ItemStack material, WandPartType.WandPartGroup partGroup) {
+        return ingredient.test(material) && isValid(partGroup);
+    }
+
+    public boolean isValid(WandPartType partType) {
+        return isValid(partType.group());
+    }
+
+    public boolean isValid(WandPartType.WandPartGroup partGroup) {
+        return validGroups.stream().anyMatch(partGroup::equals);
+    }
 }

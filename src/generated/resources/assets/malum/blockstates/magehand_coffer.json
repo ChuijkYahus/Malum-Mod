@@ -1,0 +1,19 @@
+{
+  "variants": {
+    "facing=east": {
+      "model": "malum:block/magehand_coffer",
+      "y": 90
+    },
+    "facing=north": {
+      "model": "malum:block/magehand_coffer"
+    },
+    "facing=south": {
+      "model": "malum:block/magehand_coffer",
+      "y": 180
+    },
+    "facing=west": {
+      "model": "malum:block/magehand_coffer",
+      "y": 270
+    }
+  }
+}

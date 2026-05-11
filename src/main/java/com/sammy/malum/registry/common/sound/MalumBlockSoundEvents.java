@@ -33,12 +33,6 @@ public class MalumBlockSoundEvents {
     public static final MalumBlockSoundType BLAZING_QUARTZ_CLUSTER = new QuartzClusterBlockSoundType("blazing_quartz_cluster");
     public static final MalumBlockSoundType BLOCK_OF_BLAZING_QUARTZ = new MalumBlockSoundType("block_of_blazing_quartz");
 
-    //Natural Quartz
-    public static final MalumBlockSoundType NATURAL_QUARTZ_ORE = new MalumBlockSoundType("natural_quartz_ore");
-    public static final MalumBlockSoundType NATURAL_DEEPSLATE_QUARTZ_ORE = new MalumBlockSoundType("natural_deepslate_quartz_ore");
-    public static final MalumBlockSoundType NATURAL_QUARTZ_CLUSTER = new QuartzClusterBlockSoundType("natural_quartz_cluster");
-    public static final MalumBlockSoundType BLOCK_OF_NATURAL_QUARTZ = new MalumBlockSoundType("block_of_natural_quartz");
-
     //Cthonic Gold
     public static final CthonicGoldBlockSoundType CTHONIC_GOLD_ORE = new CthonicGoldBlockSoundType("cthonic_gold_ore");
     public static final CthonicGoldBlockSoundType CTHONIC_GOLD_CLUSTER = new CthonicGoldBlockSoundType("cthonic_gold_cluster");
@@ -46,6 +40,7 @@ public class MalumBlockSoundEvents {
     public static final DeferredHolder<SoundEvent, SoundEvent> CTHONIC_GOLD_ORE_BREAK_MOTIF = MalumSoundEvents.registerVariable("cthonic_gold_ore_break_motif");
     public static final DeferredHolder<SoundEvent, SoundEvent> CTHONIC_GOLD_ORE_PLACE_MOTIF = MalumSoundEvents.registerVariable("cthonic_gold_ore_place_motif");
     public static final DeferredHolder<SoundEvent, SoundEvent> CTHONIC_GOLD_ORE_HIT_MOTIF = MalumSoundEvents.registerVariable("cthonic_gold_ore_hit_motif");
+
 
     //Metals & Misc
     public static final MalumBlockSoundType BLOCK_OF_ARCANE_CHARCOAL = new MalumBlockSoundType("block_of_arcane_charcoal");

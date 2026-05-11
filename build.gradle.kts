@@ -105,10 +105,6 @@ repositories {
         name = "Curios maven"
         url = uri("https://maven.theillusivec4.top/")
     }
-    maven { //JEI
-        name = "JEI maven"
-        url = uri("https://dvs1.progwml6.com/files/maven")
-    }
 
     maven { //Curse Maven, Generic
         name = "Curse Maven"

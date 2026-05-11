@@ -1,6 +1,34 @@
 {
   "values": [
     "malum:archaic_soulstone_bud",
-    "malum:soulstone_bud"
+    "malum:soulstone_bud",
+    "malum:mundane_quartz_cluster",
+    "malum:mundane_quartz_geode",
+    "malum:budding_mundane_quartz",
+    "malum:polished_mundane_quartz",
+    "malum:vivid_ametrine_cluster",
+    "malum:vivid_ametrine_geode",
+    "malum:budding_vivid_ametrine",
+    "malum:polished_vivid_ametrine",
+    "malum:marine_agate_cluster",
+    "malum:marine_agate_geode",
+    "malum:budding_marine_agate",
+    "malum:polished_marine_agate",
+    "malum:rugged_citrine_cluster",
+    "malum:rugged_citrine_geode",
+    "malum:budding_rugged_citrine",
+    "malum:polished_rugged_citrine",
+    "malum:jagged_onyx_cluster",
+    "malum:jagged_onyx_geode",
+    "malum:budding_jagged_onyx",
+    "malum:polished_jagged_onyx",
+    "malum:perfect_quartz_cluster",
+    "malum:perfect_quartz_geode",
+    "malum:budding_perfect_quartz",
+    "malum:polished_perfect_quartz",
+    "malum:blazing_carnelian_cluster",
+    "malum:blazing_carnelian_geode",
+    "malum:budding_blazing_carnelian",
+    "malum:polished_blazing_carnelian"
   ]
 }

@@ -23,10 +23,18 @@ public class MalumBiomeTagDatagen extends BiomeTagsProvider {
     protected void addTags(HolderLookup.Provider pProvider) {
         //super.addTags(pProvider);
         tag(HAS_SOULSTONE).addTag(IS_OVERWORLD);
-        tag(HAS_BRILLIANT).addTag(IS_OVERWORLD);
-        tag(HAS_BLAZING_QUARTZ).addTag(IS_NETHER);
-        tag(HAS_QUARTZ).addTag(IS_OVERWORLD);
-        tag(HAS_CTHONIC).addTag(IS_OVERWORLD);
+        tag(HAS_BRILLIANCE).addTag(IS_OVERWORLD);
+        tag(HAS_CTHONIC_GOLD).addTag(IS_OVERWORLD);
+
+        tag(HAS_QUARTZ_GEODE).addTag(IS_OVERWORLD);
+        tag(HAS_VIVID_AMETRINE_GEODE).addTag(IS_FOREST);
+        tag(HAS_MARINE_AGATE_GEODE).addTag(IS_OCEAN);
+        tag(HAS_RUGGED_CITRINE_GEODE).addTag(IS_MOUNTAIN);
+
+        tag(HAS_NETHER_QUARTZ_GEODE).addTag(IS_NETHER);
+        tag(HAS_JAGGED_ONYX_GEODE).addTag(IS_NETHER);
+        tag(HAS_PERFECT_QUARTZ_GEODE).addTag(IS_NETHER);
+        tag(HAS_BLAZING_CARNELIAN_GEODE).addTag(IS_NETHER);
 
         tag(HAS_RUNEWOOD).addTag(IS_PLAINS).addTag(IS_MOUNTAIN).addTag(IS_HILL).remove(IS_SNOWY);
         tag(HAS_RARE_RUNEWOOD).addTag(IS_FOREST).remove(IS_SNOWY);

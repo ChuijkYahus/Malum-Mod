@@ -1,0 +1,10 @@
+{
+  "parent": "minecraft:block/orientable_with_bottom",
+  "render_type": "minecraft:cutout",
+  "textures": {
+    "bottom": "malum:block/magehand_coffer_bottom",
+    "front": "malum:block/magehand_coffer_front",
+    "side": "malum:block/magehand_coffer_side",
+    "top": "malum:block/magehand_coffer_top"
+  }
+}

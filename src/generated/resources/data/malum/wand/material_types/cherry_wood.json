@@ -1,0 +1,13 @@
+{
+  "id": "malum:cherry_wood",
+  "ingredient": {
+    "item": "minecraft:cherry_planks"
+  },
+  "validGroups": [
+    "core",
+    "head",
+    "base",
+    "bauble",
+    "ornament"
+  ]
+}

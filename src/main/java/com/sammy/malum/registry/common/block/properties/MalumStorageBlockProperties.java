@@ -50,13 +50,6 @@ public class MalumStorageBlockProperties {
                 .strength(5.0F, 3.0F);
     }
 
-    public static LodestoneBlockProperties NATURAL_QUARTZ_BLOCK() {
-        return GENERIC_STORAGE_BLOCK(MalumBlockSoundEvents.BLOCK_OF_NATURAL_QUARTZ, DyeColor.WHITE)
-                .needsPickaxe()
-                .requiresCorrectToolForDrops()
-                .strength(1f);
-    }
-
     public static LodestoneBlockProperties BLAZING_QUARTZ_BLOCK() {
         return GENERIC_STORAGE_BLOCK(MalumBlockSoundEvents.BLOCK_OF_BLAZING_QUARTZ, DyeColor.ORANGE)
                 .addTag(BEACON_BASE_BLOCKS)

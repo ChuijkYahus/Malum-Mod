@@ -40,10 +40,10 @@ public class RunicSanctuaryStructure extends Structure {
         int radius = random.nextIntBetweenInclusive(24, 32);
 
         var data = new SanctuaryGenerationData(center, radius);
-        return Optional.of(new Structure.GenerationStub(center, (b) -> createGrovePieces(b, context, data)));
+        return Optional.of(new Structure.GenerationStub(center, (b) -> createSanctuaryPieces(b, context, data)));
     }
 
-    private void createGrovePieces(StructurePiecesBuilder piecesBuilder, GenerationContext context, SanctuaryGenerationData config) {
+    private void createSanctuaryPieces(StructurePiecesBuilder piecesBuilder, GenerationContext context, SanctuaryGenerationData config) {
         var levelHeightAccessor = context.heightAccessor();
         var chunkPos = context.chunkPos();
         int radius = SectionPos.blockToSectionCoord(config.radius()) + 1;

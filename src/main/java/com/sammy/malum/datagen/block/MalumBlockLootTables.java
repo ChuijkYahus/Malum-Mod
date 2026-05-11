@@ -1,10 +1,12 @@
 package com.sammy.malum.datagen.block;
 
 import com.sammy.malum.common.block.ether.*;
+import com.sammy.malum.common.block.geode.GeodeCrystalClusterBlock;
 import com.sammy.malum.common.block.soulstone.SoulstoneBudBlock;
 import com.sammy.malum.common.block.storage.jar.*;
 import com.sammy.malum.registry.common.MalumContent;
 import com.sammy.malum.registry.common.item.*;
+import com.sammy.malum.registry.common.util.GeodeCrystalSet;
 import net.minecraft.*;
 import net.minecraft.advancements.critereon.*;
 import net.minecraft.core.*;
@@ -114,12 +116,11 @@ public class MalumBlockLootTables extends LootTableProvider {
             add(BRILLIANT_STONE.get(), createOreDrop(BRILLIANT_STONE.get(), RAW_BRILLIANCE.get()));
             add(BRILLIANT_DEEPSLATE.get(), createOreDrop(BRILLIANT_DEEPSLATE.get(), RAW_BRILLIANCE.get()));
 
-            add(NATURAL_QUARTZ_ORE.get(), createOreDrop(NATURAL_QUARTZ_ORE.get(), NATURAL_QUARTZ.getItem()));
-            add(DEEPSLATE_QUARTZ_ORE.get(), createOreDrop(DEEPSLATE_QUARTZ_ORE.get(), NATURAL_QUARTZ.getItem()));
-
             add(CTHONIC_GOLD_ORE.get(), createCthonicGoldOreDrop(CTHONIC_GOLD_ORE.get()));
 
             add(BLAZING_QUARTZ_ORE.get(), createOreDrop(BLAZING_QUARTZ_ORE.get(), BLAZING_QUARTZ.get()));
+
+            addGeodeDrops(MUNDANE_QUARTZ);
 
             add(SOULWOVEN_BANNER.get(), createBannerDrop(SOULWOVEN_BANNER.get()));
 
@@ -164,6 +165,30 @@ public class MalumBlockLootTables extends LootTableProvider {
         protected void add(Block block, LootTable.Builder builder) {
             super.add(block, builder);
             generatedValues.add(block);
+        }
+
+        protected void addGeodeDrops(GeodeCrystalSet... sets) {
+            for (GeodeCrystalSet set : sets) {
+
+
+                var cluster = set.getCluster().block().get();
+                add(cluster, LootTable.lootTable().withPool(applyExplosionCondition(cluster, LootPool.lootPool()
+                                        .setRolls(ConstantValue.exactly(1.0F))
+                                        .add(LootItem.lootTableItem(cluster)
+                                                .when(LootItemBlockStatePropertyCondition.hasBlockStateProperties(cluster)
+                                                        .setProperties(StatePropertiesPredicate.Builder.properties()
+                                                                .hasProperty(GeodeCrystalClusterBlock.AGE, 2))
+                                                )
+                                                .apply(SetItemCountFunction.setCount(UniformGenerator.between(2.0F, 3.0F)))
+                                                .otherwise(LootItem.lootTableItem(cluster))
+                                        )
+                                )
+                        )
+                );
+                var budding = set.getBudding().get();
+
+                createSingleItemTableWithSilkTouch(budding, cluster, UniformGenerator.between(2, 4));
+            }
         }
 
         protected LootTable.Builder createTallBlockDrop(Block block) {

@@ -6,6 +6,7 @@ import net.minecraft.core.*;
 import net.minecraft.core.registries.*;
 import net.minecraft.data.worldgen.*;
 import net.minecraft.data.worldgen.placement.*;
+import net.minecraft.resources.ResourceKey;
 import net.minecraft.util.valueproviders.*;
 import net.minecraft.world.level.levelgen.*;
 import net.minecraft.world.level.levelgen.feature.*;
@@ -25,10 +26,6 @@ public class PlacedFeatureDatagen {
 
         context.register(MalumFeatures.PlacedFeatures.ORE_BRILLIANT,
                 addOreFeature(features.getOrThrow(MalumFeatures.ConfiguredFeatures.BRILLIANT_ORE), -64, 40, 3));
-        context.register(MalumFeatures.PlacedFeatures.ORE_NATURAL_QUARTZ,
-                addOreFeature(features.getOrThrow(MalumFeatures.ConfiguredFeatures.NATURAL_QUARTZ_ORE), -64, 10, 1));
-        context.register(MalumFeatures.PlacedFeatures.ORE_BLAZING_QUARTZ,
-                addOreFeature(features.getOrThrow(MalumFeatures.ConfiguredFeatures.BLAZING_QUARTZ_ORE), -16, 112, 3));
         context.register(MalumFeatures.PlacedFeatures.ORE_CTHONIC_GOLD,
                 addOreFeature(features.getOrThrow(MalumFeatures.ConfiguredFeatures.CTHONIC_GOLD_ORE), -48, 0, 2, RarityFilter.onAverageOnceEvery(8)));
 
@@ -73,30 +70,6 @@ public class PlacedFeatureDatagen {
                         ).build()
                 )
         );
-
-        context.register(MalumFeatures.PlacedFeatures.QUARTZ_GEODE_FEATURE,
-                new PlacedFeature(features.getOrThrow(MalumFeatures.ConfiguredFeatures.QUARTZ_GEODE),
-                        ImmutableList.<PlacementModifier>builder().add(
-                                        RarityFilter.onAverageOnceEvery(24),
-                                        InSquarePlacement.spread(),
-                                        HeightRangePlacement.uniform(
-                                                VerticalAnchor.aboveBottom(6),
-                                                VerticalAnchor.absolute(-10)),
-                                        BiomeFilter.biome())
-                                .build()
-                ));
-
-        context.register(MalumFeatures.PlacedFeatures.DEEPSLATE_QUARTZ_GEODE_FEATURE,
-                new PlacedFeature(features.getOrThrow(MalumFeatures.ConfiguredFeatures.DEEPSLATE_QUARTZ_GEODE),
-                        ImmutableList.<PlacementModifier>builder().add(
-                                        RarityFilter.onAverageOnceEvery(24),
-                                        InSquarePlacement.spread(),
-                                        HeightRangePlacement.uniform(
-                                                VerticalAnchor.aboveBottom(6),
-                                                VerticalAnchor.absolute(-10)),
-                                        BiomeFilter.biome())
-                                .build()
-                ));
     }
 
     private static PlacedFeature addOreFeature(Holder<ConfiguredFeature<?, ?>> configureFeature, int minHeight, int maxHeight, int count, PlacementModifier... extraModifiers) {

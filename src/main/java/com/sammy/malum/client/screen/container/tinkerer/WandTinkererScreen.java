@@ -1,30 +1,44 @@
 package com.sammy.malum.client.screen.container.tinkerer;
 
+import com.google.common.collect.HashMultimap;
 import com.mojang.blaze3d.systems.RenderSystem;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.sammy.malum.MalumMod;
 import com.sammy.malum.client.screen.codex.display.texture.DynamicTextureRenderer;
 import com.sammy.malum.client.screen.container.AbstractMalumContainerScreen;
 import com.sammy.malum.common.block.curiosities.sorcery.wand_tinkerer.WandTinkererContainer;
+import com.sammy.malum.common.data.component.WandPartsComponent;
+import com.sammy.malum.common.data.custom.wand_parts.WandMaterialType;
 import com.sammy.malum.common.data.custom.wand_parts.WandPartType;
 import com.sammy.malum.common.payloads.wand_tinkerer.WandTinkererInteractionItemPayload;
 import com.sammy.malum.common.payloads.wand_tinkerer.WandTinkererSelectGroupPayload;
+import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.components.Renderable;
+import net.minecraft.client.player.LocalPlayer;
 import net.minecraft.client.renderer.GameRenderer;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.player.Inventory;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.crafting.Ingredient;
+import net.neoforged.neoforge.client.event.ClientTickEvent;
 import net.neoforged.neoforge.client.extensions.common.IClientItemExtensions;
 import net.neoforged.neoforge.network.PacketDistributor;
 import team.lodestar.lodestone.helpers.DataHelper;
 import team.lodestar.lodestone.modules.core.easing.Easing;
 import team.lodestar.lodestone.systems.rendering.VFXBuilders;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class WandTinkererScreen extends AbstractMalumContainerScreen<WandTinkererContainer> {
 
     private static final ResourceLocation TEXTURE = MalumMod.malumPath("textures/gui/container/wand_tinkerer.png");
+
+    private ItemStack oldCarried = ItemStack.EMPTY;
+    public HashMultimap<WandPartType, WandMaterialType> possibleParts = HashMultimap.create();
 
     private ItemDepositWidget itemDepositWidget;
 
@@ -38,6 +52,43 @@ public class WandTinkererScreen extends AbstractMalumContainerScreen<WandTinkere
         titleLabelY = -20;
         inventoryLabelX = 6;
         inventoryLabelY = imageHeight-12;
+    }
+
+    public static void tick(ClientTickEvent event) {
+        var minecraft = Minecraft.getInstance();
+        var player = minecraft.player;
+        if (player == null) {
+            return;
+        }
+        if (minecraft.screen instanceof WandTinkererScreen screen) {
+            if (player.isAlive() && !player.isRemoved()) {
+                screen.update();
+            }
+        }
+    }
+
+    public void update() {
+        var carried = menu.getCarried();
+        if (!ItemStack.isSameItem(oldCarried, carried)) {
+            possibleParts = WandPartsComponent.getPossibleParts(carried);
+        }
+        oldCarried = carried;
+
+
+        if (itemDepositWidget.isHovered()) {
+            hoveredDelta = DataHelper.approach(hoveredDelta, 1, 0.2f);
+            return;
+        }
+        hoveredDelta = DataHelper.approach(hoveredDelta, 0, 0.4f);
+        for (Renderable renderable : renderables) {
+            if (renderable instanceof PartButtonWidget widget) {
+                widget.tick();
+            }
+        }
+    }
+
+    public boolean isHoldingValidItem() {
+        return !possibleParts.isEmpty();
     }
 
     public void sendInteraction() {
@@ -107,22 +158,6 @@ public class WandTinkererScreen extends AbstractMalumContainerScreen<WandTinkere
 
         }
         super.renderFloatingItem(guiGraphics, stack, x, y, text);
-    }
-
-    @Override
-    protected void containerTick() {
-        super.containerTick();
-
-        if (itemDepositWidget.isHovered()) {
-            hoveredDelta = DataHelper.approach(hoveredDelta, 1, 0.2f);
-            return;
-        }
-        hoveredDelta = DataHelper.approach(hoveredDelta, 0, 0.4f);
-        for (Renderable renderable : renderables) {
-            if (renderable instanceof PartButtonWidget widget) {
-                widget.tick();
-            }
-        }
     }
 
     @Override

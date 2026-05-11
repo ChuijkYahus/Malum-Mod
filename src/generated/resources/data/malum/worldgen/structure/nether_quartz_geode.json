@@ -1,0 +1,114 @@
+{
+  "type": "malum:geode",
+  "biomes": "#malum:has_quartz_geode",
+  "geode_config": {
+    "anchor_settings": {
+      "anchors": [
+        {
+          "anchor_noise": {
+            "type": "minecraft:uniform",
+            "max_exclusive": 0.4,
+            "min_inclusive": 0.25
+          },
+          "anchor_offset": {
+            "type": "minecraft:uniform",
+            "max_inclusive": 4,
+            "min_inclusive": 0
+          },
+          "scale": {
+            "type": "minecraft:uniform",
+            "max_exclusive": 1.0,
+            "min_inclusive": 0.8
+          }
+        }
+      ]
+    },
+    "block_settings": {
+      "cannot_replace": "#minecraft:features_cannot_replace",
+      "invalid_blocks": "#minecraft:geode_invalid_blocks",
+      "layers": [
+        {
+          "budding_geodes": {},
+          "crystal_clusters": {},
+          "layer": {
+            "type": "minecraft:simple_state_provider",
+            "state": {
+              "Name": "minecraft:air"
+            }
+          },
+          "size": 16.0
+        },
+        {
+          "budding_geodes": {
+            "type": "minecraft:simple_state_provider",
+            "max_inclusive": 24,
+            "min_inclusive": 16,
+            "state": {
+              "Name": "malum:budding_mundane_quartz"
+            }
+          },
+          "crystal_clusters": {
+            "type": "minecraft:simple_state_provider",
+            "max_inclusive": 200,
+            "min_inclusive": 100,
+            "state": {
+              "Name": "malum:mundane_quartz_cluster",
+              "Properties": {
+                "age": "0",
+                "facing": "up",
+                "waterlogged": "false"
+              }
+            }
+          },
+          "layer": {
+            "type": "minecraft:simple_state_provider",
+            "state": {
+              "Name": "malum:mundane_quartz_geode"
+            }
+          },
+          "size": 4.0
+        },
+        {
+          "budding_geodes": {},
+          "crystal_clusters": {},
+          "layer": {
+            "type": "minecraft:simple_state_provider",
+            "state": {
+              "Name": "minecraft:magma_block"
+            }
+          },
+          "size": 2.200000047683716
+        },
+        {
+          "budding_geodes": {},
+          "crystal_clusters": {},
+          "layer": {
+            "type": "minecraft:simple_state_provider",
+            "state": {
+              "Name": "minecraft:blackstone"
+            }
+          },
+          "size": 4.800000190734863
+        }
+      ]
+    },
+    "crack_settings": {
+      "base_crack_size": 2.0,
+      "crack_point_offset": 4,
+      "generate_crack_chance": 0.949999988079071
+    },
+    "fluid": {},
+    "invalid_blocks_threshold": 1
+  },
+  "placement": {
+    "type": "minecraft:uniform",
+    "max_inclusive": {
+      "above_bottom": 24
+    },
+    "min_inclusive": {
+      "above_bottom": 24
+    }
+  },
+  "spawn_overrides": {},
+  "step": "underground_decoration"
+}

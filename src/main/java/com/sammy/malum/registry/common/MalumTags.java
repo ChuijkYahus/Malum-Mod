@@ -212,10 +212,19 @@ public class MalumTags {
 
     public static class Biomes {
         public static final TagKey<Biome> HAS_SOULSTONE = tag("has_soulstone");
-        public static final TagKey<Biome> HAS_BRILLIANT = tag("has_brilliant");
-        public static final TagKey<Biome> HAS_BLAZING_QUARTZ = tag("has_blazing_quartz");
-        public static final TagKey<Biome> HAS_QUARTZ = tag("has_quartz");
-        public static final TagKey<Biome> HAS_CTHONIC = tag("has_rare_earths");
+        public static final TagKey<Biome> HAS_BRILLIANCE = tag("has_brilliant");
+        public static final TagKey<Biome> HAS_CTHONIC_GOLD = tag("has_cthonic_gold");
+
+
+        public static final TagKey<Biome> HAS_QUARTZ_GEODE = tag("has_quartz_geode");
+        public static final TagKey<Biome> HAS_VIVID_AMETRINE_GEODE = tag("has_vivid_ametrine_geode");
+        public static final TagKey<Biome> HAS_MARINE_AGATE_GEODE = tag("has_marine_agate_geode");
+        public static final TagKey<Biome> HAS_RUGGED_CITRINE_GEODE = tag("has_rugged_citrine_geode");
+        public static final TagKey<Biome> HAS_NETHER_QUARTZ_GEODE = tag("has_nether_quartz_geode");
+        public static final TagKey<Biome> HAS_JAGGED_ONYX_GEODE = tag("has_jagged_onyx_geode");
+        public static final TagKey<Biome> HAS_PERFECT_QUARTZ_GEODE = tag("has_perfect_quartz_geode");
+        public static final TagKey<Biome> HAS_BLAZING_CARNELIAN_GEODE = tag("has_blazing_carnelian_geode");
+
 
         public static final TagKey<Biome> HAS_RUNEWOOD = tag("has_runewood");
         public static final TagKey<Biome> HAS_RARE_RUNEWOOD = tag("has_rare_runewood");
