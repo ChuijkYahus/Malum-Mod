@@ -38,7 +38,7 @@ public class VariedBlockStateSmithTypes {
         ConfiguredModel.Builder<?> builder = ConfiguredModel.builder();
         for (int i = 0; i < amount; i++) {
             var texture = textures.get(i);
-            ModelFile modelFile = provider.models().cubeAll(name+i, texture);
+            var modelFile = provider.models().cubeAll(name+i, texture);
             builder.modelFile(modelFile);
             if (i != amount -1) {
                 builder = builder.nextModel();

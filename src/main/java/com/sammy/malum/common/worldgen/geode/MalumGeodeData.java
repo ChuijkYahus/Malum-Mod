@@ -29,25 +29,8 @@ public record MalumGeodeData(HashMap<BlockPos, Double> data) {
         }
         if (data.containsKey(pos)) {
             var existingValue = data.get(pos);
-            if (existingValue > value) {
-                return;
-            }
+            value = (existingValue + value) / 2f;
         }
         data.put(pos, value);
-    }
-
-    public HashMap<ChunkPos, MalumGeodeData> bake() {
-        var result = new HashMap<ChunkPos, MalumGeodeData>();
-        for (Map.Entry<BlockPos, Double> entry : data.entrySet()) {
-            var pos = entry.getKey();
-            var chunkPos = new ChunkPos(pos);
-            if (!result.containsKey(chunkPos)) {
-                result.put(chunkPos, new MalumGeodeData());
-            }
-            var sorted = result.get(chunkPos);
-            var value = entry.getValue();
-            sorted.push(pos, value);
-        }
-        return result;
     }
 }

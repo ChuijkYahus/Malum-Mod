@@ -101,7 +101,6 @@ public class MalumOreBlockProperties {
                 .requiresCorrectToolForDrops()
                 .needsPickaxe()
                 .needsIron()
-                .noOcclusion()
                 .strength(2F, 64.0F)
                 .sound(soundType);
     }

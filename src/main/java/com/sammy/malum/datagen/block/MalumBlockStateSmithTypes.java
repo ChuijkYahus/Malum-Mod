@@ -72,11 +72,15 @@ public class MalumBlockStateSmithTypes {
         var name = provider.getBlockName(block);
 
         provider.getVariantBuilder(block).forAllStatesExcept(s -> {
+            var direction = s.getValue(SoulstoneBudBlock.FACING);
             int value = s.getValue(GeodeCrystalClusterBlock.AGE);
             String indexed = name + "_" + value;
             ResourceLocation texture = provider.getBlockTexture(indexed);
             var model = provider.models().cross(indexed, texture);
-            return ConfiguredModel.builder().modelFile(model).build();
+            return ConfiguredModel.builder().modelFile(model)
+                    .rotationX(direction == Direction.DOWN ? 180 : direction.getAxis().isHorizontal() ? 90 : 0)
+                    .rotationY(direction.getAxis().isVertical() ? 0 : (((int) direction.toYRot() + 180)) % 360)
+                    .build();
 
         }, MalumLeavesBlock.WATERLOGGED);
     });
