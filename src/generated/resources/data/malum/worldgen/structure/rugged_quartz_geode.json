@@ -7,18 +7,35 @@
         {
           "anchor_noise": {
             "type": "minecraft:uniform",
-            "max_exclusive": 0.4,
-            "min_inclusive": 0.25
+            "max_exclusive": 0.2,
+            "min_inclusive": 0.1
           },
           "anchor_offset": {
             "type": "minecraft:uniform",
-            "max_inclusive": 4,
+            "max_inclusive": 6,
             "min_inclusive": 0
           },
           "scale": {
             "type": "minecraft:uniform",
-            "max_exclusive": 1.0,
+            "max_exclusive": 0.9,
             "min_inclusive": 0.8
+          }
+        },
+        {
+          "anchor_noise": {
+            "type": "minecraft:uniform",
+            "max_exclusive": 0.3,
+            "min_inclusive": 0.2
+          },
+          "anchor_offset": {
+            "type": "minecraft:uniform",
+            "max_inclusive": 14,
+            "min_inclusive": 4
+          },
+          "scale": {
+            "type": "minecraft:uniform",
+            "max_exclusive": 0.7,
+            "min_inclusive": 0.6
           }
         }
       ]
@@ -28,35 +45,43 @@
       "invalid_blocks": "#minecraft:geode_invalid_blocks",
       "layers": [
         {
-          "budding_geodes": {},
-          "crystal_clusters": {},
           "layer": {
             "type": "minecraft:simple_state_provider",
             "state": {
               "Name": "minecraft:air"
             }
           },
-          "size": 8.0
+          "size": 6.0
         },
         {
           "budding_geodes": {
-            "type": "minecraft:simple_state_provider",
-            "max_inclusive": 8,
-            "min_inclusive": 6,
+            "amount": {
+              "type": "minecraft:uniform",
+              "max_inclusive": 8,
+              "min_inclusive": 6
+            },
             "state": {
-              "Name": "malum:budding_mundane_quartz"
+              "type": "minecraft:simple_state_provider",
+              "state": {
+                "Name": "malum:budding_mundane_quartz"
+              }
             }
           },
           "crystal_clusters": {
-            "type": "minecraft:simple_state_provider",
-            "max_inclusive": 60,
-            "min_inclusive": 40,
+            "amount": {
+              "type": "minecraft:uniform",
+              "max_inclusive": 160,
+              "min_inclusive": 120
+            },
             "state": {
-              "Name": "malum:mundane_quartz_cluster",
-              "Properties": {
-                "age": "0",
-                "facing": "up",
-                "waterlogged": "false"
+              "type": "minecraft:simple_state_provider",
+              "state": {
+                "Name": "malum:mundane_quartz_cluster",
+                "Properties": {
+                  "age": "0",
+                  "facing": "up",
+                  "waterlogged": "false"
+                }
               }
             }
           },
@@ -66,57 +91,77 @@
               "Name": "malum:mundane_quartz_geode"
             }
           },
-          "size": 2.0
+          "size": 0.5
         },
         {
           "budding_geodes": {
-            "type": "minecraft:simple_state_provider",
-            "max_inclusive": 5,
-            "min_inclusive": 2,
+            "amount": {
+              "type": "minecraft:uniform",
+              "max_inclusive": 5,
+              "min_inclusive": 2
+            },
             "state": {
-              "Name": "malum:budding_mundane_quartz"
+              "type": "minecraft:simple_state_provider",
+              "state": {
+                "Name": "malum:budding_rugged_citrine"
+              }
             }
           },
           "crystal_clusters": {
-            "type": "minecraft:simple_state_provider",
-            "max_inclusive": 12,
-            "min_inclusive": 6,
+            "amount": {
+              "type": "minecraft:uniform",
+              "max_inclusive": 40,
+              "min_inclusive": 20
+            },
             "state": {
-              "Name": "malum:mundane_quartz_cluster",
-              "Properties": {
-                "age": "0",
-                "facing": "up",
-                "waterlogged": "false"
+              "type": "minecraft:simple_state_provider",
+              "state": {
+                "Name": "malum:rugged_citrine_cluster",
+                "Properties": {
+                  "age": "0",
+                  "facing": "up",
+                  "waterlogged": "false"
+                }
               }
             }
           },
           "layer": {
             "type": "minecraft:simple_state_provider",
             "state": {
-              "Name": "malum:mundane_quartz_geode"
+              "Name": "malum:rugged_citrine_geode"
             }
           },
           "size": 1.0
         },
         {
           "budding_geodes": {
-            "type": "minecraft:simple_state_provider",
-            "max_inclusive": 8,
-            "min_inclusive": 6,
+            "amount": {
+              "type": "minecraft:uniform",
+              "max_inclusive": 8,
+              "min_inclusive": 6
+            },
             "state": {
-              "Name": "malum:budding_mundane_quartz"
+              "type": "minecraft:simple_state_provider",
+              "state": {
+                "Name": "malum:budding_mundane_quartz"
+              }
             }
           },
           "crystal_clusters": {
-            "type": "minecraft:simple_state_provider",
-            "max_inclusive": 60,
-            "min_inclusive": 40,
+            "amount": {
+              "type": "minecraft:uniform",
+              "max_inclusive": 160,
+              "min_inclusive": 120
+            },
             "state": {
-              "Name": "malum:mundane_quartz_cluster",
-              "Properties": {
-                "age": "0",
-                "facing": "up",
-                "waterlogged": "false"
+              "type": "minecraft:simple_state_provider",
+              "state": {
+                "Name": "malum:mundane_quartz_cluster",
+                "Properties": {
+                  "age": "0",
+                  "facing": "up",
+                  "waterlogged": "false"
+                }
               }
             }
           },
@@ -126,11 +171,9 @@
               "Name": "malum:mundane_quartz_geode"
             }
           },
-          "size": 2.0
+          "size": 0.5
         },
         {
-          "budding_geodes": {},
-          "crystal_clusters": {},
           "layer": {
             "type": "minecraft:simple_state_provider",
             "state": {
@@ -140,8 +183,6 @@
           "size": 1.2000000476837158
         },
         {
-          "budding_geodes": {},
-          "crystal_clusters": {},
           "layer": {
             "type": "minecraft:simple_state_provider",
             "state": {
@@ -153,9 +194,44 @@
       ]
     },
     "crack_settings": {
-      "base_crack_size": 2.0,
-      "crack_point_offset": 4,
-      "generate_crack_chance": 0.949999988079071
+      "base_crack_size": 0.75,
+      "cracks": [
+        {
+          "anchor_noise": {
+            "type": "minecraft:uniform",
+            "max_exclusive": 0.5,
+            "min_inclusive": 0.3
+          },
+          "anchor_offset": {
+            "type": "minecraft:uniform",
+            "max_inclusive": 6,
+            "min_inclusive": 4
+          },
+          "scale": {
+            "type": "minecraft:uniform",
+            "max_exclusive": 1.8,
+            "min_inclusive": 1.2
+          }
+        },
+        {
+          "anchor_noise": {
+            "type": "minecraft:uniform",
+            "max_exclusive": 0.7,
+            "min_inclusive": 0.5
+          },
+          "anchor_offset": {
+            "type": "minecraft:uniform",
+            "max_inclusive": 8,
+            "min_inclusive": 6
+          },
+          "scale": {
+            "type": "minecraft:uniform",
+            "max_exclusive": 2.4,
+            "min_inclusive": 1.2
+          }
+        }
+      ],
+      "generate_crack_chance": 0.8500000238418579
     },
     "fluid": {},
     "invalid_blocks_threshold": 1
@@ -163,7 +239,7 @@
   "placement": {
     "type": "minecraft:uniform",
     "max_inclusive": {
-      "above_bottom": 24
+      "absolute": 16
     },
     "min_inclusive": {
       "above_bottom": 24

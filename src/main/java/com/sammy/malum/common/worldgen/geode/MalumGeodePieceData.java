@@ -37,16 +37,17 @@ public record MalumGeodePieceData(Map<BlockPos, BlockState> toPlace) {
         return MalumGeodePieceData.CODEC.parse(NbtOps.INSTANCE, tag.get("data")).resultOrPartial(LOGGER::error).orElse(null);
     }
 
-    public static MalumGeodePieceData filtered(Map<BlockPos, BlockState> blockMap, ChunkPos chunkPos) {
-        var copy = new HashMap<>(blockMap);
+    public static MalumGeodePieceData filtered(Map<BlockPos, MalumGeodeStructure.GeodePlacementData> blockMap, ChunkPos chunkPos) {
+        HashMap<BlockPos, BlockState> delayered = new HashMap<>();
         for (BlockPos pos : blockMap.keySet()) {
             var filtered = new ChunkPos(pos);
-            if (filtered.equals(chunkPos)) {
+            if (!filtered.equals(chunkPos)) {
                 continue;
             }
-            copy.remove(pos);
+            BlockState state = blockMap.get(pos).state();
+            delayered.put(pos, state);
         }
-        return new MalumGeodePieceData(copy);
+        return new MalumGeodePieceData(delayered);
     }
 
     public BoundingBox boundingBox() {

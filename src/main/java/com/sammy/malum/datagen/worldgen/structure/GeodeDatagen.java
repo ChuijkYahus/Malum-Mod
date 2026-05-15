@@ -2,10 +2,8 @@ package com.sammy.malum.datagen.worldgen.structure;
 
 import com.sammy.malum.common.worldgen.geode.*;
 import com.sammy.malum.common.worldgen.geode.config.*;
-import com.sammy.malum.common.worldgen.sanctuary.RunicSanctuaryStructure;
-import com.sammy.malum.common.worldgen.well.WeepingWellStructure;
 import com.sammy.malum.registry.common.util.GeodeCrystalSet;
-import com.sammy.malum.registry.common.worldgen.MalumStructureTypes;
+import com.sammy.malum.registry.common.worldgen.MalumStructureTypes.StructureKeys;
 import net.minecraft.data.worldgen.BootstrapContext;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.util.valueproviders.UniformFloat;
@@ -18,6 +16,7 @@ import java.util.List;
 import java.util.Optional;
 
 import static com.sammy.malum.datagen.worldgen.structure.StructureDatagen.*;
+import static com.sammy.malum.registry.common.MalumContent.Materials.*;
 import static com.sammy.malum.registry.common.MalumContent.Materials.MUNDANE_QUARTZ;
 import static com.sammy.malum.registry.common.MalumTags.Biomes.*;
 import static net.minecraft.util.valueproviders.UniformInt.of;
@@ -28,43 +27,88 @@ import static net.minecraft.world.level.levelgen.structure.TerrainAdjustment.NON
 public class GeodeDatagen {
 
     public static void structureBootstrap(BootstrapContext<Structure> context) {
-        float overworldAirPocket = 8f;
+        float overworldAirPocket = 6f;
+
+        float primaryQuartzLayerSize = 1f;
+        float secondaryQuartzLayerSize = 0.5f;
         var buddingQuartzGeodes = of(6, 8);
-        var quartzClusters = of(40, 60);
+        var quartzClusters = of(120, 160);
+
         float gemLayerSize = 1f;
         var buddingGemGeodes = of(2, 5);
-        var gemClusters = of(6, 12);
-        float primaryQuartzLayerSize = 3f;
-        float secondaryQuartzLayerSize = 2f;
+        var gemClusters = of(20, 40);
 
-        geode(context, MalumStructureTypes.StructureKeys.QUARTZ_GEODE, create(overworldAirPocket, primaryQuartzLayerSize, buddingQuartzGeodes, quartzClusters));
-        geode(context, MalumStructureTypes.StructureKeys.VIVID_QUARTZ_GEODE, createSpecial(overworldAirPocket, secondaryQuartzLayerSize, buddingQuartzGeodes, quartzClusters, gemLayerSize, buddingGemGeodes, gemClusters));
-        geode(context, MalumStructureTypes.StructureKeys.MARINE_QUARTZ_GEODE, createSpecial(overworldAirPocket, secondaryQuartzLayerSize, buddingQuartzGeodes, quartzClusters, gemLayerSize, buddingGemGeodes, gemClusters));
-        geode(context, MalumStructureTypes.StructureKeys.RUGGED_QUARTZ_GEODE, createSpecial(overworldAirPocket, secondaryQuartzLayerSize, buddingQuartzGeodes, quartzClusters, gemLayerSize, buddingGemGeodes, gemClusters));
+        geode(context, StructureKeys.QUARTZ_GEODE, create(overworldAirPocket, primaryQuartzLayerSize, buddingQuartzGeodes, quartzClusters));
+        geode(context, StructureKeys.VIVID_QUARTZ_GEODE, createSpecial(overworldAirPocket,
+                VIVID_AMETRINE, buddingGemGeodes, gemClusters, gemLayerSize,
+                MUNDANE_QUARTZ, buddingQuartzGeodes, quartzClusters, secondaryQuartzLayerSize));
+        geode(context, StructureKeys.MARINE_QUARTZ_GEODE, createSpecial(overworldAirPocket,
+                MARINE_AGATE, buddingGemGeodes, gemClusters, gemLayerSize,
+                MUNDANE_QUARTZ, buddingQuartzGeodes, quartzClusters, secondaryQuartzLayerSize));
+        geode(context, StructureKeys.RUGGED_QUARTZ_GEODE, createSpecial(overworldAirPocket,
+                RUGGED_CITRINE, buddingGemGeodes, gemClusters, gemLayerSize,
+                MUNDANE_QUARTZ, buddingQuartzGeodes, quartzClusters, secondaryQuartzLayerSize));
 
         float netherAirPocket = 16f;
+
         float primaryNetherQuartzLayerSize = 4f;
         float secondaryNetherQuartzLayerSize = 6f;
         var netherBuddingQuartzGeodes = of(16, 24);
-        var netherQuartzClusters = of(100, 200);
+        var netherQuartzClusters = of(300, 400);
+
         float netherGemLayerSize = 7f;
-        var netherGemClusters = of(16, 32);
+        var netherGemClusters = of(32, 48);
         var netherBuddingGemGeodes = of(4, 9);
-        geode(context, MalumStructureTypes.StructureKeys.NETHER_QUARTZ_GEODE, createNether(netherAirPocket, primaryNetherQuartzLayerSize, netherBuddingQuartzGeodes, netherQuartzClusters));
-        geode(context, MalumStructureTypes.StructureKeys.JAGGED_QUARTZ_GEODE, createSpecialNether(netherAirPocket, secondaryNetherQuartzLayerSize, netherBuddingQuartzGeodes, netherQuartzClusters, netherGemLayerSize, netherBuddingGemGeodes, netherGemClusters));
-        geode(context, MalumStructureTypes.StructureKeys.PERFECT_QUARTZ_GEODE, createSpecialNether(netherAirPocket, secondaryNetherQuartzLayerSize, netherBuddingQuartzGeodes, netherQuartzClusters, netherGemLayerSize, netherBuddingGemGeodes, netherGemClusters));
-        geode(context, MalumStructureTypes.StructureKeys.BLAZING_QUARTZ_GEODE, createSpecialNether(netherAirPocket, secondaryNetherQuartzLayerSize, netherBuddingQuartzGeodes, netherQuartzClusters, netherGemLayerSize, netherBuddingGemGeodes, netherGemClusters));
+
+        netherGeode(context, StructureKeys.NETHER_QUARTZ_GEODE, createNether(netherAirPocket, primaryNetherQuartzLayerSize, netherBuddingQuartzGeodes, netherQuartzClusters));
+        netherGeode(context, StructureKeys.JAGGED_QUARTZ_GEODE, createSpecialNether(netherAirPocket,
+                JAGGED_ONYX, netherBuddingGemGeodes, netherGemClusters, netherGemLayerSize,
+                MUNDANE_QUARTZ, netherQuartzClusters, netherBuddingQuartzGeodes, secondaryNetherQuartzLayerSize));
+        netherGeode(context, StructureKeys.PERFECT_QUARTZ_GEODE, createSpecialNether(netherAirPocket,
+                PERFECT_QUARTZ, netherBuddingGemGeodes, netherGemClusters, netherGemLayerSize,
+                MUNDANE_QUARTZ, netherQuartzClusters, netherBuddingQuartzGeodes, secondaryNetherQuartzLayerSize));
+        netherGeode(context, StructureKeys.BLAZING_QUARTZ_GEODE, createSpecialNether(netherAirPocket,
+                BLAZING_CARNELIAN, netherBuddingGemGeodes, netherGemClusters, netherGemLayerSize,
+                MUNDANE_QUARTZ, netherQuartzClusters, netherBuddingQuartzGeodes, secondaryNetherQuartzLayerSize));
     }
 
-    public static void geode(BootstrapContext<Structure> context, MalumStructureTypes.StructureKeys.StructureKey key, List<GeodeLayer> layers) {
+    public static void geode(BootstrapContext<Structure> context, StructureKeys.StructureKey key, List<GeodeLayer> layers) {
         var geodeBlockSettings = new MalumGeodeLayerSettings(layers, BlockTags.FEATURES_CANNOT_REPLACE, BlockTags.GEODE_INVALID_BLOCKS);
-        var geodeCrackSettings = new MalumGeodeCrackSettings(0.95f, 2f, 4);
+        var geodeCrackSettings = new MalumGeodeCrackSettings(List.of(
+                new GeodeAnchor(of(4, 6), UniformFloat.of(0.3f, 0.5f), UniformFloat.of(1.2f, 1.8f)),
+                new GeodeAnchor(of(6, 8), UniformFloat.of(0.5f, 0.7f), UniformFloat.of(1.2f, 2.4f))
+        ),
+                0.85f, 0.75f);
         var geodeAnchorSettings = new GeodeAnchorSettings(List.of(
-                new GeodeAnchorSettings.GeodeAnchor(of(0, 4), UniformFloat.of(0.25f, 0.4f), UniformFloat.of(0.8f, 1.0f))
+                new GeodeAnchor(of(0, 6), UniformFloat.of(0.1f, 0.2f), UniformFloat.of(0.8f, 0.9f)),
+                new GeodeAnchor(of(4, 14), UniformFloat.of(0.2f, 0.3f), UniformFloat.of(0.6f, 0.7f))
         ));
+
         structure(context, key, b -> new MalumGeodeStructure(b, new MalumGeodeConfiguration(
                         geodeBlockSettings, geodeCrackSettings, geodeAnchorSettings, Optional.empty(), 1
-                ), UniformHeight.of(VerticalAnchor.aboveBottom(24), VerticalAnchor.aboveBottom(24))),
+                ), UniformHeight.of(VerticalAnchor.aboveBottom(24), VerticalAnchor.absolute(16))),
+                HAS_QUARTZ_GEODE, UNDERGROUND_DECORATION, NONE);
+
+    }
+
+    public static void netherGeode(BootstrapContext<Structure> context, StructureKeys.StructureKey key, List<GeodeLayer> layers) {
+        var geodeBlockSettings = new MalumGeodeLayerSettings(layers, BlockTags.FEATURES_CANNOT_REPLACE, BlockTags.GEODE_INVALID_BLOCKS);
+        var geodeCrackSettings = new MalumGeodeCrackSettings(List.of(
+                new GeodeAnchor(of(4, 6), UniformFloat.of(0.3f, 0.5f), UniformFloat.of(1.2f, 1.8f)),
+                new GeodeAnchor(of(6, 8), UniformFloat.of(0.5f, 0.7f), UniformFloat.of(1.2f, 2.4f)),
+                new GeodeAnchor(of(9, 12), UniformFloat.of(0.5f, 0.7f), UniformFloat.of(1.2f, 2.4f)),
+                new GeodeAnchor(of(9, 12), UniformFloat.of(0.5f, 0.7f), UniformFloat.of(1.2f, 2.4f))
+        ),
+                0.85f, 1.5f);
+        var geodeAnchorSettings = new GeodeAnchorSettings(List.of(
+                new GeodeAnchor(of(0, 6), UniformFloat.of(0.1f, 0.2f), UniformFloat.of(1.2f, 1.6f)),
+                new GeodeAnchor(of(8, 14), UniformFloat.of(0.2f, 0.3f), UniformFloat.of(0.6f, 0.7f)),
+                new GeodeAnchor(of(8, 14), UniformFloat.of(0.2f, 0.3f), UniformFloat.of(0.6f, 0.7f))
+        ));
+
+        structure(context, key, b -> new MalumGeodeStructure(b, new MalumGeodeConfiguration(
+                        geodeBlockSettings, geodeCrackSettings, geodeAnchorSettings, Optional.empty(), 1
+                ), UniformHeight.of(VerticalAnchor.aboveBottom(32), VerticalAnchor.belowTop(32))),
                 HAS_QUARTZ_GEODE, UNDERGROUND_DECORATION, NONE);
 
     }
@@ -76,34 +120,32 @@ public class GeodeDatagen {
         );
     }
 
-    public static List<GeodeLayer> createNether(float airLayerSize, float gemLayerSize, UniformInt buddingGeodes, UniformInt clusters) {
-        return List.of(new GeodeLayer(AIR, airLayerSize), new GeodeLayer(MUNDANE_QUARTZ, buddingGeodes, clusters, gemLayerSize),
-                new GeodeLayer(MAGMA_BLOCK, 2.2f), new GeodeLayer(BLACKSTONE, 4.8f)
+    public static List<GeodeLayer> createNether(float airLayerSize, float gemLayerSize, UniformInt buddingQuartzGeodes, UniformInt quartzClusters) {
+        return List.of(new GeodeLayer(AIR, airLayerSize), new GeodeLayer(MUNDANE_QUARTZ, buddingQuartzGeodes, quartzClusters, gemLayerSize),
+                new GeodeLayer(MAGMA_BLOCK, 1.2f), new GeodeLayer(BLACKSTONE, 1.8f)
         );
     }
 
     public static List<GeodeLayer> createSpecial(float airLayerSize,
-                                                 float quartzLayerSize, UniformInt buddingQuartzGeodes, UniformInt quartzClusters,
-                                                 GeodeCrystalSet specialCrystal, float gemLayerSize, UniformInt buddingGeodes, UniformInt clusters) {
-        var quartzLayer = new GeodeLayer(MUNDANE_QUARTZ, buddingQuartzGeodes, quartzClusters, quartzLayerSize);
+                                                 GeodeCrystalSet specialCrystal, UniformInt buddingGeodes, UniformInt clusters, float gemLayerSize,
+                                                 GeodeCrystalSet quartz, UniformInt buddingQuartzGeodes, UniformInt quartzClusters, float quartzLayerSize) {
+        var quartzLayer = new GeodeLayer(quartz, buddingQuartzGeodes, quartzClusters, quartzLayerSize);
         var gemLayer = new GeodeLayer(specialCrystal, buddingGeodes, clusters, gemLayerSize);
 
-        return List.of(new GeodeLayer(AIR, airLayerSize),
-                quartzLayer, gemLayer, quartzLayer,
+        return List.of(new GeodeLayer(AIR, airLayerSize), quartzLayer, gemLayer, quartzLayer,
                 new GeodeLayer(CALCITE, 1.2f), new GeodeLayer(SMOOTH_BASALT, 1.8f)
         );
     }
 
     public static List<GeodeLayer> createSpecialNether(float airLayerSize,
-                                                       float quartzLayerSize, UniformInt buddingQuartzGeodes, UniformInt quartzClusters,
-                                                       GeodeCrystalSet specialCrystal, float gemLayerSize, UniformInt buddingGeodes, UniformInt clusters) {
+                                                       GeodeCrystalSet specialCrystal, UniformInt buddingGeodes, UniformInt clusters, float gemLayerSize,
+                                                       GeodeCrystalSet quartz, UniformInt buddingQuartzGeodes, UniformInt quartzClusters, float quartzLayerSize) {
 
-        var quartzLayer = new GeodeLayer(MUNDANE_QUARTZ, buddingQuartzGeodes, quartzClusters, quartzLayerSize);
+        var quartzLayer = new GeodeLayer(quartz, buddingQuartzGeodes, quartzClusters, quartzLayerSize);
         var gemLayer = new GeodeLayer(specialCrystal, buddingGeodes, clusters, gemLayerSize);
 
-        return List.of(new GeodeLayer(AIR, airLayerSize),
-                quartzLayer, gemLayer, quartzLayer,
-                new GeodeLayer(MAGMA_BLOCK, 2.2f), new GeodeLayer(BLACKSTONE, 4.8f)
+        return List.of(new GeodeLayer(AIR, airLayerSize), quartzLayer, gemLayer, quartzLayer,
+                new GeodeLayer(MAGMA_BLOCK, 1.2f), new GeodeLayer(BLACKSTONE, 1.8f)
         );
     }
 }

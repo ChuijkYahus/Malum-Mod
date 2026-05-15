@@ -40,7 +40,7 @@ public class GeodeCrystalClusterBlock extends CrystalGeodeBlock implements Simpl
     }
 
     public GeodeCrystalClusterBlock(BlockBehaviour.Properties properties) {
-        super(properties);
+        super(properties.lightLevel(s -> (s.getValue(AGE) + 2) * 3));
         registerDefaultState(defaultBlockState().setValue(WATERLOGGED, false).setValue(FACING, Direction.UP));
 
     }
