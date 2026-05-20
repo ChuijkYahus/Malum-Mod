@@ -339,16 +339,12 @@ public class MalumCreativeTab extends CategorizedCreativeTab {
                                 CompactBlocks.BLOCK_OF_CTHONIC_GOLD, Materials.CTHONIC_GOLD_ORE,
                                 Materials.CTHONIC_GOLD, Materials.CTHONIC_GOLD_FRAGMENT
                         )
-                        .addItems(Materials.MUNDANE_QUARTZ::addToCreativeTab)
                         .nextLine()
+                        .addItems(Materials.MUNDANE_QUARTZ::addToCreativeTab)
                         .addItems(Materials.VIVID_AMETRINE::addToCreativeTab)
-                        .addItems(Materials.JAGGED_ONYX::addToCreativeTab)
                         .nextLine()
                         .addItems(Materials.MARINE_AGATE::addToCreativeTab)
-                        .addItems(Materials.PERFECT_QUARTZ::addToCreativeTab)
-                        .nextLine()
                         .addItems(Materials.RUGGED_CITRINE::addToCreativeTab)
-                        .addItems(Materials.BLAZING_CARNELIAN::addToCreativeTab)
                         .bake();
                 createCategory(ETHERWORKS_CATEGORY)
                         .addItems(

@@ -1,0 +1,10 @@
+{
+  "variants": {
+    "lit=false": {
+      "model": "malum:block/marine_agate_lamp"
+    },
+    "lit=true": {
+      "model": "malum:block/marine_agate_lamp_lit"
+    }
+  }
+}

@@ -8,6 +8,7 @@ import net.minecraft.nbt.NbtOps;
 import net.minecraft.world.level.ChunkPos;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.levelgen.structure.BoundingBox;
+import team.lodestar.lodestone.modules.toolkit.codec.LodestoneCodecs;
 import team.lodestar.lodestone.modules.toolkit.worldgen.MutableBoundingBox;
 
 import java.util.Collection;
@@ -19,7 +20,7 @@ import static com.sammy.malum.MalumMod.LOGGER;
 public record MalumGeodePieceData(Map<BlockPos, BlockState> toPlace) {
 
     public static final Codec<MalumGeodePieceData> CODEC =
-            Codec.unboundedMap(BlockPos.CODEC, BlockState.CODEC)
+            Codec.unboundedMap(LodestoneCodecs.BLOCK_POS, BlockState.CODEC)
                     .xmap(
                             MalumGeodePieceData::new,
                             MalumGeodePieceData::toPlace
@@ -35,19 +36,6 @@ public record MalumGeodePieceData(Map<BlockPos, BlockState> toPlace) {
 
     public static MalumGeodePieceData load(CompoundTag tag) {
         return MalumGeodePieceData.CODEC.parse(NbtOps.INSTANCE, tag.get("data")).resultOrPartial(LOGGER::error).orElse(null);
-    }
-
-    public static MalumGeodePieceData filtered(Map<BlockPos, MalumGeodeStructure.GeodePlacementData> blockMap, ChunkPos chunkPos) {
-        HashMap<BlockPos, BlockState> delayered = new HashMap<>();
-        for (BlockPos pos : blockMap.keySet()) {
-            var filtered = new ChunkPos(pos);
-            if (!filtered.equals(chunkPos)) {
-                continue;
-            }
-            BlockState state = blockMap.get(pos).state();
-            delayered.put(pos, state);
-        }
-        return new MalumGeodePieceData(delayered);
     }
 
     public BoundingBox boundingBox() {

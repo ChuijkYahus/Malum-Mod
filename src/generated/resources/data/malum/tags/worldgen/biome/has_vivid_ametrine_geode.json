@@ -1,5 +1,8 @@
 {
   "values": [
-    "#c:is_forest"
+    "#c:is_forest",
+    "#c:is_plains",
+    "#c:is_jungle",
+    "minecraft:cherry_grove"
   ]
 }

@@ -54,13 +54,13 @@ public class MalumBlockStateSmithTypes {
     });
 
     public static BlockStateSmith<Block> SOULSTONE_BUD = new BlockStateSmith<>(Block.class, ItemModelSmithTypes.GENERATED_ITEM, (block, provider) -> {
-        String name = provider.getBlockName(block);
-        String path = "block/soulstone/" + name;
+        var name = provider.getBlockName(block);
+        var modelPath = "block/soulstone/" + name;
         provider.getVariantBuilder(block).forAllStates(s -> {
             var direction = s.getValue(SoulstoneBudBlock.FACING);
             var stageProperty = block instanceof SoulstoneBudBlock ? SoulstoneBudBlock.STAGE : ArchaicSoulstoneBudBlock.STAGE;
             int stage = s.getValue(stageProperty);
-            var model = provider.models().getExistingFile(malumPath(path + stage));
+            var model = provider.models().getExistingFile(malumPath(modelPath + stage));
             return ConfiguredModel.builder().modelFile(model)
                     .rotationX(direction == Direction.DOWN ? 180 : direction.getAxis().isHorizontal() ? 90 : 0)
                     .rotationY(direction.getAxis().isVertical() ? 0 : (((int) direction.toYRot() + 180)) % 360)
@@ -70,7 +70,6 @@ public class MalumBlockStateSmithTypes {
 
     public static BlockStateSmith<GeodeCrystalClusterBlock> GEODE_CRYSTAL_CLUSTER = new BlockStateSmith<>(GeodeCrystalClusterBlock.class, ItemModelSmithTypes.GENERATED_ITEM, (block, provider) -> {
         var name = provider.getBlockName(block);
-
         provider.getVariantBuilder(block).forAllStatesExcept(s -> {
             var direction = s.getValue(SoulstoneBudBlock.FACING);
             int value = s.getValue(GeodeCrystalClusterBlock.AGE);

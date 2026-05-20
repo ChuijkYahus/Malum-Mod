@@ -45,7 +45,6 @@ public class MalumTags {
         public static final TagKey<Item> REPLENISHING_ENCHANTABLE = tag("enchantable/replenishing");
         public static final TagKey<Item> CAPACITOR_ENCHANTABLE = tag("enchantable/capacitor");
 
-
         public static final TagKey<Item> SPIRITS = tag("spirits");
         public static final TagKey<Item> ASPECTED_SPIRITS = tag("aspected_spirits");
         public static final TagKey<Item> MOB_DROPS = tag("mob_drops");
@@ -123,7 +122,6 @@ public class MalumTags {
         public static final TagKey<Block> PREFERRED_SOULSTONE_BUD_SURFACE = tag("preferred_soulstone_bud_surface");
         public static final TagKey<Block> PREFERRED_WITCHHAZEL_SURFACE = tag("preferred_witchhazel_surface");
         public static final TagKey<Block> PREFERRED_EBONY_SURFACE = tag("preferred_ebony_surface");
-
 
         public static final TagKey<Block> UNCHAINED_RITE_CATALYST = tag("unchained_rite_catalyst");
         public static final TagKey<Block> IS_RITE_IMMUNE = tag("is_rite_immune");
@@ -214,17 +212,6 @@ public class MalumTags {
         public static final TagKey<Biome> HAS_SOULSTONE = tag("has_soulstone");
         public static final TagKey<Biome> HAS_BRILLIANCE = tag("has_brilliant");
         public static final TagKey<Biome> HAS_CTHONIC_GOLD = tag("has_cthonic_gold");
-
-
-        public static final TagKey<Biome> HAS_QUARTZ_GEODE = tag("has_quartz_geode");
-        public static final TagKey<Biome> HAS_VIVID_AMETRINE_GEODE = tag("has_vivid_ametrine_geode");
-        public static final TagKey<Biome> HAS_MARINE_AGATE_GEODE = tag("has_marine_agate_geode");
-        public static final TagKey<Biome> HAS_RUGGED_CITRINE_GEODE = tag("has_rugged_citrine_geode");
-        public static final TagKey<Biome> HAS_NETHER_QUARTZ_GEODE = tag("has_nether_quartz_geode");
-        public static final TagKey<Biome> HAS_JAGGED_ONYX_GEODE = tag("has_jagged_onyx_geode");
-        public static final TagKey<Biome> HAS_PERFECT_QUARTZ_GEODE = tag("has_perfect_quartz_geode");
-        public static final TagKey<Biome> HAS_BLAZING_CARNELIAN_GEODE = tag("has_blazing_carnelian_geode");
-
 
         public static final TagKey<Biome> HAS_RUNEWOOD = tag("has_runewood");
         public static final TagKey<Biome> HAS_RARE_RUNEWOOD = tag("has_rare_runewood");

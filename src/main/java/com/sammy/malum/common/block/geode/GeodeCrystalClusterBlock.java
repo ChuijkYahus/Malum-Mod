@@ -30,9 +30,9 @@ public class GeodeCrystalClusterBlock extends CrystalGeodeBlock implements Simpl
     public static final IntegerProperty AGE = BlockStateProperties.AGE_2;
 
     protected static final VoxelShapeRotator[] SHAPES = new VoxelShapeRotator[]{
-            new VoxelShapeRotator(box(6, 0, 6, 10, 6, 10)),
+            new VoxelShapeRotator(box(4, 0, 4, 12, 6, 12)),
             new VoxelShapeRotator(box(4, 0, 4, 12, 8, 12)),
-            new VoxelShapeRotator(box(2, 0, 2, 14, 12, 14))};
+            new VoxelShapeRotator(box(3, 0, 3, 13, 12, 13))};
 
     @Override
     public MapCodec<GeodeCrystalClusterBlock> codec() {

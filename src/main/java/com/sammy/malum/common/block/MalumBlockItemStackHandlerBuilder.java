@@ -5,6 +5,7 @@ import net.minecraft.world.item.ItemStack;
 import team.lodestar.lodestone.modules.toolkit.blockentity.LodestoneBlockEntity;
 import team.lodestar.lodestone.modules.toolkit.inventory.*;
 
+import java.util.function.BiPredicate;
 import java.util.function.Predicate;
 
 public class MalumBlockItemStackHandlerBuilder extends LodestoneItemStackBlockHandlerBuilder {
@@ -25,6 +26,11 @@ public class MalumBlockItemStackHandlerBuilder extends LodestoneItemStackBlockHa
 
     @Override
     public MalumBlockItemStackHandlerBuilder setInputPredicate(Predicate<ItemStack> inputPredicate) {
+        return (MalumBlockItemStackHandlerBuilder) super.setInputPredicate(inputPredicate);
+    }
+
+    @Override
+    public MalumBlockItemStackHandlerBuilder setInputPredicate(BiPredicate<LodestoneItemStackHandler, ItemStack> inputPredicate) {
         return (MalumBlockItemStackHandlerBuilder) super.setInputPredicate(inputPredicate);
     }
 

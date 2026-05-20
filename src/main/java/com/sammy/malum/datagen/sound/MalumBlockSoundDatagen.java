@@ -88,10 +88,6 @@ public class MalumBlockSoundDatagen extends MalumSoundDatagenWrapper {
         addCrystalSetSounds(MalumContent.Materials.MARINE_AGATE, 1.2f);
         addCrystalSetSounds(MalumContent.Materials.RUGGED_CITRINE, 0.8f);
 
-        addCrystalSetSounds(MalumContent.Materials.JAGGED_ONYX, 1.6f);
-        addCrystalSetSounds(MalumContent.Materials.PERFECT_QUARTZ, 1.2f);
-        addCrystalSetSounds(MalumContent.Materials.BLAZING_CARNELIAN, 0.8f);
-
         //Metals & Misc
         add(MalumBlockSoundEvents.BLOCK_OF_ARCANE_CHARCOAL, "block/gemstone");
         add(MalumBlockSoundEvents.BLOCK_OF_EBONY, "block/gemstone");

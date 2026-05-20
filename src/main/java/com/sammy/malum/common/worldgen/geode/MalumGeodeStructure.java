@@ -27,8 +27,13 @@ import net.minecraft.world.level.levelgen.structure.StructureType;
 import net.minecraft.world.level.levelgen.structure.pieces.StructurePiecesBuilder;
 import net.minecraft.world.level.levelgen.synth.NormalNoise;
 import org.jetbrains.annotations.NotNull;
+import org.spongepowered.include.com.google.common.collect.Multimap;
+import org.spongepowered.include.com.google.common.collect.Multimaps;
 
 import java.util.*;
+import java.util.function.Function;
+import java.util.function.Supplier;
+import java.util.stream.DoubleStream;
 
 import static net.minecraft.core.SectionPos.sectionToBlockCoord;
 
@@ -66,8 +71,8 @@ public class MalumGeodeStructure extends Structure {
         var random = context.random();
         var levelHeightAccessor = context.heightAccessor();
         var worldgenContext = new WorldGenerationContext(context.chunkGenerator(), levelHeightAccessor);
-
-        var center = chunkPos.getBlockAt(random.nextInt(16), placement.sample(random, worldgenContext), random.nextInt(16));
+        int y = placement.sample(random, worldgenContext);
+        var center = chunkPos.getBlockAt(random.nextInt(16), y, random.nextInt(16));
 
 
         var blockSettings = geodeConfiguration.geodeBlockSettings();
@@ -77,13 +82,9 @@ public class MalumGeodeStructure extends Structure {
         double geodeSize = layers.stream().mapToDouble(GeodeLayer::size).sum();
         var normalNoise = NormalNoise.create(random, -4, 1.0);
 
-        var anchorData = getAnchorData(anchorSettings.anchors(), center, random);
-        var crackData = getAnchorData(crackSettings.cracks(), center, random);
+        var anchorData = getAnchorData(anchorSettings.anchors(), () -> center, random);
+        var anchorDistances = calculateDistances(anchorData, normalNoise, random, geodeSize, 1);
 
-        var anchorDistances = calculateDistances(anchorData, normalNoise, geodeSize);
-        var crackDistances = calculateDistances(crackData, normalNoise, geodeSize);
-        var anchorEntries = anchorDistances.data();
-        var crackEntries = crackDistances.data();
 
         var blocksByLayer = new HashMap<GeodeLayer, HashMap<BlockPos, GeodePlacementData>>();
         var clustersByLayer = new HashMap<GeodeLayer, HashMap<BlockPos, GeodePlacementData>>();
@@ -94,59 +95,63 @@ public class MalumGeodeStructure extends Structure {
                 clustersByLayer.put(layer, new HashMap<>());
             }
         }
-        var airPresumably = layers.getFirst();
-        for (BlockPos pos : anchorEntries.keySet()) {
-            var delta = anchorEntries.get(pos);
+        for (BlockPos pos : anchorDistances.keySet()) {
+            var delta = anchorDistances.get(pos);
+            if (delta > 1) {
+                continue;
+            }
             var layer = GeodeLayer.getLayer(blockSettings, delta);
             var map = blocksByLayer.get(layer);
-            if (crackEntries.containsKey(pos)) {
-                double crackDelta = crackEntries.get(pos);
-                if (crackDelta < 0.5f) {
-                    map.put(pos, new GeodePlacementData(airPresumably, pos, Blocks.AIR.defaultBlockState()));
-                    continue;
-                }
-            }
             map.put(pos, new GeodePlacementData(layer, random, pos));
         }
+
+        var airPresumably = layers.getFirst();
+        var airMap = blocksByLayer.get(airPresumably);
+        var airState = Blocks.AIR.defaultBlockState();
+        var lastLayer = blocksByLayer.get(layers.getLast());
+        var crackData = getAnchorData(crackSettings.cracks(), () -> getCrackPosition(lastLayer, random), random);
+        var crackDistances = calculateDistances(crackData, normalNoise, random, geodeSize, crackSettings.generateCrackChance());
+        for (BlockPos pos : crackDistances.keySet()) {
+            double crackDelta = crackDistances.get(pos);
+            if (crackDelta < 0.8f) {
+                airMap.put(pos, new GeodePlacementData(airPresumably, pos, airState));
+            }
+        }
+
+
         for (GeodeLayer layer : layers) {
             var buddingOptional = layer.buddingGeodes();
-            var map = blocksByLayer.get(layer);
+            var blockMap = blocksByLayer.get(layer);
             if (buddingOptional.isPresent()) {
-                for (BlockPos pos : map.keySet()) {
-                    var data = map.get(pos);
+                for (BlockPos pos : blockMap.keySet()) {
+                    var data = blockMap.get(pos);
                 }
             }
             if (layer.hasCrystals()) {
                 var clusterMap = clustersByLayer.get(layer);
-                var info = layer.getCrystals();
-                for (BlockPos pos : map.keySet()) {
-                    if (map.get(pos).state.isAir()) {
+                var crystalInfo = layer.getCrystals();
+                for (BlockPos pos : blockMap.keySet()) {
+                    if (airMap.containsKey(pos)) {
                         continue;
                     }
                     for (Direction direction : Direction.values()) {
                         var clusterPos = pos.relative(direction);
-
-                        if (!anchorEntries.containsKey(clusterPos)) {
+                        if (!airMap.containsKey(clusterPos)) {
                             continue;
                         }
-                        if (clusterMap.containsKey(pos)) {
+                        if (clusterMap.containsKey(clusterPos)) {
                             if (random.nextBoolean()) {
                                 continue;
                             }
                         }
-                        var clusterDelta = anchorEntries.get(clusterPos);
-                        var clusterLayer = GeodeLayer.getLayer(blockSettings, clusterDelta);
-                        if (!clusterLayer.equals(airPresumably)) {
-                            continue;
-                        }
-                        var clusterState = info.state().getState(random, clusterPos);
+                        var clusterState = crystalInfo.state().getState(random, clusterPos);
                         if (clusterState.hasProperty(BlockStateProperties.FACING)) {
                             clusterState = clusterState.setValue(BlockStateProperties.FACING, direction);
                         }
                         if (clusterState.hasProperty(GeodeCrystalClusterBlock.AGE)) {
                             clusterState = clusterState.setValue(GeodeCrystalClusterBlock.AGE, random.nextInt(3));
                         }
-                        clusterMap.put(pos, new GeodePlacementData(layer, clusterPos, clusterState));
+                        clusterMap.put(clusterPos, new GeodePlacementData(layer, clusterPos, clusterState));
                     }
                 }
             }
@@ -188,8 +193,16 @@ public class MalumGeodeStructure extends Structure {
         return Optional.of(new GenerationStub(center, (b) -> createGeodePieces(b, context, baked, geodeSize)));
     }
 
+    private BlockPos getCrackPosition(HashMap<BlockPos, GeodePlacementData> outerLayer, RandomSource random) {
+        var set = outerLayer.keySet();
+        if (set.isEmpty()) {
+            return BlockPos.ZERO;
+        }
+        var shuffled = WorldgenHelper.shuffle(set, random);
+        return shuffled.getFirst();
+    }
 
-    private List<AnchorData> getAnchorData(List<GeodeAnchor> anchors, BlockPos center, RandomSource random) {
+    private List<AnchorData> getAnchorData(List<GeodeAnchor> anchors, Supplier<BlockPos> anchorPos, RandomSource random) {
         List<AnchorData> anchorData = new ArrayList<>();
         for (GeodeAnchor anchor : anchors) {
             var offset = anchor.anchorOffset();
@@ -198,14 +211,19 @@ public class MalumGeodeStructure extends Structure {
             int z = offset.sample(random);
             float scale = anchor.scale().sample(random);
             float noise = anchor.noiseIntensity().sample(random);
-            anchorData.add(new AnchorData(center.offset(x, y, z), scale, noise));
+            var pos = anchorPos.get();
+            anchorData.add(new AnchorData(pos.offset(x, y, z), scale, noise));
         }
         return anchorData;
     }
 
-    private MalumGeodeData calculateDistances(List<AnchorData> anchorData, NormalNoise normalnoise, double geodeSize) {
-        var data = new MalumGeodeData();
+    private HashMap<BlockPos, Double> calculateDistances(List<AnchorData> anchorData, NormalNoise normalnoise, RandomSource randomSource, double geodeSize, double chance) {
+        var data = new HashMap<BlockPos, Double>();
+        var unbaked = HashMultimap.<BlockPos, Double>create();
         for (AnchorData anchor : anchorData) {
+            if (randomSource.nextDouble() > chance) {
+                continue;
+            }
             int maxDist = Mth.floor(anchor.scale * geodeSize);
             int padding = (int) (maxDist * 1.25f);
             var anchorCenter = anchor.pos;
@@ -215,8 +233,13 @@ public class MalumGeodeStructure extends Structure {
                 double distance = Math.sqrt(pos.distSqr(anchorCenter)) / maxDist;
                 double noise = normalnoise.getValue(pos.getX(), pos.getY(), pos.getZ()) * anchor.noise;
                 double value = distance + distance * noise;
-                data.push(pos.immutable(), value);
+                unbaked.put(pos.immutable(), value);
             }
+        }
+        for (BlockPos pos : unbaked.keys()) {
+            double min = unbaked.get(pos).stream()
+                    .mapToDouble(d -> d).min().orElseThrow();
+            data.put(pos, min);
         }
         return data;
     }
@@ -224,15 +247,30 @@ public class MalumGeodeStructure extends Structure {
     private void createGeodePieces(StructurePiecesBuilder piecesBuilder, GenerationContext context, HashMap<BlockPos, GeodePlacementData> blockMap, double geodeSize) {
         int radius = SectionPos.blockToSectionCoord(geodeSize) + 3;
 
+        HashMap<ChunkPos, HashMap<BlockPos, BlockState>> data = new HashMap<>();
+
+        for (BlockPos pos : blockMap.keySet()) {
+            var offsetChunkPos = new ChunkPos(pos);
+            if (!data.containsKey(offsetChunkPos)) {
+                data.put(offsetChunkPos, new HashMap<>());
+            }
+            var map = data.get(offsetChunkPos);
+            var entry = blockMap.get(pos);
+            map.put(pos, entry.state());
+        }
+
         var chunkPos = context.chunkPos();
         for (int chunkX = -radius; chunkX <= radius; chunkX++) {
             for (int chunkZ = -radius; chunkZ <= radius; chunkZ++) {
                 var offsetChunkPos = new ChunkPos(chunkPos.x + chunkX, chunkPos.z + chunkZ);
-                var pieceData = MalumGeodePieceData.filtered(blockMap, offsetChunkPos);
-                if (pieceData.toPlace().isEmpty()) {
+                if (!data.containsKey(offsetChunkPos)) {
                     continue;
                 }
-                piecesBuilder.addPiece(new MalumGeodePiece(pieceData));
+                var map = data.get(offsetChunkPos);
+                if (map.isEmpty()) {
+                    continue;
+                }
+                piecesBuilder.addPiece(new MalumGeodePiece(new MalumGeodePieceData(map)));
             }
         }
     }
