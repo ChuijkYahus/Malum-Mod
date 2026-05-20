@@ -67,7 +67,7 @@ public class WandTinkererBlockEntity extends LodestoneBlockEntity implements IIn
     }
 
     public boolean canAcceptItem(LodestoneItemStackHandler handler, ItemStack stack) {
-        var presentStacks = handler.getStacks();
+        var presentStacks = handler.getNonEmptyStacks();
         if (presentStacks.isEmpty()) {
             return true;
         }
