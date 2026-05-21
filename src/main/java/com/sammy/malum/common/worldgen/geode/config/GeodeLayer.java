@@ -7,6 +7,7 @@ import com.sammy.malum.registry.common.util.GeodeCrystalSet;
 import net.minecraft.util.valueproviders.IntProvider;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.levelgen.feature.stateproviders.BlockStateProvider;
+import net.minecraft.world.level.levelgen.feature.stateproviders.SimpleStateProvider;
 
 import java.util.Optional;
 
@@ -46,13 +47,26 @@ public record GeodeLayer(BlockStateProvider block,
         this(simple(block), Optional.empty(), Optional.empty(), size);
     }
 
+    public boolean hasBuddingGeodes() {
+        return buddingGeodes.isPresent();
+    }
+
     public boolean hasCrystals() {
         return crystalClusters.isPresent();
+    }
+
+    public SpecialBlockInfo getBuddingGeodes() {
+        assert buddingGeodes.isPresent();
+        return buddingGeodes.get();
     }
 
     public SpecialBlockInfo getCrystals() {
         assert crystalClusters.isPresent();
         return crystalClusters.get();
+    }
+
+    public boolean isAir() {
+        return block instanceof SimpleStateProvider provider && provider.state.isAir();
     }
 
     public static GeodeLayer getLayer(MalumGeodeLayerSettings settings, double delta) {

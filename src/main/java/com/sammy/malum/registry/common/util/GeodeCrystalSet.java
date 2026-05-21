@@ -53,10 +53,11 @@ public class GeodeCrystalSet {
 
         var clusterProperties = MalumOreBlockProperties.CRYSTAL_CLUSTER(clusterSound);
         var geodeProperties = MalumOreBlockProperties.CRYSTAL_GEODE(geodeSound);
+        var buddingProperties = MalumOreBlockProperties.CRYSTAL_GEODE(geodeSound).randomTicks();
         var lampProperties = MalumOreBlockProperties.CRYSTAL_LAMP(lampSound);
         cluster = registerItemNameBlock(name("%s_cluster"), id, () -> new GeodeCrystalClusterBlock(clusterProperties));
         geode = registerBlock(name("%s_geode"), () -> new CrystalGeodeBlock(geodeProperties));
-        budding = registerBlock(name("budding_%s"), () -> new BuddingGeodeBlock(geodeProperties, cluster.block().get()));
+        budding = registerBlock(name("budding_%s"), () -> new BuddingGeodeBlock(buddingProperties, cluster.block().get()));
         polished = registerBlock(name("polished_%s"), () -> new Block(geodeProperties));
         lamp = registerBlock(name("%s_lamp"), () -> new CrystalLampBlock(lampProperties));
 
@@ -72,7 +73,8 @@ public class GeodeCrystalSet {
                         polished,
                         budding,
                         geode,
-                        cluster
+                        cluster,
+                        lamp
                 )
                 .bake();
     }

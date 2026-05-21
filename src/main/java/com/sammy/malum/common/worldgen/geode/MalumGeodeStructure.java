@@ -31,6 +31,7 @@ import org.spongepowered.include.com.google.common.collect.Multimap;
 import org.spongepowered.include.com.google.common.collect.Multimaps;
 
 import java.util.*;
+import java.util.function.BiConsumer;
 import java.util.function.Function;
 import java.util.function.Supplier;
 import java.util.stream.DoubleStream;
@@ -86,13 +87,17 @@ public class MalumGeodeStructure extends Structure {
         var anchorDistances = calculateDistances(anchorData, normalNoise, random, geodeSize, 1);
 
 
-        var blocksByLayer = new HashMap<GeodeLayer, HashMap<BlockPos, GeodePlacementData>>();
-        var clustersByLayer = new HashMap<GeodeLayer, HashMap<BlockPos, GeodePlacementData>>();
+        var blocks = new HashMap<GeodeLayer, HashMap<BlockPos, GeodePlacementData>>();
+        var crystals = new HashMap<GeodeLayer, HashMap<BlockPos, GeodePlacementData>>();
+        var exposedBuddingGeodes = new HashMap<GeodeLayer, HashMap<BlockPos, GeodePlacementData>>();
 
         for (GeodeLayer layer : layers) {
-            blocksByLayer.put(layer, new HashMap<>());
+            blocks.put(layer, new HashMap<>());
             if (layer.hasCrystals()) {
-                clustersByLayer.put(layer, new HashMap<>());
+                crystals.put(layer, new HashMap<>());
+            }
+            if (layer.hasBuddingGeodes()) {
+                exposedBuddingGeodes.put(layer, new HashMap<>());
             }
         }
         for (BlockPos pos : anchorDistances.keySet()) {
@@ -101,14 +106,14 @@ public class MalumGeodeStructure extends Structure {
                 continue;
             }
             var layer = GeodeLayer.getLayer(blockSettings, delta);
-            var map = blocksByLayer.get(layer);
+            var map = blocks.get(layer);
             map.put(pos, new GeodePlacementData(layer, random, pos));
         }
 
         var airPresumably = layers.getFirst();
-        var airMap = blocksByLayer.get(airPresumably);
+        var airMap = blocks.get(airPresumably);
         var airState = Blocks.AIR.defaultBlockState();
-        var lastLayer = blocksByLayer.get(layers.getLast());
+        var lastLayer = blocks.get(layers.getLast());
         var crackData = getAnchorData(crackSettings.cracks(), () -> getCrackPosition(lastLayer, random), random);
         var crackDistances = calculateDistances(crackData, normalNoise, random, geodeSize, crackSettings.generateCrackChance());
         for (BlockPos pos : crackDistances.keySet()) {
@@ -120,15 +125,27 @@ public class MalumGeodeStructure extends Structure {
 
 
         for (GeodeLayer layer : layers) {
-            var buddingOptional = layer.buddingGeodes();
-            var blockMap = blocksByLayer.get(layer);
-            if (buddingOptional.isPresent()) {
+            var blockMap = blocks.get(layer);
+            if (layer.hasBuddingGeodes()) {
+                var exposedMap = exposedBuddingGeodes.get(layer);
+                var buddingInfo = layer.getBuddingGeodes();
+
                 for (BlockPos pos : blockMap.keySet()) {
-                    var data = blockMap.get(pos);
+                    boolean hasAir = false;
+                    for (Direction direction : Direction.values()) {
+                        if (airMap.containsKey(pos.relative(direction))) {
+                            hasAir = true;
+                            break;
+                        }
+                    }
+                    if (hasAir) {
+                        var buddingState = buddingInfo.state().getState(random, pos);
+                        exposedMap.put(pos, new GeodePlacementData(layer, pos, buddingState));
+                    }
                 }
             }
             if (layer.hasCrystals()) {
-                var clusterMap = clustersByLayer.get(layer);
+                var clusterMap = crystals.get(layer);
                 var crystalInfo = layer.getCrystals();
                 for (BlockPos pos : blockMap.keySet()) {
                     if (airMap.containsKey(pos)) {
@@ -160,7 +177,7 @@ public class MalumGeodeStructure extends Structure {
         HashMap<BlockPos, GeodePlacementData> baked = new HashMap<>();
         for (int i = layers.size() - 1; i >= 0; i--) {
             var layer = layers.get(i);
-            var map = blocksByLayer.get(layer);
+            var map = blocks.get(layer);
             for (BlockPos pos : map.keySet()) {
                 var data = map.get(pos);
                 baked.put(pos, data);
@@ -169,28 +186,45 @@ public class MalumGeodeStructure extends Structure {
         for (GeodeLayer layer : layers) {
             if (layer.hasCrystals()) {
                 var data = layer.getCrystals();
-                var crystals = clustersByLayer.get(layer);
-                var set = crystals.keySet();
-                var shuffle = WorldgenHelper.shuffle(set, random);
-                var amount = data.amount();
-                int roll = amount.sample(random);
-                roll = Math.min(roll, shuffle.size());
-                for (int i = 0; i < roll; i++) {
-                    var cluster = shuffle.get(i);
-                    var clusterData = crystals.get(cluster);
-                    var pos = clusterData.pos;
-                    var state = clusterData.state;
-                    if (baked.containsKey(pos)) {
-                        if (!baked.get(pos).layer.equals(airPresumably)) {
-                            continue;
-                        }
-                    }
-                    baked.put(pos, new GeodePlacementData(layer, pos, state));
-                }
+                pickAndAddRandom(crystals.get(layer), baked, random, data.amount(), true);
+            }
+
+            if (layer.hasBuddingGeodes()) {
+                var data = layer.getBuddingGeodes();
+
+                int roll = data.amount().sample(random);
+                int count = roll / 2;
+                int exposedCount = roll - count;
+                pickAndAddRandom(blocks.get(layer), baked, random, count, false);
+                pickAndAddRandom(exposedBuddingGeodes.get(layer), baked, random, exposedCount, false);
             }
         }
 
         return Optional.of(new GenerationStub(center, (b) -> createGeodePieces(b, context, baked, geodeSize)));
+    }
+
+    private void pickAndAddRandom(HashMap<BlockPos, GeodePlacementData> map, HashMap<BlockPos, GeodePlacementData> baked, RandomSource random, IntProvider amount, boolean needsAir) {
+        int roll = amount.sample(random);
+        pickAndAddRandom(map, baked, random, roll, needsAir);
+    }
+
+    private void pickAndAddRandom(HashMap<BlockPos, GeodePlacementData> map, HashMap<BlockPos, GeodePlacementData> baked, RandomSource random, int amount, boolean needsAir) {
+        var set = map.keySet();
+        amount = Math.min(amount, set.size());
+        var shuffle = WorldgenHelper.shuffle(set, random);
+        for (int i = 0; i < amount; i++) {
+            var cluster = shuffle.get(i);
+            var entry = map.get(cluster);
+
+            var pos = entry.pos;
+            var state = entry.state;
+            if (baked.containsKey(pos)) {
+                if (baked.get(pos).layer.isAir() != needsAir) {
+                    continue;
+                }
+            }
+            baked.put(pos, new GeodePlacementData(entry.layer, pos, state));
+        }
     }
 
     private BlockPos getCrackPosition(HashMap<BlockPos, GeodePlacementData> outerLayer, RandomSource random) {
