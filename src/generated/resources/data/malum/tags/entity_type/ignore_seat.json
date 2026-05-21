@@ -1,0 +1,8 @@
+{
+  "values": [
+    {
+      "id": "#create:ignore_seat",
+      "required": false
+    }
+  ]
+}

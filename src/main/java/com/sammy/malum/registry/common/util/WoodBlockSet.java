@@ -35,13 +35,7 @@ import static com.sammy.malum.registry.common.MalumContent.registerBlockNoItem;
 import static com.sammy.malum.registry.common.item.MalumItemProperties.DEFAULT;
 import static team.lodestar.lodestone.modules.toolkit.block.LodestoneBlockProperties.copy;
 
-public class WoodBlockSet {
-
-    public final String id;
-
-    public String name(String name) {
-        return name.replace("%s", id);
-    }
+public class WoodBlockSet extends MalumRegistrySet {
 
     public final BlockItemTagKey allLogsTag, logsTag, strippedLogsTag;
 
@@ -79,7 +73,7 @@ public class WoodBlockSet {
 
     public WoodBlockSet(String id, String decoratedPrefix, Supplier<BlockSetType> blockSetType,
                         Supplier<LodestoneBlockProperties> properties) {
-        this.id = id;
+        super(id);
 
         allLogsTag = createTag("all_logs");
         logsTag = createTag("logs");

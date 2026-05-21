@@ -22,13 +22,7 @@ import java.util.function.Supplier;
 import static com.sammy.malum.registry.common.MalumTags.Blocks.*;
 import static net.minecraft.tags.BlockTags.*;
 
-public class RockBlockSet {
-
-    private final String id;
-
-    public String name(String name) {
-        return name.replace("%s", id);
-    }
+public class RockBlockSet extends MalumRegistrySet {
 
     public final BlockItemTagKey blocksTag;
     public final BlockItemTagKey stairsTag;
@@ -49,7 +43,7 @@ public class RockBlockSet {
                         Supplier<LodestoneBlockProperties> rockProperties,
                         Supplier<LodestoneBlockProperties> brickProperties,
                         Supplier<LodestoneBlockProperties> chiseledProperties) {
-        this.id = id;
+        super(id);
 
         blocksTag = createTag("blocks");
         stairsTag = createTag("stairs");

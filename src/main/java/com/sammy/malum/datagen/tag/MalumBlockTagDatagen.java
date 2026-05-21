@@ -1,7 +1,7 @@
 package com.sammy.malum.datagen.tag;
 
 import com.sammy.malum.MalumMod;
-import com.sammy.malum.datagen.MalumMetallicsDatagen;
+import com.sammy.malum.datagen.set.MalumMetallicsDatagen;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.PackOutput;
 import net.minecraft.resources.*;

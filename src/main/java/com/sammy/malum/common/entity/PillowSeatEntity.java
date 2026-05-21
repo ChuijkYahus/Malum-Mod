@@ -1,0 +1,132 @@
+package com.sammy.malum.common.entity;
+
+import com.sammy.malum.common.block.curiosities.poppetry.PoppetPillowBlock;
+import com.sammy.malum.registry.common.entity.MalumEntityTypes;
+import net.minecraft.nbt.CompoundTag;
+import net.minecraft.network.RegistryFriendlyByteBuf;
+import net.minecraft.network.syncher.SynchedEntityData;
+import net.minecraft.server.level.ServerLevel;
+import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.TamableAnimal;
+import net.minecraft.world.entity.animal.Cat;
+import net.minecraft.world.entity.animal.Parrot;
+import net.minecraft.world.entity.animal.Wolf;
+import net.minecraft.world.entity.animal.frog.Frog;
+import net.minecraft.world.entity.monster.Skeleton;
+import net.minecraft.world.entity.monster.Slime;
+import net.minecraft.world.entity.monster.Spider;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.phys.AABB;
+import net.minecraft.world.phys.Vec3;
+
+import net.neoforged.neoforge.common.util.FakePlayer;
+import net.neoforged.neoforge.entity.IEntityWithComplexSpawn;
+
+@SuppressWarnings("NullableProblems")
+public class PillowSeatEntity extends Entity implements IEntityWithComplexSpawn {
+
+	public PillowSeatEntity(EntityType<?> entityType, Level level) {
+		super(entityType, level);
+	}
+
+	public PillowSeatEntity(Level level) {
+		this(MalumEntityTypes.PILLOW_SEAT.get(), level);
+		noPhysics = true;
+	}
+
+	@Override
+	public void setPos(double x, double y, double z) {
+		super.setPos(x, y, z);
+		AABB bb = getBoundingBox();
+		Vec3 diff = new Vec3(x, y, z).subtract(bb.getCenter());
+		setBoundingBox(bb.move(diff));
+	}
+
+	@Override
+	protected void positionRider(Entity entity, Entity.MoveFunction callback) {
+		if (hasPassenger(entity)) {
+			double heightOffset = this.getPassengerRidingPosition(entity).y - entity.getVehicleAttachmentPoint(this).y;
+			callback.accept(entity, this.getX(), 6.0 / 16.0 + heightOffset + getCustomEntitySeatOffset(entity), this.getZ());
+		}
+	}
+
+	@Override
+	public void onPassengerTurned(Entity entity) {
+		entity.setYHeadRot(entity.getYRot());
+	}
+
+	public static double getCustomEntitySeatOffset(Entity entity) {
+		if (entity instanceof Slime)
+			return 0.0f;
+		if (entity instanceof Parrot)
+			return 1 / 12f;
+		if (entity instanceof Skeleton)
+			return 1 / 8f;
+		if (entity instanceof Cat)
+			return 1 / 12f;
+		if (entity instanceof Wolf)
+			return 1 / 16f;
+		if (entity instanceof Frog)
+			return 1.5 / 16f;
+		if (entity instanceof Spider)
+			return 1 / 8.0;
+		return 0;
+	}
+
+	@Override
+	public void setDeltaMovement(Vec3 vec) {
+	}
+
+	@Override
+	public void tick() {
+        if (!(level() instanceof ServerLevel level)) {
+            return;
+        }
+        if (isVehicle() && level.getBlockState(blockPosition()).getBlock() instanceof PoppetPillowBlock<?>) {
+            return;
+        }
+        discard();
+    }
+
+	@Override
+	protected boolean canRide(Entity entity) {
+		// Fake Players (tested with deployers) have a BUNCH of weird issues, don't let
+		// them ride seats
+		return !(entity instanceof FakePlayer);
+	}
+
+	@Override
+	protected void removePassenger(Entity entity) {
+		super.removePassenger(entity);
+		if (entity instanceof TamableAnimal animal) {
+			animal.setInSittingPose(false);
+		}
+	}
+
+	@Override
+	public Vec3 getDismountLocationForPassenger(LivingEntity passenger) {
+		return super.getDismountLocationForPassenger(passenger).add(0, 0.5f, 0);
+	}
+
+	@Override
+	protected void defineSynchedData(SynchedEntityData.Builder builder) {
+	}
+
+	@Override
+	protected void readAdditionalSaveData(CompoundTag tag) {
+	}
+
+	@Override
+	protected void addAdditionalSaveData(CompoundTag tag) {
+	}
+
+	@Override
+	public void writeSpawnData(RegistryFriendlyByteBuf buffer) {
+	}
+
+	@Override
+	public void readSpawnData(RegistryFriendlyByteBuf additionalData) {
+	}
+}

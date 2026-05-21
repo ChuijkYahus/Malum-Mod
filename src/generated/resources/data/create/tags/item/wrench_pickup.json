@@ -1,13 +1,13 @@
 {
   "values": [
+    "malum:waveform_runewood_totem_base",
+    "malum:waveform_soulwood_totem_base",
     "malum:conjuncture_crystallarium",
     "malum:wavecharger",
     "malum:wavebanker",
     "malum:wavemaker",
     "malum:wavebreaker",
     "malum:gust_igniter",
-    "malum:wind_tunnel",
-    "malum:waveform_runewood_totem_base",
-    "malum:waveform_soulwood_totem_base"
+    "malum:wind_tunnel"
   ]
 }

@@ -1,0 +1,8 @@
+{
+  "parent": "malum:block/poppet_pillow",
+  "render_type": "minecraft:cutout",
+  "textures": {
+    "bottom": "malum:block/poppetry/pillow/soulwood_poppet_pillow_bottom",
+    "pillow": "malum:block/poppetry/pillow/blue_soulwood_poppet_pillow"
+  }
+}

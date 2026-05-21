@@ -30,6 +30,9 @@ public class EntityRenderers {
         register(MalumCultistEntityTypes.ENTROPY_CHARGE.get(), EntropyChargeRenderer::new);
 
         register(MalumEntityTypes.ASCENDING_BLOCK.get(), AscendingBlockRenderer::new);
+        register(MalumEntityTypes.PILLOW_SEAT.get(), NoopRenderer::new);
+
+
         register(MalumEntityTypes.NATURAL_SPIRIT.get(), FloatingItemRenderer::new);
 
         register(MalumEntityTypes.SCYTHE_BOOMERANG.get(), ScytheBoomerangRenderer::new);

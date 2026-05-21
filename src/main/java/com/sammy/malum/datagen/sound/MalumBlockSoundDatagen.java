@@ -1,7 +1,7 @@
 package com.sammy.malum.datagen.sound;
 
 import com.sammy.malum.registry.common.MalumContent;
-import com.sammy.malum.registry.common.util.GeodeCrystalSet;
+import com.sammy.malum.registry.common.util.GeodeCrystalRegistrySet;
 import com.sammy.malum.registry.common.util.MetallicsItemRegistryBundle;
 import com.sammy.malum.registry.common.sound.*;
 
@@ -203,7 +203,7 @@ public class MalumBlockSoundDatagen extends MalumSoundDatagenWrapper {
                 .setStepHitFallSoundPaths("minecraft:step"));
     }
 
-    public void addCrystalSetSounds(GeodeCrystalSet type, float pitch) {
+    public void addCrystalSetSounds(GeodeCrystalRegistrySet type, float pitch) {
 //        add(type.getClusterSound(), "block/ore/geode/cluster",
 //                b -> b.modifySounds(se -> se.pitch(pitch)));
 //

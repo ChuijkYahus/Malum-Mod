@@ -2,17 +2,13 @@ package com.sammy.malum.datagen.worldgen.structure;
 
 import com.sammy.malum.common.worldgen.geode.*;
 import com.sammy.malum.common.worldgen.geode.config.*;
-import com.sammy.malum.registry.common.MalumContent;
-import com.sammy.malum.registry.common.util.GeodeCrystalSet;
-import com.sammy.malum.registry.common.worldgen.MalumStructureTypes;
-import com.sammy.malum.registry.common.worldgen.MalumStructureTypes.StructureKeys;
+import com.sammy.malum.registry.common.util.GeodeCrystalRegistrySet;
 import net.minecraft.core.Vec3i;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.data.worldgen.BootstrapContext;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.util.valueproviders.UniformFloat;
-import net.minecraft.util.valueproviders.UniformInt;
 import net.minecraft.world.level.levelgen.VerticalAnchor;
 import net.minecraft.world.level.levelgen.heightproviders.UniformHeight;
 import net.minecraft.world.level.levelgen.structure.Structure;
@@ -28,7 +24,6 @@ import java.util.Optional;
 import static com.sammy.malum.datagen.worldgen.structure.StructureDatagen.*;
 import static com.sammy.malum.registry.common.MalumContent.Materials.*;
 import static com.sammy.malum.registry.common.MalumContent.Materials.MUNDANE_QUARTZ;
-import static com.sammy.malum.registry.common.MalumTags.Biomes.*;
 import static com.sammy.malum.registry.common.worldgen.MalumStructureTypes.StructureKeys.*;
 import static net.minecraft.util.valueproviders.UniformInt.of;
 import static net.minecraft.world.level.block.Blocks.*;
@@ -63,7 +58,7 @@ public class GeodeDatagen {
         geode(context, RUGGED_CITRINE_QUARTZ_GEODE, RUGGED_CITRINE);
     }
 
-    public static void geode(BootstrapContext<Structure> context, ResourceKey<Structure> key, GeodeCrystalSet set) {
+    public static void geode(BootstrapContext<Structure> context, ResourceKey<Structure> key, GeodeCrystalRegistrySet set) {
         float airPocket = 9f;
 
         var buddingQuartzGeodes = of(6, 8);

@@ -1,6 +1,7 @@
 package com.sammy.malum.datagen;
 
 import com.sammy.malum.common.data.map.*;
+import com.sammy.malum.datagen.set.MalumMetallicsDatagen;
 import com.sammy.malum.registry.common.util.WoodBlockSet;
 import com.sammy.malum.registry.common.util.data.BlockBundle;
 import com.sammy.malum.registry.common.util.data.BlockBundleWithWall;

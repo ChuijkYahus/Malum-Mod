@@ -4,9 +4,8 @@ import com.sammy.malum.common.block.ether.*;
 import com.sammy.malum.common.block.geode.GeodeCrystalClusterBlock;
 import com.sammy.malum.common.block.soulstone.SoulstoneBudBlock;
 import com.sammy.malum.common.block.storage.jar.*;
-import com.sammy.malum.registry.common.MalumContent;
 import com.sammy.malum.registry.common.item.*;
-import com.sammy.malum.registry.common.util.GeodeCrystalSet;
+import com.sammy.malum.registry.common.util.GeodeCrystalRegistrySet;
 import net.minecraft.*;
 import net.minecraft.advancements.critereon.*;
 import net.minecraft.core.*;
@@ -24,7 +23,6 @@ import net.minecraft.world.level.storage.loot.functions.*;
 import net.minecraft.world.level.storage.loot.parameters.*;
 import net.minecraft.world.level.storage.loot.predicates.*;
 import net.minecraft.world.level.storage.loot.providers.number.*;
-import net.neoforged.neoforge.registries.*;
 import team.lodestar.lodestone.modules.toolkit.block.*;
 
 import java.util.*;
@@ -36,7 +34,6 @@ import static com.sammy.malum.registry.common.MalumContent.Blight.*;
 import static com.sammy.malum.registry.common.MalumContent.*;
 import static com.sammy.malum.registry.common.MalumContent.BlockSets.*;
 import static com.sammy.malum.registry.common.MalumContent.Materials.*;
-import static team.lodestar.lodestone.helpers.DataHelper.*;
 
 public class MalumBlockLootTables extends LootTableProvider {
 
@@ -167,8 +164,8 @@ public class MalumBlockLootTables extends LootTableProvider {
             generatedValues.add(block);
         }
 
-        protected void addGeodeDrops(GeodeCrystalSet... sets) {
-            for (GeodeCrystalSet set : sets) {
+        protected void addGeodeDrops(GeodeCrystalRegistrySet... sets) {
+            for (GeodeCrystalRegistrySet set : sets) {
 
 
                 var cluster = set.getCluster().block().get();

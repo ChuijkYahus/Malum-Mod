@@ -233,6 +233,8 @@ public class MalumTags {
 
         public static final TagKey<EntityType<?>> CULTIST = tag("cultist");
 
+        public static final TagKey<EntityType<?>> IGNORE_SEAT = tag("ignore_seat");
+
         public static TagKey<EntityType<?>> tag(String path) {
             return TagKey.create(Registries.ENTITY_TYPE, MalumMod.malumPath(path));
         }
