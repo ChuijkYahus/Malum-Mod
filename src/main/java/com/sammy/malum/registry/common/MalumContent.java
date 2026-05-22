@@ -330,9 +330,9 @@ public class MalumContent {
         public static final GeodeCrystalSet MARINE_AGATE = new GeodeCrystalSet("marine_agate");
         public static final GeodeCrystalSet RUGGED_CITRINE = new GeodeCrystalSet("rugged_citrine");
 
-        public static final GeodeCrystalSet JAGGED_ONYX = new GeodeCrystalSet("jagged_onyx");
-        public static final GeodeCrystalSet PERFECT_QUARTZ = new GeodeCrystalSet("perfect_quartz");
-        public static final GeodeCrystalSet BLAZING_CARNELIAN = new GeodeCrystalSet("blazing_carnelian");
+//        public static final GeodeCrystalSet JAGGED_ONYX = new GeodeCrystalSet("jagged_onyx");
+//        public static final GeodeCrystalSet PERFECT_QUARTZ = new GeodeCrystalSet("perfect_quartz");
+//        public static final GeodeCrystalSet BLAZING_CARNELIAN = new GeodeCrystalSet("blazing_carnelian");
 
 
         public static final DeferredItem<Item> BLAZING_QUARTZ = register("blazing_quartz", MalumItemProperties::DEFAULT, Item::new);

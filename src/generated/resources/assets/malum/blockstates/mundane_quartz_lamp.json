@@ -1,0 +1,10 @@
+{
+  "variants": {
+    "lit=false": {
+      "model": "malum:block/mundane_quartz_lamp"
+    },
+    "lit=true": {
+      "model": "malum:block/mundane_quartz_lamp_lit"
+    }
+  }
+}

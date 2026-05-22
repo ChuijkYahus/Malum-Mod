@@ -1,0 +1,24 @@
+{
+  "placement": {
+    "type": "minecraft:random_spread",
+    "frequency": 0.7,
+    "salt": 20083232,
+    "separation": 3,
+    "spacing": 12,
+    "spread_type": "triangular"
+  },
+  "structures": [
+    {
+      "structure": "malum:vivid_ametrine_quartz_geode",
+      "weight": 1
+    },
+    {
+      "structure": "malum:marine_beryl_quartz_geode",
+      "weight": 1
+    },
+    {
+      "structure": "malum:rugged_citrine_quartz_geode",
+      "weight": 1
+    }
+  ]
+}

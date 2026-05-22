@@ -14,6 +14,7 @@ import com.sammy.malum.registry.common.item.MalumDataComponents;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.HolderLookup;
+import net.minecraft.core.NonNullList;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
@@ -29,6 +30,8 @@ import net.neoforged.neoforge.items.IItemHandler;
 import team.lodestar.lodestone.modules.toolkit.blockentity.IInventoryCapabilityProvider;
 import team.lodestar.lodestone.modules.toolkit.blockentity.LodestoneBlockEntity;
 import team.lodestar.lodestone.modules.toolkit.blockentity.LodestoneBlockEntityType;
+import team.lodestar.lodestone.modules.toolkit.inventory.LodestoneItemStackBlockHandler;
+import team.lodestar.lodestone.modules.toolkit.inventory.LodestoneItemStackHandler;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -50,17 +53,25 @@ public class WandTinkererBlockEntity extends LodestoneBlockEntity implements IIn
 
     public WandTinkererBlockEntity(LodestoneBlockEntityType<? extends WandTinkererBlockEntity> type, BlockPos pos, BlockState state) {
         super(type, pos, state);
-        coreParts = MalumBlockItemStackHandler.create(this, 6).limitItemSize(1).build();
-        headParts = MalumBlockItemStackHandler.create(this, 9).limitItemSize(1).build();
-        baseParts = MalumBlockItemStackHandler.create(this, 1).limitItemSize(1).build();
-        baubleParts = MalumBlockItemStackHandler.create(this, 1).limitItemSize(1).build();
-        ornamentParts = MalumBlockItemStackHandler.create(this, 1).limitItemSize(1).build();
+        coreParts = MalumBlockItemStackHandler.create(this, 6).setInputPredicate(this::canAcceptItem).limitItemSize(1).build();
+        headParts = MalumBlockItemStackHandler.create(this, 9).setInputPredicate(this::canAcceptItem).limitItemSize(1).build();
+        baseParts = MalumBlockItemStackHandler.create(this, 1).setInputPredicate(this::canAcceptItem).limitItemSize(1).build();
+        baubleParts = MalumBlockItemStackHandler.create(this, 1).setInputPredicate(this::canAcceptItem).limitItemSize(1).build();
+        ornamentParts = MalumBlockItemStackHandler.create(this, 1).setInputPredicate(this::canAcceptItem).limitItemSize(1).build();
 
         wandOutput = MalumBlockItemStackHandler.create(this, 1).limitItemSize(1).build();
     }
 
     public WandTinkererBlockEntity(BlockPos pos, BlockState state) {
         this(MalumBlockEntities.WAND_TINKERER.get(), pos, state);
+    }
+
+    public boolean canAcceptItem(LodestoneItemStackHandler handler, ItemStack stack) {
+        var presentStacks = handler.getNonEmptyStacks();
+        if (presentStacks.isEmpty()) {
+            return true;
+        }
+        return presentStacks.stream().allMatch(s -> s.getItem().equals(stack.getItem()));
     }
 
     public void handleInteraction(ServerLevel level, Player player, ItemStack item) {

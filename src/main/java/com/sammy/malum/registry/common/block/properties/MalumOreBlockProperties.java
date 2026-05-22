@@ -105,6 +105,15 @@ public class MalumOreBlockProperties {
                 .sound(soundType);
     }
 
+    public static LodestoneBlockProperties CRYSTAL_LAMP(SoundType soundType) {
+        return new LodestoneBlockProperties()
+                .requiresCorrectToolForDrops()
+                .needsPickaxe()
+                .needsIron()
+                .strength(1.5F, 64.0F)
+                .sound(soundType);
+    }
+
     public static LodestoneBlockProperties CRYSTAL_CLUSTER(SoundType soundType) {
         return new LodestoneBlockProperties()
                 .requiresCorrectToolForDrops()

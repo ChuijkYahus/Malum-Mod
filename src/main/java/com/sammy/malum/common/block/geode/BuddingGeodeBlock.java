@@ -46,6 +46,6 @@ public class BuddingGeodeBlock extends CrystalGeodeBlock {
     }
 
     public static boolean canClusterGrowAtState(BlockState state) {
-        return state.isAir() || state.is(Blocks.WATER) && state.getFluidState().getAmount() == 8;
+        return state.isAir() || state.getBlock() instanceof GeodeCrystalClusterBlock || state.is(Blocks.WATER) && state.getFluidState().getAmount() == 8;
     }
 }

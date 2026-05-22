@@ -16,6 +16,7 @@ import team.lodestar.lodestone.modules.core.easing.Easing;
 import team.lodestar.lodestone.modules.toolkit.blockentity.LodestoneBlockEntity;
 import team.lodestar.lodestone.modules.toolkit.inventory.InventoryInteractionResult;
 import team.lodestar.lodestone.modules.toolkit.inventory.LodestoneItemStackBlockHandler;
+import team.lodestar.lodestone.modules.toolkit.inventory.LodestoneItemStackHandler;
 
 import java.util.Collection;
 import java.util.function.*;
@@ -26,7 +27,7 @@ public class MalumBlockItemStackHandler extends LodestoneItemStackBlockHandler {
         return new MalumBlockItemStackHandlerBuilder(parent, slotCount);
     }
 
-    public MalumBlockItemStackHandler(LodestoneBlockEntity parent, int slotCount, int allowedItemSize, Predicate<ItemStack> inputPredicate, Runnable contentsChangeBehavior) {
+    public MalumBlockItemStackHandler(LodestoneBlockEntity parent, int slotCount, int allowedItemSize, BiPredicate<LodestoneItemStackHandler, ItemStack> inputPredicate, Runnable contentsChangeBehavior) {
         super(parent, slotCount, allowedItemSize, inputPredicate, contentsChangeBehavior);
     }
 

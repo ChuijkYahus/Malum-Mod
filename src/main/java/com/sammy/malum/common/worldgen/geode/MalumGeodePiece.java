@@ -37,11 +37,17 @@ public class MalumGeodePiece extends StructurePiece {
 
     @Override
     protected void addAdditionalSaveData(StructurePieceSerializationContext context, CompoundTag tag) {
+        if (data == null) {
+            return;
+        }
         data.save(tag);
     }
 
     @Override
     public void postProcess(WorldGenLevel level, StructureManager structureManager, ChunkGenerator generator, RandomSource random, BoundingBox box, ChunkPos chunkPos, BlockPos pos) {
+        if (data == null) {
+            return;
+        }
         Map<BlockPos, BlockState> toPlace = data.toPlace();
         for (BlockPos geodePos : toPlace.keySet()) {
             level.setBlock(geodePos, toPlace.get(geodePos), 2);

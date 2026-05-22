@@ -34,6 +34,7 @@ public class MalumCrystalDatagen {
             VariedBlockStateSmithTypes.VARIED_FULL_BLOCK.act(data, crystal.getGeode());
             BlockStateSmithTypes.FULL_BLOCK.act(data, crystal.getBudding(), crystal.getPolished());
             MalumBlockStateSmithTypes.GEODE_CRYSTAL_CLUSTER.act(data, crystal.getCluster());
+            BlockStateSmithTypes.LAMP_BLOCK.act(data, crystal.getLamp());
         }
         setTexturePath("");
     }

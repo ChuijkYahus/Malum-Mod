@@ -1,0 +1,10 @@
+{
+  "variants": {
+    "lit=false": {
+      "model": "malum:block/rugged_citrine_lamp"
+    },
+    "lit=true": {
+      "model": "malum:block/rugged_citrine_lamp_lit"
+    }
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "variants": {
+    "lit=false": {
+      "model": "malum:block/vivid_ametrine_lamp"
+    },
+    "lit=true": {
+      "model": "malum:block/vivid_ametrine_lamp_lit"
+    }
+  }
+}

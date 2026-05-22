@@ -1,14 +1,22 @@
 package com.sammy.malum.datagen;
 
 import com.sammy.malum.*;
+import com.sammy.malum.registry.common.MalumContent;
+import com.sammy.malum.registry.common.MalumContent.Materials;
+import com.sammy.malum.registry.common.util.GeodeCrystalSet;
 import net.minecraft.core.*;
 import net.minecraft.data.*;
 import net.minecraft.data.tags.*;
+import net.minecraft.tags.TagKey;
+import net.minecraft.world.level.biome.Biome;
+import net.minecraft.world.level.biome.Biomes;
 import net.neoforged.neoforge.common.data.*;
 import org.jetbrains.annotations.*;
 
 import java.util.concurrent.*;
+import java.util.function.Consumer;
 
+import static com.sammy.malum.registry.common.MalumContent.Materials.*;
 import static com.sammy.malum.registry.common.MalumTags.Biomes.*;
 import static net.minecraft.world.level.biome.Biomes.*;
 import static net.neoforged.neoforge.common.Tags.Biomes.*;
@@ -19,6 +27,7 @@ public class MalumBiomeTagDatagen extends BiomeTagsProvider {
         super(pOutput, pProvider, MalumMod.MALUM, existingFileHelper);
     }
 
+    @SuppressWarnings("unchecked")
     @Override
     protected void addTags(HolderLookup.Provider pProvider) {
         //super.addTags(pProvider);
@@ -26,15 +35,9 @@ public class MalumBiomeTagDatagen extends BiomeTagsProvider {
         tag(HAS_BRILLIANCE).addTag(IS_OVERWORLD);
         tag(HAS_CTHONIC_GOLD).addTag(IS_OVERWORLD);
 
-        tag(HAS_QUARTZ_GEODE).addTag(IS_OVERWORLD);
-        tag(HAS_VIVID_AMETRINE_GEODE).addTag(IS_FOREST);
-        tag(HAS_MARINE_AGATE_GEODE).addTag(IS_OCEAN);
-        tag(HAS_RUGGED_CITRINE_GEODE).addTag(IS_MOUNTAIN);
-
-        tag(HAS_NETHER_QUARTZ_GEODE).addTag(IS_NETHER);
-        tag(HAS_JAGGED_ONYX_GEODE).addTag(IS_NETHER);
-        tag(HAS_PERFECT_QUARTZ_GEODE).addTag(IS_NETHER);
-        tag(HAS_BLAZING_CARNELIAN_GEODE).addTag(IS_NETHER);
+        tag(VIVID_AMETRINE, b -> b.addTags(IS_FOREST, IS_PLAINS, IS_JUNGLE).add(CHERRY_GROVE));
+        tag(MARINE_AGATE, b -> b.addTags(IS_OCEAN, IS_AQUATIC, IS_ICY));
+        tag(RUGGED_CITRINE, b -> b.addTags(IS_MOUNTAIN, IS_BADLANDS, IS_TAIGA));
 
         tag(HAS_RUNEWOOD).addTag(IS_PLAINS).addTag(IS_MOUNTAIN).addTag(IS_HILL).remove(IS_SNOWY);
         tag(HAS_RARE_RUNEWOOD).addTag(IS_FOREST).remove(IS_SNOWY);
@@ -45,5 +48,9 @@ public class MalumBiomeTagDatagen extends BiomeTagsProvider {
         tag(HAS_AZURE_SANCTUARY).addTag(IS_SNOWY_PLAINS);
 
         tag(HAS_WEEPING_WELL).addTag(IS_OVERWORLD);
+    }
+
+    public void tag(GeodeCrystalSet set, Consumer<TagAppender<Biome>> tagAppender) {
+        tagAppender.accept(tag(set.getBiomeTag()));
     }
 }

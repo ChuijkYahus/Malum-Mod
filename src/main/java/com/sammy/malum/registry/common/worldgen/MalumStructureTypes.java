@@ -6,10 +6,8 @@ import com.sammy.malum.common.worldgen.geode.MalumGeodeStructure;
 import com.sammy.malum.common.worldgen.sanctuary.RunicSanctuaryPiece;
 import com.sammy.malum.common.worldgen.sanctuary.RunicSanctuaryStructure;
 import com.sammy.malum.common.worldgen.well.*;
-import net.minecraft.core.*;
 import net.minecraft.core.registries.*;
 import net.minecraft.resources.*;
-import net.minecraft.world.level.levelgen.feature.ConfiguredFeature;
 import net.minecraft.world.level.levelgen.structure.*;
 import net.minecraft.world.level.levelgen.structure.pieces.*;
 import net.neoforged.neoforge.registries.*;
@@ -45,23 +43,17 @@ public class MalumStructureTypes {
 
         public static final StructureKey WEEPING_WELL = new StructureKey("weeping_well");
 
-        public static final StructureKey QUARTZ_GEODE = new StructureKey("quartz_geode");
-        public static final StructureKey VIVID_QUARTZ_GEODE = new StructureKey("vivid_quartz_geode");
-        public static final StructureKey MARINE_QUARTZ_GEODE = new StructureKey("marine_quartz_geode");
-        public static final StructureKey RUGGED_QUARTZ_GEODE = new StructureKey("rugged_quartz_geode");
-
-        public static final StructureKey NETHER_QUARTZ_GEODE = new StructureKey("nether_quartz_geode");
-        public static final StructureKey JAGGED_QUARTZ_GEODE = new StructureKey("jagged_quartz_geode");
-        public static final StructureKey PERFECT_QUARTZ_GEODE = new StructureKey("perfect_quartz_geode");
-        public static final StructureKey BLAZING_QUARTZ_GEODE = new StructureKey("blazing_quartz_geode");
-
+        public static final StructureKey OVERWORLD_GEODES = new StructureKey("overworld_geodes");
 
         public static final StructureKey RUNIC_SANCTUARY = new StructureKey("runic_sanctuary");
         public static final StructureKey AZURE_SANCTUARY = new StructureKey("azure_sanctuary");
 
+        public static final ResourceKey<Structure> VIVID_AMETRINE_QUARTZ_GEODE = structure("vivid_ametrine_quartz_geode");
+        public static final ResourceKey<Structure> MARINE_BERYL_QUARTZ_GEODE = structure("marine_beryl_quartz_geode");
+        public static final ResourceKey<Structure> RUGGED_CITRINE_QUARTZ_GEODE = structure("rugged_citrine_quartz_geode");
 
-        public static <T> ResourceKey<T> register(ResourceKey<Registry<T>> key, String id) {
-            return ResourceKey.create(key, MalumMod.malumPath(id));
+        public static <T> ResourceKey<Structure> structure(String id) {
+            return ResourceKey.create(Registries.STRUCTURE, MalumMod.malumPath(id));
         }
 
         public record StructureKey(ResourceKey<Structure> structure, ResourceKey<StructureSet> structureSet) {
