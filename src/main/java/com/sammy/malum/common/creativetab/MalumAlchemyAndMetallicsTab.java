@@ -1,4 +1,7 @@
-package com.sammy.malum.common.category;
+package com.sammy.malum.common.creativetab;
+
+import com.sammy.malum.MalumMod;
+import team.lodestar.lodestone.modules.toolkit.creative_tab.CategorizedBuilder;
 
 import static com.sammy.malum.registry.common.MalumContent.*;
 
@@ -7,8 +10,8 @@ public class MalumAlchemyAndMetallicsTab extends AbstractMalumCreativeTab {
         public static final String BASIC_ALCHEMICAL_FOCI = "basic_alchemical_foci";
         public static final String METALLICS = "metallics";
 
-        public MalumAlchemyAndMetallicsTab(Builder builder) {
-                super(builder);
+        public MalumAlchemyAndMetallicsTab(CategorizedBuilder categorizedBuilder) {
+                super(categorizedBuilder);
         }
 
         @Override

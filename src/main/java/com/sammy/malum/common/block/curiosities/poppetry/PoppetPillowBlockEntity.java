@@ -37,13 +37,7 @@ public class PoppetPillowBlockEntity extends MalumItemHolderBlockEntity {
     }
 
     @Override
-    public ItemInteractionResult onUse(Player player, InteractionHand hand) {
-        if (player.isShiftKeyDown() || player instanceof FakePlayer) {
-            return ItemInteractionResult.PASS_TO_DEFAULT_BLOCK_INTERACTION;
-        }
-        var pos = getBlockPos();
-        var stack = player.getItemInHand(hand);
-
+    public ItemInteractionResult onUseWithItem(Player player, ItemStack stack, InteractionHand pHand) {
         var block = (PoppetPillowBlock<?>) getBlockState().getBlock();
         var color = DyeColor.getColor(stack);
         if (color != null && color != block.color) {
@@ -51,10 +45,18 @@ public class PoppetPillowBlockEntity extends MalumItemHolderBlockEntity {
                 return ItemInteractionResult.SUCCESS;
             }
             var newState = block.set.getPillow().getVariant(color).getDefaultState();
-            level.setBlockAndUpdate(pos, newState);
+            level.setBlockAndUpdate(getBlockPos(), newState);
             return ItemInteractionResult.SUCCESS;
         }
+        return super.onUseWithItem(player, stack, pHand);
+    }
 
+    @Override
+    public ItemInteractionResult onUse(Player player, InteractionHand hand) {
+        if (player.isShiftKeyDown() || player instanceof FakePlayer) {
+            return ItemInteractionResult.PASS_TO_DEFAULT_BLOCK_INTERACTION;
+        }
+        var pos = getBlockPos();
         var seats = level.getEntitiesOfClass(PillowSeatEntity.class, new AABB(pos));
         if (!seats.isEmpty()) {
             var seatEntity = seats.getFirst();

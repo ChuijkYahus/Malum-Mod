@@ -6,6 +6,7 @@ import com.sammy.malum.registry.common.block.properties.MalumBlockProperties;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.level.block.Block;
 import team.lodestar.lodestone.modules.toolkit.block.BlockBlockItemHolder;
+import team.lodestar.lodestone.modules.toolkit.creative_tab.CreativeTabCategoryBuilder;
 
 public class PoppetRegistrySet extends MalumRegistrySet {
 
@@ -19,5 +20,9 @@ public class PoppetRegistrySet extends MalumRegistrySet {
 
     public DyedVariantBundle<BlockBlockItemHolder<Block, BlockItem>> getPillow() {
         return pillow;
+    }
+
+    public void addToCreativeTab(CreativeTabCategoryBuilder builder) {
+        builder.nextLine().addItems(b -> pillow.addToCreativeTab(b::addItems));
     }
 }

@@ -63,7 +63,7 @@ public class GeodeCrystalRegistrySet extends MalumRegistrySet {
     }
 
     public void addToCreativeTab(CreativeTabCategoryBuilder builder) {
-        builder.addItems(
+        builder.nextLine().addItems(
                         polished,
                         budding,
                         geode,

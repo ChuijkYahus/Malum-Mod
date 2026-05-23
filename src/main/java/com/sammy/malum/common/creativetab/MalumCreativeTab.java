@@ -1,4 +1,4 @@
-package com.sammy.malum.common.category;
+package com.sammy.malum.common.creativetab;
 
 import com.sammy.malum.*;
 import com.sammy.malum.common.block.curiosities.decor.banner.SoulwovenBannerBlockItem;
@@ -6,6 +6,7 @@ import com.sammy.malum.core.handlers.hiding.*;
 import com.sammy.malum.registry.common.*;
 import net.minecraft.resources.*;
 import net.minecraft.world.item.*;
+import team.lodestar.lodestone.modules.toolkit.creative_tab.CategorizedBuilder;
 import team.lodestar.lodestone.modules.toolkit.creative_tab.CategorizedCreativeTab;
 import team.lodestar.lodestone.modules.toolkit.creative_tab.CreativeTabCategory;
 
@@ -13,12 +14,7 @@ import java.util.*;
 
 import static com.sammy.malum.registry.common.MalumContent.*;
 
-public class MalumCreativeTab extends CategorizedCreativeTab {
-
-        private static final ResourceLocation SLOT_WRAPPER = MalumMod.malumPath("slot_wrapper");
-        private static final ResourceLocation SLOT_WRAPPER_LEFT = MalumMod.malumPath("slot_wrapper_left");
-        private static final ResourceLocation SLOT_WRAPPER_RIGHT = MalumMod.malumPath("slot_wrapper_right");
-        private static final ResourceLocation EMPTY_SLOT = MalumMod.malumPath("empty_slot");
+public class MalumCreativeTab extends AbstractMalumCreativeTab {
 
         public static final String FUNDAMENTALS_CATEGORY = "fundamentals_of_arcana";
         public static final String GEAR_CATEGORY = "gear_and_trinkets";
@@ -36,28 +32,8 @@ public class MalumCreativeTab extends CategorizedCreativeTab {
         public static final String DUNGEON_ARCHITECTURE = "dungeon_architecture";
         public static final String DUNGEON_ODDITIES = "dungeon_distortions";
 
-        public MalumCreativeTab(Builder builder) {
-                super(MalumMod.MALUM, builder);
-        }
-
-        @Override
-        public Optional<ResourceLocation> getHeaderTexture(CreativeTabCategory.CategoryHeader header, int row, int column) {
-                if (column == 0) {
-                        return Optional.of(SLOT_WRAPPER_LEFT);
-                } else if (column == 8) {
-                        return Optional.of(SLOT_WRAPPER_RIGHT);
-                }
-                return Optional.of(SLOT_WRAPPER);
-        }
-
-        @Override
-        public Optional<ResourceLocation> getEmptySlotTexture(int row, int column) {
-                return Optional.of(EMPTY_SLOT);
-        }
-
-        @Override
-        public boolean isItemVisible(ItemStack stack) {
-                return !HiddenTagHandler.isHiddenItem(stack);
+        public MalumCreativeTab(CategorizedBuilder categorizedBuilder) {
+                super(categorizedBuilder);
         }
 
         public void buildCategories() {
@@ -339,10 +315,8 @@ public class MalumCreativeTab extends CategorizedCreativeTab {
                                 CompactBlocks.BLOCK_OF_CTHONIC_GOLD, Materials.CTHONIC_GOLD_ORE,
                                 Materials.CTHONIC_GOLD, Materials.CTHONIC_GOLD_FRAGMENT
                         )
-                        .nextLine()
                         .addItems(Materials.MUNDANE_QUARTZ::addToCreativeTab)
                         .addItems(Materials.VIVID_AMETRINE::addToCreativeTab)
-                        .nextLine()
                         .addItems(Materials.MARINE_AGATE::addToCreativeTab)
                         .addItems(Materials.RUGGED_CITRINE::addToCreativeTab)
                         .bake();
