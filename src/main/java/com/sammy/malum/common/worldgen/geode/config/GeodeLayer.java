@@ -1,9 +1,8 @@
 package com.sammy.malum.common.worldgen.geode.config;
 
-import com.mojang.datafixers.util.Pair;
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
-import com.sammy.malum.registry.common.util.GeodeCrystalSet;
+import com.sammy.malum.registry.common.util.GeodeCrystalRegistrySet;
 import net.minecraft.util.valueproviders.IntProvider;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.levelgen.feature.stateproviders.BlockStateProvider;
@@ -37,7 +36,7 @@ public record GeodeLayer(BlockStateProvider block,
     );
 
 
-    public GeodeLayer(GeodeCrystalSet set, IntProvider buddingCount, IntProvider clusterCount, double size) {
+    public GeodeLayer(GeodeCrystalRegistrySet set, IntProvider buddingCount, IntProvider clusterCount, double size) {
         this(simple(set.getGeode().get()),
                 Optional.of(new SpecialBlockInfo(simple(set.getBudding().get()), buddingCount)),
                 Optional.of(new SpecialBlockInfo(simple(set.getCluster().get()), clusterCount)), size);

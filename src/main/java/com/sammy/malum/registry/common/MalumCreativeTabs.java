@@ -2,7 +2,7 @@ package com.sammy.malum.registry.common;
 
 import com.sammy.malum.MalumMod;
 
-import com.sammy.malum.common.category.*;
+import com.sammy.malum.common.creativetab.*;
 import com.sammy.malum.core.systems.geas.*;
 import com.sammy.malum.registry.common.magic.*;
 import net.minecraft.core.registries.Registries;
@@ -18,6 +18,7 @@ public class MalumCreativeTabs {
 
     public static final DeferredHolder<CreativeModeTab, CreativeModeTab> CONTENT = CREATIVE_MODE_TABS.register("malum_content",
             () -> CategorizedCreativeTab.builder(MalumCreativeTab::new)
+                    .withVisualInfo(new MalumVisualInfo())
                     .title(Component.translatable(MalumMod.MALUM + ".itemGroup.malum_content"))
                     .withTabsBefore(CreativeModeTabs.SPAWN_EGGS)
                     .icon(MalumContent.Sorcery.SPIRIT_ALTAR::getDefaultInstance).build()
@@ -25,6 +26,7 @@ public class MalumCreativeTabs {
 
     public static final DeferredHolder<CreativeModeTab, CreativeModeTab> ALCHEMY_AND_METALLICS = CREATIVE_MODE_TABS.register("malum_alchemy_and_metallics",
             () -> CategorizedCreativeTab.builder(MalumAlchemyAndMetallicsTab::new)
+                    .withVisualInfo(new MalumVisualInfo())
                     .title(Component.translatable(MalumMod.MALUM + ".itemGroup.malum_artifice"))
                     .withTabsBefore(CONTENT.getId())
                     .icon(MalumContent.AlchemyAndMetallics.ALCHEMICAL_IMPETUS::toStack).build()

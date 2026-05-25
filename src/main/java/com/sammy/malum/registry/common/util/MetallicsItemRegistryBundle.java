@@ -31,7 +31,7 @@ import java.util.function.Supplier;
 
 import static net.minecraft.tags.BlockTags.BEACON_BASE_BLOCKS;
 
-public class MetallicsItemRegistryBundle {
+public class MetallicsItemRegistryBundle extends MalumRegistrySet {
 
     public static List<MetallicsItemRegistryBundle> getMalumMetallics() {
         return List.of(MalumContent.AlchemyAndMetallics.IRON_METALLICS,
@@ -43,8 +43,6 @@ public class MetallicsItemRegistryBundle {
                 MalumContent.AlchemyAndMetallics.ALUMINIUM_METALLICS,
                 MalumContent.AlchemyAndMetallics.NICKEL_METALLICS);
     }
-
-    protected final String id;
 
     protected final TagKey<Block> oreTag;
     protected final TagKey<Block> deepslateOreTag;
@@ -71,7 +69,7 @@ public class MetallicsItemRegistryBundle {
 
 
     public MetallicsItemRegistryBundle(String id) {
-        this.id = id;
+        super(id);
 
         oreTag = createOreTag(false);
         deepslateOreTag = createOreTag(true);

@@ -34,6 +34,9 @@ public class MalumEntityTypes {
     public static final DeferredHolder<EntityType<?>, EntityType<AscendingBlock>> ASCENDING_BLOCK =
             register("ascending_block", AscendingBlock::new, 0.98F, 0.98F, 10, 20);
 
+    public static final DeferredHolder<EntityType<?>, EntityType<PillowSeatEntity>> PILLOW_SEAT =
+            register("pillow_seat", PillowSeatEntity::new, 0.25F, 0.25F, 2, 20);
+
     public static final DeferredHolder<EntityType<?>, EntityType<SpiritItemEntity>> NATURAL_SPIRIT =
             register("natural_spirit", SpiritItemEntity::new, 0.5F, 0.75F, 10);
 

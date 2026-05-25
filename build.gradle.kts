@@ -237,18 +237,18 @@ dependencies {
 //    localRuntime(("curse.maven:attributefix-280510:5824104"))
 
     // Imgui
-    jarJar(implementation("io.github.spair:imgui-java-app:${property("imgui_version")}"))
-    jarJar(implementation("io.github.spair:imgui-java-lwjgl3:${property("imgui_version")}"))
-    jarJar(implementation("io.github.spair:imgui-java-binding:${property("imgui_version")}"))
-    jarJar(implementation("io.github.spair:imgui-java-natives-windows:${property("imgui_version")}"))
-    jarJar(implementation("io.github.spair:imgui-java-natives-macos-ft:${property("imgui_version")}"))
-    jarJar(implementation("io.github.spair:imgui-java-natives-linux:${property("imgui_version")}"))
-    additionalRuntimeClasspath("io.github.spair:imgui-java-app:${property("imgui_version")}")
-    additionalRuntimeClasspath("io.github.spair:imgui-java-lwjgl3:${property("imgui_version")}")
-    additionalRuntimeClasspath("io.github.spair:imgui-java-binding:${property("imgui_version")}")
-    additionalRuntimeClasspath("io.github.spair:imgui-java-natives-windows:${property("imgui_version")}")
-    additionalRuntimeClasspath("io.github.spair:imgui-java-natives-macos-ft:${property("imgui_version")}")
-    additionalRuntimeClasspath("io.github.spair:imgui-java-natives-linux:${property("imgui_version")}")
+//    jarJar(implementation("io.github.spair:imgui-java-app:${property("imgui_version")}"))
+//    jarJar(implementation("io.github.spair:imgui-java-lwjgl3:${property("imgui_version")}"))
+//    jarJar(implementation("io.github.spair:imgui-java-binding:${property("imgui_version")}"))
+//    jarJar(implementation("io.github.spair:imgui-java-natives-windows:${property("imgui_version")}"))
+//    jarJar(implementation("io.github.spair:imgui-java-natives-macos-ft:${property("imgui_version")}"))
+//    jarJar(implementation("io.github.spair:imgui-java-natives-linux:${property("imgui_version")}"))
+//    additionalRuntimeClasspath("io.github.spair:imgui-java-app:${property("imgui_version")}")
+//    additionalRuntimeClasspath("io.github.spair:imgui-java-lwjgl3:${property("imgui_version")}")
+//    additionalRuntimeClasspath("io.github.spair:imgui-java-binding:${property("imgui_version")}")
+//    additionalRuntimeClasspath("io.github.spair:imgui-java-natives-windows:${property("imgui_version")}")
+//    additionalRuntimeClasspath("io.github.spair:imgui-java-natives-macos-ft:${property("imgui_version")}")
+//    additionalRuntimeClasspath("io.github.spair:imgui-java-natives-linux:${property("imgui_version")}")
 }
 
 val generateModMetadata by tasks.registering(ProcessResources::class) {

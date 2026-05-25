@@ -20,7 +20,7 @@ public class CreativeTabLangDatagen {
         var categories = ((CategorizedCreativeTab) tab.get()).getCategories().values();
         add("malum.itemGroup." + tab.getKey().location().getPath(), name);
         categories.forEach(a -> {
-            String categoryName = DataHelper.toTitleCase(a.id(), "_");
+            String categoryName = DataHelper.toTitleCase(a.getId().getPath(), "_");
             categoryName = categoryName.replaceAll("And", "&");
             add(a.getHeaderLangKey(), categoryName);
         });

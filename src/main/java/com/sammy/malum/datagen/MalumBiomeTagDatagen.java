@@ -1,15 +1,11 @@
 package com.sammy.malum.datagen;
 
 import com.sammy.malum.*;
-import com.sammy.malum.registry.common.MalumContent;
-import com.sammy.malum.registry.common.MalumContent.Materials;
-import com.sammy.malum.registry.common.util.GeodeCrystalSet;
+import com.sammy.malum.registry.common.util.GeodeCrystalRegistrySet;
 import net.minecraft.core.*;
 import net.minecraft.data.*;
 import net.minecraft.data.tags.*;
-import net.minecraft.tags.TagKey;
 import net.minecraft.world.level.biome.Biome;
-import net.minecraft.world.level.biome.Biomes;
 import net.neoforged.neoforge.common.data.*;
 import org.jetbrains.annotations.*;
 
@@ -50,7 +46,7 @@ public class MalumBiomeTagDatagen extends BiomeTagsProvider {
         tag(HAS_WEEPING_WELL).addTag(IS_OVERWORLD);
     }
 
-    public void tag(GeodeCrystalSet set, Consumer<TagAppender<Biome>> tagAppender) {
+    public void tag(GeodeCrystalRegistrySet set, Consumer<TagAppender<Biome>> tagAppender) {
         tagAppender.accept(tag(set.getBiomeTag()));
     }
 }

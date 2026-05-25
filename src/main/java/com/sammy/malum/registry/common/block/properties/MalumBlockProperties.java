@@ -22,10 +22,18 @@ public class MalumBlockProperties {
                 .pushReaction(PushReaction.DESTROY);
     }
 
-    public static LodestoneBlockProperties  RUNEWOOD_IMPLEMENT() {
+    public static LodestoneBlockProperties RUNEWOOD_IMPLEMENT() {
         return MalumWoodBlockProperties.RUNEWOOD()
                 .strength(2.5f, 64f)
                 .instrument(NoteBlockInstrument.XYLOPHONE)
+                .mapColor(MapColor.TERRACOTTA_BROWN)
+                .setCutout()
+                .noOcclusion();
+    }
+
+    public static LodestoneBlockProperties POPPETRY_IMPLEMENT() {
+        return MalumWoodBlockProperties.RUNEWOOD()
+                .strength(1.5f, 64f)
                 .mapColor(MapColor.TERRACOTTA_BROWN)
                 .setCutout()
                 .noOcclusion();

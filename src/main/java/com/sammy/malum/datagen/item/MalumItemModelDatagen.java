@@ -3,7 +3,7 @@ package com.sammy.malum.datagen.item;
 import com.sammy.malum.*;
 import com.sammy.malum.common.item.curiosities.curios.runes.*;
 import com.sammy.malum.common.item.spirit.*;
-import com.sammy.malum.datagen.MalumMetallicsDatagen;
+import com.sammy.malum.datagen.set.MalumMetallicsDatagen;
 import com.sammy.malum.registry.common.MalumContent;
 import net.minecraft.data.*;
 import net.minecraft.world.item.*;
