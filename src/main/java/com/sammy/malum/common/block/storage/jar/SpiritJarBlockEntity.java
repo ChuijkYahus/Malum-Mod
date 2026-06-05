@@ -251,7 +251,7 @@ public class SpiritJarBlockEntity extends LodestoneBlockEntity implements IInven
     @Override
     protected void saveAdditional(CompoundTag tag, HolderLookup.Provider registries) {
         if (contents != null) {
-            tag.put("contents", SpiritJarContentsComponent.CODEC.encodeStart(NbtOps.INSTANCE, contents).getOrThrow());
+                tag.put("contents", SpiritJarContentsComponent.CODEC.encodeStart(NbtOps.INSTANCE, contents).getOrThrow());
         }
     }
 

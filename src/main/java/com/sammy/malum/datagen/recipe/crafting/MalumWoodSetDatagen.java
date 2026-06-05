@@ -5,7 +5,7 @@ import com.sammy.malum.MalumMod;
 import com.sammy.malum.datagen.recipe.RecipeDatagenCommons;
 import com.sammy.malum.registry.common.MalumContent;
 
-import com.sammy.malum.registry.common.util.WoodBlockSet;
+import com.sammy.malum.registry.common.util.building.WoodBlockSet;
 import net.minecraft.data.recipes.*;
 import net.minecraft.tags.*;
 import net.minecraft.world.item.*;

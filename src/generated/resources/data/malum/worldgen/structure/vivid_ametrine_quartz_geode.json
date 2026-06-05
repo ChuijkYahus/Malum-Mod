@@ -177,7 +177,7 @@
           "layer": {
             "type": "minecraft:simple_state_provider",
             "state": {
-              "Name": "minecraft:calcite"
+              "Name": "malum:seed_quartz"
             }
           },
           "size": 1.2000000476837158

@@ -29,7 +29,7 @@ public abstract class CodecBasedReloadListener<K, T> extends SimpleJsonResourceR
 
     public CodecBasedReloadListener(String directory) {
         super(GSON, directory);
-        lookupCodec =    getKeyCodec().xmap(this::get, this::getID);
+        lookupCodec = getKeyCodec().xmap(this::get, this::getID);
 
         lookupOptionalCodec = LodestoneCodecs.optionalCodec(getKeyCodec()).xmap(
                 d -> d.map(this::get),

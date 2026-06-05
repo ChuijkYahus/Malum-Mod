@@ -4,7 +4,7 @@ import com.sammy.malum.*;
 import com.sammy.malum.client.screen.codex.display.*;
 import com.sammy.malum.client.screen.codex.pages.*;
 import com.sammy.malum.client.screen.codex.screens.*;
-import com.sammy.malum.registry.common.util.*;
+import com.sammy.malum.registry.common.util.building.WoodBlockSet;
 import net.minecraft.client.gui.*;
 import net.minecraft.client.renderer.GameRenderer;
 import net.minecraft.resources.ResourceLocation;

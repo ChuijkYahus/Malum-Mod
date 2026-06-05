@@ -95,6 +95,15 @@ public class MalumBlockProperties {
                 .needsPickaxe();
     }
 
+    public static LodestoneBlockProperties SEED_QUARTZ() {
+        return new LodestoneBlockProperties()
+                .strength(0.75F, 9.0F)
+                .sound(MalumBlockSoundEvents.SEED_QUARTZ)
+                .mapColor(MapColor.TERRACOTTA_WHITE)
+                .requiresCorrectToolForDrops()
+                .needsPickaxe();
+    }
+
     public static LodestoneBlockProperties TAINTED_ROCK() {
         return new LodestoneBlockProperties()
                 .addTag(TAINTED_ROCK)

@@ -6,13 +6,12 @@ import net.minecraft.core.registries.*;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.levelgen.feature.configurations.*;
 
-public record SanctuaryPillarFeatureConfiguration(Block block, Block topBlock, int minHeight, int maxHeight) implements FeatureConfiguration {
+import java.util.List;
+
+public record SanctuaryPillarFeatureConfiguration(List<SanctuaryWallFeatureConfiguration.SegmentData> pillar) implements FeatureConfiguration {
 
     public static final Codec<SanctuaryPillarFeatureConfiguration> CODEC =
             RecordCodecBuilder.create(inst -> inst.group(
-                    BuiltInRegistries.BLOCK.byNameCodec().fieldOf("block").forGetter(obj -> obj.block),
-                    BuiltInRegistries.BLOCK.byNameCodec().fieldOf("topBlock").forGetter(obj -> obj.topBlock),
-                    Codec.INT.fieldOf("minHeight").forGetter(obj -> obj.minHeight),
-                    Codec.INT.fieldOf("maxHeight").forGetter(obj -> obj.maxHeight)
+                    SanctuaryWallFeatureConfiguration.SegmentData.CODEC.listOf().fieldOf("pillar").forGetter(SanctuaryPillarFeatureConfiguration::pillar)
             ).apply(inst, SanctuaryPillarFeatureConfiguration::new));
 }

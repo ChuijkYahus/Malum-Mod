@@ -1,8 +1,8 @@
 {
   "parent": "minecraft:block/cube_bottom_top",
   "textures": {
-    "bottom": "malum:block/runewood/runewood_steps_bottom",
-    "side": "malum:block/runewood/runewood_steps_side",
-    "top": "malum:block/runewood/runewood_steps_top"
+    "bottom": "malum:block/building_blocks/runewood/runewood_steps_bottom",
+    "side": "malum:block/building_blocks/runewood/runewood_steps_side",
+    "top": "malum:block/building_blocks/runewood/runewood_steps_top"
   }
 }

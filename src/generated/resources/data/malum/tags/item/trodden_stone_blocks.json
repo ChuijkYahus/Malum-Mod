@@ -1,5 +1,7 @@
 {
   "values": [
-    "malum:trodden_stone"
+    "malum:trodden_stone",
+    "malum:trodden_stone_slab",
+    "malum:trodden_stone_stairs"
   ]
 }

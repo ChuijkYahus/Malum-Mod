@@ -2,6 +2,7 @@ package com.sammy.malum.datagen.worldgen.structure;
 
 import com.sammy.malum.common.worldgen.geode.*;
 import com.sammy.malum.common.worldgen.geode.config.*;
+import com.sammy.malum.registry.common.MalumContent;
 import com.sammy.malum.registry.common.util.GeodeCrystalRegistrySet;
 import net.minecraft.core.Vec3i;
 import net.minecraft.core.registries.Registries;
@@ -74,7 +75,7 @@ public class GeodeDatagen {
         var gemLayer = new GeodeLayer(set, buddingGemGeodes, gemClusters, gemLayerSize);
 
         var layers = List.of(new GeodeLayer(AIR, airPocket), quartzLayer, gemLayer, quartzLayer,
-                new GeodeLayer(CALCITE, 1.2f), new GeodeLayer(SMOOTH_BASALT, 1.4f)
+                new GeodeLayer(MalumContent.BlockSets.SEED_QUARTZ.getRaw().block.get(), 1.2f), new GeodeLayer(SMOOTH_BASALT, 1.4f)
         );
 
         var geodeBlockSettings = new MalumGeodeLayerSettings(layers, BlockTags.FEATURES_CANNOT_REPLACE, BlockTags.GEODE_INVALID_BLOCKS);

@@ -5,8 +5,8 @@ import net.minecraft.util.*;
 import net.minecraft.world.level.levelgen.feature.*;
 import team.lodestar.lodestone.systems.worldgen.*;
 
-import static com.sammy.malum.common.worldgen.WorldgenHelper.*;
-import static com.sammy.malum.common.worldgen.sanctuary.feature.SanctuaryPillarFeature.findStartingY;
+import static com.sammy.malum.common.worldgen.sanctuary.feature.SanctuaryPillarFeature.findPillarRoot;
+import static com.sammy.malum.common.worldgen.sanctuary.feature.SanctuaryPillarFeature.generatePillar;
 
 public class SanctuaryWallFeature extends Feature<SanctuaryWallFeatureConfiguration> {
 
@@ -23,9 +23,8 @@ public class SanctuaryWallFeature extends Feature<SanctuaryWallFeatureConfigurat
             return false;
         }
         var rand = context.random();
-        var block = config.block().defaultBlockState();
-        var topBlock = config.topBlock().defaultBlockState();
-        var filling = config.wallFilling().defaultBlockState();
+        var pillarData = config.pillars();
+        var wallData = config.wall();
 
         var builder = LodestoneWorldgenBuilder.create();
         var layer = builder.createLayer();
@@ -35,29 +34,18 @@ public class SanctuaryWallFeature extends Feature<SanctuaryWallFeatureConfigurat
         var wallDirection = Direction.from2DDataValue(rand.nextInt(4));
         var mutable = new BlockPos.MutableBlockPos().set(pos);
 
-        if (!findStartingY(level, mutable)) {
+        if (!findPillarRoot(level, mutable)) {
             return false;
         }
         for (int i = 0; i <= wallWidth; i++) {
             mutable.set(pos);
             mutable.move(wallDirection, i);
-            if (!findStartingY(level, mutable)) {
+            if (!findPillarRoot(level, mutable)) {
                 return false;
             }
-            int wallHeight = Mth.nextInt(rand, config.minHeight(), config.maxHeight());
-            if (i == 0 || i == wallWidth) {
-                wallHeight += 2;
-            }
-            for (int j = 0; j <= wallHeight; j++) {
-                if (!canPlace(level, mutable)) {
-                    return false;
-                }
-                var toPlace = i > 0 && i < wallWidth
-                        ? filling
-                        : j == wallHeight ? topBlock : block;
-                layer.add(mutable, toPlace);
-                mutable.move(Direction.UP);
-            }
+            boolean isWall = i > 0 && i < wallWidth;
+            var usedData = isWall ? wallData : pillarData;
+            generatePillar(level, layer, usedData, mutable);
         }
         builder.place(level);
         return true;

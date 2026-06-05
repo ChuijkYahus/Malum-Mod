@@ -2,9 +2,8 @@ package com.sammy.malum.datagen.recipe.crafting;
 
 import com.sammy.malum.datagen.recipe.RecipeDatagenCommons;
 import com.sammy.malum.registry.common.MalumContent.BlockSets;
-import com.sammy.malum.registry.common.util.RockBlockSet;
+import com.sammy.malum.registry.common.util.building.RockBlockSet;
 import net.minecraft.data.recipes.*;
-import net.minecraft.tags.*;
 import net.minecraft.world.level.*;
 
 import static com.sammy.malum.datagen.recipe.RecipeDatagenCommons.*;

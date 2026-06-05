@@ -2,6 +2,6 @@
   "parent": "malum:block/templates/template_item_stand_decorated",
   "render_type": "minecraft:cutout",
   "textures": {
-    "stand": "malum:block/soulwood/soulwood_item_stand_ornate"
+    "stand": "malum:block/building_blocks/soulwood/soulwood_item_stand_ornate"
   }
 }

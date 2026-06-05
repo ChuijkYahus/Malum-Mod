@@ -1,6 +1,6 @@
 {
   "parent": "minecraft:block/template_glazed_terracotta",
   "textures": {
-    "pattern": "malum:block/terracotta/wicked_varnished_terracotta"
+    "pattern": "malum:block/building_blocks/terracotta/wicked_varnished_terracotta"
   }
 }

@@ -38,24 +38,13 @@ public class MalumBlockItemStackHandler extends LodestoneItemStackBlockHandler {
     }
 
     @Override
-    public InventoryInteractionResult extractItem(ServerLevel level, Function<ItemStack, Integer> amount) {
-        var result = super.extractItem(level, amount);
+    protected InventoryInteractionResult processResult(ServerLevel level, InventoryInteractionResult result) {
         if (result.wasSuccessful()) {
-            ItemStack stack = result.original();
+            ItemStack stack = result.getInternalChanges().getUpdated();
             var soundEvent = getExtractSound(stack);
             playSound(level, soundEvent, stack);
         }
-        return result;
-    }
-
-    @Override
-    public InventoryInteractionResult insertItem(ServerLevel level, ItemStack stack) {
-        var result = super.insertItem(level, stack);
-        if (result.wasSuccessful()) {
-            SoundEvent soundEvent = getInsertSound(stack);
-            playSound(level, soundEvent, stack);
-        }
-        return result;
+        return super.processResult(level, result);
     }
 
     @Override

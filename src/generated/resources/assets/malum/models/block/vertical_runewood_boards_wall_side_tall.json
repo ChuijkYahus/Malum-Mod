@@ -1,6 +1,6 @@
 {
   "parent": "minecraft:block/template_wall_side_tall",
   "textures": {
-    "wall": "malum:block/runewood/vertical_runewood_boards"
+    "wall": "malum:block/building_blocks/runewood/vertical_runewood_boards"
   }
 }

@@ -9466,6 +9466,167 @@
     ],
     "subtitle": "malum.subtitle.scythe_user_ascends"
   },
+  "seed_quartz_break": {
+    "sounds": [
+      {
+        "name": "malum:block/trodden_stone/break1",
+        "pitch": 1.6
+      },
+      {
+        "name": "malum:block/trodden_stone/break2",
+        "pitch": 1.6
+      },
+      {
+        "name": "malum:block/trodden_stone/break3",
+        "pitch": 1.6
+      },
+      {
+        "name": "malum:block/trodden_stone/break4",
+        "pitch": 1.6
+      },
+      {
+        "name": "malum:block/trodden_stone/break5",
+        "pitch": 1.6
+      },
+      {
+        "name": "malum:block/trodden_stone/break6",
+        "pitch": 1.6
+      },
+      {
+        "name": "malum:block/trodden_stone/break7",
+        "pitch": 1.6
+      },
+      {
+        "name": "malum:block/trodden_stone/break8",
+        "pitch": 1.6
+      }
+    ],
+    "subtitle": "malum.subtitle.seed_quartz_break"
+  },
+  "seed_quartz_fall": {
+    "sounds": [
+      {
+        "name": "malum:block/trodden_stone/step1",
+        "pitch": 1.6
+      },
+      {
+        "name": "malum:block/trodden_stone/step2",
+        "pitch": 1.6
+      },
+      {
+        "name": "malum:block/trodden_stone/step3",
+        "pitch": 1.6
+      },
+      {
+        "name": "malum:block/trodden_stone/step4",
+        "pitch": 1.6
+      },
+      {
+        "name": "malum:block/trodden_stone/step5",
+        "pitch": 1.6
+      },
+      {
+        "name": "malum:block/trodden_stone/step6",
+        "pitch": 1.6
+      }
+    ],
+    "subtitle": "malum.subtitle.seed_quartz_fall"
+  },
+  "seed_quartz_hit": {
+    "sounds": [
+      {
+        "name": "malum:block/trodden_stone/step1",
+        "pitch": 1.6
+      },
+      {
+        "name": "malum:block/trodden_stone/step2",
+        "pitch": 1.6
+      },
+      {
+        "name": "malum:block/trodden_stone/step3",
+        "pitch": 1.6
+      },
+      {
+        "name": "malum:block/trodden_stone/step4",
+        "pitch": 1.6
+      },
+      {
+        "name": "malum:block/trodden_stone/step5",
+        "pitch": 1.6
+      },
+      {
+        "name": "malum:block/trodden_stone/step6",
+        "pitch": 1.6
+      }
+    ],
+    "subtitle": "malum.subtitle.seed_quartz_hit"
+  },
+  "seed_quartz_place": {
+    "sounds": [
+      {
+        "name": "malum:block/trodden_stone/break1",
+        "pitch": 1.6
+      },
+      {
+        "name": "malum:block/trodden_stone/break2",
+        "pitch": 1.6
+      },
+      {
+        "name": "malum:block/trodden_stone/break3",
+        "pitch": 1.6
+      },
+      {
+        "name": "malum:block/trodden_stone/break4",
+        "pitch": 1.6
+      },
+      {
+        "name": "malum:block/trodden_stone/break5",
+        "pitch": 1.6
+      },
+      {
+        "name": "malum:block/trodden_stone/break6",
+        "pitch": 1.6
+      },
+      {
+        "name": "malum:block/trodden_stone/break7",
+        "pitch": 1.6
+      },
+      {
+        "name": "malum:block/trodden_stone/break8",
+        "pitch": 1.6
+      }
+    ],
+    "subtitle": "malum.subtitle.seed_quartz_place"
+  },
+  "seed_quartz_step": {
+    "sounds": [
+      {
+        "name": "malum:block/trodden_stone/step1",
+        "pitch": 1.6
+      },
+      {
+        "name": "malum:block/trodden_stone/step2",
+        "pitch": 1.6
+      },
+      {
+        "name": "malum:block/trodden_stone/step3",
+        "pitch": 1.6
+      },
+      {
+        "name": "malum:block/trodden_stone/step4",
+        "pitch": 1.6
+      },
+      {
+        "name": "malum:block/trodden_stone/step5",
+        "pitch": 1.6
+      },
+      {
+        "name": "malum:block/trodden_stone/step6",
+        "pitch": 1.6
+      }
+    ],
+    "subtitle": "malum.subtitle.seed_quartz_step"
+  },
   "shielding_apparatus_shields": {
     "sounds": [
       "malum:curiosities/augments/shielding_apparatus_shields1",
@@ -11076,60 +11237,60 @@
   },
   "trodden_stone_break": {
     "sounds": [
-      "malum:block/sanctuary/trodden_stone/break1",
-      "malum:block/sanctuary/trodden_stone/break2",
-      "malum:block/sanctuary/trodden_stone/break3",
-      "malum:block/sanctuary/trodden_stone/break4",
-      "malum:block/sanctuary/trodden_stone/break5",
-      "malum:block/sanctuary/trodden_stone/break6",
-      "malum:block/sanctuary/trodden_stone/break7",
-      "malum:block/sanctuary/trodden_stone/break8"
+      "malum:block/trodden_stone/break1",
+      "malum:block/trodden_stone/break2",
+      "malum:block/trodden_stone/break3",
+      "malum:block/trodden_stone/break4",
+      "malum:block/trodden_stone/break5",
+      "malum:block/trodden_stone/break6",
+      "malum:block/trodden_stone/break7",
+      "malum:block/trodden_stone/break8"
     ],
     "subtitle": "malum.subtitle.trodden_stone_break"
   },
   "trodden_stone_fall": {
     "sounds": [
-      "malum:block/sanctuary/trodden_stone/step1",
-      "malum:block/sanctuary/trodden_stone/step2",
-      "malum:block/sanctuary/trodden_stone/step3",
-      "malum:block/sanctuary/trodden_stone/step4",
-      "malum:block/sanctuary/trodden_stone/step5",
-      "malum:block/sanctuary/trodden_stone/step6"
+      "malum:block/trodden_stone/step1",
+      "malum:block/trodden_stone/step2",
+      "malum:block/trodden_stone/step3",
+      "malum:block/trodden_stone/step4",
+      "malum:block/trodden_stone/step5",
+      "malum:block/trodden_stone/step6"
     ],
     "subtitle": "malum.subtitle.trodden_stone_fall"
   },
   "trodden_stone_hit": {
     "sounds": [
-      "malum:block/sanctuary/trodden_stone/step1",
-      "malum:block/sanctuary/trodden_stone/step2",
-      "malum:block/sanctuary/trodden_stone/step3",
-      "malum:block/sanctuary/trodden_stone/step4",
-      "malum:block/sanctuary/trodden_stone/step5",
-      "malum:block/sanctuary/trodden_stone/step6"
+      "malum:block/trodden_stone/step1",
+      "malum:block/trodden_stone/step2",
+      "malum:block/trodden_stone/step3",
+      "malum:block/trodden_stone/step4",
+      "malum:block/trodden_stone/step5",
+      "malum:block/trodden_stone/step6"
     ],
     "subtitle": "malum.subtitle.trodden_stone_hit"
   },
   "trodden_stone_place": {
     "sounds": [
-      "malum:block/sanctuary/trodden_stone/break1",
-      "malum:block/sanctuary/trodden_stone/break2",
-      "malum:block/sanctuary/trodden_stone/break3",
-      "malum:block/sanctuary/trodden_stone/break4",
-      "malum:block/sanctuary/trodden_stone/break5",
-      "malum:block/sanctuary/trodden_stone/break6",
-      "malum:block/sanctuary/trodden_stone/break7",
-      "malum:block/sanctuary/trodden_stone/break8"
+      "malum:block/trodden_stone/break1",
+      "malum:block/trodden_stone/break2",
+      "malum:block/trodden_stone/break3",
+      "malum:block/trodden_stone/break4",
+      "malum:block/trodden_stone/break5",
+      "malum:block/trodden_stone/break6",
+      "malum:block/trodden_stone/break7",
+      "malum:block/trodden_stone/break8"
     ],
     "subtitle": "malum.subtitle.trodden_stone_place"
   },
   "trodden_stone_step": {
     "sounds": [
-      "malum:block/sanctuary/trodden_stone/step1",
-      "malum:block/sanctuary/trodden_stone/step2",
-      "malum:block/sanctuary/trodden_stone/step3",
-      "malum:block/sanctuary/trodden_stone/step4",
-      "malum:block/sanctuary/trodden_stone/step5",
-      "malum:block/sanctuary/trodden_stone/step6"
+      "malum:block/trodden_stone/step1",
+      "malum:block/trodden_stone/step2",
+      "malum:block/trodden_stone/step3",
+      "malum:block/trodden_stone/step4",
+      "malum:block/trodden_stone/step5",
+      "malum:block/trodden_stone/step6"
     ],
     "subtitle": "malum.subtitle.trodden_stone_step"
   },
