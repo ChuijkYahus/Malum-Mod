@@ -2,6 +2,6 @@
   "parent": "minecraft:block/leaves",
   "render_type": "minecraft:cutout",
   "textures": {
-    "all": "malum:block/building_blocks/soulwood/leaves/soulwood_leaves6"
+    "all": "malum:block/building/soulwood/leaves/soulwood_leaves6"
   }
 }

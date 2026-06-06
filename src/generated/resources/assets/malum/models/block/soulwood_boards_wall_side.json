@@ -1,6 +1,6 @@
 {
   "parent": "minecraft:block/template_wall_side",
   "textures": {
-    "wall": "malum:block/building_blocks/soulwood/soulwood_boards"
+    "wall": "malum:block/building/soulwood/soulwood_boards"
   }
 }

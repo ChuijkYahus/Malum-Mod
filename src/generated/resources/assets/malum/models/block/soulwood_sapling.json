@@ -2,6 +2,6 @@
   "parent": "minecraft:block/cross",
   "render_type": "minecraft:cutout",
   "textures": {
-    "cross": "malum:block/building_blocks/soulwood/soulwood_sapling"
+    "cross": "malum:block/building/soulwood/soulwood_sapling"
   }
 }

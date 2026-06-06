@@ -1,8 +1,8 @@
 {
   "parent": "malum:block/templates/template_totem_pole",
   "textures": {
-    "front": "malum:block/building_blocks/soulwood/totem_poles/earthen_soulwood_cutout",
-    "side": "malum:block/building_blocks/soulwood/soulwood_log",
-    "top": "malum:block/building_blocks/soulwood/soulwood_log_top"
+    "front": "malum:block/building/soulwood/totem_poles/earthen_soulwood_cutout",
+    "side": "malum:block/building/soulwood/soulwood_log",
+    "top": "malum:block/building/soulwood/soulwood_log_top"
   }
 }

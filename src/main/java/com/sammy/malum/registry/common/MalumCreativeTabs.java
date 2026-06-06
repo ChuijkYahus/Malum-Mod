@@ -16,19 +16,26 @@ public class MalumCreativeTabs {
 
     public static final DeferredRegister<CreativeModeTab> CREATIVE_MODE_TABS = DeferredRegister.create(Registries.CREATIVE_MODE_TAB, MalumMod.MALUM);
 
-    public static final DeferredHolder<CreativeModeTab, CreativeModeTab> CONTENT = CREATIVE_MODE_TABS.register("malum_content",
-            () -> CategorizedCreativeTab.builder(MalumCreativeTab::new)
+    public static final DeferredHolder<CreativeModeTab, CreativeModeTab> ANCIENT_SORCERY = CREATIVE_MODE_TABS.register("malum_ancient_sorcery",
+            () -> CategorizedCreativeTab.builder(MalumAncientSorceryTab::new)
                     .withVisualInfo(new MalumVisualInfo())
-                    .title(Component.translatable(MalumMod.MALUM + ".itemGroup.malum_content"))
+                    .title(Component.translatable(MalumMod.MALUM + ".itemGroup.malum_ancient_sorcery"))
                     .withTabsBefore(CreativeModeTabs.SPAWN_EGGS)
                     .icon(MalumContent.Sorcery.SPIRIT_ALTAR::getDefaultInstance).build()
+    );
+    public static final DeferredHolder<CreativeModeTab, CreativeModeTab> LESSER_SOULSTUFF = CREATIVE_MODE_TABS.register("malum_lesser_soulstuff",
+            () -> CategorizedCreativeTab.builder(MalumLesserSoulstuffTab::new)
+                    .withVisualInfo(new MalumVisualInfo())
+                    .title(Component.translatable(MalumMod.MALUM + ".itemGroup.malum_lesser_soulstuff"))
+                    .withTabsBefore(ANCIENT_SORCERY)
+                    .icon(MalumContent.BlockSets.ETHER::getDefaultInstance).build()
     );
 
     public static final DeferredHolder<CreativeModeTab, CreativeModeTab> ALCHEMY_AND_METALLICS = CREATIVE_MODE_TABS.register("malum_alchemy_and_metallics",
             () -> CategorizedCreativeTab.builder(MalumAlchemyAndMetallicsTab::new)
                     .withVisualInfo(new MalumVisualInfo())
-                    .title(Component.translatable(MalumMod.MALUM + ".itemGroup.malum_artifice"))
-                    .withTabsBefore(CONTENT.getId())
+                    .title(Component.translatable(MalumMod.MALUM + ".itemGroup.malum_alchemy_and_metallics"))
+                    .withTabsBefore(LESSER_SOULSTUFF.getId())
                     .icon(MalumContent.AlchemyAndMetallics.ALCHEMICAL_IMPETUS::toStack).build()
     );
 

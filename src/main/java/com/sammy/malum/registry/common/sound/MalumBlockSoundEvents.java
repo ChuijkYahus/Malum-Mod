@@ -62,7 +62,13 @@ public class MalumBlockSoundEvents {
 
     //The World
     public static final MalumBlockSoundType TRODDEN_STONE = new MalumBlockSoundType("trodden_stone");
+    public static final MalumBlockSoundType POLISHED_TRODDEN_STONE = new MalumBlockSoundType("polished_trodden_stone");
+
     public static final MalumBlockSoundType SEED_QUARTZ = new MalumBlockSoundType("seed_quartz");
+    public static final MalumBlockSoundType POLISHED_SEED_QUARTZ = new MalumBlockSoundType("polished_seed_quartz");
+
+    public static final MalumBlockSoundType EBONSTONE = new MalumBlockSoundType("ebonstone");
+    public static final MalumBlockSoundType POLISHED_EBONSTONE = new MalumBlockSoundType("polished_ebonstone");
 
 
     //Runewood

@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "type=bottom": {
+      "model": "malum:block/ebonstone_tiles_slab"
+    },
+    "type=double": {
+      "model": "malum:block/ebonstone_tiles"
+    },
+    "type=top": {
+      "model": "malum:block/ebonstone_tiles_slab_top"
+    }
+  }
+}

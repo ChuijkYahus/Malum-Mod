@@ -55,30 +55,32 @@ public class MalumBlockStateDatagen extends LodestoneBlockStateSystem {
 
         setTexturePath("banners");
         MalumBlockStateSmithTypes.SOULWOVEN_BANNER.act(data, BlockSets.SOULWOVEN_BANNER);
-        setTexturePath("building_blocks/spirited_glass");
+        setTexturePath("building/spirited_glass");
         BlockStateSmithTypes.FULL_BLOCK.act(data,
                 BlockSets.SACRED_SPIRITED_GLASS, BlockSets.WICKED_SPIRITED_GLASS, BlockSets.ARCANE_SPIRITED_GLASS, BlockSets.ELDRITCH_SPIRITED_GLASS,
                 BlockSets.AERIAL_SPIRITED_GLASS, BlockSets.AQUEOUS_SPIRITED_GLASS, BlockSets.EARTHEN_SPIRITED_GLASS, BlockSets.INFERNAL_SPIRITED_GLASS,
                 BlockSets.NULL_SPIRITED_GLASS);
 
-        setTexturePath("building_blocks/terracotta");
+        setTexturePath("building/terracotta");
         BlockStateSmithTypes.GLAZED_TERRACOTTA_BLOCK.act(data,
                 BlockSets.SACRED_VARNISHED_TERRACOTTA, BlockSets.WICKED_VARNISHED_TERRACOTTA, BlockSets.ARCANE_VARNISHED_TERRACOTTA, BlockSets.ELDRITCH_VARNISHED_TERRACOTTA,
                 BlockSets.AERIAL_VARNISHED_TERRACOTTA, BlockSets.AQUEOUS_VARNISHED_TERRACOTTA, BlockSets.EARTHEN_VARNISHED_TERRACOTTA, BlockSets.INFERNAL_VARNISHED_TERRACOTTA,
                 BlockSets.NULL_VARNISHED_TERRACOTTA);
 
-        setTexturePath("building_blocks/trodden_stone");
+        setTexturePath("building/common_rock/trodden_stone");
         generateMinorBuildingSet(data, BlockSets.TRODDEN_STONE);
 
-        setTexturePath("building_blocks/seed_quartz");
+        setTexturePath("building/common_rock/seed_quartz");
         generateMinorBuildingSet(data, BlockSets.SEED_QUARTZ);
+        setTexturePath("building/common_rock/ebonstone");
+        generateMinorBuildingSet(data, BlockSets.EBONSTONE);
 
-        setTexturePath("building_blocks/arcane_rock/tainted");
+        setTexturePath("building/arcane_rock/tainted");
         generateRockSet(data, BlockSets.TAINTED_ROCK_SET);
-        setTexturePath("building_blocks/arcane_rock/twisted");
+        setTexturePath("building/arcane_rock/twisted");
         generateRockSet(data, BlockSets.TWISTED_ROCK_SET);
 
-        setTexturePath("building_blocks/arcane_rock/dross");
+        setTexturePath("building/arcane_rock/dross");
         BlockStateSmithTypes.FULL_BLOCK.act(data,
                 DROSS_STONE, POLISHED_DROSS_STONE, DROSS_STONE_BRICKS, DROSS_STONE_TILES, DROSS_STONE_MOSAIC, CHISELED_DROSS_STONE,
                 GRAY_DROSS_TILES, DARK_DROSS_TILES);
@@ -105,23 +107,23 @@ public class MalumBlockStateDatagen extends LodestoneBlockStateSystem {
         BlockStateSmithTypes.CUSTOM_MODEL.act(data, this::simpleBlock, this::rockItemPedestalModel, DROSS_STONE_ITEM_PEDESTAL);
         BlockStateSmithTypes.CUSTOM_MODEL.act(data, this::directionalBlock, this::itemStandModel, DROSS_STONE_ITEM_STAND);
 
-        setTexturePath("building_blocks/runewood");
+        setTexturePath("building/runewood");
         generateWoodSet(data, BlockSets.RUNEWOOD_SET);
         BlockStateSmithTypes.POTTED_PLANT.act(data, BlockSets.POTTED_RUNEWOOD_SAPLING, BlockSets.POTTED_AZURE_RUNEWOOD_SAPLING);
         BlockStateSmithTypes.CROSS_MODEL_BLOCK.act(data, BlockSets.RUNEWOOD_SAPLING, BlockSets.AZURE_RUNEWOOD_SAPLING);
         MalumBlockStateSmithTypes.TOTEM_POLE.act(data, Totemancy.RUNEWOOD_TOTEM_POLE);
 
-        setTexturePath("building_blocks/runewood/leaves");
+        setTexturePath("building/runewood/leaves");
         MalumBlockStateSmithTypes.STAGED_LEAVES.act(data, BlockSets.RUNEWOOD_LEAVES, BlockSets.AZURE_RUNEWOOD_LEAVES);
         MalumBlockStateSmithTypes.STAGED_HANGING_LEAVES.act(data, BlockSets.HANGING_RUNEWOOD_LEAVES, BlockSets.HANGING_AZURE_RUNEWOOD_LEAVES);
 
-        setTexturePath("building_blocks/soulwood");
+        setTexturePath("building/soulwood");
         generateWoodSet(data, BlockSets.SOULWOOD_SET);
         BlockStateSmithTypes.POTTED_PLANT.act(data, BlockSets.POTTED_SOULWOOD_SAPLING);
         BlockStateSmithTypes.CROSS_MODEL_BLOCK.act(data, BlockSets.SOULWOOD_SAPLING);
         MalumBlockStateSmithTypes.TOTEM_POLE.act(data, Totemancy.SOULWOOD_TOTEM_POLE);
 
-        setTexturePath("building_blocks/soulwood/leaves");
+        setTexturePath("building/soulwood/leaves");
         MalumBlockStateSmithTypes.STAGED_LEAVES.act(data, BlockSets.SOULWOOD_LEAVES);
         MalumBlockStateSmithTypes.STAGED_HANGING_LEAVES.act(data, BlockSets.HANGING_SOULWOOD_LEAVES);
 
@@ -447,7 +449,7 @@ public class MalumBlockStateDatagen extends LodestoneBlockStateSystem {
         String name = getBlockName(block);
         ResourceLocation side = getBlockTexture(name);
         ResourceLocation bottom = getBlockTexture("blighted_earth_bottom");
-        ResourceLocation top = getAbsoluteBlockTexture("building_blocks/soulwood/soulwood_log_top");
+        ResourceLocation top = getAbsoluteBlockTexture("building/soulwood/soulwood_log_top");
         return models().cubeBottomTop(name, side, bottom, top);
     }
 }

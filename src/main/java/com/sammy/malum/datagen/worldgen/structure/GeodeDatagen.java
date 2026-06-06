@@ -60,7 +60,7 @@ public class GeodeDatagen {
     }
 
     public static void geode(BootstrapContext<Structure> context, ResourceKey<Structure> key, GeodeCrystalRegistrySet set) {
-        float airPocket = 9f;
+        float airPocket = 7f;
 
         var buddingQuartzGeodes = of(6, 8);
         var quartzClusters = of(200, 300);

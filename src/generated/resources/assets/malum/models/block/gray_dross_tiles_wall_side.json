@@ -1,6 +1,6 @@
 {
   "parent": "minecraft:block/template_wall_side",
   "textures": {
-    "wall": "malum:block/building_blocks/arcane_rock/dross/gray_dross_tiles"
+    "wall": "malum:block/building/arcane_rock/dross/gray_dross_tiles"
   }
 }

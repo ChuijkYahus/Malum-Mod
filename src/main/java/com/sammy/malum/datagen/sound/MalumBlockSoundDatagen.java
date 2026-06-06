@@ -105,8 +105,14 @@ public class MalumBlockSoundDatagen extends MalumSoundDatagenWrapper {
         add(MalumBlockSoundEvents.WITCHHAZEL, "block/flora/witchhazel");
 
         //Sanctuary
-        add(MalumBlockSoundEvents.TRODDEN_STONE, "block/trodden_stone");
-        add(MalumBlockSoundEvents.SEED_QUARTZ, "block/trodden_stone", s -> s.modifySounds(se -> se.pitch(1.6f)));
+        add(MalumBlockSoundEvents.TRODDEN_STONE, "block/common_rock/trodden_stone");
+        add(MalumBlockSoundEvents.POLISHED_TRODDEN_STONE, "block/common_rock/trodden_stone", s -> s.modifySounds(se -> se.pitch(1.2f)));
+
+        add(MalumBlockSoundEvents.SEED_QUARTZ, "block/common_rock/seed_quartz", s -> s.setPlaceSoundName("break"));
+        add(MalumBlockSoundEvents.POLISHED_SEED_QUARTZ, "block/common_rock/seed_quartz", s -> s.modifySounds(se -> se.pitch(1.2f)));
+
+        add(MalumBlockSoundEvents.EBONSTONE, "block/common_rock/ebonstone", s -> s.setPlaceSoundName("break"));
+        add(MalumBlockSoundEvents.POLISHED_EBONSTONE, "block/common_rock/ebonstone", s -> s.modifySounds(se -> se.pitch(1.2f)));
 
 
         //Runewood

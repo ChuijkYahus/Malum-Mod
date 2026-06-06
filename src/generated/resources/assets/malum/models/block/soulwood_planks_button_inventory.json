@@ -1,6 +1,6 @@
 {
   "parent": "minecraft:block/button_inventory",
   "textures": {
-    "texture": "malum:block/building_blocks/soulwood/soulwood_planks"
+    "texture": "malum:block/building/soulwood/soulwood_planks"
   }
 }
