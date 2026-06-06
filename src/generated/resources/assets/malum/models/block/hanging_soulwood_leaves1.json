@@ -2,6 +2,6 @@
   "parent": "minecraft:block/cross",
   "render_type": "minecraft:cutout",
   "textures": {
-    "cross": "malum:block/soulwood/leaves/hanging_soulwood_leaves1"
+    "cross": "malum:block/building_blocks/soulwood/leaves/hanging_soulwood_leaves1"
   }
 }

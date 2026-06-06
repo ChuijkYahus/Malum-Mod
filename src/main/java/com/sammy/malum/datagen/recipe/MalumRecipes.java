@@ -19,6 +19,7 @@ import net.minecraft.world.level.block.*;
 import java.util.*;
 import java.util.concurrent.CompletableFuture;
 
+@SuppressWarnings("NullableProblems")
 public class MalumRecipes extends VanillaRecipeProvider {
 
     MalumVanillaRecipeReplacements vanillaRecipeReplacements;

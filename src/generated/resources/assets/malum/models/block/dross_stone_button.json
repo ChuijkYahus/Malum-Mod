@@ -1,6 +1,6 @@
 {
   "parent": "minecraft:block/button",
   "textures": {
-    "texture": "malum:block/arcane_rock/dross/dross_stone"
+    "texture": "malum:block/building_blocks/arcane_rock/dross/dross_stone"
   }
 }

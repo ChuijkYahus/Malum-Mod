@@ -1,6 +1,6 @@
 {
   "parent": "minecraft:block/wall_inventory",
   "textures": {
-    "wall": "malum:block/runewood/runewood_boards"
+    "wall": "malum:block/building_blocks/runewood/runewood_boards"
   }
 }

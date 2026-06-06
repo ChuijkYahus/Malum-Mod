@@ -10,6 +10,7 @@ import net.minecraft.data.*;
 import net.minecraft.data.registries.*;
 import net.neoforged.neoforge.common.data.*;
 import net.neoforged.neoforge.registries.*;
+import team.lodestar.lodestone.LodestoneLib;
 
 import java.util.*;
 import java.util.concurrent.*;
@@ -26,6 +27,6 @@ public class RegistryDataGenerator extends DatapackBuiltinEntriesProvider {
             .add(NeoForgeRegistries.Keys.BIOME_MODIFIERS, BiomeModificationDatagen::bootstrap);
 
     public RegistryDataGenerator(PackOutput output, CompletableFuture<HolderLookup.Provider> registries) {
-        super(output, RegistryPatchGenerator.createLookup(registries, BUILDER), Set.of("minecraft", MalumMod.MALUM));
+        super(output, RegistryPatchGenerator.createLookup(registries, BUILDER), Set.of("minecraft", MalumMod.MALUM, LodestoneLib.LODESTONE));
     }
 }

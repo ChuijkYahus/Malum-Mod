@@ -2,6 +2,6 @@
   "parent": "malum:block/templates/template_item_pedestal_wooden_decorated",
   "render_type": "minecraft:cutout",
   "textures": {
-    "pedestal": "malum:block/soulwood/soulwood_item_pedestal_ornate"
+    "pedestal": "malum:block/building_blocks/soulwood/soulwood_item_pedestal_ornate"
   }
 }

@@ -2,6 +2,6 @@
   "parent": "minecraft:block/cross",
   "render_type": "minecraft:cutout",
   "textures": {
-    "cross": "malum:block/runewood/leaves/hanging_runewood_leaves5"
+    "cross": "malum:block/building_blocks/runewood/leaves/hanging_runewood_leaves5"
   }
 }

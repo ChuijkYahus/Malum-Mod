@@ -1,18 +1,7 @@
 {
   "variants": {
-    "": [
-      {
-        "model": "malum:block/trodden_stone0"
-      },
-      {
-        "model": "malum:block/trodden_stone1"
-      },
-      {
-        "model": "malum:block/trodden_stone2"
-      },
-      {
-        "model": "malum:block/trodden_stone3"
-      }
-    ]
+    "": {
+      "model": "malum:block/trodden_stone"
+    }
   }
 }

@@ -1,6 +1,7 @@
 package com.sammy.malum.common.creativetab;
 
 import com.sammy.malum.MalumMod;
+import com.sammy.malum.common.creativetab.button.ItemChoiceSlotStorage;
 import net.minecraft.resources.ResourceLocation;
 import team.lodestar.lodestone.modules.toolkit.creative_tab.CreativeTabHeader;
 import team.lodestar.lodestone.modules.toolkit.creative_tab.CreativeTabVisualInfo;
@@ -15,6 +16,7 @@ public class MalumVisualInfo extends CreativeTabVisualInfo {
     private static final ResourceLocation SLOT_WRAPPER_LEFT = MalumMod.malumPath("slot_wrapper_left");
     private static final ResourceLocation SLOT_WRAPPER_RIGHT = MalumMod.malumPath("slot_wrapper_right");
     private static final ResourceLocation EMPTY_SLOT = MalumMod.malumPath("empty_slot");
+    private static final ResourceLocation BUTTON_SLOT = MalumMod.malumPath("button_slot");
 
     @Override
     public Optional<ResourceLocation> getHeaderTexture(CreativeTabHeader header, int row, int column) {
@@ -28,6 +30,9 @@ public class MalumVisualInfo extends CreativeTabVisualInfo {
 
     @Override
     public Optional<ResourceLocation> getEmptySlotTexture(SlotStorage slot) {
+        if (slot instanceof ItemChoiceSlotStorage itemChoiceSlotStorage) {
+            return Optional.of(BUTTON_SLOT);
+        }
         return Optional.of(EMPTY_SLOT);
     }
 }

@@ -60,8 +60,9 @@ public class MalumBlockSoundEvents {
     public static final MalumBlockSoundType WILD_WITCHHAZEL = new MalumBlockSoundType("wild_witchhazel");
     public static final MalumBlockSoundType WITCHHAZEL = new MalumBlockSoundType("witchhazel");
 
-    //Sanctuary
+    //The World
     public static final MalumBlockSoundType TRODDEN_STONE = new MalumBlockSoundType("trodden_stone");
+    public static final MalumBlockSoundType SEED_QUARTZ = new MalumBlockSoundType("seed_quartz");
 
 
     //Runewood

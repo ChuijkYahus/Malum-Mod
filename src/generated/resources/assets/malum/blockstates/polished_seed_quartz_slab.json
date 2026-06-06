@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "type=bottom": {
+      "model": "malum:block/polished_seed_quartz_slab"
+    },
+    "type=double": {
+      "model": "malum:block/polished_seed_quartz"
+    },
+    "type=top": {
+      "model": "malum:block/polished_seed_quartz_slab_top"
+    }
+  }
+}

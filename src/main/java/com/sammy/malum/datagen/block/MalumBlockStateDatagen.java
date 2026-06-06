@@ -7,8 +7,9 @@ import com.sammy.malum.datagen.item.*;
 import com.sammy.malum.datagen.set.MalumPoppetrySetDatagen;
 import com.sammy.malum.registry.common.MalumContent;
 import com.sammy.malum.registry.common.MalumContent.*;
-import com.sammy.malum.registry.common.util.RockBlockSet;
-import com.sammy.malum.registry.common.util.WoodBlockSet;
+import com.sammy.malum.registry.common.util.building.MinorBuildingSet;
+import com.sammy.malum.registry.common.util.building.RockBlockSet;
+import com.sammy.malum.registry.common.util.building.WoodBlockSet;
 import com.sammy.malum.registry.common.util.data.*;
 import net.minecraft.data.*;
 import net.minecraft.resources.*;
@@ -54,29 +55,30 @@ public class MalumBlockStateDatagen extends LodestoneBlockStateSystem {
 
         setTexturePath("banners");
         MalumBlockStateSmithTypes.SOULWOVEN_BANNER.act(data, BlockSets.SOULWOVEN_BANNER);
-        setTexturePath("spirited_glass");
+        setTexturePath("building_blocks/spirited_glass");
         BlockStateSmithTypes.FULL_BLOCK.act(data,
                 BlockSets.SACRED_SPIRITED_GLASS, BlockSets.WICKED_SPIRITED_GLASS, BlockSets.ARCANE_SPIRITED_GLASS, BlockSets.ELDRITCH_SPIRITED_GLASS,
                 BlockSets.AERIAL_SPIRITED_GLASS, BlockSets.AQUEOUS_SPIRITED_GLASS, BlockSets.EARTHEN_SPIRITED_GLASS, BlockSets.INFERNAL_SPIRITED_GLASS,
                 BlockSets.NULL_SPIRITED_GLASS);
 
-        setTexturePath("terracotta");
+        setTexturePath("building_blocks/terracotta");
         BlockStateSmithTypes.GLAZED_TERRACOTTA_BLOCK.act(data,
                 BlockSets.SACRED_VARNISHED_TERRACOTTA, BlockSets.WICKED_VARNISHED_TERRACOTTA, BlockSets.ARCANE_VARNISHED_TERRACOTTA, BlockSets.ELDRITCH_VARNISHED_TERRACOTTA,
                 BlockSets.AERIAL_VARNISHED_TERRACOTTA, BlockSets.AQUEOUS_VARNISHED_TERRACOTTA, BlockSets.EARTHEN_VARNISHED_TERRACOTTA, BlockSets.INFERNAL_VARNISHED_TERRACOTTA,
                 BlockSets.NULL_VARNISHED_TERRACOTTA);
 
-        setTexturePath("sanctuary/trodden_stone");
-        generateVariedBlockBundle(data, BlockSets.TRODDEN_STONE);
-        generateBlockBundle(data, BlockSets.TRODDEN_STONE_BRICKS);
-        generateBlockBundle(data, BlockSets.POLISHED_TRODDEN_STONE);
+        setTexturePath("building_blocks/trodden_stone");
+        generateMinorBuildingSet(data, BlockSets.TRODDEN_STONE);
 
-        setTexturePath("arcane_rock/tainted");
+        setTexturePath("building_blocks/seed_quartz");
+        generateMinorBuildingSet(data, BlockSets.SEED_QUARTZ);
+
+        setTexturePath("building_blocks/arcane_rock/tainted");
         generateRockSet(data, BlockSets.TAINTED_ROCK_SET);
-        setTexturePath("arcane_rock/twisted");
+        setTexturePath("building_blocks/arcane_rock/twisted");
         generateRockSet(data, BlockSets.TWISTED_ROCK_SET);
 
-        setTexturePath("arcane_rock/dross");
+        setTexturePath("building_blocks/arcane_rock/dross");
         BlockStateSmithTypes.FULL_BLOCK.act(data,
                 DROSS_STONE, POLISHED_DROSS_STONE, DROSS_STONE_BRICKS, DROSS_STONE_TILES, DROSS_STONE_MOSAIC, CHISELED_DROSS_STONE,
                 GRAY_DROSS_TILES, DARK_DROSS_TILES);
@@ -103,23 +105,23 @@ public class MalumBlockStateDatagen extends LodestoneBlockStateSystem {
         BlockStateSmithTypes.CUSTOM_MODEL.act(data, this::simpleBlock, this::rockItemPedestalModel, DROSS_STONE_ITEM_PEDESTAL);
         BlockStateSmithTypes.CUSTOM_MODEL.act(data, this::directionalBlock, this::itemStandModel, DROSS_STONE_ITEM_STAND);
 
-        setTexturePath("runewood");
+        setTexturePath("building_blocks/runewood");
         generateWoodSet(data, BlockSets.RUNEWOOD_SET);
-
         BlockStateSmithTypes.POTTED_PLANT.act(data, BlockSets.POTTED_RUNEWOOD_SAPLING, BlockSets.POTTED_AZURE_RUNEWOOD_SAPLING);
         BlockStateSmithTypes.CROSS_MODEL_BLOCK.act(data, BlockSets.RUNEWOOD_SAPLING, BlockSets.AZURE_RUNEWOOD_SAPLING);
         MalumBlockStateSmithTypes.TOTEM_POLE.act(data, Totemancy.RUNEWOOD_TOTEM_POLE);
-        setTexturePath("runewood/leaves");
+
+        setTexturePath("building_blocks/runewood/leaves");
         MalumBlockStateSmithTypes.STAGED_LEAVES.act(data, BlockSets.RUNEWOOD_LEAVES, BlockSets.AZURE_RUNEWOOD_LEAVES);
         MalumBlockStateSmithTypes.STAGED_HANGING_LEAVES.act(data, BlockSets.HANGING_RUNEWOOD_LEAVES, BlockSets.HANGING_AZURE_RUNEWOOD_LEAVES);
 
-        setTexturePath("soulwood");
+        setTexturePath("building_blocks/soulwood");
         generateWoodSet(data, BlockSets.SOULWOOD_SET);
-
         BlockStateSmithTypes.POTTED_PLANT.act(data, BlockSets.POTTED_SOULWOOD_SAPLING);
         BlockStateSmithTypes.CROSS_MODEL_BLOCK.act(data, BlockSets.SOULWOOD_SAPLING);
         MalumBlockStateSmithTypes.TOTEM_POLE.act(data, Totemancy.SOULWOOD_TOTEM_POLE);
-        setTexturePath("soulwood/leaves");
+
+        setTexturePath("building_blocks/soulwood/leaves");
         MalumBlockStateSmithTypes.STAGED_LEAVES.act(data, BlockSets.SOULWOOD_LEAVES);
         MalumBlockStateSmithTypes.STAGED_HANGING_LEAVES.act(data, BlockSets.HANGING_SOULWOOD_LEAVES);
 
@@ -297,6 +299,15 @@ public class MalumBlockStateDatagen extends LodestoneBlockStateSystem {
         }
     }
 
+    public void generateMinorBuildingSet(BlockStateSystemData<MalumBlockStateDatagen> data, MinorBuildingSet set) {
+        for (BlockBundle bundle : new BlockBundle[]{
+                set.getRaw(), set.getPolished(),
+                set.getBricks(), set.getTiles()
+        }) {
+            generateBlockBundle(data, bundle);
+        }
+    }
+
     public void generateRockSet(BlockStateSystemData<MalumBlockStateDatagen> data, RockBlockSet set) {
         for (BlockBundle bundle : new BlockBundle[]{
                 set.rock, set.polishedRock, set.bricks,
@@ -436,7 +447,7 @@ public class MalumBlockStateDatagen extends LodestoneBlockStateSystem {
         String name = getBlockName(block);
         ResourceLocation side = getBlockTexture(name);
         ResourceLocation bottom = getBlockTexture("blighted_earth_bottom");
-        ResourceLocation top = getAbsoluteBlockTexture("soulwood/soulwood_log_top");
+        ResourceLocation top = getAbsoluteBlockTexture("building_blocks/soulwood/soulwood_log_top");
         return models().cubeBottomTop(name, side, bottom, top);
     }
 }

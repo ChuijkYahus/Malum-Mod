@@ -1,8 +1,8 @@
 {
   "parent": "minecraft:block/slab_top",
   "textures": {
-    "bottom": "malum:block/soulwood/carved_soulwood_tiles7",
-    "side": "malum:block/soulwood/carved_soulwood_tiles7",
-    "top": "malum:block/soulwood/carved_soulwood_tiles7"
+    "bottom": "malum:block/building_blocks/soulwood/carved_soulwood_tiles7",
+    "side": "malum:block/building_blocks/soulwood/carved_soulwood_tiles7",
+    "top": "malum:block/building_blocks/soulwood/carved_soulwood_tiles7"
   }
 }

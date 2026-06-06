@@ -1,6 +1,6 @@
 {
   "parent": "minecraft:block/wall_inventory",
   "textures": {
-    "wall": "malum:block/soulwood/vertical_soulwood_boards"
+    "wall": "malum:block/building_blocks/soulwood/vertical_soulwood_boards"
   }
 }

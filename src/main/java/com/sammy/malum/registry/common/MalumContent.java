@@ -13,7 +13,6 @@ import com.sammy.malum.common.block.curiosities.artifice.redstone.wavebanker.*;
 import com.sammy.malum.common.block.curiosities.artifice.redstone.wavebreaker.*;
 import com.sammy.malum.common.block.curiosities.artifice.redstone.wavecharger.*;
 import com.sammy.malum.common.block.curiosities.artifice.redstone.wavemaker.*;
-import com.sammy.malum.common.block.curiosities.poppetry.PoppetPillowBlock;
 import com.sammy.malum.common.block.curiosities.sorcery.magehand_coffer.MagehandCofferBlock;
 import com.sammy.malum.common.block.curiosities.sorcery.soul_brazier.*;
 import com.sammy.malum.common.block.curiosities.decor.banner.SoulwovenBannerBlock;
@@ -156,6 +155,9 @@ import com.sammy.malum.registry.common.item.MalumItemTiers;
 import com.sammy.malum.registry.common.magic.MalumSpiritTypes;
 import com.sammy.malum.registry.common.sound.MalumBlockSoundEvents;
 import com.sammy.malum.registry.common.util.*;
+import com.sammy.malum.registry.common.util.building.MinorBuildingSet;
+import com.sammy.malum.registry.common.util.building.RockBlockSet;
+import com.sammy.malum.registry.common.util.building.WoodBlockSet;
 import com.sammy.malum.registry.common.util.data.*;
 import com.sammy.malum.registry.common.worldgen.MalumTreeGrowers;
 import net.minecraft.util.valueproviders.UniformInt;
@@ -474,9 +476,8 @@ public class MalumContent {
                 () -> new EtherCressetBlock<>(MalumEtherBlockProperties.ETHER_CRESSET()), EtherCressetItem::iridescent);
 
 
-        public static final BlockBundle TRODDEN_STONE = new BlockBundle("trodden_stone", MalumBlockProperties::TRODDEN_STONE);
-        public static final BlockBundleWithWall TRODDEN_STONE_BRICKS = new BlockBundleWithWall("trodden_stone_bricks", MalumBlockProperties::TRODDEN_STONE);
-        public static final BlockBundle POLISHED_TRODDEN_STONE = new BlockBundle("polished_trodden_stone", MalumBlockProperties::TRODDEN_STONE);
+        public static final MinorBuildingSet TRODDEN_STONE = new MinorBuildingSet("trodden_stone", MalumBlockProperties::TRODDEN_STONE);
+        public static final MinorBuildingSet SEED_QUARTZ = new MinorBuildingSet("seed_quartz", MalumBlockProperties::SEED_QUARTZ);
 
         public static final RockBlockSet TAINTED_ROCK_SET = new RockBlockSet("tainted_rock", MalumBlockProperties::TAINTED_ROCK, MalumBlockProperties::TAINTED_ROCK_BRICKS, MalumBlockProperties::CHISELED_TAINTED_ROCK);
         public static final RockBlockSet TWISTED_ROCK_SET = new RockBlockSet("twisted_rock", MalumBlockProperties::TWISTED_ROCK, MalumBlockProperties::TWISTED_ROCK_BRICKS, MalumBlockProperties::CHISELED_TWISTED_ROCK);

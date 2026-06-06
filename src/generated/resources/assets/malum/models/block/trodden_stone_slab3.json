@@ -1,8 +1,0 @@
-{
-  "parent": "minecraft:block/slab",
-  "textures": {
-    "bottom": "malum:block/sanctuary/trodden_stone/trodden_stone3",
-    "side": "malum:block/sanctuary/trodden_stone/trodden_stone3",
-    "top": "malum:block/sanctuary/trodden_stone/trodden_stone3"
-  }
-}

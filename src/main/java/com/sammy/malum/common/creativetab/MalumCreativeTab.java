@@ -1,32 +1,13 @@
 package com.sammy.malum.common.creativetab;
 
-import com.sammy.malum.*;
 import com.sammy.malum.common.block.curiosities.decor.banner.SoulwovenBannerBlockItem;
-import com.sammy.malum.core.handlers.hiding.*;
+import com.sammy.malum.common.creativetab.button.ItemChoiceEntry;
 import com.sammy.malum.registry.common.*;
-import net.minecraft.resources.*;
-import net.minecraft.world.item.*;
 import team.lodestar.lodestone.modules.toolkit.creative_tab.CategorizedBuilder;
-import team.lodestar.lodestone.modules.toolkit.creative_tab.CategorizedCreativeTab;
-import team.lodestar.lodestone.modules.toolkit.creative_tab.CreativeTabCategory;
-
-import java.util.*;
 
 import static com.sammy.malum.registry.common.MalumContent.*;
 
 public class MalumCreativeTab extends AbstractMalumCreativeTab {
-
-        public static final String FUNDAMENTALS_CATEGORY = "fundamentals_of_arcana";
-        public static final String GEAR_CATEGORY = "gear_and_trinkets";
-        public static final String MATERIALS_CATEGORY = "soulformed_substance";
-        public static final String ORES_CATEGORY = "earthen_treasures";
-        public static final String ETHERWORKS_CATEGORY = "ether";
-        public static final String SOULSTUFF_CATEGORY = "soulstuff";
-        public static final String RUNEWOOD_CATEGORY = "runewood";
-        public static final String SOULWOOD_CATEGORY = "soulwood";
-        public static final String BLIGHT_CATEGORY = "blight";
-        public static final String TAINTED_ROCK_CATEGORY = "tainted_rock";
-        public static final String TWISTED_ROCK_CATEGORY = "twisted_rock";
 
         public static final String DUNGEON_REGALIA = "dungeon_regalia";
         public static final String DUNGEON_ARCHITECTURE = "dungeon_architecture";
@@ -37,7 +18,7 @@ public class MalumCreativeTab extends AbstractMalumCreativeTab {
         }
 
         public void buildCategories() {
-                createCategory(FUNDAMENTALS_CATEGORY)
+                createCategory("fundamentals_of_arcana")
                         .addItems(
                                 Spirits.SACRED_SPIRIT, Spirits.WICKED_SPIRIT, Spirits.ARCANE_SPIRIT, Spirits.ELDRITCH_SPIRIT,
                                 Spirits.AERIAL_SPIRIT, Spirits.AQUEOUS_SPIRIT, Spirits.EARTHEN_SPIRIT, Spirits.INFERNAL_SPIRIT,
@@ -86,7 +67,7 @@ public class MalumCreativeTab extends AbstractMalumCreativeTab {
                                 Totemancy.RITE_CHANNEL
                         )
                         .bake();
-                createCategory(GEAR_CATEGORY)
+                createCategory("gear_and_trinkets")
                         .addItems(
                                 Gear.CRUDE_SCYTHE,
                                 Gear.SOULWOVEN_POUCH,
@@ -211,28 +192,24 @@ public class MalumCreativeTab extends AbstractMalumCreativeTab {
                         )
                         .bake();
 
-                createCategory(MATERIALS_CATEGORY)
-                        .addItems(
-                                Materials.ROTTING_ESSENCE,
-                                Materials.GRIM_TALC,
-                                Materials.EERIE_WEAVE,
-                                Materials.WARP_FLUX
-                        )
-                        .addItems(
-                                Materials.WIND_NUCLEUS,
-                                Materials.PYRE_NUCLEUS
+                createCategory("soulformed_substance")
+                        .addEntries(
+                                ItemChoiceEntry.choice(Materials.ROTTING_ESSENCE, CompactBlocks.BLOCK_OF_ROTTING_ESSENCE),
+                                ItemChoiceEntry.choice(Materials.GRIM_TALC, CompactBlocks.BLOCK_OF_GRIM_TALC),
+                                ItemChoiceEntry.choice(Materials.EERIE_WEAVE, CompactBlocks.BLOCK_OF_EERIE_WEAVE),
+                                ItemChoiceEntry.choice(Materials.WARP_FLUX, CompactBlocks.BLOCK_OF_WARP_FLUX),
+
+                                ItemChoiceEntry.choice(Materials.WIND_NUCLEUS, CompactBlocks.BLOCK_OF_WIND_NUCLEI),
+                                ItemChoiceEntry.choice(Materials.PYRE_NUCLEUS, CompactBlocks.BLOCK_OF_PYRE_NUCLEI)
                         ).nextLine()
-                        .addItems(
-                                Materials.HEX_ASH,
-                                Materials.LIVING_FLESH,
-                                Materials.ALCHEMICAL_CALX,
-                                Materials.ARCANE_CHARCOAL
-                        )
-                        .addItems(
-                                Materials.EBONY_STALK,
-                                Materials.CALCIFIED_EBONY,
-                                Materials.WILD_WITCHHAZEL,
-                                Materials.WITCHHAZEL
+                        .addEntries(
+                                ItemChoiceEntry.choice(Materials.HEX_ASH, CompactBlocks.BLOCK_OF_HEX_ASH),
+                                ItemChoiceEntry.choice(Materials.LIVING_FLESH, CompactBlocks.BLOCK_OF_LIVING_FLESH),
+                                ItemChoiceEntry.choice(Materials.ALCHEMICAL_CALX, CompactBlocks.BLOCK_OF_ALCHEMICAL_CALX),
+                                ItemChoiceEntry.choice(Materials.ARCANE_CHARCOAL, CompactBlocks.BLOCK_OF_ARCANE_CHARCOAL),
+
+                                ItemChoiceEntry.choice(Materials.CALCIFIED_EBONY, CompactBlocks.BLOCK_OF_EBONY),
+                                ItemChoiceEntry.choice(Materials.WITCHHAZEL, CompactBlocks.CRATE_OF_WITCHHAZEL)
                         ).nextLine()
                         .addItems(
                                 Materials.NULL_SLATE,
@@ -267,26 +244,6 @@ public class MalumCreativeTab extends AbstractMalumCreativeTab {
                                 Materials.FUSED_CONSCIOUSNESS
                         ).nextLine()
                         .addItems(
-                                CompactBlocks.BLOCK_OF_ROTTING_ESSENCE,
-                                CompactBlocks.BLOCK_OF_GRIM_TALC,
-                                CompactBlocks.BLOCK_OF_EERIE_WEAVE,
-                                CompactBlocks.BLOCK_OF_WARP_FLUX
-                        )
-                        .addItems(
-                                CompactBlocks.BLOCK_OF_WIND_NUCLEI,
-                                CompactBlocks.BLOCK_OF_PYRE_NUCLEI
-                        ).nextLine()
-                        .addItems(
-                                CompactBlocks.BLOCK_OF_HEX_ASH,
-                                CompactBlocks.BLOCK_OF_LIVING_FLESH,
-                                CompactBlocks.BLOCK_OF_ALCHEMICAL_CALX,
-                                CompactBlocks.BLOCK_OF_ARCANE_CHARCOAL
-                        )
-                        .addItems(
-                                CompactBlocks.BLOCK_OF_EBONY,
-                                CompactBlocks.CRATE_OF_WITCHHAZEL
-                        ).nextLine()
-                        .addItems(
                                 CompactBlocks.BLOCK_OF_NULL_SLATE,
                                 CompactBlocks.BLOCK_OF_VOID_SALTS,
                                 CompactBlocks.BLOCK_OF_MNEMONIC_FRAGMENT,
@@ -298,7 +255,7 @@ public class MalumCreativeTab extends AbstractMalumCreativeTab {
                                 CompactBlocks.BLOCK_OF_HALLOWED_GOLD,
                                 CompactBlocks.BLOCK_OF_MALIGNANT_PEWTER
                         ).bake();
-                createCategory(ORES_CATEGORY)
+                createCategory("earthen_treasures")
                         .addItems(
                                 CompactBlocks.BLOCK_OF_RAW_SOULSTONE, CompactBlocks.BLOCK_OF_REFINED_SOULSTONE, Materials.DEEPSLATE_SOULSTONE_ORE, Materials.SOULSTONE_ORE,
                                 Materials.RAW_SOULSTONE, Materials.REFINED_SOULSTONE, Materials.SOULSTONE_BUD, Materials.REALIZED_SOULSTONE_BUD
@@ -320,12 +277,11 @@ public class MalumCreativeTab extends AbstractMalumCreativeTab {
                         .addItems(Materials.MARINE_AGATE::addToCreativeTab)
                         .addItems(Materials.RUGGED_CITRINE::addToCreativeTab)
                         .bake();
-                createCategory(ETHERWORKS_CATEGORY)
+                createCategory("ether")
                         .addItems(
                                 BlockSets.ETHER,
                                 BlockSets.ETHER_CANDLE,
                                 BlockSets.ETHER_TORCH,
-
                                 BlockSets.ETHER_BRAZIER,
                                 BlockSets.ETHER_CRESSET
                         ).nextLine()
@@ -337,7 +293,7 @@ public class MalumCreativeTab extends AbstractMalumCreativeTab {
                                 BlockSets.IRIDESCENT_ETHER_CRESSET
                         )
                         .bake();
-                createCategory(SOULSTUFF_CATEGORY)
+                createCategory("soulstuff")
                         .addItems(
                                 BlockSets.SACRED_SPIRITED_GLASS,
                                 BlockSets.WICKED_SPIRITED_GLASS,
@@ -362,7 +318,7 @@ public class MalumCreativeTab extends AbstractMalumCreativeTab {
                         ).nextLine()
                         .addItems(SoulwovenBannerBlockItem::addBannerPatterns)
                         .bake();
-                createCategory(RUNEWOOD_CATEGORY)
+                createCategory("runewood")
                         .addItems(
                                 Materials.RUNIC_SAP_BOTTLE,
                                 Materials.RUNIC_SAPBALL,
@@ -379,7 +335,7 @@ public class MalumCreativeTab extends AbstractMalumCreativeTab {
                                 BlockSets.RUNEWOOD_CHEST_BOAT
                         )
                         .bake();
-                createCategory(SOULWOOD_CATEGORY)
+                createCategory("soulwood")
                         .addItems(
                                 Materials.AZOIC_SAP_BOTTLE,
                                 Materials.AZOIC_SAPBALL,
@@ -393,7 +349,7 @@ public class MalumCreativeTab extends AbstractMalumCreativeTab {
                                 BlockSets.SOULWOOD_CHEST_BOAT
                         )
                         .bake();
-                createCategory(BLIGHT_CATEGORY)
+                createCategory("blight")
                         .addItems(
                                 BlockSets.BLIGHTED_SOULWOOD,
                                 Blight.COLUMNAR_BLIGHT,
@@ -411,10 +367,10 @@ public class MalumCreativeTab extends AbstractMalumCreativeTab {
                         )
                         .bake();
 
-                createCategory(TAINTED_ROCK_CATEGORY)
+                createCategory("tainted_rock")
                         .addItems(BlockSets.TAINTED_ROCK_SET::addToCreativeTab)
                         .bake();
-                createCategory(TWISTED_ROCK_CATEGORY)
+                createCategory("twisted_rock")
                         .addItems(BlockSets.TWISTED_ROCK_SET::addToCreativeTab)
                         .bake();
                 createCategory(DUNGEON_REGALIA)

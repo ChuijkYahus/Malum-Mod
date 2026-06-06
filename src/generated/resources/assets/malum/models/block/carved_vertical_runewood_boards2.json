@@ -1,6 +1,6 @@
 {
   "parent": "minecraft:block/cube_all",
   "textures": {
-    "all": "malum:block/runewood/carved_vertical_runewood_boards2"
+    "all": "malum:block/building_blocks/runewood/carved_vertical_runewood_boards2"
   }
 }

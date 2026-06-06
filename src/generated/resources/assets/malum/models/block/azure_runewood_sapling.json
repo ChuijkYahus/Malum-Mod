@@ -2,6 +2,6 @@
   "parent": "minecraft:block/cross",
   "render_type": "minecraft:cutout",
   "textures": {
-    "cross": "malum:block/runewood/azure_runewood_sapling"
+    "cross": "malum:block/building_blocks/runewood/azure_runewood_sapling"
   }
 }

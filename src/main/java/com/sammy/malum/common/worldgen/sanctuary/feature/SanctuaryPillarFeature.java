@@ -1,11 +1,12 @@
 package com.sammy.malum.common.worldgen.sanctuary.feature;
 
 import net.minecraft.core.*;
-import net.minecraft.util.*;
 import net.minecraft.world.level.*;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.levelgen.feature.*;
 import team.lodestar.lodestone.systems.worldgen.*;
+
+import java.util.List;
 
 import static com.sammy.malum.common.worldgen.WorldgenHelper.*;
 
@@ -23,33 +24,37 @@ public class SanctuaryPillarFeature extends Feature<SanctuaryPillarFeatureConfig
         if (level.isEmptyBlock(pos.below())) {
             return false;
         }
-        var rand = context.random();
-        var block = config.block().defaultBlockState();
-        var topBlock = config.topBlock().defaultBlockState();
-
+        var data = config.pillar();
         var builder = LodestoneWorldgenBuilder.create();
         var layer = builder.createLayer();
 
-        int pillarHeight = Mth.nextInt(rand, config.minHeight(), config.maxHeight());
-
         var mutable = new BlockPos.MutableBlockPos().set(pos);
-        if (!findStartingY(level, mutable)) {
+        if (!findPillarRoot(level, mutable)) {
             return false;
         }
-        for (int i = 0; i <= pillarHeight; i++) {
-            if (!canPlace(level, mutable)) {
-                return false;
-            }
-            layer.add(mutable, i == pillarHeight ? topBlock : block);
-            mutable.move(Direction.UP);
-        }
+
+        generatePillar(level, layer, data, mutable);
         builder.place(level);
         return true;
     }
 
-    public static boolean findStartingY(WorldGenLevel level, BlockPos.MutableBlockPos mutable) {
-        mutable.move(Direction.DOWN, 5);
-        for (int i = 0; i < 10; i++) {
+    public static void generatePillar(WorldGenLevel level, LodestoneWorldgenBuilderLayer layer, List<SanctuaryWallFeatureConfiguration.SegmentData> segments, BlockPos rootPos) {
+        var random = level.getRandom();
+        var mutable = rootPos.mutable();
+
+        for (SanctuaryWallFeatureConfiguration.SegmentData segment : segments) {
+            int i = segment.rollHeight(random);
+            for (int j = 0; j < i; j++) {
+                mutable.move(Direction.UP);
+                var state = segment.block().getState(random, mutable);
+                layer.add(mutable, state);
+            }
+        }
+    }
+
+    public static boolean findPillarRoot(WorldGenLevel level, BlockPos.MutableBlockPos mutable) {
+        mutable.move(Direction.DOWN, 8);
+        for (int i = 0; i < 16; i++) {
             if (canPlace(level, mutable)) {
                 var belowPos = mutable.below();
                 if (Block.canSupportCenter(level, belowPos, Direction.UP)) {
