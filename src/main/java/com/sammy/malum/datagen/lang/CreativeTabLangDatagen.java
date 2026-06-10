@@ -9,7 +9,8 @@ import team.lodestar.lodestone.modules.toolkit.creative_tab.*;
 public class CreativeTabLangDatagen {
 
     public static void addTranslations() {
-        addCreativeTab(MalumCreativeTabs.CONTENT, "Malum: Study of Ancient Sorcery");
+        addCreativeTab(MalumCreativeTabs.ANCIENT_SORCERY, "Malum: Study of Ancient Sorcery");
+        addCreativeTab(MalumCreativeTabs.LESSER_SOULSTUFF, "Malum: Lesser Soulstuff");
         addCreativeTab(MalumCreativeTabs.ALCHEMY_AND_METALLICS, "Malum: Alchemy & Metallics");
         add("malum.itemGroup.geas", "Malum: Sworn Oaths");
         add("malum.itemGroup.cosmetics", "Malum: One's True Self");

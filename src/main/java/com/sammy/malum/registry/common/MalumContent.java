@@ -476,8 +476,9 @@ public class MalumContent {
                 () -> new EtherCressetBlock<>(MalumEtherBlockProperties.ETHER_CRESSET()), EtherCressetItem::iridescent);
 
 
-        public static final MinorBuildingSet TRODDEN_STONE = new MinorBuildingSet("trodden_stone", MalumBlockProperties::TRODDEN_STONE);
-        public static final MinorBuildingSet SEED_QUARTZ = new MinorBuildingSet("seed_quartz", MalumBlockProperties::SEED_QUARTZ);
+        public static final MinorBuildingSet TRODDEN_STONE = new MinorBuildingSet("trodden_stone", MalumBlockProperties::TRODDEN_STONE, MalumBlockProperties::TRODDEN_STONE);
+        public static final MinorBuildingSet SEED_QUARTZ = new MinorBuildingSet("seed_quartz", MalumBlockProperties::SEED_QUARTZ, MalumBlockProperties::POLISHED_SEED_QUARTZ);
+        public static final MinorBuildingSet EBONSTONE = new MinorBuildingSet("ebonstone", MalumBlockProperties::EBONSTONE, MalumBlockProperties::POLISHED_EBONSTONE);
 
         public static final RockBlockSet TAINTED_ROCK_SET = new RockBlockSet("tainted_rock", MalumBlockProperties::TAINTED_ROCK, MalumBlockProperties::TAINTED_ROCK_BRICKS, MalumBlockProperties::CHISELED_TAINTED_ROCK);
         public static final RockBlockSet TWISTED_ROCK_SET = new RockBlockSet("twisted_rock", MalumBlockProperties::TWISTED_ROCK, MalumBlockProperties::TWISTED_ROCK_BRICKS, MalumBlockProperties::CHISELED_TWISTED_ROCK);

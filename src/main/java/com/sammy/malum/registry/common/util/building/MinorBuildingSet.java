@@ -4,6 +4,7 @@ import com.sammy.malum.common.block.geode.BuddingGeodeBlock;
 import com.sammy.malum.common.block.geode.CrystalGeodeBlock;
 import com.sammy.malum.common.block.geode.CrystalLampBlock;
 import com.sammy.malum.common.block.geode.GeodeCrystalClusterBlock;
+import com.sammy.malum.common.data.component.SoulwovenBannerPatternDataComponent;
 import com.sammy.malum.registry.common.MalumTags;
 import com.sammy.malum.registry.common.block.properties.MalumOreBlockProperties;
 import com.sammy.malum.registry.common.sound.MalumBlockSoundType;
@@ -19,42 +20,43 @@ import team.lodestar.lodestone.modules.toolkit.block.BlockBlockItemHolder;
 import team.lodestar.lodestone.modules.toolkit.block.LodestoneBlockProperties;
 import team.lodestar.lodestone.modules.toolkit.creative_tab.CreativeTabCategoryBuilder;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.function.Supplier;
 
+import static com.sammy.malum.common.data.component.SoulwovenBannerPatternDataComponent.REGISTERED_PATTERNS;
 import static com.sammy.malum.registry.common.MalumContent.*;
 
 public class MinorBuildingSet extends MalumRegistrySet {
 
     public static List<MinorBuildingSet> getMalumSets() {
-        return List.of(BlockSets.TRODDEN_STONE, BlockSets.SEED_QUARTZ);
+        return List.of(BlockSets.TRODDEN_STONE, BlockSets.SEED_QUARTZ, BlockSets.EBONSTONE);
     }
-
-    private final MalumBlockSoundType rawSound;
-    private final MalumBlockSoundType polishedSound;
 
     private final BlockBundle raw;
     private final BlockBundle polished;
     private final BlockBundleWithWall bricks;
     private final BlockBundleWithWall tiles;
 
-    public MinorBuildingSet(String id, Supplier<LodestoneBlockProperties> properties) {
+    public MinorBuildingSet(String id, Supplier<LodestoneBlockProperties> properties, Supplier<LodestoneBlockProperties> polishedProperties) {
         super(id);
 
-        rawSound = new MalumBlockSoundType(name("%s_cluster"));
-        polishedSound = new MalumBlockSoundType(name("%s_geode"));
+        raw = new BlockBundle(id, properties);
+        polished = new BlockBundle(name("polished_%s"), polishedProperties);
 
-        var rawProperties = properties.get().sound(rawSound);
-        var polishedProperties = properties.get().sound(polishedSound);
-        raw = new BlockBundle(id, () -> rawProperties);
-        polished = new BlockBundle(name("polished_%s"), () -> polishedProperties);
-
-        bricks = new BlockBundleWithWall(name("%s_bricks"), () -> polishedProperties);
-        tiles = new BlockBundleWithWall(name("%s_tiles"), () -> polishedProperties);
+        bricks = new BlockBundleWithWall(name("%s_bricks"), polishedProperties);
+        tiles = new BlockBundleWithWall(name("%s_tiles"), polishedProperties);
     }
 
     protected BlockItemTagKey createTag(String tag) {
         return BlockBundle.createTag(id, tag);
+    }
+
+    public static void addCommonRock(CreativeTabCategoryBuilder builder) {
+        for (MinorBuildingSet set : getMalumSets()) {
+            set.addToCreativeTab(builder);
+        }
     }
 
     public void addToCreativeTab(CreativeTabCategoryBuilder builder) {
@@ -68,14 +70,6 @@ public class MinorBuildingSet extends MalumRegistrySet {
 
     public BlockBundle getRaw() {
         return raw;
-    }
-
-    public MalumBlockSoundType getPolishedSound() {
-        return polishedSound;
-    }
-
-    public MalumBlockSoundType getRawSound() {
-        return rawSound;
     }
 
     public BlockBundle getPolished() {

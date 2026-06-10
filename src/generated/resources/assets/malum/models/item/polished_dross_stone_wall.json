@@ -1,6 +1,6 @@
 {
   "parent": "minecraft:block/wall_inventory",
   "textures": {
-    "wall": "malum:block/building_blocks/arcane_rock/dross/polished_dross_stone"
+    "wall": "malum:block/building/arcane_rock/dross/polished_dross_stone"
   }
 }

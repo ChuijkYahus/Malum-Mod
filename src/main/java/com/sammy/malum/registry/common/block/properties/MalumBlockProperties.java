@@ -95,6 +95,10 @@ public class MalumBlockProperties {
                 .needsPickaxe();
     }
 
+    public static LodestoneBlockProperties POLISHED_TRODDEN_STONE() {
+        return SEED_QUARTZ().sound(MalumBlockSoundEvents.POLISHED_TRODDEN_STONE);
+    }
+
     public static LodestoneBlockProperties SEED_QUARTZ() {
         return new LodestoneBlockProperties()
                 .strength(0.75F, 9.0F)
@@ -102,6 +106,23 @@ public class MalumBlockProperties {
                 .mapColor(MapColor.TERRACOTTA_WHITE)
                 .requiresCorrectToolForDrops()
                 .needsPickaxe();
+    }
+
+    public static LodestoneBlockProperties POLISHED_SEED_QUARTZ() {
+        return SEED_QUARTZ().sound(MalumBlockSoundEvents.POLISHED_SEED_QUARTZ);
+    }
+
+    public static LodestoneBlockProperties EBONSTONE() {
+        return new LodestoneBlockProperties()
+                .strength(0.75F, 9.0F)
+                .sound(MalumBlockSoundEvents.EBONSTONE)
+                .mapColor(MapColor.TERRACOTTA_WHITE)
+                .requiresCorrectToolForDrops()
+                .needsPickaxe();
+    }
+
+    public static LodestoneBlockProperties POLISHED_EBONSTONE() {
+        return EBONSTONE().sound(MalumBlockSoundEvents.POLISHED_EBONSTONE);
     }
 
     public static LodestoneBlockProperties TAINTED_ROCK() {

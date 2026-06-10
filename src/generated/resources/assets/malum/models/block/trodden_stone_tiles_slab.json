@@ -1,8 +1,8 @@
 {
   "parent": "minecraft:block/slab",
   "textures": {
-    "bottom": "malum:block/building_blocks/trodden_stone/trodden_stone_tiles",
-    "side": "malum:block/building_blocks/trodden_stone/trodden_stone_tiles",
-    "top": "malum:block/building_blocks/trodden_stone/trodden_stone_tiles"
+    "bottom": "malum:block/building/common_rock/trodden_stone/trodden_stone_tiles",
+    "side": "malum:block/building/common_rock/trodden_stone/trodden_stone_tiles",
+    "top": "malum:block/building/common_rock/trodden_stone/trodden_stone_tiles"
   }
 }

@@ -1,8 +1,8 @@
 {
   "parent": "minecraft:block/slab",
   "textures": {
-    "bottom": "malum:block/building_blocks/arcane_rock/dross/dross_stone_mosaic",
-    "side": "malum:block/building_blocks/arcane_rock/dross/dross_stone_mosaic",
-    "top": "malum:block/building_blocks/arcane_rock/dross/dross_stone_mosaic"
+    "bottom": "malum:block/building/arcane_rock/dross/dross_stone_mosaic",
+    "side": "malum:block/building/arcane_rock/dross/dross_stone_mosaic",
+    "top": "malum:block/building/arcane_rock/dross/dross_stone_mosaic"
   }
 }

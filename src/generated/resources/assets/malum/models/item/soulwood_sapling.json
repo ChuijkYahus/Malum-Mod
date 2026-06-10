@@ -1,6 +1,6 @@
 {
   "parent": "minecraft:item/generated",
   "textures": {
-    "layer0": "malum:block/building_blocks/soulwood/soulwood_sapling"
+    "layer0": "malum:block/building/soulwood/soulwood_sapling"
   }
 }
