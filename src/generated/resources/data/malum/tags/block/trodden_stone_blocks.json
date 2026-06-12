@@ -1,5 +1,9 @@
 {
   "values": [
-    "malum:trodden_stone"
+    "malum:trodden_stone",
+    "malum:smooth_trodden_stone",
+    "malum:polished_trodden_stone",
+    "malum:trodden_stone_bricks",
+    "malum:trodden_stone_tiles"
   ]
 }

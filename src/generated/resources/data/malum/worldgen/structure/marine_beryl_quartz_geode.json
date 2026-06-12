@@ -7,8 +7,8 @@
         {
           "anchor_noise": {
             "type": "minecraft:uniform",
-            "max_exclusive": 0.2,
-            "min_inclusive": 0.1
+            "max_exclusive": 0.4,
+            "min_inclusive": 0.3
           },
           "anchor_offset": {
             "type": "minecraft:uniform",
@@ -24,8 +24,8 @@
         {
           "anchor_noise": {
             "type": "minecraft:uniform",
-            "max_exclusive": 0.3,
-            "min_inclusive": 0.2
+            "max_exclusive": 0.6,
+            "min_inclusive": 0.4
           },
           "anchor_offset": {
             "type": "minecraft:uniform",
@@ -70,8 +70,8 @@
           "crystal_clusters": {
             "amount": {
               "type": "minecraft:uniform",
-              "max_inclusive": 300,
-              "min_inclusive": 200
+              "max_inclusive": 120,
+              "min_inclusive": 80
             },
             "state": {
               "type": "minecraft:simple_state_provider",
@@ -110,8 +110,8 @@
           "crystal_clusters": {
             "amount": {
               "type": "minecraft:uniform",
-              "max_inclusive": 60,
-              "min_inclusive": 40
+              "max_inclusive": 40,
+              "min_inclusive": 30
             },
             "state": {
               "type": "minecraft:simple_state_provider",
@@ -131,7 +131,7 @@
               "Name": "malum:marine_agate_geode"
             }
           },
-          "size": 1.399999976158142
+          "size": 1.2000000476837158
         },
         {
           "budding_geodes": {
@@ -150,8 +150,8 @@
           "crystal_clusters": {
             "amount": {
               "type": "minecraft:uniform",
-              "max_inclusive": 300,
-              "min_inclusive": 200
+              "max_inclusive": 120,
+              "min_inclusive": 80
             },
             "state": {
               "type": "minecraft:simple_state_provider",
@@ -194,7 +194,7 @@
       ]
     },
     "crack_settings": {
-      "base_crack_size": 0.75,
+      "base_crack_size": 1.25,
       "cracks": [
         {
           "anchor_noise": {
@@ -214,7 +214,7 @@
           }
         }
       ],
-      "generate_crack_chance": 0.8500000238418579
+      "generate_crack_chance": 1.0
     },
     "fluid": {},
     "invalid_blocks_threshold": 1

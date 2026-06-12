@@ -63,12 +63,12 @@ public class GeodeDatagen {
         float airPocket = 7f;
 
         var buddingQuartzGeodes = of(6, 8);
-        var quartzClusters = of(200, 300);
+        var quartzClusters = of(80, 120);
         float quartzLayerSize = 0.7f;
 
         var buddingGemGeodes = of(4, 6);
-        var gemClusters = of(40, 60);
-        float gemLayerSize = 1.4f;
+        var gemClusters = of(30, 40);
+        float gemLayerSize = 1.2f;
 
 
         var quartzLayer = new GeodeLayer(MUNDANE_QUARTZ, buddingQuartzGeodes, quartzClusters, quartzLayerSize);
@@ -82,10 +82,10 @@ public class GeodeDatagen {
         var geodeCrackSettings = new MalumGeodeCrackSettings(List.of(
                 new GeodeAnchor(of(0, 4), UniformFloat.of(1f, 1.5f), UniformFloat.of(0.3f, 0.6f))
         ),
-                0.85f, 0.75f);
+                1.0f, 1.25f);
         var geodeAnchorSettings = new GeodeAnchorSettings(List.of(
-                new GeodeAnchor(of(4, 6), UniformFloat.of(0.1f, 0.2f), UniformFloat.of(0.8f, 0.9f)),
-                new GeodeAnchor(of(4, 14), UniformFloat.of(0.2f, 0.3f), UniformFloat.of(0.6f, 0.7f))
+                new GeodeAnchor(of(4, 6), UniformFloat.of(0.3f, 0.4f), UniformFloat.of(0.8f, 0.9f)),
+                new GeodeAnchor(of(4, 14), UniformFloat.of(0.4f, 0.6f), UniformFloat.of(0.6f, 0.7f))
         ));
 
         structure(context, key, b -> new MalumGeodeStructure(b, new MalumGeodeConfiguration(

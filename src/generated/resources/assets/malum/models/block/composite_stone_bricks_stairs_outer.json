@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/outer_stairs",
+  "textures": {
+    "bottom": "malum:block/building/common_rock/composite_stone/composite_stone_bricks",
+    "side": "malum:block/building/common_rock/composite_stone/composite_stone_bricks",
+    "top": "malum:block/building/common_rock/composite_stone/composite_stone_bricks"
+  }
+}

@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:block/wall_inventory",
+  "textures": {
+    "wall": "malum:block/building/common_rock/composite_stone/composite_stone_bricks"
+  }
+}

@@ -4,6 +4,7 @@ import com.sammy.malum.registry.common.MalumContent;
 import com.sammy.malum.registry.common.util.GeodeCrystalRegistrySet;
 import com.sammy.malum.registry.common.util.MetallicsItemRegistryBundle;
 import com.sammy.malum.registry.common.sound.*;
+import com.sammy.malum.registry.common.util.building.MinorBuildingSet;
 
 import static team.lodestar.lodestone.modules.datagen.providers.sound.LodestoneSoundEventSystem.sound;
 
@@ -26,6 +27,10 @@ public class MalumBlockSoundDatagen extends MalumSoundDatagenWrapper {
         addMetallicsSounds(MalumContent.AlchemyAndMetallics.SILVER_METALLICS, 1.45f);
         addMetallicsSounds(MalumContent.AlchemyAndMetallics.ALUMINIUM_METALLICS, 1.6f);
         addMetallicsSounds(MalumContent.AlchemyAndMetallics.NICKEL_METALLICS, 1.25f);
+
+        for (MinorBuildingSet malumSet : MinorBuildingSet.getMalumSets()) {
+            malumSet.addSounds(this);
+        }
 
         //Soulstone
         add(MalumBlockSoundEvents.SOULSTONE_BUD, "block/ore/soulstone/bud");
@@ -103,17 +108,6 @@ public class MalumBlockSoundDatagen extends MalumSoundDatagenWrapper {
 
         add(MalumBlockSoundEvents.WILD_WITCHHAZEL, "block/flora/witchhazel");
         add(MalumBlockSoundEvents.WITCHHAZEL, "block/flora/witchhazel");
-
-        //Sanctuary
-        add(MalumBlockSoundEvents.TRODDEN_STONE, "block/common_rock/trodden_stone");
-        add(MalumBlockSoundEvents.POLISHED_TRODDEN_STONE, "block/common_rock/trodden_stone", s -> s.modifySounds(se -> se.pitch(1.2f)));
-
-        add(MalumBlockSoundEvents.SEED_QUARTZ, "block/common_rock/seed_quartz", s -> s.setPlaceSoundName("break"));
-        add(MalumBlockSoundEvents.POLISHED_SEED_QUARTZ, "block/common_rock/seed_quartz", s -> s.modifySounds(se -> se.pitch(1.2f)));
-
-        add(MalumBlockSoundEvents.EBONSTONE, "block/common_rock/ebonstone", s -> s.setPlaceSoundName("break"));
-        add(MalumBlockSoundEvents.POLISHED_EBONSTONE, "block/common_rock/ebonstone", s -> s.modifySounds(se -> se.pitch(1.2f)));
-
 
         //Runewood
         add(MalumBlockSoundEvents.RUNEWOOD, "block/runewood");

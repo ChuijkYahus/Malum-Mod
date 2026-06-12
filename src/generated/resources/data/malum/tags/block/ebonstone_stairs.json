@@ -1,5 +1,9 @@
 {
   "values": [
-    "malum:ebonstone_stairs"
+    "malum:ebonstone_slab",
+    "malum:smooth_ebonstone_slab",
+    "malum:polished_ebonstone_slab",
+    "malum:ebonstone_bricks_slab",
+    "malum:ebonstone_tiles_slab"
   ]
 }

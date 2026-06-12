@@ -67,18 +67,13 @@ public class MalumBlockStateDatagen extends LodestoneBlockStateSystem {
                 BlockSets.AERIAL_VARNISHED_TERRACOTTA, BlockSets.AQUEOUS_VARNISHED_TERRACOTTA, BlockSets.EARTHEN_VARNISHED_TERRACOTTA, BlockSets.INFERNAL_VARNISHED_TERRACOTTA,
                 BlockSets.NULL_VARNISHED_TERRACOTTA);
 
-        setTexturePath("building/common_rock/trodden_stone");
-        generateMinorBuildingSet(data, BlockSets.TRODDEN_STONE);
+        for (MinorBuildingSet malumSet : MinorBuildingSet.getMalumSets()) {
+            malumSet.addBlockStates(this, data);
+        }
 
-        setTexturePath("building/common_rock/seed_quartz");
-        generateMinorBuildingSet(data, BlockSets.SEED_QUARTZ);
-        setTexturePath("building/common_rock/ebonstone");
-        generateMinorBuildingSet(data, BlockSets.EBONSTONE);
-
-        setTexturePath("building/arcane_rock/tainted");
-        generateRockSet(data, BlockSets.TAINTED_ROCK_SET);
-        setTexturePath("building/arcane_rock/twisted");
-        generateRockSet(data, BlockSets.TWISTED_ROCK_SET);
+        for (RockBlockSet malumSet : RockBlockSet.getMalumSets()) {
+            malumSet.addBlockStates(this, data);
+        }
 
         setTexturePath("building/arcane_rock/dross");
         BlockStateSmithTypes.FULL_BLOCK.act(data,
@@ -301,22 +296,11 @@ public class MalumBlockStateDatagen extends LodestoneBlockStateSystem {
         }
     }
 
-    public void generateMinorBuildingSet(BlockStateSystemData<MalumBlockStateDatagen> data, MinorBuildingSet set) {
-        for (BlockBundle bundle : new BlockBundle[]{
-                set.getRaw(), set.getPolished(),
-                set.getBricks(), set.getTiles()
-        }) {
-            generateBlockBundle(data, bundle);
-        }
-    }
-
     public void generateRockSet(BlockStateSystemData<MalumBlockStateDatagen> data, RockBlockSet set) {
-        for (BlockBundle bundle : new BlockBundle[]{
-                set.rock, set.polishedRock, set.bricks,
-                set.tiles//, set.grid, set.mosaic
-        }) {
-            generateBlockBundle(data, bundle);
-        }
+        generateBlockBundle(data, set.rock);
+        generateBlockBundle(data, set.polishedRock);
+        generateBlockBundle(data, set.bricks);
+        generateBlockBundle(data, set.tiles);
 
         MalumBlockStateSmithTypes.COLUMN.act(data, set.column);
         BlockStateSmithTypes.CUSTOM_MODEL.act(data, this::simpleBlock, models()::cubeBottomTop, set.altar);

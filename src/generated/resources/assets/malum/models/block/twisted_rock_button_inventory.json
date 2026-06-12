@@ -1,6 +1,6 @@
 {
   "parent": "minecraft:block/button_inventory",
   "textures": {
-    "texture": "malum:block/building/arcane_rock/twisted/twisted_rock"
+    "texture": "malum:block/building/arcane_rock/twisted_rock/twisted_rock"
   }
 }

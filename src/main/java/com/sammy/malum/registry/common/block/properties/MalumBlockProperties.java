@@ -1,5 +1,6 @@
 package com.sammy.malum.registry.common.block.properties;
 
+import com.sammy.malum.registry.common.MalumTags;
 import com.sammy.malum.registry.common.sound.*;
 import net.minecraft.world.item.*;
 import net.minecraft.world.level.block.*;
@@ -86,43 +87,50 @@ public class MalumBlockProperties {
                 .noOcclusion();
     }
 
-    public static LodestoneBlockProperties TRODDEN_STONE() {
+    public static LodestoneBlockProperties SEED_QUARTZ(SoundType soundType) {
+        return new LodestoneBlockProperties()
+                .strength(0.75F, 9.0F)
+                .sound(soundType)
+                .mapColor(MapColor.TERRACOTTA_WHITE)
+                .requiresCorrectToolForDrops()
+                .needsPickaxe();
+    }
+
+    public static LodestoneBlockProperties TRODDEN_STONE(SoundType soundType) {
         return new LodestoneBlockProperties()
                 .strength(1F, 9.0F)
-                .sound(MalumBlockSoundEvents.TRODDEN_STONE)
+                .sound(soundType)
                 .mapColor(MapColor.COLOR_GRAY)
                 .requiresCorrectToolForDrops()
                 .needsPickaxe();
     }
 
-    public static LodestoneBlockProperties POLISHED_TRODDEN_STONE() {
-        return SEED_QUARTZ().sound(MalumBlockSoundEvents.POLISHED_TRODDEN_STONE);
-    }
-
-    public static LodestoneBlockProperties SEED_QUARTZ() {
+    public static LodestoneBlockProperties IGNEOUS_ROCK(SoundType soundType) {
         return new LodestoneBlockProperties()
-                .strength(0.75F, 9.0F)
-                .sound(MalumBlockSoundEvents.SEED_QUARTZ)
-                .mapColor(MapColor.TERRACOTTA_WHITE)
+                .strength(1.25F, 9.0F)
+                .sound(soundType)
+                .mapColor(MapColor.COLOR_ORANGE)
                 .requiresCorrectToolForDrops()
                 .needsPickaxe();
     }
 
-    public static LodestoneBlockProperties POLISHED_SEED_QUARTZ() {
-        return SEED_QUARTZ().sound(MalumBlockSoundEvents.POLISHED_SEED_QUARTZ);
-    }
-
-    public static LodestoneBlockProperties EBONSTONE() {
+    public static LodestoneBlockProperties COMPOSITE_STONE(SoundType soundType) {
         return new LodestoneBlockProperties()
-                .strength(0.75F, 9.0F)
-                .sound(MalumBlockSoundEvents.EBONSTONE)
-                .mapColor(MapColor.TERRACOTTA_WHITE)
+                .strength(1.5F, 9.0F)
+                .sound(soundType)
+                .mapColor(MapColor.COLOR_ORANGE)
                 .requiresCorrectToolForDrops()
                 .needsPickaxe();
     }
 
-    public static LodestoneBlockProperties POLISHED_EBONSTONE() {
-        return EBONSTONE().sound(MalumBlockSoundEvents.POLISHED_EBONSTONE);
+    public static LodestoneBlockProperties EBONSTONE(SoundType soundType) {
+        return new LodestoneBlockProperties()
+                .strength(1.75F, 9.0F)
+                .sound(soundType)
+                .mapColor(MapColor.TERRACOTTA_WHITE)
+                .requiresCorrectToolForDrops()
+                .addTag(PREFERRED_EBONY_SURFACE)
+                .needsPickaxe();
     }
 
     public static LodestoneBlockProperties TAINTED_ROCK() {
