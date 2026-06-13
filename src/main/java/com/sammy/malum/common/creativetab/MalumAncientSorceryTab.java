@@ -9,10 +9,6 @@ import static com.sammy.malum.registry.common.MalumContent.*;
 
 public class MalumAncientSorceryTab extends AbstractMalumCreativeTab {
 
-        public static final String DUNGEON_REGALIA = "dungeon_regalia";
-        public static final String DUNGEON_ARCHITECTURE = "dungeon_architecture";
-        public static final String DUNGEON_ODDITIES = "dungeon_distortions";
-
         public MalumAncientSorceryTab(CategorizedBuilder categorizedBuilder) {
                 super(categorizedBuilder);
         }
