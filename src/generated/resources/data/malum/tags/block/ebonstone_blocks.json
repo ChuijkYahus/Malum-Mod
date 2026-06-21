@@ -1,5 +1,9 @@
 {
   "values": [
-    "malum:ebonstone"
+    "malum:ebonstone",
+    "malum:smooth_ebonstone",
+    "malum:polished_ebonstone",
+    "malum:ebonstone_bricks",
+    "malum:ebonstone_tiles"
   ]
 }

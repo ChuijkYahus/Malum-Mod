@@ -23,14 +23,13 @@ import net.minecraft.world.level.block.state.properties.EnumProperty;
 import net.minecraft.world.level.material.Fluids;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
-import org.checkerframework.common.returnsreceiver.qual.BottomThis;
-import org.jetbrains.annotations.NotNull;
 
 import javax.annotation.Nullable;
 
 @SuppressWarnings({"deprecation", "NullableProblems"})
 public class EtherCressetBlock<T extends EtherCressetBlockEntity> extends EtherBlock<T> {
-    protected static final VoxelShape SHAPE = Block.box(3.0D, 0.0D, 3.0D, 13.0D, 24.0D, 13.0D);
+    protected static final VoxelShape LOWER_SHAPE = Block.box(3.0D, 0.0D, 3.0D, 13.0D, 24.0D, 13.0D);
+    protected static final VoxelShape UPPER_SHAPE = Block.box(3.0D, -16.0D, 3.0D, 13.0D, 8.0D, 13.0D);
 
     public static final EnumProperty<DoubleBlockHalf> HALF = BlockStateProperties.DOUBLE_BLOCK_HALF;
 
@@ -46,7 +45,7 @@ public class EtherCressetBlock<T extends EtherCressetBlockEntity> extends EtherB
 
     @Override
     public VoxelShape getShape(BlockState state, BlockGetter level, BlockPos pos, CollisionContext context) {
-        return SHAPE;
+        return state.getValue(HALF).equals(DoubleBlockHalf.UPPER) ? UPPER_SHAPE : LOWER_SHAPE;
     }
 
     public BlockState updateShape(BlockState state, Direction facing, BlockState facingState, LevelAccessor level, BlockPos currentPos, BlockPos facingPos) {

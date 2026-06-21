@@ -1,5 +1,9 @@
 {
   "values": [
-    "malum:seed_quartz_stairs"
+    "malum:seed_quartz_slab",
+    "malum:smooth_seed_quartz_slab",
+    "malum:polished_seed_quartz_slab",
+    "malum:seed_quartz_bricks_slab",
+    "malum:seed_quartz_tiles_slab"
   ]
 }

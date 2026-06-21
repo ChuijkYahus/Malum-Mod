@@ -19,7 +19,6 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.chunk.ChunkGenerator;
 import net.minecraft.world.level.levelgen.Heightmap;
 import net.minecraft.world.level.levelgen.XoroshiroRandomSource;
-import net.minecraft.world.level.levelgen.feature.*;
 import net.minecraft.world.level.levelgen.structure.BoundingBox;
 import net.minecraft.world.level.levelgen.structure.StructurePiece;
 import net.minecraft.world.level.levelgen.structure.pieces.StructurePieceSerializationContext;
@@ -33,21 +32,21 @@ import java.util.List;
 import static net.minecraft.util.random.WeightedEntry.wrap;
 
 public class RunicSanctuaryPiece extends StructurePiece {
-    protected SanctuaryGenerationData springsData;
+    protected SanctuaryGenerationData data;
 
-    protected RunicSanctuaryPiece(SanctuaryGenerationData springsData, BoundingBox boundingBox) {
+    protected RunicSanctuaryPiece(SanctuaryGenerationData data, BoundingBox boundingBox) {
         super(MalumStructureTypes.StructurePieceTypes.RUNIC_SANCTUARY.get(), 0, boundingBox);
-        this.springsData = springsData;
+        this.data = data;
     }
 
     public RunicSanctuaryPiece(CompoundTag tag) {
         super(MalumStructureTypes.StructurePieceTypes.RUNIC_SANCTUARY.get(), tag);
-        this.springsData = SanctuaryGenerationData.load(tag);
+        this.data = SanctuaryGenerationData.load(tag);
     }
 
     @Override
     protected void addAdditionalSaveData(@NotNull StructurePieceSerializationContext pContext, @NotNull CompoundTag pTag) {
-        springsData.save(pTag);
+        data.save(pTag);
     }
 
     @Override
@@ -55,7 +54,7 @@ public class RunicSanctuaryPiece extends StructurePiece {
 //        var unsafeBoundingBox = new UnsafeBoundingBox();
         var mutable = new BlockPos.MutableBlockPos();
 
-        var center = springsData.center();
+        var center = data.center();
         int centerHeight = level.getHeight(Heightmap.Types.WORLD_SURFACE_WG, center.getX(), center.getZ()) + 5;
 
         var noiseSampler = new ImprovedNoise(new XoroshiroRandomSource(level.getSeed()));
@@ -71,7 +70,7 @@ public class RunicSanctuaryPiece extends StructurePiece {
                 float xOffset = center.getX() - blockX;
                 float zOffset = center.getZ() - blockZ;
                 float dist = Mth.sqrt(xOffset * xOffset + zOffset * zOffset);
-                float delta = 1 - (dist / springsData.radius());
+                float delta = 1 - (dist / data.radius());
 
                 int height = level.getHeight(Heightmap.Types.WORLD_SURFACE, blockX, blockZ);
                 mutable.set(blockX, height, blockZ);

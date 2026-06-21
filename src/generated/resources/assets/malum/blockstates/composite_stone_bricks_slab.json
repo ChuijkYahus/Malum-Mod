@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "type=bottom": {
+      "model": "malum:block/composite_stone_bricks_slab"
+    },
+    "type=double": {
+      "model": "malum:block/composite_stone_bricks"
+    },
+    "type=top": {
+      "model": "malum:block/composite_stone_bricks_slab_top"
+    }
+  }
+}

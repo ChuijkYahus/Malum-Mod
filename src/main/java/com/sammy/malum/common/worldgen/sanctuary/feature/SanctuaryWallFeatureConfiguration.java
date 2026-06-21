@@ -32,7 +32,7 @@ public record SanctuaryWallFeatureConfiguration(List<SegmentData> pillars, List<
 
 
         public int rollHeight(RandomSource randomSource) {
-            if (minHeight > maxHeight) {
+            if (minHeight >= maxHeight) {
                 return minHeight;
             }
             return randomSource.nextInt(minHeight, maxHeight);

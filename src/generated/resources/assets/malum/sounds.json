@@ -8209,55 +8209,6 @@
     ],
     "subtitle": "malum.subtitle.dross_stone_step"
   },
-  "ebonstone_break": {
-    "sounds": [
-      "malum:block/common_rock/ebonstone/break1",
-      "malum:block/common_rock/ebonstone/break2",
-      "malum:block/common_rock/ebonstone/break3",
-      "malum:block/common_rock/ebonstone/break4",
-      "malum:block/common_rock/ebonstone/break5",
-      "malum:block/common_rock/ebonstone/break6"
-    ],
-    "subtitle": "malum.subtitle.ebonstone_break"
-  },
-  "ebonstone_fall": {
-    "sounds": [
-      "malum:block/common_rock/ebonstone/step1",
-      "malum:block/common_rock/ebonstone/step2",
-      "malum:block/common_rock/ebonstone/step3",
-      "malum:block/common_rock/ebonstone/step4"
-    ],
-    "subtitle": "malum.subtitle.ebonstone_fall"
-  },
-  "ebonstone_hit": {
-    "sounds": [
-      "malum:block/common_rock/ebonstone/step1",
-      "malum:block/common_rock/ebonstone/step2",
-      "malum:block/common_rock/ebonstone/step3",
-      "malum:block/common_rock/ebonstone/step4"
-    ],
-    "subtitle": "malum.subtitle.ebonstone_hit"
-  },
-  "ebonstone_place": {
-    "sounds": [
-      "malum:block/common_rock/ebonstone/break1",
-      "malum:block/common_rock/ebonstone/break2",
-      "malum:block/common_rock/ebonstone/break3",
-      "malum:block/common_rock/ebonstone/break4",
-      "malum:block/common_rock/ebonstone/break5",
-      "malum:block/common_rock/ebonstone/break6"
-    ],
-    "subtitle": "malum.subtitle.ebonstone_place"
-  },
-  "ebonstone_step": {
-    "sounds": [
-      "malum:block/common_rock/ebonstone/step1",
-      "malum:block/common_rock/ebonstone/step2",
-      "malum:block/common_rock/ebonstone/step3",
-      "malum:block/common_rock/ebonstone/step4"
-    ],
-    "subtitle": "malum.subtitle.ebonstone_step"
-  },
   "ebony_break": {
     "sounds": [
       "malum:block/flora/ebony/break1",
@@ -8859,6 +8810,151 @@
     ],
     "subtitle": "malum.subtitle.player_patiently_drowns"
   },
+  "polished_composite_stone_break": {
+    "sounds": [
+      {
+        "name": "malum:block/common_rock/composite_stone/break1",
+        "pitch": 1.2
+      },
+      {
+        "name": "malum:block/common_rock/composite_stone/break2",
+        "pitch": 1.2
+      },
+      {
+        "name": "malum:block/common_rock/composite_stone/break3",
+        "pitch": 1.2
+      },
+      {
+        "name": "malum:block/common_rock/composite_stone/break4",
+        "pitch": 1.2
+      },
+      {
+        "name": "malum:block/common_rock/composite_stone/break5",
+        "pitch": 1.2
+      },
+      {
+        "name": "malum:block/common_rock/composite_stone/break6",
+        "pitch": 1.2
+      }
+    ],
+    "subtitle": "malum.subtitle.polished_composite_stone_break"
+  },
+  "polished_composite_stone_fall": {
+    "sounds": [
+      {
+        "name": "malum:block/common_rock/composite_stone/step1",
+        "pitch": 1.2
+      },
+      {
+        "name": "malum:block/common_rock/composite_stone/step2",
+        "pitch": 1.2
+      },
+      {
+        "name": "malum:block/common_rock/composite_stone/step3",
+        "pitch": 1.2
+      },
+      {
+        "name": "malum:block/common_rock/composite_stone/step4",
+        "pitch": 1.2
+      },
+      {
+        "name": "malum:block/common_rock/composite_stone/step5",
+        "pitch": 1.2
+      },
+      {
+        "name": "malum:block/common_rock/composite_stone/step6",
+        "pitch": 1.2
+      }
+    ],
+    "subtitle": "malum.subtitle.polished_composite_stone_fall"
+  },
+  "polished_composite_stone_hit": {
+    "sounds": [
+      {
+        "name": "malum:block/common_rock/composite_stone/step1",
+        "pitch": 1.2
+      },
+      {
+        "name": "malum:block/common_rock/composite_stone/step2",
+        "pitch": 1.2
+      },
+      {
+        "name": "malum:block/common_rock/composite_stone/step3",
+        "pitch": 1.2
+      },
+      {
+        "name": "malum:block/common_rock/composite_stone/step4",
+        "pitch": 1.2
+      },
+      {
+        "name": "malum:block/common_rock/composite_stone/step5",
+        "pitch": 1.2
+      },
+      {
+        "name": "malum:block/common_rock/composite_stone/step6",
+        "pitch": 1.2
+      }
+    ],
+    "subtitle": "malum.subtitle.polished_composite_stone_hit"
+  },
+  "polished_composite_stone_place": {
+    "sounds": [
+      {
+        "name": "malum:block/common_rock/composite_stone/place1",
+        "pitch": 1.2
+      },
+      {
+        "name": "malum:block/common_rock/composite_stone/place2",
+        "pitch": 1.2
+      },
+      {
+        "name": "malum:block/common_rock/composite_stone/place3",
+        "pitch": 1.2
+      },
+      {
+        "name": "malum:block/common_rock/composite_stone/place4",
+        "pitch": 1.2
+      },
+      {
+        "name": "malum:block/common_rock/composite_stone/place5",
+        "pitch": 1.2
+      },
+      {
+        "name": "malum:block/common_rock/composite_stone/place6",
+        "pitch": 1.2
+      }
+    ],
+    "subtitle": "malum.subtitle.polished_composite_stone_place"
+  },
+  "polished_composite_stone_step": {
+    "sounds": [
+      {
+        "name": "malum:block/common_rock/composite_stone/step1",
+        "pitch": 1.2
+      },
+      {
+        "name": "malum:block/common_rock/composite_stone/step2",
+        "pitch": 1.2
+      },
+      {
+        "name": "malum:block/common_rock/composite_stone/step3",
+        "pitch": 1.2
+      },
+      {
+        "name": "malum:block/common_rock/composite_stone/step4",
+        "pitch": 1.2
+      },
+      {
+        "name": "malum:block/common_rock/composite_stone/step5",
+        "pitch": 1.2
+      },
+      {
+        "name": "malum:block/common_rock/composite_stone/step6",
+        "pitch": 1.2
+      }
+    ],
+    "subtitle": "malum.subtitle.polished_composite_stone_step"
+  },
   "polished_ebonstone_break": {
     "sounds": [
       {
@@ -8905,6 +9001,14 @@
       {
         "name": "malum:block/common_rock/ebonstone/step4",
         "pitch": 1.2
+      },
+      {
+        "name": "malum:block/common_rock/ebonstone/step5",
+        "pitch": 1.2
+      },
+      {
+        "name": "malum:block/common_rock/ebonstone/step6",
+        "pitch": 1.2
       }
     ],
     "subtitle": "malum.subtitle.polished_ebonstone_fall"
@@ -8925,6 +9029,14 @@
       },
       {
         "name": "malum:block/common_rock/ebonstone/step4",
+        "pitch": 1.2
+      },
+      {
+        "name": "malum:block/common_rock/ebonstone/step5",
+        "pitch": 1.2
+      },
+      {
+        "name": "malum:block/common_rock/ebonstone/step6",
         "pitch": 1.2
       }
     ],
@@ -8976,9 +9088,162 @@
       {
         "name": "malum:block/common_rock/ebonstone/step4",
         "pitch": 1.2
+      },
+      {
+        "name": "malum:block/common_rock/ebonstone/step5",
+        "pitch": 1.2
+      },
+      {
+        "name": "malum:block/common_rock/ebonstone/step6",
+        "pitch": 1.2
       }
     ],
     "subtitle": "malum.subtitle.polished_ebonstone_step"
+  },
+  "polished_igneous_rock_break": {
+    "sounds": [
+      {
+        "name": "malum:block/common_rock/igneous_rock/break1",
+        "pitch": 1.2
+      },
+      {
+        "name": "malum:block/common_rock/igneous_rock/break2",
+        "pitch": 1.2
+      },
+      {
+        "name": "malum:block/common_rock/igneous_rock/break3",
+        "pitch": 1.2
+      },
+      {
+        "name": "malum:block/common_rock/igneous_rock/break4",
+        "pitch": 1.2
+      },
+      {
+        "name": "malum:block/common_rock/igneous_rock/break5",
+        "pitch": 1.2
+      },
+      {
+        "name": "malum:block/common_rock/igneous_rock/break6",
+        "pitch": 1.2
+      }
+    ],
+    "subtitle": "malum.subtitle.polished_igneous_rock_break"
+  },
+  "polished_igneous_rock_fall": {
+    "sounds": [
+      {
+        "name": "malum:block/common_rock/igneous_rock/step1",
+        "pitch": 1.2
+      },
+      {
+        "name": "malum:block/common_rock/igneous_rock/step2",
+        "pitch": 1.2
+      },
+      {
+        "name": "malum:block/common_rock/igneous_rock/step3",
+        "pitch": 1.2
+      },
+      {
+        "name": "malum:block/common_rock/igneous_rock/step4",
+        "pitch": 1.2
+      },
+      {
+        "name": "malum:block/common_rock/igneous_rock/step5",
+        "pitch": 1.2
+      },
+      {
+        "name": "malum:block/common_rock/igneous_rock/step6",
+        "pitch": 1.2
+      }
+    ],
+    "subtitle": "malum.subtitle.polished_igneous_rock_fall"
+  },
+  "polished_igneous_rock_hit": {
+    "sounds": [
+      {
+        "name": "malum:block/common_rock/igneous_rock/step1",
+        "pitch": 1.2
+      },
+      {
+        "name": "malum:block/common_rock/igneous_rock/step2",
+        "pitch": 1.2
+      },
+      {
+        "name": "malum:block/common_rock/igneous_rock/step3",
+        "pitch": 1.2
+      },
+      {
+        "name": "malum:block/common_rock/igneous_rock/step4",
+        "pitch": 1.2
+      },
+      {
+        "name": "malum:block/common_rock/igneous_rock/step5",
+        "pitch": 1.2
+      },
+      {
+        "name": "malum:block/common_rock/igneous_rock/step6",
+        "pitch": 1.2
+      }
+    ],
+    "subtitle": "malum.subtitle.polished_igneous_rock_hit"
+  },
+  "polished_igneous_rock_place": {
+    "sounds": [
+      {
+        "name": "malum:block/common_rock/igneous_rock/place1",
+        "pitch": 1.2
+      },
+      {
+        "name": "malum:block/common_rock/igneous_rock/place2",
+        "pitch": 1.2
+      },
+      {
+        "name": "malum:block/common_rock/igneous_rock/place3",
+        "pitch": 1.2
+      },
+      {
+        "name": "malum:block/common_rock/igneous_rock/place4",
+        "pitch": 1.2
+      },
+      {
+        "name": "malum:block/common_rock/igneous_rock/place5",
+        "pitch": 1.2
+      },
+      {
+        "name": "malum:block/common_rock/igneous_rock/place6",
+        "pitch": 1.2
+      }
+    ],
+    "subtitle": "malum.subtitle.polished_igneous_rock_place"
+  },
+  "polished_igneous_rock_step": {
+    "sounds": [
+      {
+        "name": "malum:block/common_rock/igneous_rock/step1",
+        "pitch": 1.2
+      },
+      {
+        "name": "malum:block/common_rock/igneous_rock/step2",
+        "pitch": 1.2
+      },
+      {
+        "name": "malum:block/common_rock/igneous_rock/step3",
+        "pitch": 1.2
+      },
+      {
+        "name": "malum:block/common_rock/igneous_rock/step4",
+        "pitch": 1.2
+      },
+      {
+        "name": "malum:block/common_rock/igneous_rock/step5",
+        "pitch": 1.2
+      },
+      {
+        "name": "malum:block/common_rock/igneous_rock/step6",
+        "pitch": 1.2
+      }
+    ],
+    "subtitle": "malum.subtitle.polished_igneous_rock_step"
   },
   "polished_seed_quartz_break": {
     "sounds": [
@@ -9026,6 +9291,14 @@
       {
         "name": "malum:block/common_rock/seed_quartz/step4",
         "pitch": 1.2
+      },
+      {
+        "name": "malum:block/common_rock/seed_quartz/step5",
+        "pitch": 1.2
+      },
+      {
+        "name": "malum:block/common_rock/seed_quartz/step6",
+        "pitch": 1.2
       }
     ],
     "subtitle": "malum.subtitle.polished_seed_quartz_fall"
@@ -9046,6 +9319,14 @@
       },
       {
         "name": "malum:block/common_rock/seed_quartz/step4",
+        "pitch": 1.2
+      },
+      {
+        "name": "malum:block/common_rock/seed_quartz/step5",
+        "pitch": 1.2
+      },
+      {
+        "name": "malum:block/common_rock/seed_quartz/step6",
         "pitch": 1.2
       }
     ],
@@ -9097,6 +9378,14 @@
       {
         "name": "malum:block/common_rock/seed_quartz/step4",
         "pitch": 1.2
+      },
+      {
+        "name": "malum:block/common_rock/seed_quartz/step5",
+        "pitch": 1.2
+      },
+      {
+        "name": "malum:block/common_rock/seed_quartz/step6",
+        "pitch": 1.2
       }
     ],
     "subtitle": "malum.subtitle.polished_seed_quartz_step"
@@ -9113,26 +9402,6 @@
       },
       {
         "name": "malum:block/common_rock/trodden_stone/break3",
-        "pitch": 1.2
-      },
-      {
-        "name": "malum:block/common_rock/trodden_stone/break4",
-        "pitch": 1.2
-      },
-      {
-        "name": "malum:block/common_rock/trodden_stone/break5",
-        "pitch": 1.2
-      },
-      {
-        "name": "malum:block/common_rock/trodden_stone/break6",
-        "pitch": 1.2
-      },
-      {
-        "name": "malum:block/common_rock/trodden_stone/break7",
-        "pitch": 1.2
-      },
-      {
-        "name": "malum:block/common_rock/trodden_stone/break8",
         "pitch": 1.2
       }
     ],
@@ -9199,35 +9468,27 @@
   "polished_trodden_stone_place": {
     "sounds": [
       {
-        "name": "malum:block/common_rock/trodden_stone/break1",
+        "name": "malum:block/common_rock/trodden_stone/place1",
         "pitch": 1.2
       },
       {
-        "name": "malum:block/common_rock/trodden_stone/break2",
+        "name": "malum:block/common_rock/trodden_stone/place2",
         "pitch": 1.2
       },
       {
-        "name": "malum:block/common_rock/trodden_stone/break3",
+        "name": "malum:block/common_rock/trodden_stone/place3",
         "pitch": 1.2
       },
       {
-        "name": "malum:block/common_rock/trodden_stone/break4",
+        "name": "malum:block/common_rock/trodden_stone/place4",
         "pitch": 1.2
       },
       {
-        "name": "malum:block/common_rock/trodden_stone/break5",
+        "name": "malum:block/common_rock/trodden_stone/place5",
         "pitch": 1.2
       },
       {
-        "name": "malum:block/common_rock/trodden_stone/break6",
-        "pitch": 1.2
-      },
-      {
-        "name": "malum:block/common_rock/trodden_stone/break7",
-        "pitch": 1.2
-      },
-      {
-        "name": "malum:block/common_rock/trodden_stone/break8",
+        "name": "malum:block/common_rock/trodden_stone/place6",
         "pitch": 1.2
       }
     ],
@@ -9282,6 +9543,275 @@
       "malum:curiosities/gear/weapons/ravenous/scythe_hit4"
     ],
     "subtitle": "malum.subtitle.ravenous_scythe_eats"
+  },
+  "raw_composite_stone_break": {
+    "sounds": [
+      "malum:block/common_rock/composite_stone/break1",
+      "malum:block/common_rock/composite_stone/break2",
+      "malum:block/common_rock/composite_stone/break3",
+      "malum:block/common_rock/composite_stone/break4",
+      "malum:block/common_rock/composite_stone/break5",
+      "malum:block/common_rock/composite_stone/break6"
+    ],
+    "subtitle": "malum.subtitle.raw_composite_stone_break"
+  },
+  "raw_composite_stone_fall": {
+    "sounds": [
+      "malum:block/common_rock/composite_stone/step1",
+      "malum:block/common_rock/composite_stone/step2",
+      "malum:block/common_rock/composite_stone/step3",
+      "malum:block/common_rock/composite_stone/step4",
+      "malum:block/common_rock/composite_stone/step5",
+      "malum:block/common_rock/composite_stone/step6"
+    ],
+    "subtitle": "malum.subtitle.raw_composite_stone_fall"
+  },
+  "raw_composite_stone_hit": {
+    "sounds": [
+      "malum:block/common_rock/composite_stone/step1",
+      "malum:block/common_rock/composite_stone/step2",
+      "malum:block/common_rock/composite_stone/step3",
+      "malum:block/common_rock/composite_stone/step4",
+      "malum:block/common_rock/composite_stone/step5",
+      "malum:block/common_rock/composite_stone/step6"
+    ],
+    "subtitle": "malum.subtitle.raw_composite_stone_hit"
+  },
+  "raw_composite_stone_place": {
+    "sounds": [
+      "malum:block/common_rock/composite_stone/break1",
+      "malum:block/common_rock/composite_stone/break2",
+      "malum:block/common_rock/composite_stone/break3",
+      "malum:block/common_rock/composite_stone/break4",
+      "malum:block/common_rock/composite_stone/break5",
+      "malum:block/common_rock/composite_stone/break6"
+    ],
+    "subtitle": "malum.subtitle.raw_composite_stone_place"
+  },
+  "raw_composite_stone_step": {
+    "sounds": [
+      "malum:block/common_rock/composite_stone/step1",
+      "malum:block/common_rock/composite_stone/step2",
+      "malum:block/common_rock/composite_stone/step3",
+      "malum:block/common_rock/composite_stone/step4",
+      "malum:block/common_rock/composite_stone/step5",
+      "malum:block/common_rock/composite_stone/step6"
+    ],
+    "subtitle": "malum.subtitle.raw_composite_stone_step"
+  },
+  "raw_ebonstone_break": {
+    "sounds": [
+      "malum:block/common_rock/ebonstone/break1",
+      "malum:block/common_rock/ebonstone/break2",
+      "malum:block/common_rock/ebonstone/break3",
+      "malum:block/common_rock/ebonstone/break4",
+      "malum:block/common_rock/ebonstone/break5",
+      "malum:block/common_rock/ebonstone/break6"
+    ],
+    "subtitle": "malum.subtitle.raw_ebonstone_break"
+  },
+  "raw_ebonstone_fall": {
+    "sounds": [
+      "malum:block/common_rock/ebonstone/step1",
+      "malum:block/common_rock/ebonstone/step2",
+      "malum:block/common_rock/ebonstone/step3",
+      "malum:block/common_rock/ebonstone/step4",
+      "malum:block/common_rock/ebonstone/step5",
+      "malum:block/common_rock/ebonstone/step6"
+    ],
+    "subtitle": "malum.subtitle.raw_ebonstone_fall"
+  },
+  "raw_ebonstone_hit": {
+    "sounds": [
+      "malum:block/common_rock/ebonstone/step1",
+      "malum:block/common_rock/ebonstone/step2",
+      "malum:block/common_rock/ebonstone/step3",
+      "malum:block/common_rock/ebonstone/step4",
+      "malum:block/common_rock/ebonstone/step5",
+      "malum:block/common_rock/ebonstone/step6"
+    ],
+    "subtitle": "malum.subtitle.raw_ebonstone_hit"
+  },
+  "raw_ebonstone_place": {
+    "sounds": [
+      "malum:block/common_rock/ebonstone/break1",
+      "malum:block/common_rock/ebonstone/break2",
+      "malum:block/common_rock/ebonstone/break3",
+      "malum:block/common_rock/ebonstone/break4",
+      "malum:block/common_rock/ebonstone/break5",
+      "malum:block/common_rock/ebonstone/break6"
+    ],
+    "subtitle": "malum.subtitle.raw_ebonstone_place"
+  },
+  "raw_ebonstone_step": {
+    "sounds": [
+      "malum:block/common_rock/ebonstone/step1",
+      "malum:block/common_rock/ebonstone/step2",
+      "malum:block/common_rock/ebonstone/step3",
+      "malum:block/common_rock/ebonstone/step4",
+      "malum:block/common_rock/ebonstone/step5",
+      "malum:block/common_rock/ebonstone/step6"
+    ],
+    "subtitle": "malum.subtitle.raw_ebonstone_step"
+  },
+  "raw_igneous_rock_break": {
+    "sounds": [
+      "malum:block/common_rock/igneous_rock/break1",
+      "malum:block/common_rock/igneous_rock/break2",
+      "malum:block/common_rock/igneous_rock/break3",
+      "malum:block/common_rock/igneous_rock/break4",
+      "malum:block/common_rock/igneous_rock/break5",
+      "malum:block/common_rock/igneous_rock/break6"
+    ],
+    "subtitle": "malum.subtitle.raw_igneous_rock_break"
+  },
+  "raw_igneous_rock_fall": {
+    "sounds": [
+      "malum:block/common_rock/igneous_rock/step1",
+      "malum:block/common_rock/igneous_rock/step2",
+      "malum:block/common_rock/igneous_rock/step3",
+      "malum:block/common_rock/igneous_rock/step4",
+      "malum:block/common_rock/igneous_rock/step5",
+      "malum:block/common_rock/igneous_rock/step6"
+    ],
+    "subtitle": "malum.subtitle.raw_igneous_rock_fall"
+  },
+  "raw_igneous_rock_hit": {
+    "sounds": [
+      "malum:block/common_rock/igneous_rock/step1",
+      "malum:block/common_rock/igneous_rock/step2",
+      "malum:block/common_rock/igneous_rock/step3",
+      "malum:block/common_rock/igneous_rock/step4",
+      "malum:block/common_rock/igneous_rock/step5",
+      "malum:block/common_rock/igneous_rock/step6"
+    ],
+    "subtitle": "malum.subtitle.raw_igneous_rock_hit"
+  },
+  "raw_igneous_rock_place": {
+    "sounds": [
+      "malum:block/common_rock/igneous_rock/break1",
+      "malum:block/common_rock/igneous_rock/break2",
+      "malum:block/common_rock/igneous_rock/break3",
+      "malum:block/common_rock/igneous_rock/break4",
+      "malum:block/common_rock/igneous_rock/break5",
+      "malum:block/common_rock/igneous_rock/break6"
+    ],
+    "subtitle": "malum.subtitle.raw_igneous_rock_place"
+  },
+  "raw_igneous_rock_step": {
+    "sounds": [
+      "malum:block/common_rock/igneous_rock/step1",
+      "malum:block/common_rock/igneous_rock/step2",
+      "malum:block/common_rock/igneous_rock/step3",
+      "malum:block/common_rock/igneous_rock/step4",
+      "malum:block/common_rock/igneous_rock/step5",
+      "malum:block/common_rock/igneous_rock/step6"
+    ],
+    "subtitle": "malum.subtitle.raw_igneous_rock_step"
+  },
+  "raw_seed_quartz_break": {
+    "sounds": [
+      "malum:block/common_rock/seed_quartz/break1",
+      "malum:block/common_rock/seed_quartz/break2",
+      "malum:block/common_rock/seed_quartz/break3",
+      "malum:block/common_rock/seed_quartz/break4",
+      "malum:block/common_rock/seed_quartz/break5",
+      "malum:block/common_rock/seed_quartz/break6"
+    ],
+    "subtitle": "malum.subtitle.raw_seed_quartz_break"
+  },
+  "raw_seed_quartz_fall": {
+    "sounds": [
+      "malum:block/common_rock/seed_quartz/step1",
+      "malum:block/common_rock/seed_quartz/step2",
+      "malum:block/common_rock/seed_quartz/step3",
+      "malum:block/common_rock/seed_quartz/step4",
+      "malum:block/common_rock/seed_quartz/step5",
+      "malum:block/common_rock/seed_quartz/step6"
+    ],
+    "subtitle": "malum.subtitle.raw_seed_quartz_fall"
+  },
+  "raw_seed_quartz_hit": {
+    "sounds": [
+      "malum:block/common_rock/seed_quartz/step1",
+      "malum:block/common_rock/seed_quartz/step2",
+      "malum:block/common_rock/seed_quartz/step3",
+      "malum:block/common_rock/seed_quartz/step4",
+      "malum:block/common_rock/seed_quartz/step5",
+      "malum:block/common_rock/seed_quartz/step6"
+    ],
+    "subtitle": "malum.subtitle.raw_seed_quartz_hit"
+  },
+  "raw_seed_quartz_place": {
+    "sounds": [
+      "malum:block/common_rock/seed_quartz/break1",
+      "malum:block/common_rock/seed_quartz/break2",
+      "malum:block/common_rock/seed_quartz/break3",
+      "malum:block/common_rock/seed_quartz/break4",
+      "malum:block/common_rock/seed_quartz/break5",
+      "malum:block/common_rock/seed_quartz/break6"
+    ],
+    "subtitle": "malum.subtitle.raw_seed_quartz_place"
+  },
+  "raw_seed_quartz_step": {
+    "sounds": [
+      "malum:block/common_rock/seed_quartz/step1",
+      "malum:block/common_rock/seed_quartz/step2",
+      "malum:block/common_rock/seed_quartz/step3",
+      "malum:block/common_rock/seed_quartz/step4",
+      "malum:block/common_rock/seed_quartz/step5",
+      "malum:block/common_rock/seed_quartz/step6"
+    ],
+    "subtitle": "malum.subtitle.raw_seed_quartz_step"
+  },
+  "raw_trodden_stone_break": {
+    "sounds": [
+      "malum:block/common_rock/trodden_stone/break1",
+      "malum:block/common_rock/trodden_stone/break2",
+      "malum:block/common_rock/trodden_stone/break3"
+    ],
+    "subtitle": "malum.subtitle.raw_trodden_stone_break"
+  },
+  "raw_trodden_stone_fall": {
+    "sounds": [
+      "malum:block/common_rock/trodden_stone/step1",
+      "malum:block/common_rock/trodden_stone/step2",
+      "malum:block/common_rock/trodden_stone/step3",
+      "malum:block/common_rock/trodden_stone/step4",
+      "malum:block/common_rock/trodden_stone/step5",
+      "malum:block/common_rock/trodden_stone/step6"
+    ],
+    "subtitle": "malum.subtitle.raw_trodden_stone_fall"
+  },
+  "raw_trodden_stone_hit": {
+    "sounds": [
+      "malum:block/common_rock/trodden_stone/step1",
+      "malum:block/common_rock/trodden_stone/step2",
+      "malum:block/common_rock/trodden_stone/step3",
+      "malum:block/common_rock/trodden_stone/step4",
+      "malum:block/common_rock/trodden_stone/step5",
+      "malum:block/common_rock/trodden_stone/step6"
+    ],
+    "subtitle": "malum.subtitle.raw_trodden_stone_hit"
+  },
+  "raw_trodden_stone_place": {
+    "sounds": [
+      "malum:block/common_rock/trodden_stone/break1",
+      "malum:block/common_rock/trodden_stone/break2",
+      "malum:block/common_rock/trodden_stone/break3"
+    ],
+    "subtitle": "malum.subtitle.raw_trodden_stone_place"
+  },
+  "raw_trodden_stone_step": {
+    "sounds": [
+      "malum:block/common_rock/trodden_stone/step1",
+      "malum:block/common_rock/trodden_stone/step2",
+      "malum:block/common_rock/trodden_stone/step3",
+      "malum:block/common_rock/trodden_stone/step4",
+      "malum:block/common_rock/trodden_stone/step5",
+      "malum:block/common_rock/trodden_stone/step6"
+    ],
+    "subtitle": "malum.subtitle.raw_trodden_stone_step"
   },
   "realized_soulstone_bud_break": {
     "sounds": [
@@ -9917,55 +10447,6 @@
       "malum:curiosities/gear/weapons/scythe/throw4"
     ],
     "subtitle": "malum.subtitle.scythe_user_ascends"
-  },
-  "seed_quartz_break": {
-    "sounds": [
-      "malum:block/common_rock/seed_quartz/break1",
-      "malum:block/common_rock/seed_quartz/break2",
-      "malum:block/common_rock/seed_quartz/break3",
-      "malum:block/common_rock/seed_quartz/break4",
-      "malum:block/common_rock/seed_quartz/break5",
-      "malum:block/common_rock/seed_quartz/break6"
-    ],
-    "subtitle": "malum.subtitle.seed_quartz_break"
-  },
-  "seed_quartz_fall": {
-    "sounds": [
-      "malum:block/common_rock/seed_quartz/step1",
-      "malum:block/common_rock/seed_quartz/step2",
-      "malum:block/common_rock/seed_quartz/step3",
-      "malum:block/common_rock/seed_quartz/step4"
-    ],
-    "subtitle": "malum.subtitle.seed_quartz_fall"
-  },
-  "seed_quartz_hit": {
-    "sounds": [
-      "malum:block/common_rock/seed_quartz/step1",
-      "malum:block/common_rock/seed_quartz/step2",
-      "malum:block/common_rock/seed_quartz/step3",
-      "malum:block/common_rock/seed_quartz/step4"
-    ],
-    "subtitle": "malum.subtitle.seed_quartz_hit"
-  },
-  "seed_quartz_place": {
-    "sounds": [
-      "malum:block/common_rock/seed_quartz/break1",
-      "malum:block/common_rock/seed_quartz/break2",
-      "malum:block/common_rock/seed_quartz/break3",
-      "malum:block/common_rock/seed_quartz/break4",
-      "malum:block/common_rock/seed_quartz/break5",
-      "malum:block/common_rock/seed_quartz/break6"
-    ],
-    "subtitle": "malum.subtitle.seed_quartz_place"
-  },
-  "seed_quartz_step": {
-    "sounds": [
-      "malum:block/common_rock/seed_quartz/step1",
-      "malum:block/common_rock/seed_quartz/step2",
-      "malum:block/common_rock/seed_quartz/step3",
-      "malum:block/common_rock/seed_quartz/step4"
-    ],
-    "subtitle": "malum.subtitle.seed_quartz_step"
   },
   "shielding_apparatus_shields": {
     "sounds": [
@@ -11574,65 +12055,6 @@
       "mob/phantom/flap6"
     ],
     "subtitle": "malum.subtitle.totemic_weight"
-  },
-  "trodden_stone_break": {
-    "sounds": [
-      "malum:block/common_rock/trodden_stone/break1",
-      "malum:block/common_rock/trodden_stone/break2",
-      "malum:block/common_rock/trodden_stone/break3",
-      "malum:block/common_rock/trodden_stone/break4",
-      "malum:block/common_rock/trodden_stone/break5",
-      "malum:block/common_rock/trodden_stone/break6",
-      "malum:block/common_rock/trodden_stone/break7",
-      "malum:block/common_rock/trodden_stone/break8"
-    ],
-    "subtitle": "malum.subtitle.trodden_stone_break"
-  },
-  "trodden_stone_fall": {
-    "sounds": [
-      "malum:block/common_rock/trodden_stone/step1",
-      "malum:block/common_rock/trodden_stone/step2",
-      "malum:block/common_rock/trodden_stone/step3",
-      "malum:block/common_rock/trodden_stone/step4",
-      "malum:block/common_rock/trodden_stone/step5",
-      "malum:block/common_rock/trodden_stone/step6"
-    ],
-    "subtitle": "malum.subtitle.trodden_stone_fall"
-  },
-  "trodden_stone_hit": {
-    "sounds": [
-      "malum:block/common_rock/trodden_stone/step1",
-      "malum:block/common_rock/trodden_stone/step2",
-      "malum:block/common_rock/trodden_stone/step3",
-      "malum:block/common_rock/trodden_stone/step4",
-      "malum:block/common_rock/trodden_stone/step5",
-      "malum:block/common_rock/trodden_stone/step6"
-    ],
-    "subtitle": "malum.subtitle.trodden_stone_hit"
-  },
-  "trodden_stone_place": {
-    "sounds": [
-      "malum:block/common_rock/trodden_stone/break1",
-      "malum:block/common_rock/trodden_stone/break2",
-      "malum:block/common_rock/trodden_stone/break3",
-      "malum:block/common_rock/trodden_stone/break4",
-      "malum:block/common_rock/trodden_stone/break5",
-      "malum:block/common_rock/trodden_stone/break6",
-      "malum:block/common_rock/trodden_stone/break7",
-      "malum:block/common_rock/trodden_stone/break8"
-    ],
-    "subtitle": "malum.subtitle.trodden_stone_place"
-  },
-  "trodden_stone_step": {
-    "sounds": [
-      "malum:block/common_rock/trodden_stone/step1",
-      "malum:block/common_rock/trodden_stone/step2",
-      "malum:block/common_rock/trodden_stone/step3",
-      "malum:block/common_rock/trodden_stone/step4",
-      "malum:block/common_rock/trodden_stone/step5",
-      "malum:block/common_rock/trodden_stone/step6"
-    ],
-    "subtitle": "malum.subtitle.trodden_stone_step"
   },
   "tuning_fork_tinkers": {
     "sounds": [

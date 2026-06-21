@@ -11,5 +11,4 @@ public class MalumRegistrySet {
     public String name(String name) {
         return name.replace("%s", id);
     }
-
 }

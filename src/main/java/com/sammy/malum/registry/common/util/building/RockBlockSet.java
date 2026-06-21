@@ -3,6 +3,8 @@ package com.sammy.malum.registry.common.util.building;
 import com.sammy.malum.common.block.curiosities.decor.ColumnBlock;
 import com.sammy.malum.common.block.storage.pedestal.ItemPedestalBlock;
 import com.sammy.malum.common.block.storage.stand.ItemStandBlock;
+import com.sammy.malum.datagen.block.MalumBlockStateDatagen;
+import com.sammy.malum.datagen.block.MalumBlockStateSmithTypes;
 import com.sammy.malum.registry.common.MalumContent;
 import com.sammy.malum.registry.common.util.MalumRegistrySet;
 import com.sammy.malum.registry.common.util.data.BlockBundle;
@@ -11,16 +13,24 @@ import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.properties.BlockSetType;
 import team.lodestar.lodestone.modules.core.util.BlockItemTagKey;
+import team.lodestar.lodestone.modules.datagen.BlockStateSmithTypes;
+import team.lodestar.lodestone.modules.datagen.smith.blockstate.BlockStateSystemData;
 import team.lodestar.lodestone.modules.toolkit.block.BlockBlockItemHolder;
 import team.lodestar.lodestone.modules.toolkit.block.LodestoneBlockProperties;
 import team.lodestar.lodestone.modules.toolkit.creative_tab.CreativeTabCategoryBuilder;
 
+import java.util.List;
 import java.util.function.Supplier;
 
 import static com.sammy.malum.registry.common.MalumTags.Blocks.*;
 import static net.minecraft.tags.BlockTags.*;
 
 public class RockBlockSet extends MalumRegistrySet {
+
+
+    public static List<RockBlockSet> getMalumSets() {
+        return List.of(MalumContent.BlockSets.TAINTED_ROCK_SET, MalumContent.BlockSets.TWISTED_ROCK_SET);
+    }
 
     public final BlockItemTagKey blocksTag;
     public final BlockItemTagKey stairsTag;
@@ -31,9 +41,7 @@ public class RockBlockSet extends MalumRegistrySet {
     public final BlockBundleWithWall tiles, grid, mosaic;
 
     public final BlockBlockItemHolder<Block, BlockItem> column, altar;
-
     public final BlockBlockItemHolder<Block, BlockItem> button, pressurePlate;
-
     public final BlockBlockItemHolder<Block, BlockItem> itemPedestal, itemStand;
 
 
@@ -111,5 +119,23 @@ public class RockBlockSet extends MalumRegistrySet {
                         tiles.wall,
                         mosaic.wall
                 );
+    }
+
+    public void addBlockStates(MalumBlockStateDatagen datagen, BlockStateSystemData<MalumBlockStateDatagen> data) {
+        datagen.setTexturePath("building/arcane_rock/" + id);
+        datagen.generateBlockBundle(data, rock);
+        datagen.generateBlockBundle(data, polishedRock);
+        datagen.generateBlockBundle(data, bricks);
+        datagen.generateBlockBundle(data, tiles);
+
+        MalumBlockStateSmithTypes.COLUMN.act(data, column);
+        BlockStateSmithTypes.CUSTOM_MODEL.act(data, datagen::simpleBlock, datagen.models()::cubeBottomTop, altar);
+
+        BlockStateSmithTypes.BUTTON_BLOCK.act(data, button);
+        BlockStateSmithTypes.PRESSURE_PLATE_BLOCK.act(data, pressurePlate);
+
+        BlockStateSmithTypes.CUSTOM_MODEL.act(data, datagen::simpleBlock, datagen::rockItemPedestalModel, itemPedestal);
+
+        BlockStateSmithTypes.CUSTOM_MODEL.act(data, datagen::directionalBlock, datagen::itemStandModel, itemStand);
     }
 }

@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/inner_stairs",
+  "textures": {
+    "bottom": "malum:block/building/common_rock/ebonstone/smooth_ebonstone",
+    "side": "malum:block/building/common_rock/ebonstone/smooth_ebonstone",
+    "top": "malum:block/building/common_rock/ebonstone/smooth_ebonstone"
+  }
+}

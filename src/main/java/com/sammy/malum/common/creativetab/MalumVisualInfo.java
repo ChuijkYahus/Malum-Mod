@@ -11,7 +11,7 @@ import java.util.Optional;
 
 public class MalumVisualInfo extends CreativeTabVisualInfo {
 
-    public static final MalumVisualInfo MALUM = new MalumVisualInfo();
+    public static final MalumVisualInfo VISUAL_INFO = new MalumVisualInfo();
     private static final ResourceLocation SLOT_WRAPPER = MalumMod.malumPath("slot_wrapper");
     private static final ResourceLocation SLOT_WRAPPER_LEFT = MalumMod.malumPath("slot_wrapper_left");
     private static final ResourceLocation SLOT_WRAPPER_RIGHT = MalumMod.malumPath("slot_wrapper_right");

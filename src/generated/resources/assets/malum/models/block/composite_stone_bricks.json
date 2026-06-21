@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:block/cube_all",
+  "textures": {
+    "all": "malum:block/building/common_rock/composite_stone/composite_stone_bricks"
+  }
+}
