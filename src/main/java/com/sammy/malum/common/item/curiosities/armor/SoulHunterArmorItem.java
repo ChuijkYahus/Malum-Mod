@@ -13,6 +13,7 @@ import java.util.List;
 import static com.sammy.malum.registry.common.item.MalumArmorTiers.SOUL_HUNTER;
 
 public class SoulHunterArmorItem extends MalumArmorItem {
+
     public SoulHunterArmorItem(ArmorItem.Type slot, Properties builder) {
         super(SOUL_HUNTER, slot, 18, builder);
     }

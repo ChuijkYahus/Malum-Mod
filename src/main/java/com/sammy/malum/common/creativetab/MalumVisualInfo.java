@@ -2,6 +2,8 @@ package com.sammy.malum.common.creativetab;
 
 import com.sammy.malum.MalumMod;
 import com.sammy.malum.common.creativetab.button.ItemChoiceSlotStorage;
+import net.minecraft.client.gui.*;
+import net.minecraft.client.renderer.texture.*;
 import net.minecraft.resources.ResourceLocation;
 import team.lodestar.lodestone.modules.toolkit.creative_tab.CreativeTabHeader;
 import team.lodestar.lodestone.modules.toolkit.creative_tab.CreativeTabVisualInfo;
@@ -34,5 +36,15 @@ public class MalumVisualInfo extends CreativeTabVisualInfo {
             return Optional.of(BUTTON_SLOT);
         }
         return Optional.of(EMPTY_SLOT);
+    }
+
+    @Override
+    public void drawHeaderSlot(GuiGraphics guiGraphics, int x, int y, TextureAtlasSprite sprite) {
+        guiGraphics.blit(x - 1, y - 2, 0, 18, 20, sprite);
+    }
+
+    @Override
+    public void drawEmptySlot(GuiGraphics guiGraphics, int x, int y, TextureAtlasSprite sprite) {
+        guiGraphics.blit(x, y, 0, 16, 16, sprite);
     }
 }

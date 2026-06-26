@@ -14,6 +14,7 @@ import com.sammy.malum.registry.common.util.data.*;
 import net.minecraft.data.*;
 import net.minecraft.resources.*;
 import net.minecraft.world.level.block.*;
+import net.minecraft.world.level.block.state.*;
 import net.neoforged.neoforge.client.model.generators.ModelFile;
 import net.neoforged.neoforge.common.data.*;
 import team.lodestar.lodestone.modules.datagen.BlockStateSmithTypes;

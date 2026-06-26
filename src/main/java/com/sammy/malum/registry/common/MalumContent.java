@@ -326,7 +326,6 @@ public class MalumContent {
         public static final DeferredItem<Item> REFINED_BRILLIANCE = register("refined_brilliance", MalumItemProperties::DEFAULT, (p) -> new BrillianceChunkItem(p.food((new FoodProperties.Builder()).fast().alwaysEdible().build())));
 
         public static final GeodeCrystalRegistrySet MUNDANE_QUARTZ = new GeodeCrystalRegistrySet("mundane_quartz");
-
         public static final GeodeCrystalRegistrySet VIVID_AMETRINE = new GeodeCrystalRegistrySet("vivid_ametrine");
         public static final GeodeCrystalRegistrySet MARINE_AGATE = new GeodeCrystalRegistrySet("marine_agate");
         public static final GeodeCrystalRegistrySet RUGGED_CITRINE = new GeodeCrystalRegistrySet("rugged_citrine");
