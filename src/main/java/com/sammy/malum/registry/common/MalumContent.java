@@ -1,6 +1,5 @@
 package com.sammy.malum.registry.common;
 
-import com.sammy.malum.MalumMod;
 import com.sammy.malum.common.block.blight.*;
 import com.sammy.malum.common.block.blight.scarstone.LargeStrangeCrystalBlock;
 import com.sammy.malum.common.block.blight.scarstone.ScarstoneBlock;
@@ -16,7 +15,6 @@ import com.sammy.malum.common.block.curiosities.artifice.redstone.wavemaker.*;
 import com.sammy.malum.common.block.curiosities.sorcery.magehand_coffer.MagehandCofferBlock;
 import com.sammy.malum.common.block.curiosities.sorcery.soul_brazier.*;
 import com.sammy.malum.common.block.curiosities.decor.banner.SoulwovenBannerBlock;
-import com.sammy.malum.common.block.curiosities.decor.mana_mote.ManaMoteBlock;
 import com.sammy.malum.common.block.curiosities.fluid.SapFilledCauldronBlock;
 import com.sammy.malum.common.block.curiosities.obelisk.ObeliskComponentBlock;
 import com.sammy.malum.common.block.curiosities.obelisk.brilliant.BrillianceObeliskCoreBlock;
@@ -119,7 +117,6 @@ import com.sammy.malum.common.item.curiosities.curios.sets.weeping.*;
 import com.sammy.malum.common.item.curiosities.pouch.RavenousPouchItem;
 import com.sammy.malum.common.item.curiosities.pouch.SoulwovenPouchItem;
 import com.sammy.malum.common.item.curiosities.tools.CatalystLobberItem;
-import com.sammy.malum.common.item.curiosities.tools.LamplightersTongsItem;
 import com.sammy.malum.common.item.curiosities.tools.TinkeringToolItem;
 import com.sammy.malum.common.item.curiosities.tools.spellweaver.SpellweavingAxeItem;
 import com.sammy.malum.common.item.curiosities.tools.spellweaver.SpellweavingPickaxeItem;
@@ -158,7 +155,6 @@ import com.sammy.malum.registry.common.util.*;
 import com.sammy.malum.registry.common.util.building.MinorBuildingSet;
 import com.sammy.malum.registry.common.util.building.RockBlockSet;
 import com.sammy.malum.registry.common.util.building.WoodBlockSet;
-import com.sammy.malum.registry.common.util.data.*;
 import com.sammy.malum.registry.common.worldgen.MalumTreeGrowers;
 import net.minecraft.util.valueproviders.UniformInt;
 import net.minecraft.world.food.FoodProperties;
@@ -540,10 +536,6 @@ public class MalumContent {
 
         public static final BlockBlockItemHolder<Block, MultiBlockItem> ARCANA_PYLON = registerMultiBlock("arcana_pylon", () -> new ArcanaPylonCoreBlock(MalumWoodBlockProperties.SOULWOOD().setCutout().noOcclusion()), ArcanaPylonBlockEntity.STRUCTURE);
         public static final DeferredHolder<Block, ArcanaPylonComponentBlock> ARCANA_PYLON_COMPONENT = registerBlockNoItem("arcana_pylon_component", () -> new ArcanaPylonComponentBlock(MalumWoodBlockProperties.SOULWOOD().setCutout().lootFrom(ARCANA_PYLON).noOcclusion()));
-
-
-        public static final DeferredBlock<Block> SPIRIT_MOTE = registerBlockNoItem("spirit_mote", () -> new ManaMoteBlock(MalumStorageBlockProperties.MANA_MOTE_BLOCK()));
-
     }
 
     public static class Poppetry {
@@ -666,7 +658,6 @@ public class MalumContent {
 
         }
 
-        public static final DeferredItem<Item> LAMPLIGHTERS_TONGS = register("lamplighters_tongs", MalumItemProperties::GEAR, LamplightersTongsItem::new);
         public static final DeferredItem<Item> CATALYST_LOBBER = register("catalyst_lobber", MalumItemProperties::GEAR, (p) -> new CatalystLobberItem(p.durability(500), EthericNitrate::new));
 
         public static final DeferredItem<Item> SOULWOVEN_POUCH = register("soulwoven_pouch", MalumItemProperties::GEAR, SoulwovenPouchItem::new);

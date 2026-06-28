@@ -13,7 +13,6 @@ import com.sammy.malum.common.block.curiosities.artifice.crystallarium.Conjunctu
 import com.sammy.malum.common.block.curiosities.decor.banner.*;
 import com.sammy.malum.common.block.curiosities.artifice.gust_igniter.*;
 import com.sammy.malum.common.block.curiosities.artifice.gust_igniter.wind_tunnel.*;
-import com.sammy.malum.common.block.curiosities.decor.mana_mote.*;
 import com.sammy.malum.common.block.curiosities.obelisk.brilliant.*;
 import com.sammy.malum.common.block.curiosities.obelisk.rite_pylon.*;
 import com.sammy.malum.common.block.curiosities.obelisk.runewood.*;
@@ -128,9 +127,6 @@ public class MalumBlockEntities {
     public static final Supplier<LodestoneBlockEntityType<OminousAltarBlockEntity>> OMINOUS_ALTAR = BLOCK_ENTITY_TYPES.register("ominous_altar", () -> create(OminousAltarBlockEntity::new, MalumContent.DungeonBlockSets.OMINOUS_ALTAR).setTickerType(Type.BOTH).build());
     public static final Supplier<LodestoneBlockEntityType<OminousObeliskBlockEntity>> OMINOUS_OBELISK = BLOCK_ENTITY_TYPES.register("ominous_obelisk", () -> create(OminousObeliskBlockEntity::new, MalumContent.DungeonBlockSets.OMINOUS_OBELISK).setTickerType(Type.BOTH).build());
 
-    public static final Supplier<LodestoneBlockEntityType<ManaMoteBlockEntity>> MANA_MOTE = BLOCK_ENTITY_TYPES.register("mote_of_mana", () -> create(ManaMoteBlockEntity::new, getBlocks(ManaMoteBlock.class)).build());
-
-
     public static final Supplier<LodestoneBlockEntityType<VoidConduitBlockEntity>> VOID_CONDUIT = BLOCK_ENTITY_TYPES.register("void_conduit", () -> create(VoidConduitBlockEntity::new, MalumContent.WeepingWell.VOID_CONDUIT).setTickerType(Type.BOTH).build());
     public static final Supplier<LodestoneBlockEntityType<VoidDepotBlockEntity>> VOID_DEPOT = BLOCK_ENTITY_TYPES.register("void_depot", () -> create(VoidDepotBlockEntity::new, MalumContent.WeepingWell.VOID_DEPOT).setTickerType(Type.CLIENT).build());
 
@@ -208,7 +204,6 @@ public class MalumBlockEntities {
             event.registerBlockEntityRenderer(OMINOUS_ALTAR.get(), SpiritAltarRenderer::new);
 
             event.registerBlockEntityRenderer(SOULWOVEN_BANNER.get(), SoulwovenBannerRenderer::new);
-            event.registerBlockEntityRenderer(MANA_MOTE.get(), MoteOfManaRenderer::new);
         }
     }
 }

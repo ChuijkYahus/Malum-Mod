@@ -255,8 +255,6 @@ public class MalumBlockStateDatagen extends LodestoneBlockStateSystem {
         MalumBlockStateSmithTypes.PRIMORDIAL_SOUP.act(data, PRIMORDIAL_SOUP);
 
         BlockStateSmithTypes.FULL_BLOCK.act(data, BlockSets.THE_DEVICE, BlockSets.THE_VESSEL);
-
-        BlockStateSmithTypes.CUSTOM_MODEL.act(data, NO_DATAGEN, this::simpleBlock, this::cubeModelAirTexture, SPIRIT_MOTE);
     }
 
     public void generateVariedBlockBundle(BlockStateSystemData<MalumBlockStateDatagen> data, BlockBundle bundle) {

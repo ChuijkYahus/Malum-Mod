@@ -57,7 +57,7 @@ public class MalumItemModelDatagen extends LodestoneItemModelSystem {
         MalumItemModelSmithTypes.UMBRAL_SPIRIT_ITEM.act(data, MalumContent.Spirits.UMBRAL_SPIRIT);
         MalumItemModelSmithTypes.HANDHELD_OVERLAY_ITEM.act(data, MalumContent.Gear.UNWINDING_CHAOS, MalumContent.Gear.SUNDERING_ANCHOR).forEach(result -> result.addModelLayerData().emissive(15, 15, 1));
         MalumItemModelSmithTypes.LARGE_HANDHELD_ITEM.act(data, MalumContent.Gear.CRUDE_SCYTHE, MalumContent.Gear.SOUL_STAINED_STEEL_SCYTHE, MalumContent.Gear.RAVENOUS_SCYTHE, MalumContent.Gear.EDGE_OF_DELIVERANCE, MalumContent.Gear.WEIGHT_OF_WORLDS, MalumContent.DungeonGear.SHAPED_SLAB);
-        MalumItemModelSmithTypes.HANDHELD_ITEM.act(data, MalumContent.Gear.SOUL_STAINED_STEEL_KNIFE, MalumContent.Gear.GLUTTONOUS_BLUDGEON, MalumContent.Focusing.TUNING_FORK, MalumContent.Gear.LAMPLIGHTERS_TONGS, MalumContent.Artifice.ARTIFICERS_CLAW, MalumContent.Totemancy.TOTEMIC_STAFF);
+        MalumItemModelSmithTypes.HANDHELD_ITEM.act(data, MalumContent.Gear.SOUL_STAINED_STEEL_KNIFE, MalumContent.Gear.GLUTTONOUS_BLUDGEON, MalumContent.Focusing.TUNING_FORK, MalumContent.Artifice.ARTIFICERS_CLAW, MalumContent.Totemancy.TOTEMIC_STAFF);
         MalumItemModelSmithTypes.HANDHELD_ITEM.act(data, MalumContent.Gear.MNEMONIC_HEX_STAFF, MalumContent.Gear.EROSION_SCEPTER);
         MalumItemModelSmithTypes.SPELLWEAVING_TOOL.act(data, MalumContent.Gear.SPELLWEAVING_PICKAXE, MalumContent.Gear.SPELLWEAVING_AXE);
         MalumItemModelSmithTypes.CATALYST_LOBBER.act(data, MalumContent.Gear.CATALYST_LOBBER);
