@@ -109,9 +109,7 @@ public class MinorBuildingSet extends MalumRegistrySet {
     }
 
     public void addRecipes(RecipeOutput recipeOutput) {
-        RecipeDatagenCommons.smelting(recipeOutput, MalumMod.malumPath(name("smooth_%s")),
-                Ingredient.of(raw.block), RecipeCategory.MISC, Pair.of("has_block", has(blocksTag.itemTag())), smooth.block, 1, 0.25f);
-        exchange(recipeOutput, (i, o) -> bricksLikeRecipe(recipeOutput, i, o), raw, polished, bricks, tiles);
+        RecipeDatagenCommons.smelting(recipeOutput, MalumMod.malumPath(name("smooth_%s")), Ingredient.of(raw.block), RecipeCategory.MISC, Pair.of("has_block", has(blocksTag.itemTag())), smooth.block, 1, 0.25f);
 
         blockBundleCraftingAndStonecutting(recipeOutput, raw);
         blockBundleCraftingAndStonecutting(recipeOutput, smooth);
