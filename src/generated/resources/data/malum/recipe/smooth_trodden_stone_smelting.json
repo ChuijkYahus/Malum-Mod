@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:smelting",
+  "category": "blocks",
+  "cookingtime": 200,
+  "experience": 0.25,
+  "ingredient": {
+    "item": "malum:trodden_stone"
+  },
+  "result": {
+    "count": 1,
+    "id": "malum:smooth_trodden_stone"
+  }
+}

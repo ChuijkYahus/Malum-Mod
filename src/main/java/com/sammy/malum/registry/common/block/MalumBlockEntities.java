@@ -27,7 +27,6 @@ import com.sammy.malum.common.block.curiosities.artifice.redstone.wavebreaker.Wa
 import com.sammy.malum.common.block.curiosities.artifice.repair_pylon.*;
 import com.sammy.malum.common.block.curiosities.poppetry.PoppetPillowBlock;
 import com.sammy.malum.common.block.curiosities.poppetry.PoppetPillowBlockEntity;
-import com.sammy.malum.common.block.curiosities.sorcery.magehand_coffer.MagehandCofferBlockEntity;
 import com.sammy.malum.common.block.curiosities.sorcery.runic_workbench.*;
 import com.sammy.malum.common.block.curiosities.sorcery.soul_brazier.*;
 import com.sammy.malum.common.block.curiosities.sorcery.spirit_altar.*;
@@ -93,7 +92,6 @@ public class MalumBlockEntities {
     public static final Supplier<LodestoneBlockEntityType<BrilliantObeliskBlockEntity>> BRILLIANT_OBELISK = BLOCK_ENTITY_TYPES.register("brilliant_obelisk", () -> create(BrilliantObeliskBlockEntity::new, MalumContent.Sorcery.BRILLIANT_OBELISK).build());
     public static final Supplier<LodestoneBlockEntityType<ArcanaPylonBlockEntity>> ARCANA_PYLON = BLOCK_ENTITY_TYPES.register("arcana_pylon", () -> create(ArcanaPylonBlockEntity::new, MalumContent.Sorcery.ARCANA_PYLON).setTickerType(Type.BOTH).build());
 
-    public static final Supplier<LodestoneBlockEntityType<MagehandCofferBlockEntity>> MAGEHAND_COFFER = BLOCK_ENTITY_TYPES.register("magehand_coffer", () -> create(MagehandCofferBlockEntity::new, MalumContent.Sorcery.MAGEHAND_COFFER).setTickerType(Type.BOTH).build());
     public static final Supplier<LodestoneBlockEntityType<WandTinkererBlockEntity>> WAND_TINKERER = BLOCK_ENTITY_TYPES.register("wand_tinkerer", () -> create(WandTinkererBlockEntity::new, MalumContent.Sorcery.WAND_TINKERER).setTickerType(Type.BOTH).build());
     public static final Supplier<LodestoneBlockEntityType<RunicWorkbenchBlockEntity>> RUNIC_WORKBENCH = BLOCK_ENTITY_TYPES.register("runic_workbench", () -> create(RunicWorkbenchBlockEntity::new, MalumContent.Sorcery.RUNIC_WORKBENCH).setTickerType(Type.SERVER).build());
     public static final Supplier<LodestoneBlockEntityType<ConjunctureCrystallariumBlockEntity>> CONJUNCTURE_CRYSTALLARIUM = BLOCK_ENTITY_TYPES.register("conjuncture_crystallarium", () -> create(ConjunctureCrystallariumBlockEntity::new, MalumContent.Artifice.CONJUNCTURE_CRYSTALLARIUM).setTickerType(Type.BOTH).build());

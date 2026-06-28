@@ -30,7 +30,6 @@ public class MalumAncientSorceryTab extends AbstractMalumCreativeTab {
                                 Sorcery.ARCANA_PYLON
                         ).nextLine()
                         .addItems(
-                                Sorcery.MAGEHAND_COFFER,
                                 Sorcery.WAND_TINKERER,
                                 Sorcery.RUNIC_WORKBENCH,
                                 Sorcery.WEAVERS_WORKBENCH

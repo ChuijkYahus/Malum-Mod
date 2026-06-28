@@ -228,7 +228,7 @@ public class MalumBlockStateDatagen extends LodestoneBlockStateSystem {
 
         BlockStateSmithTypes.CUSTOM_MODEL.act(data, BLOCK_MODEL_ITEM, this::horizontalBlock, models()::predefinedModel, WEAVERS_WORKBENCH, RUNIC_WORKBENCH);
 
-        BlockStateSmithTypes.CUSTOM_MODEL.act(data, BLOCK_MODEL_ITEM, this::horizontalBlock, models()::orientableWithBottom, MAGEHAND_COFFER, CONJUNCTURE_CRYSTALLARIUM);
+        BlockStateSmithTypes.CUSTOM_MODEL.act(data, BLOCK_MODEL_ITEM, this::horizontalBlock, models()::orientableWithBottom, CONJUNCTURE_CRYSTALLARIUM);
 
         BlockStateSmithTypes.CUSTOM_MODEL.act(data, NO_DATAGEN, this::simpleBlock, models()::predefinedModel,
                 RUNEWOOD_OBELISK, RUNEWOOD_OBELISK_COMPONENT,

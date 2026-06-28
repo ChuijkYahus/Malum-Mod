@@ -4,6 +4,7 @@ import com.sammy.malum.datagen.set.MalumCrystalSetDatagen;
 import com.sammy.malum.datagen.set.MalumMetallicsDatagen;
 import com.sammy.malum.datagen.recipe.crafting.*;
 import com.sammy.malum.datagen.recipe.infusion.*;
+import com.sammy.malum.registry.common.util.building.*;
 import net.minecraft.advancements.*;
 import net.minecraft.advancements.critereon.*;
 import net.minecraft.core.HolderLookup;
@@ -38,6 +39,11 @@ public class MalumRecipes extends VanillaRecipeProvider {
         MalumVanillaRecipes.buildRecipes(recipeOutput);
         MalumWoodSetDatagen.buildRecipes(recipeOutput);
         MalumRockSetDatagen.buildRecipes(recipeOutput);
+
+        for (MinorBuildingSet malumSet : MinorBuildingSet.getMalumSets()) {
+            malumSet.addRecipes(recipeOutput);
+        }
+
 
         ArtificeSpiritInfusionRecipes.buildRecipes(recipeOutput);
         CurioSpiritInfusionRecipes.buildRecipes(recipeOutput);

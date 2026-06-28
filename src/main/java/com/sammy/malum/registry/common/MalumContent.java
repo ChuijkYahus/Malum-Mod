@@ -12,7 +12,6 @@ import com.sammy.malum.common.block.curiosities.artifice.redstone.wavebanker.*;
 import com.sammy.malum.common.block.curiosities.artifice.redstone.wavebreaker.*;
 import com.sammy.malum.common.block.curiosities.artifice.redstone.wavecharger.*;
 import com.sammy.malum.common.block.curiosities.artifice.redstone.wavemaker.*;
-import com.sammy.malum.common.block.curiosities.sorcery.magehand_coffer.MagehandCofferBlock;
 import com.sammy.malum.common.block.curiosities.sorcery.soul_brazier.*;
 import com.sammy.malum.common.block.curiosities.decor.banner.SoulwovenBannerBlock;
 import com.sammy.malum.common.block.curiosities.fluid.SapFilledCauldronBlock;
@@ -519,8 +518,6 @@ public class MalumContent {
 
         public static final BlockBlockItemHolder<Block, BlockItem> SPIRIT_ALTAR = registerBlock("spirit_altar", () -> new SpiritAltarBlock<>(RUNEWOOD_IMPLEMENT()));
         public static final BlockBlockItemHolder<Block, BlockItem> SPIRIT_JAR = registerBlock("spirit_jar", () -> new SpiritJarBlock<>(SPIRIT_JAR()), SpiritJarItem::new);
-
-        public static final BlockBlockItemHolder<Block, BlockItem> MAGEHAND_COFFER = registerBlock("magehand_coffer", () -> new MagehandCofferBlock<>(RUNEWOOD_IMPLEMENT()));
 
         public static final BlockBlockItemHolder<Block, BlockItem> WAND_TINKERER = registerBlock("wand_tinkerer", () -> new WandTinkererBlock<>(RUNEWOOD_IMPLEMENT()));
         public static final BlockBlockItemHolder<Block, BlockItem> RUNIC_WORKBENCH = registerBlock("runic_workbench", () -> new RunicWorkbenchBlock<>(RUNEWOOD_IMPLEMENT()));

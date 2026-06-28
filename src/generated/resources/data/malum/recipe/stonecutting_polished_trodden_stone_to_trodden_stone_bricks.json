@@ -1,0 +1,10 @@
+{
+  "type": "minecraft:stonecutting",
+  "ingredient": {
+    "item": "malum:polished_trodden_stone"
+  },
+  "result": {
+    "count": 1,
+    "id": "malum:trodden_stone_bricks"
+  }
+}

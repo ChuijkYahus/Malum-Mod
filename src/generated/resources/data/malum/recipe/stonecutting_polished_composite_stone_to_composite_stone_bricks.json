@@ -1,0 +1,10 @@
+{
+  "type": "minecraft:stonecutting",
+  "ingredient": {
+    "item": "malum:polished_composite_stone"
+  },
+  "result": {
+    "count": 1,
+    "id": "malum:composite_stone_bricks"
+  }
+}

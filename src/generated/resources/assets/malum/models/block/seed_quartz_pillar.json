@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:block/cube_column",
+  "textures": {
+    "end": "malum:block/building/common_rock/seed_quartz/seed_quartz_pillar_top",
+    "side": "malum:block/building/common_rock/seed_quartz/seed_quartz_pillar"
+  }
+}

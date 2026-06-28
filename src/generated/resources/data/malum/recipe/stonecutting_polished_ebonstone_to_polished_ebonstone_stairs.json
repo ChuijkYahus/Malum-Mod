@@ -1,0 +1,10 @@
+{
+  "type": "minecraft:stonecutting",
+  "ingredient": {
+    "item": "malum:polished_ebonstone"
+  },
+  "result": {
+    "count": 1,
+    "id": "malum:polished_ebonstone_stairs"
+  }
+}
