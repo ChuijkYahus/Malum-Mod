@@ -14,7 +14,6 @@ import com.sammy.malum.registry.common.util.data.*;
 import net.minecraft.data.*;
 import net.minecraft.resources.*;
 import net.minecraft.world.level.block.*;
-import net.minecraft.world.level.block.state.*;
 import net.neoforged.neoforge.client.model.generators.ModelFile;
 import net.neoforged.neoforge.common.data.*;
 import team.lodestar.lodestone.modules.datagen.BlockStateSmithTypes;
@@ -184,7 +183,9 @@ public class MalumBlockStateDatagen extends LodestoneBlockStateSystem {
 
         setTexturePath("waveform_artifice");
         MalumBlockStateSmithTypes.SPIRIT_DIODE.act(data, WAVECHARGER, WAVEBANKER, WAVEMAKER, WAVEBREAKER);
-        MalumBlockStateSmithTypes.GUST_TECH_BLOCK.act(data, GUST_IGNITER, WIND_TUNNEL);
+        MalumBlockStateSmithTypes.HORIZONTAL_CONNECTION_ARTIFICE_BLOCK.act(data, WIND_TUNNEL);
+        MalumBlockStateSmithTypes.CAPTURE_CONNECTION_ARTIFICE_BLOCK.act(data, GUST_IGNITER);
+
 
         setTexturePath("ether");
         itemModelProvider.setTexturePath("ether");

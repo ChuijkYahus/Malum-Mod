@@ -3,8 +3,9 @@ package com.sammy.malum.datagen.block;
 import com.sammy.malum.*;
 import com.sammy.malum.common.block.blight.*;
 import com.sammy.malum.common.block.blight.scarstone.*;
+import com.sammy.malum.common.block.curiosities.artifice.elemental_artifice.gust_igniter.GustIgniterBlock;
 import com.sammy.malum.common.block.curiosities.decor.banner.*;
-import com.sammy.malum.common.block.curiosities.artifice.gust_igniter.*;
+import com.sammy.malum.common.block.curiosities.artifice.elemental_artifice.*;
 import com.sammy.malum.common.block.curiosities.artifice.redstone.SpiritDiodeBlock;
 import com.sammy.malum.common.block.curiosities.artifice.repair_pylon.*;
 import com.sammy.malum.common.block.curiosities.totem.TotemPoleBlock;
@@ -30,6 +31,7 @@ import team.lodestar.lodestone.modules.datagen.ItemModelSmithTypes;
 import team.lodestar.lodestone.modules.datagen.providers.block.LodestoneBlockStateSystem;
 import team.lodestar.lodestone.modules.datagen.smith.blockstate.BlockStateSmith;
 
+import java.util.HashMap;
 import java.util.function.Function;
 
 import static com.sammy.malum.MalumMod.malumPath;
@@ -225,7 +227,7 @@ public class MalumBlockStateSmithTypes {
         });
     });
 
-    public static BlockStateSmith<AbstractGustGizmoBlock> GUST_TECH_BLOCK = new BlockStateSmith<>(AbstractGustGizmoBlock.class, ItemModelSmithTypes.BLOCK_MODEL_ITEM, (block, provider) -> {
+    public static BlockStateSmith<ElementalArtificeBlock> HORIZONTAL_CONNECTION_ARTIFICE_BLOCK = new BlockStateSmith<>(ElementalArtificeBlock.class, ItemModelSmithTypes.BLOCK_MODEL_ITEM, (block, provider) -> {
         String name = provider.getBlockName(block);
         ResourceLocation top = provider.getBlockTexture(name);
         ResourceLocation openTop = provider.getBlockTexture(name + "_open");
@@ -235,13 +237,60 @@ public class MalumBlockStateSmithTypes {
         BlockModelBuilder model = provider.models().cubeBottomTop(name, side, bottom, top).texture("particle", top);
         BlockModelBuilder openModel = provider.models().cubeBottomTop(name + "_open", openSide, bottom, openTop).texture("particle", top);
         provider.getVariantBuilder(block).forAllStates(s -> {
-            var direction = s.getValue(AbstractGustGizmoBlock.FACING);
-            var isOpen = s.getValue(AbstractGustGizmoBlock.OPEN) || !s.getValue(AbstractGustGizmoBlock.POWERED);
+            var direction = s.getValue(ElementalArtificeBlock.FACING);
+            var isOpen = s.getValue(ElementalArtificeBlock.OPEN) || !s.getValue(ElementalArtificeBlock.POWERED);
             return ConfiguredModel.builder().modelFile(isOpen ? openModel : model)
                     .rotationX(direction == Direction.DOWN ? 180 : direction.getAxis().isHorizontal() ? 90 : 0)
                     .rotationY(direction.getAxis().isVertical() ? 0 : (((int) direction.toYRot() + 180)) % 360)
                     .build();
         });
+    });
+
+    public static BlockStateSmith<ElementalArtificeBlock> CAPTURE_CONNECTION_ARTIFICE_BLOCK = new BlockStateSmith<>(ElementalArtificeBlock.class, ItemModelSmithTypes.BLOCK_MODEL_ITEM, (block, provider) -> {
+        var name = provider.getBlockName(block);
+        var particle = "particle";
+        var bottom = provider.getBlockTexture(name + "_bottom");
+
+        var models = new HashMap<String, BlockModelBuilder>();
+        provider.getVariantBuilder(block).forAllStatesExcept(s -> {
+            var isOpen = s.getValue(ElementalArtificeBlock.OPEN);
+            var isPowered = s.getValue(ElementalArtificeBlock.POWERED);
+            var isCaptured = s.getValue(GustIgniterBlock.CAPTURED);
+            var modelName = name;
+            if (isCaptured) {
+                modelName += "_captured";
+            }
+            if (isOpen) {
+                modelName += "_open";
+            }
+            else if (isPowered) {
+                modelName += "_active";
+            }
+            BlockModelBuilder model;
+            if (!models.containsKey(modelName)) {
+                var side = provider.getBlockTexture(modelName + "_side");
+                var top = provider.getBlockTexture(modelName + "_top");
+                model = provider.models().cubeBottomTop(modelName, side, bottom, top).texture(particle, side);
+                models.put(modelName, model);
+            }
+            else {
+                model = models.get(modelName);
+            }
+
+
+            ConfiguredModel.Builder<?> builder = ConfiguredModel.builder();
+            for (int i = 0; i < 6; i++) {
+                var direction = Direction.from3DDataValue(i);
+
+                builder.modelFile(model)
+                        .rotationX(direction == Direction.DOWN ? 180 : direction.getAxis().isHorizontal() ? 90 : 0)
+                        .rotationY(direction.getAxis().isVertical() ? 0 : (((int) direction.toYRot() + 180)) % 360);
+                if (i != 5) {
+                    builder.nextModel();
+                }
+            }
+            return builder.build();
+        }, ElementalArtificeBlock.FACING);
     });
 
     public static BlockStateSmith<RepairPylonComponentBlock> REPAIR_PYLON_COMPONENT = new BlockStateSmith<>(RepairPylonComponentBlock.class, ItemModelSmithTypes.NO_DATAGEN, (block, provider) -> {

@@ -4,6 +4,7 @@ import com.sammy.malum.common.data.map.*;
 import com.sammy.malum.registry.common.*;
 import net.minecraft.core.*;
 import net.minecraft.util.*;
+import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.*;
 import net.minecraft.world.level.levelgen.structure.templatesystem.*;
@@ -63,6 +64,26 @@ public class SoulstoneBudCommons {
         }
         return new Vec3(x, y, z);
     };
+
+    public static SoulstoneOreConversionMap.SoulstoneOreConversion getConversionById(Level level, RandomSource random, BlockState state) {
+
+        var conversion = state.getBlockHolder().getData(MalumDataMaps.SOULSTONE_ORE_CONVERSION);
+        if (conversion == null) {
+            return null;
+        }
+        var conversions = conversion.possibleConversions();
+        for (SoulstoneOreConversionMap.SoulstoneOreConversion possibleConversion : conversions) {
+            Optional<RuleTest> optional = possibleConversion.condition();
+            if (optional.isEmpty()) {
+                return possibleConversion;
+            }
+            var condition = optional.get();
+            if (condition.test(state, random)) {
+                return possibleConversion;
+            }
+        }
+        return null;
+    }
 
     public static SoulstoneOreConversionMap.SoulstoneOreConversion getValidConversion(RandomSource random, BlockState state) {
         var conversion = state.getBlockHolder().getData(MalumDataMaps.SOULSTONE_ORE_CONVERSION);

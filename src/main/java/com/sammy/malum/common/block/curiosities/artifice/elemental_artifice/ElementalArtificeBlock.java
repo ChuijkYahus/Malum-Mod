@@ -1,19 +1,20 @@
-package com.sammy.malum.common.block.curiosities.artifice.gust_igniter;
+package com.sammy.malum.common.block.curiosities.artifice.elemental_artifice;
 
 import net.minecraft.core.*;
 import net.minecraft.world.item.context.*;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.*;
 import net.minecraft.world.level.block.state.properties.*;
+import org.jetbrains.annotations.NotNull;
 import team.lodestar.lodestone.modules.toolkit.block.*;
 
-public class AbstractGustGizmoBlock<T extends AbstractGustGizmoBlockEntity> extends LodestoneEntityBlock<T> {
+public abstract class ElementalArtificeBlock<T extends ElementalArtificeBlockEntity> extends LodestoneEntityBlock<T> {
 
     public static final DirectionProperty FACING = BlockStateProperties.FACING;
     public static final BooleanProperty POWERED = BlockStateProperties.POWERED;
     public static final BooleanProperty OPEN = BlockStateProperties.OPEN;
 
-    public AbstractGustGizmoBlock(Properties properties) {
+    public ElementalArtificeBlock(Properties properties) {
         super(properties);
         this.registerDefaultState(defaultBlockState().setValue(OPEN, false).setValue(POWERED, false).setValue(FACING, Direction.NORTH));
     }
@@ -33,12 +34,12 @@ public class AbstractGustGizmoBlock<T extends AbstractGustGizmoBlockEntity> exte
     }
 
     @Override
-    protected BlockState rotate(BlockState state, Rotation rot) {
+    protected @NotNull BlockState rotate(BlockState state, Rotation rot) {
         return state.setValue(FACING, rot.rotate(state.getValue(FACING)));
     }
 
     @Override
-    protected BlockState mirror(BlockState state, Mirror mirror) {
+    protected @NotNull BlockState mirror(BlockState state, Mirror mirror) {
         return state.rotate(mirror.getRotation(state.getValue(FACING)));
     }
 }

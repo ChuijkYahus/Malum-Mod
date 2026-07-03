@@ -1,8 +1,9 @@
 package com.sammy.malum.core.handlers;
 
 import com.sammy.malum.*;
-import com.sammy.malum.common.block.curiosities.artifice.gust_igniter.*;
-import com.sammy.malum.common.block.curiosities.artifice.gust_igniter.wind_tunnel.*;
+import com.sammy.malum.common.block.curiosities.artifice.elemental_artifice.*;
+import com.sammy.malum.common.block.curiosities.artifice.elemental_artifice.gust_igniter.GustIgniterBlockEntity;
+import com.sammy.malum.common.block.curiosities.artifice.elemental_artifice.wind_tunnel.*;
 import com.sammy.malum.common.data.attachment.*;
 import com.sammy.malum.registry.common.*;
 import net.minecraft.core.*;
@@ -155,7 +156,7 @@ public class WindTunnelHandler {
     public static Map<BlockPos, WindTunnelBlockEntity> findWindTunnels(Level level, GustIgniterBlockEntity igniter) {
         var igniterState = igniter.getBlockState();
         var igniterPos = igniter.getBlockPos();
-        var facing = igniterState.getValue(AbstractGustGizmoBlock.FACING);
+        var facing = igniterState.getValue(ElementalArtificeBlock.FACING);
         var startPos = igniterPos.relative(facing);
 
         if ((level.getBlockEntity(startPos) instanceof WindTunnelBlockEntity startingTunnel)) {
@@ -168,7 +169,7 @@ public class WindTunnelHandler {
 
     public static HashMap<BlockPos, WindTunnelBlockEntity> findWindTunnels(Level level, WindTunnelBlockEntity startingTunnel, Predicate<WindTunnelBlockEntity> condition) {
         var startPos = startingTunnel.getBlockPos();
-        var facing = startingTunnel.getBlockState().getValue(AbstractGustGizmoBlock.FACING);
+        var facing = startingTunnel.getBlockState().getValue(ElementalArtificeBlock.FACING);
         var visited = new HashSet<BlockPos>();
         var result = new HashMap<BlockPos, WindTunnelBlockEntity>();
         var queue = new ArrayDeque<BlockPos>();

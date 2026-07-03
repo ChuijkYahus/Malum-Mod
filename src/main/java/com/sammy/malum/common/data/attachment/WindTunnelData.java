@@ -2,8 +2,8 @@ package com.sammy.malum.common.data.attachment;
 
 import com.mojang.serialization.*;
 import com.mojang.serialization.codecs.*;
-import com.sammy.malum.common.block.curiosities.artifice.gust_igniter.*;
-import com.sammy.malum.common.block.curiosities.artifice.gust_igniter.wind_tunnel.*;
+import com.sammy.malum.common.block.curiosities.artifice.elemental_artifice.gust_igniter.GustIgniterBlockEntity;
+import com.sammy.malum.common.block.curiosities.artifice.elemental_artifice.wind_tunnel.*;
 import com.sammy.malum.core.handlers.*;
 import com.sammy.malum.registry.common.*;
 import com.sammy.malum.visual_effects.networked.wind_gust.*;

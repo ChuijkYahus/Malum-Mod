@@ -1,6 +1,7 @@
-package com.sammy.malum.common.block.curiosities.artifice.gust_igniter.wind_tunnel;
+package com.sammy.malum.common.block.curiosities.artifice.elemental_artifice.wind_tunnel;
 
-import com.sammy.malum.common.block.curiosities.artifice.gust_igniter.*;
+import com.sammy.malum.common.block.curiosities.artifice.elemental_artifice.*;
+import com.sammy.malum.common.block.curiosities.artifice.elemental_artifice.gust_igniter.GustIgniterBlockEntity;
 import com.sammy.malum.common.block.curiosities.artifice.redstone.*;
 import com.sammy.malum.registry.common.block.*;
 import net.minecraft.core.*;
@@ -14,7 +15,7 @@ import team.lodestar.lodestone.modules.toolkit.blockentity.LodestoneBlockEntityT
 
 import java.util.*;
 
-public class WindTunnelBlockEntity extends AbstractGustGizmoBlockEntity {
+public class WindTunnelBlockEntity extends ElementalArtificeBlockEntity {
 
     private BlockPos igniterPos;
 

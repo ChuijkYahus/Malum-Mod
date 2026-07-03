@@ -1,6 +1,6 @@
-package com.sammy.malum.common.block.curiosities.artifice.gust_igniter.wind_tunnel;
+package com.sammy.malum.common.block.curiosities.artifice.elemental_artifice.wind_tunnel;
 
-import com.sammy.malum.common.block.curiosities.artifice.gust_igniter.*;
+import com.sammy.malum.common.block.curiosities.artifice.elemental_artifice.*;
 import net.minecraft.core.*;
 import net.minecraft.world.item.context.*;
 import net.minecraft.world.level.*;
@@ -9,7 +9,7 @@ import net.minecraft.world.level.block.state.*;
 import net.minecraft.world.level.block.state.properties.*;
 import org.jetbrains.annotations.*;
 
-public class WindTunnelBlock extends AbstractGustGizmoBlock<WindTunnelBlockEntity> {
+public class WindTunnelBlock extends ElementalArtificeBlock<WindTunnelBlockEntity> {
 
     public static final BooleanProperty UP = BooleanProperty.create("up");
     public static final BooleanProperty DOWN = BooleanProperty.create("down");
@@ -84,7 +84,7 @@ public class WindTunnelBlock extends AbstractGustGizmoBlock<WindTunnelBlockEntit
     }
 
     public static boolean isActive(BlockState state) {
-        if (!(state.getBlock() instanceof AbstractGustGizmoBlock<?>)) {
+        if (!(state.getBlock() instanceof ElementalArtificeBlock<?>)) {
             return false;
         }
         return state.getValue(POWERED) && !state.getValue(OPEN);

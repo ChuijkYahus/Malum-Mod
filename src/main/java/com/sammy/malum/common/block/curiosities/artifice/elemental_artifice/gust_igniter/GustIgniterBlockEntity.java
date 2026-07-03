@@ -1,6 +1,7 @@
-package com.sammy.malum.common.block.curiosities.artifice.gust_igniter;
+package com.sammy.malum.common.block.curiosities.artifice.elemental_artifice.gust_igniter;
 
-import com.sammy.malum.common.block.curiosities.artifice.gust_igniter.wind_tunnel.*;
+import com.sammy.malum.common.block.curiosities.artifice.elemental_artifice.ElementalArtificeBlockEntity;
+import com.sammy.malum.common.block.curiosities.artifice.elemental_artifice.wind_tunnel.*;
 import com.sammy.malum.common.block.curiosities.artifice.redstone.*;
 import com.sammy.malum.common.item.nucleus.WindNucleusItem;
 import com.sammy.malum.core.handlers.*;
@@ -27,7 +28,7 @@ import java.util.*;
 
 import static com.sammy.malum.core.handlers.WindTunnelHandler.MAX_STRENGTH;
 
-public class GustIgniterBlockEntity extends AbstractGustGizmoBlockEntity {
+public class GustIgniterBlockEntity extends ElementalArtificeBlockEntity {
 
     public int strength = 1;
     public int limiter = -1;

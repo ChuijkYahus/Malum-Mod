@@ -1,4 +1,4 @@
-package com.sammy.malum.common.block.curiosities.artifice.gust_igniter;
+package com.sammy.malum.common.block.curiosities.artifice.elemental_artifice;
 
 import com.mojang.serialization.*;
 import com.mojang.serialization.codecs.*;
@@ -9,9 +9,9 @@ import net.minecraft.network.codec.*;
 import net.minecraft.world.level.block.state.*;
 import team.lodestar.lodestone.modules.toolkit.blockentity.LodestoneBlockEntityType;
 
-public abstract class AbstractGustGizmoBlockEntity extends OpenStateBlockEntity {
+public abstract class ElementalArtificeBlockEntity extends OpenStateBlockEntity {
 
-    public record GustGizmoInfo(int strength, boolean modified) implements InboundInfo<AbstractGustGizmoBlockEntity> {
+    public record GustGizmoInfo(int strength, boolean modified) implements InboundInfo<ElementalArtificeBlockEntity> {
 
         public static final Codec<GustGizmoInfo> CODEC = RecordCodecBuilder.create(instance -> instance.group(
                 Codec.INT.fieldOf("strength").forGetter(GustGizmoInfo::strength),
@@ -21,12 +21,12 @@ public abstract class AbstractGustGizmoBlockEntity extends OpenStateBlockEntity 
         public static StreamCodec<ByteBuf, GustGizmoInfo> STREAM_CODEC = ByteBufCodecs.fromCodec(GustGizmoInfo.CODEC);
 
         @Override
-        public void sync(AbstractGustGizmoBlockEntity entity) {
+        public void sync(ElementalArtificeBlockEntity entity) {
             entity.setInfo(this);
         }
     }
 
-    public AbstractGustGizmoBlockEntity(LodestoneBlockEntityType<? extends AbstractGustGizmoBlockEntity> type, BlockPos pos, BlockState state) {
+    public ElementalArtificeBlockEntity(LodestoneBlockEntityType<? extends ElementalArtificeBlockEntity> type, BlockPos pos, BlockState state) {
         super(type, pos, state);
     }
 
