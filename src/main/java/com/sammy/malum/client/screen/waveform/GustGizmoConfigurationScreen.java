@@ -1,8 +1,10 @@
 package com.sammy.malum.client.screen.waveform;
 
 import com.mojang.blaze3d.platform.*;
-import com.sammy.malum.common.block.curiosities.artifice.gust_igniter.*;
-import com.sammy.malum.common.block.curiosities.artifice.gust_igniter.wind_tunnel.*;
+import com.sammy.malum.common.block.curiosities.artifice.elemental_artifice.*;
+import com.sammy.malum.common.block.curiosities.artifice.elemental_artifice.gust_igniter.GustIgniterBlock;
+import com.sammy.malum.common.block.curiosities.artifice.elemental_artifice.gust_igniter.GustIgniterBlockEntity;
+import com.sammy.malum.common.block.curiosities.artifice.elemental_artifice.wind_tunnel.*;
 import com.sammy.malum.common.payloads.waveform.*;
 import com.sammy.malum.core.handlers.*;
 import net.minecraft.client.*;
@@ -54,7 +56,7 @@ public class GustGizmoConfigurationScreen extends AbstractValueConfigurationScre
 
     @Override
     protected void notifyServer(boolean isOpen) {
-        PacketDistributor.sendToServer(new GustGizmoStateUpdatePayload(gustIgniter.getBlockPos(), isOpen, new AbstractGustGizmoBlockEntity.GustGizmoInfo(strength, modified)));
+        PacketDistributor.sendToServer(new GustGizmoStateUpdatePayload(gustIgniter.getBlockPos(), isOpen, new ElementalArtificeBlockEntity.GustGizmoInfo(strength, modified)));
     }
 
     @Override

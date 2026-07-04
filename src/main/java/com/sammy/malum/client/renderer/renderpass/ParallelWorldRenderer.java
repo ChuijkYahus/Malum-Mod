@@ -8,7 +8,6 @@ import com.mojang.math.*;
 import com.sammy.malum.config.ClientConfig;
 import com.sammy.malum.registry.client.*;
 import com.sammy.malum.registry.common.MalumAttachmentTypes;
-import dev.kosmx.playerAnim.core.util.*;
 import net.minecraft.client.Camera;
 import net.minecraft.client.DeltaTracker;
 import net.minecraft.client.Minecraft;

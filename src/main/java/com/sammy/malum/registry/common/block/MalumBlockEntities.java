@@ -10,10 +10,9 @@ import com.sammy.malum.client.renderer.block.redstone.WavebankerRenderer;
 import com.sammy.malum.client.renderer.block.redstone.WaveBreakerRenderer;
 import com.sammy.malum.client.renderer.block.totemancy.*;
 import com.sammy.malum.common.block.curiosities.artifice.crystallarium.ConjunctureCrystallariumBlockEntity;
+import com.sammy.malum.common.block.curiosities.artifice.elemental_artifice.gust_igniter.GustIgniterBlockEntity;
 import com.sammy.malum.common.block.curiosities.decor.banner.*;
-import com.sammy.malum.common.block.curiosities.artifice.gust_igniter.*;
-import com.sammy.malum.common.block.curiosities.artifice.gust_igniter.wind_tunnel.*;
-import com.sammy.malum.common.block.curiosities.decor.mana_mote.*;
+import com.sammy.malum.common.block.curiosities.artifice.elemental_artifice.wind_tunnel.*;
 import com.sammy.malum.common.block.curiosities.obelisk.brilliant.*;
 import com.sammy.malum.common.block.curiosities.obelisk.rite_pylon.*;
 import com.sammy.malum.common.block.curiosities.obelisk.runewood.*;
@@ -28,7 +27,6 @@ import com.sammy.malum.common.block.curiosities.artifice.redstone.wavebreaker.Wa
 import com.sammy.malum.common.block.curiosities.artifice.repair_pylon.*;
 import com.sammy.malum.common.block.curiosities.poppetry.PoppetPillowBlock;
 import com.sammy.malum.common.block.curiosities.poppetry.PoppetPillowBlockEntity;
-import com.sammy.malum.common.block.curiosities.sorcery.magehand_coffer.MagehandCofferBlockEntity;
 import com.sammy.malum.common.block.curiosities.sorcery.runic_workbench.*;
 import com.sammy.malum.common.block.curiosities.sorcery.soul_brazier.*;
 import com.sammy.malum.common.block.curiosities.sorcery.spirit_altar.*;
@@ -94,7 +92,6 @@ public class MalumBlockEntities {
     public static final Supplier<LodestoneBlockEntityType<BrilliantObeliskBlockEntity>> BRILLIANT_OBELISK = BLOCK_ENTITY_TYPES.register("brilliant_obelisk", () -> create(BrilliantObeliskBlockEntity::new, MalumContent.Sorcery.BRILLIANT_OBELISK).build());
     public static final Supplier<LodestoneBlockEntityType<ArcanaPylonBlockEntity>> ARCANA_PYLON = BLOCK_ENTITY_TYPES.register("arcana_pylon", () -> create(ArcanaPylonBlockEntity::new, MalumContent.Sorcery.ARCANA_PYLON).setTickerType(Type.BOTH).build());
 
-    public static final Supplier<LodestoneBlockEntityType<MagehandCofferBlockEntity>> MAGEHAND_COFFER = BLOCK_ENTITY_TYPES.register("magehand_coffer", () -> create(MagehandCofferBlockEntity::new, MalumContent.Sorcery.MAGEHAND_COFFER).setTickerType(Type.BOTH).build());
     public static final Supplier<LodestoneBlockEntityType<WandTinkererBlockEntity>> WAND_TINKERER = BLOCK_ENTITY_TYPES.register("wand_tinkerer", () -> create(WandTinkererBlockEntity::new, MalumContent.Sorcery.WAND_TINKERER).setTickerType(Type.BOTH).build());
     public static final Supplier<LodestoneBlockEntityType<RunicWorkbenchBlockEntity>> RUNIC_WORKBENCH = BLOCK_ENTITY_TYPES.register("runic_workbench", () -> create(RunicWorkbenchBlockEntity::new, MalumContent.Sorcery.RUNIC_WORKBENCH).setTickerType(Type.SERVER).build());
     public static final Supplier<LodestoneBlockEntityType<ConjunctureCrystallariumBlockEntity>> CONJUNCTURE_CRYSTALLARIUM = BLOCK_ENTITY_TYPES.register("conjuncture_crystallarium", () -> create(ConjunctureCrystallariumBlockEntity::new, MalumContent.Artifice.CONJUNCTURE_CRYSTALLARIUM).setTickerType(Type.BOTH).build());
@@ -127,9 +124,6 @@ public class MalumBlockEntities {
 
     public static final Supplier<LodestoneBlockEntityType<OminousAltarBlockEntity>> OMINOUS_ALTAR = BLOCK_ENTITY_TYPES.register("ominous_altar", () -> create(OminousAltarBlockEntity::new, MalumContent.DungeonBlockSets.OMINOUS_ALTAR).setTickerType(Type.BOTH).build());
     public static final Supplier<LodestoneBlockEntityType<OminousObeliskBlockEntity>> OMINOUS_OBELISK = BLOCK_ENTITY_TYPES.register("ominous_obelisk", () -> create(OminousObeliskBlockEntity::new, MalumContent.DungeonBlockSets.OMINOUS_OBELISK).setTickerType(Type.BOTH).build());
-
-    public static final Supplier<LodestoneBlockEntityType<ManaMoteBlockEntity>> MANA_MOTE = BLOCK_ENTITY_TYPES.register("mote_of_mana", () -> create(ManaMoteBlockEntity::new, getBlocks(ManaMoteBlock.class)).build());
-
 
     public static final Supplier<LodestoneBlockEntityType<VoidConduitBlockEntity>> VOID_CONDUIT = BLOCK_ENTITY_TYPES.register("void_conduit", () -> create(VoidConduitBlockEntity::new, MalumContent.WeepingWell.VOID_CONDUIT).setTickerType(Type.BOTH).build());
     public static final Supplier<LodestoneBlockEntityType<VoidDepotBlockEntity>> VOID_DEPOT = BLOCK_ENTITY_TYPES.register("void_depot", () -> create(VoidDepotBlockEntity::new, MalumContent.WeepingWell.VOID_DEPOT).setTickerType(Type.CLIENT).build());
@@ -208,7 +202,6 @@ public class MalumBlockEntities {
             event.registerBlockEntityRenderer(OMINOUS_ALTAR.get(), SpiritAltarRenderer::new);
 
             event.registerBlockEntityRenderer(SOULWOVEN_BANNER.get(), SoulwovenBannerRenderer::new);
-            event.registerBlockEntityRenderer(MANA_MOTE.get(), MoteOfManaRenderer::new);
         }
     }
 }

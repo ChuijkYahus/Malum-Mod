@@ -21,19 +21,6 @@ public class MalumStorageBlockProperties {
                 .sound(soundType);
     }
 
-    //TODO: move this once mana motes are cool
-    public static LodestoneBlockProperties MANA_MOTE_BLOCK() {
-        return new LodestoneBlockProperties()
-                .mapColor(MapColor.COLOR_LIGHT_BLUE)
-                .setCutout()
-                .noOcclusion()
-                .needsPickaxe()
-                .requiresCorrectToolForDrops()
-                .strength(8.0F, 8.0f)
-                .lightLevel((b) -> 8)
-                .sound(MalumBlockSoundEvents.BLOCK_OF_BLAZING_QUARTZ);
-    }
-
     public static LodestoneBlockProperties SOULSTONE_BLOCK(boolean raw) {
         return GENERIC_STORAGE_BLOCK(raw ? MalumBlockSoundEvents.BLOCK_OF_RAW_SOULSTONE : MalumBlockSoundEvents.BLOCK_OF_SOULSTONE, DyeColor.PURPLE)
                 .addTag(BEACON_BASE_BLOCKS)

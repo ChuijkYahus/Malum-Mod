@@ -1,6 +1,24 @@
 {
   "values": [
     "#minecraft:base_stone_overworld",
+    "malum:ebonstone",
+    "malum:ebonstone_slab",
+    "malum:ebonstone_stairs",
+    "malum:smooth_ebonstone",
+    "malum:smooth_ebonstone_slab",
+    "malum:smooth_ebonstone_stairs",
+    "malum:polished_ebonstone",
+    "malum:polished_ebonstone_slab",
+    "malum:polished_ebonstone_stairs",
+    "malum:ebonstone_bricks",
+    "malum:ebonstone_bricks_slab",
+    "malum:ebonstone_bricks_stairs",
+    "malum:ebonstone_bricks_wall",
+    "malum:ebonstone_tiles",
+    "malum:ebonstone_tiles_slab",
+    "malum:ebonstone_tiles_stairs",
+    "malum:ebonstone_tiles_wall",
+    "malum:ebonstone_pillar",
     "malum:ebony_sapling",
     "malum:ebony"
   ]

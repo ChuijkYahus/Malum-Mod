@@ -4,9 +4,6 @@ import com.sammy.malum.client.extensions.*;
 import com.sammy.malum.client.model.MalignantStrongholdArmorModel;
 import com.sammy.malum.client.model.SoulHunterArmorModel;
 import com.sammy.malum.client.model.SoulStainedSteelArmorModel;
-import com.sammy.malum.common.block.curiosities.decor.mana_mote.*;
-import com.sammy.malum.registry.common.MalumContent;
-import com.sammy.malum.registry.common.MalumContent.Sorcery;
 import net.neoforged.neoforge.client.extensions.common.*;
 import team.lodestar.lodestone.systems.model.armor.*;
 
@@ -27,8 +24,5 @@ public class MalumClientExtensions {
                 SOUL_STAINED_STEEL_HELMET, SOUL_STAINED_STEEL_CHESTPLATE, SOUL_STAINED_STEEL_LEGGINGS, SOUL_STAINED_STEEL_BOOTS);
         event.registerItem(new MalignantArmorItemExtensions(() -> MalignantStrongholdArmorModel.MODEL.getModel()),
                 MALIGNANT_STRONGHOLD_HELMET, MALIGNANT_STRONGHOLD_CHESTPLATE, MALIGNANT_STRONGHOLD_LEGGINGS, MALIGNANT_STRONGHOLD_BOOTS);
-
-        event.registerBlock(new ManaMoteBlockClientExtension(),
-                SPIRIT_MOTE);
     }
 }

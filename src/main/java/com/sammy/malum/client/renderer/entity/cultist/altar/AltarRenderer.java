@@ -4,15 +4,12 @@ import com.mojang.blaze3d.vertex.PoseStack;
 import com.sammy.malum.MalumMod;
 import com.sammy.malum.client.model.mob.altar.AltarModel;
 import com.sammy.malum.common.entity.mob.cultist.altar.AltarCultist;
-import io.redspace.ironsspellbooks.entity.mobs.wizards.cultist.CultistRenderer;
 import net.minecraft.client.renderer.entity.EntityRendererProvider;
 import net.minecraft.client.renderer.entity.MobRenderer;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.util.Mth;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
 import org.jetbrains.annotations.NotNull;
-import team.lodestar.lodestone.modules.core.easing.Easing;
 
 @OnlyIn(Dist.CLIENT)
 public class AltarRenderer extends MobRenderer<AltarCultist, AltarModel> {

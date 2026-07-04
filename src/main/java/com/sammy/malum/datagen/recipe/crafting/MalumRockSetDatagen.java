@@ -28,11 +28,11 @@ public class MalumRockSetDatagen {
 
         exchange(recipeOutput, (i, o) -> bricksLikeRecipe(recipeOutput, i, o), set.rock, set.polishedRock, set.bricks, set.tiles, set.mosaic);
 
-        blockBundleStonecutting(recipeOutput, set.rock, blockTag, stairTag, slabTag, wallTag);
-        blockBundleStonecutting(recipeOutput, set.polishedRock, blockTag, stairTag, slabTag, wallTag);
-        blockBundleStonecutting(recipeOutput, set.bricks, blockTag, stairTag, slabTag, wallTag);
-        blockBundleStonecutting(recipeOutput, set.tiles, blockTag, stairTag, slabTag, wallTag);
-        blockBundleStonecutting(recipeOutput, set.mosaic, blockTag, stairTag, slabTag, wallTag);
+        blockBundleCraftingAndStonecutting(recipeOutput, set.rock, blockTag, stairTag, slabTag, wallTag);
+        blockBundleCraftingAndStonecutting(recipeOutput, set.polishedRock, blockTag, stairTag, slabTag, wallTag);
+        blockBundleCraftingAndStonecutting(recipeOutput, set.bricks, blockTag, stairTag, slabTag, wallTag);
+        blockBundleCraftingAndStonecutting(recipeOutput, set.tiles, blockTag, stairTag, slabTag, wallTag);
+        blockBundleCraftingAndStonecutting(recipeOutput, set.mosaic, blockTag, stairTag, slabTag, wallTag);
 
         stoneCutting(recipeOutput, blockTag, set.column, 2);
         stoneCutting(recipeOutput, blockTag, set.altar, 2);

@@ -42,12 +42,12 @@ public class RecipeDatagenCommons {
         }
     }
 
-    public static void blockBundleStonecutting(RecipeOutput recipeOutput, BlockBundle bundle, TagKey<Item> blockTag, TagKey<Item> stairTag, TagKey<Item> slabTag) {
+    public static void blockBundleCraftingAndStonecutting(RecipeOutput recipeOutput, BlockBundle bundle, TagKey<Item> blockTag, TagKey<Item> stairTag, TagKey<Item> slabTag) {
         assert !(bundle instanceof BlockBundleWithWall);
-        blockBundleStonecutting(recipeOutput, bundle, blockTag, slabTag, stairTag, null);
+        blockBundleCraftingAndStonecutting(recipeOutput, bundle, blockTag, slabTag, stairTag, null);
     }
 
-    public static void blockBundleStonecutting(RecipeOutput recipeOutput, BlockBundle bundle, TagKey<Item> blockTag, TagKey<Item> stairTag, TagKey<Item> slabTag, TagKey<Item> wallTag) {
+    public static void blockBundleCraftingAndStonecutting(RecipeOutput recipeOutput, BlockBundle bundle, TagKey<Item> blockTag, TagKey<Item> stairTag, TagKey<Item> slabTag, TagKey<Item> wallTag) {
         blockBundle(recipeOutput, bundle);
 
         stoneCutting(recipeOutput, blockTag, bundle.stairs, 1);
@@ -59,6 +59,16 @@ public class RecipeDatagenCommons {
         if (bundle instanceof BlockBundleWithWall wall) {
             stoneCutting(recipeOutput, blockTag, wall.wall, 1);
             stoneCutting(recipeOutput, wallTag, wall.wall, 1);
+        }
+    }
+
+    public static void blockBundleCraftingAndStonecutting(RecipeOutput recipeOutput, BlockBundle bundle) {
+        blockBundle(recipeOutput, bundle);
+
+        stoneCutting(recipeOutput, bundle.block, bundle.stairs, 1);
+        stoneCutting(recipeOutput, bundle.block, bundle.slab, 2);
+        if (bundle instanceof BlockBundleWithWall wall) {
+            stoneCutting(recipeOutput, bundle.block, wall.wall, 1);
         }
     }
 
@@ -195,6 +205,41 @@ public class RecipeDatagenCommons {
                 .save(recipeOutput);
     }
 
+    public static void ingotNuggetExchange(RecipeOutput consumer, ItemLike nuggetForm, ItemLike ingotForm) {
+        compacting(consumer, nuggetForm, ingotForm, "nugget");
+    }
+
+    public static void blockIngotExchange(RecipeOutput consumer, ItemLike itemForm, ItemLike blockForm) {
+        compacting(consumer, itemForm, blockForm, "block");
+    }
+
+    public static void compacting(RecipeOutput consumer, ItemLike smallForm, ItemLike bigForm, String type) {
+        String blockName = BuiltInRegistries.ITEM.getKey(bigForm.asItem()).getPath();
+        String itemName = BuiltInRegistries.ITEM.getKey(smallForm.asItem()).getPath();
+        shaped(RecipeCategory.MISC, bigForm)
+                .define('#', smallForm)
+                .pattern("###")
+                .pattern("###")
+                .pattern("###")
+                .unlockedBy("has_" + itemName, has(smallForm))
+                .save(consumer, malumPath(blockName));
+        shapeless(RecipeCategory.MISC, smallForm, 9)
+                .requires(bigForm)
+                .unlockedBy("has_" + itemName, has(smallForm))
+                .save(consumer, malumPath(itemName + "_from_" + type));
+    }
+
+    public static void bricksLikeRecipe(RecipeOutput recipeOutput, ItemLike input, ItemLike output) {
+        var recipeID = getDefaultRecipeId(output).withSuffix("_from_" + getDefaultRecipeId(input).getPath());
+        shaped(RecipeCategory.MISC, output, 4)
+                .define('#', input)
+                .pattern("##")
+                .pattern("##")
+                .unlockedBy("has_input", RecipeDatagenCommons.has(input))
+                .save(recipeOutput, recipeID);
+        stoneCutting(recipeOutput, input, output);
+    }
+
     public static void smeltAndBlast(RecipeOutput recipeOutput, ResourceLocation recipeName, Ingredient ingredient, RecipeCategory category, Pair<String, Criterion<?>> condition, ItemLike result, float experience) {
         smeltAndBlast(recipeOutput, recipeName, ingredient, category, condition, result, 1, experience);
     }
@@ -272,29 +317,5 @@ public class RecipeDatagenCommons {
     public static Criterion<?> inventoryTrigger(ItemPredicate... predicates) {
         return CriteriaTriggers.INVENTORY_CHANGED
                 .createCriterion(new InventoryChangeTrigger.TriggerInstance(Optional.empty(), InventoryChangeTrigger.TriggerInstance.Slots.ANY, List.of(predicates)));
-    }
-
-    public static void ingotNuggetExchange(RecipeOutput consumer, ItemLike nuggetForm, ItemLike ingotForm) {
-        compacting(consumer, nuggetForm, ingotForm, "nugget");
-    }
-
-    public static void blockIngotExchange(RecipeOutput consumer, ItemLike itemForm, ItemLike blockForm) {
-        compacting(consumer, itemForm, blockForm, "block");
-    }
-
-    public static void compacting(RecipeOutput consumer, ItemLike smallForm, ItemLike bigForm, String type) {
-        String blockName = BuiltInRegistries.ITEM.getKey(bigForm.asItem()).getPath();
-        String itemName = BuiltInRegistries.ITEM.getKey(smallForm.asItem()).getPath();
-        shaped(RecipeCategory.MISC, bigForm)
-                .define('#', smallForm)
-                .pattern("###")
-                .pattern("###")
-                .pattern("###")
-                .unlockedBy("has_" + itemName, has(smallForm))
-                .save(consumer, malumPath(blockName));
-        shapeless(RecipeCategory.MISC, smallForm, 9)
-                .requires(bigForm)
-                .unlockedBy("has_" + itemName, has(smallForm))
-                .save(consumer, malumPath(itemName + "_from_" + type));
     }
 }

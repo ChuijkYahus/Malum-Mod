@@ -45,14 +45,7 @@ public class MiscSpiritInfusionRecipes {
                 .addSpirit(WICKED_SPIRIT, 8)
                 .save(consumer);
 
-        new SpiritInfusionRecipeBuilder(Ingredient.of(Tags.Items.INGOTS_IRON), 2, MalumContent.Gear.LAMPLIGHTERS_TONGS, 1)
-                .addSpirit(ARCANE_SPIRIT, 8)
-                .addSpirit(INFERNAL_SPIRIT, 8)
-                .addExtraItem(RUNEWOOD_SET.planks.block, 2)
-                .addExtraItem(MalumContent.Materials.REFINED_SOULSTONE, 1)
-                .save(consumer);
-
-        new SpiritInfusionRecipeBuilder(MalumContent.Gear.LAMPLIGHTERS_TONGS, 1, MalumContent.Gear.CATALYST_LOBBER, 1)
+        new SpiritInfusionRecipeBuilder(MalumContent.Totemancy.TOTEMIC_STAFF, 1, MalumContent.Gear.CATALYST_LOBBER, 1)
                 .addSpirit(AQUEOUS_SPIRIT, 32)
                 .addSpirit(INFERNAL_SPIRIT, 32)
                 .addSpirit(ELDRITCH_SPIRIT, 32)

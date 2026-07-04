@@ -16,8 +16,4 @@ public class MalumItemProperties {
     public static LodestoneItemProperties IMPETUS() {
         return DEFAULT().stacksTo(1);
     }
-
-    public static LodestoneItemProperties HIDDEN() {
-        return new LodestoneItemProperties().stacksTo(1);
-    }
 }

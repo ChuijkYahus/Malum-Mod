@@ -1,7 +1,6 @@
 package com.sammy.malum.core.systems.spirit;
 
 import com.google.common.collect.ImmutableSet;
-import com.sammy.malum.common.block.curiosities.decor.mana_mote.*;
 import com.sammy.malum.core.systems.registry.*;
 import com.sammy.malum.core.systems.spirit.type.*;
 import com.sammy.malum.registry.common.magic.*;
@@ -25,14 +24,14 @@ public class SpiritTypeProperty extends Property<String> {
 
     public static SpiritHolder<SpiritArcanaType> getSpiritType(BlockState state) {
         if (state.hasProperty(SPIRIT_TYPE)) {
-            return SpiritHolder.getSpiritType(state.getValue(ManaMoteBlock.SPIRIT_TYPE));
+            return SpiritHolder.getSpiritType(state.getValue(SPIRIT_TYPE));
         }
         throw new IllegalArgumentException("BlockState does not have a spirit type property.");
     }
 
     public static BlockState setSpiritType(BlockState state, SpiritLike spiritType) {
         if (state.hasProperty(SPIRIT_TYPE)) {
-            return state.setValue(ManaMoteBlock.SPIRIT_TYPE, spiritType.getName());
+            return state.setValue(SPIRIT_TYPE, spiritType.getName());
         }
         throw new IllegalArgumentException("BlockState does not have a spirit type property.");
     }

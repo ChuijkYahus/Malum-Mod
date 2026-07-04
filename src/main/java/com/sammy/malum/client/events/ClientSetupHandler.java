@@ -22,7 +22,7 @@ import team.lodestar.lodestone.systems.rendering.LodestoneRenderSystem;
 import team.lodestar.lodestone.systems.rendering.renderpass.RenderPassHandler;
 import top.theillusivec4.curios.api.client.CuriosRendererRegistry;
 
-@EventBusSubscriber(value = Dist.CLIENT)
+@EventBusSubscriber(value = Dist.CLIENT, modid = MalumMod.MALUM)
 public class ClientSetupHandler {
 
 

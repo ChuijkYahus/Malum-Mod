@@ -1,0 +1,10 @@
+{
+  "type": "minecraft:stonecutting",
+  "ingredient": {
+    "item": "malum:smooth_trodden_stone"
+  },
+  "result": {
+    "count": 1,
+    "id": "malum:smooth_trodden_stone_stairs"
+  }
+}

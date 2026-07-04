@@ -183,7 +183,9 @@ public class MalumBlockStateDatagen extends LodestoneBlockStateSystem {
 
         setTexturePath("waveform_artifice");
         MalumBlockStateSmithTypes.SPIRIT_DIODE.act(data, WAVECHARGER, WAVEBANKER, WAVEMAKER, WAVEBREAKER);
-        MalumBlockStateSmithTypes.GUST_TECH_BLOCK.act(data, GUST_IGNITER, WIND_TUNNEL);
+        MalumBlockStateSmithTypes.HORIZONTAL_CONNECTION_ARTIFICE_BLOCK.act(data, WIND_TUNNEL);
+        MalumBlockStateSmithTypes.CAPTURE_CONNECTION_ARTIFICE_BLOCK.act(data, GUST_IGNITER);
+
 
         setTexturePath("ether");
         itemModelProvider.setTexturePath("ether");
@@ -227,7 +229,7 @@ public class MalumBlockStateDatagen extends LodestoneBlockStateSystem {
 
         BlockStateSmithTypes.CUSTOM_MODEL.act(data, BLOCK_MODEL_ITEM, this::horizontalBlock, models()::predefinedModel, WEAVERS_WORKBENCH, RUNIC_WORKBENCH);
 
-        BlockStateSmithTypes.CUSTOM_MODEL.act(data, BLOCK_MODEL_ITEM, this::horizontalBlock, models()::orientableWithBottom, MAGEHAND_COFFER, CONJUNCTURE_CRYSTALLARIUM);
+        BlockStateSmithTypes.CUSTOM_MODEL.act(data, BLOCK_MODEL_ITEM, this::horizontalBlock, models()::orientableWithBottom, CONJUNCTURE_CRYSTALLARIUM);
 
         BlockStateSmithTypes.CUSTOM_MODEL.act(data, NO_DATAGEN, this::simpleBlock, models()::predefinedModel,
                 RUNEWOOD_OBELISK, RUNEWOOD_OBELISK_COMPONENT,
@@ -254,8 +256,6 @@ public class MalumBlockStateDatagen extends LodestoneBlockStateSystem {
         MalumBlockStateSmithTypes.PRIMORDIAL_SOUP.act(data, PRIMORDIAL_SOUP);
 
         BlockStateSmithTypes.FULL_BLOCK.act(data, BlockSets.THE_DEVICE, BlockSets.THE_VESSEL);
-
-        BlockStateSmithTypes.CUSTOM_MODEL.act(data, NO_DATAGEN, this::simpleBlock, this::cubeModelAirTexture, SPIRIT_MOTE);
     }
 
     public void generateVariedBlockBundle(BlockStateSystemData<MalumBlockStateDatagen> data, BlockBundle bundle) {
