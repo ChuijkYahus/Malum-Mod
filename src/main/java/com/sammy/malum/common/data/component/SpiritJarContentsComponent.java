@@ -21,7 +21,7 @@ public record SpiritJarContentsComponent(SpiritArcanaType spirit, int count) imp
     }
 
     public ItemStack createStack() {
-        return createStack(Math.min(count, 64));
+        return createStack(count);
     }
 
     public ItemStack createStack(int count) {
