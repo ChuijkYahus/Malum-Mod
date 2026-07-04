@@ -36,7 +36,9 @@ public class EtherItem extends BlockItem implements ParticleEmitterHandler.ItemP
     }
 
     public EtherItem(Block block, Properties properties, boolean isIridescent) {
-        super(block, properties);
+        super(block, properties
+                .component(DataComponents.DYED_COLOR, DEFAULT_FIRST_COLOR)
+                .component(MalumDataComponents.SECONDARY_DYED_COLOR, DEFAULT_SECOND_COLOR));
         this.isIridescent = isIridescent;
     }
 
