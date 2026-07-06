@@ -183,8 +183,11 @@ public class MalumBlockStateDatagen extends LodestoneBlockStateSystem {
 
         setTexturePath("waveform_artifice");
         MalumBlockStateSmithTypes.SPIRIT_DIODE.act(data, WAVECHARGER, WAVEBANKER, WAVEMAKER, WAVEBREAKER);
-        MalumBlockStateSmithTypes.HORIZONTAL_CONNECTION_ARTIFICE_BLOCK.act(data, WIND_TUNNEL);
-        MalumBlockStateSmithTypes.CAPTURE_CONNECTION_ARTIFICE_BLOCK.act(data, GUST_IGNITER);
+
+        setTexturePath("waveform_artifice/wind_tunnel");
+        MalumBlockStateSmithTypes.ELEMENTAL_ARTIFICE_BLOCK.act(data, WIND_TUNNEL);
+        setTexturePath("waveform_artifice/gust_igniter");
+        MalumBlockStateSmithTypes.ELEMENTAL_ARTIFICE_BLOCK.act(data, GUST_IGNITER);
 
 
         setTexturePath("ether");

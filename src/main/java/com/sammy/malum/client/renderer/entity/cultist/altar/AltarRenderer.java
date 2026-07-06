@@ -15,7 +15,7 @@ import org.jetbrains.annotations.NotNull;
 @OnlyIn(Dist.CLIENT)
 public class AltarRenderer extends MobRenderer<AltarCultist, AltarModel> {
     private static final ResourceLocation ALTAR_LOCATION = MalumMod.malumPath("textures/entity/cultist/altar.png");
-    AthenaUtils
+
     public AltarRenderer(EntityRendererProvider.Context context) {
         super(context, new AltarModel(context.bakeLayer(AltarModel.LAYER)), 0.4F);
     }
