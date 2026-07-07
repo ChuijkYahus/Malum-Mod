@@ -61,6 +61,8 @@ public class MalumRecipes extends VanillaRecipeProvider {
         MalumVoidFavorRecipes.buildRecipes(recipeOutput);
         MalumSpiritRepairRecipes.buildRecipes(recipeOutput);
         MalumSoulbindingRecipes.buildRecipes(recipeOutput);
+
+        MalumConjunctureCrystallariumRecipes.buildRecipes(recipeOutput);
     }
 
     public static Criterion<EnterBlockTrigger.TriggerInstance> insideOf(Block block) {

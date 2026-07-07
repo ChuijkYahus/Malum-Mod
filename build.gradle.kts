@@ -209,8 +209,8 @@ dependencies {
 //    localRuntime("com.tterrag.registrate:Registrate:${property("registrate_version")}")
 
     // Farmer's Delight, Optional
-    compileOnlyApi(("curse.maven:farmers-delight-398521:5878217"))
-    localRuntime(("curse.maven:farmers-delight-398521:5878217"))
+    compileOnlyApi(("curse.maven:farmers-delight-398521:8083481"))
+    localRuntime(("curse.maven:farmers-delight-398521:8083481"))
 
     //Iron's Spells and Spellbooks, Optional
     compileOnlyApi(("software.bernie.geckolib:geckolib-neoforge-${property("minecraft_version")}:${property("gecko_lib_version")}"))
