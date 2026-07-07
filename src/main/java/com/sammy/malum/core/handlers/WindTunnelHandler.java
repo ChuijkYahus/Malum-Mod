@@ -1,20 +1,18 @@
 package com.sammy.malum.core.handlers;
 
 import com.sammy.malum.*;
-import com.sammy.malum.common.block.curiosities.artifice.elemental_artifice.*;
-import com.sammy.malum.common.block.curiosities.artifice.elemental_artifice.gust_igniter.GustIgniterBlockEntity;
-import com.sammy.malum.common.block.curiosities.artifice.elemental_artifice.wind_tunnel.*;
+import com.sammy.malum.common.block.curiosities.artifice.elemental_artifice.SequencedConnectionArray;
+import com.sammy.malum.common.block.curiosities.artifice.elemental_artifice.aerial.WindTunnelBlock;
+import com.sammy.malum.common.block.curiosities.artifice.elemental_artifice.base.*;
 import com.sammy.malum.common.data.attachment.*;
 import com.sammy.malum.registry.common.*;
 import net.minecraft.core.*;
 import net.minecraft.resources.*;
+import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.entity.*;
 import net.minecraft.world.entity.ai.attributes.*;
 import net.minecraft.world.level.*;
-import net.minecraft.world.level.block.state.*;
-import net.minecraft.world.phys.*;
 import net.neoforged.neoforge.event.tick.*;
-import org.jetbrains.annotations.*;
 
 import java.util.*;
 import java.util.function.*;
@@ -58,123 +56,74 @@ public class WindTunnelHandler {
         return Optional.of(new AttributeModifier(GRAVITY_MODIFIER_ID, multiplier - 1, AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL));
     }
 
-    public static boolean modifyTunnels(Level level, GustIgniterBlockEntity igniter, Function<BlockState, BlockState> stateModifier) {
-        var unboundTunnels = new ArrayList<WindTunnelBlockEntity>();
-        for (BlockPos tunnelPos : igniter.windTunnels) {
-            if (level.getBlockEntity(tunnelPos) instanceof WindTunnelBlockEntity boundTunnel) {
-                boundTunnel.unbind();
-                unboundTunnels.add(boundTunnel);
-            }
-        }
-        igniter.windTunnels.clear();
+    public static boolean modifyComponents(ServerLevel level, PrimaryArtificeBlockEntity connectionOwner, boolean isOpen, boolean isPowered) {
+        var unbound = new ArrayList<SecondaryArtificeBlockEntity>();
 
-        var windTunnels = findWindTunnels(level, igniter);
-        if (windTunnels.isEmpty()) {
-            revertTunnels(level, unboundTunnels);
+        var connectionData = connectionOwner.getConnectionData();
+        if (connectionData != null) {
+            connectionData.unbind(level, unbound::add);
+            connectionOwner.clearConnectionData();
+        }
+
+        var locatedGizmos = findGizmos(level, connectionOwner);
+        if (locatedGizmos.isEmpty()) {
             return false;
         }
-        var tunnelPositions = new HashSet<BlockPos>();
-        Direction windDirection = null;
-        igniter.limiter = windTunnels.values().stream().mapToInt(e -> e.findLimit(igniter.strength)).min().orElse(igniter.strength);
-        for (Map.Entry<BlockPos, WindTunnelBlockEntity> entry : windTunnels.entrySet()) {
-            var tunnelPos = entry.getKey();
-            var tunnel = entry.getValue();
-            var tunnelState = level.getBlockState(tunnelPos);
-            var modifiedState = stateModifier.apply(tunnelState);
-            level.setBlock(tunnelPos, modifiedState, 2);
-            if (WindTunnelBlock.isActive(modifiedState)) {
-                igniter.bind(tunnel);
-                tunnelPositions.add(tunnelPos);
-            } else {
-                igniter.unbind(tunnel);
+
+        var capturedBlocks = new HashSet<SecondaryArtificeBlockEntity>();
+        Direction sharedDirection = null;
+
+        for (BlockPos pos : locatedGizmos.keySet()) {
+            var blockEntity = locatedGizmos.get(pos);
+            var state = level.getBlockState(pos);
+            state = state.setValue(ElementalArtificeBlock.OPEN, isOpen);
+            state = state.setValue(ElementalArtificeBlock.POWERED, isPowered);
+            level.setBlock(pos, state, 2);
+            if (ElementalArtificeBlock.isPowered(state)) {
+                blockEntity.bind(connectionOwner);
+                capturedBlocks.add(blockEntity);
+                unbound.remove(blockEntity);
             }
-            unboundTunnels.remove(tunnel);
-            windDirection = modifiedState.getValue(WindTunnelBlock.FACING);
+
+            sharedDirection = state.getValue(WindTunnelBlock.FACING);
         }
-        revertTunnels(level, unboundTunnels);
-        if (tunnelPositions.isEmpty()) {
-            igniter.windArea = null;
-            igniter.windDirection = null;
+        for (SecondaryArtificeBlockEntity unpowered : unbound) {
+            unpowered.unbind();
+        }
+        if (capturedBlocks.isEmpty()) {
             return false;
         }
-        igniter.windArea = getWindArea(igniter, tunnelPositions, windDirection);
-        igniter.windDirection = windDirection;
-        igniter.setDirty();
+        connectionOwner.gatherConnectionData(level, capturedBlocks);
+
+
+        var startPos = getStartPos(connectionOwner);
+        var connectionRoot = locatedGizmos.get(startPos);
+        var array = SequencedConnectionArray.create(connectionOwner, connectionRoot, sharedDirection, capturedBlocks);
+        var baked = connectionOwner.bakeConnectionData(level, array);
+        connectionOwner.setConnectionData(baked);
         return true;
     }
 
-    public static void revertTunnels(Level level, ArrayList<WindTunnelBlockEntity> tunnels) {
-        for (WindTunnelBlockEntity tunnel : tunnels) {
-            level.setBlock(tunnel.getBlockPos(), tunnel.getBlockState().setValue(WindTunnelBlock.POWERED, false), 2);
-        }
-    }
+    public static Map<BlockPos, SecondaryArtificeBlockEntity> findGizmos(Level level, PrimaryArtificeBlockEntity owner) {
+        var startPos = getStartPos(owner);
 
-    public static boolean isInArea(Entity entity, AABB windArea, Direction windDirection, Set<BlockPos> windTunnels) {
-        if (windArea == null || windDirection == null) {
-            return false;
-        }
-        var position = entity.position();
-        var center = position.add(0, entity.getBbHeight() / 2f, 0);
-        var axis = windDirection.getAxis();
-        for (BlockPos tunnel : windTunnels) {
-            var tunnelCenter = tunnel.getCenter();
-            double x = axis.equals(Direction.Axis.X) ? tunnelCenter.x : center.x;
-            double y = axis.equals(Direction.Axis.Y) ? tunnelCenter.y : center.y;
-            double z = axis.equals(Direction.Axis.Z) ? tunnelCenter.z : center.z;
-            var offsetPosition = new Vec3(x, y, z);
-            if (offsetPosition.distanceTo(tunnelCenter) < 0.75f) {
-                return true;
+        if ((level.getBlockEntity(startPos) instanceof SecondaryArtificeBlockEntity connectionRoot)) {
+            if (connectionRoot.isRemoved()) {
+                return Collections.emptyMap();
             }
-        }
-        return false;
-    }
-
-    private static @NotNull AABB getWindArea(GustIgniterBlockEntity igniter, HashSet<BlockPos> tunnelPositions, Direction tunnelDirection) {
-        int minX = Integer.MAX_VALUE, minY = Integer.MAX_VALUE, minZ = Integer.MAX_VALUE;
-        int maxX = Integer.MIN_VALUE, maxY = Integer.MIN_VALUE, maxZ = Integer.MIN_VALUE;
-        for (BlockPos tunnelPosition : tunnelPositions) {
-            int x = tunnelPosition.getX();
-            int y = tunnelPosition.getY();
-            int z = tunnelPosition.getZ();
-
-            if (x < minX) minX = x;
-            if (y < minY) minY = y;
-            if (z < minZ) minZ = z;
-
-            if (x > maxX) maxX = x;
-            if (y > maxY) maxY = y;
-            if (z > maxZ) maxZ = z;
-        }
-        var area = new AABB(minX, minY, minZ, maxX + 1, maxY + 1, maxZ + 1);
-        int x = tunnelDirection.getStepX();
-        int y = tunnelDirection.getStepY();
-        int z = tunnelDirection.getStepZ();
-        var offset = new Vec3(x, y, z).scale(igniter.getTunnelLength());
-        return area.expandTowards(offset).inflate(0.25f);
-    }
-
-    public static Map<BlockPos, WindTunnelBlockEntity> findWindTunnels(Level level, GustIgniterBlockEntity igniter) {
-        var igniterState = igniter.getBlockState();
-        var igniterPos = igniter.getBlockPos();
-        var facing = igniterState.getValue(ElementalArtificeBlock.FACING);
-        var startPos = igniterPos.relative(facing);
-
-        if ((level.getBlockEntity(startPos) instanceof WindTunnelBlockEntity startingTunnel)) {
-            if (!startingTunnel.isRemoved()) {
-                return findWindTunnels(level, startingTunnel, t -> t.canIgnite(igniter));
-            }
+            return findGizmos(level, connectionRoot, t -> t.canBind(owner));
         }
         return Collections.emptyMap();
     }
 
-    public static HashMap<BlockPos, WindTunnelBlockEntity> findWindTunnels(Level level, WindTunnelBlockEntity startingTunnel, Predicate<WindTunnelBlockEntity> condition) {
-        var startPos = startingTunnel.getBlockPos();
-        var facing = startingTunnel.getBlockState().getValue(ElementalArtificeBlock.FACING);
+    public static HashMap<BlockPos, SecondaryArtificeBlockEntity> findGizmos(Level level, SecondaryArtificeBlockEntity connectionRoot, Predicate<SecondaryArtificeBlockEntity> condition) {
+        var startPos = connectionRoot.getBlockPos();
+        var facing = connectionRoot.getBlockState().getValue(ElementalArtificeBlock.FACING);
         var visited = new HashSet<BlockPos>();
-        var result = new HashMap<BlockPos, WindTunnelBlockEntity>();
+        var result = new HashMap<BlockPos, SecondaryArtificeBlockEntity>();
         var queue = new ArrayDeque<BlockPos>();
-        if (condition.test(startingTunnel)) {
-            result.put(startPos, startingTunnel);
+        if (condition.test(connectionRoot)) {
+            result.put(startPos, connectionRoot);
             queue.add(startPos);
             visited.add(startPos);
         }
@@ -187,23 +136,30 @@ public class WindTunnelHandler {
             var pos = queue.poll();
             for (Direction direction : directionsToCheck) {
                 mutable.set(pos).move(direction);
-                if (!visited.contains(mutable) && level.getBlockEntity(mutable) instanceof WindTunnelBlockEntity nextTunnel) {
-                    if (nextTunnel.isRemoved()) {
+                if (!visited.contains(mutable) && level.getBlockEntity(mutable) instanceof SecondaryArtificeBlockEntity next) {
+                    if (next.isRemoved()) {
                         continue;
                     }
-                    var otherFacing = nextTunnel.getBlockState().getValue(WindTunnelBlock.FACING);
+                    var otherFacing = next.getBlockState().getValue(SecondaryArtificeBlock.FACING);
                     if (otherFacing != facing) {
                         continue;
                     }
-                    if (condition.test(nextTunnel)) {
+                    if (condition.test(next)) {
                         var immutable = mutable.immutable();
                         visited.add(immutable);
-                        result.put(immutable, nextTunnel);
+                        result.put(immutable, next);
                         queue.add(immutable);
                     }
                 }
             }
         }
         return result;
+    }
+
+    public static BlockPos getStartPos(PrimaryArtificeBlockEntity owner) {
+        var ownerState = owner.getBlockState();
+        var ownerPos = owner.getBlockPos();
+        var facing = ownerState.getValue(ElementalArtificeBlock.FACING);
+        return ownerPos.relative(facing);
     }
 }

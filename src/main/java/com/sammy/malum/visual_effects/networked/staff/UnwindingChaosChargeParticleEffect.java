@@ -2,7 +2,7 @@ package com.sammy.malum.visual_effects.networked.staff;
 
 import com.mojang.serialization.*;
 import com.mojang.serialization.codecs.*;
-import com.sammy.malum.core.systems.spirit.type.*;
+import com.sammy.malum.core.systems.spirit.SpiritArcanaType;
 import com.sammy.malum.registry.common.*;
 import com.sammy.malum.visual_effects.networked.*;
 import io.netty.buffer.*;
@@ -12,7 +12,6 @@ import net.minecraft.world.entity.*;
 import net.minecraft.world.level.*;
 import net.minecraft.world.phys.*;
 import net.neoforged.api.distmarker.*;
-import team.lodestar.lodestone.helpers.*;
 import team.lodestar.lodestone.registry.common.particle.*;
 import team.lodestar.lodestone.modules.core.easing.Easing;
 import team.lodestar.lodestone.systems.network.particle.*;

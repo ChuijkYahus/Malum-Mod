@@ -2,9 +2,9 @@ package com.sammy.malum.common.data.attachment;
 
 import com.mojang.serialization.*;
 import com.mojang.serialization.codecs.*;
-import com.sammy.malum.common.block.curiosities.artifice.elemental_artifice.gust_igniter.GustIgniterBlockEntity;
-import com.sammy.malum.common.block.curiosities.artifice.elemental_artifice.wind_tunnel.*;
-import com.sammy.malum.core.handlers.*;
+import com.sammy.malum.common.block.curiosities.artifice.elemental_artifice.ArtificeBlockConnectionData;
+import com.sammy.malum.common.block.curiosities.artifice.elemental_artifice.aerial.GustIgniterBlockEntity;
+import com.sammy.malum.common.block.curiosities.artifice.elemental_artifice.aerial.WindTunnelEntityInfluenceData;
 import com.sammy.malum.registry.common.*;
 import com.sammy.malum.visual_effects.networked.wind_gust.*;
 import io.netty.buffer.*;
@@ -22,18 +22,18 @@ import java.util.List;
 public class WindTunnelData {
 
     public static Codec<WindTunnelData> CODEC = RecordCodecBuilder.create(obj -> obj.group(
-            WindTunnelMotionData.CODEC.listOf().optionalFieldOf("strength", Collections.emptyList()).forGetter(WindTunnelData::getInfluence),
+            WindTunnelEntityInfluenceData.CODEC.listOf().optionalFieldOf("strength", Collections.emptyList()).forGetter(WindTunnelData::getInfluence),
             Codec.INT.optionalFieldOf("activeTime", 0).forGetter(WindTunnelData::getActiveTime)
     ).apply(obj, WindTunnelData::new));
 
     public static StreamCodec<ByteBuf, WindTunnelData> STREAM_CODEC = ByteBufCodecs.fromCodec(WindTunnelData.CODEC);
 
-    private final HashMap<BlockPos, WindTunnelMotionData> influence = new HashMap<>();
+    private final HashMap<BlockPos, WindTunnelEntityInfluenceData> influence = new HashMap<>();
     private int activeTime;
 
-    private WindTunnelData(List<WindTunnelMotionData> influence, int activeTime) {
-        for (WindTunnelMotionData data : influence) {
-            this.influence.put(data.source, data);
+    private WindTunnelData(List<WindTunnelEntityInfluenceData> influence, int activeTime) {
+        for (WindTunnelEntityInfluenceData data : influence) {
+            this.influence.put(data.array().getConnectionOwner(), data);
         }
         this.activeTime = activeTime;
     }
@@ -46,33 +46,25 @@ public class WindTunnelData {
         var position = entity.position();
         var values = influence.values();
         var toRemove = new ArrayList<>(values);
-        for (WindTunnelMotionData data : values) {
-            var source = data.source;
-            var area = data.area;
-            var direction = data.direction;
-            if (source == null || area == null || direction == null) {
-                continue;
-            }
+        for (WindTunnelEntityInfluenceData motionData : values) {
             if (entity instanceof Player player) {
                 if (player.onGround() && player.isCrouching()) {
                     continue;
                 }
             }
-            if (!(level.getBlockEntity(source) instanceof GustIgniterBlockEntity igniter)) {
-                continue;
-            }
-            if (!WindTunnelBlock.isActive(level.getBlockState(source))) {
-                continue;
-            }
+            var area = motionData.area();
             if (!area.intersects(entity.getBoundingBox())) {
                 continue;
             }
-            if (!WindTunnelHandler.isInArea(entity, area, direction, igniter.windTunnels)) {
+            var array = motionData.array();
+            if (array.isOutOfBounds(entity)) {
                 continue;
             }
-            float x = direction.getStepX();
-            float y = direction.getStepY();
-            float z = direction.getStepZ();
+            var direction = array.getSharedDirection();
+            float strength = motionData.strength();
+            float x = direction.getStepX() * strength;
+            float y = direction.getStepY() * strength;
+            float z = direction.getStepZ() * strength;
             var axis = direction.getAxis();
             boolean isX = axis.equals(Direction.Axis.X);
             boolean isY = axis.equals(Direction.Axis.Y);
@@ -80,9 +72,8 @@ public class WindTunnelData {
             float xFriction = isX ? 0.8f : 1f;
             float yFriction = isY ? 0.8f : 0.5f;
             float zFriction = isZ ? 0.8f : 1f;
-            var addedVelocity = new Vec3(x, y, z).scale(data.strength);
             var movement = entity.getDeltaMovement();
-            movement = movement.add(addedVelocity);
+            movement = movement.add(x, y, z);
             if (axis.isHorizontal()) {
                 var center = area.getCenter();
                 center = new Vec3(
@@ -91,12 +82,12 @@ public class WindTunnelData {
                         isZ ? position.z : center.z
                 );
                 var toCenter = center.subtract(position);
-                var centerVelocity = toCenter.normalize().scale(toCenter.length() * 0.2f * data.strength);
+                var centerVelocity = toCenter.normalize().scale(toCenter.length() * 0.2f * strength);
                 movement = movement.add(centerVelocity);
             }
             movement = movement.multiply(xFriction, yFriction, zFriction);
             entity.setDeltaMovement(movement);
-            toRemove.remove(data);
+            toRemove.remove(motionData);
         }
         values.removeAll(toRemove);
         if (influence.isEmpty()) {
@@ -128,16 +119,12 @@ public class WindTunnelData {
         var pos = igniter.getBlockPos();
         float strength = igniter.getTunnelStrength();
         if (influence.containsKey(pos)) {
-            if (influence.get(pos).strength == strength) {
+            if (influence.get(pos).strength() == strength) {
                 return false;
             }
         }
-        var area = igniter.windArea;
-        var direction = igniter.windDirection;
-        if (igniter.modified) {
-            direction = direction.getOpposite();
-        }
-        influence.put(pos, new WindTunnelMotionData(pos, area, direction, strength));
+        ArtificeBlockConnectionData data = igniter.getConnectionData();
+        influence.put(pos, new WindTunnelEntityInfluenceData(data.getArray(), data.getDefinedArea(), strength));
         return true;
     }
 
@@ -145,7 +132,7 @@ public class WindTunnelData {
         return 1 - Math.min(activeTime, 4) / 4f;
     }
 
-    public List<WindTunnelMotionData> getInfluence() {
+    public List<WindTunnelEntityInfluenceData> getInfluence() {
         return new ArrayList<>(influence.values());
     }
 
@@ -153,22 +140,4 @@ public class WindTunnelData {
         return activeTime;
     }
 
-    public record WindTunnelMotionData(BlockPos source, AABB area, Direction direction, float strength) {
-
-        public static final Codec<AABB> AABB_CODEC = RecordCodecBuilder.create(instance -> instance.group(
-                Codec.DOUBLE.fieldOf("min_x").forGetter(aabb -> aabb.minX),
-                Codec.DOUBLE.fieldOf("min_y").forGetter(aabb -> aabb.minY),
-                Codec.DOUBLE.fieldOf("min_z").forGetter(aabb -> aabb.minZ),
-                Codec.DOUBLE.fieldOf("max_x").forGetter(aabb -> aabb.maxX),
-                Codec.DOUBLE.fieldOf("max_y").forGetter(aabb -> aabb.maxY),
-                Codec.DOUBLE.fieldOf("max_z").forGetter(aabb -> aabb.maxZ)
-        ).apply(instance, AABB::new));
-
-        public static final Codec<WindTunnelMotionData> CODEC = RecordCodecBuilder.create(instance -> instance.group(
-                BlockPos.CODEC.fieldOf("source").forGetter(WindTunnelMotionData::source),
-                AABB_CODEC.fieldOf("area").forGetter(WindTunnelMotionData::area),
-                Direction.CODEC.fieldOf("direction").forGetter(WindTunnelMotionData::direction),
-                Codec.FLOAT.fieldOf("strength").forGetter(WindTunnelMotionData::strength)
-        ).apply(instance, WindTunnelMotionData::new));
-    }
 }

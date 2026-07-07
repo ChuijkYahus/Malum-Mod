@@ -48,10 +48,10 @@ public class TidalAffinityGeas extends GeasEffect {
 
     @Override
     public void addTooltipComponents(LivingEntity entity, Consumer<Component> tooltipAcceptor, TooltipFlag tooltipFlag) {
-        tooltipAcceptor.accept(EffectComponentHelper.positiveGeasEffect("water_agility"));
-        tooltipAcceptor.accept(EffectComponentHelper.positiveGeasEffect("water_damage_resistance"));
-        tooltipAcceptor.accept(EffectComponentHelper.positiveGeasEffect("conduit_bonus"));
-        tooltipAcceptor.accept(EffectComponentHelper.negativeGeasEffect("fish_healing"));
+        tooltipAcceptor.accept(TooltipComponentHelper.positiveGeasEffect("water_agility"));
+        tooltipAcceptor.accept(TooltipComponentHelper.positiveGeasEffect("water_damage_resistance"));
+        tooltipAcceptor.accept(TooltipComponentHelper.positiveGeasEffect("conduit_bonus"));
+        tooltipAcceptor.accept(TooltipComponentHelper.negativeGeasEffect("fish_healing"));
     }
 
 

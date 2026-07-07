@@ -2,7 +2,9 @@ package com.sammy.malum.client.renderer.block;
 
 import com.mojang.blaze3d.vertex.*;
 import com.mojang.math.*;
-import com.sammy.malum.common.block.curiosities.artifice.elemental_artifice.wind_tunnel.*;
+import com.sammy.malum.common.block.curiosities.artifice.elemental_artifice.base.ElementalArtificeBlock;
+import com.sammy.malum.common.block.curiosities.artifice.elemental_artifice.aerial.WindTunnelBlock;
+import com.sammy.malum.common.block.curiosities.artifice.elemental_artifice.aerial.WindTunnelBlockEntity;
 import com.sammy.malum.registry.client.*;
 import net.minecraft.client.*;
 import net.minecraft.client.renderer.*;
@@ -34,25 +36,30 @@ public class WindTunnelRenderer implements BlockEntityRenderer<WindTunnelBlockEn
     public @NotNull AABB getRenderBoundingBox(WindTunnelBlockEntity tunnel) {
         var pos = tunnel.getBlockPos();
         var facing = tunnel.getBlockState().getValue(WindTunnelBlock.FACING);
-        var offset = new Vec3(facing.getStepX(), facing.getStepY(), facing.getStepZ()).scale(tunnel.getTunnelLength());
-        return new AABB(pos.getX(), pos.getY(), pos.getZ(), pos.getX()+1, pos.getY()+1, pos.getZ()+1).expandTowards(offset);
+        int length = tunnel.getTunnelLength();
+        int stepZ = facing.getStepZ();
+        int stepY = facing.getStepY();
+        int stepX = facing.getStepX();
+        var offset = new Vec3(stepX, stepY, stepZ).scale(length);
+        return new AABB(pos).expandTowards(offset);
     }
 
     @Override
     public void render(WindTunnelBlockEntity tunnel, float partialTicks, PoseStack poseStack, MultiBufferSource bufferIn, int combinedLightIn, int combinedOverlayIn) {
-        if (!tunnel.isActive()) {
+        if (!ElementalArtificeBlock.isPowered(tunnel.getBlockState())) {
             return;
         }
         var state = tunnel.getBlockState();
         var facing = state.getValue(WindTunnelBlock.FACING);
         int tunnelLength = tunnel.getTunnelLength();
-        boolean isInward = tunnel.isModified();
+        boolean isInward = false;
+//        boolean isInward = tunnel.isModified();
 
 
-        var windTunnel = LodestoneRenderTypes.TRANSPARENT_TEXTURE.apply(MalumRenderTypeTokens.WIND_COVERAGE_TUNNEL)
+        var windTunnel = LodestoneRenderTypes.TRANSPARENT_TEXTURE.apply(MalumRenderTypeTokens.WIND_TUNNEL)
                 .withUniformHandler(ShaderUniformHandler.LUMITRANSPARENT)
                 .withModifier(b -> b.setCullState(RenderStateShard.NO_CULL));
-        var windFlow = LodestoneRenderTypes.TRANSPARENT_TEXTURE.apply(MalumRenderTypeTokens.WIND_COVERAGE_FLOW)
+        var windFlow = LodestoneRenderTypes.TRANSPARENT_TEXTURE.apply(MalumRenderTypeTokens.WIND_STREAKS)
                 .withUniformHandler(ShaderUniformHandler.LUMITRANSPARENT)
                 .withModifier(b -> b.setCullState(RenderStateShard.NO_CULL));
 
@@ -75,6 +82,10 @@ public class WindTunnelRenderer implements BlockEntityRenderer<WindTunnelBlockEn
         var right = state.getValue(WindTunnelBlock.RIGHT);
         renderBorder(poseStack, up, down, left, right);
 
+        if (up && down && left && right) {
+            poseStack.popPose();
+            return;
+        }
         poseStack.translate(0f, 0.5f, 0);
 
         float xStart = -0.4f;
@@ -114,7 +125,7 @@ public class WindTunnelRenderer implements BlockEntityRenderer<WindTunnelBlockEn
                 float horizontalInterval = interval * 4;
                 float uOffset = getOffset(tunnel, horizontalInterval, partialTicks) * offsetDirection;
                 float vOffset = getOffset(tunnel, interval, partialTicks) * offsetDirection;
-                float alpha = isTunnel ? 0.35f : 0.9f;
+                float alpha = isTunnel ? 0.35f : 0.6f;
                 float u0 = (isInward ? 1f : 0f) + uOffset;
                 float u1 = u0 + 1f;
                 float v0 = isInward ? -vOffset : vOffset;

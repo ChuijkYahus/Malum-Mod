@@ -5,7 +5,7 @@ import com.mojang.math.Axis;
 import com.sammy.malum.client.renderer.entity.FloatingItemRenderer;
 import com.sammy.malum.common.block.curiosities.sorcery.soul_brazier.SoulBrazierBlockEntity;
 import com.sammy.malum.common.item.spirit.SpiritShardItem;
-import com.sammy.malum.core.systems.spirit.type.*;
+import com.sammy.malum.core.systems.spirit.SpiritLike;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.blockentity.BlockEntityRenderer;

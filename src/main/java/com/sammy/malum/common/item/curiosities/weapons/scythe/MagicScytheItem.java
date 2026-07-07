@@ -1,7 +1,7 @@
 package com.sammy.malum.common.item.curiosities.weapons.scythe;
 
 import com.sammy.malum.common.item.spirit.*;
-import com.sammy.malum.core.systems.spirit.type.*;
+import com.sammy.malum.core.systems.spirit.SpiritLike;
 import com.sammy.malum.registry.common.magic.*;
 import net.minecraft.world.entity.*;
 import net.minecraft.world.entity.ai.attributes.*;

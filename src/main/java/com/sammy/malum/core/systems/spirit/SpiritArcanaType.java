@@ -1,4 +1,4 @@
-package com.sammy.malum.core.systems.spirit.type;
+package com.sammy.malum.core.systems.spirit;
 
 import com.mojang.datafixers.util.*;
 import com.mojang.serialization.*;
@@ -7,7 +7,6 @@ import com.sammy.malum.registry.common.magic.*;
 import io.netty.buffer.*;
 import net.minecraft.core.*;
 import net.minecraft.nbt.*;
-import net.minecraft.network.chat.*;
 import net.minecraft.network.codec.*;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.*;
@@ -27,7 +26,8 @@ public class SpiritArcanaType implements SpiritLike {
     private final SpiritColorProperties colorProperties;
     private final DeferredHolder<Item, SpiritShardItem> spiritShard;
 
-    protected Rarity itemRarity;
+    protected SpiritTextData textData;
+
     protected ResourceLocation glowTexture;
 
     public SpiritArcanaType(SpiritColorProperties colorProperties, DeferredHolder<Item, SpiritShardItem> spiritShard) {
@@ -40,21 +40,24 @@ public class SpiritArcanaType implements SpiritLike {
         return this;
     }
 
+    @Override
+    public SpiritTextData getTextData() {
+        if (textData == null) {
+            textData = createTextData(getRegistryName());
+        }
+        return textData;
+    }
+
+    public SpiritTextData createTextData(ResourceLocation id) {
+        return new SpiritTextData(id, getPrimaryColor());
+    }
+
     public SpiritShardItem getSpiritShard() {
         return spiritShard.value();
     }
 
     public SpiritColorProperties getColorProperties() {
         return colorProperties;
-    }
-
-    public Rarity getItemRarity() {
-        if (itemRarity == null) {
-            TextColor textColor = getTextColor(false);
-            itemRarity = Rarity.UNCOMMON;
-//            itemRarity = Rarity.create("malum$" + identifier, (style) -> style.withColor(textColor));
-        }
-        return itemRarity;
     }
 
     public ResourceLocation getGlowTexture() {

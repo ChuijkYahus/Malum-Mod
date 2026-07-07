@@ -32,10 +32,10 @@ public class ProfaneAsceticGeas extends GeasEffect {
 
     @Override
     public void addTooltipComponents(LivingEntity entity, Consumer<Component> tooltipAcceptor, TooltipFlag tooltipFlag) {
-        tooltipAcceptor.accept(EffectComponentHelper.positiveGeasEffect("trial_of_faith"));
-        tooltipAcceptor.accept(EffectComponentHelper.positiveGeasEffect("rotten_healing"));
-        tooltipAcceptor.accept(EffectComponentHelper.negativeGeasEffect("no_passive_healing"));
-        tooltipAcceptor.accept(EffectComponentHelper.negativeGeasEffect("no_normal_foods"));
+        tooltipAcceptor.accept(TooltipComponentHelper.positiveGeasEffect("trial_of_faith"));
+        tooltipAcceptor.accept(TooltipComponentHelper.positiveGeasEffect("rotten_healing"));
+        tooltipAcceptor.accept(TooltipComponentHelper.negativeGeasEffect("no_passive_healing"));
+        tooltipAcceptor.accept(TooltipComponentHelper.negativeGeasEffect("no_normal_foods"));
         super.addTooltipComponents(entity, tooltipAcceptor, tooltipFlag);
     }
 

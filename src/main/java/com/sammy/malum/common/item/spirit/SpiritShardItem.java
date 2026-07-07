@@ -1,9 +1,9 @@
 package com.sammy.malum.common.item.spirit;
 
 import com.sammy.malum.core.systems.registry.*;
-import com.sammy.malum.core.systems.spirit.type.*;
+import com.sammy.malum.core.systems.spirit.SpiritArcanaType;
+import com.sammy.malum.core.systems.spirit.SpiritLike;
 import com.sammy.malum.visual_effects.ScreenParticleEffects;
-import net.minecraft.*;
 import net.minecraft.network.chat.*;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
@@ -18,8 +18,8 @@ import team.lodestar.lodestone.systems.particle.screen.ScreenParticleHolder;
 import java.util.List;
 
 public class SpiritShardItem extends Item implements ItemParticleSupplier, SpiritLike {
+
     protected final SpiritHolder<SpiritArcanaType> spirit;
-    protected Component flavorText;
 
     public SpiritShardItem(Properties properties, SpiritHolder<SpiritArcanaType> spirit) {
         super(properties);
@@ -37,11 +37,7 @@ public class SpiritShardItem extends Item implements ItemParticleSupplier, Spiri
 
     @Override
     public void appendHoverText(ItemStack stack, TooltipContext context, List<Component> tooltipComponents, TooltipFlag tooltipFlag) {
-        SpiritHolder<SpiritArcanaType> spirit = getSpiritHolder();
-        if (flavorText == null) {
-            flavorText = Component.translatable(spirit.getFlavourKey()).withStyle(ChatFormatting.ITALIC).withStyle(spirit.getStyle(true));
-        }
-        tooltipComponents.add(flavorText);
+        getSpirit().getTextData().addToTooltip(stack, context, tooltipComponents, tooltipFlag);
     }
 
     @OnlyIn(Dist.CLIENT)

@@ -7,7 +7,7 @@ import com.sammy.malum.common.item.curiosities.*;
 import com.sammy.malum.common.item.spirit.*;
 import com.sammy.malum.common.worldevent.*;
 import com.sammy.malum.core.helpers.*;
-import com.sammy.malum.core.systems.spirit.type.*;
+import com.sammy.malum.core.systems.spirit.SpiritLike;
 import com.sammy.malum.registry.common.*;
 import com.sammy.malum.registry.common.magic.*;
 import com.sammy.malum.registry.common.sound.*;
@@ -60,8 +60,8 @@ public class SunderingAnchorItem extends LodestoneCombatItem implements IMalumEv
 
     @Override
     public void modifyAttributeTooltipEvent(AddAttributeTooltipsEvent event) {
-        event.addTooltipLines(EffectComponentHelper.positiveItemEffect("sundering_anchor_damage_split"));
-        event.addTooltipLines(EffectComponentHelper.positiveItemEffect("sundering_anchor_hatred"));
+        event.addTooltipLines(TooltipComponentHelper.positiveItemEffect("sundering_anchor_damage_split"));
+        event.addTooltipLines(TooltipComponentHelper.positiveItemEffect("sundering_anchor_hatred"));
     }
 
     @Override

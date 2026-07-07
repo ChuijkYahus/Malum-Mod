@@ -1,6 +1,6 @@
 package com.sammy.malum.common.item.spirit;
 
-import com.sammy.malum.core.systems.spirit.type.*;
+import com.sammy.malum.core.systems.spirit.SpiritArcanaType;
 import com.sammy.malum.registry.common.item.MalumDataComponents;
 import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.*;
@@ -28,10 +28,9 @@ public class SpiritJarItem extends BlockItem {
         super.appendHoverText(stack, context, tooltipComponents, tooltipFlag);
         var contents = stack.get(MalumDataComponents.SPIRIT_JAR_CONTENTS);
         if (contents != null) {
-            SpiritArcanaType spirit = contents.spirit();
+            var spirit = contents.spirit();
             int count = contents.count();
-            tooltipComponents.add(Component.translatable("malum.spirit.description.stored_spirit").withStyle(ChatFormatting.GRAY));
-            tooltipComponents.add(Component.translatable(spirit.getCountedKey(), count).withStyle(spirit.getStyle(false)));
+            spirit.getTextData().countSpiritInTooltip(stack, context, tooltipComponents, tooltipFlag, count, true);
         }
     }
 }

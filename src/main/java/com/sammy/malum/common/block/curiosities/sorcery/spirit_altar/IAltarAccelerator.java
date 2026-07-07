@@ -1,6 +1,6 @@
 package com.sammy.malum.common.block.curiosities.sorcery.spirit_altar;
 
-import com.sammy.malum.core.systems.spirit.type.SpiritArcanaType;
+import com.sammy.malum.core.systems.spirit.SpiritArcanaType;
 import net.minecraft.server.level.*;
 
 public interface IAltarAccelerator {

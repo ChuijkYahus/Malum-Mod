@@ -14,6 +14,6 @@ public class CurioSwarmingRing extends MalumCurioItem {
 
     @Override
     public void addExtraTooltipLines(Consumer<Component> consumer) {
-        consumer.accept(EffectComponentHelper.positiveCurioEffect("rot_multiplicity"));
+        consumer.accept(TooltipComponentHelper.positiveCurioEffect("rot_multiplicity"));
     }
 }

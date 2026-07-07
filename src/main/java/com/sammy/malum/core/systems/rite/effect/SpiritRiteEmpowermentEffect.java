@@ -1,7 +1,7 @@
 package com.sammy.malum.core.systems.rite.effect;
 
 import com.sammy.malum.core.systems.registry.*;
-import com.sammy.malum.core.systems.spirit.type.*;
+import com.sammy.malum.core.systems.spirit.SpiritArcanaType;
 import com.sammy.malum.registry.common.sound.*;
 import net.minecraft.core.*;
 import net.minecraft.server.level.*;

@@ -7,7 +7,7 @@ import com.sammy.malum.common.data.custom.spellweaving.SpellweavingEqualityData;
 import com.sammy.malum.common.data.custom.spellweaving.SpellweavingEqualityReloadListener;
 import com.sammy.malum.common.entity.activator.*;
 import com.sammy.malum.common.item.spirit.*;
-import com.sammy.malum.core.systems.spirit.type.*;
+import com.sammy.malum.core.systems.spirit.SpiritLike;
 import com.sammy.malum.registry.common.enchantment.*;
 import com.sammy.malum.registry.common.item.*;
 import com.sammy.malum.registry.common.magic.*;

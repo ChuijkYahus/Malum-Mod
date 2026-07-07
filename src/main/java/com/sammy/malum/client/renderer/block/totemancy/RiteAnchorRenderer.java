@@ -4,22 +4,19 @@ import com.mojang.blaze3d.vertex.*;
 import com.mojang.math.*;
 import com.sammy.malum.client.*;
 import com.sammy.malum.common.block.curiosities.totem.anchor.*;
-import com.sammy.malum.core.systems.spirit.type.*;
+import com.sammy.malum.core.systems.spirit.SpiritArcanaType;
 import com.sammy.malum.registry.client.*;
 import net.minecraft.client.*;
 import net.minecraft.client.renderer.*;
 import net.minecraft.client.renderer.blockentity.*;
 import net.minecraft.core.*;
-import net.minecraft.util.*;
 import org.jetbrains.annotations.*;
 import org.joml.*;
 import team.lodestar.lodestone.registry.client.*;
 import team.lodestar.lodestone.modules.core.easing.Easing;
-import team.lodestar.lodestone.systems.rendering.*;
 import team.lodestar.lodestone.systems.rendering.cube.*;
 import team.lodestar.lodestone.systems.rendering.rendeertype.*;
 
-import java.awt.*;
 import java.lang.Math;
 
 public class RiteAnchorRenderer implements BlockEntityRenderer<RiteAnchorBlockEntity> {

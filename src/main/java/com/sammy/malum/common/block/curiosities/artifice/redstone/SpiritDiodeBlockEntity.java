@@ -22,7 +22,7 @@ import static net.minecraft.network.chat.Component.translatable;
 
 public class SpiritDiodeBlockEntity extends OpenStateBlockEntity {
 
-    public record SpiritDiodeInfo(TimeIntervalType type, int frequency) implements InboundInfo<SpiritDiodeBlockEntity> {
+    public record SpiritDiodeInfo(TimeIntervalType type, int frequency) implements NetworkedTinkeringInfo<SpiritDiodeBlockEntity> {
         public static final Codec<SpiritDiodeInfo> CODEC = RecordCodecBuilder.create(instance -> instance.group(
                 TimeIntervalType.CODEC.fieldOf("type").forGetter(SpiritDiodeInfo::type),
                 Codec.INT.fieldOf("frequency").forGetter(SpiritDiodeInfo::frequency)

@@ -30,9 +30,9 @@ public class PatienceRepaidGeas extends GeasEffect {
 
     @Override
     public void addTooltipComponents(LivingEntity entity, Consumer<Component> tooltipAcceptor, TooltipFlag tooltipFlag) {
-        tooltipAcceptor.accept(EffectComponentHelper.positiveGeasEffect("buffered_damage"));
-        tooltipAcceptor.accept(EffectComponentHelper.positiveGeasEffect("buffered_damage_non_lethal"));
-        tooltipAcceptor.accept(EffectComponentHelper.negativeGeasEffect("buffered_damage_more_overall"));
+        tooltipAcceptor.accept(TooltipComponentHelper.positiveGeasEffect("buffered_damage"));
+        tooltipAcceptor.accept(TooltipComponentHelper.positiveGeasEffect("buffered_damage_non_lethal"));
+        tooltipAcceptor.accept(TooltipComponentHelper.negativeGeasEffect("buffered_damage_more_overall"));
     }
 
     @Override

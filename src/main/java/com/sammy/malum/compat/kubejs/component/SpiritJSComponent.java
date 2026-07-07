@@ -7,7 +7,7 @@ import com.mojang.serialization.*;
 import com.sammy.malum.*;
 import com.sammy.malum.common.item.spirit.*;
 import com.sammy.malum.core.systems.recipe.*;
-import com.sammy.malum.core.systems.spirit.type.*;
+import com.sammy.malum.core.systems.spirit.SpiritArcanaType;
 import com.sammy.malum.registry.common.magic.*;
 import dev.latvian.mods.kubejs.recipe.*;
 import dev.latvian.mods.kubejs.recipe.component.*;

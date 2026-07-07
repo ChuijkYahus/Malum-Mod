@@ -1,18 +1,17 @@
 package com.sammy.malum.datagen.lang;
 
 import com.sammy.malum.MalumMod;
-import com.sammy.malum.common.block.curiosities.artifice.crystallarium.*;
 import com.sammy.malum.common.data.component.*;
 import com.sammy.malum.common.item.*;
 import com.sammy.malum.compat.create.*;
-import com.sammy.malum.core.handlers.KeywordTooltipHandler;
 import com.sammy.malum.core.systems.artifice.ArtificeAttributeType;
 import com.sammy.malum.common.block.ether.EtherWallTorchBlock;
 import com.sammy.malum.core.systems.geas.*;
 import com.sammy.malum.core.systems.registry.*;
 import com.sammy.malum.core.systems.rite.*;
 import com.sammy.malum.core.systems.rite.effect.SpiritRiteEffectTag;
-import com.sammy.malum.core.systems.spirit.type.*;
+import com.sammy.malum.core.systems.spirit.SpiritArcanaType;
+import com.sammy.malum.core.systems.spirit.SpiritTextData;
 import com.sammy.malum.datagen.lang.effect.*;
 import com.sammy.malum.registry.common.*;
 import com.sammy.malum.registry.common.MalumContent;
@@ -32,7 +31,6 @@ import net.minecraft.world.level.block.WallTorchBlock;
 import net.neoforged.neoforge.common.data.LanguageProvider;
 import net.neoforged.neoforge.registries.DeferredHolder;
 import team.lodestar.lodestone.helpers.DataHelper;
-import team.lodestar.lodestone.modules.toolkit.creative_tab.CategorizedCreativeTab;
 
 import java.util.*;
 import java.util.function.Supplier;
@@ -78,7 +76,6 @@ public class MalumLangDatagen extends LanguageProvider {
         var effects = new HashSet<>(MOB_EFFECTS.getEntries());
         var attributes = new HashSet<>(ATTRIBUTES.getEntries());
         var entities = new HashSet<>(ENTITY_TYPES.getEntries());
-        var spirits = new HashSet<>(SPIRIT_TYPES.getEntries());
         var rites = new HashSet<>(RITE_TYPES.getEntries());
         var geasa = new HashSet<>(GEAS_TYPES.getEntries());
         var soulwovenBanners = SoulwovenBannerPatternDataComponent.REGISTERED_PATTERNS;
@@ -89,10 +86,6 @@ public class MalumLangDatagen extends LanguageProvider {
 
         add(DataHelper.take(blocks, MalumContent.WeepingWell.PRIMORDIAL_SOUP.block()).get(), "The Weeping Well");
         add(DataHelper.take(blocks, MalumContent.WeepingWell.VOID_CONDUIT.block()).get(), "The Weeping Well");
-
-        add("item.malum.filled_spirit_jar", "Filled Spirit Jar");
-        add("malum.spirit.description.stored_spirit", "Contains: ");
-        add("malum.spirit.description.stored_soul", "Stores Soul With: ");
 
         if (CreateCompat.LOADED) { //If Create is loaded, the copper nugget won't exist.
             add("item.malum.copper_nugget", "Copper Nugget");
@@ -134,13 +127,6 @@ public class MalumLangDatagen extends LanguageProvider {
             String name = DataHelper.toTitleCase(e.getId().getPath(), "_");
             add("entity.malum." + BuiltInRegistries.ENTITY_TYPE.getKey(e.get()).getPath(), name);
         });
-
-        spirits.forEach(s -> {
-            SpiritArcanaType spirit = s.get();
-            String name = DataHelper.toTitleCase(spirit.getName(), "_");
-            add(spirit.getCountedKey(), "%1$s " + name);
-            add(spirit.getLangKey(), name);
-        });
         rites.forEach(r -> {
             SpiritRiteType rite = r.get();
             String name = DataHelper.toTitleCase(rite.getName(), "_");
@@ -161,15 +147,19 @@ public class MalumLangDatagen extends LanguageProvider {
         });
 
 
-        addSpiritFlavour(MalumSpiritTypes.SACRED_SPIRIT, "Innocent");
-        addSpiritFlavour(MalumSpiritTypes.WICKED_SPIRIT, "Malicious");
-        addSpiritFlavour(MalumSpiritTypes.ARCANE_SPIRIT, "Fundamental");
-        addSpiritFlavour(MalumSpiritTypes.ELDRITCH_SPIRIT, "Esoteric");
-        addSpiritFlavour(MalumSpiritTypes.AERIAL_SPIRIT, "Swift");
-        addSpiritFlavour(MalumSpiritTypes.AQUEOUS_SPIRIT, "Malleable");
-        addSpiritFlavour(MalumSpiritTypes.INFERNAL_SPIRIT, "Radiant");
-        addSpiritFlavour(MalumSpiritTypes.EARTHEN_SPIRIT, "Steady");
-        addSpiritFlavour(MalumSpiritTypes.UMBRAL_SPIRIT, "Antithesis");
+
+
+        add("item.malum.filled_spirit_jar", "Filled Spirit Jar");
+        add(SpiritTextData.STORED_SPIRITS, "Contains Stored Arcana");
+        addSpiritLang(MalumSpiritTypes.SACRED_SPIRIT, "Innocent");
+        addSpiritLang(MalumSpiritTypes.WICKED_SPIRIT, "Malicious");
+        addSpiritLang(MalumSpiritTypes.ARCANE_SPIRIT, "Fundamental");
+        addSpiritLang(MalumSpiritTypes.ELDRITCH_SPIRIT, "Esoteric");
+        addSpiritLang(MalumSpiritTypes.AERIAL_SPIRIT, "Swift");
+        addSpiritLang(MalumSpiritTypes.AQUEOUS_SPIRIT, "Malleable");
+        addSpiritLang(MalumSpiritTypes.INFERNAL_SPIRIT, "Radiant");
+        addSpiritLang(MalumSpiritTypes.EARTHEN_SPIRIT, "Steady");
+        addSpiritLang(MalumSpiritTypes.UMBRAL_SPIRIT, "Antithesis");
 
         add("malum.gui.slot", "Slot: ");
 
@@ -359,6 +349,10 @@ public class MalumLangDatagen extends LanguageProvider {
 
     }
 
+    private void addSpiritLang(SpiritHolder<SpiritArcanaType> spirit, String flavor) {
+        spirit.getTextData().addLangDatagen(this, flavor);
+    }
+
     @Override
     public String getName() {
         return "Malum Lang Entries";
@@ -373,20 +367,12 @@ public class MalumLangDatagen extends LanguageProvider {
         return Character.toUpperCase(s.charAt(0)) + s.substring(1);
     }
 
-    public void addRiteEffect(String identifier, String name) {
-        add("malum.effect.rite." + identifier, name);
-    }
-
     public void addRiteTag(SpiritRiteEffectTag tag, String name) {
         add(tag.getLangKey(), name);
     }
 
     public void addGeasDescription(Holder<GeasEffectType> effectType, String description) {
         add(effectType.value().getDescription(), description);
-    }
-
-    public void addSpiritFlavour(SpiritHolder<SpiritArcanaType> spiritType, String flavour) {
-        add(spiritType.value().getFlavourKey(), flavour);
     }
 
     public void addTetraMaterial(String identifier, String name) {

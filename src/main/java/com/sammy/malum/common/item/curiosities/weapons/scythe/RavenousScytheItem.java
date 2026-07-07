@@ -2,7 +2,7 @@ package com.sammy.malum.common.item.curiosities.weapons.scythe;
 
 import com.sammy.malum.common.effect.gluttony.*;
 import com.sammy.malum.core.helpers.*;
-import com.sammy.malum.core.systems.spirit.type.*;
+import com.sammy.malum.core.systems.spirit.SpiritLike;
 import com.sammy.malum.registry.common.*;
 import com.sammy.malum.registry.common.magic.*;
 import com.sammy.malum.registry.common.sound.*;
@@ -25,7 +25,7 @@ public class RavenousScytheItem extends MagicScytheItem {
 
     @Override
     public void modifyAttributeTooltipEvent(AddAttributeTooltipsEvent event) {
-        event.addTooltipLines(EffectComponentHelper.positiveItemEffect("ravenous_scythe_gluttony"));
+        event.addTooltipLines(TooltipComponentHelper.positiveItemEffect("ravenous_scythe_gluttony"));
     }
 
     @Override

@@ -22,9 +22,9 @@ public class SelfCareGeas extends GeasEffect {
 
     @Override
     public void addTooltipComponents(LivingEntity entity, Consumer<Component> tooltipAcceptor, TooltipFlag tooltipFlag) {
-        tooltipAcceptor.accept(EffectComponentHelper.positiveGeasEffect("more_saturation"));
-        tooltipAcceptor.accept(EffectComponentHelper.positiveGeasEffect("food_effect_cleanse"));
-        tooltipAcceptor.accept(EffectComponentHelper.negativeGeasEffect("faster_starving"));
+        tooltipAcceptor.accept(TooltipComponentHelper.positiveGeasEffect("more_saturation"));
+        tooltipAcceptor.accept(TooltipComponentHelper.positiveGeasEffect("food_effect_cleanse"));
+        tooltipAcceptor.accept(TooltipComponentHelper.negativeGeasEffect("faster_starving"));
         super.addTooltipComponents(entity, tooltipAcceptor, tooltipFlag);
     }
 

@@ -3,9 +3,10 @@ package com.sammy.malum.datagen.block;
 import com.sammy.malum.*;
 import com.sammy.malum.common.block.blight.*;
 import com.sammy.malum.common.block.blight.scarstone.*;
-import com.sammy.malum.common.block.curiosities.artifice.elemental_artifice.gust_igniter.GustIgniterBlock;
+import com.sammy.malum.common.block.curiosities.artifice.elemental_artifice.aerial.GustIgniterBlock;
+import com.sammy.malum.common.block.curiosities.artifice.elemental_artifice.base.ElementalArtificeBlock;
+import com.sammy.malum.common.block.curiosities.artifice.elemental_artifice.base.PrimaryArtificeBlock;
 import com.sammy.malum.common.block.curiosities.decor.banner.*;
-import com.sammy.malum.common.block.curiosities.artifice.elemental_artifice.*;
 import com.sammy.malum.common.block.curiosities.artifice.redstone.SpiritDiodeBlock;
 import com.sammy.malum.common.block.curiosities.artifice.repair_pylon.*;
 import com.sammy.malum.common.block.curiosities.totem.TotemPoleBlock;
@@ -230,12 +231,13 @@ public class MalumBlockStateSmithTypes {
     public static BlockStateSmith<ElementalArtificeBlock> ELEMENTAL_ARTIFICE_BLOCK = new BlockStateSmith<>(ElementalArtificeBlock.class, ItemModelSmithTypes.BLOCK_MODEL_ITEM, (block, provider) -> {
         var name = provider.getBlockName(block);
         var bottom = provider.getBlockTexture(name + "_bottom");
-        boolean isPrimaryArtifice = block instanceof CaptureCompatibleArtificeBlock<?>;
+        boolean isPrimaryArtifice = block instanceof PrimaryArtificeBlock<?>;
 
         var models = new HashMap<String, BlockModelBuilder>();
-        provider.getVariantBuilder(block).forAllStatesExcept(s -> {
+        provider.getVariantBuilder(block).forAllStates(s -> {
             var isOpen = s.getValue(ElementalArtificeBlock.OPEN);
             var isPowered = s.getValue(ElementalArtificeBlock.POWERED);
+            var direction = s.getValue(ElementalArtificeBlock.FACING);
             var modelName = name;
             if (isPrimaryArtifice) {
                 var isCaptured = s.getValue(GustIgniterBlock.CAPTURED);
@@ -261,18 +263,11 @@ public class MalumBlockStateSmithTypes {
             }
 
             ConfiguredModel.Builder<?> builder = ConfiguredModel.builder();
-            for (int i = 0; i < 6; i++) {
-                var direction = Direction.from3DDataValue(i);
-
-                builder.modelFile(model)
-                        .rotationX(direction == Direction.DOWN ? 180 : direction.getAxis().isHorizontal() ? 90 : 0)
-                        .rotationY(direction.getAxis().isVertical() ? 0 : (((int) direction.toYRot() + 180)) % 360);
-                if (i != 5) {
-                    builder.nextModel();
-                }
-            }
+            builder.modelFile(model)
+                    .rotationX(direction == Direction.DOWN ? 180 : direction.getAxis().isHorizontal() ? 90 : 0)
+                    .rotationY(direction.getAxis().isVertical() ? 0 : (((int) direction.toYRot() + 180)) % 360);
             return builder.build();
-        }, ElementalArtificeBlock.FACING);
+        });
     });
 
     public static BlockStateSmith<RepairPylonComponentBlock> REPAIR_PYLON_COMPONENT = new BlockStateSmith<>(RepairPylonComponentBlock.class, ItemModelSmithTypes.NO_DATAGEN, (block, provider) -> {

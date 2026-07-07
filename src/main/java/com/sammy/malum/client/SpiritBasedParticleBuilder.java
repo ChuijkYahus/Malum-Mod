@@ -1,6 +1,7 @@
 package com.sammy.malum.client;
 
-import com.sammy.malum.core.systems.spirit.type.*;
+import com.sammy.malum.core.systems.spirit.SpiritArcanaType;
+import com.sammy.malum.core.systems.spirit.SpiritLike;
 import com.sammy.malum.registry.common.magic.*;
 import it.unimi.dsi.fastutil.floats.*;
 import it.unimi.dsi.fastutil.ints.*;

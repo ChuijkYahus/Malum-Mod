@@ -1,10 +1,12 @@
-package com.sammy.malum.common.block.curiosities.artifice.elemental_artifice.gust_igniter;
+package com.sammy.malum.common.block.curiosities.artifice.elemental_artifice.aerial;
 
-import com.sammy.malum.common.block.curiosities.artifice.elemental_artifice.ElementalArtificeBlockEntity;
-import com.sammy.malum.common.block.curiosities.artifice.elemental_artifice.wind_tunnel.*;
+import com.sammy.malum.common.block.curiosities.artifice.elemental_artifice.ArtificeBlockConnectionData;
+import com.sammy.malum.common.block.curiosities.artifice.elemental_artifice.SequencedConnectionArray;
+import com.sammy.malum.common.block.curiosities.artifice.elemental_artifice.base.PrimaryArtificeBlock;
+import com.sammy.malum.common.block.curiosities.artifice.elemental_artifice.base.PrimaryArtificeBlockEntity;
+import com.sammy.malum.common.block.curiosities.artifice.elemental_artifice.base.SecondaryArtificeBlockEntity;
 import com.sammy.malum.common.block.curiosities.artifice.redstone.*;
 import com.sammy.malum.common.item.nucleus.WindNucleusItem;
-import com.sammy.malum.core.handlers.*;
 import com.sammy.malum.registry.common.*;
 import com.sammy.malum.registry.common.block.*;
 import net.minecraft.core.*;
@@ -16,27 +18,20 @@ import net.minecraft.sounds.*;
 import net.minecraft.util.*;
 import net.minecraft.world.effect.*;
 import net.minecraft.world.entity.*;
-import net.minecraft.world.entity.player.*;
 import net.minecraft.world.level.*;
 import net.minecraft.world.level.block.state.*;
 import net.minecraft.world.phys.*;
-import org.jetbrains.annotations.*;
-import team.lodestar.lodestone.helpers.*;
 import team.lodestar.lodestone.modules.toolkit.blockentity.LodestoneBlockEntityType;
 
-import java.util.*;
+import java.util.HashSet;
 
 import static com.sammy.malum.core.handlers.WindTunnelHandler.MAX_STRENGTH;
 
-public class GustIgniterBlockEntity extends ElementalArtificeBlockEntity {
+public class GustIgniterBlockEntity extends PrimaryArtificeBlockEntity {
 
     public int strength = 1;
     public int limiter = -1;
     public boolean modified = false;
-
-    public HashSet<BlockPos> windTunnels = new HashSet<>();
-    public AABB windArea;
-    public Direction windDirection;
 
     public GustIgniterBlockEntity(LodestoneBlockEntityType<? extends GustIgniterBlockEntity> type, BlockPos pos, BlockState state) {
         super(type, pos, state);
@@ -47,34 +42,11 @@ public class GustIgniterBlockEntity extends ElementalArtificeBlockEntity {
     }
 
     @Override
-    protected void loadAdditional(CompoundTag pTag, HolderLookup.Provider pRegistries) {
-        super.loadAdditional(pTag, pRegistries);
-        strength = pTag.getInt("strength");
-        limiter = pTag.getInt("limiter");
-        modified = pTag.getBoolean("modified");
-
-        windTunnels.clear();
-        var windData = pTag.getCompound("windArea");
-        if (!windData.isEmpty()) {
-            int amount = windData.getInt("windTunnelAmount");
-
-            for (int i = 0; i < amount; i++) {
-                BlockPos pos = NBTHelper.readBlockPos(windData.getCompound("windTunnelPosition_" + i));
-                if (pos != null) {
-                    windTunnels.add(pos);
-                }
-            }
-
-            windArea = new AABB(
-                    windData.getDouble("minX"),
-                    windData.getDouble("minY"),
-                    windData.getDouble("minZ"),
-                    windData.getDouble("maxX"),
-                    windData.getDouble("maxY"),
-                    windData.getDouble("maxZ")
-            );
-            windDirection = Direction.byName(windData.getString("windDirection"));
-        }
+    protected void loadAdditional(CompoundTag tag, HolderLookup.Provider registries) {
+        super.loadAdditional(tag, registries);
+        strength = tag.getInt("strength");
+        limiter = tag.getInt("limiter");
+        modified = tag.getBoolean("modified");
     }
 
     @Override
@@ -83,90 +55,72 @@ public class GustIgniterBlockEntity extends ElementalArtificeBlockEntity {
         tag.putInt("strength", strength);
         tag.putInt("limiter", limiter);
         tag.putBoolean("modified", modified);
-
-        CompoundTag windData = new CompoundTag();
-        if (!windTunnels.isEmpty()) {
-            windData.putInt("windTunnelAmount", windTunnels.size());
-            int index = 0;
-            for (BlockPos pos : windTunnels) {
-                windData.put("windTunnelPosition_" + index, NBTHelper.saveBlockPos(pos));
-                index++;
-            }
-        }
-        if (windArea != null) {
-            windData.putDouble("minX", windArea.minX);
-            windData.putDouble("minY", windArea.minY);
-            windData.putDouble("minZ", windArea.minZ);
-            windData.putDouble("maxX", windArea.maxX);
-            windData.putDouble("maxY", windArea.maxY);
-            windData.putDouble("maxZ", windArea.maxZ);
-        }
-        if (windDirection != null) {
-            windData.putString("windDirection", windDirection.getName());
-        }
-        if (!windData.isEmpty()) {
-            tag.put("windArea", windData);
-        }
     }
 
     @Override
-    public void setInfo(GustGizmoInfo info) {
+    public void setInfo(ElementalArtificeBlockConfigInfo info) {
         this.strength = info.strength();
         this.modified = info.modified();
     }
 
     @Override
-    public void onBreak(@Nullable Player player) {
-        deactivate();
+    public NetworkedTinkeringInfo<? extends OpenStateBlockEntity> resetState() {
+        return new ElementalArtificeBlockConfigInfo(strength, modified);
     }
 
     @Override
-    public InboundInfo<? extends OpenStateBlockEntity> resetState() {
-        return new GustGizmoInfo(strength, modified);
-    }
-
-    @Override
-    public void toggleState(ServerLevel level, boolean newValue, InboundInfo<?> inboundInfo) {
-        super.toggleState(level, newValue, inboundInfo);
-        WindTunnelHandler.modifyTunnels(level, this, b -> b.setValue(WindTunnelBlock.OPEN, newValue));
+    public void clientTick(Level level) {
+        super.clientTick(level);
     }
 
     @Override
     public void serverTick(ServerLevel level) {
-        if (windArea != null && windDirection != null) {
-            var affected = level.getEntities(null, windArea);
-            for (Entity entity : affected) {
-                if (WindTunnelHandler.isInArea(entity, windArea, windDirection, windTunnels)) {
-                    var data = entity.getData(MalumAttachmentTypes.WIND_TUNNEL_INFO);
-                    if (data.addInfluence(this)) {
-                        entity.syncData(MalumAttachmentTypes.WIND_TUNNEL_INFO);
-                    }
+        if (connectionData != null) {
+            var affectedEntities = connectionData.findAffectedEntities(level);
+            for (Entity entity : affectedEntities) {
+                var data = entity.getData(MalumAttachmentTypes.WIND_TUNNEL_INFO);
+                if (data.addInfluence(this)) {
+                    entity.syncData(MalumAttachmentTypes.WIND_TUNNEL_INFO);
                 }
             }
         }
     }
 
-    public void activate(boolean powered) {
-        if (WindTunnelHandler.modifyTunnels(level, this, b -> b.setValue(WindTunnelBlock.POWERED, powered))) {
+    @Override
+    public void gatherConnectionData(ServerLevel level, HashSet<SecondaryArtificeBlockEntity> connectedBlocks) {
+        int strength = this.strength;
+        for (SecondaryArtificeBlockEntity blockEntity : connectedBlocks) {
+            if (!(blockEntity instanceof WindTunnelBlockEntity windTunnel)) {
+                continue;
+            }
+            int clamped = windTunnel.clampStrength(strength);
+            if (clamped < strength) {
+                strength = clamped;
+            }
+        }
+    }
+
+    @Override
+    public ArtificeBlockConnectionData bakeConnectionData(ServerLevel level, SequencedConnectionArray array) {
+        float padding = 0.25f;
+        int length = getTunnelLength();
+        return new ArtificeBlockConnectionData(array, padding, length);
+    }
+
+    @Override
+    public void clearConnectionData() {
+        limiter = -1;
+    }
+
+    @Override
+    public void activate(ServerLevel level, boolean powered) {
+        BlockState state = getBlockState();
+        if (state.getValue(PrimaryArtificeBlock.CAPTURED)) {
             return;
         }
-        if (!getBlockState().getValue(WindTunnelBlock.POWERED) && powered) {
+        if (!state.getValue(WindTunnelBlock.POWERED) && powered) {
             createWindGust();
         }
-    }
-
-    public void deactivate() {
-        WindTunnelHandler.modifyTunnels(level, this, b -> b.setValue(WindTunnelBlock.POWERED, false));
-    }
-
-    public void bind(WindTunnelBlockEntity tunnel) {
-        tunnel.bind(this);
-        windTunnels.add(tunnel.getBlockPos());
-    }
-
-    public void unbind(WindTunnelBlockEntity tunnel) {
-        tunnel.unbind();
-        windTunnels.remove(tunnel.getBlockPos());
     }
 
     public int getTunnelLength() {

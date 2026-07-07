@@ -5,7 +5,7 @@ import com.sammy.malum.common.recipe.*;
 import com.sammy.malum.core.systems.geas.*;
 import com.sammy.malum.core.systems.recipe.*;
 import com.sammy.malum.core.systems.registry.*;
-import com.sammy.malum.core.systems.spirit.type.*;
+import com.sammy.malum.core.systems.spirit.SpiritArcanaType;
 import net.minecraft.core.*;
 import net.minecraft.data.recipes.*;
 import net.minecraft.resources.*;

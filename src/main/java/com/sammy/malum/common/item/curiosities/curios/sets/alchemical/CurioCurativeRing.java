@@ -16,7 +16,7 @@ public class CurioCurativeRing extends MalumCurioItem implements IMalumEventResp
 
     @Override
     public void addExtraTooltipLines(Consumer<Component> consumer) {
-        consumer.accept(EffectComponentHelper.positiveCurioEffect("spirits_heal"));
+        consumer.accept(TooltipComponentHelper.positiveCurioEffect("spirits_heal"));
     }
 
     @Override

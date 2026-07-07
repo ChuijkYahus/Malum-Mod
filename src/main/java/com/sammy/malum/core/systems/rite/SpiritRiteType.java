@@ -5,11 +5,11 @@ import com.mojang.datafixers.util.Pair;
 import com.mojang.serialization.*;
 import com.sammy.malum.client.screen.codex.pages.BookPage;
 import com.sammy.malum.common.block.curiosities.totem.*;
-import com.sammy.malum.core.helpers.EffectComponentHelper;
+import com.sammy.malum.core.helpers.TooltipComponentHelper;
 import com.sammy.malum.core.systems.registry.*;
 import com.sammy.malum.core.systems.registry.rite.*;
 import com.sammy.malum.core.systems.rite.effect.*;
-import com.sammy.malum.core.systems.spirit.type.*;
+import com.sammy.malum.core.systems.spirit.SpiritArcanaType;
 import com.sammy.malum.registry.common.magic.rite.*;
 import io.netty.buffer.ByteBuf;
 import net.minecraft.ChatFormatting;
@@ -89,7 +89,7 @@ public class SpiritRiteType {
     public List<Component> getDetailedDescription() {
         if (detailedDescription == null) {
             ArrayList<Component> tooltip = new ArrayList<>();
-            var color = getIdentifyingSpirit().getStyle(0.9f);
+            var color = getIdentifyingSpirit().getTextData().getStyle(0.9f);
             var title = Component.translatable(getLangKey()).withStyle(color);
             var tags = getTags();
             var effectDetails = getEffectDetails();
@@ -106,7 +106,7 @@ public class SpiritRiteType {
         MutableComponent effect = Component.translatable(getEffectLangKey());
         String text = effect.getString();
         String[] parts = text.split("\n");
-        return Arrays.stream(parts).map(p -> EffectComponentHelper.riteEffect(p, this)).toList();
+        return Arrays.stream(parts).map(p -> TooltipComponentHelper.riteEffect(p, this)).toList();
     }
 
     public MutableComponent getTags() {

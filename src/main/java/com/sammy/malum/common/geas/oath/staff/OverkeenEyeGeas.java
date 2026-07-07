@@ -21,7 +21,7 @@ public class OverkeenEyeGeas extends GeasEffect {
 
     @Override
     public void addTooltipComponents(LivingEntity entity, Consumer<Component> tooltipAcceptor, TooltipFlag tooltipFlag) {
-        tooltipAcceptor.accept(EffectComponentHelper.positiveGeasEffect("staff_homing"));
+        tooltipAcceptor.accept(TooltipComponentHelper.positiveGeasEffect("staff_homing"));
         super.addTooltipComponents(entity, tooltipAcceptor, tooltipFlag);
     }
 

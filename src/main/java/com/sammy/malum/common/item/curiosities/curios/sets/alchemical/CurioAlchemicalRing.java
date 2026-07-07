@@ -19,7 +19,7 @@ public class CurioAlchemicalRing extends MalumCurioItem implements IMalumEventRe
 
     @Override
     public void addExtraTooltipLines(Consumer<Component> consumer) {
-        consumer.accept(EffectComponentHelper.positiveCurioEffect("spirits_extend_effect"));
+        consumer.accept(TooltipComponentHelper.positiveCurioEffect("spirits_extend_effect"));
     }
 
     @Override

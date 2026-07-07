@@ -26,35 +26,35 @@ public abstract class OpenStateBlockEntity extends LodestoneBlockEntity {
         if (closeDelay > 0) {
             closeDelay--;
             if (closeDelay == 0) {
-                toggleState(level, false, resetState());
+                handleTinkeredStateChange(level, false, resetState());
             }
         }
     }
 
-    public abstract InboundInfo<? extends OpenStateBlockEntity> resetState();
+    public abstract NetworkedTinkeringInfo<? extends OpenStateBlockEntity> resetState();
 
-    public void toggleState(ServerLevel level, boolean newValue, InboundInfo<?> inboundInfo) {
+    public void handleTinkeredStateChange(ServerLevel level, boolean newValue, NetworkedTinkeringInfo<?> networkedTinkeringInfo) {
         if (!canTinker()) {
             return;
         }
-        var affected = getTinkeredBlock();
+        var affected = redirectTinkerFocus();
         if (affected != this) {
-            affected.toggleState(level, newValue, inboundInfo);
+            affected.handleTinkeredStateChange(level, newValue, networkedTinkeringInfo);
             return;
         }
-        boolean value = getBlockState().getValue(BlockStateProperties.OPEN);
-        if (value != newValue) {
-            level.setBlock(getBlockPos(), getBlockState().setValue(BlockStateProperties.OPEN, !value), 3);
-            var sound = value ? MalumBlockSoundEvents.SPIRIT_DIODE_CLOSE.get() : MalumBlockSoundEvents.SPIRIT_DIODE_OPEN.get();
+        var state = getBlockState();
+        if (state.getValue(BlockStateProperties.OPEN) != newValue) {
+            level.setBlock(getBlockPos(), state.cycle(BlockStateProperties.OPEN), 3);
+            var particleEffect = newValue ? MalumParticleEffectTypes.SPIRIT_DIODE_OPEN : MalumParticleEffectTypes.SPIRIT_DIODE_CLOSE;
+            var sound = newValue ? MalumBlockSoundEvents.SPIRIT_DIODE_OPEN.get() : MalumBlockSoundEvents.SPIRIT_DIODE_CLOSE.get();
             float pitch = Easing.SINE_IN_OUT.asWeighedRandom(level.getRandom(), 0.9f, 1.1f);
-            var particleEffect = value ? MalumParticleEffectTypes.SPIRIT_DIODE_CLOSE : MalumParticleEffectTypes.SPIRIT_DIODE_OPEN;
             level.playSound(null, getBlockPos(), sound, SoundSource.BLOCKS, 0.8f, pitch);
             particleEffect.createEffect()
-                    .at(getBlockPos().getCenter().add(0, value ? 0 : 0.5f, 0))
+                    .at(getBlockPos().getCenter().add(0, newValue ? 0.5f : 0, 0))
                     .color(ColorParticleData.create(new Color(170, 15, 1), new Color(129, 12, 0)).build())
                     .spawn(level);
             setDirty();
-            inboundInfo.sync(affected);
+            networkedTinkeringInfo.sync(affected);
         }
         closeDelay = newValue ? 100 : 0;
     }
@@ -63,11 +63,11 @@ public abstract class OpenStateBlockEntity extends LodestoneBlockEntity {
         return true;
     }
 
-    public OpenStateBlockEntity getTinkeredBlock() {
+    public OpenStateBlockEntity redirectTinkerFocus() {
         return this;
     }
 
-    public interface InboundInfo<T extends LodestoneBlockEntity> {
+    public interface NetworkedTinkeringInfo<T extends LodestoneBlockEntity> {
 
         default void sync(OpenStateBlockEntity entity) {
             sync((T) entity);

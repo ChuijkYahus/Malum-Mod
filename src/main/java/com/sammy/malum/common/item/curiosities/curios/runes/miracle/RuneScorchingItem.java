@@ -19,7 +19,7 @@ public class RuneScorchingItem extends MiracleRuneCurioItem implements ItemEvent
 
     @Override
     public void addExtraTooltipLines(Consumer<Component> consumer) {
-        consumer.accept(EffectComponentHelper.positiveCurioEffect("burning_damage"));
+        consumer.accept(TooltipComponentHelper.positiveCurioEffect("burning_damage"));
     }
 
     @Override

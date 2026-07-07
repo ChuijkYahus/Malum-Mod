@@ -4,7 +4,7 @@ import com.mojang.blaze3d.systems.RenderSystem;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.sammy.malum.client.screen.codex.WidgetDesign;
 import com.sammy.malum.client.screen.codex.display.texture.DynamicTextureRenderer;
-import com.sammy.malum.core.systems.spirit.type.SpiritArcanaType;
+import com.sammy.malum.core.systems.spirit.SpiritArcanaType;
 import com.sammy.malum.registry.common.magic.MalumSpiritTypes;
 import it.unimi.dsi.fastutil.ints.Int2ObjectFunction;
 import net.minecraft.client.Minecraft;

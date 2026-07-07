@@ -1,14 +1,14 @@
 package com.sammy.malum.common.payloads.waveform;
 
-import com.sammy.malum.common.block.curiosities.artifice.elemental_artifice.*;
+import com.sammy.malum.common.block.curiosities.artifice.elemental_artifice.base.ElementalArtificeBlockEntity;
 import io.netty.buffer.*;
 import net.minecraft.core.*;
 import net.minecraft.network.*;
 import net.minecraft.network.codec.*;
 
-public class GustGizmoStateUpdatePayload extends OpenBlockEntityStateUpdatePayload<ElementalArtificeBlockEntity.GustGizmoInfo> {
+public class GustGizmoStateUpdatePayload extends OpenBlockEntityStateUpdatePayload<ElementalArtificeBlockEntity.ElementalArtificeBlockConfigInfo> {
 
-    public GustGizmoStateUpdatePayload(BlockPos pos, boolean isOpen, ElementalArtificeBlockEntity.GustGizmoInfo info) {
+    public GustGizmoStateUpdatePayload(BlockPos pos, boolean isOpen, ElementalArtificeBlockEntity.ElementalArtificeBlockConfigInfo info) {
         super(pos, isOpen, info);
     }
 
@@ -17,7 +17,7 @@ public class GustGizmoStateUpdatePayload extends OpenBlockEntityStateUpdatePaylo
     }
 
     @Override
-    public StreamCodec<ByteBuf, ElementalArtificeBlockEntity.GustGizmoInfo> getInfoCodec() {
-        return ElementalArtificeBlockEntity.GustGizmoInfo.STREAM_CODEC;
+    public StreamCodec<ByteBuf, ElementalArtificeBlockEntity.ElementalArtificeBlockConfigInfo> getInfoCodec() {
+        return ElementalArtificeBlockEntity.ElementalArtificeBlockConfigInfo.STREAM_CODEC;
     }
 }

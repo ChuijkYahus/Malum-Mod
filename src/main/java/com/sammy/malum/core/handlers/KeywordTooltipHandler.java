@@ -1,7 +1,7 @@
 package com.sammy.malum.core.handlers;
 
 import com.sammy.malum.MalumMod;
-import com.sammy.malum.core.helpers.EffectComponentHelper;
+import com.sammy.malum.core.helpers.TooltipComponentHelper;
 import net.minecraft.network.chat.Component;
 import net.neoforged.neoforge.event.entity.player.ItemTooltipEvent;
 import org.jetbrains.annotations.*;
@@ -36,7 +36,7 @@ public class KeywordTooltipHandler {
             if (event.getFlags().isAdvanced()) {
                 index--;
             }
-            tooltip.add(index, EffectComponentHelper.effectKeyword(presentKeyword));
+            tooltip.add(index, TooltipComponentHelper.effectKeyword(presentKeyword));
         }
     }
 

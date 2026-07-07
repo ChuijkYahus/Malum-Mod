@@ -17,7 +17,7 @@ public class CurioDischargeRing extends MalumCurioItem {
 
     @Override
     public void addExtraTooltipLines(Consumer<Component> consumer) {
-        consumer.accept(EffectComponentHelper.positiveCurioEffect("bigger_explosions"));
+        consumer.accept(TooltipComponentHelper.positiveCurioEffect("bigger_explosions"));
     }
 
     public static float increaseExplosionRadius(LivingEntity source, float original) {

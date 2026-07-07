@@ -2,8 +2,8 @@ package com.sammy.malum.common.item.curiosities.weapons.staff;
 
 import com.sammy.malum.common.entity.bolt.*;
 import com.sammy.malum.common.item.spirit.ISpiritAffiliatedItem;
-import com.sammy.malum.core.helpers.EffectComponentHelper;
-import com.sammy.malum.core.systems.spirit.type.*;
+import com.sammy.malum.core.helpers.TooltipComponentHelper;
+import com.sammy.malum.core.systems.spirit.SpiritLike;
 import com.sammy.malum.registry.common.*;
 import com.sammy.malum.registry.common.magic.*;
 import com.sammy.malum.registry.common.sound.*;
@@ -46,8 +46,8 @@ public class ErosionScepterItem extends AbstractStaffItem implements ISpiritAffi
 
     @Override
     public void modifyAttributeTooltipEvent(AddAttributeTooltipsEvent event) {
-        event.addTooltipLines(EffectComponentHelper.positiveItemEffect("erosive_spread"));
-        event.addTooltipLines(EffectComponentHelper.positiveItemEffect("erosive_silence"));
+        event.addTooltipLines(TooltipComponentHelper.positiveItemEffect("erosive_spread"));
+        event.addTooltipLines(TooltipComponentHelper.positiveItemEffect("erosive_silence"));
     }
 
     @Override

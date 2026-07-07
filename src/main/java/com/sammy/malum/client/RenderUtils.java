@@ -1,10 +1,9 @@
 package com.sammy.malum.client;
 
 import com.mojang.blaze3d.vertex.*;
-import com.sammy.malum.core.systems.spirit.type.*;
+import com.sammy.malum.core.systems.spirit.SpiritLike;
 import net.minecraft.util.*;
 import net.minecraft.world.entity.*;
-import org.joml.*;
 import team.lodestar.lodestone.helpers.*;
 import team.lodestar.lodestone.modules.core.easing.Easing;
 import team.lodestar.lodestone.systems.rendering.*;

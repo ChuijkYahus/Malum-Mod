@@ -24,7 +24,7 @@ public class RuneHeresyItem extends MadnessRuneCurioItem implements ItemEventHan
 
     @Override
     public void addExtraTooltipLines(Consumer<Component> consumer) {
-        consumer.accept(EffectComponentHelper.positiveCurioEffect("silence"));
+        consumer.accept(TooltipComponentHelper.positiveCurioEffect("silence"));
     }
 
     @Override

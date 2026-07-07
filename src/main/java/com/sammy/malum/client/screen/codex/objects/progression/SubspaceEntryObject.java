@@ -1,6 +1,5 @@
 package com.sammy.malum.client.screen.codex.objects.progression;
 
-import com.google.common.collect.*;
 import com.mojang.blaze3d.systems.*;
 import com.sammy.malum.client.screen.codex.*;
 import com.sammy.malum.client.screen.codex.handlers.*;
@@ -8,7 +7,7 @@ import com.sammy.malum.client.screen.codex.helper.*;
 import com.sammy.malum.client.screen.codex.objects.*;
 import com.sammy.malum.client.screen.codex.screens.progression.*;
 import com.sammy.malum.core.systems.rite.*;
-import com.sammy.malum.core.systems.spirit.type.*;
+import com.sammy.malum.core.systems.spirit.SpiritLike;
 import com.sammy.malum.registry.client.*;
 import com.sammy.malum.registry.common.sound.*;
 import net.minecraft.client.*;
@@ -29,7 +28,6 @@ import team.lodestar.lodestone.systems.rendering.shader.*;
 import javax.annotation.*;
 import java.lang.Math;
 import java.util.*;
-import java.util.List;
 import java.util.stream.*;
 
 import static com.sammy.malum.MalumMod.malumPath;

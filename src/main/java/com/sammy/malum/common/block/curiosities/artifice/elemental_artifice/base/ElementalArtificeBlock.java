@@ -1,4 +1,4 @@
-package com.sammy.malum.common.block.curiosities.artifice.elemental_artifice;
+package com.sammy.malum.common.block.curiosities.artifice.elemental_artifice.base;
 
 import net.minecraft.core.*;
 import net.minecraft.world.item.context.*;
@@ -41,5 +41,12 @@ public abstract class ElementalArtificeBlock<T extends ElementalArtificeBlockEnt
     @Override
     protected @NotNull BlockState mirror(BlockState state, Mirror mirror) {
         return state.rotate(mirror.getRotation(state.getValue(FACING)));
+    }
+
+    public static boolean isPowered(BlockState state) {
+        if (!(state.getBlock() instanceof ElementalArtificeBlock<?>)) {
+            return false;
+        }
+        return state.getValue(POWERED) && !state.getValue(OPEN);
     }
 }

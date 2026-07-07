@@ -28,8 +28,8 @@ public class ReaperGeas extends GeasEffect {
 
     @Override
     public void addTooltipComponents(LivingEntity entity, Consumer<Component> tooltipAcceptor, TooltipFlag tooltipFlag) {
-        tooltipAcceptor.accept(EffectComponentHelper.positiveGeasEffect("scythe_combo"));
-        tooltipAcceptor.accept(EffectComponentHelper.negativeGeasEffect("only_scythe"));
+        tooltipAcceptor.accept(TooltipComponentHelper.positiveGeasEffect("scythe_combo"));
+        tooltipAcceptor.accept(TooltipComponentHelper.negativeGeasEffect("only_scythe"));
         super.addTooltipComponents(entity, tooltipAcceptor, tooltipFlag);
     }
 

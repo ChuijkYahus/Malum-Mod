@@ -25,9 +25,9 @@ public class LifeweaverGeas extends GeasEffect {
     @Override
     public void addTooltipComponents(LivingEntity entity, Consumer<Component> tooltipAcceptor, TooltipFlag tooltipFlag) {
         super.addTooltipComponents(entity, tooltipAcceptor, tooltipFlag);
-        tooltipAcceptor.accept(EffectComponentHelper.positiveGeasEffect("passive_healing"));
-        tooltipAcceptor.accept(EffectComponentHelper.positiveGeasEffect("healing_aura"));
-        tooltipAcceptor.accept(EffectComponentHelper.negativeGeasEffect("healing_aura_no_filter"));
+        tooltipAcceptor.accept(TooltipComponentHelper.positiveGeasEffect("passive_healing"));
+        tooltipAcceptor.accept(TooltipComponentHelper.positiveGeasEffect("healing_aura"));
+        tooltipAcceptor.accept(TooltipComponentHelper.negativeGeasEffect("healing_aura_no_filter"));
     }
 
     @Override

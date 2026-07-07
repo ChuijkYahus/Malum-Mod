@@ -9,7 +9,7 @@ import net.minecraft.server.level.*;
 import net.neoforged.neoforge.network.handling.*;
 import team.lodestar.lodestone.systems.network.*;
 
-public abstract class OpenBlockEntityStateUpdatePayload<T extends OpenStateBlockEntity.InboundInfo<?>> extends OneSidedPayloadData {
+public abstract class OpenBlockEntityStateUpdatePayload<T extends OpenStateBlockEntity.NetworkedTinkeringInfo<?>> extends OneSidedPayloadData {
     private final BlockPos pos;
     private final boolean isOpen;
     private final T info;
@@ -32,7 +32,7 @@ public abstract class OpenBlockEntityStateUpdatePayload<T extends OpenStateBlock
     public void handle(IPayloadContext iPayloadContext) {
         if (iPayloadContext.player().level() instanceof ServerLevel level) {
             if (level.getBlockEntity(pos) instanceof OpenStateBlockEntity openStateBlockEntity) {
-                openStateBlockEntity.toggleState(level, isOpen, info);
+                openStateBlockEntity.handleTinkeredStateChange(level, isOpen, info);
             }
         }
     }

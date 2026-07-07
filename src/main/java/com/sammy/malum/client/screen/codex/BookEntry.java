@@ -4,7 +4,7 @@ import com.google.common.collect.ImmutableList;
 import com.sammy.malum.client.VoidRevelationHandler;
 import com.sammy.malum.client.screen.codex.pages.BookPage;
 import com.sammy.malum.client.screen.codex.pages.EntryReference;
-import com.sammy.malum.core.systems.spirit.type.*;
+import com.sammy.malum.core.systems.spirit.SpiritLike;
 import net.minecraft.client.*;
 import net.minecraft.network.chat.Style;
 import net.minecraft.stats.*;

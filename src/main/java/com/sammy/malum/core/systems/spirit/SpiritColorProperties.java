@@ -1,4 +1,4 @@
-package com.sammy.malum.core.systems.spirit.type;
+package com.sammy.malum.core.systems.spirit;
 
 import team.lodestar.lodestone.helpers.*;
 import team.lodestar.lodestone.modules.core.easing.Easing;

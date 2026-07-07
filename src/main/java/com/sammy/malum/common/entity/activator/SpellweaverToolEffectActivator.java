@@ -2,7 +2,7 @@ package com.sammy.malum.common.entity.activator;
 
 import com.sammy.malum.common.entity.*;
 import com.sammy.malum.common.spiritrite.effect.aerial.*;
-import com.sammy.malum.core.systems.spirit.type.*;
+import com.sammy.malum.core.systems.spirit.SpiritArcanaType;
 import com.sammy.malum.registry.common.entity.*;
 import com.sammy.malum.registry.common.magic.*;
 import com.sammy.malum.registry.common.sound.*;
@@ -11,7 +11,6 @@ import net.minecraft.core.*;
 import net.minecraft.nbt.*;
 import net.minecraft.network.syncher.*;
 import net.minecraft.server.level.*;
-import net.minecraft.sounds.SoundEvents;
 import net.minecraft.util.*;
 import net.minecraft.world.entity.*;
 import net.minecraft.world.entity.item.*;

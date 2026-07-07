@@ -20,7 +20,7 @@ public class CurioConcealingRing extends MalumCurioItem {
 
     @Override
     public void addExtraTooltipLines(Consumer<Component> consumer) {
-        consumer.accept(EffectComponentHelper.positiveCurioEffect("friendly_enemies"));
+        consumer.accept(TooltipComponentHelper.positiveCurioEffect("friendly_enemies"));
     }
 
     public static void preventDetection(LivingVisibilityEvent event) {

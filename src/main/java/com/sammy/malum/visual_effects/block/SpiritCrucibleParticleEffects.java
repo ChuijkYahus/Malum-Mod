@@ -8,7 +8,7 @@ import com.sammy.malum.core.systems.artifice.IArtificeAcceptor;
 import com.sammy.malum.common.block.curiosities.artifice.spirit_catalyzer.*;
 import com.sammy.malum.common.item.augment.*;
 import com.sammy.malum.common.item.spirit.*;
-import com.sammy.malum.core.systems.spirit.type.*;
+import com.sammy.malum.core.systems.spirit.SpiritArcanaType;
 import com.sammy.malum.registry.common.*;
 import com.sammy.malum.visual_effects.SparkParticleEffects;
 import com.sammy.malum.visual_effects.SpiritLightSpecs;

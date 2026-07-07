@@ -2,7 +2,7 @@ package com.sammy.malum.visual_effects;
 
 import com.sammy.malum.client.*;
 import com.sammy.malum.common.entity.spirit.*;
-import com.sammy.malum.core.systems.spirit.type.*;
+import com.sammy.malum.core.systems.spirit.SpiritLike;
 import com.sammy.malum.registry.common.*;
 import net.minecraft.world.level.*;
 import net.minecraft.world.phys.*;
