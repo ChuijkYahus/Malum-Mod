@@ -27,7 +27,12 @@ public class ConjunctureCrystallariumContainer extends LodestoneBlockEntityConta
         if (blockEntity != null) {
             var itemHandler = getItemStackHandler();
             addSlot(new SlotItemHandler(itemHandler, 0, 91, 73));
-            addSlot(new SlotItemHandler(itemHandler, 1, 91, 109));
+            addSlot(new SlotItemHandler(itemHandler, 1, 91, 109) {
+                @Override
+                public boolean mayPlace(ItemStack stack) {
+                    return isFuel(stack);
+                }
+            });
 
             for (int i = 0; i < 3; i++) {
                 addSlot(new SlotItemHandler(itemHandler, 2+i, 146, 39+17*i) {
@@ -39,6 +44,10 @@ public class ConjunctureCrystallariumContainer extends LodestoneBlockEntityConta
 
             }
         }
+    }
+
+    private boolean isFuel(ItemStack stack) {
+        return stack.is(MalumTags.Items.CONJUNCTURE_CRYSTALLARIUM_FUEL);
     }
 
     @Override

@@ -101,6 +101,8 @@ public class MalumTags {
         public static final TagKey<Item> TAINTED_ROCK = tag("tainted_rock");
         public static final TagKey<Item> TWISTED_ROCK = tag("twisted_rock");
 
+        public static final TagKey<Item> CONJUNCTURE_CRYSTALLARIUM_FUEL = tag("conjuncture_crystallarium_fuel");
+
 
 
         private static TagKey<Item> modTag(String path) {

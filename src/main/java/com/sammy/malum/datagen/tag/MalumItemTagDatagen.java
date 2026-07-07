@@ -258,6 +258,8 @@ public class MalumItemTagDatagen extends LodestoneItemTagsSystem {
 
         tag(HIDDEN_AS_RESULT_ONLY).add(WEIGHT_OF_WORLDS.get(), EDGE_OF_DELIVERANCE.get(), SUNDERING_ANCHOR.get());
 
+        tag(CONJUNCTURE_CRYSTALLARIUM_FUEL).add(CALCIFIED_EBONY.get());
+
         for (DeferredHolder<net.minecraft.world.item.Item, ? extends net.minecraft.world.item.Item> i : items) {
             if (i.get() instanceof MalumCurioItem) {
                 final net.minecraft.world.item.Item item = i.get();

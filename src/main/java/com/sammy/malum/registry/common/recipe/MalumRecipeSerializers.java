@@ -2,6 +2,8 @@ package com.sammy.malum.registry.common.recipe;
 
 import com.sammy.malum.MalumMod;
 import com.sammy.malum.common.recipe.*;
+import com.sammy.malum.common.recipe.derealization.ConjunctureCrystallariumRecipe;
+import com.sammy.malum.common.recipe.derealization.OreDerealizationRecipe;
 import com.sammy.malum.common.recipe.node_cooking.IngredientBasedBlastingRecipe;
 import com.sammy.malum.common.recipe.node_cooking.IngredientBasedSmeltingRecipe;
 import com.sammy.malum.common.recipe.node_cooking.NodeCookingSerializer;
@@ -27,4 +29,7 @@ public class MalumRecipeSerializers {
     public static final DeferredHolder<RecipeSerializer<?>, RecipeSerializer<UnchainedTransmutationRecipe>> SPIRIT_TRANSMUTATION_RECIPE_SERIALIZER = RECIPE_SERIALIZERS.register(UnchainedTransmutationRecipe.NAME, () -> new LodestoneRecipeSerializer<>(UnchainedTransmutationRecipe.CODEC));
 
     public static final DeferredHolder<RecipeSerializer<?>, RecipeSerializer<VoidFavorRecipe>> VOID_FAVOR_RECIPE_SERIALIZER = RECIPE_SERIALIZERS.register(VoidFavorRecipe.NAME, () -> new LodestoneRecipeSerializer<>(VoidFavorRecipe.CODEC));
+
+    public static final DeferredHolder<RecipeSerializer<?>, RecipeSerializer<ConjunctureCrystallariumRecipe>> CONJUNCTURE_CRYSTALLARIUM_RECIPE_SERIALIZER = RECIPE_SERIALIZERS.register(ConjunctureCrystallariumRecipe.NAME, () -> new LodestoneRecipeSerializer<>(ConjunctureCrystallariumRecipe.CODEC));
+    public static final DeferredHolder<RecipeSerializer<?>, RecipeSerializer<OreDerealizationRecipe>> ORE_DEREALIZATION_RECIPE_SERIALIZER = RECIPE_SERIALIZERS.register(OreDerealizationRecipe.NAME, () -> new LodestoneRecipeSerializer<>(OreDerealizationRecipe.CODEC));
 }

@@ -1,0 +1,19 @@
+{
+  "type": "malum:ore_derealization",
+  "conditions": {
+    "predicate_type": "minecraft:tag_match",
+    "tag": "c:ores/iron"
+  },
+  "crystal_to_grow": {
+    "block": "malum:soulstone_bud",
+    "operation": "add",
+    "property_name": "stage"
+  },
+  "metal_data": {
+    "id": "iron",
+    "nuggetForm": "c:nuggets/iron"
+  },
+  "result": {
+    "Name": "malum:derealized_iron_ore"
+  }
+}
