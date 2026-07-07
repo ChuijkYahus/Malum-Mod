@@ -10,9 +10,9 @@ import com.sammy.malum.client.renderer.block.redstone.WavebankerRenderer;
 import com.sammy.malum.client.renderer.block.redstone.WaveBreakerRenderer;
 import com.sammy.malum.client.renderer.block.totemancy.*;
 import com.sammy.malum.common.block.curiosities.artifice.crystallarium.ConjunctureCrystallariumBlockEntity;
+import com.sammy.malum.common.block.curiosities.artifice.elemental_artifice.gust_igniter.GustIgniterBlockEntity;
 import com.sammy.malum.common.block.curiosities.decor.banner.*;
-import com.sammy.malum.common.block.curiosities.artifice.gust_igniter.*;
-import com.sammy.malum.common.block.curiosities.artifice.gust_igniter.wind_tunnel.*;
+import com.sammy.malum.common.block.curiosities.artifice.elemental_artifice.wind_tunnel.*;
 import com.sammy.malum.common.block.curiosities.obelisk.brilliant.*;
 import com.sammy.malum.common.block.curiosities.obelisk.rite_pylon.*;
 import com.sammy.malum.common.block.curiosities.obelisk.runewood.*;
@@ -136,6 +136,7 @@ public class MalumBlockEntities {
 
     public static void registerCapabilities(RegisterCapabilitiesEvent event) {
         event.registerBlockEntity(Capabilities.ItemHandler.BLOCK, SPIRIT_ALTAR.get(), IInventoryCapabilityProvider::getInventory);
+        event.registerBlockEntity(Capabilities.ItemHandler.BLOCK, SPIRIT_JAR.get(), IInventoryCapabilityProvider::getInventory);
         event.registerBlockEntity(Capabilities.ItemHandler.BLOCK, ARCANA_PYLON.get(), IInventoryCapabilityProvider::getInventory);
         event.registerBlockEntity(Capabilities.ItemHandler.BLOCK, SPIRIT_CRUCIBLE.get(), IInventoryCapabilityProvider::getInventory);
         event.registerBlockEntity(Capabilities.ItemHandler.BLOCK, SPIRIT_CATALYZER.get(), IInventoryCapabilityProvider::getInventory);

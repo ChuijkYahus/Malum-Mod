@@ -20,17 +20,14 @@ java {
     }
 }
 
-tasks.named<Wrapper>("wrapper") {
-    distributionType = Wrapper.DistributionType.BIN
-}
-
 val localRuntime: Configuration by configurations.creating
+
 configurations.runtimeClasspath {
     extendsFrom(localRuntime)
 }
 
 neoForge {
-    version.set(project.property("neo_version").toString())
+    version.set(property("neo_version").toString())
 
     parchment {
         mappingsVersion.set(project.property("parchment_mappings_version").toString())
@@ -44,25 +41,16 @@ neoForge {
     runs {
         register("client") {
             client()
-            // Comma-separated list of namespaces to load gametests from. Empty = all namespaces.
-            systemProperty("neoforge.enabledGameTestNamespaces", project.property("mod_id").toString())
         }
 
         register("server") {
             server()
-            programArgument("--nogui")
-            systemProperty("neoforge.enabledGameTestNamespaces", project.property("mod_id").toString())
-        }
-
-        register("gameTestServer") {
-            type = "gameTestServer"
-            systemProperty("neoforge.enabledGameTestNamespaces", project.property("mod_id").toString())
         }
 
         register("data") {
             data()
             programArguments.addAll(
-                "--mod", project.property("mod_id").toString(),
+                "--mod", property("mod_id").toString(),
                 "--all",
                 "--output", file("src/generated/resources/").absolutePath,
                 "--existing", file("src/main/resources/").absolutePath,
@@ -97,158 +85,93 @@ repositories {
     }
     mavenLocal()
     mavenCentral()
-    maven { //Lodestone
-        name = "BlameJared maven"
-        url = uri("https://maven.blamejared.com/")
-    }
-    maven { //Curios
-        name = "Curios maven"
-        url = uri("https://maven.theillusivec4.top/")
-    }
+    maven("https://maven.blamejared.com/") // Lodestone
+    maven("https://maven.theillusivec4.top/") // Curios
 
-    maven { //Curse Maven, Generic
-        name = "Curse Maven"
-        url = uri("https://cursemaven.com")
+    maven("https://cursemaven.com") { // Curse Maven
         content {
             includeGroup("curse.maven")
         }
     }
-    maven { //ParchmentMC Maven, Generic
-        name = "ParchmentMC"
-        url = uri("https://maven.parchmentmc.org")
+
+    maven("https://maven.parchmentmc.org") { // ParchmentMC
         content {
             includeGroup("org.parchmentmc.data")
         }
     }
-    maven { //Mod Maven, Generic
-        name = "ModMaven"
-        url = uri("https://modmaven.dev")
-    }
-    maven { //Modrinth Maven, Generic
-        name = "Modrinth maven"
-        url = uri("https://api.modrinth.com/maven")
-    }
 
-    maven { //KubeJS
-        url = uri("https://maven.latvian.dev/releases")
+    maven("https://modmaven.dev") // ModMaven
+
+    maven("https://api.modrinth.com/maven") // Modrinth Maven
+
+    maven("https://maven.latvian.dev/releases") { // KubeJS
         content {
             includeGroup("dev.latvian.mods")
             includeGroup("dev.latvian.apps")
         }
     }
-    maven { //KubeJS Dependencies
-        name = "jitpack"
-        url = uri("https://jitpack.io")
+
+    maven("https://jitpack.io") { // KubeJS Dependencies
         content {
             includeGroup("io.github")
             includeGroup("com.github.rtyley")
         }
     }
 
-    maven { //GeckoLib, Needed for Iron's Spellbooks
-        url = uri("https://dl.cloudsmith.io/public/geckolib3/geckolib/maven/")
+    maven("https://dl.cloudsmith.io/public/geckolib3/geckolib/maven/") { // GeckoLib
         content {
             includeGroup("software.bernie.geckolib")
         }
     }
-    maven { //Player Animation Lib, Needed for Iron's Spellbooks
-        name = "KosmX's maven"
-        url = uri("https://maven.kosmx.dev/")
-    }
 
-    maven { //Create
-        url = uri("https://maven.createmod.net")
-    }
-    maven { //Registrate
-        url = uri("https://mvn.devos.one/snapshots")
-    }
-    maven { // NeoForge config api port, needed by ponder
-        url = uri("https://raw.githubusercontent.com/Fuzss/modresources/main/maven")
-    }
+    maven("https://maven.kosmx.dev/") // Player Animation Lib
+    maven("https://maven.teamresourceful.com/repository/maven-public/") // Athena
+    maven("https://maven.squiddev.cc") // CC Tweaked
+    maven("https://maven.ryanhcode.dev/releases") // Aero & Sable
+    maven("https://maven.createmod.net") // Create
+    maven("https://maven.tterrag.com") // Registrate
 }
 
 dependencies {
-    accessTransformers(("team.lodestar.lodestone:lodestone:${property("minecraft_version")}-${property("lodestone_version")}"))
+    val minecraftVersion = property("minecraft_version")
+    val sableCompanionVersion = property("sable_companion_version")
+
+    val lodestone = "team.lodestar.lodestone:lodestone:$minecraftVersion-${property("lodestone_version")}"
+    val curios = "top.theillusivec4.curios:curios-neoforge:${property("curios_version")}"
+    val waywardAttributes = "team.lodestar.wayward_attributes:wayward_attributes:$minecraftVersion-${property("wayward_attributes_version")}"
+
+    val kubejs = "dev.latvian.mods:kubejs-neoforge:${property("kubejs_version")}"
+    val resourcefulLib = "com.teamresourceful.resourcefullib:resourcefullib-neoforge-1.21:${property("resourceful_lib_version")}"
+    val athena = "earth.terrarium.athena:athena-neoforge-$minecraftVersion:${property("athena_version")}"
+
+    accessTransformers(lodestone)
+
+    jarJar(api("dev.ryanhcode.sable-companion:sable-companion-common-$minecraftVersion:$sableCompanionVersion") {
+        version {
+            prefer("$sableCompanionVersion")
+        }
+    })
 
     // JEI
-    compileOnlyApi(("mezz.jei:jei-${project.property("minecraft_version")}-neoforge-api:${project.property("jei_version")}"))
-    runtimeOnly(("mezz.jei:jei-${project.property("minecraft_version")}-neoforge:${project.property("jei_version")}"))
+    compileOnlyApi("mezz.jei:jei-$minecraftVersion-neoforge-api:${property("jei_version")}")
+    runtimeOnly("mezz.jei:jei-$minecraftVersion-neoforge:${property("jei_version")}")
 
-    // Curios
-    compileOnlyApi(("top.theillusivec4.curios:curios-neoforge:${property("curios_version")}"))
-    runtimeOnly(("top.theillusivec4.curios:curios-neoforge:${property("curios_version")}"))
+    modRuntime(curios)
+    modRuntime(lodestone)
+    modRuntime(waywardAttributes)
 
-    // Lodestone
-    compileOnlyApi(("team.lodestar.lodestone:lodestone:${property("minecraft_version")}-${property("lodestone_version")}"))
-    runtimeOnly(("team.lodestar.lodestone:lodestone:${property("minecraft_version")}-${property("lodestone_version")}"))
+    modRuntime(kubejs)
+    modRuntime(resourcefulLib)
+    modRuntime(athena)
 
-    // Wayward Attributes
-    compileOnlyApi(("team.lodestar.wayward_attributes:wayward_attributes:${property("minecraft_version")}-${property("wayward_attributes_version")}"))
-    runtimeOnly(("team.lodestar.wayward_attributes:wayward_attributes:${property("minecraft_version")}-${property("wayward_attributes_version")}"))
+    modRuntime("curse.maven:farmers-delight-398521:5878217")
+    
+    modRuntime("dev.eriksonn.aeronautics:aeronautics-neoforge-1.21.1:1.3.0")
+    modRuntime("dev.simulated_team.simulated:simulated-neoforge-1.21.1:1.3.0")
+    runtimeOnly("curse.maven:ftb-library-forge-404465:5754910")
+    runtimeOnly("curse.maven:architectury-api-419699:5786327")
 
-    // KubeJS
-    compileOnlyApi("dev.latvian.mods:kubejs-neoforge:${property("kubejs_version")}")
-    runtimeOnly("dev.latvian.mods:kubejs-neoforge:${property("kubejs_version")}")
-
-    // Tetra, Optional
-//    compileOnly(("curse.maven:tetra-${property("tetra_version")}"))
-//    compileOnly(("se.mickelus.mutil:mutil:${property("mutil_version")}"))
-
-    // Create Optional
-//    compileOnlyApi("com.simibubi.create:create-${property("minecraft_version")}:${property("create_version")}") {
-//        isTransitive = false
-//    }
-//    localRuntime("com.simibubi.create:create-${property("minecraft_version")}:${property("create_version")}") {
-//        isTransitive = false
-//    }
-//    compileOnlyApi("net.createmod.ponder:Ponder-NeoForge-${property("minecraft_version")}:${property("ponder_version")}")
-//    localRuntime("net.createmod.ponder:Ponder-NeoForge-${property("minecraft_version")}:${property("ponder_version")}")
-//    compileOnlyApi("dev.engine-room.flywheel:flywheel-neoforge-api-${property("minecraft_version")}:${property("flywheel_version")}")
-//    localRuntime("dev.engine-room.flywheel:flywheel-neoforge-${property("minecraft_version")}:${property("flywheel_version")}")
-//    compileOnlyApi("com.tterrag.registrate:Registrate:${property("registrate_version")}")
-//    localRuntime("com.tterrag.registrate:Registrate:${property("registrate_version")}")
-
-    // Farmer's Delight, Optional
-    compileOnlyApi(("curse.maven:farmers-delight-398521:8083481"))
-    localRuntime(("curse.maven:farmers-delight-398521:8083481"))
-
-    //Iron's Spells and Spellbooks, Optional
-    compileOnlyApi(("software.bernie.geckolib:geckolib-neoforge-${property("minecraft_version")}:${property("gecko_lib_version")}"))
-    compileOnlyApi(("dev.kosmx.player-anim:player-animation-lib-forge:${property("player_animator_version")}"))
-    compileOnlyApi(("curse.maven:irons-spells-n-spellbooks-855414:5863590"))
-//    localRuntime(("software.bernie.geckolib:geckolib-neoforge-${property("minecraft_version")}:${property("gecko_lib_version")}"))
-//    localRuntime(("dev.kosmx.player-anim:player-animation-lib-forge:${property("player_animator_version")}"))
-//    localRuntime(("curse.maven:irons-spells-n-spellbooks-855414:5863590"))
-
-    //Runtime Mods
-//    localRuntime(("curse.maven:jeed-532286:5693385"))
-//    localRuntime(("curse.maven:spark-361579:5759671"))
-    localRuntime(("curse.maven:fusion-connected-textures-854949:6073987"))
-//    localRuntime(("curse.maven:overloaded-armor-bar-314002:5537850"))
-//    localRuntime(("curse.maven:clutter-no-more-1339454:7357263"))
-
-    //FTB Whatever
-//    localRuntime("curse.maven:architectury-api-419699:5786327")
-//    localRuntime("curse.maven:ftb-library-forge-404465:5754910")
-
-    //AttributeFix
-//    localRuntime(("curse.maven:bookshelf-228525:5824127")) //Required for AttributeFix
-//    localRuntime(("curse.maven:prickle-1023259:5836410")) //Required for AttributeFix
-//    localRuntime(("curse.maven:attributefix-280510:5824104"))
-
-    // Imgui
-//    jarJar(implementation("io.github.spair:imgui-java-app:${property("imgui_version")}"))
-//    jarJar(implementation("io.github.spair:imgui-java-lwjgl3:${property("imgui_version")}"))
-//    jarJar(implementation("io.github.spair:imgui-java-binding:${property("imgui_version")}"))
-//    jarJar(implementation("io.github.spair:imgui-java-natives-windows:${property("imgui_version")}"))
-//    jarJar(implementation("io.github.spair:imgui-java-natives-macos-ft:${property("imgui_version")}"))
-//    jarJar(implementation("io.github.spair:imgui-java-natives-linux:${property("imgui_version")}"))
-//    additionalRuntimeClasspath("io.github.spair:imgui-java-app:${property("imgui_version")}")
-//    additionalRuntimeClasspath("io.github.spair:imgui-java-lwjgl3:${property("imgui_version")}")
-//    additionalRuntimeClasspath("io.github.spair:imgui-java-binding:${property("imgui_version")}")
-//    additionalRuntimeClasspath("io.github.spair:imgui-java-natives-windows:${property("imgui_version")}")
-//    additionalRuntimeClasspath("io.github.spair:imgui-java-natives-macos-ft:${property("imgui_version")}")
-//    additionalRuntimeClasspath("io.github.spair:imgui-java-natives-linux:${property("imgui_version")}")
+    localRuntime("curse.maven:neat-238372:7774002")
 }
 
 val generateModMetadata by tasks.registering(ProcessResources::class) {
@@ -308,6 +231,12 @@ idea {
 
 tasks.withType<JavaCompile> {
     options.encoding = "UTF-8"
+}
+
+
+private fun DependencyHandlerScope.modRuntime(dep: Any) {
+    compileOnlyApi(dep)
+    localRuntime(dep)
 }
 
 private fun DependencyHandlerScope.jarJar(dependencyNotation: Dependency?) {

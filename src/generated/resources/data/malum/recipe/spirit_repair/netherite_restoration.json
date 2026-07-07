@@ -31,6 +31,8 @@
     "minecraft:netherite_chestplate",
     "minecraft:netherite_leggings",
     "minecraft:netherite_boots",
-    "farmersdelight:netherite_knife"
+    "farmersdelight:netherite_knife",
+    "create:netherite_diving_helmet",
+    "create:netherite_diving_boots"
   ]
 }

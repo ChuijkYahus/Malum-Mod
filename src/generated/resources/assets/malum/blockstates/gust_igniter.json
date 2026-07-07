@@ -1,108 +1,44 @@
 {
   "variants": {
-    "facing=down,open=false,powered=false": {
-      "model": "malum:block/gust_igniter_open",
-      "x": 180
-    },
-    "facing=down,open=false,powered=true": {
-      "model": "malum:block/gust_igniter",
-      "x": 180
-    },
-    "facing=down,open=true,powered=false": {
-      "model": "malum:block/gust_igniter_open",
-      "x": 180
-    },
-    "facing=down,open=true,powered=true": {
-      "model": "malum:block/gust_igniter_open",
-      "x": 180
-    },
-    "facing=east,open=false,powered=false": {
-      "model": "malum:block/gust_igniter_open",
-      "x": 90,
-      "y": 90
-    },
-    "facing=east,open=false,powered=true": {
+    "captured=false,open=false,powered=false": {
       "model": "malum:block/gust_igniter",
       "x": 90,
       "y": 90
     },
-    "facing=east,open=true,powered=false": {
+    "captured=false,open=false,powered=true": {
+      "model": "malum:block/gust_igniter_active",
+      "x": 90,
+      "y": 90
+    },
+    "captured=false,open=true,powered=false": {
       "model": "malum:block/gust_igniter_open",
       "x": 90,
       "y": 90
     },
-    "facing=east,open=true,powered=true": {
+    "captured=false,open=true,powered=true": {
       "model": "malum:block/gust_igniter_open",
       "x": 90,
       "y": 90
     },
-    "facing=north,open=false,powered=false": {
-      "model": "malum:block/gust_igniter_open",
-      "x": 90
-    },
-    "facing=north,open=false,powered=true": {
-      "model": "malum:block/gust_igniter",
-      "x": 90
-    },
-    "facing=north,open=true,powered=false": {
-      "model": "malum:block/gust_igniter_open",
-      "x": 90
-    },
-    "facing=north,open=true,powered=true": {
-      "model": "malum:block/gust_igniter_open",
-      "x": 90
-    },
-    "facing=south,open=false,powered=false": {
-      "model": "malum:block/gust_igniter_open",
+    "captured=true,open=false,powered=false": {
+      "model": "malum:block/gust_igniter_captured",
       "x": 90,
-      "y": 180
+      "y": 90
     },
-    "facing=south,open=false,powered=true": {
-      "model": "malum:block/gust_igniter",
+    "captured=true,open=false,powered=true": {
+      "model": "malum:block/gust_igniter_captured_active",
       "x": 90,
-      "y": 180
+      "y": 90
     },
-    "facing=south,open=true,powered=false": {
-      "model": "malum:block/gust_igniter_open",
+    "captured=true,open=true,powered=false": {
+      "model": "malum:block/gust_igniter_captured_open",
       "x": 90,
-      "y": 180
+      "y": 90
     },
-    "facing=south,open=true,powered=true": {
-      "model": "malum:block/gust_igniter_open",
+    "captured=true,open=true,powered=true": {
+      "model": "malum:block/gust_igniter_captured_open",
       "x": 90,
-      "y": 180
-    },
-    "facing=up,open=false,powered=false": {
-      "model": "malum:block/gust_igniter_open"
-    },
-    "facing=up,open=false,powered=true": {
-      "model": "malum:block/gust_igniter"
-    },
-    "facing=up,open=true,powered=false": {
-      "model": "malum:block/gust_igniter_open"
-    },
-    "facing=up,open=true,powered=true": {
-      "model": "malum:block/gust_igniter_open"
-    },
-    "facing=west,open=false,powered=false": {
-      "model": "malum:block/gust_igniter_open",
-      "x": 90,
-      "y": 270
-    },
-    "facing=west,open=false,powered=true": {
-      "model": "malum:block/gust_igniter",
-      "x": 90,
-      "y": 270
-    },
-    "facing=west,open=true,powered=false": {
-      "model": "malum:block/gust_igniter_open",
-      "x": 90,
-      "y": 270
-    },
-    "facing=west,open=true,powered=true": {
-      "model": "malum:block/gust_igniter_open",
-      "x": 90,
-      "y": 270
+      "y": 90
     }
   }
 }

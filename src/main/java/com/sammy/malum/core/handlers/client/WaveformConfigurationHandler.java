@@ -1,7 +1,8 @@
 package com.sammy.malum.core.handlers.client;
 
 import com.sammy.malum.client.screen.waveform.*;
-import com.sammy.malum.common.block.curiosities.artifice.gust_igniter.*;
+import com.sammy.malum.common.block.curiosities.artifice.elemental_artifice.*;
+import com.sammy.malum.common.block.curiosities.artifice.elemental_artifice.gust_igniter.GustIgniterBlockEntity;
 import com.sammy.malum.common.block.curiosities.artifice.redstone.*;
 import com.sammy.malum.registry.common.*;
 
@@ -53,7 +54,7 @@ public class WaveformConfigurationHandler {
         interactionTime++;
         if (interactionTime == 5) {
             Screen screen = null;
-            if (entity instanceof AbstractGustGizmoBlockEntity gustGizmo) {
+            if (entity instanceof ElementalArtificeBlockEntity gustGizmo) {
                 if (gustGizmo.getTinkeredBlock() instanceof GustIgniterBlockEntity igniter) {
                     screen = new GustGizmoConfigurationScreen(igniter, igniter != gustGizmo);
                 }
