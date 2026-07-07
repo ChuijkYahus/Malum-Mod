@@ -113,16 +113,16 @@ public class SequencedConnectionArray {
 
             switch (axis) {
                 case X -> {
-                    y -= a;
-                    z -= b;
+                    y += a;
+                    z += b;
                 }
                 case Y -> {
-                    x -= a;
-                    z -= b;
+                    x += a;
+                    z += b;
                 }
                 case Z -> {
-                    x -= a;
-                    y -= b;
+                    x += a;
+                    y += b;
                 }
             }
             if (x < minX) minX = x;

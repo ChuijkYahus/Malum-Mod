@@ -1,7 +1,9 @@
-package com.sammy.malum.common.block.curiosities.artifice.redstone;
+package com.sammy.malum.common.block.curiosities.artifice.waveform;
 
 import com.mojang.serialization.*;
 import com.mojang.serialization.codecs.*;
+import com.sammy.malum.common.block.curiosities.artifice.ArtificeTinkeringInfo;
+import com.sammy.malum.common.block.curiosities.artifice.TinkererArtificeBlockEntity;
 import com.sammy.malum.common.payloads.waveform.SpiritDiodeVisualUpdatePayload;
 import io.netty.buffer.*;
 import net.minecraft.core.BlockPos;
@@ -20,9 +22,9 @@ import java.util.*;
 
 import static net.minecraft.network.chat.Component.translatable;
 
-public class SpiritDiodeBlockEntity extends OpenStateBlockEntity {
+public class SpiritDiodeBlockEntity extends TinkererArtificeBlockEntity {
 
-    public record SpiritDiodeInfo(TimeIntervalType type, int frequency) implements NetworkedTinkeringInfo<SpiritDiodeBlockEntity> {
+    public record SpiritDiodeInfo(TimeIntervalType type, int frequency) implements ArtificeTinkeringInfo {
         public static final Codec<SpiritDiodeInfo> CODEC = RecordCodecBuilder.create(instance -> instance.group(
                 TimeIntervalType.CODEC.fieldOf("type").forGetter(SpiritDiodeInfo::type),
                 Codec.INT.fieldOf("frequency").forGetter(SpiritDiodeInfo::frequency)
@@ -30,11 +32,6 @@ public class SpiritDiodeBlockEntity extends OpenStateBlockEntity {
 
         public static StreamCodec<ByteBuf, SpiritDiodeInfo> STREAM_CODEC = ByteBufCodecs.fromCodec(SpiritDiodeInfo.CODEC);
 
-        @Override
-        public void sync(SpiritDiodeBlockEntity entity) {
-            entity.type = type;
-            entity.frequency = frequency;
-        }
     }
 
     public enum TimeIntervalType implements StringRepresentable {
@@ -98,7 +95,7 @@ public class SpiritDiodeBlockEntity extends OpenStateBlockEntity {
     }
 
     @Override
-    public SpiritDiodeInfo resetState() {
+    public SpiritDiodeInfo defaultTinkeringState() {
         return new SpiritDiodeInfo(type, frequency);
     }
 
@@ -120,6 +117,15 @@ public class SpiritDiodeBlockEntity extends OpenStateBlockEntity {
 
         tag.putInt("cachedInputSignal", cachedInputSignal);
         tag.putInt("outputSignal", outputSignal);
+    }
+
+    @Override
+    public void setInfo(ArtificeTinkeringInfo info) {
+        if (info instanceof SpiritDiodeInfo spiritDiodeInfo) {
+
+            type = spiritDiodeInfo.type;
+            frequency = spiritDiodeInfo.frequency;
+        }
     }
 
     public int getAdjustedFrequency() {

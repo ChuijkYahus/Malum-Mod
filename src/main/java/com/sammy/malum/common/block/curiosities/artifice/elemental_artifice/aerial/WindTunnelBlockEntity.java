@@ -37,4 +37,9 @@ public class WindTunnelBlockEntity extends SecondaryArtificeBlockEntity {
         }
         return limiter;
     }
+
+
+    public boolean isModified() {
+        return getOwner(GustIgniterBlockEntity.class).map(i -> i.modified).orElse(false);
+    }
 }

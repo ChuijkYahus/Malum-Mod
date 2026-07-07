@@ -2,6 +2,7 @@ package com.sammy.malum.common.block.curiosities.artifice.elemental_artifice.bas
 
 import com.sammy.malum.common.block.curiosities.artifice.elemental_artifice.ArtificeBlockConnectionData;
 import com.sammy.malum.common.block.curiosities.artifice.elemental_artifice.SequencedConnectionArray;
+import com.sammy.malum.common.block.curiosities.artifice.ArtificeTinkeringInfo;
 import com.sammy.malum.core.handlers.WindTunnelHandler;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.HolderLookup;
@@ -55,14 +56,9 @@ public abstract class PrimaryArtificeBlockEntity extends ElementalArtificeBlockE
     }
 
     @Override
-    public void handleTinkeredStateChange(ServerLevel level, boolean newValue, NetworkedTinkeringInfo<?> networkedTinkeringInfo) {
-        super.handleTinkeredStateChange(level, newValue, networkedTinkeringInfo);
-        WindTunnelHandler.modifyComponents(level, this, newValue, ElementalArtificeBlock.isPowered(getBlockState()));
-    }
-
-    @Override
-    public void clientTick(Level level) {
-        super.clientTick(level);
+    public void handleTinkeredStateChange(ServerLevel level, boolean openValue, ArtificeTinkeringInfo artificeTinkeringInfo) {
+        super.handleTinkeredStateChange(level, openValue, artificeTinkeringInfo);
+        WindTunnelHandler.modifyComponents(level, this, openValue, ElementalArtificeBlock.isPowered(getBlockState()));
     }
 
     public final void setConnectionData(ArtificeBlockConnectionData connectionData) {

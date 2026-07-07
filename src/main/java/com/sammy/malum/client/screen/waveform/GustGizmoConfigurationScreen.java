@@ -4,7 +4,7 @@ import com.mojang.blaze3d.platform.*;
 import com.sammy.malum.common.block.curiosities.artifice.elemental_artifice.aerial.GustIgniterBlock;
 import com.sammy.malum.common.block.curiosities.artifice.elemental_artifice.aerial.GustIgniterBlockEntity;
 import com.sammy.malum.common.block.curiosities.artifice.elemental_artifice.aerial.WindTunnelBlockEntity;
-import com.sammy.malum.common.block.curiosities.artifice.elemental_artifice.base.ElementalArtificeBlockEntity;
+import com.sammy.malum.common.block.curiosities.artifice.elemental_artifice.ElementalArtificeTinkeringInfo;
 import com.sammy.malum.common.payloads.waveform.*;
 import com.sammy.malum.core.handlers.*;
 import net.minecraft.client.*;
@@ -54,7 +54,7 @@ public class GustGizmoConfigurationScreen extends AbstractValueConfigurationScre
 
     @Override
     protected void notifyServer(boolean isOpen) {
-        PacketDistributor.sendToServer(new GustGizmoStateUpdatePayload(gustIgniter.getBlockPos(), isOpen, new ElementalArtificeBlockEntity.ElementalArtificeBlockConfigInfo(strength, modified)));
+        PacketDistributor.sendToServer(new GustGizmoStateUpdatePayload(gustIgniter.getBlockPos(), isOpen, new ElementalArtificeTinkeringInfo(strength, modified)));
     }
 
     @Override

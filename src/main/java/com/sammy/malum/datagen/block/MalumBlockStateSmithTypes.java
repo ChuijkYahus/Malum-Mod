@@ -7,7 +7,7 @@ import com.sammy.malum.common.block.curiosities.artifice.elemental_artifice.aeri
 import com.sammy.malum.common.block.curiosities.artifice.elemental_artifice.base.ElementalArtificeBlock;
 import com.sammy.malum.common.block.curiosities.artifice.elemental_artifice.base.PrimaryArtificeBlock;
 import com.sammy.malum.common.block.curiosities.decor.banner.*;
-import com.sammy.malum.common.block.curiosities.artifice.redstone.SpiritDiodeBlock;
+import com.sammy.malum.common.block.curiosities.artifice.waveform.SpiritDiodeBlock;
 import com.sammy.malum.common.block.curiosities.artifice.repair_pylon.*;
 import com.sammy.malum.common.block.curiosities.totem.TotemPoleBlock;
 import com.sammy.malum.common.block.curiosities.totem.channel.*;

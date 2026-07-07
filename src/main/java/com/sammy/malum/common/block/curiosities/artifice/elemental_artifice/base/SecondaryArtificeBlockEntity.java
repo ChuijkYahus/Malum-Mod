@@ -1,6 +1,8 @@
 package com.sammy.malum.common.block.curiosities.artifice.elemental_artifice.base;
 
-import com.sammy.malum.common.block.curiosities.artifice.redstone.OpenStateBlockEntity;
+import com.sammy.malum.common.block.curiosities.artifice.elemental_artifice.ElementalArtificeTinkeringInfo;
+import com.sammy.malum.common.block.curiosities.artifice.ArtificeTinkeringInfo;
+import com.sammy.malum.common.block.curiosities.artifice.TinkererArtificeBlockEntity;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.nbt.CompoundTag;
@@ -35,25 +37,25 @@ public abstract class SecondaryArtificeBlockEntity extends ElementalArtificeBloc
     }
 
     @Override
-    public void setInfo(ElementalArtificeBlockConfigInfo info) {
+    public void setInfo(ArtificeTinkeringInfo info) {
         getOwner().ifPresent(g -> g.setInfo(info));
     }
 
     @Override
-    public NetworkedTinkeringInfo<? extends OpenStateBlockEntity> resetState() {
+    public ArtificeTinkeringInfo defaultTinkeringState() {
         if (getOwner().isEmpty()) {
-            return new ElementalArtificeBlockConfigInfo(0, false);
+            return new ElementalArtificeTinkeringInfo(0, false);
         }
-        return getOwner().get().resetState();
+        return getOwner().get().defaultTinkeringState();
     }
 
     @Override
-    public boolean canTinker() {
+    public boolean canBeTinkered() {
         return getOwner().isPresent();
     }
 
     @Override
-    public OpenStateBlockEntity redirectTinkerFocus() {
+    public TinkererArtificeBlockEntity redirectTinkerFocus() {
         var optional = getOwner();
         if (optional.isPresent()) {
             return optional.get();
@@ -90,11 +92,6 @@ public abstract class SecondaryArtificeBlockEntity extends ElementalArtificeBloc
             return true;
         }
         return owner.getBlockPos().equals(ownerPos);
-    }
-
-    public boolean isModified() {
-        return false;
-//        return getOwner().map(i -> i.modified).orElse(false);
     }
 
     public void bind(PrimaryArtificeBlockEntity igniter) {

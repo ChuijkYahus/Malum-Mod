@@ -1,6 +1,6 @@
-package com.sammy.malum.common.block.curiosities.artifice.redstone.wavebreaker;
+package com.sammy.malum.common.block.curiosities.artifice.waveform.wavebreaker;
 
-import com.sammy.malum.common.block.curiosities.artifice.redstone.SpiritDiodeBlock;
+import com.sammy.malum.common.block.curiosities.artifice.waveform.SpiritDiodeBlock;
 import com.sammy.malum.registry.common.sound.*;
 import net.minecraft.core.BlockPos;
 import net.minecraft.sounds.SoundSource;

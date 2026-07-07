@@ -1,6 +1,6 @@
-package com.sammy.malum.common.block.curiosities.artifice.redstone.wavemaker;
+package com.sammy.malum.common.block.curiosities.artifice.waveform.wavemaker;
 
-import com.sammy.malum.common.block.curiosities.artifice.redstone.SpiritDiodeBlockEntity;
+import com.sammy.malum.common.block.curiosities.artifice.waveform.SpiritDiodeBlockEntity;
 import com.sammy.malum.registry.common.block.MalumBlockEntities;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.HolderLookup;

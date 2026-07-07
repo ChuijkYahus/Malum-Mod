@@ -1,6 +1,7 @@
 package com.sammy.malum.common.payloads.waveform;
 
-import com.sammy.malum.common.block.curiosities.artifice.redstone.*;
+import com.sammy.malum.common.block.curiosities.artifice.ArtificeTinkeringInfo;
+import com.sammy.malum.common.block.curiosities.artifice.TinkererArtificeBlockEntity;
 import io.netty.buffer.*;
 import net.minecraft.core.*;
 import net.minecraft.network.*;
@@ -9,7 +10,7 @@ import net.minecraft.server.level.*;
 import net.neoforged.neoforge.network.handling.*;
 import team.lodestar.lodestone.systems.network.*;
 
-public abstract class OpenBlockEntityStateUpdatePayload<T extends OpenStateBlockEntity.NetworkedTinkeringInfo<?>> extends OneSidedPayloadData {
+public abstract class OpenBlockEntityStateUpdatePayload<T extends ArtificeTinkeringInfo> extends OneSidedPayloadData {
     private final BlockPos pos;
     private final boolean isOpen;
     private final T info;
@@ -31,8 +32,8 @@ public abstract class OpenBlockEntityStateUpdatePayload<T extends OpenStateBlock
     @Override
     public void handle(IPayloadContext iPayloadContext) {
         if (iPayloadContext.player().level() instanceof ServerLevel level) {
-            if (level.getBlockEntity(pos) instanceof OpenStateBlockEntity openStateBlockEntity) {
-                openStateBlockEntity.handleTinkeredStateChange(level, isOpen, info);
+            if (level.getBlockEntity(pos) instanceof TinkererArtificeBlockEntity tinkererArtificeBlockEntity) {
+                tinkererArtificeBlockEntity.handleTinkeredStateChange(level, isOpen, info);
             }
         }
     }

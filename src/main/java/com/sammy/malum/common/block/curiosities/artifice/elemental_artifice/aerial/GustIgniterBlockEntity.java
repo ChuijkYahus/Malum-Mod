@@ -1,14 +1,17 @@
 package com.sammy.malum.common.block.curiosities.artifice.elemental_artifice.aerial;
 
+import com.sammy.malum.common.block.curiosities.artifice.ArtificeTinkeringInfo;
+import com.sammy.malum.common.block.curiosities.artifice.TinkererArtificeBlockEntity;
 import com.sammy.malum.common.block.curiosities.artifice.elemental_artifice.ArtificeBlockConnectionData;
 import com.sammy.malum.common.block.curiosities.artifice.elemental_artifice.SequencedConnectionArray;
+import com.sammy.malum.common.block.curiosities.artifice.elemental_artifice.ElementalArtificeTinkeringInfo;
 import com.sammy.malum.common.block.curiosities.artifice.elemental_artifice.base.PrimaryArtificeBlock;
 import com.sammy.malum.common.block.curiosities.artifice.elemental_artifice.base.PrimaryArtificeBlockEntity;
 import com.sammy.malum.common.block.curiosities.artifice.elemental_artifice.base.SecondaryArtificeBlockEntity;
-import com.sammy.malum.common.block.curiosities.artifice.redstone.*;
 import com.sammy.malum.common.item.nucleus.WindNucleusItem;
 import com.sammy.malum.registry.common.*;
 import com.sammy.malum.registry.common.block.*;
+import com.sammy.malum.visual_effects.block.WindTunnelParticleEffects;
 import net.minecraft.core.*;
 import net.minecraft.core.particles.*;
 import net.minecraft.nbt.*;
@@ -58,30 +61,36 @@ public class GustIgniterBlockEntity extends PrimaryArtificeBlockEntity {
     }
 
     @Override
-    public void setInfo(ElementalArtificeBlockConfigInfo info) {
-        this.strength = info.strength();
-        this.modified = info.modified();
+    public void setInfo(ArtificeTinkeringInfo info) {
+        if (info instanceof ElementalArtificeTinkeringInfo tinkeringInfo) {
+            this.strength = tinkeringInfo.strength();
+            this.modified = tinkeringInfo.modified();
+        }
     }
 
     @Override
-    public NetworkedTinkeringInfo<? extends OpenStateBlockEntity> resetState() {
-        return new ElementalArtificeBlockConfigInfo(strength, modified);
+    public ArtificeTinkeringInfo defaultTinkeringState() {
+        return new ElementalArtificeTinkeringInfo(strength, modified);
     }
 
     @Override
     public void clientTick(Level level) {
-        super.clientTick(level);
+        WindTunnelParticleEffects.passiveWindTunnelParticles(this);
     }
 
     @Override
     public void serverTick(ServerLevel level) {
-        if (connectionData != null) {
-            var affectedEntities = connectionData.findAffectedEntities(level);
-            for (Entity entity : affectedEntities) {
-                var data = entity.getData(MalumAttachmentTypes.WIND_TUNNEL_INFO);
-                if (data.addInfluence(this)) {
-                    entity.syncData(MalumAttachmentTypes.WIND_TUNNEL_INFO);
-                }
+        if (!GustIgniterBlock.isPowered(getBlockState())) {
+            return;
+        }
+        if (connectionData == null) {
+            return;
+        }
+        var affectedEntities = connectionData.findAffectedEntities(level);
+        for (Entity entity : affectedEntities) {
+            var data = entity.getData(MalumAttachmentTypes.WIND_TUNNEL_INFO);
+            if (data.addInfluence(this)) {
+                entity.syncData(MalumAttachmentTypes.WIND_TUNNEL_INFO);
             }
         }
     }

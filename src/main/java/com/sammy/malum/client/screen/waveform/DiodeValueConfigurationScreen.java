@@ -1,7 +1,7 @@
 package com.sammy.malum.client.screen.waveform;
 
 import com.mojang.blaze3d.platform.*;
-import com.sammy.malum.common.block.curiosities.artifice.redstone.*;
+import com.sammy.malum.common.block.curiosities.artifice.waveform.*;
 import com.sammy.malum.common.payloads.waveform.*;
 import net.minecraft.client.*;
 import net.minecraft.client.gui.*;

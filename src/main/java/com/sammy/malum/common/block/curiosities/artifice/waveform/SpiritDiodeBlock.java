@@ -1,4 +1,4 @@
-package com.sammy.malum.common.block.curiosities.artifice.redstone;
+package com.sammy.malum.common.block.curiosities.artifice.waveform;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;

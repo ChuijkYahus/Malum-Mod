@@ -45,8 +45,10 @@ public class SecondaryArtificeBlock<T extends SecondaryArtificeBlockEntity> exte
         var pos = context.getClickedPos();
         var direction = context.getClickedFace().getOpposite();
         var relative = pos.relative(direction);
-        if (level.getBlockEntity(relative) instanceof PrimaryArtificeBlockEntity owner) {
-            state = state.setValue(FACING, owner.getBlockState().getValue(FACING));
+        var clickedState = level.getBlockState(relative);
+        Block block = clickedState.getBlock();
+        if (block instanceof PrimaryArtificeBlock || block.equals(this)) {
+            state = state.setValue(FACING, clickedState.getValue(FACING));
         }
         return updateOcclusion(context.getLevel(), state, context.getClickedPos());
     }
@@ -68,9 +70,6 @@ public class SecondaryArtificeBlock<T extends SecondaryArtificeBlockEntity> exte
             var property = getDirectionProperty(i);
             var relative = pos.relative(direction);
             var neighborState = level.getBlockState(relative);
-            if (!neighborState.is(this)) {
-                continue;
-            }
             boolean isValidNeighbor = neighborState.getBlock() instanceof SecondaryArtificeBlock && neighborState.getValue(FACING).equals(state.getValue(FACING));
             state = state.setValue(property, isValidNeighbor);
             if (!isValidNeighbor) {

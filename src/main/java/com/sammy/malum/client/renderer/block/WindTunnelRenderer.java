@@ -52,16 +52,7 @@ public class WindTunnelRenderer implements BlockEntityRenderer<WindTunnelBlockEn
         var state = tunnel.getBlockState();
         var facing = state.getValue(WindTunnelBlock.FACING);
         int tunnelLength = tunnel.getTunnelLength();
-        boolean isInward = false;
-//        boolean isInward = tunnel.isModified();
-
-
-        var windTunnel = LodestoneRenderTypes.TRANSPARENT_TEXTURE.apply(MalumRenderTypeTokens.WIND_TUNNEL)
-                .withUniformHandler(ShaderUniformHandler.LUMITRANSPARENT)
-                .withModifier(b -> b.setCullState(RenderStateShard.NO_CULL));
-        var windFlow = LodestoneRenderTypes.TRANSPARENT_TEXTURE.apply(MalumRenderTypeTokens.WIND_STREAKS)
-                .withUniformHandler(ShaderUniformHandler.LUMITRANSPARENT)
-                .withModifier(b -> b.setCullState(RenderStateShard.NO_CULL));
+        boolean isInward = tunnel.isModified();
 
         poseStack.pushPose();
         poseStack.translate(0.5f, 0.5f, 0.5f);
@@ -109,6 +100,13 @@ public class WindTunnelRenderer implements BlockEntityRenderer<WindTunnelBlockEn
         }
 
         var windTunnelArea = CubeVertexData.makeCubePositions(xStart, xEnd, yStart, yEnd, zStart, zEnd);
+        var windTunnel = LodestoneRenderTypes.TRANSPARENT_TEXTURE.apply(MalumRenderTypeTokens.WIND_TUNNEL)
+                .withUniformHandler(ShaderUniformHandler.LUMITRANSPARENT)
+                .withModifier(b -> b.setCullState(RenderStateShard.NO_CULL));
+        var windFlow = LodestoneRenderTypes.TRANSPARENT_TEXTURE.apply(MalumRenderTypeTokens.WIND_STREAKS)
+                .withUniformHandler(ShaderUniformHandler.LUMITRANSPARENT)
+                .withModifier(b -> b.setCullState(RenderStateShard.NO_CULL));
+
 
         var builder = VFXBuilders.createWorld();
         for (int i = 0; i < 4; i++) {
@@ -125,7 +123,7 @@ public class WindTunnelRenderer implements BlockEntityRenderer<WindTunnelBlockEn
                 float horizontalInterval = interval * 4;
                 float uOffset = getOffset(tunnel, horizontalInterval, partialTicks) * offsetDirection;
                 float vOffset = getOffset(tunnel, interval, partialTicks) * offsetDirection;
-                float alpha = isTunnel ? 0.35f : 0.6f;
+                float alpha = isTunnel ? 0.25f : 0.6f;
                 float u0 = (isInward ? 1f : 0f) + uOffset;
                 float u1 = u0 + 1f;
                 float v0 = isInward ? -vOffset : vOffset;
@@ -160,7 +158,7 @@ public class WindTunnelRenderer implements BlockEntityRenderer<WindTunnelBlockEn
         var v1 = uv.y + 0.25f;
         var builder = VFXBuilders.createWorld();
         poseStack.pushPose();
-        poseStack.translate(0f, 0.55f, 0);
+        poseStack.translate(0f, 0.5125f, 0);
         poseStack.mulPose(Axis.XN.rotationDegrees(90));
         poseStack.mulPose(Axis.ZN.rotationDegrees(180));
         builder
@@ -168,7 +166,7 @@ public class WindTunnelRenderer implements BlockEntityRenderer<WindTunnelBlockEn
                 .setAlpha(0.9f)
                 .setUV(u0, v0, u1, v1)
                 .setRenderType(border)
-                .renderQuad(poseStack, 0.55f);
+                .renderQuad(poseStack, 0.65f);
         poseStack.popPose();
     }
 
