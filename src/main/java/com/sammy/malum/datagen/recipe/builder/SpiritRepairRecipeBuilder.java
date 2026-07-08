@@ -3,7 +3,7 @@ package com.sammy.malum.datagen.recipe.builder;
 import com.sammy.malum.common.recipe.spirit_repair.*;
 import com.sammy.malum.core.systems.recipe.SpiritIngredient;
 import com.sammy.malum.core.systems.registry.*;
-import com.sammy.malum.core.systems.spirit.type.*;
+import com.sammy.malum.core.systems.spirit.SpiritArcanaType;
 import net.minecraft.advancements.*;
 import net.minecraft.core.*;
 import net.minecraft.resources.ResourceLocation;

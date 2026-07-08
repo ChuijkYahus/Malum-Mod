@@ -22,7 +22,7 @@ public class RuneAilmentCleansingItem extends MiracleRuneCurioItem {
 
     @Override
     public void addExtraTooltipLines(Consumer<Component> consumer) {
-        consumer.accept(EffectComponentHelper.positiveCurioEffect("shorten_negative_effect"));
+        consumer.accept(TooltipComponentHelper.positiveCurioEffect("shorten_negative_effect"));
     }
 
     public static void scaleDuration(MobEffectEvent.Added event) {

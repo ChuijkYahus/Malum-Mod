@@ -24,8 +24,8 @@
 
      @Override
      public void addExtraTooltipLines(Consumer<Component> consumer) {
-         consumer.accept(EffectComponentHelper.positiveCurioEffect("windweaver_ascension"));
-         consumer.accept(EffectComponentHelper.positiveCurioEffect("windweaver_gliding"));
+         consumer.accept(TooltipComponentHelper.positiveCurioEffect("windweaver_ascension"));
+         consumer.accept(TooltipComponentHelper.positiveCurioEffect("windweaver_gliding"));
      }
 
      @Override

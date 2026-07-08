@@ -1,7 +1,8 @@
 package com.sammy.malum.core.systems.rite.effect;
 
 import com.sammy.malum.common.entity.activator.rite.*;
-import com.sammy.malum.core.systems.spirit.type.*;
+import com.sammy.malum.core.systems.spirit.SpiritArcanaType;
+import com.sammy.malum.core.systems.spirit.SpiritLike;
 import com.sammy.malum.registry.common.*;
 import com.sammy.malum.registry.common.sound.*;
 import com.sammy.malum.visual_effects.networked.MalumNetworkedParticleEffectType;

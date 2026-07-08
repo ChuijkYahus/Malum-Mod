@@ -4,6 +4,7 @@ import com.mojang.blaze3d.vertex.PoseStack;
 import com.sammy.malum.MalumMod;
 import com.sammy.malum.client.model.mob.altar.AltarModel;
 import com.sammy.malum.common.entity.mob.cultist.altar.AltarCultist;
+import earth.terrarium.athena.api.client.utils.AthenaUtils;
 import net.minecraft.client.renderer.entity.EntityRendererProvider;
 import net.minecraft.client.renderer.entity.MobRenderer;
 import net.minecraft.resources.ResourceLocation;

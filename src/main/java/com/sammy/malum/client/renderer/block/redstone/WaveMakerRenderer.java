@@ -1,7 +1,7 @@
 package com.sammy.malum.client.renderer.block.redstone;
 
 import com.sammy.malum.MalumMod;
-import com.sammy.malum.common.block.curiosities.artifice.redstone.wavemaker.WaveMakerBlockEntity;
+import com.sammy.malum.common.block.curiosities.artifice.waveform.wavemaker.WaveMakerBlockEntity;
 import net.minecraft.client.renderer.blockentity.BlockEntityRendererProvider;
 import team.lodestar.lodestone.modules.core.easing.Easing;
 

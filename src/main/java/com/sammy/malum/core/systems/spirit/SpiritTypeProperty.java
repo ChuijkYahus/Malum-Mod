@@ -2,7 +2,6 @@ package com.sammy.malum.core.systems.spirit;
 
 import com.google.common.collect.ImmutableSet;
 import com.sammy.malum.core.systems.registry.*;
-import com.sammy.malum.core.systems.spirit.type.*;
 import com.sammy.malum.registry.common.magic.*;
 import net.minecraft.resources.*;
 import net.minecraft.world.level.block.state.*;
@@ -31,7 +30,7 @@ public class SpiritTypeProperty extends Property<String> {
 
     public static BlockState setSpiritType(BlockState state, SpiritLike spiritType) {
         if (state.hasProperty(SPIRIT_TYPE)) {
-            return state.setValue(SPIRIT_TYPE, spiritType.getName());
+            return state.setValue(SPIRIT_TYPE, spiritType.getRegistryName().getPath());
         }
         throw new IllegalArgumentException("BlockState does not have a spirit type property.");
     }

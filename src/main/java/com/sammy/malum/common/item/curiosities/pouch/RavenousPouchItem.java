@@ -31,8 +31,8 @@ public class RavenousPouchItem extends MalumPouchItem {
     @Override
     public void appendHoverText(ItemStack stack, TooltipContext context, List<Component> tooltipComponents, TooltipFlag tooltipFlag) {
         super.appendHoverText(stack, context, tooltipComponents, tooltipFlag);
-        tooltipComponents.add(EffectComponentHelper.pouchEffect("ravenous_pouch_collection"));
-        tooltipComponents.add(EffectComponentHelper.pouchEffect("ravenous_pouch_drop"));
+        tooltipComponents.add(TooltipComponentHelper.pouchEffect("ravenous_pouch_collection"));
+        tooltipComponents.add(TooltipComponentHelper.pouchEffect("ravenous_pouch_drop"));
     }
 
     @Override

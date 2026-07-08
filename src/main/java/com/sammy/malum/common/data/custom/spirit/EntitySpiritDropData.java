@@ -3,7 +3,7 @@ package com.sammy.malum.common.data.custom.spirit;
 import com.sammy.malum.config.*;
 import com.sammy.malum.core.systems.recipe.*;
 import com.sammy.malum.core.systems.registry.*;
-import com.sammy.malum.core.systems.spirit.type.*;
+import com.sammy.malum.core.systems.spirit.SpiritArcanaType;
 import com.sammy.malum.registry.common.magic.*;
 import net.minecraft.core.registries.*;
 import net.minecraft.resources.*;

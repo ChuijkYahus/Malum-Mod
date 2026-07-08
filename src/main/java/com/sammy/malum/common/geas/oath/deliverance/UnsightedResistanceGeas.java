@@ -20,8 +20,8 @@ public class UnsightedResistanceGeas extends GeasEffect {
 
     @Override
     public void addTooltipComponents(LivingEntity entity, Consumer<Component> tooltipAcceptor, TooltipFlag tooltipFlag) {
-        tooltipAcceptor.accept(EffectComponentHelper.positiveGeasEffect("malignant_crit_aegis_rerouting"));
-        tooltipAcceptor.accept(EffectComponentHelper.negativeGeasEffect("malignant_crit_reduced_damage"));
+        tooltipAcceptor.accept(TooltipComponentHelper.positiveGeasEffect("malignant_crit_aegis_rerouting"));
+        tooltipAcceptor.accept(TooltipComponentHelper.negativeGeasEffect("malignant_crit_reduced_damage"));
         super.addTooltipComponents(entity, tooltipAcceptor, tooltipFlag);
     }
 

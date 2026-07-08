@@ -18,7 +18,7 @@ public class CurioManaweavingRing extends MalumCurioItem implements IMalumEventR
 
     @Override
     public void addExtraTooltipLines(Consumer<Component> consumer) {
-        consumer.accept(EffectComponentHelper.positiveCurioEffect("spirits_weave_mana"));
+        consumer.accept(TooltipComponentHelper.positiveCurioEffect("spirits_weave_mana"));
     }
 
     @Override

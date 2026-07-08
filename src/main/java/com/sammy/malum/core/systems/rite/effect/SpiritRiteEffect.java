@@ -2,7 +2,7 @@ package com.sammy.malum.core.systems.rite.effect;
 
 import com.google.common.collect.ImmutableList;
 import com.sammy.malum.core.systems.registry.*;
-import com.sammy.malum.core.systems.spirit.type.*;
+import com.sammy.malum.core.systems.spirit.SpiritArcanaType;
 import com.sammy.malum.registry.common.magic.rite.*;
 import net.minecraft.core.*;
 import net.minecraft.resources.*;

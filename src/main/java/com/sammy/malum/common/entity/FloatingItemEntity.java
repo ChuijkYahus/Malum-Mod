@@ -1,6 +1,6 @@
 package com.sammy.malum.common.entity;
 
-import com.sammy.malum.core.systems.spirit.type.*;
+import com.sammy.malum.core.systems.spirit.SpiritArcanaType;
 import com.sammy.malum.registry.common.entity.MalumEntityDataSerializers;
 import com.sammy.malum.registry.common.magic.*;
 import net.minecraft.nbt.*;

@@ -23,13 +23,10 @@
   ],
   "client": [
     "client.AbstractContainerScreenMixin",
-    "client.AccessorBakedGlyph",
-    "client.AccessorFont",
     "client.CreativeModeInventoryScreenMixin",
     "client.CreativeModeTabMixin",
-    "client.FontStringRenderOutputMixin",
-    "client.GlyphRenderTypesMixin",
     "client.ItemInHandLayerMixin",
+    "client.ItemInHandRendererMixin",
     "client.LocalPlayerMixin",
     "client.MinecraftMixin"
   ],

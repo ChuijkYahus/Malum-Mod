@@ -4,7 +4,7 @@ import com.sammy.malum.core.helpers.*;
 import com.sammy.malum.core.systems.registry.rite.*;
 import com.sammy.malum.core.systems.registry.SpiritHolder;
 import com.sammy.malum.core.systems.rite.effect.*;
-import com.sammy.malum.core.systems.spirit.type.SpiritArcanaType;
+import com.sammy.malum.core.systems.spirit.SpiritArcanaType;
 import net.minecraft.network.chat.*;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.item.*;
@@ -24,7 +24,7 @@ public class TotemicRuneCurioItem extends AbstractRuneCurioItem {
     @Override
     public void addExtraTooltipLines(Consumer<Component> consumer) {
         Component effectName = effect.value().getEffect().value().getDisplayName();
-        consumer.accept(EffectComponentHelper.positiveCurioEffect("totem_effect", effectName));
+        consumer.accept(TooltipComponentHelper.positiveCurioEffect("totem_effect", effectName));
     }
 
     @Override

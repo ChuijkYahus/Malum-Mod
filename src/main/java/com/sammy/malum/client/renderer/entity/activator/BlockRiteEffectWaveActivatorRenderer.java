@@ -5,7 +5,7 @@ import com.mojang.math.*;
 import com.sammy.malum.*;
 import com.sammy.malum.client.*;
 import com.sammy.malum.common.entity.activator.rite.*;
-import com.sammy.malum.core.systems.spirit.type.*;
+import com.sammy.malum.core.systems.spirit.SpiritArcanaType;
 import net.minecraft.client.renderer.*;
 import net.minecraft.client.renderer.entity.*;
 import net.minecraft.core.*;

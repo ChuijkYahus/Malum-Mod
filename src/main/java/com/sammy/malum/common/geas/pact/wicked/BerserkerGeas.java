@@ -1,7 +1,7 @@
 package com.sammy.malum.common.geas.pact.wicked;
 
 import com.sammy.malum.common.worldevent.DelayedDamageWorldEvent;
-import com.sammy.malum.core.helpers.EffectComponentHelper;
+import com.sammy.malum.core.helpers.TooltipComponentHelper;
 import com.sammy.malum.core.systems.geas.GeasEffect;
 import com.sammy.malum.registry.common.*;
 import com.sammy.malum.registry.common.magic.*;
@@ -39,9 +39,9 @@ public class BerserkerGeas extends GeasEffect {
 
     @Override
     public void addTooltipComponents(LivingEntity entity, Consumer<Component> tooltipAcceptor, TooltipFlag tooltipFlag) {
-        tooltipAcceptor.accept(EffectComponentHelper.positiveGeasEffect("damage_buildup"));
-        tooltipAcceptor.accept(EffectComponentHelper.positiveGeasEffect("damage_release"));
-        tooltipAcceptor.accept(EffectComponentHelper.negativeGeasEffect("more_damage"));
+        tooltipAcceptor.accept(TooltipComponentHelper.positiveGeasEffect("damage_buildup"));
+        tooltipAcceptor.accept(TooltipComponentHelper.positiveGeasEffect("damage_release"));
+        tooltipAcceptor.accept(TooltipComponentHelper.negativeGeasEffect("more_damage"));
         super.addTooltipComponents(entity, tooltipAcceptor, tooltipFlag);
     }
 

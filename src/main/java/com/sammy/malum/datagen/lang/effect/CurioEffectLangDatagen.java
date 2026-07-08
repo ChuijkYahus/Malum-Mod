@@ -67,7 +67,7 @@ public class CurioEffectLangDatagen {
     }
 
     public static void addCurioEffect(String identifier, String name) {
-        add(EffectComponentHelper.CURIO + identifier, name);
+        add(TooltipComponentHelper.CURIO + identifier, name);
     }
 
 

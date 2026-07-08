@@ -2,12 +2,8 @@ package com.sammy.malum.client.screen.codex.display;
 
 import com.mojang.blaze3d.systems.RenderSystem;
 import com.mojang.blaze3d.vertex.PoseStack;
-import com.sammy.malum.client.screen.codex.WidgetDesignType;
-import com.sammy.malum.common.item.spirit.ISpiritAffiliatedItem;
-import com.sammy.malum.core.systems.spirit.type.SpiritLike;
-import net.minecraft.client.Minecraft;
+import com.sammy.malum.core.systems.spirit.SpiritLike;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.util.Mth;
 import org.joml.Vector4f;
 import org.lwjgl.opengl.GL11;
 import team.lodestar.lodestone.registry.client.LodestoneShaders;

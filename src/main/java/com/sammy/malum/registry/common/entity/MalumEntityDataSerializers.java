@@ -1,7 +1,7 @@
 package com.sammy.malum.registry.common.entity;
 
 import com.sammy.malum.MalumMod;
-import com.sammy.malum.core.systems.spirit.type.SpiritArcanaType;
+import com.sammy.malum.core.systems.spirit.SpiritArcanaType;
 import net.minecraft.network.syncher.EntityDataSerializer;
 import net.neoforged.neoforge.registries.DeferredHolder;
 import net.neoforged.neoforge.registries.DeferredRegister;

@@ -1,10 +1,9 @@
 package com.sammy.malum.common.spiritrite.effect.arcane;
 
-import com.sammy.malum.common.block.curiosities.totem.TotemBaseBlockEntity;
 import com.sammy.malum.common.worldevent.UnchainedTotemConversionWorldEvent;
 import com.sammy.malum.core.systems.rite.effect.SpiritRiteEffect;
 import com.sammy.malum.core.systems.rite.effect.SpiritRiteEffectTag;
-import com.sammy.malum.core.systems.spirit.type.*;
+import com.sammy.malum.core.systems.spirit.SpiritArcanaType;
 import net.minecraft.core.*;
 import net.minecraft.server.level.ServerLevel;
 import team.lodestar.lodestone.handlers.WorldEventHandler;

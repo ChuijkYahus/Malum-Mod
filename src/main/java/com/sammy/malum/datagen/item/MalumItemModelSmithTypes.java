@@ -120,9 +120,6 @@ public class MalumItemModelSmithTypes extends ItemModelSmithTypes {
         return model;
     });
 
-    public static ItemModelSmith UMBRAL_SPIRIT_ITEM = new ItemModelSmith((item, provider) -> provider.createGenericModel(item, GENERATED, provider.getItemTexture("umbral_spirit_shard")));
-
-    public static ItemModelSmith SPIRIT_ITEM = new ItemModelSmith((item, provider) -> provider.createGenericModel(item, GENERATED, provider.getItemTexture("spirit_shard")));
 
     public static ItemModelSmith GENERATED_OVERLAY_ITEM = new ItemModelSmith((item, provider) -> {
         String name = provider.getItemName(item);

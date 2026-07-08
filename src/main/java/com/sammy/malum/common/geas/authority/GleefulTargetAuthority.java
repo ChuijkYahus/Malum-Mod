@@ -24,8 +24,8 @@ public class GleefulTargetAuthority extends GeasEffect {
 
     @Override
     public void addTooltipComponents(LivingEntity entity, Consumer<Component> tooltipAcceptor, TooltipFlag tooltipFlag) {
-        tooltipAcceptor.accept(EffectComponentHelper.positiveGeasEffect("gleeful_target"));
-        tooltipAcceptor.accept(EffectComponentHelper.positiveGeasEffect("gleeful_target_arcane_resonance"));
+        tooltipAcceptor.accept(TooltipComponentHelper.positiveGeasEffect("gleeful_target"));
+        tooltipAcceptor.accept(TooltipComponentHelper.positiveGeasEffect("gleeful_target_arcane_resonance"));
         super.addTooltipComponents(entity, tooltipAcceptor, tooltipFlag);
     }
 

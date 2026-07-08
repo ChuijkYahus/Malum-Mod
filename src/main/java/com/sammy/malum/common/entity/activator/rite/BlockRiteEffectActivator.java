@@ -3,7 +3,7 @@ package com.sammy.malum.common.entity.activator.rite;
 import com.sammy.malum.common.block.curiosities.totem.*;
 import com.sammy.malum.common.entity.*;
 import com.sammy.malum.core.systems.rite.effect.*;
-import com.sammy.malum.core.systems.spirit.type.*;
+import com.sammy.malum.core.systems.spirit.SpiritArcanaType;
 import com.sammy.malum.registry.common.*;
 import com.sammy.malum.registry.common.entity.*;
 import com.sammy.malum.registry.common.magic.*;

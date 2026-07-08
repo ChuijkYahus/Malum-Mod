@@ -4,9 +4,10 @@ import com.sammy.malum.MalumMod;
 import com.sammy.malum.common.entity.bolt.*;
 import com.sammy.malum.common.entity.nitrate.*;
 import com.sammy.malum.common.item.spirit.ISpiritAffiliatedItem;
-import com.sammy.malum.core.helpers.EffectComponentHelper;
+import com.sammy.malum.core.helpers.TooltipComponentHelper;
 import com.sammy.malum.core.systems.registry.*;
-import com.sammy.malum.core.systems.spirit.type.*;
+import com.sammy.malum.core.systems.spirit.SpiritArcanaType;
+import com.sammy.malum.core.systems.spirit.SpiritLike;
 import com.sammy.malum.registry.common.*;
 import com.sammy.malum.registry.common.magic.*;
 import com.sammy.malum.registry.common.sound.*;
@@ -55,8 +56,8 @@ public class UnwindingChaosStaffItem extends AbstractStaffItem implements ISpiri
 
     @Override
     public void modifyAttributeTooltipEvent(AddAttributeTooltipsEvent event) {
-        event.addTooltipLines(EffectComponentHelper.positiveItemEffect("unwinding_chaos_volley"));
-        event.addTooltipLines(EffectComponentHelper.positiveItemEffect("unwinding_chaos_burn"));
+        event.addTooltipLines(TooltipComponentHelper.positiveItemEffect("unwinding_chaos_volley"));
+        event.addTooltipLines(TooltipComponentHelper.positiveItemEffect("unwinding_chaos_burn"));
     }
 
     @Override

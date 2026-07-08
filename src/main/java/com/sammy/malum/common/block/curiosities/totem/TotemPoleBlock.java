@@ -1,7 +1,6 @@
 package com.sammy.malum.common.block.curiosities.totem;
 
 import com.sammy.malum.core.systems.spirit.*;
-import com.sammy.malum.core.systems.spirit.type.*;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.world.entity.player.Player;

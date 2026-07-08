@@ -17,11 +17,9 @@ public class MalumRenderTypeTokens {
     public static final RenderTypeToken DIODE_LOCKED = RenderTypeToken.createToken(malumPath("textures/block/waveform_artifice/runewood_frame_locked_overlay.png"));
     public static final RenderTypeToken DIODE_INPUT = RenderTypeToken.createToken(malumPath("textures/block/waveform_artifice/runewood_frame_input_overlay.png"));
 
-    public static final RenderTypeToken WIND_COVERAGE_BORDER = RenderTypeToken.createToken(malumPath("textures/vfx/wind_border.png"));
-    public static final RenderTypeToken WIND_COVERAGE_TUNNEL = RenderTypeToken.createToken(malumPath("textures/vfx/wind_tunnel.png"));
-    public static final RenderTypeToken WIND_COVERAGE_FLOW = RenderTypeToken.createToken(malumPath("textures/vfx/wind_flow.png"));
-
-    public static final RenderTypeToken MOTE_OF_MANA = RenderTypeToken.createToken(MalumMod.malumPath("textures/block/spirit_mote.png"));
+    public static final RenderTypeToken WIND_COVERAGE_BORDER = RenderTypeToken.createToken(malumPath("textures/block/waveform_artifice/wind_tunnel/wind_border.png"));
+    public static final RenderTypeToken WIND_TUNNEL = RenderTypeToken.createToken(malumPath("textures/block/waveform_artifice/wind_tunnel/wind_tunnel.png"));
+    public static final RenderTypeToken WIND_STREAKS = RenderTypeToken.createToken(malumPath("textures/block/waveform_artifice/wind_tunnel/wind_streaks.png"));
 
     public static final RenderTypeToken PYLON_GLOW_TOP = RenderTypeToken.createToken(MalumMod.malumPath("textures/vfx/arcana_pylon_glow_top.png"));
     public static final RenderTypeToken PYLON_GLOW_SIDE = RenderTypeToken.createToken(MalumMod.malumPath("textures/vfx/arcana_pylon_glow_side.png"));

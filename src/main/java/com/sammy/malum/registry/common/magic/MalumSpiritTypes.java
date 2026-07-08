@@ -3,7 +3,7 @@ package com.sammy.malum.registry.common.magic;
 import com.sammy.malum.*;
 import com.sammy.malum.core.systems.registry.*;
 import com.sammy.malum.core.systems.spirit.*;
-import com.sammy.malum.core.systems.spirit.type.*;
+import com.sammy.malum.core.systems.spirit.umbral.UmbralSpiritArcanaType;
 import com.sammy.malum.registry.common.MalumContent;
 
 import net.minecraft.core.*;

@@ -10,20 +10,20 @@ import com.sammy.malum.client.renderer.block.redstone.WavebankerRenderer;
 import com.sammy.malum.client.renderer.block.redstone.WaveBreakerRenderer;
 import com.sammy.malum.client.renderer.block.totemancy.*;
 import com.sammy.malum.common.block.curiosities.artifice.crystallarium.ConjunctureCrystallariumBlockEntity;
-import com.sammy.malum.common.block.curiosities.artifice.elemental_artifice.gust_igniter.GustIgniterBlockEntity;
+import com.sammy.malum.common.block.curiosities.artifice.elemental_artifice.aerial.GustIgniterBlockEntity;
+import com.sammy.malum.common.block.curiosities.artifice.elemental_artifice.aerial.WindTunnelBlockEntity;
 import com.sammy.malum.common.block.curiosities.decor.banner.*;
-import com.sammy.malum.common.block.curiosities.artifice.elemental_artifice.wind_tunnel.*;
 import com.sammy.malum.common.block.curiosities.obelisk.brilliant.*;
 import com.sammy.malum.common.block.curiosities.obelisk.rite_pylon.*;
 import com.sammy.malum.common.block.curiosities.obelisk.runewood.*;
-import com.sammy.malum.common.block.curiosities.artifice.redstone.wavemaker.WaveMakerBlock;
-import com.sammy.malum.common.block.curiosities.artifice.redstone.wavemaker.WaveMakerBlockEntity;
-import com.sammy.malum.common.block.curiosities.artifice.redstone.wavebanker.WaveBankerBlock;
-import com.sammy.malum.common.block.curiosities.artifice.redstone.wavebanker.WaveBankerBlockEntity;
-import com.sammy.malum.common.block.curiosities.artifice.redstone.wavecharger.WaveChargerBlock;
-import com.sammy.malum.common.block.curiosities.artifice.redstone.wavecharger.WaveChargerBlockEntity;
-import com.sammy.malum.common.block.curiosities.artifice.redstone.wavebreaker.WaveBreakerBlock;
-import com.sammy.malum.common.block.curiosities.artifice.redstone.wavebreaker.WaveBreakerBlockEntity;
+import com.sammy.malum.common.block.curiosities.artifice.waveform.wavemaker.WaveMakerBlock;
+import com.sammy.malum.common.block.curiosities.artifice.waveform.wavemaker.WaveMakerBlockEntity;
+import com.sammy.malum.common.block.curiosities.artifice.waveform.wavebanker.WaveBankerBlock;
+import com.sammy.malum.common.block.curiosities.artifice.waveform.wavebanker.WaveBankerBlockEntity;
+import com.sammy.malum.common.block.curiosities.artifice.waveform.wavecharger.WaveChargerBlock;
+import com.sammy.malum.common.block.curiosities.artifice.waveform.wavecharger.WaveChargerBlockEntity;
+import com.sammy.malum.common.block.curiosities.artifice.waveform.wavebreaker.WaveBreakerBlock;
+import com.sammy.malum.common.block.curiosities.artifice.waveform.wavebreaker.WaveBreakerBlockEntity;
 import com.sammy.malum.common.block.curiosities.artifice.repair_pylon.*;
 import com.sammy.malum.common.block.curiosities.poppetry.PoppetPillowBlock;
 import com.sammy.malum.common.block.curiosities.poppetry.PoppetPillowBlockEntity;
@@ -119,7 +119,7 @@ public class MalumBlockEntities {
     public static final Supplier<LodestoneBlockEntityType<WaveMakerBlockEntity>> WAVEMAKER = BLOCK_ENTITY_TYPES.register("wavemaker", () -> create(WaveMakerBlockEntity::new, getBlocks(WaveMakerBlock.class)).build());
     public static final Supplier<LodestoneBlockEntityType<WaveBreakerBlockEntity>> WAVEBREAKER = BLOCK_ENTITY_TYPES.register("wavebreaker", () -> create(WaveBreakerBlockEntity::new, getBlocks(WaveBreakerBlock.class)).build());
 
-    public static final Supplier<LodestoneBlockEntityType<GustIgniterBlockEntity>> GUST_IGNITER = BLOCK_ENTITY_TYPES.register("gust_igniter", () -> create(GustIgniterBlockEntity::new, MalumContent.Artifice.GUST_IGNITER).setTickerType(Type.SERVER).build());
+    public static final Supplier<LodestoneBlockEntityType<GustIgniterBlockEntity>> GUST_IGNITER = BLOCK_ENTITY_TYPES.register("gust_igniter", () -> create(GustIgniterBlockEntity::new, MalumContent.Artifice.GUST_IGNITER).setTickerType(Type.BOTH).build());
     public static final Supplier<LodestoneBlockEntityType<WindTunnelBlockEntity>> WIND_TUNNEL = BLOCK_ENTITY_TYPES.register("wind_tunnel", () -> create(WindTunnelBlockEntity::new, MalumContent.Artifice.WIND_TUNNEL).build());
 
     public static final Supplier<LodestoneBlockEntityType<OminousAltarBlockEntity>> OMINOUS_ALTAR = BLOCK_ENTITY_TYPES.register("ominous_altar", () -> create(OminousAltarBlockEntity::new, MalumContent.DungeonBlockSets.OMINOUS_ALTAR).setTickerType(Type.BOTH).build());
@@ -136,6 +136,7 @@ public class MalumBlockEntities {
 
     public static void registerCapabilities(RegisterCapabilitiesEvent event) {
         event.registerBlockEntity(Capabilities.ItemHandler.BLOCK, SPIRIT_ALTAR.get(), IInventoryCapabilityProvider::getInventory);
+        event.registerBlockEntity(Capabilities.ItemHandler.BLOCK, SPIRIT_JAR.get(), IInventoryCapabilityProvider::getInventory);
         event.registerBlockEntity(Capabilities.ItemHandler.BLOCK, ARCANA_PYLON.get(), IInventoryCapabilityProvider::getInventory);
         event.registerBlockEntity(Capabilities.ItemHandler.BLOCK, SPIRIT_CRUCIBLE.get(), IInventoryCapabilityProvider::getInventory);
         event.registerBlockEntity(Capabilities.ItemHandler.BLOCK, SPIRIT_CATALYZER.get(), IInventoryCapabilityProvider::getInventory);

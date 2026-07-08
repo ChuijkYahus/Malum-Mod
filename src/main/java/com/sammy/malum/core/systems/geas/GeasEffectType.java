@@ -3,7 +3,7 @@ package com.sammy.malum.core.systems.geas;
 import com.mojang.serialization.*;
 import com.sammy.malum.common.data.component.*;
 import com.sammy.malum.core.systems.registry.*;
-import com.sammy.malum.core.systems.spirit.type.*;
+import com.sammy.malum.core.systems.spirit.SpiritArcanaType;
 import com.sammy.malum.registry.common.MalumContent;
 import com.sammy.malum.registry.common.item.*;
 import com.sammy.malum.registry.common.magic.*;

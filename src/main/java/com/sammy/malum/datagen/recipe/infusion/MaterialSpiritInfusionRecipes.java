@@ -2,11 +2,8 @@ package com.sammy.malum.datagen.recipe.infusion;
 
 import com.sammy.malum.common.data.component.*;
 import com.sammy.malum.core.systems.registry.*;
-import com.sammy.malum.core.systems.spirit.type.*;
+import com.sammy.malum.core.systems.spirit.SpiritArcanaType;
 import com.sammy.malum.datagen.recipe.builder.*;
-import com.sammy.malum.registry.common.MalumContent;
-import com.sammy.malum.registry.common.MalumContent.Vanity;
-import com.sammy.malum.registry.common.item.MalumItemProperties;
 import net.minecraft.data.recipes.*;
 import net.minecraft.tags.*;
 import net.minecraft.world.item.*;

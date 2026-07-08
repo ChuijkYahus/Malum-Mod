@@ -37,9 +37,9 @@ public class ArcanaphageGeas extends GeasEffect {
 
     @Override
     public void addTooltipComponents(LivingEntity entity, Consumer<Component> tooltipAcceptor, TooltipFlag tooltipFlag) {
-        tooltipAcceptor.accept(EffectComponentHelper.positiveGeasEffect("spirits_magic_boost"));
+        tooltipAcceptor.accept(TooltipComponentHelper.positiveGeasEffect("spirits_magic_boost"));
         super.addTooltipComponents(entity, tooltipAcceptor, tooltipFlag);
-        tooltipAcceptor.accept(EffectComponentHelper.negativeGeasEffect("oops_all_magic"));
+        tooltipAcceptor.accept(TooltipComponentHelper.negativeGeasEffect("oops_all_magic"));
     }
 
     @Override

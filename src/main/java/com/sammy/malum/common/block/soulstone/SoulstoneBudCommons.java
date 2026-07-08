@@ -1,8 +1,12 @@
 package com.sammy.malum.common.block.soulstone;
 
 import com.sammy.malum.common.data.map.*;
+import com.sammy.malum.common.recipe.derealization.OreDerealizationRecipe;
+import com.sammy.malum.common.recipe.derealization.RuleTestRecipeInput;
 import com.sammy.malum.registry.common.*;
+import com.sammy.malum.registry.common.recipe.MalumRecipeTypes;
 import net.minecraft.core.*;
+import net.minecraft.server.level.ServerLevel;
 import net.minecraft.util.*;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.*;
@@ -10,6 +14,7 @@ import net.minecraft.world.level.block.state.*;
 import net.minecraft.world.level.levelgen.structure.templatesystem.*;
 import net.minecraft.world.phys.*;
 import team.lodestar.lodestone.modules.toolkit.block.*;
+import team.lodestar.lodestone.modules.toolkit.recipe.LodestoneRecipeSearch;
 
 import java.util.*;
 
@@ -102,6 +107,11 @@ public class SoulstoneBudCommons {
             }
         }
         return null;
+    }
+
+    public static OreDerealizationRecipe getValidRecipe(RandomSource random, BlockState state, ServerLevel level) {
+        RuleTestRecipeInput input = new RuleTestRecipeInput(state, random);
+        return LodestoneRecipeSearch.search(level, MalumRecipeTypes.ORE_DEREALIZATION).findRecipe(input);
     }
 
     public static BlockPos getAttachedPos(BlockState state, BlockPos pos) {

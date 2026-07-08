@@ -1,11 +1,9 @@
 package com.sammy.malum.client;
 
-import com.mojang.datafixers.util.Pair;
-import com.sammy.malum.core.systems.spirit.type.*;
-import com.sammy.malum.core.systems.spirit.UmbralSpiritArcanaType;
+import com.sammy.malum.core.systems.spirit.SpiritArcanaType;
+import com.sammy.malum.core.systems.spirit.SpiritLike;
+import com.sammy.malum.core.systems.spirit.umbral.UmbralSpiritArcanaType;
 import net.minecraft.client.renderer.RenderType;
-import team.lodestar.lodestone.handlers.LodestoneRenderHandler;
-import team.lodestar.lodestone.registry.client.*;
 import team.lodestar.lodestone.systems.rendering.LodestoneRenderType;
 import team.lodestar.lodestone.systems.rendering.StateShards;
 import team.lodestar.lodestone.systems.rendering.VFXBuilders;

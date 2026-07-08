@@ -2,7 +2,7 @@ package com.sammy.malum.common.item.augment.core;
 
 import com.sammy.malum.core.systems.artifice.ArtificeModifier;
 import com.sammy.malum.common.item.augment.*;
-import com.sammy.malum.core.systems.spirit.type.*;
+import com.sammy.malum.core.systems.spirit.SpiritLike;
 
 import java.util.List;
 

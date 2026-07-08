@@ -40,11 +40,11 @@ public class ItemEffectLangDatagen {
     }
 
     public static void addGearEffect(String identifier, String name) {
-        add(EffectComponentHelper.GEAR + identifier, name);
+        add(TooltipComponentHelper.ITEM + identifier, name);
     }
 
     public static void addPouchEffect(String identifier, String name) {
-        add(EffectComponentHelper.POUCH + identifier, name);
+        add(TooltipComponentHelper.POUCH + identifier, name);
     }
 
 

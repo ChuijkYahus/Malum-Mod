@@ -1,10 +1,10 @@
 package com.sammy.malum.client.screen.waveform;
 
 import com.mojang.blaze3d.platform.*;
-import com.sammy.malum.common.block.curiosities.artifice.elemental_artifice.*;
-import com.sammy.malum.common.block.curiosities.artifice.elemental_artifice.gust_igniter.GustIgniterBlock;
-import com.sammy.malum.common.block.curiosities.artifice.elemental_artifice.gust_igniter.GustIgniterBlockEntity;
-import com.sammy.malum.common.block.curiosities.artifice.elemental_artifice.wind_tunnel.*;
+import com.sammy.malum.common.block.curiosities.artifice.elemental_artifice.aerial.GustIgniterBlock;
+import com.sammy.malum.common.block.curiosities.artifice.elemental_artifice.aerial.GustIgniterBlockEntity;
+import com.sammy.malum.common.block.curiosities.artifice.elemental_artifice.aerial.WindTunnelBlockEntity;
+import com.sammy.malum.common.block.curiosities.artifice.elemental_artifice.ElementalArtificeTinkeringInfo;
 import com.sammy.malum.common.payloads.waveform.*;
 import com.sammy.malum.core.handlers.*;
 import net.minecraft.client.*;
@@ -28,7 +28,6 @@ public class GustGizmoConfigurationScreen extends AbstractValueConfigurationScre
     protected static final ResourceLocation DIAL_OVERLAY = malumPath("textures/gui/waveform_artifice/gust_gizmo_configuration_dial_overlay.png");
 
     private final GustIgniterBlockEntity gustIgniter;
-    private final boolean isTunnel;
 
     private float displayedStrength;
     private int oldStrength, strength;
@@ -37,7 +36,6 @@ public class GustGizmoConfigurationScreen extends AbstractValueConfigurationScre
     public GustGizmoConfigurationScreen(GustIgniterBlockEntity gustIgniter, boolean isTunnel) {
         super(getTitleComponent(gustIgniter), 180+DIAL_WIDTH, 60+DIAL_HEIGHT, DIAL_WIDTH, DIAL_HEIGHT);
         this.gustIgniter = gustIgniter;
-        this.isTunnel = isTunnel;
         this.strength = gustIgniter.strength;
         this.modified = gustIgniter.modified;
     }
@@ -56,7 +54,7 @@ public class GustGizmoConfigurationScreen extends AbstractValueConfigurationScre
 
     @Override
     protected void notifyServer(boolean isOpen) {
-        PacketDistributor.sendToServer(new GustGizmoStateUpdatePayload(gustIgniter.getBlockPos(), isOpen, new ElementalArtificeBlockEntity.GustGizmoInfo(strength, modified)));
+        PacketDistributor.sendToServer(new GustGizmoStateUpdatePayload(gustIgniter.getBlockPos(), isOpen, new ElementalArtificeTinkeringInfo(strength, modified)));
     }
 
     @Override

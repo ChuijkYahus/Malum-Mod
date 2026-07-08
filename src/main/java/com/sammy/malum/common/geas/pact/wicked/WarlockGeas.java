@@ -49,8 +49,8 @@ public class WarlockGeas extends GeasEffect {
 
     @Override
     public void addTooltipComponents(LivingEntity entity, Consumer<Component> tooltipAcceptor, TooltipFlag tooltipFlag) {
-        tooltipAcceptor.accept(EffectComponentHelper.positiveGeasEffect("first_hit_bonus"));
-        tooltipAcceptor.accept(EffectComponentHelper.negativeGeasEffect("aggressive_enemies"));
+        tooltipAcceptor.accept(TooltipComponentHelper.positiveGeasEffect("first_hit_bonus"));
+        tooltipAcceptor.accept(TooltipComponentHelper.negativeGeasEffect("aggressive_enemies"));
         super.addTooltipComponents(entity, tooltipAcceptor, tooltipFlag);
     }
 }

@@ -2,7 +2,8 @@ package com.sammy.malum.common.data.component;
 
 import com.mojang.serialization.*;
 import com.mojang.serialization.codecs.*;
-import com.sammy.malum.core.systems.spirit.type.*;
+import com.sammy.malum.core.systems.spirit.SpiritArcanaType;
+import com.sammy.malum.core.systems.spirit.SpiritLike;
 import io.netty.buffer.*;
 import net.minecraft.network.codec.*;
 import net.minecraft.world.item.*;
@@ -21,7 +22,7 @@ public record SpiritJarContentsComponent(SpiritArcanaType spirit, int count) imp
     }
 
     public ItemStack createStack() {
-        return createStack(Math.min(count, 64));
+        return createStack(count);
     }
 
     public ItemStack createStack(int count) {

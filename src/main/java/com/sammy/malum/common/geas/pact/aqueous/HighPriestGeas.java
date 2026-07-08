@@ -39,9 +39,9 @@ public class HighPriestGeas extends GeasEffect {
 
     @Override
     public void addTooltipComponents(LivingEntity entity, Consumer<Component> tooltipAcceptor, TooltipFlag tooltipFlag) {
-        tooltipAcceptor.accept(EffectComponentHelper.positiveGeasEffect("bonus_reach"));
-        tooltipAcceptor.accept(EffectComponentHelper.negativeGeasEffect("fragile_reach"));
-        tooltipAcceptor.accept(EffectComponentHelper.negativeGeasEffect("fragile_reach_slowdown"));
+        tooltipAcceptor.accept(TooltipComponentHelper.positiveGeasEffect("bonus_reach"));
+        tooltipAcceptor.accept(TooltipComponentHelper.negativeGeasEffect("fragile_reach"));
+        tooltipAcceptor.accept(TooltipComponentHelper.negativeGeasEffect("fragile_reach_slowdown"));
     }
 
     @Override

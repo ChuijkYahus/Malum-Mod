@@ -1,9 +1,8 @@
 package com.sammy.malum.common.block.flora.wood;
 
 import com.sammy.malum.common.block.curiosities.totem.*;
-import com.sammy.malum.common.data.map.*;
 import com.sammy.malum.common.item.spirit.SpiritShardItem;
-import com.sammy.malum.core.systems.spirit.type.*;
+import com.sammy.malum.core.systems.spirit.SpiritLike;
 import com.sammy.malum.registry.common.*;
 import com.sammy.malum.registry.common.magic.*;
 import net.minecraft.core.BlockPos;
@@ -19,9 +18,6 @@ import net.minecraft.world.level.block.RotatedPillarBlock;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.BlockHitResult;
 import org.jetbrains.annotations.*;
-import team.lodestar.lodestone.modules.toolkit.block.LodestoneLogBlock;
-
-import java.util.function.Supplier;
 
 public class MalumLogBlock extends RotatedPillarBlock {
 

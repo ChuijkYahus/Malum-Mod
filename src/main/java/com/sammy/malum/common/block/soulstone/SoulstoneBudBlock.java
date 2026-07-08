@@ -94,21 +94,23 @@ public class SoulstoneBudBlock extends LodestoneEntityBlock<SoulstoneBudBlockEnt
         if (level.getRandom().nextFloat() < 0.5f) {
             var attachedPos = SoulstoneBudCommons.getAttachedPos(state, pos);
             var attachedState = level.getBlockState(attachedPos);
-            var conversion = SoulstoneBudCommons.getValidConversion(random, attachedState);
-            if (conversion == null) {
+            //var conversion = SoulstoneBudCommons.getValidConversion(random, attachedState, level);
+            var recipe = SoulstoneBudCommons.getValidRecipe(random, attachedState, level);
+            if (recipe == null) {
                 return;
             }
 
             level.levelEvent(2001, attachedPos, Block.getId(attachedState));
-            level.setBlock(attachedPos, conversion.result(), 3);
+            level.setBlock(attachedPos, recipe.getOutput(), 3);
 
             int stage = state.getValue(STAGE);
             var sound = stage == 2 ? MalumBlockSoundEvents.SOULSTONE_BUD_FULLY_MATURES : MalumBlockSoundEvents.SOULSTONE_BUD_GROWS;
             level.playSound(null, pos.getX(), pos.getY(), pos.getZ(), sound.get(), SoundSource.BLOCKS);
-            level.setBlock(pos, state.setValue(STAGE, stage + 1), 3);
+            var modifiedState = recipe.getCrystalToGrow().modify(state);
+            level.setBlock(pos, modifiedState, 3);
 
             if (level.getBlockEntity(pos) instanceof SoulstoneBudBlockEntity blockEntity) {
-                blockEntity.budData = blockEntity.budData.addMetal(conversion.metalData());
+                blockEntity.budData = blockEntity.budData.addMetal(recipe.getMetalData());
             }
         }
     }

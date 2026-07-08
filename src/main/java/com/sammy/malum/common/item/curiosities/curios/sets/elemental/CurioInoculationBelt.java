@@ -9,13 +9,10 @@
  import net.minecraft.core.Holder;
  import net.minecraft.network.chat.*;
  import net.minecraft.resources.ResourceLocation;
- import net.minecraft.world.effect.MobEffect;
  import net.minecraft.world.effect.MobEffectInstance;
- import net.minecraft.world.entity.LivingEntity;
  import net.minecraft.world.entity.ai.attributes.*;
  import net.minecraft.world.entity.ai.attributes.AttributeModifier.Operation;
  import net.minecraft.world.item.ItemStack;
- import net.minecraft.world.level.Level;
  import team.lodestar.lodestone.registry.common.LodestoneAttributes;
  import top.theillusivec4.curios.api.SlotContext;
 
@@ -39,8 +36,8 @@
 
      @Override
      public void addExtraTooltipLines(Consumer<Component> consumer) {
-         consumer.accept(EffectComponentHelper.positiveCurioEffect("inoculation_effect_duration"));
-         consumer.accept(EffectComponentHelper.positiveCurioEffect("inoculation_effect_buff"));
+         consumer.accept(TooltipComponentHelper.positiveCurioEffect("inoculation_effect_duration"));
+         consumer.accept(TooltipComponentHelper.positiveCurioEffect("inoculation_effect_buff"));
      }
 
      @Override

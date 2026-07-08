@@ -3,7 +3,7 @@ package com.sammy.malum.client.screen.codex.pages.text;
 import com.sammy.malum.*;
 import com.sammy.malum.client.screen.codex.display.CodexTextRenderer;
 import com.sammy.malum.client.screen.codex.screens.*;
-import com.sammy.malum.core.systems.spirit.type.*;
+import com.sammy.malum.core.systems.spirit.SpiritLike;
 import net.minecraft.client.*;
 import net.minecraft.client.gui.*;
 import net.minecraft.client.gui.screens.*;

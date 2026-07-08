@@ -3,7 +3,7 @@ package com.sammy.malum.core.systems.rite;
 import com.sammy.malum.core.systems.registry.*;
 import com.sammy.malum.core.systems.registry.rite.*;
 import com.sammy.malum.core.systems.rite.effect.*;
-import com.sammy.malum.core.systems.spirit.type.SpiritArcanaType;
+import com.sammy.malum.core.systems.spirit.SpiritArcanaType;
 import com.sammy.malum.registry.common.magic.*;
 
 import java.util.*;

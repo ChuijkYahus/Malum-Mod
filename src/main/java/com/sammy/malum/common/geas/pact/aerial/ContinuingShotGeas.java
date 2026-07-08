@@ -26,8 +26,8 @@ public class ContinuingShotGeas extends GeasEffect {
 
     @Override
     public void addTooltipComponents(LivingEntity entity, Consumer<Component> tooltipAcceptor, TooltipFlag tooltipFlag) {
-        tooltipAcceptor.accept(EffectComponentHelper.positiveGeasEffect("faster_draw_time"));
-        tooltipAcceptor.accept(EffectComponentHelper.negativeGeasEffect("missing_halts_draw_time"));
+        tooltipAcceptor.accept(TooltipComponentHelper.positiveGeasEffect("faster_draw_time"));
+        tooltipAcceptor.accept(TooltipComponentHelper.negativeGeasEffect("missing_halts_draw_time"));
     }
 
     @Override

@@ -1,6 +1,6 @@
 package com.sammy.malum.common.payloads.waveform;
 
-import com.sammy.malum.common.block.curiosities.artifice.redstone.SpiritDiodeBlockEntity;
+import com.sammy.malum.common.block.curiosities.artifice.waveform.SpiritDiodeBlockEntity;
 import io.netty.buffer.*;
 import net.minecraft.core.BlockPos;
 import net.minecraft.network.RegistryFriendlyByteBuf;

@@ -27,8 +27,8 @@ public class CurioLimitlessBelt extends MalumCurioItem implements IMalumEventRes
 
     @Override
     public void addExtraTooltipLines(Consumer<Component> consumer) {
-        consumer.accept(EffectComponentHelper.positiveCurioEffect("soul_ward_complete_absorption"));
-        consumer.accept(EffectComponentHelper.positiveCurioEffect("soul_ward_escalating_integrity"));
+        consumer.accept(TooltipComponentHelper.positiveCurioEffect("soul_ward_complete_absorption"));
+        consumer.accept(TooltipComponentHelper.positiveCurioEffect("soul_ward_escalating_integrity"));
     }
 
     @Override

@@ -3,7 +3,7 @@ package com.sammy.malum.common.item.curiosities.weapons;
 import com.sammy.malum.common.item.*;
 import com.sammy.malum.common.item.spirit.*;
 import com.sammy.malum.core.helpers.*;
-import com.sammy.malum.core.systems.spirit.type.*;
+import com.sammy.malum.core.systems.spirit.SpiritLike;
 import com.sammy.malum.registry.common.*;
 import com.sammy.malum.registry.common.magic.*;
 import com.sammy.malum.registry.common.sound.*;
@@ -40,7 +40,7 @@ public class GluttonousBludgeonItem extends LodestoneCombatItem implements IMalu
 
     @Override
     public void modifyAttributeTooltipEvent(AddAttributeTooltipsEvent event) {
-        event.addTooltipLines(EffectComponentHelper.positiveItemEffect("gluttonous_bludgeon_locusts"));
+        event.addTooltipLines(TooltipComponentHelper.positiveItemEffect("gluttonous_bludgeon_locusts"));
     }
 
     @Override
