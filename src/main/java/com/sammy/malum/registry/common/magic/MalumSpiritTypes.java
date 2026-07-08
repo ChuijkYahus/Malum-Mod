@@ -30,12 +30,12 @@ public class MalumSpiritTypes {
     }
 
     public static SpiritColorProperties ARCANE_COLORS() {
-        return SpiritColorProperties.create(new Color(213, 70, 255), new Color(32, 222, 229))
+        return SpiritColorProperties.create(new Color(234, 99, 255), new Color(32, 222, 229))
                 .setColorCoefficient(1.1f).setColorEasing(Easing.QUAD_IN).brightenItemColor(1).build();
     }
 
     public static SpiritColorProperties ELDRITCH_COLORS() {
-        return SpiritColorProperties.create(new Color(203, 12, 248), new Color(24, 78, 164))
+        return SpiritColorProperties.create(new Color(193, 11, 235), new Color(24, 78, 164))
                 .setColorCoefficient(0.9f).setColorEasing(Easing.BOUNCE_IN_OUT).darkenItemColor(1).build();
     }
 
@@ -60,7 +60,7 @@ public class MalumSpiritTypes {
     }
 
     public static SpiritColorProperties UMBRAL_COLORS() {
-        return SpiritColorProperties.create(new Color(19, 5, 24), new Color(7, 1, 1))
+        return SpiritColorProperties.create(new Color(65, 27, 98), new Color(7, 1, 1))
                 .setItemColor(Color.WHITE).build();
     }
 

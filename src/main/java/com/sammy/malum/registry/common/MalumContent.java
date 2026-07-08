@@ -243,15 +243,15 @@ public class MalumContent {
 
         }
 
-        public static final DeferredItem<SpiritShardItem> SACRED_SPIRIT = register("sacred_spirit", MalumItemProperties::DEFAULT, (p) -> new SpiritShardItem(p, MalumSpiritTypes.SACRED_SPIRIT));
-        public static final DeferredItem<SpiritShardItem> WICKED_SPIRIT = register("wicked_spirit", MalumItemProperties::DEFAULT, (p) -> new SpiritShardItem(p, MalumSpiritTypes.WICKED_SPIRIT));
-        public static final DeferredItem<SpiritShardItem> ARCANE_SPIRIT = register("arcane_spirit", MalumItemProperties::DEFAULT, (p) -> new SpiritShardItem(p, MalumSpiritTypes.ARCANE_SPIRIT));
-        public static final DeferredItem<SpiritShardItem> ELDRITCH_SPIRIT = register("eldritch_spirit", MalumItemProperties::DEFAULT, (p) -> new SpiritShardItem(p, MalumSpiritTypes.ELDRITCH_SPIRIT));
-        public static final DeferredItem<SpiritShardItem> AERIAL_SPIRIT = register("aerial_spirit", MalumItemProperties::DEFAULT, (p) -> new SpiritShardItem(p, MalumSpiritTypes.AERIAL_SPIRIT));
-        public static final DeferredItem<SpiritShardItem> AQUEOUS_SPIRIT = register("aqueous_spirit", MalumItemProperties::DEFAULT, (p) -> new SpiritShardItem(p, MalumSpiritTypes.AQUEOUS_SPIRIT));
-        public static final DeferredItem<SpiritShardItem> EARTHEN_SPIRIT = register("earthen_spirit", MalumItemProperties::DEFAULT, (p) -> new SpiritShardItem(p, MalumSpiritTypes.EARTHEN_SPIRIT));
-        public static final DeferredItem<SpiritShardItem> INFERNAL_SPIRIT = register("infernal_spirit", MalumItemProperties::DEFAULT, (p) -> new SpiritShardItem(p, MalumSpiritTypes.INFERNAL_SPIRIT));
-        public static final DeferredItem<SpiritShardItem> UMBRAL_SPIRIT = register("umbral_spirit", MalumItemProperties::DEFAULT, (p) -> new UmbralSpiritShardItem(p, MalumSpiritTypes.UMBRAL_SPIRIT));
+        public static final DeferredItem<SpiritShardItem> SACRED_SPIRIT = register("sacred_spirit", () -> MalumItemProperties.SPIRITS(MalumRarities.SACRED_RARITY_PROXY.getValue()), (p) -> new SpiritShardItem(p, MalumSpiritTypes.SACRED_SPIRIT));
+        public static final DeferredItem<SpiritShardItem> WICKED_SPIRIT = register("wicked_spirit", () -> MalumItemProperties.SPIRITS(MalumRarities.WICKED_RARITY_PROXY.getValue()), (p) -> new SpiritShardItem(p, MalumSpiritTypes.WICKED_SPIRIT));
+        public static final DeferredItem<SpiritShardItem> ARCANE_SPIRIT = register("arcane_spirit", () -> MalumItemProperties.SPIRITS(MalumRarities.ARCANE_RARITY_PROXY.getValue()), (p) -> new SpiritShardItem(p, MalumSpiritTypes.ARCANE_SPIRIT));
+        public static final DeferredItem<SpiritShardItem> ELDRITCH_SPIRIT = register("eldritch_spirit", () -> MalumItemProperties.SPIRITS(MalumRarities.ELDRITCH_RARITY_PROXY.getValue()), (p) -> new SpiritShardItem(p, MalumSpiritTypes.ELDRITCH_SPIRIT));
+        public static final DeferredItem<SpiritShardItem> AERIAL_SPIRIT = register("aerial_spirit", () -> MalumItemProperties.SPIRITS(MalumRarities.AERIAL_RARITY_PROXY.getValue()), (p) -> new SpiritShardItem(p, MalumSpiritTypes.AERIAL_SPIRIT));
+        public static final DeferredItem<SpiritShardItem> AQUEOUS_SPIRIT = register("aqueous_spirit", () -> MalumItemProperties.SPIRITS(MalumRarities.AQUEOUS_RARITY_PROXY.getValue()), (p) -> new SpiritShardItem(p, MalumSpiritTypes.AQUEOUS_SPIRIT));
+        public static final DeferredItem<SpiritShardItem> EARTHEN_SPIRIT = register("earthen_spirit", () -> MalumItemProperties.SPIRITS(MalumRarities.EARTHEN_RARITY_PROXY.getValue()), (p) -> new SpiritShardItem(p, MalumSpiritTypes.EARTHEN_SPIRIT));
+        public static final DeferredItem<SpiritShardItem> INFERNAL_SPIRIT = register("infernal_spirit", () -> MalumItemProperties.SPIRITS(MalumRarities.INFERNAL_RARITY_PROXY.getValue()), (p) -> new SpiritShardItem(p, MalumSpiritTypes.INFERNAL_SPIRIT));
+        public static final DeferredItem<SpiritShardItem> UMBRAL_SPIRIT = register("umbral_spirit", () -> MalumItemProperties.SPIRITS(MalumRarities.UMBRAL_RARITY_PROXY.getValue()), (p) -> new UmbralSpiritShardItem(p, MalumSpiritTypes.UMBRAL_SPIRIT));
 
     }
 
