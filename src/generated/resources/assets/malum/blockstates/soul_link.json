@@ -1,0 +1,868 @@
+{
+  "variants": {
+    "open=false,optional_spirit=aerial,power=0": {
+      "model": "malum:block/soul_linkaerial"
+    },
+    "open=false,optional_spirit=aerial,power=1": {
+      "model": "malum:block/soul_linkaerial"
+    },
+    "open=false,optional_spirit=aerial,power=10": {
+      "model": "malum:block/soul_linkaerial"
+    },
+    "open=false,optional_spirit=aerial,power=11": {
+      "model": "malum:block/soul_linkaerial"
+    },
+    "open=false,optional_spirit=aerial,power=12": {
+      "model": "malum:block/soul_linkaerial"
+    },
+    "open=false,optional_spirit=aerial,power=13": {
+      "model": "malum:block/soul_linkaerial"
+    },
+    "open=false,optional_spirit=aerial,power=14": {
+      "model": "malum:block/soul_linkaerial"
+    },
+    "open=false,optional_spirit=aerial,power=15": {
+      "model": "malum:block/soul_linkaerial"
+    },
+    "open=false,optional_spirit=aerial,power=2": {
+      "model": "malum:block/soul_linkaerial"
+    },
+    "open=false,optional_spirit=aerial,power=3": {
+      "model": "malum:block/soul_linkaerial"
+    },
+    "open=false,optional_spirit=aerial,power=4": {
+      "model": "malum:block/soul_linkaerial"
+    },
+    "open=false,optional_spirit=aerial,power=5": {
+      "model": "malum:block/soul_linkaerial"
+    },
+    "open=false,optional_spirit=aerial,power=6": {
+      "model": "malum:block/soul_linkaerial"
+    },
+    "open=false,optional_spirit=aerial,power=7": {
+      "model": "malum:block/soul_linkaerial"
+    },
+    "open=false,optional_spirit=aerial,power=8": {
+      "model": "malum:block/soul_linkaerial"
+    },
+    "open=false,optional_spirit=aerial,power=9": {
+      "model": "malum:block/soul_linkaerial"
+    },
+    "open=false,optional_spirit=aqueous,power=0": {
+      "model": "malum:block/soul_linkaqueous"
+    },
+    "open=false,optional_spirit=aqueous,power=1": {
+      "model": "malum:block/soul_linkaqueous"
+    },
+    "open=false,optional_spirit=aqueous,power=10": {
+      "model": "malum:block/soul_linkaqueous"
+    },
+    "open=false,optional_spirit=aqueous,power=11": {
+      "model": "malum:block/soul_linkaqueous"
+    },
+    "open=false,optional_spirit=aqueous,power=12": {
+      "model": "malum:block/soul_linkaqueous"
+    },
+    "open=false,optional_spirit=aqueous,power=13": {
+      "model": "malum:block/soul_linkaqueous"
+    },
+    "open=false,optional_spirit=aqueous,power=14": {
+      "model": "malum:block/soul_linkaqueous"
+    },
+    "open=false,optional_spirit=aqueous,power=15": {
+      "model": "malum:block/soul_linkaqueous"
+    },
+    "open=false,optional_spirit=aqueous,power=2": {
+      "model": "malum:block/soul_linkaqueous"
+    },
+    "open=false,optional_spirit=aqueous,power=3": {
+      "model": "malum:block/soul_linkaqueous"
+    },
+    "open=false,optional_spirit=aqueous,power=4": {
+      "model": "malum:block/soul_linkaqueous"
+    },
+    "open=false,optional_spirit=aqueous,power=5": {
+      "model": "malum:block/soul_linkaqueous"
+    },
+    "open=false,optional_spirit=aqueous,power=6": {
+      "model": "malum:block/soul_linkaqueous"
+    },
+    "open=false,optional_spirit=aqueous,power=7": {
+      "model": "malum:block/soul_linkaqueous"
+    },
+    "open=false,optional_spirit=aqueous,power=8": {
+      "model": "malum:block/soul_linkaqueous"
+    },
+    "open=false,optional_spirit=aqueous,power=9": {
+      "model": "malum:block/soul_linkaqueous"
+    },
+    "open=false,optional_spirit=arcane,power=0": {
+      "model": "malum:block/soul_linkarcane"
+    },
+    "open=false,optional_spirit=arcane,power=1": {
+      "model": "malum:block/soul_linkarcane"
+    },
+    "open=false,optional_spirit=arcane,power=10": {
+      "model": "malum:block/soul_linkarcane"
+    },
+    "open=false,optional_spirit=arcane,power=11": {
+      "model": "malum:block/soul_linkarcane"
+    },
+    "open=false,optional_spirit=arcane,power=12": {
+      "model": "malum:block/soul_linkarcane"
+    },
+    "open=false,optional_spirit=arcane,power=13": {
+      "model": "malum:block/soul_linkarcane"
+    },
+    "open=false,optional_spirit=arcane,power=14": {
+      "model": "malum:block/soul_linkarcane"
+    },
+    "open=false,optional_spirit=arcane,power=15": {
+      "model": "malum:block/soul_linkarcane"
+    },
+    "open=false,optional_spirit=arcane,power=2": {
+      "model": "malum:block/soul_linkarcane"
+    },
+    "open=false,optional_spirit=arcane,power=3": {
+      "model": "malum:block/soul_linkarcane"
+    },
+    "open=false,optional_spirit=arcane,power=4": {
+      "model": "malum:block/soul_linkarcane"
+    },
+    "open=false,optional_spirit=arcane,power=5": {
+      "model": "malum:block/soul_linkarcane"
+    },
+    "open=false,optional_spirit=arcane,power=6": {
+      "model": "malum:block/soul_linkarcane"
+    },
+    "open=false,optional_spirit=arcane,power=7": {
+      "model": "malum:block/soul_linkarcane"
+    },
+    "open=false,optional_spirit=arcane,power=8": {
+      "model": "malum:block/soul_linkarcane"
+    },
+    "open=false,optional_spirit=arcane,power=9": {
+      "model": "malum:block/soul_linkarcane"
+    },
+    "open=false,optional_spirit=earthen,power=0": {
+      "model": "malum:block/soul_linkearthen"
+    },
+    "open=false,optional_spirit=earthen,power=1": {
+      "model": "malum:block/soul_linkearthen"
+    },
+    "open=false,optional_spirit=earthen,power=10": {
+      "model": "malum:block/soul_linkearthen"
+    },
+    "open=false,optional_spirit=earthen,power=11": {
+      "model": "malum:block/soul_linkearthen"
+    },
+    "open=false,optional_spirit=earthen,power=12": {
+      "model": "malum:block/soul_linkearthen"
+    },
+    "open=false,optional_spirit=earthen,power=13": {
+      "model": "malum:block/soul_linkearthen"
+    },
+    "open=false,optional_spirit=earthen,power=14": {
+      "model": "malum:block/soul_linkearthen"
+    },
+    "open=false,optional_spirit=earthen,power=15": {
+      "model": "malum:block/soul_linkearthen"
+    },
+    "open=false,optional_spirit=earthen,power=2": {
+      "model": "malum:block/soul_linkearthen"
+    },
+    "open=false,optional_spirit=earthen,power=3": {
+      "model": "malum:block/soul_linkearthen"
+    },
+    "open=false,optional_spirit=earthen,power=4": {
+      "model": "malum:block/soul_linkearthen"
+    },
+    "open=false,optional_spirit=earthen,power=5": {
+      "model": "malum:block/soul_linkearthen"
+    },
+    "open=false,optional_spirit=earthen,power=6": {
+      "model": "malum:block/soul_linkearthen"
+    },
+    "open=false,optional_spirit=earthen,power=7": {
+      "model": "malum:block/soul_linkearthen"
+    },
+    "open=false,optional_spirit=earthen,power=8": {
+      "model": "malum:block/soul_linkearthen"
+    },
+    "open=false,optional_spirit=earthen,power=9": {
+      "model": "malum:block/soul_linkearthen"
+    },
+    "open=false,optional_spirit=eldritch,power=0": {
+      "model": "malum:block/soul_linkeldritch"
+    },
+    "open=false,optional_spirit=eldritch,power=1": {
+      "model": "malum:block/soul_linkeldritch"
+    },
+    "open=false,optional_spirit=eldritch,power=10": {
+      "model": "malum:block/soul_linkeldritch"
+    },
+    "open=false,optional_spirit=eldritch,power=11": {
+      "model": "malum:block/soul_linkeldritch"
+    },
+    "open=false,optional_spirit=eldritch,power=12": {
+      "model": "malum:block/soul_linkeldritch"
+    },
+    "open=false,optional_spirit=eldritch,power=13": {
+      "model": "malum:block/soul_linkeldritch"
+    },
+    "open=false,optional_spirit=eldritch,power=14": {
+      "model": "malum:block/soul_linkeldritch"
+    },
+    "open=false,optional_spirit=eldritch,power=15": {
+      "model": "malum:block/soul_linkeldritch"
+    },
+    "open=false,optional_spirit=eldritch,power=2": {
+      "model": "malum:block/soul_linkeldritch"
+    },
+    "open=false,optional_spirit=eldritch,power=3": {
+      "model": "malum:block/soul_linkeldritch"
+    },
+    "open=false,optional_spirit=eldritch,power=4": {
+      "model": "malum:block/soul_linkeldritch"
+    },
+    "open=false,optional_spirit=eldritch,power=5": {
+      "model": "malum:block/soul_linkeldritch"
+    },
+    "open=false,optional_spirit=eldritch,power=6": {
+      "model": "malum:block/soul_linkeldritch"
+    },
+    "open=false,optional_spirit=eldritch,power=7": {
+      "model": "malum:block/soul_linkeldritch"
+    },
+    "open=false,optional_spirit=eldritch,power=8": {
+      "model": "malum:block/soul_linkeldritch"
+    },
+    "open=false,optional_spirit=eldritch,power=9": {
+      "model": "malum:block/soul_linkeldritch"
+    },
+    "open=false,optional_spirit=empty,power=0": {
+      "model": "malum:block/soul_link/soul_link"
+    },
+    "open=false,optional_spirit=empty,power=1": {
+      "model": "malum:block/soul_link/soul_link"
+    },
+    "open=false,optional_spirit=empty,power=10": {
+      "model": "malum:block/soul_link/soul_link"
+    },
+    "open=false,optional_spirit=empty,power=11": {
+      "model": "malum:block/soul_link/soul_link"
+    },
+    "open=false,optional_spirit=empty,power=12": {
+      "model": "malum:block/soul_link/soul_link"
+    },
+    "open=false,optional_spirit=empty,power=13": {
+      "model": "malum:block/soul_link/soul_link"
+    },
+    "open=false,optional_spirit=empty,power=14": {
+      "model": "malum:block/soul_link/soul_link"
+    },
+    "open=false,optional_spirit=empty,power=15": {
+      "model": "malum:block/soul_link/soul_link"
+    },
+    "open=false,optional_spirit=empty,power=2": {
+      "model": "malum:block/soul_link/soul_link"
+    },
+    "open=false,optional_spirit=empty,power=3": {
+      "model": "malum:block/soul_link/soul_link"
+    },
+    "open=false,optional_spirit=empty,power=4": {
+      "model": "malum:block/soul_link/soul_link"
+    },
+    "open=false,optional_spirit=empty,power=5": {
+      "model": "malum:block/soul_link/soul_link"
+    },
+    "open=false,optional_spirit=empty,power=6": {
+      "model": "malum:block/soul_link/soul_link"
+    },
+    "open=false,optional_spirit=empty,power=7": {
+      "model": "malum:block/soul_link/soul_link"
+    },
+    "open=false,optional_spirit=empty,power=8": {
+      "model": "malum:block/soul_link/soul_link"
+    },
+    "open=false,optional_spirit=empty,power=9": {
+      "model": "malum:block/soul_link/soul_link"
+    },
+    "open=false,optional_spirit=infernal,power=0": {
+      "model": "malum:block/soul_linkinfernal"
+    },
+    "open=false,optional_spirit=infernal,power=1": {
+      "model": "malum:block/soul_linkinfernal"
+    },
+    "open=false,optional_spirit=infernal,power=10": {
+      "model": "malum:block/soul_linkinfernal"
+    },
+    "open=false,optional_spirit=infernal,power=11": {
+      "model": "malum:block/soul_linkinfernal"
+    },
+    "open=false,optional_spirit=infernal,power=12": {
+      "model": "malum:block/soul_linkinfernal"
+    },
+    "open=false,optional_spirit=infernal,power=13": {
+      "model": "malum:block/soul_linkinfernal"
+    },
+    "open=false,optional_spirit=infernal,power=14": {
+      "model": "malum:block/soul_linkinfernal"
+    },
+    "open=false,optional_spirit=infernal,power=15": {
+      "model": "malum:block/soul_linkinfernal"
+    },
+    "open=false,optional_spirit=infernal,power=2": {
+      "model": "malum:block/soul_linkinfernal"
+    },
+    "open=false,optional_spirit=infernal,power=3": {
+      "model": "malum:block/soul_linkinfernal"
+    },
+    "open=false,optional_spirit=infernal,power=4": {
+      "model": "malum:block/soul_linkinfernal"
+    },
+    "open=false,optional_spirit=infernal,power=5": {
+      "model": "malum:block/soul_linkinfernal"
+    },
+    "open=false,optional_spirit=infernal,power=6": {
+      "model": "malum:block/soul_linkinfernal"
+    },
+    "open=false,optional_spirit=infernal,power=7": {
+      "model": "malum:block/soul_linkinfernal"
+    },
+    "open=false,optional_spirit=infernal,power=8": {
+      "model": "malum:block/soul_linkinfernal"
+    },
+    "open=false,optional_spirit=infernal,power=9": {
+      "model": "malum:block/soul_linkinfernal"
+    },
+    "open=false,optional_spirit=sacred,power=0": {
+      "model": "malum:block/soul_linksacred"
+    },
+    "open=false,optional_spirit=sacred,power=1": {
+      "model": "malum:block/soul_linksacred"
+    },
+    "open=false,optional_spirit=sacred,power=10": {
+      "model": "malum:block/soul_linksacred"
+    },
+    "open=false,optional_spirit=sacred,power=11": {
+      "model": "malum:block/soul_linksacred"
+    },
+    "open=false,optional_spirit=sacred,power=12": {
+      "model": "malum:block/soul_linksacred"
+    },
+    "open=false,optional_spirit=sacred,power=13": {
+      "model": "malum:block/soul_linksacred"
+    },
+    "open=false,optional_spirit=sacred,power=14": {
+      "model": "malum:block/soul_linksacred"
+    },
+    "open=false,optional_spirit=sacred,power=15": {
+      "model": "malum:block/soul_linksacred"
+    },
+    "open=false,optional_spirit=sacred,power=2": {
+      "model": "malum:block/soul_linksacred"
+    },
+    "open=false,optional_spirit=sacred,power=3": {
+      "model": "malum:block/soul_linksacred"
+    },
+    "open=false,optional_spirit=sacred,power=4": {
+      "model": "malum:block/soul_linksacred"
+    },
+    "open=false,optional_spirit=sacred,power=5": {
+      "model": "malum:block/soul_linksacred"
+    },
+    "open=false,optional_spirit=sacred,power=6": {
+      "model": "malum:block/soul_linksacred"
+    },
+    "open=false,optional_spirit=sacred,power=7": {
+      "model": "malum:block/soul_linksacred"
+    },
+    "open=false,optional_spirit=sacred,power=8": {
+      "model": "malum:block/soul_linksacred"
+    },
+    "open=false,optional_spirit=sacred,power=9": {
+      "model": "malum:block/soul_linksacred"
+    },
+    "open=false,optional_spirit=wicked,power=0": {
+      "model": "malum:block/soul_linkwicked"
+    },
+    "open=false,optional_spirit=wicked,power=1": {
+      "model": "malum:block/soul_linkwicked"
+    },
+    "open=false,optional_spirit=wicked,power=10": {
+      "model": "malum:block/soul_linkwicked"
+    },
+    "open=false,optional_spirit=wicked,power=11": {
+      "model": "malum:block/soul_linkwicked"
+    },
+    "open=false,optional_spirit=wicked,power=12": {
+      "model": "malum:block/soul_linkwicked"
+    },
+    "open=false,optional_spirit=wicked,power=13": {
+      "model": "malum:block/soul_linkwicked"
+    },
+    "open=false,optional_spirit=wicked,power=14": {
+      "model": "malum:block/soul_linkwicked"
+    },
+    "open=false,optional_spirit=wicked,power=15": {
+      "model": "malum:block/soul_linkwicked"
+    },
+    "open=false,optional_spirit=wicked,power=2": {
+      "model": "malum:block/soul_linkwicked"
+    },
+    "open=false,optional_spirit=wicked,power=3": {
+      "model": "malum:block/soul_linkwicked"
+    },
+    "open=false,optional_spirit=wicked,power=4": {
+      "model": "malum:block/soul_linkwicked"
+    },
+    "open=false,optional_spirit=wicked,power=5": {
+      "model": "malum:block/soul_linkwicked"
+    },
+    "open=false,optional_spirit=wicked,power=6": {
+      "model": "malum:block/soul_linkwicked"
+    },
+    "open=false,optional_spirit=wicked,power=7": {
+      "model": "malum:block/soul_linkwicked"
+    },
+    "open=false,optional_spirit=wicked,power=8": {
+      "model": "malum:block/soul_linkwicked"
+    },
+    "open=false,optional_spirit=wicked,power=9": {
+      "model": "malum:block/soul_linkwicked"
+    },
+    "open=true,optional_spirit=aerial,power=0": {
+      "model": "malum:block/soul_link/soul_link_slotted"
+    },
+    "open=true,optional_spirit=aerial,power=1": {
+      "model": "malum:block/soul_link/soul_link_slotted"
+    },
+    "open=true,optional_spirit=aerial,power=10": {
+      "model": "malum:block/soul_link/soul_link_slotted"
+    },
+    "open=true,optional_spirit=aerial,power=11": {
+      "model": "malum:block/soul_link/soul_link_slotted"
+    },
+    "open=true,optional_spirit=aerial,power=12": {
+      "model": "malum:block/soul_link/soul_link_slotted"
+    },
+    "open=true,optional_spirit=aerial,power=13": {
+      "model": "malum:block/soul_link/soul_link_slotted"
+    },
+    "open=true,optional_spirit=aerial,power=14": {
+      "model": "malum:block/soul_link/soul_link_slotted"
+    },
+    "open=true,optional_spirit=aerial,power=15": {
+      "model": "malum:block/soul_link/soul_link_slotted"
+    },
+    "open=true,optional_spirit=aerial,power=2": {
+      "model": "malum:block/soul_link/soul_link_slotted"
+    },
+    "open=true,optional_spirit=aerial,power=3": {
+      "model": "malum:block/soul_link/soul_link_slotted"
+    },
+    "open=true,optional_spirit=aerial,power=4": {
+      "model": "malum:block/soul_link/soul_link_slotted"
+    },
+    "open=true,optional_spirit=aerial,power=5": {
+      "model": "malum:block/soul_link/soul_link_slotted"
+    },
+    "open=true,optional_spirit=aerial,power=6": {
+      "model": "malum:block/soul_link/soul_link_slotted"
+    },
+    "open=true,optional_spirit=aerial,power=7": {
+      "model": "malum:block/soul_link/soul_link_slotted"
+    },
+    "open=true,optional_spirit=aerial,power=8": {
+      "model": "malum:block/soul_link/soul_link_slotted"
+    },
+    "open=true,optional_spirit=aerial,power=9": {
+      "model": "malum:block/soul_link/soul_link_slotted"
+    },
+    "open=true,optional_spirit=aqueous,power=0": {
+      "model": "malum:block/soul_link/soul_link_slotted"
+    },
+    "open=true,optional_spirit=aqueous,power=1": {
+      "model": "malum:block/soul_link/soul_link_slotted"
+    },
+    "open=true,optional_spirit=aqueous,power=10": {
+      "model": "malum:block/soul_link/soul_link_slotted"
+    },
+    "open=true,optional_spirit=aqueous,power=11": {
+      "model": "malum:block/soul_link/soul_link_slotted"
+    },
+    "open=true,optional_spirit=aqueous,power=12": {
+      "model": "malum:block/soul_link/soul_link_slotted"
+    },
+    "open=true,optional_spirit=aqueous,power=13": {
+      "model": "malum:block/soul_link/soul_link_slotted"
+    },
+    "open=true,optional_spirit=aqueous,power=14": {
+      "model": "malum:block/soul_link/soul_link_slotted"
+    },
+    "open=true,optional_spirit=aqueous,power=15": {
+      "model": "malum:block/soul_link/soul_link_slotted"
+    },
+    "open=true,optional_spirit=aqueous,power=2": {
+      "model": "malum:block/soul_link/soul_link_slotted"
+    },
+    "open=true,optional_spirit=aqueous,power=3": {
+      "model": "malum:block/soul_link/soul_link_slotted"
+    },
+    "open=true,optional_spirit=aqueous,power=4": {
+      "model": "malum:block/soul_link/soul_link_slotted"
+    },
+    "open=true,optional_spirit=aqueous,power=5": {
+      "model": "malum:block/soul_link/soul_link_slotted"
+    },
+    "open=true,optional_spirit=aqueous,power=6": {
+      "model": "malum:block/soul_link/soul_link_slotted"
+    },
+    "open=true,optional_spirit=aqueous,power=7": {
+      "model": "malum:block/soul_link/soul_link_slotted"
+    },
+    "open=true,optional_spirit=aqueous,power=8": {
+      "model": "malum:block/soul_link/soul_link_slotted"
+    },
+    "open=true,optional_spirit=aqueous,power=9": {
+      "model": "malum:block/soul_link/soul_link_slotted"
+    },
+    "open=true,optional_spirit=arcane,power=0": {
+      "model": "malum:block/soul_link/soul_link_slotted"
+    },
+    "open=true,optional_spirit=arcane,power=1": {
+      "model": "malum:block/soul_link/soul_link_slotted"
+    },
+    "open=true,optional_spirit=arcane,power=10": {
+      "model": "malum:block/soul_link/soul_link_slotted"
+    },
+    "open=true,optional_spirit=arcane,power=11": {
+      "model": "malum:block/soul_link/soul_link_slotted"
+    },
+    "open=true,optional_spirit=arcane,power=12": {
+      "model": "malum:block/soul_link/soul_link_slotted"
+    },
+    "open=true,optional_spirit=arcane,power=13": {
+      "model": "malum:block/soul_link/soul_link_slotted"
+    },
+    "open=true,optional_spirit=arcane,power=14": {
+      "model": "malum:block/soul_link/soul_link_slotted"
+    },
+    "open=true,optional_spirit=arcane,power=15": {
+      "model": "malum:block/soul_link/soul_link_slotted"
+    },
+    "open=true,optional_spirit=arcane,power=2": {
+      "model": "malum:block/soul_link/soul_link_slotted"
+    },
+    "open=true,optional_spirit=arcane,power=3": {
+      "model": "malum:block/soul_link/soul_link_slotted"
+    },
+    "open=true,optional_spirit=arcane,power=4": {
+      "model": "malum:block/soul_link/soul_link_slotted"
+    },
+    "open=true,optional_spirit=arcane,power=5": {
+      "model": "malum:block/soul_link/soul_link_slotted"
+    },
+    "open=true,optional_spirit=arcane,power=6": {
+      "model": "malum:block/soul_link/soul_link_slotted"
+    },
+    "open=true,optional_spirit=arcane,power=7": {
+      "model": "malum:block/soul_link/soul_link_slotted"
+    },
+    "open=true,optional_spirit=arcane,power=8": {
+      "model": "malum:block/soul_link/soul_link_slotted"
+    },
+    "open=true,optional_spirit=arcane,power=9": {
+      "model": "malum:block/soul_link/soul_link_slotted"
+    },
+    "open=true,optional_spirit=earthen,power=0": {
+      "model": "malum:block/soul_link/soul_link_slotted"
+    },
+    "open=true,optional_spirit=earthen,power=1": {
+      "model": "malum:block/soul_link/soul_link_slotted"
+    },
+    "open=true,optional_spirit=earthen,power=10": {
+      "model": "malum:block/soul_link/soul_link_slotted"
+    },
+    "open=true,optional_spirit=earthen,power=11": {
+      "model": "malum:block/soul_link/soul_link_slotted"
+    },
+    "open=true,optional_spirit=earthen,power=12": {
+      "model": "malum:block/soul_link/soul_link_slotted"
+    },
+    "open=true,optional_spirit=earthen,power=13": {
+      "model": "malum:block/soul_link/soul_link_slotted"
+    },
+    "open=true,optional_spirit=earthen,power=14": {
+      "model": "malum:block/soul_link/soul_link_slotted"
+    },
+    "open=true,optional_spirit=earthen,power=15": {
+      "model": "malum:block/soul_link/soul_link_slotted"
+    },
+    "open=true,optional_spirit=earthen,power=2": {
+      "model": "malum:block/soul_link/soul_link_slotted"
+    },
+    "open=true,optional_spirit=earthen,power=3": {
+      "model": "malum:block/soul_link/soul_link_slotted"
+    },
+    "open=true,optional_spirit=earthen,power=4": {
+      "model": "malum:block/soul_link/soul_link_slotted"
+    },
+    "open=true,optional_spirit=earthen,power=5": {
+      "model": "malum:block/soul_link/soul_link_slotted"
+    },
+    "open=true,optional_spirit=earthen,power=6": {
+      "model": "malum:block/soul_link/soul_link_slotted"
+    },
+    "open=true,optional_spirit=earthen,power=7": {
+      "model": "malum:block/soul_link/soul_link_slotted"
+    },
+    "open=true,optional_spirit=earthen,power=8": {
+      "model": "malum:block/soul_link/soul_link_slotted"
+    },
+    "open=true,optional_spirit=earthen,power=9": {
+      "model": "malum:block/soul_link/soul_link_slotted"
+    },
+    "open=true,optional_spirit=eldritch,power=0": {
+      "model": "malum:block/soul_link/soul_link_slotted"
+    },
+    "open=true,optional_spirit=eldritch,power=1": {
+      "model": "malum:block/soul_link/soul_link_slotted"
+    },
+    "open=true,optional_spirit=eldritch,power=10": {
+      "model": "malum:block/soul_link/soul_link_slotted"
+    },
+    "open=true,optional_spirit=eldritch,power=11": {
+      "model": "malum:block/soul_link/soul_link_slotted"
+    },
+    "open=true,optional_spirit=eldritch,power=12": {
+      "model": "malum:block/soul_link/soul_link_slotted"
+    },
+    "open=true,optional_spirit=eldritch,power=13": {
+      "model": "malum:block/soul_link/soul_link_slotted"
+    },
+    "open=true,optional_spirit=eldritch,power=14": {
+      "model": "malum:block/soul_link/soul_link_slotted"
+    },
+    "open=true,optional_spirit=eldritch,power=15": {
+      "model": "malum:block/soul_link/soul_link_slotted"
+    },
+    "open=true,optional_spirit=eldritch,power=2": {
+      "model": "malum:block/soul_link/soul_link_slotted"
+    },
+    "open=true,optional_spirit=eldritch,power=3": {
+      "model": "malum:block/soul_link/soul_link_slotted"
+    },
+    "open=true,optional_spirit=eldritch,power=4": {
+      "model": "malum:block/soul_link/soul_link_slotted"
+    },
+    "open=true,optional_spirit=eldritch,power=5": {
+      "model": "malum:block/soul_link/soul_link_slotted"
+    },
+    "open=true,optional_spirit=eldritch,power=6": {
+      "model": "malum:block/soul_link/soul_link_slotted"
+    },
+    "open=true,optional_spirit=eldritch,power=7": {
+      "model": "malum:block/soul_link/soul_link_slotted"
+    },
+    "open=true,optional_spirit=eldritch,power=8": {
+      "model": "malum:block/soul_link/soul_link_slotted"
+    },
+    "open=true,optional_spirit=eldritch,power=9": {
+      "model": "malum:block/soul_link/soul_link_slotted"
+    },
+    "open=true,optional_spirit=empty,power=0": {
+      "model": "malum:block/soul_link/soul_link"
+    },
+    "open=true,optional_spirit=empty,power=1": {
+      "model": "malum:block/soul_link/soul_link"
+    },
+    "open=true,optional_spirit=empty,power=10": {
+      "model": "malum:block/soul_link/soul_link"
+    },
+    "open=true,optional_spirit=empty,power=11": {
+      "model": "malum:block/soul_link/soul_link"
+    },
+    "open=true,optional_spirit=empty,power=12": {
+      "model": "malum:block/soul_link/soul_link"
+    },
+    "open=true,optional_spirit=empty,power=13": {
+      "model": "malum:block/soul_link/soul_link"
+    },
+    "open=true,optional_spirit=empty,power=14": {
+      "model": "malum:block/soul_link/soul_link"
+    },
+    "open=true,optional_spirit=empty,power=15": {
+      "model": "malum:block/soul_link/soul_link"
+    },
+    "open=true,optional_spirit=empty,power=2": {
+      "model": "malum:block/soul_link/soul_link"
+    },
+    "open=true,optional_spirit=empty,power=3": {
+      "model": "malum:block/soul_link/soul_link"
+    },
+    "open=true,optional_spirit=empty,power=4": {
+      "model": "malum:block/soul_link/soul_link"
+    },
+    "open=true,optional_spirit=empty,power=5": {
+      "model": "malum:block/soul_link/soul_link"
+    },
+    "open=true,optional_spirit=empty,power=6": {
+      "model": "malum:block/soul_link/soul_link"
+    },
+    "open=true,optional_spirit=empty,power=7": {
+      "model": "malum:block/soul_link/soul_link"
+    },
+    "open=true,optional_spirit=empty,power=8": {
+      "model": "malum:block/soul_link/soul_link"
+    },
+    "open=true,optional_spirit=empty,power=9": {
+      "model": "malum:block/soul_link/soul_link"
+    },
+    "open=true,optional_spirit=infernal,power=0": {
+      "model": "malum:block/soul_link/soul_link_slotted"
+    },
+    "open=true,optional_spirit=infernal,power=1": {
+      "model": "malum:block/soul_link/soul_link_slotted"
+    },
+    "open=true,optional_spirit=infernal,power=10": {
+      "model": "malum:block/soul_link/soul_link_slotted"
+    },
+    "open=true,optional_spirit=infernal,power=11": {
+      "model": "malum:block/soul_link/soul_link_slotted"
+    },
+    "open=true,optional_spirit=infernal,power=12": {
+      "model": "malum:block/soul_link/soul_link_slotted"
+    },
+    "open=true,optional_spirit=infernal,power=13": {
+      "model": "malum:block/soul_link/soul_link_slotted"
+    },
+    "open=true,optional_spirit=infernal,power=14": {
+      "model": "malum:block/soul_link/soul_link_slotted"
+    },
+    "open=true,optional_spirit=infernal,power=15": {
+      "model": "malum:block/soul_link/soul_link_slotted"
+    },
+    "open=true,optional_spirit=infernal,power=2": {
+      "model": "malum:block/soul_link/soul_link_slotted"
+    },
+    "open=true,optional_spirit=infernal,power=3": {
+      "model": "malum:block/soul_link/soul_link_slotted"
+    },
+    "open=true,optional_spirit=infernal,power=4": {
+      "model": "malum:block/soul_link/soul_link_slotted"
+    },
+    "open=true,optional_spirit=infernal,power=5": {
+      "model": "malum:block/soul_link/soul_link_slotted"
+    },
+    "open=true,optional_spirit=infernal,power=6": {
+      "model": "malum:block/soul_link/soul_link_slotted"
+    },
+    "open=true,optional_spirit=infernal,power=7": {
+      "model": "malum:block/soul_link/soul_link_slotted"
+    },
+    "open=true,optional_spirit=infernal,power=8": {
+      "model": "malum:block/soul_link/soul_link_slotted"
+    },
+    "open=true,optional_spirit=infernal,power=9": {
+      "model": "malum:block/soul_link/soul_link_slotted"
+    },
+    "open=true,optional_spirit=sacred,power=0": {
+      "model": "malum:block/soul_link/soul_link_slotted"
+    },
+    "open=true,optional_spirit=sacred,power=1": {
+      "model": "malum:block/soul_link/soul_link_slotted"
+    },
+    "open=true,optional_spirit=sacred,power=10": {
+      "model": "malum:block/soul_link/soul_link_slotted"
+    },
+    "open=true,optional_spirit=sacred,power=11": {
+      "model": "malum:block/soul_link/soul_link_slotted"
+    },
+    "open=true,optional_spirit=sacred,power=12": {
+      "model": "malum:block/soul_link/soul_link_slotted"
+    },
+    "open=true,optional_spirit=sacred,power=13": {
+      "model": "malum:block/soul_link/soul_link_slotted"
+    },
+    "open=true,optional_spirit=sacred,power=14": {
+      "model": "malum:block/soul_link/soul_link_slotted"
+    },
+    "open=true,optional_spirit=sacred,power=15": {
+      "model": "malum:block/soul_link/soul_link_slotted"
+    },
+    "open=true,optional_spirit=sacred,power=2": {
+      "model": "malum:block/soul_link/soul_link_slotted"
+    },
+    "open=true,optional_spirit=sacred,power=3": {
+      "model": "malum:block/soul_link/soul_link_slotted"
+    },
+    "open=true,optional_spirit=sacred,power=4": {
+      "model": "malum:block/soul_link/soul_link_slotted"
+    },
+    "open=true,optional_spirit=sacred,power=5": {
+      "model": "malum:block/soul_link/soul_link_slotted"
+    },
+    "open=true,optional_spirit=sacred,power=6": {
+      "model": "malum:block/soul_link/soul_link_slotted"
+    },
+    "open=true,optional_spirit=sacred,power=7": {
+      "model": "malum:block/soul_link/soul_link_slotted"
+    },
+    "open=true,optional_spirit=sacred,power=8": {
+      "model": "malum:block/soul_link/soul_link_slotted"
+    },
+    "open=true,optional_spirit=sacred,power=9": {
+      "model": "malum:block/soul_link/soul_link_slotted"
+    },
+    "open=true,optional_spirit=wicked,power=0": {
+      "model": "malum:block/soul_link/soul_link_slotted"
+    },
+    "open=true,optional_spirit=wicked,power=1": {
+      "model": "malum:block/soul_link/soul_link_slotted"
+    },
+    "open=true,optional_spirit=wicked,power=10": {
+      "model": "malum:block/soul_link/soul_link_slotted"
+    },
+    "open=true,optional_spirit=wicked,power=11": {
+      "model": "malum:block/soul_link/soul_link_slotted"
+    },
+    "open=true,optional_spirit=wicked,power=12": {
+      "model": "malum:block/soul_link/soul_link_slotted"
+    },
+    "open=true,optional_spirit=wicked,power=13": {
+      "model": "malum:block/soul_link/soul_link_slotted"
+    },
+    "open=true,optional_spirit=wicked,power=14": {
+      "model": "malum:block/soul_link/soul_link_slotted"
+    },
+    "open=true,optional_spirit=wicked,power=15": {
+      "model": "malum:block/soul_link/soul_link_slotted"
+    },
+    "open=true,optional_spirit=wicked,power=2": {
+      "model": "malum:block/soul_link/soul_link_slotted"
+    },
+    "open=true,optional_spirit=wicked,power=3": {
+      "model": "malum:block/soul_link/soul_link_slotted"
+    },
+    "open=true,optional_spirit=wicked,power=4": {
+      "model": "malum:block/soul_link/soul_link_slotted"
+    },
+    "open=true,optional_spirit=wicked,power=5": {
+      "model": "malum:block/soul_link/soul_link_slotted"
+    },
+    "open=true,optional_spirit=wicked,power=6": {
+      "model": "malum:block/soul_link/soul_link_slotted"
+    },
+    "open=true,optional_spirit=wicked,power=7": {
+      "model": "malum:block/soul_link/soul_link_slotted"
+    },
+    "open=true,optional_spirit=wicked,power=8": {
+      "model": "malum:block/soul_link/soul_link_slotted"
+    },
+    "open=true,optional_spirit=wicked,power=9": {
+      "model": "malum:block/soul_link/soul_link_slotted"
+    }
+  }
+}

@@ -1,9 +1,9 @@
 {
   "parent": "minecraft:block/cube_bottom_top",
   "textures": {
-    "bottom": "malum:block/waveform_artifice/gust_igniter/gust_igniter_bottom",
-    "particle": "malum:block/waveform_artifice/gust_igniter/gust_igniter_side",
-    "side": "malum:block/waveform_artifice/gust_igniter/gust_igniter_side",
-    "top": "malum:block/waveform_artifice/gust_igniter/gust_igniter_top"
+    "bottom": "malum:block/artifice/gust_igniter/gust_igniter_bottom",
+    "particle": "malum:block/artifice/gust_igniter/gust_igniter_side",
+    "side": "malum:block/artifice/gust_igniter/gust_igniter_side",
+    "top": "malum:block/artifice/gust_igniter/gust_igniter_top"
   }
 }

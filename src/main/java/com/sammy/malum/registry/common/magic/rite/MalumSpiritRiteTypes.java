@@ -4,6 +4,7 @@ import com.sammy.malum.*;
 import com.sammy.malum.common.block.curiosities.totem.*;
 import com.sammy.malum.core.systems.registry.rite.*;
 import com.sammy.malum.core.systems.rite.*;
+import com.sammy.malum.registry.common.MalumContent;
 import net.minecraft.core.*;
 import net.minecraft.resources.*;
 import net.minecraft.server.level.*;
@@ -82,14 +83,9 @@ public class MalumSpiritRiteTypes {
             majorTotemRite(INFERNAL_SPIRIT).setCorrupted().build(MalumSpiritRiteEffectTypes.QUICKENING_EFFECT));
 
 
+
     public static SpiritRiteType getRite(ServerLevel level, TotemBaseBlockEntity totemBase) {
-        boolean corrupted = totemBase.corrupted;
-        var totemPoles = totemBase.getTotemPoles(level);
-        for (TotemPoleBlockEntity totemPole : totemPoles) {
-            if (totemPole.isSoulwood() != corrupted) {
-                return null;
-            }
-        }
+
         var rites = MalumSpiritRiteTypes.RITE_TYPES.getEntries().stream().map(DeferredHolder::get).toList();
         for (SpiritRiteType rite : rites) {
             if (rite.matches(level, totemBase)) {

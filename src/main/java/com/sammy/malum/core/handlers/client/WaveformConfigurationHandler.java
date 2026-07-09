@@ -1,7 +1,7 @@
 package com.sammy.malum.core.handlers.client;
 
 import com.sammy.malum.client.screen.waveform.*;
-import com.sammy.malum.common.block.curiosities.artifice.TinkererArtificeBlockEntity;
+import com.sammy.malum.common.block.curiosities.artifice.ConfigurableArtificeBlockEntity;
 import com.sammy.malum.common.block.curiosities.artifice.elemental_artifice.aerial.GustIgniterBlockEntity;
 import com.sammy.malum.common.block.curiosities.artifice.elemental_artifice.base.ElementalArtificeBlockEntity;
 import com.sammy.malum.common.block.curiosities.artifice.waveform.*;
@@ -39,7 +39,7 @@ public class WaveformConfigurationHandler {
             resetInteraction();
             return;
         }
-        if (!(minecraft.level.getBlockEntity(blockPos) instanceof TinkererArtificeBlockEntity entity)) {
+        if (!(minecraft.level.getBlockEntity(blockPos) instanceof ConfigurableArtificeBlockEntity entity)) {
             resetInteraction();
             return;
         }
@@ -80,7 +80,7 @@ public class WaveformConfigurationHandler {
         if (!canInteract(player)) {
             return;
         }
-        if (!(level.getBlockEntity(pos) instanceof TinkererArtificeBlockEntity)) {
+        if (!(level.getBlockEntity(pos) instanceof ConfigurableArtificeBlockEntity)) {
             return;
         }
         if (interactionPos != null) {

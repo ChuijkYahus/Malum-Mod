@@ -2,7 +2,7 @@ package com.sammy.malum.common.block.curiosities.artifice.elemental_artifice.bas
 
 import com.sammy.malum.common.block.curiosities.artifice.elemental_artifice.ElementalArtificeTinkeringInfo;
 import com.sammy.malum.common.block.curiosities.artifice.ArtificeTinkeringInfo;
-import com.sammy.malum.common.block.curiosities.artifice.TinkererArtificeBlockEntity;
+import com.sammy.malum.common.block.curiosities.artifice.ConfigurableArtificeBlockEntity;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.nbt.CompoundTag;
@@ -55,7 +55,7 @@ public abstract class SecondaryArtificeBlockEntity extends ElementalArtificeBloc
     }
 
     @Override
-    public TinkererArtificeBlockEntity redirectTinkerFocus() {
+    public ConfigurableArtificeBlockEntity redirectTinkerFocus() {
         var optional = getOwner();
         if (optional.isPresent()) {
             return optional.get();

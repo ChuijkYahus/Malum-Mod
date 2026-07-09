@@ -1,14 +1,14 @@
 package com.sammy.malum.common.payloads.waveform;
 
-import com.sammy.malum.common.block.curiosities.artifice.waveform.SpiritDiodeBlockEntity;
+import com.sammy.malum.common.block.curiosities.artifice.waveform.SpiritDiodeConfigurationInfo;
 import io.netty.buffer.*;
 import net.minecraft.core.BlockPos;
 import net.minecraft.network.RegistryFriendlyByteBuf;
 import net.minecraft.network.codec.*;
 
-public class SpiritDiodeStateUpdatePayload extends OpenBlockEntityStateUpdatePayload<SpiritDiodeBlockEntity.SpiritDiodeInfo> {
+public class SpiritDiodeStateUpdatePayload extends OpenBlockEntityStateUpdatePayload<SpiritDiodeConfigurationInfo> {
 
-    public SpiritDiodeStateUpdatePayload(BlockPos pos, boolean isOpen, SpiritDiodeBlockEntity.SpiritDiodeInfo info) {
+    public SpiritDiodeStateUpdatePayload(BlockPos pos, boolean isOpen, SpiritDiodeConfigurationInfo info) {
         super(pos, isOpen, info);
     }
 
@@ -17,7 +17,7 @@ public class SpiritDiodeStateUpdatePayload extends OpenBlockEntityStateUpdatePay
     }
 
     @Override
-    public StreamCodec<ByteBuf, SpiritDiodeBlockEntity.SpiritDiodeInfo> getInfoCodec() {
-        return SpiritDiodeBlockEntity.SpiritDiodeInfo.STREAM_CODEC;
+    public StreamCodec<ByteBuf, SpiritDiodeConfigurationInfo> getInfoCodec() {
+        return SpiritDiodeConfigurationInfo.STREAM_CODEC;
     }
 }

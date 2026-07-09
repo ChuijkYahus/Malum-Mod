@@ -8,6 +8,7 @@ import com.sammy.malum.common.block.blight.scarstone.StrangeRootBlock;
 import com.sammy.malum.common.block.curiosities.artifice.crystallarium.*;
 import com.sammy.malum.common.block.curiosities.artifice.elemental_artifice.aerial.GustIgniterBlock;
 import com.sammy.malum.common.block.curiosities.artifice.elemental_artifice.aerial.WindTunnelBlock;
+import com.sammy.malum.common.block.curiosities.artifice.soul_link.SoulLinkBlock;
 import com.sammy.malum.common.block.curiosities.artifice.waveform.wavebanker.*;
 import com.sammy.malum.common.block.curiosities.artifice.waveform.wavebreaker.*;
 import com.sammy.malum.common.block.curiosities.artifice.waveform.wavecharger.*;
@@ -559,8 +560,8 @@ public class MalumContent {
         public static final BlockBlockItemHolder<Block, BlockItem> WAVEFORM_RUNEWOOD_TOTEM_BASE = registerBlock("waveform_runewood_totem_base", () -> new WaveformTotemBaseBlock<>(COPPER_ARTIFICE().addTag(IS_RITE_IMMUNE).noOcclusion(), false));
         public static final BlockBlockItemHolder<Block, BlockItem> WAVEFORM_SOULWOOD_TOTEM_BASE = registerBlock("waveform_soulwood_totem_base", () -> new WaveformTotemBaseBlock<>(COPPER_ARTIFICE().addTag(IS_RITE_IMMUNE).noOcclusion(), true));
 
-        public static final DeferredBlock<Block> RUNEWOOD_TOTEM_POLE = registerBlockNoItem("runewood_totem_pole", () -> new TotemPoleBlock<>(MalumWoodBlockProperties.RUNEWOOD().addTag(IS_RITE_IMMUNE).noOcclusion(), BlockSets.RUNEWOOD_SET.log, false));
-        public static final DeferredBlock<Block> SOULWOOD_TOTEM_POLE = registerBlockNoItem("soulwood_totem_pole", () -> new TotemPoleBlock<>(MalumWoodBlockProperties.SOULWOOD().addTag(IS_RITE_IMMUNE).noOcclusion(), BlockSets.SOULWOOD_SET.log, true));
+        public static final DeferredBlock<Block> RUNEWOOD_TOTEM_POLE = registerBlockNoItem("runewood_totem_pole", () -> new TotemPoleBlock<>(MalumWoodBlockProperties.RUNEWOOD().addTag(IS_RITE_IMMUNE).noOcclusion(), BlockSets.RUNEWOOD_SET.log));
+        public static final DeferredBlock<Block> SOULWOOD_TOTEM_POLE = registerBlockNoItem("soulwood_totem_pole", () -> new TotemPoleBlock<>(MalumWoodBlockProperties.SOULWOOD().addTag(IS_RITE_IMMUNE).noOcclusion(), BlockSets.SOULWOOD_SET.log));
 
         public static final BlockBlockItemHolder<Block, BlockItem> RITE_ANCHOR = registerBlock("rite_anchor", () -> new RiteAnchorBlock(TAINTED_ROCK_TOTEMANCY()));
         public static final BlockBlockItemHolder<Block, BlockItem> RITE_UNWEAVER = registerBlock("rite_unweaver", () -> new RiteUnweaverBlock(TWISTED_ROCK_TOTEMANCY()));
@@ -577,6 +578,8 @@ public class MalumContent {
         public static final BlockBlockItemHolder<Block, BlockItem> CONJUNCTURE_CRYSTALLARIUM = registerBlock("conjuncture_crystallarium", () -> new ConjunctureCrystallariumBlock<>(COPPER_ARTIFICE()));
 
         public static final DeferredItem<Item> ARTIFICERS_CLAW = register("artificers_claw", MalumItemProperties::GEAR, TinkeringToolItem::new);
+
+        public static final BlockBlockItemHolder<Block, BlockItem> SOUL_LINK = registerBlock("soul_link", () -> new SoulLinkBlock(COPPER_ARTIFICE()));
 
         public static final BlockBlockItemHolder<Block, BlockItem> WAVECHARGER = registerBlock("wavecharger", () -> new WaveChargerBlock(COPPER_ARTIFICE()));
         public static final BlockBlockItemHolder<Block, BlockItem> WAVEBANKER = registerBlock("wavebanker", () -> new WaveBankerBlock(COPPER_ARTIFICE()));

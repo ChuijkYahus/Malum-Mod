@@ -206,7 +206,6 @@ public class RuntimeEventHandler {
 
     @SubscribeEvent
     public static void onItemUseBlock(UseItemOnBlockEvent event) {
-        BlockCarvingHandler.carveBlocks(event);
         BlockTappingHandler.drainBlock(event);
     }
     @SubscribeEvent

@@ -1,16 +1,12 @@
 package com.sammy.malum.common.block.curiosities.artifice.waveform;
 
-import com.mojang.serialization.*;
-import com.mojang.serialization.codecs.*;
 import com.sammy.malum.common.block.curiosities.artifice.ArtificeTinkeringInfo;
-import com.sammy.malum.common.block.curiosities.artifice.TinkererArtificeBlockEntity;
+import com.sammy.malum.common.block.curiosities.artifice.ConfigurableArtificeBlockEntity;
+import com.sammy.malum.common.block.curiosities.artifice.RedstoneTimeIntervalType;
 import com.sammy.malum.common.payloads.waveform.SpiritDiodeVisualUpdatePayload;
-import io.netty.buffer.*;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.nbt.CompoundTag;
-import net.minecraft.network.chat.Component;
-import net.minecraft.network.codec.*;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.util.*;
 import net.minecraft.world.level.ChunkPos;
@@ -18,67 +14,11 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.neoforged.neoforge.network.PacketDistributor;
 import team.lodestar.lodestone.modules.toolkit.blockentity.LodestoneBlockEntityType;
 
-import java.util.*;
-
 import static net.minecraft.network.chat.Component.translatable;
 
-public class SpiritDiodeBlockEntity extends TinkererArtificeBlockEntity {
+public class SpiritDiodeBlockEntity extends ConfigurableArtificeBlockEntity {
 
-    public record SpiritDiodeInfo(TimeIntervalType type, int frequency) implements ArtificeTinkeringInfo {
-        public static final Codec<SpiritDiodeInfo> CODEC = RecordCodecBuilder.create(instance -> instance.group(
-                TimeIntervalType.CODEC.fieldOf("type").forGetter(SpiritDiodeInfo::type),
-                Codec.INT.fieldOf("frequency").forGetter(SpiritDiodeInfo::frequency)
-        ).apply(instance, SpiritDiodeInfo::new));
-
-        public static StreamCodec<ByteBuf, SpiritDiodeInfo> STREAM_CODEC = ByteBufCodecs.fromCodec(SpiritDiodeInfo.CODEC);
-
-    }
-
-    public enum TimeIntervalType implements StringRepresentable {
-        REDSTONE_TICK("redstone_tick", 0, 2),
-        SECOND("second", 1, 20),
-        MINUTE("minute", 2, 1200);
-
-        public static final StringRepresentable.EnumCodec<TimeIntervalType> CODEC = StringRepresentable.fromEnum(TimeIntervalType::values);
-
-        final String name;
-        final int id;
-        final int timeScale;
-
-        TimeIntervalType(String name, int id, int timeScale) {
-            this.name = name;
-            this.id = id;
-            this.timeScale = timeScale;
-        }
-
-        public String getName() {
-            return toString().toLowerCase(Locale.ROOT);
-        }
-
-        public Component getText(SpiritDiodeBlockEntity blockEntity) {
-            return getText(blockEntity.frequency > 1);
-        }
-
-        public Component getText(boolean plural) {
-            var key = plural ? getPluralLangKey() : getLangKey();
-            return Component.translatable(key);
-        }
-
-        public String getLangKey() {
-            return "malum.waveform_artifice." + getName();
-        }
-
-        public String getPluralLangKey() {
-            return getLangKey() + "_plural";
-        }
-
-        @Override
-        public String getSerializedName() {
-            return name;
-        }
-    }
-
-    public TimeIntervalType type = TimeIntervalType.REDSTONE_TICK;
+    public RedstoneTimeIntervalType type = RedstoneTimeIntervalType.REDSTONE_TICK;
     public int frequency = 20;
 
     public int cachedInputSignal = -1;
@@ -95,14 +35,14 @@ public class SpiritDiodeBlockEntity extends TinkererArtificeBlockEntity {
     }
 
     @Override
-    public SpiritDiodeInfo defaultTinkeringState() {
-        return new SpiritDiodeInfo(type, frequency);
+    public SpiritDiodeConfigurationInfo defaultTinkeringState() {
+        return new SpiritDiodeConfigurationInfo(type, frequency);
     }
 
     @Override
     protected void loadAdditional(CompoundTag pTag, HolderLookup.Provider pRegistries) {
         super.loadAdditional(pTag, pRegistries);
-        type = TimeIntervalType.valueOf(pTag.getString("type"));
+        type = RedstoneTimeIntervalType.valueOf(pTag.getString("type"));
         frequency = pTag.getInt("frequency");
 
         cachedInputSignal = pTag.getInt("cachedInputSignal");
@@ -121,10 +61,9 @@ public class SpiritDiodeBlockEntity extends TinkererArtificeBlockEntity {
 
     @Override
     public void setInfo(ArtificeTinkeringInfo info) {
-        if (info instanceof SpiritDiodeInfo spiritDiodeInfo) {
-
-            type = spiritDiodeInfo.type;
-            frequency = spiritDiodeInfo.frequency;
+        if (info instanceof SpiritDiodeConfigurationInfo spiritDiodeConfigurationInfo) {
+            type = spiritDiodeConfigurationInfo.type();
+            frequency = spiritDiodeConfigurationInfo.frequency();
         }
     }
 

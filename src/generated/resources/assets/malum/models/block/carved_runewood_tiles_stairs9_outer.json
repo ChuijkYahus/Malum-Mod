@@ -1,8 +1,0 @@
-{
-  "parent": "minecraft:block/outer_stairs",
-  "textures": {
-    "bottom": "malum:block/building/runewood/carved_runewood_tiles9",
-    "side": "malum:block/building/runewood/carved_runewood_tiles9",
-    "top": "malum:block/building/runewood/carved_runewood_tiles9"
-  }
-}

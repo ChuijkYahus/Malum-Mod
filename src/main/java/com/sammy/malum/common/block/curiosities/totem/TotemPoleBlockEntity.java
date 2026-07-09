@@ -1,7 +1,6 @@
 package com.sammy.malum.common.block.curiosities.totem;
 
 import com.sammy.malum.core.systems.spirit.SpiritArcanaType;
-import com.sammy.malum.core.systems.spirit.SpiritTypeProperty;
 import com.sammy.malum.registry.common.*;
 import com.sammy.malum.registry.common.block.*;
 
@@ -16,9 +15,7 @@ import net.minecraft.world.*;
 import net.minecraft.world.entity.player.*;
 import net.minecraft.world.item.*;
 import net.minecraft.world.level.*;
-import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.*;
-import net.neoforged.neoforge.common.ItemAbilities;
 import org.jetbrains.annotations.NotNull;
 import team.lodestar.lodestone.modules.toolkit.blockentity.*;
 
@@ -41,23 +38,11 @@ public class TotemPoleBlockEntity extends LodestoneBlockEntity {
 
     public TotemPoleBlockEntity(LodestoneBlockEntityType<? extends TotemPoleBlockEntity> type, BlockPos pos, BlockState state) {
         super(type, pos, state);
-        spirit = SpiritTypeProperty.getSpiritType(state).value();
+        spirit = TotemPoleBlock.SPIRIT.getSpirit(state).value();
     }
 
     public TotemPoleBlockEntity(BlockPos pos, BlockState state) {
         this(MalumBlockEntities.TOTEM_POLE.get(), pos, state);
-    }
-
-    public Block getLogBlock() {
-        return asBlock().getLogBlock();
-    }
-
-    public boolean isSoulwood() {
-        return asBlock().isSoulwood();
-    }
-
-    public TotemPoleBlock<?> asBlock() {
-        return (TotemPoleBlock<?>) getBlockState().getBlock();
     }
 
     public SpiritArcanaType getSpirit() {
@@ -75,13 +60,6 @@ public class TotemPoleBlockEntity extends LodestoneBlockEntity {
 
     @Override
     public ItemInteractionResult onUseWithItem(Player player, ItemStack held, InteractionHand hand) {
-        if (held.canPerformAction(ItemAbilities.AXE_STRIP)) {
-            if (level instanceof ServerLevel serverLevel) {
-                strip(serverLevel);
-            }
-            return ItemInteractionResult.SUCCESS;
-        }
-
         if (held.is(MalumTags.Items.IS_TOTEMIC_TOOL)) {
             if (level instanceof ServerLevel serverLevel) {
                 if (state.equals(CHARGING) || state.equals(ACTIVE)) {
@@ -144,7 +122,7 @@ public class TotemPoleBlockEntity extends LodestoneBlockEntity {
         setDirty();
     }
 
-    public void beginCharging(ServerLevel level, TotemBaseBlockEntity totemBase, int index) {
+    public void bind(ServerLevel level, TotemBaseBlockEntity totemBase, int index) {
         float pitch = 0.8f + 0.2f * index;
         this.state = TotemPoleState.CHARGING;
         this.basePos = totemBase.getBlockPos();
@@ -153,16 +131,6 @@ public class TotemPoleBlockEntity extends LodestoneBlockEntity {
                 .at(worldPosition).color(spirit)
                 .spawn(level);
         setDirty();
-    }
-
-    public void strip(ServerLevel level) {
-        level.setBlockAndUpdate(worldPosition, getLogBlock().defaultBlockState());
-        level.playSound(null, worldPosition, MalumSoundEvents.TOTEM_ENGRAVE.get(), SoundSource.BLOCKS, 1, 0.7f);
-        level.playSound(null, worldPosition, SoundEvents.AXE_STRIP, SoundSource.BLOCKS, 1, 1f);
-        MalumParticleEffectTypes.TOTEM_POLE_ACTIVATED.createEffect()
-                .at(worldPosition)
-                .color(spirit)
-                .spawn(level);
     }
 
     public void toggleVisuals(ServerLevel level) {

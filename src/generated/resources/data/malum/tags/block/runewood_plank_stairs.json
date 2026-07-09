@@ -2,9 +2,6 @@
   "values": [
     "malum:runewood_planks_stairs",
     "malum:vertical_runewood_planks_stairs",
-    "malum:runewood_tiles_stairs",
-    "malum:carved_runewood_planks_stairs",
-    "malum:carved_vertical_runewood_planks_stairs",
-    "malum:carved_runewood_tiles_stairs"
+    "malum:runewood_tiles_stairs"
   ]
 }

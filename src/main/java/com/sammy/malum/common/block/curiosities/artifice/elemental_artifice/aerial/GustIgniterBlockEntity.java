@@ -1,7 +1,6 @@
 package com.sammy.malum.common.block.curiosities.artifice.elemental_artifice.aerial;
 
 import com.sammy.malum.common.block.curiosities.artifice.ArtificeTinkeringInfo;
-import com.sammy.malum.common.block.curiosities.artifice.TinkererArtificeBlockEntity;
 import com.sammy.malum.common.block.curiosities.artifice.elemental_artifice.ArtificeBlockConnectionData;
 import com.sammy.malum.common.block.curiosities.artifice.elemental_artifice.SequencedConnectionArray;
 import com.sammy.malum.common.block.curiosities.artifice.elemental_artifice.ElementalArtificeTinkeringInfo;

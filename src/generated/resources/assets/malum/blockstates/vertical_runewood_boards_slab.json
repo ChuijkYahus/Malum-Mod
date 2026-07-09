@@ -1,13 +1,52 @@
 {
   "variants": {
-    "type=bottom": {
-      "model": "malum:block/vertical_runewood_boards_slab"
-    },
-    "type=double": {
-      "model": "malum:block/vertical_runewood_boards"
-    },
-    "type=top": {
-      "model": "malum:block/vertical_runewood_boards_slab_top"
-    }
+    "type=bottom,waterlogged=false": [
+      {
+        "model": "malum:block/vertical_runewood_boards_slab0"
+      },
+      {
+        "model": "malum:block/vertical_runewood_boards_slab1"
+      }
+    ],
+    "type=bottom,waterlogged=true": [
+      {
+        "model": "malum:block/vertical_runewood_boards_slab0"
+      },
+      {
+        "model": "malum:block/vertical_runewood_boards_slab1"
+      }
+    ],
+    "type=double,waterlogged=false": [
+      {
+        "model": "malum:vertical_runewood_boards0"
+      },
+      {
+        "model": "malum:vertical_runewood_boards1"
+      }
+    ],
+    "type=double,waterlogged=true": [
+      {
+        "model": "malum:vertical_runewood_boards0"
+      },
+      {
+        "model": "malum:vertical_runewood_boards1"
+      }
+    ],
+    "type=top,waterlogged=false": [
+      {
+        "model": "malum:block/vertical_runewood_boards_slab0_top"
+      },
+      {
+        "model": "malum:block/vertical_runewood_boards_slab1_top"
+      }
+    ],
+    "type=top,waterlogged=true": [
+      {
+        "model": "malum:block/vertical_runewood_boards_slab0_top"
+      },
+      {
+        "model": "malum:block/vertical_runewood_boards_slab1_top"
+      }
+    ]
   }
 }

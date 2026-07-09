@@ -1,7 +1,18 @@
 {
   "variants": {
-    "": {
-      "model": "malum:block/soulwood_boards"
-    }
+    "": [
+      {
+        "model": "malum:block/soulwood_boards0"
+      },
+      {
+        "model": "malum:block/soulwood_boards1"
+      },
+      {
+        "model": "malum:block/soulwood_boards2"
+      },
+      {
+        "model": "malum:block/soulwood_boards3"
+      }
+    ]
   }
 }

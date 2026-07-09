@@ -2,47 +2,71 @@ package com.sammy.malum.core.systems.spirit;
 
 import com.google.common.collect.ImmutableSet;
 import com.sammy.malum.core.systems.registry.*;
-import com.sammy.malum.registry.common.magic.*;
-import net.minecraft.resources.*;
 import net.minecraft.world.level.block.state.*;
 import net.minecraft.world.level.block.state.properties.Property;
-import net.neoforged.neoforge.registries.*;
 import org.jetbrains.annotations.*;
 
 import java.util.*;
-import java.util.stream.Collectors;
+
+import static com.sammy.malum.registry.common.magic.MalumSpiritTypes.*;
 
 public class SpiritTypeProperty extends Property<String> {
 
+    private static final List<SpiritHolder<SpiritArcanaType>> BASE_SPIRITS = List.of(SACRED_SPIRIT, WICKED_SPIRIT, ARCANE_SPIRIT, ELDRITCH_SPIRIT, AQUEOUS_SPIRIT, AERIAL_SPIRIT, EARTHEN_SPIRIT, INFERNAL_SPIRIT);
+
+    public static final SpiritTypeProperty SPIRIT = new SpiritTypeProperty("spirit", BASE_SPIRITS);
+    public static final SpiritTypeProperty OPTIONAL_SPIRIT = new SpiritTypeProperty("optional_spirit", BASE_SPIRITS, "empty");
+
     private final ImmutableSet<String> values;
-
-    public static final SpiritTypeProperty SPIRIT_TYPE = new SpiritTypeProperty("spirit",
-            MalumSpiritTypes.SACRED_SPIRIT, MalumSpiritTypes.WICKED_SPIRIT, MalumSpiritTypes.ARCANE_SPIRIT, MalumSpiritTypes.ELDRITCH_SPIRIT,
-            MalumSpiritTypes.AQUEOUS_SPIRIT, MalumSpiritTypes.AERIAL_SPIRIT, MalumSpiritTypes.EARTHEN_SPIRIT, MalumSpiritTypes.INFERNAL_SPIRIT
-    );
-
-    public static SpiritHolder<SpiritArcanaType> getSpiritType(BlockState state) {
-        if (state.hasProperty(SPIRIT_TYPE)) {
-            return SpiritHolder.getSpiritType(state.getValue(SPIRIT_TYPE));
-        }
-        throw new IllegalArgumentException("BlockState does not have a spirit type property.");
-    }
-
-    public static BlockState setSpiritType(BlockState state, SpiritLike spiritType) {
-        if (state.hasProperty(SPIRIT_TYPE)) {
-            return state.setValue(SPIRIT_TYPE, spiritType.getRegistryName().getPath());
-        }
-        throw new IllegalArgumentException("BlockState does not have a spirit type property.");
-    }
-
-    @SafeVarargs
-    public SpiritTypeProperty(String name, SpiritHolder<SpiritArcanaType>... validSpirits) {
-        this(name, List.of(validSpirits));
-    }
+    private final String fallback;
 
     public SpiritTypeProperty(String name, Collection<SpiritHolder<SpiritArcanaType>> validSpirits) {
+        this(name, validSpirits, "");
+    }
+
+    public SpiritTypeProperty(String name, Collection<SpiritHolder<SpiritArcanaType>> validSpirits, String fallback) {
+        this(name, validSpirits.stream().map(s -> s.getId().getPath()).toList(), fallback);
+    }
+
+    public SpiritTypeProperty(String name, List<String> validValues, String fallback) {
         super(name, String.class);
-        this.values = ImmutableSet.copyOf(validSpirits.stream().map(DeferredHolder::getId).map(ResourceLocation::getPath).collect(Collectors.toList()));
+        ImmutableSet.Builder<String> builder = new ImmutableSet.Builder<>();
+        builder.addAll(validValues);
+        if (!fallback.isEmpty()) {
+            builder.add(fallback);
+        }
+        this.values = builder.build();
+        this.fallback = fallback;
+    }
+
+    public SpiritHolder<SpiritArcanaType> getSpirit(BlockState state) {
+        if (state.hasProperty(this)) {
+            var stringValue = state.getValue(this);
+            return SpiritHolder.getSpiritType(stringValue);
+        }
+        throw new IllegalArgumentException("Blockstate does not have a spirit property.");
+    }
+
+    public BlockState setSpirit(BlockState state, SpiritLike spiritType) {
+        var id = spiritType.getRegistryName().getPath();
+        if (state.hasProperty(this)) {
+            return state.setValue(SPIRIT, id);
+        }
+        throw new IllegalArgumentException("BlockState does not have a spirit property.");
+    }
+
+    public BlockState clearSpirit(BlockState state) {
+        if (state.hasProperty(this)) {
+            if (fallback.isEmpty()) {
+                throw new IllegalArgumentException("BlockState' spirit property does not offer a fallback state.");
+            }
+            return state.setValue(SPIRIT, fallback);
+        }
+        throw new IllegalArgumentException("BlockState does not have a spirit property.");
+    }
+
+    public boolean hasSpirit(BlockState state) {
+        return !state.getValue(this).equals(fallback);
     }
 
     @Override

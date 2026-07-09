@@ -1,6 +1,7 @@
 package com.sammy.malum.client.screen.waveform;
 
 import com.mojang.blaze3d.platform.*;
+import com.sammy.malum.common.block.curiosities.artifice.RedstoneTimeIntervalType;
 import com.sammy.malum.common.block.curiosities.artifice.waveform.*;
 import com.sammy.malum.common.payloads.waveform.*;
 import net.minecraft.client.*;
@@ -25,7 +26,7 @@ public class DiodeValueConfigurationScreen extends AbstractValueConfigurationScr
     protected static final ResourceLocation DIAL_OVERLAY = malumPath("textures/gui/waveform_artifice/waveform_configuration_dial_overlay.png");
 
     private final SpiritDiodeBlockEntity diode;
-    private SpiritDiodeBlockEntity.TimeIntervalType timeInterval;
+    private RedstoneTimeIntervalType timeInterval;
     private float displayedAngle, displayedDelta;
     private int oldAngle, angle;
 
@@ -38,7 +39,7 @@ public class DiodeValueConfigurationScreen extends AbstractValueConfigurationScr
 
     @Override
     protected void notifyServer(boolean isOpen) {
-        PacketDistributor.sendToServer(new SpiritDiodeStateUpdatePayload(diode.getBlockPos(), isOpen, new SpiritDiodeBlockEntity.SpiritDiodeInfo(timeInterval, angle)));
+        PacketDistributor.sendToServer(new SpiritDiodeStateUpdatePayload(diode.getBlockPos(), isOpen, new SpiritDiodeConfigurationInfo(timeInterval, angle)));
     }
 
     @Override
@@ -75,7 +76,7 @@ public class DiodeValueConfigurationScreen extends AbstractValueConfigurationScr
 
     @Override
     public boolean mouseClicked(double mouseX, double mouseY, int button) {
-        timeInterval = SpiritDiodeBlockEntity.TimeIntervalType.values()[(timeInterval.ordinal() + 1) % 3];
+        timeInterval = RedstoneTimeIntervalType.values()[(timeInterval.ordinal() + 1) % 3];
         return super.mouseClicked(mouseX, mouseY, button);
     }
 
@@ -99,7 +100,7 @@ public class DiodeValueConfigurationScreen extends AbstractValueConfigurationScr
         renderBorderBackground(guiGraphics, dialLeft, dialTop, DIAL_SIZE, DIAL_SIZE);
         renderDial(guiGraphics, dialLeft, dialTop);
         for (int i = 0; i < 3; i++) {
-            var type = SpiritDiodeBlockEntity.TimeIntervalType.values()[i];
+            var type = RedstoneTimeIntervalType.values()[i];
             renderTextWidget(guiGraphics, type.getText(true), dialLeft - BORDER_SIZE, dialTop + 13 * i, type.equals(timeInterval), partialTick);
         }
         renderBorder(guiGraphics, dialLeft, dialTop, DIAL_SIZE, DIAL_SIZE);

@@ -2,9 +2,6 @@
   "values": [
     "malum:soulwood_boards",
     "malum:vertical_soulwood_boards",
-    "malum:soulwood_blocks",
-    "malum:carved_soulwood_boards",
-    "malum:carved_vertical_soulwood_boards",
-    "malum:carved_soulwood_blocks"
+    "malum:soulwood_blocks"
   ]
 }

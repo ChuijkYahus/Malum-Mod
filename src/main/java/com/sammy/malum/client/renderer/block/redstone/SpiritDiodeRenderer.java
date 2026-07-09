@@ -34,7 +34,6 @@ import java.awt.*;
 
 public abstract class SpiritDiodeRenderer<T extends SpiritDiodeBlockEntity> implements BlockEntityRenderer<T> {
 
-
     private static final MultiBufferSource TEXT = new LodestoneBufferWrapper(LodestoneRenderTypes.ADDITIVE_TEXT, LodestoneRenderHandler.DEFERRED_RENDER.getTarget());
 
     protected final RenderTypeToken output;

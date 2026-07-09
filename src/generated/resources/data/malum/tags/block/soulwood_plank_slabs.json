@@ -2,9 +2,6 @@
   "values": [
     "malum:soulwood_planks_slab",
     "malum:vertical_soulwood_planks_slab",
-    "malum:soulwood_tiles_slab",
-    "malum:carved_soulwood_planks_slab",
-    "malum:carved_vertical_soulwood_planks_slab",
-    "malum:carved_soulwood_tiles_slab"
+    "malum:soulwood_tiles_slab"
   ]
 }

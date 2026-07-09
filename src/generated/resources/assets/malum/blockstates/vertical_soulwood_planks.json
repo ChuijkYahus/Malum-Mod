@@ -1,7 +1,18 @@
 {
   "variants": {
-    "": {
-      "model": "malum:block/vertical_soulwood_planks"
-    }
+    "": [
+      {
+        "model": "malum:block/vertical_soulwood_planks0"
+      },
+      {
+        "model": "malum:block/vertical_soulwood_planks1"
+      },
+      {
+        "model": "malum:block/vertical_soulwood_planks2"
+      },
+      {
+        "model": "malum:block/vertical_soulwood_planks3"
+      }
+    ]
   }
 }

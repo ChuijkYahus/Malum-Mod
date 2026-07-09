@@ -38,9 +38,9 @@ public class SpiritRiteType {
 
     private List<Component> detailedDescription;
 
-    public SpiritRiteType(RiteEffectHolder<? extends SpiritRiteEffect> effect, boolean isCorrupted, List<SpiritHolder<SpiritArcanaType>> spirits) {
+    public SpiritRiteType(RiteEffectHolder<? extends SpiritRiteEffect> effect, boolean isSoulwood, List<SpiritHolder<SpiritArcanaType>> spirits) {
         this.effect = effect;
-        this.isCorrupted = isCorrupted;
+        this.isCorrupted = isSoulwood;
         this.spirits = spirits;
     }
 
@@ -70,9 +70,11 @@ public class SpiritRiteType {
 
     public boolean matches(ServerLevel level, TotemBaseBlockEntity totemBase) {
         var totemSpirits = totemBase.getSpirits(level);
-        if (totemBase.corrupted != isCorrupted) {
-            return false;
-        }
+        var state = totemBase.getState();
+
+//        if (totemBase.corrupted != isCorrupted) {
+//            return false;
+//        }
         if (totemSpirits.size() != spirits.size()) {
             return false;
         }

@@ -1,8 +1,0 @@
-{
-  "parent": "minecraft:block/inner_stairs",
-  "textures": {
-    "bottom": "malum:block/building/soulwood/soulwood_blocks",
-    "side": "malum:block/building/soulwood/soulwood_blocks",
-    "top": "malum:block/building/soulwood/soulwood_blocks"
-  }
-}

@@ -103,7 +103,7 @@ public class MalumBlockStateDatagen extends LodestoneBlockStateSystem {
         BlockStateSmithTypes.CUSTOM_MODEL.act(data, this::directionalBlock, this::itemStandModel, DROSS_STONE_ITEM_STAND);
 
         setTexturePath("building/runewood");
-        generateWoodSet(data, BlockSets.RUNEWOOD_SET);
+        BlockSets.RUNEWOOD_SET.generateWoodSet(data);
         BlockStateSmithTypes.POTTED_PLANT.act(data, BlockSets.POTTED_RUNEWOOD_SAPLING, BlockSets.POTTED_AZURE_RUNEWOOD_SAPLING);
         BlockStateSmithTypes.CROSS_MODEL_BLOCK.act(data, BlockSets.RUNEWOOD_SAPLING, BlockSets.AZURE_RUNEWOOD_SAPLING);
         MalumBlockStateSmithTypes.TOTEM_POLE.act(data, Totemancy.RUNEWOOD_TOTEM_POLE);
@@ -113,7 +113,7 @@ public class MalumBlockStateDatagen extends LodestoneBlockStateSystem {
         MalumBlockStateSmithTypes.STAGED_HANGING_LEAVES.act(data, BlockSets.HANGING_RUNEWOOD_LEAVES, BlockSets.HANGING_AZURE_RUNEWOOD_LEAVES);
 
         setTexturePath("building/soulwood");
-        generateWoodSet(data, BlockSets.SOULWOOD_SET);
+        BlockSets.SOULWOOD_SET.generateWoodSet(data);
         BlockStateSmithTypes.POTTED_PLANT.act(data, BlockSets.POTTED_SOULWOOD_SAPLING);
         BlockStateSmithTypes.CROSS_MODEL_BLOCK.act(data, BlockSets.SOULWOOD_SAPLING);
         MalumBlockStateSmithTypes.TOTEM_POLE.act(data, Totemancy.SOULWOOD_TOTEM_POLE);
@@ -181,12 +181,15 @@ public class MalumBlockStateDatagen extends LodestoneBlockStateSystem {
         BlockStateSmithTypes.CROSS_MODEL_BLOCK.act(data, Blight.STRANGEROOT);
         BlockStateSmithTypes.POTTED_PLANT.act(data, BlockSets.POTTED_STRANGEROOT);
 
-        setTexturePath("waveform_artifice");
+        setTexturePath("artifice");
         MalumBlockStateSmithTypes.SPIRIT_DIODE.act(data, WAVECHARGER, WAVEBANKER, WAVEMAKER, WAVEBREAKER);
 
-        setTexturePath("waveform_artifice/wind_tunnel");
+        setTexturePath("artifice/soul_link");
+        MalumBlockStateSmithTypes.SOUL_LINK.act(data, SOUL_LINK);
+
+        setTexturePath("artifice/wind_tunnel");
         MalumBlockStateSmithTypes.ELEMENTAL_ARTIFICE_BLOCK.act(data, WIND_TUNNEL);
-        setTexturePath("waveform_artifice/gust_igniter");
+        setTexturePath("artifice/gust_igniter");
         MalumBlockStateSmithTypes.ELEMENTAL_ARTIFICE_BLOCK.act(data, GUST_IGNITER);
 
 
@@ -320,12 +323,6 @@ public class MalumBlockStateDatagen extends LodestoneBlockStateSystem {
         for (BlockBundle bundle : new BlockBundle[]{
                 set.boards, set.verticalBoards, set.blocks,
                 set.planks, set.verticalPlanks, set.tiles
-        }) {
-            generateBlockBundle(data, bundle);
-        }
-        for (ItemlessBlockBundle bundle : new ItemlessBlockBundle[]{
-                set.carvedBoards, set.carvedVerticalBoards, set.carvedBlocks,
-                set.carvedPlanks, set.carvedVerticalPlanks, set.carvedTiles
         }) {
             generateVariedBlockBundle(data, bundle);
         }

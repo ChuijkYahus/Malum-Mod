@@ -25,20 +25,23 @@ public class WaveformTotemBaseBlock<T extends WaveformTotemBaseBlockEntity> exte
     @Override
     public void neighborChanged(BlockState state, Level level, BlockPos pos, Block block, BlockPos fromPos, boolean isMoving) {
         super.neighborChanged(state, level, pos, block, fromPos, isMoving);
-        if (level instanceof ServerLevel serverLevel) {
-            boolean flag = state.getValue(POWERED);
-            if (flag != level.hasNeighborSignal(pos)) {
-                if (flag) {
-                    level.scheduleTick(pos, this, 4);
-                } else {
-                    level.setBlock(pos, state.cycle(POWERED), 2);
-                    if (level.getBlockEntity(pos) instanceof WaveformTotemBaseBlockEntity totemBase) {
-                        if (totemBase.canTriggerRite()) {
-                            totemBase.triggerRite(serverLevel);
-                        }
-                    }
-                }
+        if (!(level instanceof ServerLevel serverLevel)) {
+            return;
+        }
+        boolean flag = state.getValue(POWERED);
+        if (flag != level.hasNeighborSignal(pos)) {
+            if (flag) {
+                level.scheduleTick(pos, this, 4);
+                return;
             }
+            level.setBlock(pos, state.cycle(POWERED), 2);
+            if (!(level.getBlockEntity(pos) instanceof WaveformTotemBaseBlockEntity totemBase)) {
+                return;
+            }
+            if (!totemBase.canTriggerRite()) {
+                return;
+            }
+            totemBase.triggerRiteEffect(serverLevel);
         }
     }
 
