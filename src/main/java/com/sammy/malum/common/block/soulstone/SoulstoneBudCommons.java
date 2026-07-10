@@ -90,6 +90,7 @@ public class SoulstoneBudCommons {
         return null;
     }
 
+    /*outdated can be removed probably
     public static SoulstoneOreConversionMap.SoulstoneOreConversion getValidConversion(RandomSource random, BlockState state) {
         var conversion = state.getBlockHolder().getData(MalumDataMaps.SOULSTONE_ORE_CONVERSION);
         if (conversion == null) {
@@ -108,6 +109,8 @@ public class SoulstoneBudCommons {
         }
         return null;
     }
+
+     */
 
     public static OreDerealizationRecipe getValidRecipe(RandomSource random, BlockState state, ServerLevel level) {
         RuleTestRecipeInput input = new RuleTestRecipeInput(state, random);

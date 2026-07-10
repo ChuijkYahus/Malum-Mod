@@ -13,9 +13,9 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.*;
 import net.minecraft.world.level.Level;
 
-import java.util.List;
+import java.util.Optional;
 
-public class ConjunctureCrystallariumRecipe implements Recipe<SingleRecipeInput> {
+public class ConjunctureCrystallariumRecipe extends MalumAbstractFurnaceRecipe<SingleRecipeInput> {
 
     public static final MapCodec<ConjunctureCrystallariumRecipe> CODEC = RecordCodecBuilder.mapCodec((obj) -> obj.group(
             Ingredient.CODEC.fieldOf("input").forGetter(recipe -> recipe.input),
@@ -24,24 +24,22 @@ public class ConjunctureCrystallariumRecipe implements Recipe<SingleRecipeInput>
                 return !l.isEmpty() && l.size() <= 3
                         ? DataResult.success(l)
                         : DataResult.error(() -> "The recipe must have at least 1 result but no more than 3");
-            }).fieldOf("results").forGetter(recipe -> recipe.additionalResults),
+            }).fieldOf("results").forGetter(MalumAbstractFurnaceRecipe::getFurnaceResults),
             StoredInSoulstoneMetal.CODEC.fieldOf("metal_data").forGetter(recipe -> recipe.metalData),
-            Codec.INT.optionalFieldOf("processing_time", 0).forGetter(recipe -> recipe.processingTime)
+            Codec.INT.optionalFieldOf("processing_time", 0).forGetter(MalumAbstractFurnaceRecipe::getProcessingTime),
+            ItemStack.CODEC.optionalFieldOf("fallback").forGetter(MalumAbstractFurnaceRecipe::getResultFallback)
     ).apply(obj, ConjunctureCrystallariumRecipe::new));
 
     public static final String NAME = "conjuncture_crystallarium";
     private final Ingredient input;
     private final CrystalPropertyModifier crystalToGrow;
-    private final NonNullList<MalumSizedChanceResult> additionalResults;
     private final StoredInSoulstoneMetal metalData;
-    private final int processingTime;
 
-    public ConjunctureCrystallariumRecipe(Ingredient input, CrystalPropertyModifier crystalToGrow, NonNullList<MalumSizedChanceResult> additionalResults, StoredInSoulstoneMetal metalData, int processingTime) {
+    public ConjunctureCrystallariumRecipe(Ingredient input, CrystalPropertyModifier crystalToGrow, NonNullList<MalumSizedChanceResult> results, StoredInSoulstoneMetal metalData, int processingTime, Optional<ItemStack> resultFallback) {
+        super(processingTime, results, resultFallback);
         this.input = input;
         this.crystalToGrow = crystalToGrow;
-        this.additionalResults = additionalResults;
         this.metalData = metalData;
-        this.processingTime = processingTime;
     }
 
     @Override
@@ -61,11 +59,7 @@ public class ConjunctureCrystallariumRecipe implements Recipe<SingleRecipeInput>
 
     @Override
     public ItemStack getResultItem(HolderLookup.Provider provider) {
-        return this.additionalResults.getFirst().result();
-    }
-
-    public NonNullList<MalumSizedChanceResult> getResults() {
-        return additionalResults;
+        return this.getFurnaceResults().getFirst().result();
     }
 
     public Ingredient getInput() {
@@ -78,10 +72,6 @@ public class ConjunctureCrystallariumRecipe implements Recipe<SingleRecipeInput>
 
     public StoredInSoulstoneMetal getMetalData() {
         return metalData;
-    }
-
-    public int getProcessingTime() {
-        return processingTime;
     }
 
     @Override

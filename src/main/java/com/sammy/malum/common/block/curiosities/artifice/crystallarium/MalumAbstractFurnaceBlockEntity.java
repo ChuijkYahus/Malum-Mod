@@ -1,85 +1,168 @@
 package com.sammy.malum.common.block.curiosities.artifice.crystallarium;
 
+import com.sammy.malum.MalumMod;
+import com.sammy.malum.common.recipe.derealization.ConjunctureCrystallariumRecipe;
+import com.sammy.malum.common.recipe.derealization.MalumAbstractFurnaceRecipe;
+import com.sammy.malum.common.recipe.derealization.MalumSizedChanceResult;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.HolderLookup;
+import net.minecraft.core.NonNullList;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.server.level.ServerLevel;
+import net.minecraft.util.Mth;
+import net.minecraft.util.RandomSource;
 import net.minecraft.world.MenuProvider;
 import net.minecraft.world.inventory.ContainerData;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.*;
 import net.minecraft.world.level.Level;
-import net.minecraft.world.level.block.entity.AbstractFurnaceBlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import net.neoforged.neoforge.items.IItemHandler;
-import net.neoforged.neoforge.items.wrapper.RecipeWrapper;
 import team.lodestar.lodestone.modules.toolkit.blockentity.IInventoryCapabilityProvider;
 import team.lodestar.lodestone.modules.toolkit.blockentity.LodestoneBlockEntity;
 import team.lodestar.lodestone.modules.toolkit.blockentity.LodestoneBlockEntityType;
-import team.lodestar.lodestone.modules.toolkit.inventory.LodestoneItemStackBlockHandler;
 import team.lodestar.lodestone.modules.toolkit.recipe.LodestoneRecipeSearch;
-import vectorwing.farmersdelight.common.crafting.CookingPotRecipe;
 
-import java.lang.reflect.Array;
 import java.util.Optional;
 
-public abstract class MalumAbstractFurnaceBlockEntity<I extends RecipeInput, R extends Recipe<I>> extends LodestoneBlockEntity implements MenuProvider, IInventoryCapabilityProvider {
+public abstract class MalumAbstractFurnaceBlockEntity<I extends RecipeInput, R extends MalumAbstractFurnaceRecipe<I>> extends LodestoneBlockEntity implements IInventoryCapabilityProvider {
     public int litTime;
     public int litDuration;
     public int cookingProgress;
     public int cookingTotalTime;
-    private final LodestoneItemStackBlockHandler inventory; //TODO custom furnace stack handler that has slot array for input/output or custom input/output hanlder below
-    private final IItemHandler inputHandler;
-    private final IItemHandler outputHandler;
     protected final ContainerData dataAccess;
     private final RecipeManager.CachedCheck<I, R> quickCheck;
+    private final RecipeType<R> recipeType;
 
-    public MalumAbstractFurnaceBlockEntity(LodestoneBlockEntityType<?> type, BlockPos pos, BlockState state, LodestoneItemStackBlockHandler inventory, IItemHandler inputHandler, IItemHandler outputHandler, RecipeManager.CachedCheck<I, R> cachedRecipeCheck) {
+    public MalumAbstractFurnaceBlockEntity(LodestoneBlockEntityType<?> type, BlockPos pos, BlockState state, RecipeType<R> recipeType) {
         super(type, pos, state);
-        this.inventory = inventory;
-        this.inputHandler = inputHandler;
-        this.outputHandler = outputHandler;
         this.dataAccess = createDataAccess();
-        this.quickCheck = cachedRecipeCheck;
+        this.recipeType = recipeType;
+        this.quickCheck = RecipeManager.createCheck(recipeType);
     }
 
     @Override
     public void serverTick(ServerLevel level) {
+        boolean shouldSync = false;
         if (this.isLit()) {
             this.litTime--;
         }
 
-        ItemStack fuel = this.inventory.getStackInSlot(1);
-        ItemStack input = this.inventory.getStackInSlot(0);
-        if (hasFuel() && hasInput()) {
-            var optionalRecipeHolder = getValidRecipe(level);
-            if (optionalRecipeHolder.isPresent() && canProcess(optionalRecipeHolder.get().value(), level)) {
+        //TODO this logic might be fucked? idk but sometimes the recipe search returns air itemstack
+        if (this.isLit() || (hasFuel() && hasInput())) {
+            if (hasInput()) {
+                var optionalRecipeHolder = getValidRecipe(level);
+                if (optionalRecipeHolder.isPresent()) {
+                    var recipe = optionalRecipeHolder.get();
+                    NonNullList<ItemStack> results = rollOutputs(recipe.getFurnaceResults(), recipe.getResultFallback(), level.getRandom());
+                    if (!results.isEmpty() && canProcess(results)) {
+                        if (!isLit()) {
+                            int newLitTime = this.getBurnDuration(this.getFuelStack());
+                            this.litTime = newLitTime;
+                            this.litDuration = newLitTime;
+                            if (newLitTime > 0) {
+                                var stack = this.getFuelStack();
+                                if (stack.hasCraftingRemainingItem()) {
+                                    this.inventory().setStackInSlot(this.inventory().getFuelSlot(), stack.getCraftingRemainingItem());
+                                } else if (!stack.isEmpty()) {
+                                    stack.shrink(1);
+                                    if (stack.isEmpty()) {
+                                        this.inventory().setStackInSlot(this.inventory().getFuelSlot(), stack.getCraftingRemainingItem());
+                                    }
+                                }
+                                //isLit = true;
+                                shouldSync = true;
+                            }
+                        }
 
+                        if (isLit()) {
+                            shouldSync = process(recipe, results, level);
+                        } else {
+                            this.cookingProgress = 0;
+                        }
+                    } else {
+                        this.cookingProgress = 0;
+                    }
+                }
+            } else {
+                this.cookingProgress = 0;
+            }
+        } else if (this.cookingProgress > 0) {
+            this.cookingProgress = Mth.clamp(this.cookingProgress - 2, 0, this.cookingTotalTime);
+        }
+
+        if (shouldSync) {
+            this.setDirty();
+        }
+
+    }
+
+    protected NonNullList<ItemStack> rollOutputs(NonNullList<MalumSizedChanceResult> results, Optional<ItemStack> fallback, RandomSource random) {
+        NonNullList<ItemStack> outputList = NonNullList.create();
+        if (results.isEmpty()) return outputList;
+
+        for (MalumSizedChanceResult result : results) {
+            float rand = random.nextFloat();
+            System.out.println(rand);
+            if (rand < result.chance()) {
+                outputList.add(result.result());
             }
         }
 
+        if (outputList.isEmpty() && fallback.isPresent()) {
+            outputList.add(fallback.get()); //TODO roll here too if sammy wants that
+        }
 
-
+        return outputList;
     }
 
-    protected boolean canProcess(R recipe, Level level) {
-        /*todo finish
-        if (hasInput() && isLit()) {
-            ItemStack result = recipe.assemble(getRecipeInput(), level.registryAccess());
-            if (result.isEmpty()) return false;
+    protected boolean canProcess(NonNullList<ItemStack> results) {
+        if (hasInput()) {
+            boolean success = false;
+            for (ItemStack result : results) {
+                //stack is empty -> was able to fill all slots properly
+                success = this.inventory().fillOutputSlotsStacked(result, true).isEmpty();
+            }
+            return success;
         }
-         */
         return false;
     }
 
-    public Optional<RecipeHolder<R>> getValidRecipe(Level level) {
-        return hasInput() ? quickCheck.getRecipeFor(getRecipeInput(), level) : Optional.empty();
+    //TODO test edge cases
+    protected boolean process(R recipe, NonNullList<ItemStack> results, ServerLevel serverLevel) {
+        ++this.cookingProgress;
+        this.cookingTotalTime = recipe.getProcessingTime();
+        if (this.cookingProgress < this.cookingTotalTime) {
+            return false;
+        } else {
+            this.cookingProgress = 0;
+            int resultAmount = results.size();
+            int filledProgress = 0;
+            for (ItemStack result : results) {
+                if (this.inventory().fillOutputSlotsStacked(result, false).isEmpty()) {
+                    filledProgress++;
+                }
+            }
+            if (filledProgress < resultAmount) {
+                MalumMod.LOGGER.info("Was not able to insert all result items for recipetype {}", recipe.getType());
+            }
+            this.inventory().shrinkAllInputs();
+            onFinishRecipe(recipe, serverLevel);
+            return true;
+        }
+    }
+
+    public Optional<R> getValidRecipe(Level level) {
+
+        //TODO check which approach I wanna use later
+        return hasInput() ? /*quickCheck.getRecipeFor(getRecipeInput(), level)*/ Optional.ofNullable(LodestoneRecipeSearch.search(level, recipeType).findRecipe(getRecipeInput())) : Optional.empty();
     }
 
     @Override
-    public IItemHandler getInventory(Direction direction) {
-        return inventory;
+    public IItemHandler getInventory(Direction direction) { //TODO check if we actually need this interface
+        return this.inventory();
     }
 
     public boolean isLit() {
@@ -87,27 +170,35 @@ public abstract class MalumAbstractFurnaceBlockEntity<I extends RecipeInput, R e
     }
 
     public boolean hasFuel() {
-        return !this.inventory.getStackInSlot(1).isEmpty();
+        return !getFuelStack().isEmpty();
+    }
+
+    public ItemStack getFuelStack() {
+        return this.inventory().getStackInSlot(this.inventory().getFuelSlot());
     }
 
     public boolean hasInput() {
-        return !this.inventory.getStackInSlot(0).isEmpty();
+        int[] inputSlots = this.inventory().getInputSlots();
+        for(int i : inputSlots) {
+            if (this.inventory().getStackInSlot(i).isEmpty()) {
+                return false;
+            }
+        }
+        return true;
     }
 
-    public LodestoneItemStackBlockHandler getInventory() {
-        return this.inventory;
-    }
+    protected abstract MalumFurnaceBlockItemStackHandler inventory();
 
     protected abstract I getRecipeInput();
 
     protected abstract int getBurnDuration(ItemStack fuel);
 
-    protected abstract int getTotalCookTime(Level level, MalumAbstractFurnaceBlockEntity<I, R> blockEntity);
+    protected void onFinishRecipe(R recipe, ServerLevel level) {}
 
     @Override
     protected void saveAdditional(CompoundTag tag, HolderLookup.Provider registries) {
         super.saveAdditional(tag, registries);
-        inventory.save(registries, tag);
+        this.inventory().save(registries, tag);
         tag.putInt("BurnTime", this.litTime);
         tag.putInt("CookTime", this.cookingProgress);
         tag.putInt("CookTimeTotal", this.cookingTotalTime);
@@ -115,18 +206,18 @@ public abstract class MalumAbstractFurnaceBlockEntity<I extends RecipeInput, R e
 
     @Override
     public void loadAdditional(CompoundTag compound, HolderLookup.Provider pRegistries) {
-        inventory.load(pRegistries, compound);
+        this.inventory().load(pRegistries, compound);
         super.loadAdditional(compound, pRegistries);
         this.litTime = compound.getInt("BurnTime");
         this.cookingProgress = compound.getInt("CookTime");
         this.cookingTotalTime = compound.getInt("CookTimeTotal");
-        this.litDuration = this.getBurnDuration(this.inventory.getStackInSlot(1));
+        this.litDuration = this.getBurnDuration(this.getFuelStack());
     }
 
     @Override
     public CompoundTag getUpdateTag(HolderLookup.Provider registries) {
         var tag = new CompoundTag();
-        inventory.save(registries, tag);
+        this.inventory().save(registries, tag);
         return tag;
     }
 
