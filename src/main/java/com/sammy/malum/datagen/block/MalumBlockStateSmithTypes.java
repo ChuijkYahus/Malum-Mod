@@ -276,7 +276,7 @@ public class MalumBlockStateSmithTypes {
     public static BlockStateSmith<SoulLinkBlock> SOUL_LINK = new BlockStateSmith<>(SoulLinkBlock.class, ItemModelSmithTypes.BLOCK_MODEL_ITEM, (block, provider) -> {
         var name = provider.getBlockName(block);
 
-        var empty = malumPath("block/soul_link/soul_link");
+        var base = malumPath("block/soul_link/soul_link");
         var slotted = malumPath("block/soul_link/soul_link_slotted");
 
         var models = new HashMap<String, BlockModelBuilder>();
@@ -284,18 +284,18 @@ public class MalumBlockStateSmithTypes {
             ConfiguredModel.Builder<?> builder = ConfiguredModel.builder();
 
             if (!SoulLinkBlock.OPTIONAL_SPIRIT.hasSpirit(s)) {
-                return builder.modelFile(provider.models().getExistingFile(empty)).build();
+                return builder.modelFile(provider.models().getExistingFile(base)).build();
             }
 
             if (s.getValue(SoulLinkBlock.OPEN)) {
-                return builder.modelFile(provider.models().getExistingFile(slotted)).build();
+                return builder.modelFile(provider.models().getExistingFile(base)).build();
             }
             var spirit = s.getValue(SoulLinkBlock.OPTIONAL_SPIRIT);
             var modelName = name + spirit;
             if (!models.containsKey(modelName)) {
                 var insideTexture = "glow_" + spirit;
                 var model = provider.models().withExistingParent(modelName, slotted)
-                        .texture("inside", provider.getBlockTexture(insideTexture));
+                        .texture("glow", provider.getBlockTexture(insideTexture));
                 models.put(modelName, model);
             }
             return builder.modelFile(models.get(modelName)).build();

@@ -3,11 +3,10 @@
 	"render_type": "minecraft:cutout",
 	"textures": {
 		"bottom": "malum:block/artifice/soul_link/soul_link_bottom",
-		"top": "malum:block/artifice/soul_link/soul_link_top_slotted",
+		"particle": "malum:block/artifice/soul_link/soul_link_top",
+		"top": "malum:block/artifice/soul_link/soul_link_top",
 		"gizmos": "malum:block/artifice/soul_link/soul_link_gizmos",
-		"inside": "malum:block/artifice/soul_link/soul_link_inside",
-		"cage": "malum:block/artifice/soul_link/soul_link_cage",
-		"particle": "malum:block/artifice/soul_link/soul_link_top_slotted"
+		"cage": "malum:block/artifice/soul_link/soul_link_cage"
 	},
 	"elements": [
 		{
@@ -23,62 +22,71 @@
 			}
 		},
 		{
-			"from": [0, 4, 5],
-			"to": [16, 16, 5],
-			"rotation": {"angle": 0, "axis": "y", "origin": [8, 8, 8]},
-			"faces": {
-				"north": {"uv": [0, 0, 16, 12], "texture": "#gizmos"},
-				"south": {"uv": [0, 0, 16, 12], "texture": "#gizmos"}
-			}
-		},
-		{
-			"from": [0, 4, 11],
-			"to": [16, 16, 11],
-			"rotation": {"angle": 0, "axis": "y", "origin": [8, 8, 8]},
-			"faces": {
-				"north": {"uv": [0, 0, 16, 12], "texture": "#gizmos"},
-				"south": {"uv": [0, 0, 16, 12], "texture": "#gizmos"}
-			}
-		},
-		{
-			"from": [11, 4, 0],
-			"to": [11, 16, 16],
-			"faces": {
-				"east": {"uv": [0, 0, 16, 12], "texture": "#gizmos"},
-				"west": {"uv": [0, 0, 16, 12], "texture": "#gizmos"}
-			}
-		},
-		{
-			"from": [5, 4, 0],
-			"to": [5, 16, 16],
-			"faces": {
-				"east": {"uv": [0, 0, 16, 12], "texture": "#gizmos"},
-				"west": {"uv": [0, 0, 16, 12], "texture": "#gizmos"}
-			}
-		},
-		{
-			"from": [5.01, 7.75, 10.99],
-			"to": [10.99, 13.75, 5.01],
-			"rotation": {"angle": 0, "axis": "y", "origin": [0, 7.75, 6]},
-			"faces": {
-				"north": {"uv": [6, 0, 12, 6], "texture": "#inside"},
-				"east": {"uv": [6, 0, 12, 6], "texture": "#inside"},
-				"south": {"uv": [6, 0, 12, 6], "texture": "#inside"},
-				"west": {"uv": [6, 0, 12, 6], "texture": "#inside"},
-				"up": {"uv": [0, 6, 6, 12], "texture": "#inside"},
-				"down": {"uv": [0, 0, 6, 6], "texture": "#inside"}
-			}
-		},
-		{
-			"from": [4.5, 7.75, 4.5],
-			"to": [11.5, 13.75, 11.5],
-			"rotation": {"angle": 0, "axis": "y", "origin": [-0.5, 7.75, -0.5]},
+			"from": [4.5, 10, 4.5],
+			"to": [11.5, 16, 11.5],
 			"faces": {
 				"north": {"uv": [0, 7, 7, 13], "texture": "#cage"},
 				"east": {"uv": [0, 7, 7, 13], "texture": "#cage"},
 				"south": {"uv": [0, 7, 7, 13], "texture": "#cage"},
 				"west": {"uv": [0, 7, 7, 13], "texture": "#cage"},
-				"up": {"uv": [0, 0, 7, 7], "texture": "#cage"}
+				"up": {"uv": [0, 0, 7, 7], "texture": "#cage"},
+				"down": {"uv": [7, 0, 14, 7], "texture": "#cage"}
+			}
+		},
+		{
+			"from": [4.5, 10, 11.5],
+			"to": [11.5, 16, 4.5],
+			"faces": {
+				"north": {"uv": [0, 7, 7, 13], "texture": "#cage"},
+				"east": {"uv": [0, 7, 7, 13], "texture": "#cage"},
+				"south": {"uv": [0, 7, 7, 13], "texture": "#cage"},
+				"west": {"uv": [0, 7, 7, 13], "texture": "#cage"},
+				"up": {"uv": [0, 0, 7, 7], "texture": "#cage"},
+				"down": {"uv": [7, 0, 14, 7], "texture": "#cage"}
+			}
+		},
+		{
+			"from": [5.5, 10.5, 10.5],
+			"to": [10.5, 15.5, 5.5],
+			"faces": {
+				"north": {"uv": [6, 0, 12, 6], "texture": "#glow"},
+				"east": {"uv": [6, 0, 12, 6], "texture": "#glow"},
+				"south": {"uv": [6, 0, 12, 6], "texture": "#glow"},
+				"west": {"uv": [6, 0, 12, 6], "texture": "#glow"},
+				"up": {"uv": [0, 6, 6, 12], "texture": "#glow"},
+				"down": {"uv": [0, 0, 6, 6], "texture": "#glow"}
+			}
+		},
+		{
+			"from": [0, 4, 5.5],
+			"to": [16, 16, 5.5],
+			"faces": {
+				"north": {"uv": [0, 0, 16, 12], "texture": "#gizmos"},
+				"south": {"uv": [0, 0, 16, 12], "texture": "#gizmos"}
+			}
+		},
+		{
+			"from": [0, 4, 10.5],
+			"to": [16, 16, 10.5],
+			"faces": {
+				"north": {"uv": [0, 0, 16, 12], "texture": "#gizmos"},
+				"south": {"uv": [0, 0, 16, 12], "texture": "#gizmos"}
+			}
+		},
+		{
+			"from": [10.5, 4, 0],
+			"to": [10.5, 16, 16],
+			"faces": {
+				"east": {"uv": [0, 0, 16, 12], "texture": "#gizmos"},
+				"west": {"uv": [0, 0, 16, 12], "texture": "#gizmos"}
+			}
+		},
+		{
+			"from": [5.5, 4, 0],
+			"to": [5.5, 16, 16],
+			"faces": {
+				"east": {"uv": [0, 0, 16, 12], "texture": "#gizmos"},
+				"west": {"uv": [0, 0, 16, 12], "texture": "#gizmos"}
 			}
 		}
 	]
