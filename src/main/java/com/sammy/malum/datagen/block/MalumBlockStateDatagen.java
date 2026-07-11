@@ -192,6 +192,9 @@ public class MalumBlockStateDatagen extends LodestoneBlockStateSystem {
         setTexturePath("artifice/gust_igniter");
         MalumBlockStateSmithTypes.ELEMENTAL_ARTIFICE_BLOCK.act(data, GUST_IGNITER);
 
+        setTexturePath("artifice/crystallarium");
+        BlockStateSmithTypes.CUSTOM_MODEL.act(data, BLOCK_MODEL_ITEM, this::horizontalBlock, models()::predefinedModel, CONJUNCTURE_CRYSTALLARIUM);
+
 
         setTexturePath("ether");
         itemModelProvider.setTexturePath("ether");
@@ -234,8 +237,6 @@ public class MalumBlockStateDatagen extends LodestoneBlockStateSystem {
         BlockStateSmithTypes.CUSTOM_MODEL.act(data, BUILTIN_ENTITY_ITEM, this::simpleBlock, models()::predefinedModel, SPIRIT_JAR);
 
         BlockStateSmithTypes.CUSTOM_MODEL.act(data, BLOCK_MODEL_ITEM, this::horizontalBlock, models()::predefinedModel, WEAVERS_WORKBENCH, RUNIC_WORKBENCH);
-
-        BlockStateSmithTypes.CUSTOM_MODEL.act(data, BLOCK_MODEL_ITEM, this::horizontalBlock, models()::orientableWithBottom, CONJUNCTURE_CRYSTALLARIUM);
 
         BlockStateSmithTypes.CUSTOM_MODEL.act(data, NO_DATAGEN, this::simpleBlock, models()::predefinedModel,
                 RUNEWOOD_OBELISK, RUNEWOOD_OBELISK_COMPONENT,
