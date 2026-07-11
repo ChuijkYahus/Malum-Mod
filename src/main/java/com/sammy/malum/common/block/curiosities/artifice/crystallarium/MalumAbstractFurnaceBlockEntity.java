@@ -64,12 +64,14 @@ public abstract class MalumAbstractFurnaceBlockEntity<I extends RecipeInput, R e
                             this.litDuration = newLitTime;
                             if (newLitTime > 0) {
                                 var stack = this.getFuelStack();
+                                var inv = this.inventory();
+                                int fuelSlot = inv.getFuelSlot();
                                 if (stack.hasCraftingRemainingItem()) {
-                                    this.inventory().setStackInSlot(this.inventory().getFuelSlot(), stack.getCraftingRemainingItem());
+                                    inv.setStackInSlot(fuelSlot, stack.getCraftingRemainingItem());
                                 } else if (!stack.isEmpty()) {
                                     stack.shrink(1);
                                     if (stack.isEmpty()) {
-                                        this.inventory().setStackInSlot(this.inventory().getFuelSlot(), stack.getCraftingRemainingItem());
+                                        inv.setStackInSlot(fuelSlot, stack.getCraftingRemainingItem());
                                     }
                                 }
                                 //isLit = true;

@@ -28,8 +28,8 @@ public class ConjunctureCrystallariumContainer extends LodestoneBlockEntityConta
         this.data = dataAccess;
         if (blockEntity != null) {
             var itemHandler = getItemStackHandler();
-            addSlot(new SlotItemHandler(itemHandler, 1, 91, 73));
-            addSlot(new SlotItemHandler(itemHandler, itemHandler.getFuelSlot(), 91, 109) {
+            addSlot(new SlotItemHandler(itemHandler, 1, 80, 73));
+            addSlot(new SlotItemHandler(itemHandler, itemHandler.getFuelSlot(), 80, 109) {
                 @Override
                 public boolean mayPlace(ItemStack stack) {
                     return isFuel(stack);
@@ -37,7 +37,7 @@ public class ConjunctureCrystallariumContainer extends LodestoneBlockEntityConta
             });
 
             for (int i = 0; i < 3; i++) {
-                addSlot(new SlotItemHandler(itemHandler, 2+i, 146, 39+17*i) {
+                addSlot(new SlotItemHandler(itemHandler, 2 + i, 135, 39 + 17 * i) {
                     @Override
                     public boolean mayPlace(ItemStack stack) {
                         return false;
@@ -54,27 +54,27 @@ public class ConjunctureCrystallariumContainer extends LodestoneBlockEntityConta
     }
 
     public float getBurnProgress() {
-        int cookingProgress = this.data.get(2);
-        int cookingTimeTotal = this.data.get(3);
-        return cookingTimeTotal != 0 && cookingProgress != 0 ? Mth.clamp((float)cookingProgress / (float)cookingTimeTotal, 0.0F, 1.0F) : 0.0F;
+        int cookingProgress = data.get(2);
+        int cookingTimeTotal = data.get(3);
+        return cookingTimeTotal != 0 && cookingProgress != 0 ? Mth.clamp((float) cookingProgress / (float) cookingTimeTotal, 0.0F, 1.0F) : 0.0F;
     }
 
     public float getLitProgress() {
-        int litDuration = this.data.get(1);
+        int litDuration = data.get(1);
         if (litDuration == 0) {
             litDuration = 200;
         }
 
-        return Mth.clamp((float)this.data.get(0) / (float)litDuration, 0.0F, 1.0F);
+        return Mth.clamp((float) data.get(0) / (float) litDuration, 0.0F, 1.0F);
     }
 
     public boolean isLit() {
-        return this.data.get(0) > 0;
+        return data.get(0) > 0;
     }
 
     @Override
     public int[] getPlayerInventoryTopLeft() {
-        return new int[]{19, 144};
+        return new int[]{8, 144};
     }
 
     @Override
