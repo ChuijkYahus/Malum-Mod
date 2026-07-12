@@ -28,7 +28,7 @@ public class ConjunctureCrystallariumScreen extends AbstractMalumContainerScreen
         titleLabelX = 88;
         titleLabelY = -10;
         inventoryLabelX = 8;
-        inventoryLabelY = imageHeight - 12;
+        inventoryLabelY = 133;
     }
 
     @Override
