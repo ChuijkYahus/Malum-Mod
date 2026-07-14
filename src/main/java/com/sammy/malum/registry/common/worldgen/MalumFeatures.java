@@ -1,11 +1,13 @@
 package com.sammy.malum.registry.common.worldgen;
 
+import com.sammy.malum.common.worldgen.flora.EbonyFeature;
 import com.sammy.malum.common.worldgen.ore.*;
 import com.sammy.malum.common.worldgen.sanctuary.feature.*;
 import com.sammy.malum.common.worldgen.tree.*;
 import net.minecraft.core.registries.*;
 import net.minecraft.resources.*;
 import net.minecraft.world.level.levelgen.feature.*;
+import net.minecraft.world.level.levelgen.feature.configurations.NoneFeatureConfiguration;
 import net.minecraft.world.level.levelgen.placement.*;
 import net.neoforged.neoforge.registries.DeferredHolder;
 import net.neoforged.neoforge.registries.DeferredRegister;
@@ -23,6 +25,8 @@ public class MalumFeatures {
     public static final DeferredHolder<Feature<?>, RunewoodTreeFeature> RUNEWOOD_TREE = FEATURE_TYPES.register("runewood_tree", RunewoodTreeFeature::new);
     public static final DeferredHolder<Feature<?>, SoulwoodTreeFeature> SOULWOOD_TREE = FEATURE_TYPES.register("soulwood_tree", SoulwoodTreeFeature::new);
 
+    public static final DeferredHolder<Feature<?>, EbonyFeature> EBONY = FEATURE_TYPES.register("ebony", EbonyFeature::new);
+
     public static final DeferredHolder<Feature<?>, LayeredOreFeature> LAYERED_ORE = FEATURE_TYPES.register("layered_ore", LayeredOreFeature::new);
     public static class ConfiguredFeatures {
 
@@ -34,6 +38,8 @@ public class MalumFeatures {
         public static final ResourceKey<ConfiguredFeature<?, ?>> RUNEWOOD_TREE = registerKey("runewood_tree");
         public static final ResourceKey<ConfiguredFeature<?, ?>> AZURE_RUNEWOOD_TREE = registerKey("azure_runewood_tree");
         public static final ResourceKey<ConfiguredFeature<?, ?>> SOULWOOD_TREE = registerKey("soulwood_tree");
+
+        public static final ResourceKey<ConfiguredFeature<?, ?>> EBONY = registerKey("ebony");
 
         public static final ResourceKey<ConfiguredFeature<?, ?>> SANCTUARY_PILLAR = registerKey("sanctuary_pillar");
         public static final ResourceKey<ConfiguredFeature<?, ?>> SANCTUARY_WALL = registerKey("sanctuary_wall");
@@ -56,6 +62,8 @@ public class MalumFeatures {
         public static final ResourceKey<PlacedFeature> RARE_RUNEWOOD_TREE = registerKey("rare_runewood_tree");
         public static final ResourceKey<PlacedFeature> AZURE_RUNEWOOD_TREE = registerKey("azure_runewood_tree");
         public static final ResourceKey<PlacedFeature> RARE_AZURE_RUNEWOOD_TREE = registerKey("rare_azure_runewood_tree");
+
+        public static final ResourceKey<PlacedFeature> EBONY = registerKey("ebony");
 
 
         public static ResourceKey<PlacedFeature> registerKey(String name) {

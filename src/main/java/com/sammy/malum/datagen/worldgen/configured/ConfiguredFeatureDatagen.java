@@ -12,5 +12,6 @@ public class ConfiguredFeatureDatagen {
         OreFeatureDatagen.bootstrap(context);
         TreeFeatureDatagen.bootstrap(context);
         SanctuaryFeatureDatagen.bootstrap(context);
+        EbonyFeatureDatagen.bootstrap(context);
     }
 }
