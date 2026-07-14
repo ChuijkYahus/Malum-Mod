@@ -20,7 +20,6 @@ public class EbonyFeature extends Feature<NoneFeatureConfiguration> {
 
     @Override
     public boolean place(FeaturePlaceContext<NoneFeatureConfiguration> context) {
-//        System.out.println("EBONY FEATURE CALLED");
         WorldGenLevel level = context.level();
         BlockPos origin = context.origin();
         RandomSource random = context.random();
@@ -146,7 +145,7 @@ public class EbonyFeature extends Feature<NoneFeatureConfiguration> {
             return false;
         }
 
-        return MalumContent.Materials.EBONY_STALK
+        return MalumContent.Materials.EBONY_SAPLING
                 .get()
                 .defaultBlockState()
                 .canSurvive(level, pos);
