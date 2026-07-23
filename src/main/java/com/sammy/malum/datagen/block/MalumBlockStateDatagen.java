@@ -195,7 +195,6 @@ public class MalumBlockStateDatagen extends LodestoneBlockStateSystem {
         setTexturePath("artifice/crystallarium");
         BlockStateSmithTypes.CUSTOM_MODEL.act(data, BLOCK_MODEL_ITEM, this::horizontalBlock, models()::predefinedModel, CONJUNCTURE_CRYSTALLARIUM);
 
-
         setTexturePath("ether");
         itemModelProvider.setTexturePath("ether");
         BlockStateSmithTypes.CUSTOM_MODEL.act(data, GENERATED_ITEM,
@@ -271,7 +270,7 @@ public class MalumBlockStateDatagen extends LodestoneBlockStateSystem {
         VariedBlockStateSmithTypes.VARIED_SLAB_BLOCK.act(data, bundle.slab);
         if (bundle instanceof BlockBundleWithWall wall) {
             //TODO: Varied wall
-//            BlockStateSmithTypes.WALL_BLOCK.act(data, wall.wall);
+            BlockStateSmithTypes.WALL_BLOCK.act(data, wall.wall);
         }
     }
 
@@ -301,58 +300,6 @@ public class MalumBlockStateDatagen extends LodestoneBlockStateSystem {
         if (bundle instanceof ItemlessBlockBundleWithWall wall) {
             BlockStateSmithTypes.WALL_BLOCK.act(data, NO_DATAGEN, wall.wall);
         }
-    }
-
-    public void generateRockSet(BlockStateSystemData<MalumBlockStateDatagen> data, RockBlockSet set) {
-        generateBlockBundle(data, set.rock);
-        generateBlockBundle(data, set.polishedRock);
-        generateBlockBundle(data, set.bricks);
-        generateBlockBundle(data, set.tiles);
-
-        MalumBlockStateSmithTypes.COLUMN.act(data, set.column);
-        BlockStateSmithTypes.CUSTOM_MODEL.act(data, this::simpleBlock, models()::cubeBottomTop, set.altar);
-
-        BlockStateSmithTypes.BUTTON_BLOCK.act(data, set.button);
-        BlockStateSmithTypes.PRESSURE_PLATE_BLOCK.act(data, set.pressurePlate);
-
-        BlockStateSmithTypes.CUSTOM_MODEL.act(data, this::simpleBlock, this::rockItemPedestalModel, set.itemPedestal);
-
-        BlockStateSmithTypes.CUSTOM_MODEL.act(data, this::directionalBlock, this::itemStandModel, set.itemStand);
-    }
-
-    public void generateWoodSet(BlockStateSystemData<MalumBlockStateDatagen> data, WoodBlockSet set) {
-        for (BlockBundle bundle : new BlockBundle[]{
-                set.boards, set.verticalBoards, set.blocks,
-                set.planks, set.verticalPlanks, set.tiles
-        }) {
-            generateVariedBlockBundle(data, bundle);
-        }
-
-        BlockStateSmithTypes.LOG_BLOCK.act(data,
-                set.log,
-                set.strippedLog,
-                set.sappyLog,
-                set.strippedSappyLog
-        );
-
-        BlockStateSmithTypes.WOOD_BLOCK.act(data,
-                set.wood,
-                set.strippedWood
-        );
-
-        BlockStateSmithTypes.FENCE_BLOCK.act(data, set.fence);
-        BlockStateSmithTypes.FENCE_GATE_BLOCK.act(data, set.fenceGate);
-        BlockStateSmithTypes.WOODEN_SIGN_BLOCK.act(data, set.sign);
-        BlockStateSmithTypes.BUTTON_BLOCK.act(data, set.button);
-        BlockStateSmithTypes.PRESSURE_PLATE_BLOCK.act(data, set.pressurePlate);
-
-//        MalumBlockStateSmithTypes.COLUMN.act(data, set.beam);
-        BlockStateSmithTypes.CUSTOM_MODEL.act(data, this::simpleBlock, models()::cubeBottomTop, set.steps);
-
-        BlockStateSmithTypes.CUSTOM_MODEL.act(data, this::simpleBlock, this::woodenItemPedestalModel, set.itemPedestal);
-        BlockStateSmithTypes.CUSTOM_MODEL.act(data, this::simpleBlock, this::decoratedItemPedestalModel, set.decoratedItemPedestal);
-        BlockStateSmithTypes.CUSTOM_MODEL.act(data, this::directionalBlock, this::itemStandModel, set.itemStand);
-        BlockStateSmithTypes.CUSTOM_MODEL.act(data, this::directionalBlock, this::decoratedItemStandModel, set.decoratedItemStand);
     }
 
     public ModelFile cubeModelAirTexture(Block block) {
