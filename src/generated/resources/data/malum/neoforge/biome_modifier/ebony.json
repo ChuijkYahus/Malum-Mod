@@ -1,0 +1,6 @@
+{
+  "type": "neoforge:add_features",
+  "biomes": "#malum:has_ebony",
+  "features": "malum:ebony",
+  "step": "underground_decoration"
+}

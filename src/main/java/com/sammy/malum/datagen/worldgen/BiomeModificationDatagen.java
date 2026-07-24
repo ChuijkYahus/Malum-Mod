@@ -61,6 +61,11 @@ public class BiomeModificationDatagen {
                 addFeatureModifier(context,
                         getPlacedHolderSet(context, MalumFeatures.PlacedFeatures.RARE_AZURE_RUNEWOOD_TREE),
                         MalumTags.Biomes.HAS_RARE_AZURE_RUNEWOOD, GenerationStep.Decoration.VEGETAL_DECORATION));
+
+        register(context, "ebony", () ->
+                addFeatureModifier(context,
+                        getPlacedHolderSet(context, MalumFeatures.PlacedFeatures.EBONY),
+                        MalumTags.Biomes.HAS_EBONY, GenerationStep.Decoration.UNDERGROUND_DECORATION));
     }
 
 

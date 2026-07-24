@@ -70,6 +70,25 @@ public class PlacedFeatureDatagen {
                         ).build()
                 )
         );
+
+        context.register(
+                MalumFeatures.PlacedFeatures.EBONY,
+                new PlacedFeature(
+                        features.getOrThrow(MalumFeatures.ConfiguredFeatures.EBONY),
+                        ImmutableList.<PlacementModifier>builder().add(
+                                RarityFilter.onAverageOnceEvery(20),
+                                CountPlacement.of(UniformInt.of(1, 3)),
+                                InSquarePlacement.spread(),
+
+                                HeightRangePlacement.uniform(
+                                        VerticalAnchor.absolute(-50),
+                                        VerticalAnchor.absolute(30)
+                                ),
+
+                                BiomeFilter.biome()
+                        ).build()
+                )
+        );
     }
 
     private static PlacedFeature addOreFeature(Holder<ConfiguredFeature<?, ?>> configureFeature, int minHeight, int maxHeight, int count, PlacementModifier... extraModifiers) {
