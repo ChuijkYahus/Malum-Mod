@@ -1,0 +1,6 @@
+{
+  "parent": "malum:block/soul_link/soul_link_slotted",
+  "textures": {
+    "glow": "malum:block/artifice/soul_link/glow_arcane"
+  }
+}

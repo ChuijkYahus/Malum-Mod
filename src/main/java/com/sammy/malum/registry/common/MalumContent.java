@@ -8,6 +8,7 @@ import com.sammy.malum.common.block.blight.scarstone.StrangeRootBlock;
 import com.sammy.malum.common.block.curiosities.artifice.crystallarium.*;
 import com.sammy.malum.common.block.curiosities.artifice.elemental_artifice.aerial.GustIgniterBlock;
 import com.sammy.malum.common.block.curiosities.artifice.elemental_artifice.aerial.WindTunnelBlock;
+import com.sammy.malum.common.block.curiosities.artifice.soul_link.SoulLinkBlock;
 import com.sammy.malum.common.block.curiosities.artifice.waveform.wavebanker.*;
 import com.sammy.malum.common.block.curiosities.artifice.waveform.wavebreaker.*;
 import com.sammy.malum.common.block.curiosities.artifice.waveform.wavecharger.*;
@@ -243,15 +244,15 @@ public class MalumContent {
 
         }
 
-        public static final DeferredItem<SpiritShardItem> SACRED_SPIRIT = register("sacred_spirit", MalumItemProperties::DEFAULT, (p) -> new SpiritShardItem(p, MalumSpiritTypes.SACRED_SPIRIT));
-        public static final DeferredItem<SpiritShardItem> WICKED_SPIRIT = register("wicked_spirit", MalumItemProperties::DEFAULT, (p) -> new SpiritShardItem(p, MalumSpiritTypes.WICKED_SPIRIT));
-        public static final DeferredItem<SpiritShardItem> ARCANE_SPIRIT = register("arcane_spirit", MalumItemProperties::DEFAULT, (p) -> new SpiritShardItem(p, MalumSpiritTypes.ARCANE_SPIRIT));
-        public static final DeferredItem<SpiritShardItem> ELDRITCH_SPIRIT = register("eldritch_spirit", MalumItemProperties::DEFAULT, (p) -> new SpiritShardItem(p, MalumSpiritTypes.ELDRITCH_SPIRIT));
-        public static final DeferredItem<SpiritShardItem> AERIAL_SPIRIT = register("aerial_spirit", MalumItemProperties::DEFAULT, (p) -> new SpiritShardItem(p, MalumSpiritTypes.AERIAL_SPIRIT));
-        public static final DeferredItem<SpiritShardItem> AQUEOUS_SPIRIT = register("aqueous_spirit", MalumItemProperties::DEFAULT, (p) -> new SpiritShardItem(p, MalumSpiritTypes.AQUEOUS_SPIRIT));
-        public static final DeferredItem<SpiritShardItem> EARTHEN_SPIRIT = register("earthen_spirit", MalumItemProperties::DEFAULT, (p) -> new SpiritShardItem(p, MalumSpiritTypes.EARTHEN_SPIRIT));
-        public static final DeferredItem<SpiritShardItem> INFERNAL_SPIRIT = register("infernal_spirit", MalumItemProperties::DEFAULT, (p) -> new SpiritShardItem(p, MalumSpiritTypes.INFERNAL_SPIRIT));
-        public static final DeferredItem<SpiritShardItem> UMBRAL_SPIRIT = register("umbral_spirit", MalumItemProperties::DEFAULT, (p) -> new UmbralSpiritShardItem(p, MalumSpiritTypes.UMBRAL_SPIRIT));
+        public static final DeferredItem<SpiritShardItem> SACRED_SPIRIT = register("sacred_spirit", () -> MalumItemProperties.SPIRITS(MalumRarities.SACRED_RARITY_PROXY.getValue()), (p) -> new SpiritShardItem(p, MalumSpiritTypes.SACRED_SPIRIT));
+        public static final DeferredItem<SpiritShardItem> WICKED_SPIRIT = register("wicked_spirit", () -> MalumItemProperties.SPIRITS(MalumRarities.WICKED_RARITY_PROXY.getValue()), (p) -> new SpiritShardItem(p, MalumSpiritTypes.WICKED_SPIRIT));
+        public static final DeferredItem<SpiritShardItem> ARCANE_SPIRIT = register("arcane_spirit", () -> MalumItemProperties.SPIRITS(MalumRarities.ARCANE_RARITY_PROXY.getValue()), (p) -> new SpiritShardItem(p, MalumSpiritTypes.ARCANE_SPIRIT));
+        public static final DeferredItem<SpiritShardItem> ELDRITCH_SPIRIT = register("eldritch_spirit", () -> MalumItemProperties.SPIRITS(MalumRarities.ELDRITCH_RARITY_PROXY.getValue()), (p) -> new SpiritShardItem(p, MalumSpiritTypes.ELDRITCH_SPIRIT));
+        public static final DeferredItem<SpiritShardItem> AERIAL_SPIRIT = register("aerial_spirit", () -> MalumItemProperties.SPIRITS(MalumRarities.AERIAL_RARITY_PROXY.getValue()), (p) -> new SpiritShardItem(p, MalumSpiritTypes.AERIAL_SPIRIT));
+        public static final DeferredItem<SpiritShardItem> AQUEOUS_SPIRIT = register("aqueous_spirit", () -> MalumItemProperties.SPIRITS(MalumRarities.AQUEOUS_RARITY_PROXY.getValue()), (p) -> new SpiritShardItem(p, MalumSpiritTypes.AQUEOUS_SPIRIT));
+        public static final DeferredItem<SpiritShardItem> EARTHEN_SPIRIT = register("earthen_spirit", () -> MalumItemProperties.SPIRITS(MalumRarities.EARTHEN_RARITY_PROXY.getValue()), (p) -> new SpiritShardItem(p, MalumSpiritTypes.EARTHEN_SPIRIT));
+        public static final DeferredItem<SpiritShardItem> INFERNAL_SPIRIT = register("infernal_spirit", () -> MalumItemProperties.SPIRITS(MalumRarities.INFERNAL_RARITY_PROXY.getValue()), (p) -> new SpiritShardItem(p, MalumSpiritTypes.INFERNAL_SPIRIT));
+        public static final DeferredItem<SpiritShardItem> UMBRAL_SPIRIT = register("umbral_spirit", () -> MalumItemProperties.SPIRITS(MalumRarities.UMBRAL_RARITY_PROXY.getValue()), (p) -> new UmbralSpiritShardItem(p, MalumSpiritTypes.UMBRAL_SPIRIT));
 
     }
 
@@ -559,8 +560,8 @@ public class MalumContent {
         public static final BlockBlockItemHolder<Block, BlockItem> WAVEFORM_RUNEWOOD_TOTEM_BASE = registerBlock("waveform_runewood_totem_base", () -> new WaveformTotemBaseBlock<>(COPPER_ARTIFICE().addTag(IS_RITE_IMMUNE).noOcclusion(), false));
         public static final BlockBlockItemHolder<Block, BlockItem> WAVEFORM_SOULWOOD_TOTEM_BASE = registerBlock("waveform_soulwood_totem_base", () -> new WaveformTotemBaseBlock<>(COPPER_ARTIFICE().addTag(IS_RITE_IMMUNE).noOcclusion(), true));
 
-        public static final DeferredBlock<Block> RUNEWOOD_TOTEM_POLE = registerBlockNoItem("runewood_totem_pole", () -> new TotemPoleBlock<>(MalumWoodBlockProperties.RUNEWOOD().addTag(IS_RITE_IMMUNE).noOcclusion(), BlockSets.RUNEWOOD_SET.log, false));
-        public static final DeferredBlock<Block> SOULWOOD_TOTEM_POLE = registerBlockNoItem("soulwood_totem_pole", () -> new TotemPoleBlock<>(MalumWoodBlockProperties.SOULWOOD().addTag(IS_RITE_IMMUNE).noOcclusion(), BlockSets.SOULWOOD_SET.log, true));
+        public static final DeferredBlock<Block> RUNEWOOD_TOTEM_POLE = registerBlockNoItem("runewood_totem_pole", () -> new TotemPoleBlock<>(MalumWoodBlockProperties.RUNEWOOD().addTag(IS_RITE_IMMUNE).noOcclusion(), BlockSets.RUNEWOOD_SET.log));
+        public static final DeferredBlock<Block> SOULWOOD_TOTEM_POLE = registerBlockNoItem("soulwood_totem_pole", () -> new TotemPoleBlock<>(MalumWoodBlockProperties.SOULWOOD().addTag(IS_RITE_IMMUNE).noOcclusion(), BlockSets.SOULWOOD_SET.log));
 
         public static final BlockBlockItemHolder<Block, BlockItem> RITE_ANCHOR = registerBlock("rite_anchor", () -> new RiteAnchorBlock(TAINTED_ROCK_TOTEMANCY()));
         public static final BlockBlockItemHolder<Block, BlockItem> RITE_UNWEAVER = registerBlock("rite_unweaver", () -> new RiteUnweaverBlock(TWISTED_ROCK_TOTEMANCY()));
@@ -577,6 +578,8 @@ public class MalumContent {
         public static final BlockBlockItemHolder<Block, BlockItem> CONJUNCTURE_CRYSTALLARIUM = registerBlock("conjuncture_crystallarium", () -> new ConjunctureCrystallariumBlock<>(COPPER_ARTIFICE()));
 
         public static final DeferredItem<Item> ARTIFICERS_CLAW = register("artificers_claw", MalumItemProperties::GEAR, TinkeringToolItem::new);
+
+        public static final BlockBlockItemHolder<Block, BlockItem> SOUL_LINK = registerBlock("soul_link", () -> new SoulLinkBlock(COPPER_ARTIFICE()));
 
         public static final BlockBlockItemHolder<Block, BlockItem> WAVECHARGER = registerBlock("wavecharger", () -> new WaveChargerBlock(COPPER_ARTIFICE()));
         public static final BlockBlockItemHolder<Block, BlockItem> WAVEBANKER = registerBlock("wavebanker", () -> new WaveBankerBlock(COPPER_ARTIFICE()));

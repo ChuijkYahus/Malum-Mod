@@ -1,0 +1,87 @@
+{
+	"parent": "block/block",
+	"render_type": "minecraft:cutout",
+	"textures": {
+		"bottom": "malum:block/artifice/soul_link/soul_link_bottom",
+		"particle": "malum:block/artifice/soul_link/soul_link_top",
+		"top": "malum:block/artifice/soul_link/soul_link_top",
+		"gizmos": "malum:block/artifice/soul_link/soul_link_gizmos",
+		"cage": "malum:block/artifice/soul_link/soul_link_cage"
+	},
+	"elements": [
+		{
+			"from": [0, 0, 0],
+			"to": [16, 4, 16],
+			"faces": {
+				"north": {"uv": [0, 12, 16, 16], "texture": "#gizmos"},
+				"east": {"uv": [0, 12, 16, 16], "texture": "#gizmos"},
+				"south": {"uv": [0, 12, 16, 16], "texture": "#gizmos"},
+				"west": {"uv": [0, 12, 16, 16], "texture": "#gizmos"},
+				"up": {"uv": [0, 0, 16, 16], "texture": "#top"},
+				"down": {"uv": [0, 0, 16, 16], "texture": "#bottom"}
+			}
+		},
+		{
+			"from": [4.5, 10, 4.5],
+			"to": [11.5, 16, 11.5],
+			"rotation": {"angle": 0, "axis": "y", "origin": [0.5, 9, 0.5]},
+			"faces": {
+				"north": {"uv": [0, 7, 7, 13], "texture": "#cage"},
+				"east": {"uv": [0, 7, 7, 13], "texture": "#cage"},
+				"south": {"uv": [0, 7, 7, 13], "texture": "#cage"},
+				"west": {"uv": [0, 7, 7, 13], "texture": "#cage"},
+				"up": {"uv": [0, 0, 7, 7], "texture": "#cage"},
+				"down": {"uv": [7, 0, 14, 7], "texture": "#cage"}
+			}
+		},
+		{
+			"from": [4.5, 10, 11.5],
+			"to": [11.5, 16, 4.5],
+			"rotation": {"angle": 0, "axis": "y", "origin": [0.5, 10, 7.5]},
+			"faces": {
+				"north": {"uv": [0, 7, 7, 13], "texture": "#cage"},
+				"east": {"uv": [0, 7, 7, 13], "texture": "#cage"},
+				"south": {"uv": [0, 7, 7, 13], "texture": "#cage"},
+				"west": {"uv": [0, 7, 7, 13], "texture": "#cage"},
+				"up": {"uv": [0, 0, 7, 7], "texture": "#cage"},
+				"down": {"uv": [7, 0, 14, 7], "texture": "#cage"}
+			}
+		},
+		{
+			"from": [0, 4, 5.5],
+			"to": [16, 16, 5.5],
+			"rotation": {"angle": 0, "axis": "y", "origin": [8, 8, 8.5]},
+			"faces": {
+				"north": {"uv": [0, 0, 16, 12], "texture": "#gizmos"},
+				"south": {"uv": [0, 0, 16, 12], "texture": "#gizmos"}
+			}
+		},
+		{
+			"from": [0, 4, 10.5],
+			"to": [16, 16, 10.5],
+			"rotation": {"angle": 0, "axis": "y", "origin": [8, 8, 7.5]},
+			"faces": {
+				"north": {"uv": [0, 0, 16, 12], "texture": "#gizmos"},
+				"south": {"uv": [0, 0, 16, 12], "texture": "#gizmos"}
+			}
+		},
+		{
+			"from": [10.5, 4, 0],
+			"to": [10.5, 16, 16],
+			"rotation": {"angle": 0, "axis": "y", "origin": [-0.5, 0, 0]},
+			"faces": {
+				"east": {"uv": [0, 0, 16, 12], "texture": "#gizmos"},
+				"west": {"uv": [0, 0, 16, 12], "texture": "#gizmos"}
+			}
+		},
+		{
+			"from": [5.5, 4, 0],
+			"to": [5.5, 16, 16],
+			"rotation": {"angle": 0, "axis": "y", "origin": [0.5, 0, 0]},
+			"faces": {
+				"east": {"uv": [0, 0, 16, 12], "texture": "#gizmos"},
+				"west": {"uv": [0, 0, 16, 12], "texture": "#gizmos"}
+			}
+		}
+	]
+}

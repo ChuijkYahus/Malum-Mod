@@ -17,6 +17,87 @@
         "class": "com/sammy/malum/core/enumextension/MalumEnumParams",
         "field": "SOULWOOD_BOAT_TYPE"
       }
+    },
+    {
+      "enum": "net/minecraft/world/item/Rarity",
+      "name": "MALUM_SACRED",
+      "constructor": "(ILjava/lang/String;Ljava/util/function/UnaryOperator;)V",
+      "parameters": {
+        "class": "com/sammy/malum/registry/common/MalumRarities",
+        "field": "SACRED_RARITY_PROXY"
+      }
+    },
+    {
+      "enum": "net/minecraft/world/item/Rarity",
+      "name": "MALUM_WICKED",
+      "constructor": "(ILjava/lang/String;Ljava/util/function/UnaryOperator;)V",
+      "parameters": {
+        "class": "com/sammy/malum/registry/common/MalumRarities",
+        "field": "WICKED_RARITY_PROXY"
+      }
+    },
+    {
+      "enum": "net/minecraft/world/item/Rarity",
+      "name": "MALUM_ARCANE",
+      "constructor": "(ILjava/lang/String;Ljava/util/function/UnaryOperator;)V",
+      "parameters": {
+        "class": "com/sammy/malum/registry/common/MalumRarities",
+        "field": "ARCANE_RARITY_PROXY"
+      }
+    },
+    {
+      "enum": "net/minecraft/world/item/Rarity",
+      "name": "MALUM_ELDRITCH",
+      "constructor": "(ILjava/lang/String;Ljava/util/function/UnaryOperator;)V",
+      "parameters": {
+        "class": "com/sammy/malum/registry/common/MalumRarities",
+        "field": "ELDRITCH_RARITY_PROXY"
+      }
+    },
+    {
+      "enum": "net/minecraft/world/item/Rarity",
+      "name": "MALUM_AERIAL",
+      "constructor": "(ILjava/lang/String;Ljava/util/function/UnaryOperator;)V",
+      "parameters": {
+        "class": "com/sammy/malum/registry/common/MalumRarities",
+        "field": "AERIAL_RARITY_PROXY"
+      }
+    },
+    {
+      "enum": "net/minecraft/world/item/Rarity",
+      "name": "MALUM_AQUEOUS",
+      "constructor": "(ILjava/lang/String;Ljava/util/function/UnaryOperator;)V",
+      "parameters": {
+        "class": "com/sammy/malum/registry/common/MalumRarities",
+        "field": "AQUEOUS_RARITY_PROXY"
+      }
+    },
+    {
+      "enum": "net/minecraft/world/item/Rarity",
+      "name": "MALUM_EARTHEN",
+      "constructor": "(ILjava/lang/String;Ljava/util/function/UnaryOperator;)V",
+      "parameters": {
+        "class": "com/sammy/malum/registry/common/MalumRarities",
+        "field": "EARTHEN_RARITY_PROXY"
+      }
+    },
+    {
+      "enum": "net/minecraft/world/item/Rarity",
+      "name": "MALUM_INFERNAL",
+      "constructor": "(ILjava/lang/String;Ljava/util/function/UnaryOperator;)V",
+      "parameters": {
+        "class": "com/sammy/malum/registry/common/MalumRarities",
+        "field": "INFERNAL_RARITY_PROXY"
+      }
+    },
+    {
+      "enum": "net/minecraft/world/item/Rarity",
+      "name": "MALUM_UMBRAL",
+      "constructor": "(ILjava/lang/String;Ljava/util/function/UnaryOperator;)V",
+      "parameters": {
+        "class": "com/sammy/malum/registry/common/MalumRarities",
+        "field": "UMBRAL_RARITY_PROXY"
+      }
     }
   ]
 }

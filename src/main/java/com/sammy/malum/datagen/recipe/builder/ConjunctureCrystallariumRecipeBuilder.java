@@ -26,6 +26,7 @@ public class ConjunctureCrystallariumRecipeBuilder implements LodestoneRecipeBui
     private final NonNullList<MalumSizedChanceResult> additionalResults = NonNullList.create();
     private final StoredInSoulstoneMetal metalData;
     private final int processingTime;
+    private Optional<ItemStack> resultFallback = Optional.empty();
 
     public ConjunctureCrystallariumRecipeBuilder(Ingredient input, CrystalPropertyModifier crystalToGrow, MalumSizedChanceResult result, StoredInSoulstoneMetal metalData, int processingTime) {
         this.input = input;
@@ -42,18 +43,25 @@ public class ConjunctureCrystallariumRecipeBuilder implements LodestoneRecipeBui
     }
 
     public ConjunctureCrystallariumRecipeBuilder addAdditionalResult(Item item, float chance) {
-        addAdditionalResult(item, 1, chance);
-        return this;
+        return addAdditionalResult(item, 1, chance);
     }
 
     public ConjunctureCrystallariumRecipeBuilder addAdditionalResult(Item item) {
-        addAdditionalResult(item, 1, 1.0F);
-        return this;
+        return addAdditionalResult(item, 1, 1.0F);
     }
 
     public ConjunctureCrystallariumRecipeBuilder addAdditionalResult(Item item, int count) {
-        addAdditionalResult(item, count, 1.0F);
+        return addAdditionalResult(item, count, 1.0F);
+    }
+
+    public ConjunctureCrystallariumRecipeBuilder addResultFallback(Item item, int count) {
+        ItemStack stack = new ItemStack(item, count);
+        resultFallback = Optional.of(stack);
         return this;
+    }
+
+    public ConjunctureCrystallariumRecipeBuilder addResultFallback(Item item) {
+        return addResultFallback(item, 1);
     }
 
     public void save(RecipeOutput recipeOutput) {
@@ -62,7 +70,7 @@ public class ConjunctureCrystallariumRecipeBuilder implements LodestoneRecipeBui
 
     @Override
     public ConjunctureCrystallariumRecipe buildRecipe(ResourceLocation id) {
-        return new ConjunctureCrystallariumRecipe(input, crystalToGrow, additionalResults, metalData, processingTime);
+        return new ConjunctureCrystallariumRecipe(input, crystalToGrow, additionalResults, metalData, processingTime, resultFallback);
     }
 
     @Override

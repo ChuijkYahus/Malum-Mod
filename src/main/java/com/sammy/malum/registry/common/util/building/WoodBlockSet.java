@@ -5,6 +5,7 @@ import com.sammy.malum.common.block.flora.wood.*;
 import com.sammy.malum.common.block.storage.pedestal.DecoratedItemPedestalBlock;
 import com.sammy.malum.common.block.storage.pedestal.WoodItemPedestalBlock;
 import com.sammy.malum.common.block.storage.stand.ItemStandBlock;
+import com.sammy.malum.datagen.block.MalumBlockStateDatagen;
 import com.sammy.malum.registry.common.block.MalumWoodTypes;
 import com.sammy.malum.registry.common.util.MalumRegistrySet;
 import com.sammy.malum.registry.common.util.data.BlockBundle;
@@ -19,6 +20,8 @@ import net.minecraft.world.level.block.state.properties.BlockSetType;
 import net.neoforged.neoforge.event.BlockEntityTypeAddBlocksEvent;
 import net.neoforged.neoforge.registries.DeferredBlock;
 import team.lodestar.lodestone.modules.core.util.BlockItemTagKey;
+import team.lodestar.lodestone.modules.datagen.BlockStateSmithTypes;
+import team.lodestar.lodestone.modules.datagen.smith.blockstate.BlockStateSystemData;
 import team.lodestar.lodestone.modules.toolkit.block.BlockBlockItemHolder;
 import team.lodestar.lodestone.modules.toolkit.block.LodestoneBlockProperties;
 import team.lodestar.lodestone.modules.toolkit.creative_tab.CreativeTabCategoryBuilder;
@@ -42,9 +45,6 @@ public class WoodBlockSet extends MalumRegistrySet {
 
     public final BlockBundleWithWall boards, verticalBoards, blocks;
     public final BlockBundle planks, verticalPlanks, tiles;
-
-    public final ItemlessBlockBundleWithWall carvedBoards, carvedVerticalBoards, carvedBlocks;
-    public final ItemlessBlockBundle carvedPlanks, carvedVerticalPlanks, carvedTiles;
 
     public final BlockBlockItemHolder<Block, BlockItem> steps, beam;
 
@@ -101,15 +101,7 @@ public class WoodBlockSet extends MalumRegistrySet {
         planks = new BlockBundle(name("%s_planks"), properties, planksTag, plankSlabsTag, plankStairsTag);
         verticalPlanks = new BlockBundle(name("vertical_%s_planks"), properties, planksTag, plankSlabsTag, plankStairsTag);
         tiles = new BlockBundle(name("%s_tiles"), properties, planksTag, plankSlabsTag, plankStairsTag);
-
-        carvedBoards = new ItemlessBlockBundleWithWall(name("carved_%s_boards"), properties, boardsTag, boardSlabsTag, boardStairsTag, boardWallsTag);
-        carvedVerticalBoards = new ItemlessBlockBundleWithWall(name("carved_vertical_%s_boards"), properties, boardsTag, boardSlabsTag, boardStairsTag, boardWallsTag);
-        carvedBlocks = new ItemlessBlockBundleWithWall(name("carved_%s_blocks"), properties, boardsTag, boardSlabsTag, boardStairsTag, boardWallsTag);
-
-        carvedPlanks = new ItemlessBlockBundle(name("carved_%s_planks"), properties, planksTag, plankSlabsTag, plankStairsTag);
-        carvedVerticalPlanks = new ItemlessBlockBundle(name("carved_vertical_%s_planks"), properties, planksTag, plankSlabsTag, plankStairsTag);
-        carvedTiles = new ItemlessBlockBundle(name("carved_%s_tiles"), properties, planksTag, plankSlabsTag, plankStairsTag);
-
+        
         steps = registerBlock(name("%s_steps"), () -> new Block(properties.get()));
         beam = registerBlock(name("%s_beam"), () -> new ColumnBlock(properties.get()));
 
@@ -193,6 +185,33 @@ public class WoodBlockSet extends MalumRegistrySet {
                         button
                 )
                 .bake();
+    }
+
+    public void generateWoodSet(BlockStateSystemData<MalumBlockStateDatagen> data) {
+        MalumBlockStateDatagen provider = data.provider();
+        for (BlockBundle bundle : new BlockBundle[]{boards, verticalBoards, blocks, planks, verticalPlanks}) {
+            provider.generateVariedBlockBundle(data, bundle);
+        }
+        for (BlockBundle bundle : new BlockBundle[]{tiles}) {
+            provider.generateBlockBundle(data, bundle);
+        }
+
+        BlockStateSmithTypes.LOG_BLOCK.act(data, log, strippedLog, sappyLog, strippedSappyLog);
+        BlockStateSmithTypes.WOOD_BLOCK.act(data, wood, strippedWood);
+
+        BlockStateSmithTypes.FENCE_BLOCK.act(data, fence);
+        BlockStateSmithTypes.FENCE_GATE_BLOCK.act(data, fenceGate);
+        BlockStateSmithTypes.WOODEN_SIGN_BLOCK.act(data, sign);
+        BlockStateSmithTypes.BUTTON_BLOCK.act(data, button);
+        BlockStateSmithTypes.PRESSURE_PLATE_BLOCK.act(data, pressurePlate);
+
+//        MalumBlockStateSmithTypes.COLUMN.act(data, beam);
+        BlockStateSmithTypes.CUSTOM_MODEL.act(data, provider::simpleBlock, provider.models()::cubeBottomTop, steps);
+
+        BlockStateSmithTypes.CUSTOM_MODEL.act(data, provider::simpleBlock, provider::woodenItemPedestalModel, itemPedestal);
+        BlockStateSmithTypes.CUSTOM_MODEL.act(data, provider::simpleBlock, provider::decoratedItemPedestalModel, decoratedItemPedestal);
+        BlockStateSmithTypes.CUSTOM_MODEL.act(data, provider::directionalBlock, provider::itemStandModel, itemStand);
+        BlockStateSmithTypes.CUSTOM_MODEL.act(data, provider::directionalBlock, provider::decoratedItemStandModel, decoratedItemStand);
     }
 
     public void bindSigns(BlockEntityTypeAddBlocksEvent event) {

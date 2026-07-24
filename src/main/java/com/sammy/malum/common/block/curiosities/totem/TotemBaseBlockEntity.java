@@ -29,18 +29,16 @@ public class TotemBaseBlockEntity extends LodestoneBlockEntity {
         ACTIVE;
     }
 
-    public final boolean corrupted;
-
     protected TotemBaseState state = TotemBaseState.INACTIVE;
     protected SpiritRiteType rite;
     protected Direction totemDirection;
+
     protected int totemHeight;
     protected int timer;
     protected int timerPause;
 
     public TotemBaseBlockEntity(LodestoneBlockEntityType<? extends TotemBaseBlockEntity> type, BlockPos pos, BlockState state) {
         super(type, pos, state);
-        this.corrupted = ((TotemBaseBlock<?>) state.getBlock()).corrupted;
     }
 
     public TotemBaseBlockEntity(BlockPos pos, BlockState state) {
@@ -108,19 +106,18 @@ public class TotemBaseBlockEntity extends LodestoneBlockEntity {
         if (state.equals(TotemBaseState.ASSEMBLING)) {
             return ItemInteractionResult.PASS_TO_DEFAULT_BLOCK_INTERACTION;
         }
-        if (getFirstTotemPole().isPresent()) {
-            if (level instanceof ServerLevel serverLevel) {
-                if (state.equals(TotemBaseState.ACTIVE)) {
-                    setState(serverLevel, TotemBaseState.INACTIVE);
-                } else {
-                    setState(serverLevel, TotemBaseState.ASSEMBLING);
-                }
-                BlockStateHelper.updateState(level, worldPosition);
-            }
-            return ItemInteractionResult.SUCCESS;
-
+        if (getFirstTotemPole().isEmpty()) {
+            return ItemInteractionResult.PASS_TO_DEFAULT_BLOCK_INTERACTION;
         }
-        return ItemInteractionResult.PASS_TO_DEFAULT_BLOCK_INTERACTION;
+        if (level instanceof ServerLevel serverLevel) {
+            if (state.equals(TotemBaseState.ACTIVE)) {
+                setState(serverLevel, TotemBaseState.INACTIVE);
+            } else {
+                setState(serverLevel, TotemBaseState.ASSEMBLING);
+            }
+            BlockStateHelper.updateState(level, worldPosition);
+        }
+        return ItemInteractionResult.SUCCESS;
     }
 
     @Override
@@ -152,7 +149,7 @@ public class TotemBaseBlockEntity extends LodestoneBlockEntity {
         }
         BlockState above = level.getBlockState(getBlockPos().above());
         if (above.getBlock() instanceof TotemPoleBlock) {
-            totemDirection = above.getValue(TotemPoleBlock.HORIZONTAL_FACING);
+            totemDirection = above.getValue(TotemPoleBlock.FACING);
             return totemDirection;
         }
         MalumMod.LOGGER.warn("Totem Base at {} has no totem pole above it, defaulting to north direction", worldPosition);
@@ -168,7 +165,7 @@ public class TotemBaseBlockEntity extends LodestoneBlockEntity {
             timer--;
         }
         if (canTriggerRite()) {
-            triggerRite(level);
+            triggerRiteEffect(level);
             notifyObservers();
         }
     }
@@ -177,7 +174,7 @@ public class TotemBaseBlockEntity extends LodestoneBlockEntity {
         return timer == 0;
     }
 
-    public void triggerRite(ServerLevel level) {
+    public void triggerRiteEffect(ServerLevel level) {
         if (rite == null) {
             return;
         }
@@ -187,7 +184,7 @@ public class TotemBaseBlockEntity extends LodestoneBlockEntity {
 
     public void addTotemPole(ServerLevel level, TotemPoleBlockEntity pole) {
         totemHeight++;
-        pole.beginCharging(level,this, totemHeight);
+        pole.bind(level,this, totemHeight);
         BlockStateHelper.updateState(level, worldPosition);
     }
 

@@ -40,11 +40,11 @@ public class UnchainedTotemConversionWorldEvent extends ActiveBlightWorldEvent {
     }
 
     public void replaceTotemPole(ServerLevel level, BlockPos pos, BlockState state) {
-        var direction = state.getValue(TotemPoleBlock.HORIZONTAL_FACING);
-        var spirit = state.getValue(TotemPoleBlock.SPIRIT_TYPE);
+        var direction = state.getValue(TotemPoleBlock.FACING);
+        var spirit = state.getValue(TotemPoleBlock.SPIRIT);
         var newState = MalumContent.Totemancy.SOULWOOD_TOTEM_POLE.get().defaultBlockState()
-                .setValue(TotemPoleBlock.HORIZONTAL_FACING, direction)
-                .setValue(TotemPoleBlock.SPIRIT_TYPE, spirit);
+                .setValue(TotemPoleBlock.FACING, direction)
+                .setValue(TotemPoleBlock.SPIRIT, spirit);
         placeBlock(level, pos, newState);
         if (level.getBlockEntity(pos) instanceof TotemPoleBlockEntity blockEntity) {
             blockEntity.brieflyActivate(level);

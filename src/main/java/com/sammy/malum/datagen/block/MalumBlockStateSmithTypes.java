@@ -6,6 +6,7 @@ import com.sammy.malum.common.block.blight.scarstone.*;
 import com.sammy.malum.common.block.curiosities.artifice.elemental_artifice.aerial.GustIgniterBlock;
 import com.sammy.malum.common.block.curiosities.artifice.elemental_artifice.base.ElementalArtificeBlock;
 import com.sammy.malum.common.block.curiosities.artifice.elemental_artifice.base.PrimaryArtificeBlock;
+import com.sammy.malum.common.block.curiosities.artifice.soul_link.SoulLinkBlock;
 import com.sammy.malum.common.block.curiosities.decor.banner.*;
 import com.sammy.malum.common.block.curiosities.artifice.waveform.SpiritDiodeBlock;
 import com.sammy.malum.common.block.curiosities.artifice.repair_pylon.*;
@@ -22,6 +23,8 @@ import com.sammy.malum.common.block.flora.wood.MalumLeavesBlock;
 import com.sammy.malum.common.block.geode.GeodeCrystalClusterBlock;
 import com.sammy.malum.common.block.soulstone.ArchaicSoulstoneBudBlock;
 import com.sammy.malum.common.block.soulstone.SoulstoneBudBlock;
+import com.sammy.malum.core.systems.registry.SpiritHolder;
+import com.sammy.malum.core.systems.spirit.SpiritArcanaType;
 import com.sammy.malum.datagen.item.MalumItemModelSmithTypes;
 import net.minecraft.core.*;
 import net.minecraft.resources.ResourceLocation;
@@ -145,7 +148,7 @@ public class MalumBlockStateSmithTypes {
         ResourceLocation side = provider.getBlockTexture(woodName + "_log");
         ResourceLocation top = provider.getBlockTexture(woodName + "_log_top");
         provider.getVariantBuilder(block).forAllStates(s -> {
-            String type = s.getValue(TotemPoleBlock.SPIRIT_TYPE);
+            String type = s.getValue(TotemPoleBlock.SPIRIT);
             ResourceLocation front = MalumMod.malumPath("block/totem_poles/" + type + "_" + woodName + "_cutout");
             ModelFile pole = provider.models().withExistingParent(name + "_" + type, parent)
                     .texture("side", side)
@@ -270,12 +273,40 @@ public class MalumBlockStateSmithTypes {
         });
     });
 
+    public static BlockStateSmith<SoulLinkBlock> SOUL_LINK = new BlockStateSmith<>(SoulLinkBlock.class, ItemModelSmithTypes.BLOCK_MODEL_ITEM, (block, provider) -> {
+        var name = provider.getBlockName(block);
+
+        var base = malumPath("block/soul_link/soul_link");
+        var slotted = malumPath("block/soul_link/soul_link_slotted");
+
+        var models = new HashMap<String, BlockModelBuilder>();
+        provider.getVariantBuilder(block).forAllStates(s -> {
+            ConfiguredModel.Builder<?> builder = ConfiguredModel.builder();
+
+            if (!SoulLinkBlock.OPTIONAL_SPIRIT.hasSpirit(s)) {
+                return builder.modelFile(provider.models().getExistingFile(base)).build();
+            }
+
+            if (s.getValue(SoulLinkBlock.OPEN)) {
+                return builder.modelFile(provider.models().getExistingFile(base)).build();
+            }
+            var spirit = s.getValue(SoulLinkBlock.OPTIONAL_SPIRIT);
+            var modelName = name + spirit;
+            if (!models.containsKey(modelName)) {
+                var insideTexture = "glow_" + spirit;
+                var model = provider.models().withExistingParent(modelName, slotted)
+                        .texture("glow", provider.getBlockTexture(insideTexture));
+                models.put(modelName, model);
+            }
+            return builder.modelFile(models.get(modelName)).build();
+        });
+    });
+
     public static BlockStateSmith<RepairPylonComponentBlock> REPAIR_PYLON_COMPONENT = new BlockStateSmith<>(RepairPylonComponentBlock.class, ItemModelSmithTypes.NO_DATAGEN, (block, provider) -> {
         ModelFile model = provider.models().getExistingFile(malumPath("block/repair_pylon_component_middle"));
         ModelFile topModel = provider.models().getExistingFile(malumPath("block/repair_pylon_component_top"));
         provider.getVariantBuilder(block).forAllStates(s -> ConfiguredModel.builder().modelFile(s.getValue(RepairPylonComponentBlock.TOP) ? topModel : model).build());
     });
-
 
     public static BlockStateSmith<LargeStrangeCrystalBlock> LARGE_STRANGE_CRYSTAL = new BlockStateSmith<>(LargeStrangeCrystalBlock.class, ItemModelSmithTypes.GENERATED_ITEM, (block, provider) -> {
         String name = provider.getBlockName(block);

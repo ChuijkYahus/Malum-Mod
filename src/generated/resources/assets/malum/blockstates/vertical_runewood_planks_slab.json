@@ -1,13 +1,88 @@
 {
   "variants": {
-    "type=bottom": {
-      "model": "malum:block/vertical_runewood_planks_slab"
-    },
-    "type=double": {
-      "model": "malum:block/vertical_runewood_planks"
-    },
-    "type=top": {
-      "model": "malum:block/vertical_runewood_planks_slab_top"
-    }
+    "type=bottom,waterlogged=false": [
+      {
+        "model": "malum:block/vertical_runewood_planks_slab0"
+      },
+      {
+        "model": "malum:block/vertical_runewood_planks_slab1"
+      },
+      {
+        "model": "malum:block/vertical_runewood_planks_slab2"
+      },
+      {
+        "model": "malum:block/vertical_runewood_planks_slab3"
+      }
+    ],
+    "type=bottom,waterlogged=true": [
+      {
+        "model": "malum:block/vertical_runewood_planks_slab0"
+      },
+      {
+        "model": "malum:block/vertical_runewood_planks_slab1"
+      },
+      {
+        "model": "malum:block/vertical_runewood_planks_slab2"
+      },
+      {
+        "model": "malum:block/vertical_runewood_planks_slab3"
+      }
+    ],
+    "type=double,waterlogged=false": [
+      {
+        "model": "malum:vertical_runewood_planks0"
+      },
+      {
+        "model": "malum:vertical_runewood_planks1"
+      },
+      {
+        "model": "malum:vertical_runewood_planks2"
+      },
+      {
+        "model": "malum:vertical_runewood_planks3"
+      }
+    ],
+    "type=double,waterlogged=true": [
+      {
+        "model": "malum:vertical_runewood_planks0"
+      },
+      {
+        "model": "malum:vertical_runewood_planks1"
+      },
+      {
+        "model": "malum:vertical_runewood_planks2"
+      },
+      {
+        "model": "malum:vertical_runewood_planks3"
+      }
+    ],
+    "type=top,waterlogged=false": [
+      {
+        "model": "malum:block/vertical_runewood_planks_slab0_top"
+      },
+      {
+        "model": "malum:block/vertical_runewood_planks_slab1_top"
+      },
+      {
+        "model": "malum:block/vertical_runewood_planks_slab2_top"
+      },
+      {
+        "model": "malum:block/vertical_runewood_planks_slab3_top"
+      }
+    ],
+    "type=top,waterlogged=true": [
+      {
+        "model": "malum:block/vertical_runewood_planks_slab0_top"
+      },
+      {
+        "model": "malum:block/vertical_runewood_planks_slab1_top"
+      },
+      {
+        "model": "malum:block/vertical_runewood_planks_slab2_top"
+      },
+      {
+        "model": "malum:block/vertical_runewood_planks_slab3_top"
+      }
+    ]
   }
 }

@@ -1,7 +1,8 @@
 plugins {
+    id("idea")
     id("java-library")
     id("maven-publish")
-    id("net.neoforged.moddev") version "2.0.30-beta"
+    id("net.neoforged.moddev") version "2.0.141"
 }
 
 version = "${property("minecraft_version")}-${property("mod_version")}"
@@ -9,9 +10,6 @@ if (System.getenv("BUILD_NUMBER") != null) {
     version = "$version.${System.getenv("BUILD_NUMBER")}"
 }
 val baseArchivesName = project.property("mod_id").toString()
-base {
-    archivesName.set(project.property("mod_id").toString())
-}
 group = "${property("mod_group_id")}"
 
 java {
@@ -27,7 +25,7 @@ configurations.runtimeClasspath {
 }
 
 neoForge {
-    version.set(property("neo_version").toString())
+    version = property("neo_version").toString()
 
     parchment {
         mappingsVersion.set(project.property("parchment_mappings_version").toString())
@@ -61,8 +59,6 @@ neoForge {
         configureEach {
             jvmArgument("-Dmixin.debug=true")
             jvmArgument("-Xmx4G")
-            systemProperty("neoforge.logging.markers", "REGISTRIES")
-            logLevel = org.slf4j.event.Level.DEBUG
         }
     }
 
@@ -80,10 +76,6 @@ sourceSets {
 }
 
 repositories {
-    flatDir {
-        dirs("lib")
-    }
-    mavenLocal()
     mavenCentral()
     maven("https://maven.blamejared.com/") // Lodestone
     maven("https://maven.theillusivec4.top/") // Curios
@@ -239,8 +231,3 @@ private fun DependencyHandlerScope.modRuntime(dep: Any) {
     localRuntime(dep)
 }
 
-private fun DependencyHandlerScope.jarJar(dependencyNotation: Dependency?) {
-    if (dependencyNotation != null) {
-        add("jarJar", dependencyNotation)
-    }
-}

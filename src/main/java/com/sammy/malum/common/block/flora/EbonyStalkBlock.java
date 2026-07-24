@@ -27,6 +27,7 @@ import net.minecraft.world.phys.Vec3;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
 import net.neoforged.neoforge.common.CommonHooks;
+import net.neoforged.neoforge.common.ItemAbilities;
 
 import javax.annotation.Nullable;
 
@@ -42,7 +43,6 @@ public class EbonyStalkBlock extends Block implements BonemealableBlock {
     public static final IntegerProperty AGE = BlockStateProperties.AGE_1;
     public static final EnumProperty<BambooLeaves> LEAVES = BlockStateProperties.BAMBOO_LEAVES;
     public static final IntegerProperty STAGE = BlockStateProperties.STAGE;
-
 
     @Override
     public MapCodec<EbonyStalkBlock> codec() {
@@ -107,14 +107,14 @@ public class EbonyStalkBlock extends Block implements BonemealableBlock {
             if (blockstate.is(sapling)) {
                 return defaultState.setValue(AGE, 0);
             }
-            var ebony = MalumContent.Materials.EBONY_STALK.get();
-            if (blockstate.is(ebony)) {
+            var stalk = MalumContent.Materials.EBONY_STALK.get();
+            if (blockstate.is(stalk)) {
                 int i = blockstate.getValue(AGE) > 0 ? 1 : 0;
                 return defaultState.setValue(AGE, i);
             }
-            BlockState blockstate1 = level.getBlockState(clickedPos.above());
-            return blockstate1.is(ebony)
-                    ? defaultState.setValue(AGE, blockstate1.getValue(AGE))
+            var above = level.getBlockState(clickedPos.above());
+            return above.is(stalk)
+                    ? defaultState.setValue(AGE, above.getValue(AGE))
                     : sapling.defaultBlockState();
 
 
@@ -139,7 +139,7 @@ public class EbonyStalkBlock extends Block implements BonemealableBlock {
         if (state.getValue(STAGE) != 0) {
             return;
         }
-        if (!level.isEmptyBlock(pos.above()) || level.getRawBrightness(pos.above(), 0) < 9) {
+        if (!canGrow(level, pos.above())) {
             return;
         }
         int i = getHeightBelowUpToMax(level, pos) + 1;
@@ -173,6 +173,9 @@ public class EbonyStalkBlock extends Block implements BonemealableBlock {
 
     @Override
     public boolean isValidBonemealTarget(LevelReader level, BlockPos pos, BlockState state) {
+        if (!canGrow(level, pos)) {
+            return false;
+        }
         int i = getHeightAboveUpToMax(level, pos);
         int j = getHeightBelowUpToMax(level, pos);
         return i + j + 1 < 16 && level.getBlockState(pos.above(i)).getValue(STAGE) != 1;
@@ -203,12 +206,9 @@ public class EbonyStalkBlock extends Block implements BonemealableBlock {
         }
     }
 
-    /**
-     * Get the hardness of this Block relative to the ability of the given player
-     */
     @Override
     protected float getDestroyProgress(BlockState state, Player player, BlockGetter level, BlockPos pos) {
-        return player.getMainHandItem().canPerformAction(net.neoforged.neoforge.common.ItemAbilities.SWORD_DIG) ? 1.0F : super.getDestroyProgress(state, player, level, pos);
+        return player.getMainHandItem().canPerformAction(ItemAbilities.SWORD_DIG) ? 1.0F : super.getDestroyProgress(state, player, level, pos);
     }
 
     protected void growEbony(BlockState state, Level level, BlockPos pos, RandomSource random, int age) {
@@ -217,20 +217,20 @@ public class EbonyStalkBlock extends Block implements BonemealableBlock {
         var belowBelowPos = pos.below(2);
         var belowBelowState = level.getBlockState(belowBelowPos);
         var bambooleaves = BambooLeaves.NONE;
-        var ebony = MalumContent.Materials.EBONY_STALK.get();
+        var stalkBlock = MalumContent.Materials.EBONY_STALK.get();
         if (age >= 1) {
-            if (!belowState.is(ebony) || belowState.getValue(LEAVES) == BambooLeaves.NONE) {
+            if (!belowState.is(stalkBlock) || belowState.getValue(LEAVES) == BambooLeaves.NONE) {
                 bambooleaves = BambooLeaves.SMALL;
-            } else if (belowState.is(ebony) && belowState.getValue(LEAVES) != BambooLeaves.NONE) {
+            } else if (belowState.is(stalkBlock) && belowState.getValue(LEAVES) != BambooLeaves.NONE) {
                 bambooleaves = BambooLeaves.LARGE;
-                if (belowBelowState.is(ebony)) {
+                if (belowBelowState.is(stalkBlock)) {
                     level.setBlock(belowPos, belowState.setValue(LEAVES, BambooLeaves.SMALL), 3);
                     level.setBlock(belowBelowPos, belowBelowState.setValue(LEAVES, BambooLeaves.NONE), 3);
                 }
             }
         }
 
-        int i = state.getValue(AGE) != 1 && !belowBelowState.is(ebony) ? 0 : 1;
+        int i = state.getValue(AGE) != 1 && !belowBelowState.is(stalkBlock) ? 0 : 1;
         int j = (age < 11 || !(random.nextFloat() < 0.25F)) && age != 15 ? 0 : 1;
         level.setBlock(
                 pos.above(), defaultBlockState().setValue(AGE, i).setValue(LEAVES, bambooleaves).setValue(STAGE, j), 3
@@ -255,5 +255,12 @@ public class EbonyStalkBlock extends Block implements BonemealableBlock {
         }
 
         return i;
+    }
+
+    public static boolean canGrow(LevelReader level, BlockPos pos) {
+        if (!level.isEmptyBlock(pos)) {
+            return false;
+        }
+        return level.getRawBrightness(pos, 0) <= 7;
     }
 }

@@ -1,0 +1,5 @@
+preserve_hierarchy: true
+
+files:
+  - source: /src/generated/resources/assets/malum/lang/en_us.json
+    translation: /src/main/resources/assets/malum/lang/%locale_with_underscore%.json

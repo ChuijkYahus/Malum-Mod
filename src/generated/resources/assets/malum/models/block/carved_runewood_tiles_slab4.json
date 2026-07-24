@@ -1,8 +1,0 @@
-{
-  "parent": "minecraft:block/slab",
-  "textures": {
-    "bottom": "malum:block/building/runewood/carved_runewood_tiles4",
-    "side": "malum:block/building/runewood/carved_runewood_tiles4",
-    "top": "malum:block/building/runewood/carved_runewood_tiles4"
-  }
-}

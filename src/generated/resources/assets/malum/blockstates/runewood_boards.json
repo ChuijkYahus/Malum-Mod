@@ -1,7 +1,18 @@
 {
   "variants": {
-    "": {
-      "model": "malum:block/runewood_boards"
-    }
+    "": [
+      {
+        "model": "malum:block/runewood_boards0"
+      },
+      {
+        "model": "malum:block/runewood_boards1"
+      },
+      {
+        "model": "malum:block/runewood_boards2"
+      },
+      {
+        "model": "malum:block/runewood_boards3"
+      }
+    ]
   }
 }

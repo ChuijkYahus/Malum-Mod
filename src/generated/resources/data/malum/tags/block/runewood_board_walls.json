@@ -2,9 +2,6 @@
   "values": [
     "malum:runewood_boards_wall",
     "malum:vertical_runewood_boards_wall",
-    "malum:runewood_blocks_wall",
-    "malum:carved_runewood_boards_wall",
-    "malum:carved_vertical_runewood_boards_wall",
-    "malum:carved_runewood_blocks_wall"
+    "malum:runewood_blocks_wall"
   ]
 }

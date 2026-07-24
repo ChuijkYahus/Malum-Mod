@@ -1,7 +1,7 @@
 package com.sammy.malum.common.payloads.waveform;
 
 import com.sammy.malum.common.block.curiosities.artifice.ArtificeTinkeringInfo;
-import com.sammy.malum.common.block.curiosities.artifice.TinkererArtificeBlockEntity;
+import com.sammy.malum.common.block.curiosities.artifice.ConfigurableArtificeBlockEntity;
 import io.netty.buffer.*;
 import net.minecraft.core.*;
 import net.minecraft.network.*;
@@ -32,8 +32,8 @@ public abstract class OpenBlockEntityStateUpdatePayload<T extends ArtificeTinker
     @Override
     public void handle(IPayloadContext iPayloadContext) {
         if (iPayloadContext.player().level() instanceof ServerLevel level) {
-            if (level.getBlockEntity(pos) instanceof TinkererArtificeBlockEntity tinkererArtificeBlockEntity) {
-                tinkererArtificeBlockEntity.handleTinkeredStateChange(level, isOpen, info);
+            if (level.getBlockEntity(pos) instanceof ConfigurableArtificeBlockEntity configurableArtificeBlockEntity) {
+                configurableArtificeBlockEntity.handleTinkeredStateChange(level, isOpen, info);
             }
         }
     }

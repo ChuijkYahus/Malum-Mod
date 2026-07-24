@@ -57,11 +57,6 @@ public class MalumItemColors {
 
     @SubscribeEvent
     public static void setItemColors(RegisterColorHandlersEvent.Item event) {
-
-        event.register((stack, tintIndex) -> ColorHelper.getColor(((SpiritShardItem) stack.getItem()).getSpiritHolder().getItemColor()),
-                MalumContent.Spirits.SACRED_SPIRIT.get(), MalumContent.Spirits.WICKED_SPIRIT.get(), MalumContent.Spirits.ARCANE_SPIRIT.get(), MalumContent.Spirits.ELDRITCH_SPIRIT.get(),
-                MalumContent.Spirits.AQUEOUS_SPIRIT.get(), MalumContent.Spirits.AERIAL_SPIRIT.get(), MalumContent.Spirits.EARTHEN_SPIRIT.get(), MalumContent.Spirits.INFERNAL_SPIRIT.get());
-
         event.register((s, c) -> switch (c) {
                     case 2 -> EtherItem.getSecondaryColor(s);
                     case 1 -> EtherItem.getPrimaryColor(s);

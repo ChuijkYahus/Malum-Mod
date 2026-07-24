@@ -16,6 +16,6 @@ public abstract class AbstractMalumCreativeTab extends CategorizedCreativeTab {
 
         @Override
         public boolean isItemVisible(ItemStack stack) {
-        return !HiddenTagHandler.isHiddenItem(stack);
+                return !HiddenTagHandler.isHiddenItem(stack);
         }
 }

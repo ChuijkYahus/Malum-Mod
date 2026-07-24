@@ -20,6 +20,7 @@ import net.minecraft.world.level.block.state.properties.BambooLeaves;
 import net.minecraft.world.phys.Vec3;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
+import net.neoforged.neoforge.common.ItemAbilities;
 
 
 @SuppressWarnings({"NullableProblems", "deprecation"})
@@ -52,10 +53,9 @@ public class EbonySaplingBlock extends Block implements BonemealableBlock {
         if (!level.isEmptyBlock(pos.above())) {
             return;
         }
-        if (level.getRawBrightness(pos.above(), 0) < 4) {
-            return;
+        if (EbonyStalkBlock.canGrow(level, pos.above())) {
+            transitionIntoStalk(level, pos);
         }
-        this.growEbony(level, pos);
     }
 
     @Override
@@ -74,9 +74,9 @@ public class EbonySaplingBlock extends Block implements BonemealableBlock {
         if (!state.canSurvive(level, currentPos)) {
             return Blocks.AIR.defaultBlockState();
         } else {
-            var stalk = MalumContent.Materials.EBONY_STALK;
-            if (facing == Direction.UP && stalk.is(facingState)) {
-                level.setBlock(currentPos, stalk.get().defaultBlockState(), 2);
+            var stalk = MalumContent.Materials.EBONY_STALK.get();
+            if (facing == Direction.UP && facingState.is(stalk)) {
+                level.setBlock(currentPos, stalk.defaultBlockState(), 2);
             }
 
             return super.updateShape(state, facing, facingState, level, currentPos, facingPos);
@@ -100,18 +100,15 @@ public class EbonySaplingBlock extends Block implements BonemealableBlock {
 
     @Override
     public void performBonemeal(ServerLevel level, RandomSource random, BlockPos pos, BlockState state) {
-        this.growEbony(level, pos);
+        this.transitionIntoStalk(level, pos);
     }
 
-    /**
-     * Get the hardness of this Block relative to the ability of the given player
-     */
     @Override
     protected float getDestroyProgress(BlockState state, Player player, BlockGetter level, BlockPos pos) {
-        return player.getMainHandItem().canPerformAction(net.neoforged.neoforge.common.ItemAbilities.SWORD_DIG) ? 1.0F : super.getDestroyProgress(state, player, level, pos);
+        return player.getMainHandItem().canPerformAction(ItemAbilities.SWORD_DIG) ? 1.0F : super.getDestroyProgress(state, player, level, pos);
     }
 
-    protected void growEbony(Level level, BlockPos state) {
+    protected void transitionIntoStalk(Level level, BlockPos state) {
         level.setBlock(state.above(), MalumContent.Materials.EBONY_STALK.get().defaultBlockState().setValue(EbonyStalkBlock.LEAVES, BambooLeaves.SMALL), 3);
     }
 }

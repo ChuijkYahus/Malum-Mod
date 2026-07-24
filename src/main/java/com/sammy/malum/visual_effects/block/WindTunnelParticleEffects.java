@@ -36,6 +36,7 @@ public class WindTunnelParticleEffects {
     private static final InstanceFormat POS_COLOR = new InstanceFormat.Builder()
             .add(StandardInstanceWriters.POSITION)
             .add(StandardInstanceWriters.COLOR)
+            .add(StandardInstanceWriters.MODEL_MATRIX)
             .build();
 
     private static final ParticleSpec SPEC2 = ParticleBuilder.create()

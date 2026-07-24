@@ -2,9 +2,6 @@
   "values": [
     "malum:runewood_planks_slab",
     "malum:vertical_runewood_planks_slab",
-    "malum:runewood_tiles_slab",
-    "malum:carved_runewood_planks_slab",
-    "malum:carved_vertical_runewood_planks_slab",
-    "malum:carved_runewood_tiles_slab"
+    "malum:runewood_tiles_slab"
   ]
 }

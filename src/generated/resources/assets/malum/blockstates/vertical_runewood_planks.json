@@ -1,7 +1,18 @@
 {
   "variants": {
-    "": {
-      "model": "malum:block/vertical_runewood_planks"
-    }
+    "": [
+      {
+        "model": "malum:block/vertical_runewood_planks0"
+      },
+      {
+        "model": "malum:block/vertical_runewood_planks1"
+      },
+      {
+        "model": "malum:block/vertical_runewood_planks2"
+      },
+      {
+        "model": "malum:block/vertical_runewood_planks3"
+      }
+    ]
   }
 }
