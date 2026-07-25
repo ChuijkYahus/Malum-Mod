@@ -350,6 +350,11 @@ public class MalumContent {
         public static final DeferredItem<Item> ALCHEMICAL_CALX = register("alchemical_calx", MalumItemProperties::DEFAULT, Item::new);
         public static final DeferredItem<Item> ARCANE_CHARCOAL = register("arcane_charcoal", MalumItemProperties::DEFAULT, Item::new);
 
+        public static final DeferredItem<Item> IGNEOUS_CHITIN = register("igneous_chitin", MalumItemProperties::DEFAULT, Item::new);
+        public static final DeferredItem<Item> DARK_BRIMSTONE = register("dark_brimstone", MalumItemProperties::DEFAULT, Item::new);
+        public static final DeferredItem<Item> VOLATILE_ENTROPY = register("volatile_entropy", MalumItemProperties::DEFAULT, Item::new);
+        public static final DeferredItem<Item> ANNULLED_MEMORY = register("annulled_memory", MalumItemProperties::DEFAULT, Item::new);
+
         public static final DeferredBlock<Block> EBONY_SAPLING = registerBlockNoItem("ebony_sapling", () -> new EbonySaplingBlock(MalumFloraBlockProperties.EBONY_SAPLING()));
         public static final BlockBlockItemHolder<Block, BlockItem> EBONY_STALK = registerItemNameBlock("ebony", "ebony_stalk", () -> new EbonyStalkBlock(MalumFloraBlockProperties.EBONY()));
         public static final DeferredItem<Item> CALCIFIED_EBONY = register("calcified_ebony", MalumItemProperties::DEFAULT, Item::new);
@@ -357,11 +362,11 @@ public class MalumContent {
         public static final BlockBlockItemHolder<Block, BlockItem> WILD_WITCHHAZEL = registerBlock("wild_witchhazel", () -> new WildWitchhazelPlantBlock(MalumFloraBlockProperties.WILD_WITCHHAZEL()));
         public static final BlockBlockItemHolder<Block, BlockItem> WITCHHAZEL = registerBlock("witchhazel", () -> new WitchhazelCropBlock(MalumFloraBlockProperties.WITCHHAZEL_CROP()));
 
-        public static final DeferredItem<Item> RUNIC_SAP_BOTTLE = register("runic_sap_bottle", MalumItemProperties::DEFAULT, (p) -> new BottledDrinkItem(MalumItemProperties.DEFAULT().food(MalumFoodProperties.RUNIC_SAP)));
+        public static final DeferredItem<Item> RUNIC_SAP_BOTTLE = register("runic_sap_bottle", MalumItemProperties::DEFAULT, (p) -> new BottledDrinkItem(p.food(MalumFoodProperties.RUNIC_SAP)));
         public static final DeferredItem<Item> RUNIC_SAPBALL = register("runic_sapball", MalumItemProperties::DEFAULT, Item::new);
         public static final DeferredBlock<Block> RUNIC_SAP_CAULDRON = registerBlockNoItem("runic_sap_cauldron", SapFilledCauldronBlock::new);
 
-        public static final DeferredItem<Item> AZOIC_SAP_BOTTLE = register("azoic_sap_bottle", MalumItemProperties::DEFAULT, (p) -> new BottledDrinkItem(MalumItemProperties.DEFAULT().food(MalumFoodProperties.AZOIC_SAP)));
+        public static final DeferredItem<Item> AZOIC_SAP_BOTTLE = register("azoic_sap_bottle", MalumItemProperties::DEFAULT, (p) -> new BottledDrinkItem(p.food(MalumFoodProperties.AZOIC_SAP)));
         public static final DeferredItem<Item> AZOIC_SAPBALL = register("azoic_sapball", MalumItemProperties::DEFAULT, Item::new);
         public static final DeferredBlock<Block> AZOIC_SAP_CAULDRON = registerBlockNoItem("azoic_sap_cauldron", SapFilledCauldronBlock::new);
 
