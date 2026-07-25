@@ -43,6 +43,8 @@ public class MalumBiomeTagDatagen extends BiomeTagsProvider {
         tag(HAS_RARE_AZURE_RUNEWOOD).add(FROZEN_PEAKS).add(JAGGED_PEAKS).add(SNOWY_SLOPES).add(GROVE);
         tag(HAS_AZURE_SANCTUARY).addTag(IS_SNOWY_PLAINS);
 
+        tag(HAS_EBONY).addTag(IS_OVERWORLD);
+
         tag(HAS_WEEPING_WELL).addTag(IS_OVERWORLD);
     }
 

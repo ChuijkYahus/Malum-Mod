@@ -43,6 +43,8 @@ public class MalumBlockTagDatagen extends LodestoneBlockTagsSystem {
         tag(BLIGHT_REPLACEABLE).addTags(MOSS_REPLACEABLE, SAND).add(Blocks.CLAY, Blocks.GRAVEL);
         tag(BLIGHT_REMOVABLE).addTags(FLOWERS, REPLACEABLE).remove(BLIGHTED_PLANTS).remove(CLINGING_BLIGHT.get());
 
+        tag(EBONY_REPLACEABLE).addTags(MOSS_REPLACEABLE, SAND).add(Blocks.DRIPSTONE_BLOCK, Blocks.GRAVEL);
+
         tag(UNCHAINED_RITE_CATALYST).add(BLIGHTED_EARTH.get());
         tag(IS_RITE_IMMUNE).addTags(TAINTED_ROCK, TWISTED_ROCK, WEEPING_WELL);
 
