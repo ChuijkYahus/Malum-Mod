@@ -2,6 +2,7 @@ package com.sammy.malum.datagen;
 
 import com.sammy.malum.MalumMod;
 import com.sammy.malum.datagen.block.*;
+import com.sammy.malum.datagen.entity.MalumEntityLootTables;
 import com.sammy.malum.datagen.item.MalumItemModelDatagen;
 import com.sammy.malum.datagen.sound.*;
 import com.sammy.malum.datagen.tag.MalumItemTagDatagen;
@@ -60,6 +61,10 @@ public class DataGenerators {
 
         var wandPartTypes = new WandPartTypeDatagen(output, registryProvider, helper);
         var wandMaterialTypes = new WandMaterialTypeDatagen(output, registryProvider, helper);
+
+        var entityLootDatagen = new MalumEntityLootTables(output, registryProvider);
+
+        generator.addProvider(includeServer, entityLootDatagen);
 
         generator.addProvider(includeClient, itemModelsDatagen);
         generator.addProvider(includeClient, blockStateDatagen);
