@@ -1,16 +1,16 @@
 {
   "textures": [
-    "malum:cultist/sigil_0",
-    "malum:cultist/sigil_1",
-    "malum:cultist/sigil_2",
-    "malum:cultist/sigil_3",
-    "malum:cultist/sigil_4",
-    "malum:cultist/sigil_5",
-    "malum:cultist/sigil_6",
-    "malum:cultist/sigil_7",
-    "malum:cultist/sigil_8",
-    "malum:cultist/sigil_9",
-    "malum:cultist/sigil_10",
-    "malum:cultist/sigil_11"
+    "malum:effects/cultist/sigil_0",
+    "malum:effects/cultist/sigil_1",
+    "malum:effects/cultist/sigil_2",
+    "malum:effects/cultist/sigil_3",
+    "malum:effects/cultist/sigil_4",
+    "malum:effects/cultist/sigil_5",
+    "malum:effects/cultist/sigil_6",
+    "malum:effects/cultist/sigil_7",
+    "malum:effects/cultist/sigil_8",
+    "malum:effects/cultist/sigil_9",
+    "malum:effects/cultist/sigil_10",
+    "malum:effects/cultist/sigil_11"
   ]
 }

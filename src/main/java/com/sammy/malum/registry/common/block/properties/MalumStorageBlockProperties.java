@@ -61,6 +61,14 @@ public class MalumStorageBlockProperties {
                 .strength(5.0F, 6.0F);
     }
 
+
+    public static LodestoneBlockProperties IGNEOUS_CHITIN_BLOCK() {
+        return GENERIC_STORAGE_BLOCK(MalumBlockSoundEvents.BLOCK_OF_ARCANE_CHARCOAL, DyeColor.GRAY)
+                .needsPickaxe()
+                .requiresCorrectToolForDrops()
+                .strength(5.0F, 6.0F);
+    }
+
     public static LodestoneBlockProperties EBONY_BLOCK() {
         return GENERIC_STORAGE_BLOCK(MalumBlockSoundEvents.BLOCK_OF_EBONY, DyeColor.BLACK)
                 .needsPickaxe()

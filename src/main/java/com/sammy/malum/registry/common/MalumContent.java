@@ -283,6 +283,9 @@ public class MalumContent {
         public static final BlockBlockItemHolder<Block, BlockItem> BLOCK_OF_ALCHEMICAL_CALX = registerBlock("block_of_alchemical_calx", () -> new LodestoneDirectionalBlock(MalumStorageBlockProperties.GENERIC_STORAGE_BLOCK(SoundType.CALCITE, DyeColor.YELLOW).requiresCorrectToolForDrops().needsPickaxe()));
         public static final BlockBlockItemHolder<Block, BlockItem> BLOCK_OF_ARCANE_CHARCOAL = registerBlock("block_of_arcane_charcoal", () -> new LodestoneDirectionalBlock(MalumStorageBlockProperties.ARCANE_CHARCOAL_BLOCK()));
 
+        public static final BlockBlockItemHolder<Block, BlockItem> BLOCK_OF_IGNEOUS_CHITIN = registerBlock("block_of_igneous_chitin", () -> new LodestoneDirectionalBlock(MalumStorageBlockProperties.GENERIC_STORAGE_BLOCK(SoundType.CALCITE, DyeColor.YELLOW).requiresCorrectToolForDrops().needsPickaxe()));
+        public static final BlockBlockItemHolder<Block, BlockItem> BLOCK_OF_TORN_BRIMSTONE = registerBlock("block_of_torn_brimstone", () -> new LodestoneDirectionalBlock(MalumStorageBlockProperties.ARCANE_CHARCOAL_BLOCK()));
+
         public static final BlockBlockItemHolder<Block, BlockItem> BLOCK_OF_EBONY = registerBlock("block_of_ebony", () -> new LodestoneDirectionalBlock(MalumStorageBlockProperties.EBONY_BLOCK()));
         public static final BlockBlockItemHolder<Block, BlockItem> CRATE_OF_WITCHHAZEL = registerBlock("crate_of_witchhazel", () -> new Block(MalumStorageBlockProperties.WITCHHAZEL_CRATE()));
 
@@ -351,9 +354,9 @@ public class MalumContent {
         public static final DeferredItem<Item> ARCANE_CHARCOAL = register("arcane_charcoal", MalumItemProperties::DEFAULT, Item::new);
 
         public static final DeferredItem<Item> IGNEOUS_CHITIN = register("igneous_chitin", MalumItemProperties::DEFAULT, Item::new);
-        public static final DeferredItem<Item> DARK_BRIMSTONE = register("dark_brimstone", MalumItemProperties::DEFAULT, Item::new);
-        public static final DeferredItem<Item> VOLATILE_ENTROPY = register("volatile_entropy", MalumItemProperties::DEFAULT, Item::new);
-        public static final DeferredItem<Item> ANNULLED_MEMORY = register("annulled_memory", MalumItemProperties::DEFAULT, Item::new);
+        public static final DeferredItem<Item> TORN_BRIMSTONE = register("torn_brimstone", MalumItemProperties::DEFAULT, Item::new);
+//        public static final DeferredItem<Item> VOLATILE_ENTROPY = register("volatile_artifact", MalumItemProperties::DEFAULT, Item::new);
+//        public static final DeferredItem<Item> ANNULLED_MEMORY = register("annulled_memory", MalumItemProperties::DEFAULT, Item::new);
 
         public static final DeferredBlock<Block> EBONY_SAPLING = registerBlockNoItem("ebony_sapling", () -> new EbonySaplingBlock(MalumFloraBlockProperties.EBONY_SAPLING()));
         public static final BlockBlockItemHolder<Block, BlockItem> EBONY_STALK = registerItemNameBlock("ebony", "ebony_stalk", () -> new EbonyStalkBlock(MalumFloraBlockProperties.EBONY()));

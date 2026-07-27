@@ -195,7 +195,7 @@ public class CultistParticleEffects {
         var position = positionData.getAsVector();
 
         Function<Vec3, Consumer<LodestoneWorldParticle>> behavior = initialOffset -> p -> {
-            var targetPosition = cardinalCultist.getRetaliationBlastPos(p.partialTicksCache);
+            var targetPosition = cardinalCultist.getDetonationBlastPos(p.partialTicksCache);
             p.setParticlePosition(targetPosition.add(initialOffset).add(p.getInterpolatedTravelledDistance()));
         };
         var direction = entropyCharge.getEyePosition().subtract(cardinalCultist.getEyePosition()).normalize();

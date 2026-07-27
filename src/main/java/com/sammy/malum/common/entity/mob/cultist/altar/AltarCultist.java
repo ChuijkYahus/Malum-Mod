@@ -44,6 +44,9 @@ public class AltarCultist extends CultistMonster implements ICherubFriend {
     private static final EntityDataAccessor<Integer> HEAD_TILT = SynchedEntityData.defineId(AltarCultist.class, EntityDataSerializers.INT);
     private static final EntityDataAccessor<Float> CANDLE_ROTATION = SynchedEntityData.defineId(AltarCultist.class, EntityDataSerializers.FLOAT);
 
+    private static final EntityDataAccessor<Integer> SPELL_CHARGE_ID = SynchedEntityData.defineId(AltarCultist.class, EntityDataSerializers.INT);
+    private static final EntityDataAccessor<Float> SPELL_CHARGE_DELTA = SynchedEntityData.defineId(AltarCultist.class, EntityDataSerializers.FLOAT);
+
     public static final int HEAD_TILT_ANIMATION_DURATION = 16;
 
     public static final float MELEE_CHASE_RADIUS = 4f;
@@ -54,11 +57,11 @@ public class AltarCultist extends CultistMonster implements ICherubFriend {
     public static final int RETREAT_DURATION = 120;
 
     public static final float RANGED_ATTACK_RADIUS = 16f;
-    public static final int RANGED_ATTACK_INTERVAL = 100;
+    public static final int RANGED_ATTACK_INTERVAL = 60;
 
     public static final float BLESSING_SEARCH_RADIUS = 24f;
-    public static final float BLESSING_CHARGE_RADIUS = 8f;
-    public static final int BLESSING_CHARGE_DURATION = 120;
+    public static final float BLESSING_CHARGE_RADIUS = 12f;
+    public static final int BLESSING_CHARGE_DURATION = 60;
     public static final float BLESSING_HEAL_PERCENTAGE = 0.25f;
     public static final float BLESSING_HEALTH_THRESHOLD = 0.5f;
 

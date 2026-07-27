@@ -45,18 +45,18 @@ public class CardinalCultist extends CultistMonster implements IAltarBlessingRec
 
     public static final float AVOID_TARGET_RADIUS = 5f;
 
-    public static final float RETALIATION_BLAST_TRIGGER_RADIUS = 4f;
-    public static final float RETALIATION_BLAST_DAMAGE_RADIUS = 3.75f;
-    public static final int RETALIATION_BLAST_COOLDOWN = 100;
-    public static final float RETALIATION_BLAST_DAMAGE = 0.25f;
+    public static final float RETALIATION_BLAST_TRIGGER_RADIUS = 6f;
+    public static final float RETALIATION_BLAST_DAMAGE_RADIUS = 5f;
+    public static final int RETALIATION_BLAST_COOLDOWN = 40;
+    public static final float RETALIATION_BLAST_DAMAGE = 0.75f;
 
-    public static final float IMMOLATION_BLAST_CHANCE = 0.15f;
+    public static final float IMMOLATION_BLAST_CHANCE = 0.2f;
     public static final float IMMOLATION_BLAST_TRIGGER_RADIUS = 3f;
     public static final float IMMOLATION_BLAST_DAMAGE_RADIUS = 10f;
     public static final float IMMOLATION_BLAST_DAMAGE = 4f;
 
-    public static final int ENTROPY_THROW_INTERVAL = 80;
-    public static final float ENTROPY_THROW_RADIUS = 16f;
+    public static final int ENTROPY_THROW_INTERVAL = 40;
+    public static final float ENTROPY_THROW_RADIUS = 24f;
     public static final float ENTROPY_DETONATION_RADIUS = 24f;
     public static final float ENTROPY_DETONATION_DAMAGE = 2f;
 
@@ -227,14 +227,14 @@ public class CardinalCultist extends CultistMonster implements IAltarBlessingRec
         //Feedback
         SoundHelper.playSoundRandomPitch(this, MalumCultistSoundEvents.CARDINAL_CANNON_FIRE, 1.5f, 0.8f, 1.2f);
         MalumParticleEffectTypes.CARDINAL_DETONATION_BLAST
-                .createEffect(getRetaliationBlastPos())
+                .createEffect(getDetonationBlastPos(-1))
                 .customData(new CardinalDetonationBlastParticleEffect.CardinalDetonationBlastParticleData(getId(), target.getId()))
                 .color(ColorParticleData.create(CursedBoltProjectile.CULTIST_RED, CursedBoltProjectile.CULTIST_CRIMSON))
                 .spawn(level);
     }
 
     public void triggerRetaliationBlast(ServerLevel level) {
-        var pos = getRetaliationBlastPos();
+        var pos = getRetaliationBlastPos(-1);
         float magicDamage = (float) getAttributeValue(LodestoneAttributes.MAGIC_DAMAGE) * RETALIATION_BLAST_DAMAGE;
         float radius = RETALIATION_BLAST_DAMAGE_RADIUS;
         var area = new AABB(pos.subtract(radius, radius, radius), pos.add(radius, radius, radius));
@@ -352,16 +352,16 @@ public class CardinalCultist extends CultistMonster implements IAltarBlessingRec
         return new Vec3(x, y, z);
     }
 
-    public Vec3 getEntropyChargePos() {
-        return getHandPosition(-0.8f, 0.4f, 1.4f, -1);
-    }
-
-    public Vec3 getRetaliationBlastPos() {
-        return getRetaliationBlastPos(-1);
+    public Vec3 getDetonationBlastPos(float partialTicks) {
+        return getHandPosition(0.8f, 0.7f, 1.8f, partialTicks);
     }
 
     public Vec3 getRetaliationBlastPos(float partialTicks) {
         return getHandPosition(0.8f, 0.6f, 1.2f, partialTicks);
+    }
+
+    public Vec3 getEntropyChargePos() {
+        return getHandPosition(-0.8f, 0.4f, 1.4f, -1);
     }
 
     public Vec3 getImmolationBlastPos() {

@@ -1,14 +1,14 @@
 {
   "textures": [
-    "malum:cultist/pulse_0",
-    "malum:cultist/pulse_1",
-    "malum:cultist/pulse_2",
-    "malum:cultist/pulse_3",
-    "malum:cultist/pulse_4",
-    "malum:cultist/pulse_5",
-    "malum:cultist/pulse_6",
-    "malum:cultist/pulse_7",
-    "malum:cultist/pulse_8",
-    "malum:cultist/pulse_9"
+    "malum:effects/cultist/pulse_0",
+    "malum:effects/cultist/pulse_1",
+    "malum:effects/cultist/pulse_2",
+    "malum:effects/cultist/pulse_3",
+    "malum:effects/cultist/pulse_4",
+    "malum:effects/cultist/pulse_5",
+    "malum:effects/cultist/pulse_6",
+    "malum:effects/cultist/pulse_7",
+    "malum:effects/cultist/pulse_8",
+    "malum:effects/cultist/pulse_9"
   ]
 }

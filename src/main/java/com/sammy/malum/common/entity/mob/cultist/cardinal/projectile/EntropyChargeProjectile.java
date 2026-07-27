@@ -129,12 +129,12 @@ public class EntropyChargeProjectile extends AbstractBoltProjectile {
 
     @Override
     public float getHomingDelta(float dot) {
-        if (!isPlaced() && distanceTo(homingTarget) < 8f) {
+        if (!isPlaced() && distanceTo(homingTarget) < 12f) {
             return 0;
         }
         float base = 0.1f;
         float gain = 0.02f;
-        float limit = 0.4f;
+        float limit = 0.6f;
         return Math.clamp(base + age * gain, 0, limit);
     }
 

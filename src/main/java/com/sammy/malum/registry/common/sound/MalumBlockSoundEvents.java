@@ -52,6 +52,9 @@ public class MalumBlockSoundEvents {
     public static final MalumBlockSoundType BLOCK_OF_MALIGNANT_LEAD = new MalumBlockSoundType("block_of_malignant_lead");
     public static final MalumBlockSoundType BLOCK_OF_MALIGNANT_PEWTER = new MalumBlockSoundType("block_of_malignant_pewter");
 
+    public static final MalumBlockSoundType BLOCK_OF_IGNEOUS_CHITIN = new MalumBlockSoundType("block_of_igneous_chitin");
+    public static final MalumBlockSoundType BLOCK_OF_TORN_BRIMSTONE = new MalumBlockSoundType("block_of_torn_brimstone");
+
     //Flora
     public static final MalumBlockSoundType EBONY_SAPLING = new MalumBlockSoundType("ebony_sapling");
     public static final MalumBlockSoundType EBONY = new MalumBlockSoundType("ebony");
