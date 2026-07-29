@@ -1,6 +1,7 @@
 package com.sammy.malum.client.screen.codex.objects.button;
 
 import com.sammy.malum.client.screen.codex.display.*;
+import com.sammy.malum.client.screen.codex.display.gizmo.DisplayedGizmo;
 import com.sammy.malum.client.screen.codex.objects.BookObject;
 import com.sammy.malum.client.screen.codex.screens.CodexEntryScreen;
 import com.sammy.malum.registry.common.sound.MalumSoundEvents;

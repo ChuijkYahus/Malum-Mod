@@ -16,7 +16,6 @@ public class MalumClientExtensions {
     public static void registerClientExtensions(RegisterClientExtensionsEvent event) {
         event.registerItem(new SpiritJarItemExtension(), SPIRIT_JAR.asItem());
         event.registerItem(new GeasItemExtension(), GEAS);
-        event.registerItem(new WandItemExtension(), WAND);
 
         event.registerItem(new LodestoneArmorClientItemExtensions(() -> SoulHunterArmorModel.MODEL.getModel()),
                 SOUL_HUNTER_CLOAK, SOUL_HUNTER_ROBE, SOUL_HUNTER_LEGGINGS, SOUL_HUNTER_BOOTS);

@@ -1,6 +1,5 @@
 package com.sammy.malum.common.block.curiosities.sorcery.wand_tinkerer;
 
-import com.sammy.malum.common.data.custom.wand_parts.WandPartType;
 import com.sammy.malum.registry.common.MalumContainers;
 import com.sammy.malum.registry.common.item.MalumDataComponents;
 import net.minecraft.network.RegistryFriendlyByteBuf;
@@ -28,9 +27,7 @@ public class WandTinkererContainer extends LodestoneBlockEntityContainer<WandTin
     public WandTinkererContainer(int containerId, Inventory playerInventory, ContainerLevelAccess access) {
         super(MalumContainers.WAND_TINKERER.get(), containerId, playerInventory, access);
         if (blockEntity != null) {
-            var itemHandler = getItemStackHandler();
-
-            addSlot(new SlotItemHandler(itemHandler, 0, 199, 64) {
+            addSlot(new SlotItemHandler(getItemStackHandler(), 0, 199, 64) {
                 @Override
                 public boolean mayPlace(ItemStack stack) {
                     return false;
@@ -38,9 +35,7 @@ public class WandTinkererContainer extends LodestoneBlockEntityContainer<WandTin
 
                 @Override
                 public boolean mayPickup(Player playerIn) {
-                    ItemStack item = getItem();
-                    var component = item.get(MalumDataComponents.WAND_PARTS);
-                    return component != null && component.isValid();
+                    return true;
                 }
             });
         }

@@ -37,7 +37,7 @@ public class SpiritShardItem extends Item implements ItemParticleSupplier, Spiri
 
     @Override
     public void appendHoverText(ItemStack stack, TooltipContext context, List<Component> tooltipComponents, TooltipFlag tooltipFlag) {
-        getSpirit().getTextData().addToTooltip(stack, context, tooltipComponents, tooltipFlag);
+        getSpirit().getTextData().addToItemTooltip(tooltipComponents);
     }
 
     @OnlyIn(Dist.CLIENT)

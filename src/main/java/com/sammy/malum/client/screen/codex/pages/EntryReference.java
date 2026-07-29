@@ -1,10 +1,7 @@
 package com.sammy.malum.client.screen.codex.pages;
 
 import com.sammy.malum.client.screen.codex.*;
-import com.sammy.malum.client.screen.codex.display.DisplayedGizmo;
-import net.minecraft.world.item.*;
-
-import java.util.function.*;
+import com.sammy.malum.client.screen.codex.display.gizmo.DisplayedGizmo;
 
 public final class EntryReference {
     public final DisplayedGizmo gizmo;

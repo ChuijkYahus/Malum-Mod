@@ -1,19 +1,23 @@
 package com.sammy.malum.client.screen.codex.entries;
 
 import com.sammy.malum.client.screen.codex.BookEntry;
+import com.sammy.malum.client.screen.codex.PlacedEntryAcceptor;
+import com.sammy.malum.client.screen.codex.objects.progression.SubspaceEntryObject;
 import com.sammy.malum.client.screen.codex.pages.*;
 import com.sammy.malum.client.screen.codex.pages.display.*;
-import com.sammy.malum.client.screen.codex.pages.recipe.SpiritInfusionPage;
 import com.sammy.malum.client.screen.codex.pages.recipe.vanilla.*;
+import com.sammy.malum.client.screen.codex.pages.text.HeadlineTextPage;
+import com.sammy.malum.client.screen.codex.pages.text.TextPage;
 import com.sammy.malum.client.screen.codex.screens.progression.*;
-import com.sammy.malum.registry.common.MalumContent.*;
+import com.sammy.malum.core.systems.spirit.SpiritLike;
+import com.sammy.malum.registry.common.magic.MalumSpiritTypes;
 import net.minecraft.world.item.*;
 
 import static com.sammy.malum.client.screen.codex.WidgetDesignType.*;
 import static com.sammy.malum.client.screen.codex.WidgetDesignType.FillingType.*;
 import static com.sammy.malum.client.screen.codex.WidgetDesignType.FillingType.PAPER;
 import static com.sammy.malum.client.screen.codex.WidgetDesignType.FrameType.RUNEWOOD;
-import static com.sammy.malum.client.screen.codex.display.DisplayedGizmo.item;
+import static com.sammy.malum.client.screen.codex.display.gizmo.DisplayedItem.item;
 import static com.sammy.malum.client.screen.codex.pages.InteractionPage.*;
 import static com.sammy.malum.client.screen.codex.pages.recipe.vanilla.CraftingPage.*;
 import static com.sammy.malum.client.screen.codex.pages.text.HeadlineTextGizmoPage.headlineTextGizmoPage;
@@ -153,7 +157,7 @@ public class IntroductionEntries {
                         )
                 );
 
-        screen.addEntry("common_reagents", 1, 9).configureWidget(w -> w.setIcon(CodexCommons.ALCHEMICAL_CALX))
+        screen.addEntry("common_reagents", 2, 9).configureWidget(w -> w.setIcon(CodexCommons.ALCHEMICAL_CALX))
                 .addPage(headlineText("common_reagents"))
                 .addPage(textPage("common_reagents.2"))
                 .addRightReference(new EntryReference(CodexCommons.HEX_ASH,
@@ -169,7 +173,8 @@ public class IntroductionEntries {
                                 .addPage(headlineTextGizmoPage("common_reagents.alchemical_calx", CodexCommons.ALCHEMICAL_CALX))
                 ));
 
-        screen.addEntry("esoteric_reaping", -1, 9).configureWidget(w -> w.setIcon(CodexCommons.EERIE_WEAVE))
+
+        screen.addEntry("esoteric_reaping", -2, 9).configureWidget(w -> w.setIcon(CodexCommons.EERIE_WEAVE))
                 .addPage(headlineText("esoteric_reaping"))
                 .addPage(textPage("esoteric_reaping.2"))
                 .addRightReference(new EntryReference(CodexCommons.GRIM_TALC,
@@ -204,6 +209,10 @@ public class IntroductionEntries {
                                                 .addPage(headlineTextGizmoPage("common_reagents.core_keeping.pyre_nucleus", CodexCommons.PYRE_NUCLEUS))
                                 ))
                 ));
+
+        screen.addEntry("the_arcanas", 0, 12)
+                .setWidgetSupplier(spiritSubspace(0, 12))
+                .setAssociatedSpirit(MalumSpiritTypes.ELDRITCH_SPIRIT);
 
 
         //        screen.addEntry("spirit_infusion", 0, 5)
@@ -366,5 +375,30 @@ public class IntroductionEntries {
 //                .addPage(new HeadlineTextItemPage("eldritch_arcana", "eldritch_arcana.1", ELDRITCH_SPIRIT.get()))
 //                .addPage(text("eldritch_arcana.2"))
 //        );
+    }
+
+    public static SubspaceEntryObject.SubspaceWidgetSupplier spiritSubspace(int x, int y) {
+
+        var spiritSubspace = new SubspaceEntryObject.SubspaceWidgetSupplier().setSize(300);
+        addSpiritEntry(spiritSubspace, MalumSpiritTypes.SACRED_SPIRIT, x+3, y-3);
+        addSpiritEntry(spiritSubspace, MalumSpiritTypes.WICKED_SPIRIT, x-3, y+3);
+
+        addSpiritEntry(spiritSubspace, MalumSpiritTypes.ARCANE_SPIRIT, x-4, y);
+        addSpiritEntry(spiritSubspace, MalumSpiritTypes.ELDRITCH_SPIRIT, x+4, y);
+
+        addSpiritEntry(spiritSubspace, MalumSpiritTypes.AERIAL_SPIRIT, x-2, y);
+        addSpiritEntry(spiritSubspace, MalumSpiritTypes.AQUEOUS_SPIRIT, x, y-2);
+        addSpiritEntry(spiritSubspace, MalumSpiritTypes.EARTHEN_SPIRIT, x+2, y);
+        addSpiritEntry(spiritSubspace, MalumSpiritTypes.INFERNAL_SPIRIT, x, y+2);
+        return spiritSubspace;
+
+    }
+
+    public static void addSpiritEntry(PlacedEntryAcceptor acceptor, SpiritLike spirit, int x, int y) {
+        var translationKey = spirit.getRegistryName().getPath();
+        acceptor.addEntry(translationKey, x, y)
+                .configureWidget(w -> w.setIcon(item(spirit.getSpiritStack())))
+                .addPage(HeadlineTextPage.headlineText(translationKey))
+                .addPage(TextPage.textPage(translationKey + ".2"));
     }
 }

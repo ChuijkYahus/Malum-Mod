@@ -2,6 +2,7 @@ package com.sammy.malum.client.screen.codex.pages.text;
 
 import com.sammy.malum.MalumMod;
 import com.sammy.malum.client.screen.codex.display.*;
+import com.sammy.malum.client.screen.codex.display.gizmo.DisplayedGizmo;
 import com.sammy.malum.client.screen.codex.pages.*;
 import com.sammy.malum.client.screen.codex.screens.*;
 import net.minecraft.client.gui.GuiGraphics;

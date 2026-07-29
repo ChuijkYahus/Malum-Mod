@@ -2,6 +2,7 @@ package com.sammy.malum.client.screen.codex.pages.recipe.vanilla;
 
 import com.sammy.malum.*;
 import com.sammy.malum.client.screen.codex.display.*;
+import com.sammy.malum.client.screen.codex.display.gizmo.DisplayedGizmo;
 import com.sammy.malum.client.screen.codex.pages.*;
 import com.sammy.malum.client.screen.codex.screens.*;
 import com.sammy.malum.registry.common.util.building.WoodBlockSet;
@@ -13,7 +14,7 @@ import team.lodestar.lodestone.systems.rendering.VFXBuilders;
 import java.util.*;
 import java.util.function.*;
 
-import static com.sammy.malum.client.screen.codex.display.DisplayedGizmo.item;
+import static com.sammy.malum.client.screen.codex.display.gizmo.DisplayedItem.item;
 
 public class CraftingPage extends BookPage implements IGizmoHolder {
 

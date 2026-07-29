@@ -6,8 +6,6 @@ import com.sammy.malum.common.data.custom.malignant_conversion.MalignantConversi
 import com.sammy.malum.common.data.custom.reaping.ReapingDataReloadListener;
 import com.sammy.malum.common.data.custom.spellweaving.SpellweavingEqualityReloadListener;
 import com.sammy.malum.common.data.custom.spirit.SpiritDataReloadListener;
-import com.sammy.malum.common.data.custom.wand_parts.WandMaterialTypeDataReloadListener;
-import com.sammy.malum.common.data.custom.wand_parts.WandPartTypeDataReloadListener;
 import com.sammy.malum.common.effect.ascension.*;
 import com.sammy.malum.common.effect.rite.aura.*;
 import com.sammy.malum.common.effect.rite.aura.soulwood.*;
@@ -114,9 +112,6 @@ public class RuntimeEventHandler {
 
     @SubscribeEvent
     public static void registerListeners(AddReloadListenerEvent event) {
-        WandPartTypeDataReloadListener.register(event);
-        WandMaterialTypeDataReloadListener.register(event);
-
         SpellweavingEqualityReloadListener.register(event);
         SpiritDataReloadListener.register(event);
         ReapingDataReloadListener.register(event);

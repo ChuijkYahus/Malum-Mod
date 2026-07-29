@@ -84,7 +84,6 @@ import com.sammy.malum.common.block.curiosities.decor.banner.SoulwovenBannerBloc
 import com.sammy.malum.common.item.codex.EncyclopediaArcanaItem;
 import com.sammy.malum.common.item.codex.EncyclopediaEsotericaItem;
 import com.sammy.malum.common.item.curiosities.TemporarilyDisabledItem;
-import com.sammy.malum.common.item.curiosities.WandItem;
 import com.sammy.malum.common.item.curiosities.armor.MalignantStrongholdArmorItem;
 import com.sammy.malum.common.item.curiosities.armor.SoulHunterArmorItem;
 import com.sammy.malum.common.item.curiosities.armor.SoulStainedSteelArmorItem;
@@ -218,7 +217,6 @@ public class MalumContent {
     public static final DeferredItem<Item> ENCYCLOPEDIA_ESOTERICA = register("encyclopedia_esoterica", () -> MalumItemProperties.GEAR().rarity(EPIC), EncyclopediaEsotericaItem::new);
 
     public static final DeferredItem<GeasItem> GEAS = register("geas", () -> MalumItemProperties.GEAR().rarity(RARE), GeasItem::new);
-    public static final DeferredItem<WandItem> WAND = register("wand", () -> MalumItemProperties.GEAR().rarity(RARE), WandItem::new);
 
     public static final DeferredItem<Item> ARCANE_ELEGY = register("music_disc_arcane_elegy", () -> MalumItemProperties.GEAR().rarity(RARE), ArcaneElegyMusicDiscItem::new);
     public static final DeferredItem<Item> AESTHETICA = register("music_disc_aesthetica", () -> MalumItemProperties.GEAR().rarity(RARE), AestheticaMusicDiscItem::new);

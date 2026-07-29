@@ -68,7 +68,7 @@ public class CodexTextRenderer {
     }
 
     public CodexTextRenderer renderHeadlineGizmoPageContents(GuiGraphics guiGraphics, Component text, float x, float y) {
-        return renderWrappingText(guiGraphics, text, x + 6, y + 87, 140);
+        return renderWrappingText(guiGraphics, text, x + 6, y + 91, 140);
     }
 
     public CodexTextRenderer renderPageContents(GuiGraphics guiGraphics, Component text, float x, float y) {

@@ -31,7 +31,6 @@ public class ClientRuntimeEventHandler {
         HiddenBladeRenderHandler.tick(event);
         MalignantAegisRenderHandler.tick(event);
         SoulWardRenderHandler.tick(event);
-        WandTinkererScreen.tick(event);
         StaffAbilityRenderHandler.tick(event);
         WaveformConfigurationHandler.tick(event);
     }

@@ -1,7 +1,6 @@
 package com.sammy.malum.client.screen.codex.objects.button;
 
-import com.sammy.malum.client.screen.codex.display.*;
-import com.sammy.malum.client.screen.codex.pages.*;
+import com.sammy.malum.client.screen.codex.display.gizmo.DisplayedGizmo;
 import com.sammy.malum.client.screen.codex.pages.display.*;
 import com.sammy.malum.client.screen.codex.screens.*;
 

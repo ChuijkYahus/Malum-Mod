@@ -127,12 +127,14 @@ public class CodexOutlineRenderer {
         var minecraft = Minecraft.getInstance();
         float delta = minecraft.getTimer().getGameTimeDeltaPartialTick(true);
 
-        var dynamicTexture = DynamicTextureRenderer.create(output).setTextureSize(width, height).requestOutline(sourceTexture, sourceWidth, sourceHeight, outlineWidth, true);
+        var dynamicTexture = DynamicTextureRenderer.create(output)
+                .setTextureSize(width, height)
+                .requestOutline(sourceTexture, sourceWidth, sourceHeight, outlineWidth);
         if (dynamicTexture == null) {
             return;
         }
         var light = LodestoneShaders.RADIAL_DISTORTED_SCREEN_LIGHT.getShaderInstance();
-        RenderSystem.setShaderTexture(0, dynamicTexture.getRenderTarget().getColorTextureId());
+        dynamicTexture.bind(0);
         light.safeGetUniform("YFrequency").set(24f);
         light.safeGetUniform("XFrequency").set(32f);
         light.safeGetUniform("Speed").set(2000f);

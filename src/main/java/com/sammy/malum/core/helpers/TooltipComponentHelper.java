@@ -68,7 +68,7 @@ public class TooltipComponentHelper {
     //TODO: this needs to be like gutted outright
     public static Component riteEffect(String text, SpiritRiteType rite) {
         var identifyingSpirit = rite.getIdentifyingSpirit();
-        var inner = Component.literal(text).withStyle(identifyingSpirit.getTextData().getStyle(0.6f));
+        var inner = Component.literal(text).withStyle(identifyingSpirit.getTextData().createStyle(0.6f));
         return Component.translatable(Sentiment.GENERIC.id, inner).withStyle(ChatFormatting.DARK_GRAY);
     }
 

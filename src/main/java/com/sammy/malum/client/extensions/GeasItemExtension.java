@@ -1,7 +1,6 @@
 package com.sammy.malum.client.extensions;
 
 import com.sammy.malum.client.renderer.item.GeasItemRenderer;
-import com.sammy.malum.client.renderer.item.WandItemRenderer;
 import net.minecraft.client.model.geom.EntityModelSet;
 import net.minecraft.client.renderer.BlockEntityWithoutLevelRenderer;
 import net.minecraft.client.renderer.blockentity.BlockEntityRenderDispatcher;

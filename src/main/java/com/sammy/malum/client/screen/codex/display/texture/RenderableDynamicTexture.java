@@ -20,40 +20,35 @@ import static net.minecraft.client.Minecraft.ON_OSX;
 
 public class RenderableDynamicTexture extends DynamicTexture implements Tickable {
 
-    //runs when texture is initialized and populates it. Runs each tick if its tickable
     @NotNull
-    protected final Consumer<? super RenderableDynamicTexture> drawingFunction;
+    protected final Consumer<RenderableDynamicTexture> drawingFunction;
 
-    //thing that is drawn later
     private RenderTarget readTarget;
-    //thing where it renders stuff on
     private RenderTarget writeTarget;
 
     private final int width;
     private final int height;
-    private final ResourceLocation textureLocation;
+    private final ResourceLocation writtenTextureLocation;
 
     private volatile boolean shouldTick = true;
     public boolean closed = false;
 
-    public RenderableDynamicTexture(ResourceLocation resourceLocation, int width, int height,
-                                    @NotNull Consumer<? extends RenderableDynamicTexture> textureDrawingFunction) {
+    public RenderableDynamicTexture(ResourceLocation resourceLocation, int width, int height, @NotNull Consumer<RenderableDynamicTexture> textureDrawingFunction) {
         super(width, height, false);
         RenderSystem.assertOnRenderThread();
         this.width = width;
         this.height = height;
-        this.textureLocation = resourceLocation;
-        this.drawingFunction = (Consumer<? super RenderableDynamicTexture>) textureDrawingFunction;
+        this.writtenTextureLocation = resourceLocation;
+        this.drawingFunction = textureDrawingFunction;
         this.setUpdateNextTick(true);
     }
 
-    public RenderableDynamicTexture(ResourceLocation resourceLocation, int size,
-                                    @NotNull Consumer<? extends RenderableDynamicTexture> textureDrawingFunction) {
+    public RenderableDynamicTexture(ResourceLocation resourceLocation, int size, @NotNull Consumer<RenderableDynamicTexture> textureDrawingFunction) {
         this(resourceLocation, size, size, textureDrawingFunction);
     }
 
-    public ResourceLocation getTextureLocation() {
-        return textureLocation;
+    public ResourceLocation getWrittenTextureLocation() {
+        return writtenTextureLocation;
     }
 
     private static void renderCall(RenderCall call) {
@@ -95,6 +90,13 @@ public class RenderableDynamicTexture extends DynamicTexture implements Tickable
 
     public RenderTarget getRenderTarget() {
         return writeTarget;
+    }
+
+    public void bind(int id) {
+        if (closed) {
+            return;
+        }
+        RenderSystem.setShaderTexture(id, getRenderTarget().getColorTextureId());
     }
 
     //bind read on the current texture
@@ -175,16 +177,16 @@ public class RenderableDynamicTexture extends DynamicTexture implements Tickable
 
 
     public void register() {
-        Minecraft.getInstance().getTextureManager().register(textureLocation, this);
+        Minecraft.getInstance().getTextureManager().register(writtenTextureLocation, this);
     }
 
     public void unregister() {
         //this also calls close
         TextureManager tm = Minecraft.getInstance().getTextureManager();
-        AbstractTexture t = tm.getTexture(textureLocation);
+        AbstractTexture t = tm.getTexture(writtenTextureLocation);
         //if it's us we release it. Otherwise, it means we have already been closed
         if (t == this) {
-            tm.release(textureLocation);
+            tm.release(writtenTextureLocation);
         }
     }
 

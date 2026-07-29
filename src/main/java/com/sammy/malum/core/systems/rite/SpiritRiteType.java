@@ -91,7 +91,7 @@ public class SpiritRiteType {
     public List<Component> getDetailedDescription() {
         if (detailedDescription == null) {
             ArrayList<Component> tooltip = new ArrayList<>();
-            var color = getIdentifyingSpirit().getTextData().getStyle(0.9f);
+            var color = getIdentifyingSpirit().getTextData().createStyle(0.9f);
             var title = Component.translatable(getLangKey()).withStyle(color);
             var tags = getTags();
             var effectDetails = getEffectDetails();

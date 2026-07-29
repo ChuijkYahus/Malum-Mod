@@ -10,7 +10,6 @@ import com.sammy.malum.client.model.mob.believer.BelieverModel;
 import com.sammy.malum.client.model.mob.cardinal.CardinalModel;
 import com.sammy.malum.client.model.mob.cherub.CherubModel;
 import com.sammy.malum.client.model.mob.evangelist.EvangelistModel;
-import com.sammy.malum.client.renderer.item.WandItemRenderer;
 import net.minecraft.client.model.Model;
 import net.minecraft.client.model.geom.ModelLayerLocation;
 import net.minecraft.client.model.geom.ModelPart;
@@ -18,7 +17,6 @@ import net.minecraft.client.model.geom.builders.LayerDefinition;
 import net.minecraft.resources.ResourceLocation;
 import net.neoforged.neoforge.client.event.*;
 import team.lodestar.lodestone.modules.rendering.handlers.ModelHandler;
-import team.lodestar.lodestone.systems.model.IRenderableModel;
 import team.lodestar.lodestone.systems.model.obj.ObjModel;
 
 import java.util.function.Function;

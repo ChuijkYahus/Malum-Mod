@@ -3,7 +3,7 @@ package com.sammy.malum.client.screen.codex.objects.progression;
 import com.mojang.blaze3d.vertex.*;
 import com.sammy.malum.client.screen.codex.*;
 import com.sammy.malum.client.screen.codex.display.CodexOutlineRenderer;
-import com.sammy.malum.client.screen.codex.display.DisplayedGizmo;
+import com.sammy.malum.client.screen.codex.display.gizmo.DisplayedGizmo;
 import com.sammy.malum.client.screen.codex.objects.*;
 import com.sammy.malum.client.screen.codex.pages.*;
 import com.sammy.malum.client.screen.codex.screens.progression.*;
