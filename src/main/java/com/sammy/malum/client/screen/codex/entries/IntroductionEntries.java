@@ -205,6 +205,10 @@ public class IntroductionEntries {
                                 ))
                 ));
 
+        screen.addEntry("test_entry", 3, 5)
+                .configureWidget(w -> w.setIcon(item(COMPLETE_DESIGN)))
+                .addPage(headlineTextGizmoPage("test", CodexCommons.SOULSTONE_BUD))
+                .addPage(SpiritInfusionPage.fromOutput(COMPLETE_DESIGN.get()));
 
         //        screen.addEntry("spirit_infusion", 0, 5)
 //                .configureWidget(w -> w.setIcon(SPIRIT_ALTAR).setDesign(GILDED, RUNEWOOD, PAPER))

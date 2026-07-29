@@ -1,6 +1,5 @@
 package com.sammy.malum.datagen.entity;
 
-import com.sammy.malum.registry.common.MalumContent;
 import com.sammy.malum.registry.common.entity.MalumCultistEntityTypes;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.loot.EntityLootSubProvider;
@@ -47,7 +46,7 @@ evangelists drop annulled memories
                                                         )
                                         )
                                         .add(
-                                                LootItem.lootTableItem(DARK_BRIMSTONE.get())
+                                                LootItem.lootTableItem(TORN_BRIMSTONE.get())
                                                         .when(LootItemRandomChanceCondition.randomChance(0.5f))
                                                         .apply(
                                                                 SetItemCountFunction.setCount(
@@ -72,7 +71,7 @@ evangelists drop annulled memories
                                                         )
                                         )
                                         .add(
-                                                LootItem.lootTableItem(DARK_BRIMSTONE.get())
+                                                LootItem.lootTableItem(TORN_BRIMSTONE.get())
                                                         .when(LootItemRandomChanceCondition.randomChance(0.5f))
                                                         .apply(
                                                                 SetItemCountFunction.setCount(
@@ -95,15 +94,15 @@ evangelists drop annulled memories
                                                                 )
                                                         )
                                         )
-                                        .add(
-                                                LootItem.lootTableItem(VOLATILE_ENTROPY.get())
-                                                        .when(LootItemRandomChanceCondition.randomChance(0.65f))
-                                                        .apply(
-                                                                SetItemCountFunction.setCount(
-                                                                        UniformGenerator.between(1, 3)
-                                                                )
-                                                        )
-                                        )
+//                                        .add(
+//                                                LootItem.lootTableItem(VOLATILE_ENTROPY.get())
+//                                                        .when(LootItemRandomChanceCondition.randomChance(0.65f))
+//                                                        .apply(
+//                                                                SetItemCountFunction.setCount(
+//                                                                        UniformGenerator.between(1, 3)
+//                                                                )
+//                                                        )
+//                                        )
                         )
         );
         add(
@@ -121,7 +120,7 @@ evangelists drop annulled memories
                                                         )
                                         )
                                         .add(
-                                                LootItem.lootTableItem(DARK_BRIMSTONE.get())
+                                                LootItem.lootTableItem(TORN_BRIMSTONE.get())
                                                         .when(LootItemRandomChanceCondition.randomChance(0.5f))
                                         )
                         )
@@ -139,15 +138,15 @@ evangelists drop annulled memories
                                                                 )
                                                         )
                                         )
-                                        .add(
-                                                LootItem.lootTableItem(ANNULLED_MEMORY.get())
-                                                        .when(LootItemRandomChanceCondition.randomChance(0.65f))
-                                                        .apply(
-                                                                SetItemCountFunction.setCount(
-                                                                        UniformGenerator.between(1, 3)
-                                                                )
-                                                        )
-                                        )
+//                                        .add(
+//                                                LootItem.lootTableItem(ANNULLED_MEMORY.get())
+//                                                        .when(LootItemRandomChanceCondition.randomChance(0.65f))
+//                                                        .apply(
+//                                                                SetItemCountFunction.setCount(
+//                                                                        UniformGenerator.between(1, 3)
+//                                                                )
+//                                                        )
+//                                        )
                         )
         );
 
