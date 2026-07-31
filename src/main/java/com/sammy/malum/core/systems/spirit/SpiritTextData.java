@@ -1,5 +1,6 @@
 package com.sammy.malum.core.systems.spirit;
 
+import com.sammy.malum.client.screen.codex.display.gizmo.GizmoTooltipBuilder;
 import com.sammy.malum.datagen.lang.MalumLangDatagen;
 import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.Component;
@@ -90,7 +91,7 @@ public class SpiritTextData {
         tooltip.add(flavorText);
     }
 
-    public void addToCodexTooltip(List<Component> tooltip) {
+    public void addToCodexTooltip(GizmoTooltipBuilder tooltip) {
         tooltip.add(flavorText);
         tooltip.add(Component.empty());
         tooltip.add(infoText);

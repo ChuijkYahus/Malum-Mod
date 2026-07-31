@@ -3,14 +3,14 @@ package com.sammy.malum.client.screen.codex.objects;
 import com.mojang.blaze3d.vertex.*;
 import com.sammy.malum.client.screen.codex.*;
 import com.sammy.malum.client.screen.codex.display.CodexOutlineRenderer;
+import com.sammy.malum.client.screen.codex.display.gizmo.GizmoTooltipBuilder;
 import com.sammy.malum.client.screen.codex.screens.progression.*;
 import com.sammy.malum.registry.common.sound.*;
+import net.minecraft.ChatFormatting;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.network.chat.Component;
 import net.minecraft.util.*;
 import team.lodestar.lodestone.modules.core.easing.Easing;
-
-import java.util.List;
 
 import static com.sammy.malum.client.screen.codex.WidgetDesignType.FillingType.PAPER;
 import static com.sammy.malum.client.screen.codex.WidgetDesignType.FrameType.RUNEWOOD;
@@ -86,26 +86,22 @@ public class ProgressionEntryObject extends SelectableEntryObject<AbstractProgre
             design.getFrameTexture().ifPresent(texture -> renderTexture(texture, poseStack, left, top, 0, 0, 64, 64));
             design.getFillingTexture().ifPresent(texture -> renderTexture(texture, poseStack, left, top, 0, 0, 64, 64));
         }
-        if (isHoveredOver) {
-            icon.setHoveredOver();
-        }
         icon.render(screen, this, guiGraphics, centerX - 8, centerY - 8, mouseX, mouseY);
     }
 
     @Override
-    public List<Component> gatherTooltip(AbstractProgressionCodexScreen screen) {
-        var tooltip = super.gatherTooltip(screen);
-        var bookmarks = entry.leftBookmarks;
-//        for (int i = bookmarks.size()-1; i >=0; i--) {
-//            EntryBookmark bookmark = bookmarks.get(i);
-//            if (bookmark.entry.shouldShow()) {
-//                var slash = Component.literal("┇ ");
-//                var text = Component.translatable(bookmark.entry.translationKey());
-//                var component = slash.append(text).withStyle(ChatFormatting.DARK_GRAY);
-//                tooltip.add(1, component);
-//            }
-//        }
-        return tooltip;
+    public void addGizmoTooltip(GizmoTooltipBuilder builder) {
+        super.addGizmoTooltip(builder);
+        var bookmarks = entry.rightBookmarks;
+        for (int i = bookmarks.size()-1; i >=0; i--) {
+            EntryBookmark bookmark = bookmarks.get(i);
+            if (bookmark.entry.shouldShow()) {
+                var slash = Component.literal("┇ ");
+                var text = Component.translatable(bookmark.entry.translationKey());
+                var component = slash.append(text).withStyle(ChatFormatting.DARK_GRAY);
+                builder.add(component);
+            }
+        }
     }
 
     @Override

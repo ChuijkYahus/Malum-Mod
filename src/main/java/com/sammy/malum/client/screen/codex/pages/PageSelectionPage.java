@@ -15,8 +15,6 @@ import static com.sammy.malum.client.screen.codex.pages.text.HeadlineTextPage.he
 
 public class PageSelectionPage extends CyclingPage {
 
-    public static boolean FLAG = false;
-
     public static class PageSelectionBuilder {
         protected final List<Selection> data = new ArrayList<>();
 
@@ -44,9 +42,7 @@ public class PageSelectionPage extends CyclingPage {
 
     public static PageSelectionPage create(Consumer<PageSelectionBuilder> builder) {
         var result = new PageSelectionBuilder();
-        FLAG = true;
         builder.accept(result);
-        FLAG = false;
         return new PageSelectionPage(result);
     }
 

@@ -69,7 +69,7 @@ public class DisplayedSpirit extends DisplayedGizmo {
     }
 
     @Override
-    public void gatherTooltip(IGizmoHolder holder, List<Component> tooltip) {
+    public void gatherTooltip(IGizmoHolder holder, GizmoTooltipBuilder tooltip) {
         var textData = spirit.getTextData();
         textData.addToCodexTooltip(tooltip);
     }

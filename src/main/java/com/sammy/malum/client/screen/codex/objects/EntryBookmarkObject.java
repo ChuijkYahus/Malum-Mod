@@ -62,9 +62,6 @@ public class EntryBookmarkObject extends SelectableEntryObject<CodexEntryScreen>
                 .setTexture(flipped ? RIGHT : LEFT)
                 .setColor(color)
                 .blit(poseStack);
-        if (isHoveredOver) {
-            icon.setHoveredOver();
-        }
         icon.setColor(color);
         icon.render(screen, this, guiGraphics, gizmoX, entryY+4, mouseX, mouseY);
     }

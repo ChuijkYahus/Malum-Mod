@@ -1,11 +1,7 @@
 package com.sammy.malum.client.screen.codex.display.gizmo;
 
 import com.sammy.malum.client.screen.codex.display.IGizmoHolder;
-import com.sammy.malum.client.screen.codex.pages.*;
-import com.sammy.malum.client.screen.codex.pages.text.*;
 import com.sammy.malum.client.screen.codex.screens.AbstractMalumCodexScreen;
-import com.sammy.malum.client.screen.codex.screens.progression.AbstractProgressionCodexScreen;
-import net.minecraft.ChatFormatting;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.network.chat.Component;
@@ -29,45 +25,33 @@ public abstract class DisplayedGizmo {
 
     public final void render(AbstractMalumCodexScreen screen, IGizmoHolder holder, GuiGraphics guiGraphics, int x, int y, int mouseX, int mouseY) {
         if (!isHoveredOver) {
-            isHoveredOver = screen.isHovering(mouseX, mouseY, x, y, 16, 16);
+            isHoveredOver = holder.shouldGizmoBeConsideredHoveredOver() || screen.isHovering(mouseX, mouseY, x, y, 16, 16);
         }
         boolean isHoveredCache = isHoveredOver;
         renderDecals(screen, holder, guiGraphics, x, y, mouseX, mouseY);
         resetValues();
-        if (screen instanceof AbstractProgressionCodexScreen) {
-            return;
-        }
         if (!holder.shouldGizmoRenderTooltip()) {
             return;
         }
         if (isHoveredCache) {
             var tooltip = new ArrayList<Component>();
-            addUniqueTooltip(holder, tooltip);
+            var builder = new GizmoTooltipBuilder(tooltip);
+            holder.addGizmoTooltip(builder);
+
             if (tooltip.isEmpty()) {
-                gatherTooltip(holder, tooltip);
+                gatherTooltip(holder, builder);
             }
             screen.renderLater(() -> guiGraphics.renderComponentTooltip(Minecraft.getInstance().font, tooltip, mouseX, mouseY));
         }
     }
 
+    public void gatherTooltip(IGizmoHolder holder, GizmoTooltipBuilder tooltip) {
+
+    }
+
     public void resetValues() {
         isHoveredOver = false;
         color = Color.WHITE;
-    }
-
-    protected final void addUniqueTooltip(IGizmoHolder holder, ArrayList<Component> tooltip) {
-        var usedId = holder.getGizmoTooltipKey();
-        if (!usedId.isEmpty()) {
-            var title = holder instanceof HeadlineTextPage ? BookPage.headlineKey(usedId) : title(usedId);
-            var subtext = subtext(usedId);
-            tooltip.add(Component.translatable(title).withStyle(ChatFormatting.GOLD));
-            tooltip.add(Component.translatable(subtext).withStyle(ChatFormatting.GRAY, ChatFormatting.ITALIC));
-        }
-    }
-
-    public DisplayedGizmo setHoveredOver() {
-        isHoveredOver = true;
-        return this;
     }
 
     public DisplayedGizmo setColor(Color color) {
@@ -77,7 +61,4 @@ public abstract class DisplayedGizmo {
 
     public abstract void renderDecals(AbstractMalumCodexScreen screen, IGizmoHolder holder, GuiGraphics guiGraphics, int x, int y, int mouseX, int mouseY);
 
-    public void gatherTooltip(IGizmoHolder holder, List<Component> tooltip) {
-
-    }
 }

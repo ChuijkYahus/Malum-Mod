@@ -2,6 +2,7 @@ package com.sammy.malum.client.screen.codex.objects.button;
 
 import com.sammy.malum.client.screen.codex.display.*;
 import com.sammy.malum.client.screen.codex.display.gizmo.DisplayedGizmo;
+import com.sammy.malum.client.screen.codex.display.gizmo.GizmoTooltipBuilder;
 import com.sammy.malum.client.screen.codex.pages.*;
 import com.sammy.malum.client.screen.codex.screens.CodexEntryScreen;
 
@@ -29,11 +30,10 @@ public class PageSelectionObject extends ButtonObject {
     }
 
     @Override
-    public String getGizmoTooltipKey() {
+    public void addGizmoTooltip(GizmoTooltipBuilder builder) {
         var page = this.page.pages.get(buttonIndex);
         if (page instanceof IGizmoHolder holder) {
-            return holder.getGizmoTooltipKey();
+            holder.addGizmoTooltip(builder);
         }
-        return "";
     }
 }

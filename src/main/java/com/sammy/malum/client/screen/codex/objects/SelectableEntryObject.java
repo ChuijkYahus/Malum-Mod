@@ -3,14 +3,9 @@ package com.sammy.malum.client.screen.codex.objects;
 import com.sammy.malum.client.screen.codex.*;
 import com.sammy.malum.client.screen.codex.display.*;
 import com.sammy.malum.client.screen.codex.display.gizmo.DisplayedGizmo;
-import com.sammy.malum.client.screen.codex.helper.*;
+import com.sammy.malum.client.screen.codex.display.gizmo.GizmoTooltipBuilder;
 import com.sammy.malum.client.screen.codex.screens.*;
 import com.sammy.malum.client.screen.codex.screens.progression.AbstractProgressionCodexScreen;
-import net.minecraft.client.Minecraft;
-import net.minecraft.client.gui.GuiGraphics;
-import net.minecraft.network.chat.Component;
-
-import java.util.*;
 
 public abstract class SelectableEntryObject<T extends AbstractMalumCodexScreen> extends BookObject<T> implements IGizmoHolder {
 
@@ -28,14 +23,9 @@ public abstract class SelectableEntryObject<T extends AbstractMalumCodexScreen> 
     }
 
     @Override
-    public String getGizmoTooltipKey() {
-        return entry.identifier;
-    }
-
-    public List<Component> gatherTooltip(T screen) {
-        return new ArrayList<>(List.of(
-                CodexTextHelper.convertToComponent(entry.translationKey()),
-                CodexTextHelper.convertToComponent(entry.descriptionTranslationKey())));
+    public void addGizmoTooltip(GizmoTooltipBuilder builder) {
+        builder.addTitle(entry.translationKey());
+        builder.addSubtext(entry.descriptionTranslationKey());
     }
 
     @Override
@@ -45,5 +35,10 @@ public abstract class SelectableEntryObject<T extends AbstractMalumCodexScreen> 
             return true;
         }
         return false;
+    }
+
+    @Override
+    public boolean shouldGizmoBeConsideredHoveredOver() {
+        return isHoveredOver;
     }
 }

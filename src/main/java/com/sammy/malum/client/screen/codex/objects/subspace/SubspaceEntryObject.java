@@ -47,6 +47,14 @@ public class SubspaceEntryObject extends ProgressionEntryObject {
         this.subspaceSize = subspaceSize;
     }
 
+//    @Override
+//    public boolean shouldGizmoBeConsideredHoveredOver() {
+//        if (isOpen) {
+//            return false;
+//        }
+//        return super.shouldGizmoBeConsideredHoveredOver();
+//    }
+
     @Override
     public void additionalSetup(AbstractProgressionCodexScreen screen) {
         storedObjects.setupEntryObjects(screen, entryStorage);

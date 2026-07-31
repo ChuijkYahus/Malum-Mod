@@ -72,7 +72,7 @@ public class DisplayedItem extends DisplayedGizmo {
     }
 
     @Override
-    public void gatherTooltip(IGizmoHolder holder, List<Component> tooltip) {
+    public void gatherTooltip(IGizmoHolder holder, GizmoTooltipBuilder tooltip) {
         tooltip.addAll(Screen.getTooltipFromItem(Minecraft.getInstance(), itemDisplay));
     }
 }
