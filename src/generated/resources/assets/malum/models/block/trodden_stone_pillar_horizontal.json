@@ -1,7 +1,7 @@
 {
   "parent": "minecraft:block/cube_column_horizontal",
   "textures": {
-    "end": "malum:block/building/common_rock/trodden_stone/trodden_stone_pillar_top",
-    "side": "malum:block/building/common_rock/trodden_stone/trodden_stone_pillar"
+    "end": "malum:block/building/stone/trodden_stone/trodden_stone_pillar_top",
+    "side": "malum:block/building/stone/trodden_stone/trodden_stone_pillar"
   }
 }

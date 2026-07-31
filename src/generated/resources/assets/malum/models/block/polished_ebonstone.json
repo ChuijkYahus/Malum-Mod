@@ -1,6 +1,6 @@
 {
   "parent": "minecraft:block/cube_all",
   "textures": {
-    "all": "malum:block/building/common_rock/ebonstone/polished_ebonstone"
+    "all": "malum:block/building/stone/ebonstone/polished_ebonstone"
   }
 }

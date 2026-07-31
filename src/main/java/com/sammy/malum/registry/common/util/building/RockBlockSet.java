@@ -122,7 +122,7 @@ public class RockBlockSet extends MalumRegistrySet {
     }
 
     public void addBlockStates(MalumBlockStateDatagen datagen, BlockStateSystemData<MalumBlockStateDatagen> data) {
-        datagen.setTexturePath("building/arcane_rock/" + id);
+        datagen.setTexturePath("building/stone/" + id);
         datagen.generateBlockBundle(data, rock);
         datagen.generateBlockBundle(data, polishedRock);
         datagen.generateBlockBundle(data, bricks);

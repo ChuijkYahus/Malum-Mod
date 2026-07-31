@@ -2,7 +2,6 @@ package com.sammy.malum.datagen;
 
 import com.sammy.malum.MalumMod;
 import com.sammy.malum.datagen.block.*;
-import com.sammy.malum.datagen.entity.MalumEntityLootTables;
 import com.sammy.malum.datagen.item.MalumItemModelDatagen;
 import com.sammy.malum.datagen.sound.*;
 import com.sammy.malum.datagen.tag.MalumItemTagDatagen;
@@ -37,7 +36,6 @@ public class DataGenerators {
         var soundDatagen = new MalumSoundDatagen(output, helper);
 
         var dataMapDatagen = new MalumDataMapDatagen(output, registryProvider);
-        var blockLootDatagen = new MalumBlockLootTables(output, registryProvider);
 
         var blockTagsDatagen = new MalumBlockTagDatagen(output, registryProvider, helper);
         var itemTagDatagen = new MalumItemTagDatagen(output, provider, blockTagsDatagen.contentsGetter(), helper);
@@ -50,10 +48,8 @@ public class DataGenerators {
 
         var curioDataDatagen = new MalumCuriosThings(output, helper, registryProvider);
         var recipeDatagen = new MalumRecipes(output, registryProvider);
+        var lootTableDatagen = new MalumLootTableDatagen(output, registryProvider);
 
-        var entityLootDatagen = new MalumEntityLootTables(output, registryProvider);
-
-        generator.addProvider(includeServer, entityLootDatagen);
 
         generator.addProvider(includeClient, itemModelsDatagen);
         generator.addProvider(includeClient, blockStateDatagen);
@@ -61,7 +57,6 @@ public class DataGenerators {
         generator.addProvider(includeClient, soundDatagen);
 
         generator.addProvider(includeServer, dataMapDatagen);
-        generator.addProvider(includeServer, blockLootDatagen);
 
         generator.addProvider(includeServer, blockTagsDatagen);
         generator.addProvider(includeServer, itemTagDatagen);
@@ -74,5 +69,6 @@ public class DataGenerators {
 
         generator.addProvider(includeServer, curioDataDatagen);
         generator.addProvider(includeServer, recipeDatagen);
+        generator.addProvider(includeServer, lootTableDatagen);
     }
 }

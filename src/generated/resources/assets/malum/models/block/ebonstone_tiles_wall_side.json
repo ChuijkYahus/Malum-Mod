@@ -1,6 +1,6 @@
 {
   "parent": "minecraft:block/template_wall_side",
   "textures": {
-    "wall": "malum:block/building/common_rock/ebonstone/ebonstone_tiles"
+    "wall": "malum:block/building/stone/ebonstone/ebonstone_tiles"
   }
 }

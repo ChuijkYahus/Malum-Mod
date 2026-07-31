@@ -1,7 +1,7 @@
 {
   "parent": "minecraft:block/cube_column",
   "textures": {
-    "end": "malum:block/building/arcane_rock/tainted_rock/tainted_rock_column_end",
-    "side": "malum:block/building/arcane_rock/tainted_rock/tainted_rock_column_upper"
+    "end": "malum:block/building/stone/tainted_rock/tainted_rock_column_end",
+    "side": "malum:block/building/stone/tainted_rock/tainted_rock_column_upper"
   }
 }

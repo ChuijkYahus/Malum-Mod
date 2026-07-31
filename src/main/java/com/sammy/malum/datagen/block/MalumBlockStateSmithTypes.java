@@ -59,6 +59,16 @@ public class MalumBlockStateSmithTypes {
         provider.directionalBlock(block, model);
     });
 
+    public static BlockStateSmith<Block> CUT_STONE_BLOCK = new BlockStateSmith<>(Block.class, (block, provider) -> {
+        var name = provider.getBlockName(block);
+        var material = name.substring(name.indexOf("_")+1);
+        var sideTexture = provider.getBlockTexture(name);
+        var bottomTexture = provider.getBlockTexture(material + "_mosaic");
+        var topTexture = provider.getBlockTexture("polished_" + material);
+        var model = provider.models().cubeBottomTop(name, sideTexture, bottomTexture, topTexture);
+        provider.simpleBlock(block, model);
+    });
+
     public static BlockStateSmith<Block> SOULSTONE_BUD = new BlockStateSmith<>(Block.class, ItemModelSmithTypes.GENERATED_ITEM, (block, provider) -> {
         var name = provider.getBlockName(block);
         var modelPath = "block/soulstone/" + name;
@@ -250,8 +260,7 @@ public class MalumBlockStateSmithTypes {
             }
             if (isOpen) {
                 modelName += "_open";
-            }
-            else if (isPowered) {
+            } else if (isPowered) {
                 modelName += "_active";
             }
             BlockModelBuilder model;
@@ -260,8 +269,7 @@ public class MalumBlockStateSmithTypes {
                 var top = provider.getBlockTexture(modelName + "_top");
                 model = provider.models().cubeBottomTop(modelName, side, bottom, top).texture("particle", side);
                 models.put(modelName, model);
-            }
-            else {
+            } else {
                 model = models.get(modelName);
             }
 

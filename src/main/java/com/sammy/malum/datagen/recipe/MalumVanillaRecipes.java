@@ -222,7 +222,6 @@ public class MalumVanillaRecipes implements IConditionBuilder {
         RecipeDatagenCommons.blockIngotExchange(output, ARCANE_CHARCOAL, BLOCK_OF_ARCANE_CHARCOAL);
 
         RecipeDatagenCommons.blockIngotExchange(output, CALCIFIED_EBONY, BLOCK_OF_EBONY);
-        RecipeDatagenCommons.blockIngotExchange(output, WITCHHAZEL, CRATE_OF_WITCHHAZEL);
 
         RecipeDatagenCommons.blockIngotExchange(output, NULL_SLATE, BLOCK_OF_NULL_SLATE);
         RecipeDatagenCommons.blockIngotExchange(output, VOID_SALTS, BLOCK_OF_VOID_SALTS);

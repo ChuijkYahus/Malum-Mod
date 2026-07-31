@@ -6,11 +6,11 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.SlabBlock;
 import net.minecraft.world.level.block.StairBlock;
+import net.minecraft.world.level.block.WallBlock;
 import net.minecraft.world.level.block.state.properties.Half;
 import net.minecraft.world.level.block.state.properties.StairsShape;
-import net.neoforged.neoforge.client.model.generators.ConfiguredModel;
-import net.neoforged.neoforge.client.model.generators.ModelFile;
-import net.neoforged.neoforge.client.model.generators.ModelProvider;
+import net.minecraft.world.level.block.state.properties.WallSide;
+import net.neoforged.neoforge.client.model.generators.*;
 import team.lodestar.lodestone.modules.datagen.DatagenSystemCommons;
 import team.lodestar.lodestone.modules.datagen.ItemModelSmithTypes;
 import team.lodestar.lodestone.modules.datagen.providers.block.LodestoneBlockStateSystem;
@@ -28,6 +28,8 @@ public class VariedBlockStateSmithTypes {
     public static BlockStateSmith<StairBlock> VARIED_STAIRS_BLOCK = new BlockStateSmith<>(StairBlock.class, AFFIXED, VariedBlockStateSmithTypes::variedStairsBlock);
 
     public static BlockStateSmith<SlabBlock> VARIED_SLAB_BLOCK = new BlockStateSmith<>(SlabBlock.class, AFFIXED, VariedBlockStateSmithTypes::variedSlabBlock);
+
+    public static BlockStateSmith<WallBlock> VARIED_WALL_BLOCK = new BlockStateSmith<>(WallBlock.class, AFFIXED, VariedBlockStateSmithTypes::variedWallBlock);
 
     public static void variedBlock(Block block, LodestoneBlockStateSystem provider) {
         var name = provider.getBlockName(block);
@@ -126,6 +128,57 @@ public class VariedBlockStateSmithTypes {
             }
             return builder.build();
         }, StairBlock.WATERLOGGED);
+    }
+
+    public static void variedWallBlock(WallBlock block, LodestoneBlockStateSystem provider) {
+        var name = provider.getBlockName(block);
+        var baseTextureName = name.replace("_wall", "");
+
+        var textures = gatherTextures(provider, baseTextureName);
+        int amount = textures.size();
+
+        var postModels = new ArrayList<ModelFile>();
+        var propModels = new ArrayList<ModelFile>();
+        for (int i = 0, texturesSize = textures.size(); i < texturesSize; i++) {
+            var texture = textures.get(i);
+            var modelName = name + i;
+
+            postModels.add(provider.models().wallPost(modelName + "_post", texture));
+            propModels.add(provider.models().wallSide(modelName + "_side", texture));
+            propModels.add(provider.models().wallSideTall(modelName + "_side_tall", texture));
+        }
+
+
+        var builder = provider.getMultipartBuilder(block);
+        var part = builder.part();
+
+        for (int i = 0; i < amount; i++) {
+            var modelFile = postModels.get(i);
+            part.modelFile(modelFile);
+            if (i != amount -1) {
+                part = part.nextModel();
+            }
+        }
+
+        part.addModel().condition(WallBlock.UP, true).end();
+        BlockStateProvider.WALL_PROPS.forEach((key, value) -> {
+            var sidePart = builder.part();
+            var tallSidePart = builder.part();
+            for (int i = 0; i < amount; i++) {
+                var sideModel = propModels.get(i * 2);
+                int rotation = (((int) key.toYRot()) + 180) % 360;
+                var tallSideModel = propModels.get(i * 2 + 1);
+                sidePart.modelFile(sideModel).rotationY(rotation).uvLock(true);
+                tallSidePart.modelFile(tallSideModel).rotationY(rotation).uvLock(true);
+                if (i != amount - 1) {
+                    sidePart = sidePart.nextModel();
+                    tallSidePart = tallSidePart.nextModel();
+                }
+            }
+
+            sidePart.addModel().condition(value, WallSide.LOW);
+            tallSidePart.addModel().condition(value, WallSide.TALL);
+        });
     }
 
     public static ArrayList<ResourceLocation> gatherTextures(LodestoneBlockStateSystem provider, String baseTextureName) {

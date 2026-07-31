@@ -5,6 +5,7 @@ import com.sammy.malum.client.screen.codex.PlacedEntryAcceptor;
 import com.sammy.malum.client.screen.codex.objects.progression.SubspaceEntryObject;
 import com.sammy.malum.client.screen.codex.pages.*;
 import com.sammy.malum.client.screen.codex.pages.display.*;
+import com.sammy.malum.client.screen.codex.pages.recipe.SpiritInfusionPage;
 import com.sammy.malum.client.screen.codex.pages.recipe.vanilla.*;
 import com.sammy.malum.client.screen.codex.pages.text.HeadlineTextPage;
 import com.sammy.malum.client.screen.codex.pages.text.TextPage;

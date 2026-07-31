@@ -1,7 +1,7 @@
 {
   "parent": "minecraft:block/cube_column",
   "textures": {
-    "end": "malum:block/building/common_rock/composite_stone/composite_stone_pillar_top",
-    "side": "malum:block/building/common_rock/composite_stone/composite_stone_pillar"
+    "end": "malum:block/building/stone/composite_stone/composite_stone_pillar_top",
+    "side": "malum:block/building/stone/composite_stone/composite_stone_pillar"
   }
 }

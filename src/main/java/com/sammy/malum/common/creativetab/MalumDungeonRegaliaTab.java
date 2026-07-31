@@ -37,38 +37,6 @@ public class MalumDungeonRegaliaTab extends AbstractMalumCreativeTab {
                                 ODD_SCRIPTURES_IV, ODD_SCRIPTURES_V, ODD_SCRIPTURES_VI,
                                 ODD_SCRIPTURES_VII, ODD_SCRIPTURES_VIII, ODD_SCRIPTURES_IX
                         )
-                        .addItems(
-                                DROSS_STONE, POLISHED_DROSS_STONE, DROSS_STONE_BRICKS,
-                                DROSS_STONE_TILES, DROSS_STONE_MOSAIC,
-                                DARK_DROSS_TILES, GRAY_DROSS_TILES
-                        )
-                        .addItems(
-                                DROSS_STONE_COLUMN, DROSS_STONE_ALTAR
-                        ).nextLine()
-                        .addItems(
-                                DROSS_STONE_STAIRS, POLISHED_DROSS_STONE_STAIRS, DROSS_STONE_BRICKS_STAIRS,
-                                DROSS_STONE_TILES_STAIRS, DROSS_STONE_MOSAIC_STAIRS,
-                                DARK_DROSS_TILES_STAIRS, GRAY_DROSS_TILES_STAIRS
-                        )
-                        .addItems(
-                                CUT_DROSS_STONE, CHISELED_DROSS_STONE
-                        ).nextLine()
-                        .addItems(
-                                DROSS_STONE_SLAB, POLISHED_DROSS_STONE_SLAB, DROSS_STONE_BRICKS_SLAB,
-                                DROSS_STONE_TILES_SLAB, DROSS_STONE_MOSAIC_SLAB,
-                                DARK_DROSS_TILES_SLAB, GRAY_DROSS_TILES_SLAB
-                        )
-                        .addItems(
-                                DROSS_STONE_ITEM_PEDESTAL, DROSS_STONE_ITEM_STAND
-                        ).nextLine()
-                        .addItems(
-                                DROSS_STONE_WALL, POLISHED_DROSS_STONE_WALL, DROSS_STONE_BRICKS_WALL,
-                                DROSS_STONE_TILES_WALL, DROSS_STONE_MOSAIC_WALL,
-                                DARK_DROSS_TILES_WALL, GRAY_DROSS_TILES_WALL
-                        )
-                        .addItems(
-                                DROSS_STONE_PRESSURE_PLATE, DROSS_STONE_BUTTON
-                        )
                         .bake();
                 createCategory(DUNGEON_ODDITIES)
                         .addItems(

@@ -203,8 +203,7 @@ public class MalumAncientSorceryTab extends AbstractMalumCreativeTab {
                                 ItemChoiceEntry.choice(Materials.ALCHEMICAL_CALX, CompactBlocks.BLOCK_OF_ALCHEMICAL_CALX),
                                 ItemChoiceEntry.choice(Materials.ARCANE_CHARCOAL, CompactBlocks.BLOCK_OF_ARCANE_CHARCOAL),
 
-                                ItemChoiceEntry.choice(Materials.CALCIFIED_EBONY, CompactBlocks.BLOCK_OF_EBONY),
-                                ItemChoiceEntry.choice(Materials.WITCHHAZEL, CompactBlocks.CRATE_OF_WITCHHAZEL)
+                                ItemChoiceEntry.choice(Materials.CALCIFIED_EBONY, CompactBlocks.BLOCK_OF_EBONY)
                         ).nextLine()
                         .addItems(
                                 Materials.NULL_SLATE,

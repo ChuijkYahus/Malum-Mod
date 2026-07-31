@@ -1,8 +1,8 @@
 {
   "parent": "minecraft:block/slab_top",
   "textures": {
-    "bottom": "malum:block/building/common_rock/composite_stone/composite_stone",
-    "side": "malum:block/building/common_rock/composite_stone/composite_stone",
-    "top": "malum:block/building/common_rock/composite_stone/composite_stone"
+    "bottom": "malum:block/building/stone/composite_stone/composite_stone",
+    "side": "malum:block/building/stone/composite_stone/composite_stone",
+    "top": "malum:block/building/stone/composite_stone/composite_stone"
   }
 }
