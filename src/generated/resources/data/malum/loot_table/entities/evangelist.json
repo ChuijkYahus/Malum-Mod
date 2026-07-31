@@ -11,8 +11,8 @@
               "add": false,
               "count": {
                 "type": "minecraft:uniform",
-                "max": 7.0,
-                "min": 3.0
+                "max": 14.0,
+                "min": 8.0
               },
               "function": "minecraft:set_count"
             }
@@ -21,24 +21,14 @@
         },
         {
           "type": "minecraft:item",
-          "conditions": [
-            {
-              "chance": 0.65,
-              "condition": "minecraft:random_chance"
-            }
-          ],
           "functions": [
             {
               "add": false,
-              "count": {
-                "type": "minecraft:uniform",
-                "max": 3.0,
-                "min": 1.0
-              },
+              "count": 1.0,
               "function": "minecraft:set_count"
             }
           ],
-          "name": "malum:annulled_memory"
+          "name": "malum:blade_memory"
         }
       ],
       "rolls": 1.0

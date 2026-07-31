@@ -2,6 +2,7 @@ package com.sammy.malum.client.screen.codex.display;
 
 import com.mojang.blaze3d.systems.RenderSystem;
 import com.mojang.blaze3d.vertex.PoseStack;
+import com.sammy.malum.MalumMod;
 import com.sammy.malum.core.systems.spirit.SpiritLike;
 import net.minecraft.resources.ResourceLocation;
 import org.joml.Vector4f;
@@ -23,6 +24,19 @@ public class CodexIconRenderer {
     protected float distortion = 35f;
     protected boolean corrupted = false;
     protected int offset;
+
+    public static CodexIconRenderer create(String texture, int width, int height) {
+        var modId = MalumMod.MALUM;
+        if (texture.contains(":")) {
+            int index = texture.indexOf(":");
+            modId = texture.substring(0, index);
+            texture = texture.substring(index+1);
+        }
+
+        var full = "textures/gui/book/icons/" + texture + ".png";
+
+        return create(ResourceLocation.fromNamespaceAndPath(modId, full), width, height);
+    }
 
     public static CodexIconRenderer create(ResourceLocation texture, int width, int height) {
         return new CodexIconRenderer(texture, width, height);

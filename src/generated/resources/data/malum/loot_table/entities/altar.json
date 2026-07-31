@@ -6,19 +6,13 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "conditions": [
-            {
-              "chance": 0.35,
-              "condition": "minecraft:random_chance"
-            }
-          ],
           "functions": [
             {
               "add": false,
               "count": {
                 "type": "minecraft:uniform",
-                "max": 3.0,
-                "min": 1.0
+                "max": 4.0,
+                "min": 2.0
               },
               "function": "minecraft:set_count"
             }
@@ -29,7 +23,7 @@
           "type": "minecraft:item",
           "conditions": [
             {
-              "chance": 0.5,
+              "chance": 0.25,
               "condition": "minecraft:random_chance"
             }
           ],
@@ -38,13 +32,13 @@
               "add": false,
               "count": {
                 "type": "minecraft:uniform",
-                "max": 3.0,
+                "max": 2.0,
                 "min": 1.0
               },
               "function": "minecraft:set_count"
             }
           ],
-          "name": "malum:dark_brimstone"
+          "name": "malum:torn_brimstone"
         }
       ],
       "rolls": 1.0

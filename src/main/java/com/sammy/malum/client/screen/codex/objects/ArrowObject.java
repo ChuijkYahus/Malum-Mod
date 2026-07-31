@@ -1,6 +1,5 @@
 package com.sammy.malum.client.screen.codex.objects;
 
-import com.mojang.blaze3d.vertex.*;
 import com.sammy.malum.*;
 import com.sammy.malum.client.screen.codex.screens.*;
 import com.sammy.malum.registry.common.sound.MalumSoundEvents;
@@ -26,8 +25,8 @@ public class ArrowObject extends BookObject<CodexEntryScreen> {
     protected float oldHeldDelta;
     protected float heldDelta;
 
-    public ArrowObject(int posX, int posY, boolean flipped) {
-        super(posX, posY, 32, 26);
+    public ArrowObject(int x, int y, boolean flipped) {
+        super(x, y, 32, 26);
         this.flipped = flipped;
     }
 
@@ -43,8 +42,8 @@ public class ArrowObject extends BookObject<CodexEntryScreen> {
 
     @Override
     public void render(CodexEntryScreen screen, GuiGraphics guiGraphics, int mouseX, int mouseY, float partialTicks) {
-        int entryX = getOffsetXPosition();
-        int entryY = getOffsetYPosition();
+        int entryX = getOffsetX();
+        int entryY = getOffsetY();
         var poseStack = guiGraphics.pose();
         float held = Mth.lerp(partialTicks, oldHeldDelta, heldDelta);
         int offset = (int) ((flipped ? 1 : -1) * held * 13);

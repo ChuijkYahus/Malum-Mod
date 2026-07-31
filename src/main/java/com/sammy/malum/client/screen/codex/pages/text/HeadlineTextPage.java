@@ -16,7 +16,6 @@ public class HeadlineTextPage extends BookPage implements IGizmoHolder {
 
     protected final String id;
 
-
     public static HeadlineTextPage headlineText(String text) {
         return new HeadlineTextPage(text, text +".1");
     }
@@ -49,7 +48,7 @@ public class HeadlineTextPage extends BookPage implements IGizmoHolder {
     }
 
     @Override
-    public String getGizmoId() {
+    public String getGizmoTooltipKey() {
         return id;
     }
 }

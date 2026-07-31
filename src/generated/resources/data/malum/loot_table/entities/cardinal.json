@@ -11,8 +11,8 @@
               "add": false,
               "count": {
                 "type": "minecraft:uniform",
-                "max": 7.0,
-                "min": 3.0
+                "max": 8.0,
+                "min": 6.0
               },
               "function": "minecraft:set_count"
             }
@@ -21,24 +21,29 @@
         },
         {
           "type": "minecraft:item",
-          "conditions": [
-            {
-              "chance": 0.65,
-              "condition": "minecraft:random_chance"
-            }
-          ],
           "functions": [
             {
               "add": false,
               "count": {
                 "type": "minecraft:uniform",
-                "max": 3.0,
-                "min": 1.0
+                "max": 6.0,
+                "min": 3.0
               },
               "function": "minecraft:set_count"
             }
           ],
-          "name": "malum:volatile_entropy"
+          "name": "malum:torn_brimstone"
+        },
+        {
+          "type": "minecraft:item",
+          "functions": [
+            {
+              "add": false,
+              "count": 1.0,
+              "function": "minecraft:set_count"
+            }
+          ],
+          "name": "malum:anomalous_entropy"
         }
       ],
       "rolls": 1.0

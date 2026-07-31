@@ -29,7 +29,7 @@ public class CultistLootBuilder {
         }
     }
 
-    protected ArrayList<CultistLootDrop> drops;
+    protected ArrayList<CultistLootDrop> drops = new ArrayList<>();
 
     public CultistLootBuilder chitin(NumberProvider amount, float chance) {
         return special(IGNEOUS_CHITIN, amount, chance);

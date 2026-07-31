@@ -73,9 +73,4 @@ public class DisplayedSpirit extends DisplayedGizmo {
         var textData = spirit.getTextData();
         textData.addToCodexTooltip(tooltip);
     }
-
-    @Override
-    public ResourceLocation getPageBackground() {
-        return MalumMod.malumPath("textures/gui/book/pages/headline_item_page.png");
-    }
 }

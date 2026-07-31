@@ -48,20 +48,6 @@
     "malum:soulwood_blocks_slab",
     "malum:soulwood_planks_slab",
     "malum:vertical_soulwood_planks_slab",
-    "malum:soulwood_tiles_slab",
-    "malum:dross_stone_slab",
-    "malum:dross_stone_slab",
-    "malum:polished_dross_stone_slab",
-    "malum:polished_dross_stone_slab",
-    "malum:dross_stone_bricks_slab",
-    "malum:dross_stone_bricks_slab",
-    "malum:dross_stone_tiles_slab",
-    "malum:dross_stone_tiles_slab",
-    "malum:dross_stone_mosaic_slab",
-    "malum:dross_stone_mosaic_slab",
-    "malum:dark_dross_tiles_slab",
-    "malum:dark_dross_tiles_slab",
-    "malum:gray_dross_tiles_slab",
-    "malum:gray_dross_tiles_slab"
+    "malum:soulwood_tiles_slab"
   ]
 }

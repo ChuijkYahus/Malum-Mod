@@ -1,8 +1,0 @@
-{
-  "parent": "minecraft:block/stairs",
-  "textures": {
-    "bottom": "malum:block/building/arcane_rock/dross/gray_dross_tiles",
-    "side": "malum:block/building/arcane_rock/dross/gray_dross_tiles",
-    "top": "malum:block/building/arcane_rock/dross/gray_dross_tiles"
-  }
-}

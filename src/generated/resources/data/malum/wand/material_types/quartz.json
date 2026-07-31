@@ -1,9 +1,0 @@
-{
-  "id": "malum:quartz",
-  "ingredient": {
-    "tag": "c:gems/quartz"
-  },
-  "validGroups": [
-    "head"
-  ]
-}

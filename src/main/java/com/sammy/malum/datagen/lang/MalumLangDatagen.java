@@ -168,10 +168,10 @@ public class MalumLangDatagen extends LanguageProvider {
         );
         addSpiritLang(MalumSpiritTypes.AERIAL_SPIRIT, "Swift",
                 "'It stands as a cornerstone in the magecraft of aviation, Aerial proves capable of swaying the core laws of motion ever so slightly.'",
-                "It wishes to defy the concept of stillness. If properly directed, this property will create sourceless motion."
+                "It wishes to defy the concept of stillness. If properly directed, this wish allows for the creation of motion with no traceable origin."
         );
         addSpiritLang(MalumSpiritTypes.AQUEOUS_SPIRIT, "Malleable",
-                "'All life originates from the oceans of our Overworld, and yet as evolution progressed, the definition of life and that which is Aqueous eventually differed. As I collect and document each Soul I shatter, I wonder more and more about the different permutations of Arcana. Are we all just arrangements of different forms and impulses? Perhaps it is not in Arcana where consciousness rests and thus such thoughts may serve as pointless rumination.'",
+                "'All life originates from the oceans of our Overworld, and yet as evolution progressed, the definition of life and that which is Aqueous eventually differed. As I collect and document each Soul I shatter, I wonder more and more about the different permutations of Arcana. Are we all just arrangements of different forms and impulses? Perhaps it is not in Arcana where consciousness rests and thus such thoughts serve as pointless rumination.'",
                 ""
         );
         addSpiritLang(MalumSpiritTypes.INFERNAL_SPIRIT, "Radiant",

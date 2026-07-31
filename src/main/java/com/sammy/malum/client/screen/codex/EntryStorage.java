@@ -1,39 +1,33 @@
 package com.sammy.malum.client.screen.codex;
 
+import java.awt.*;
 import java.util.*;
+import java.util.List;
 
 public class EntryStorage {
 
     protected final List<PlacedBookEntryBuilder> unbaked = new ArrayList<>();
-    protected final List<PlacedBookEntry> entries = new ArrayList<>();
+    protected final List<PlacedBookEntry> baked = new ArrayList<>();
 
     protected boolean isBaked;
 
-    public List<PlacedBookEntry> bakeEntries() {
+    public List<PlacedBookEntry> placeEntries() {
         if (isBaked) {
-            return entries;
+            return baked;
         }
-        for (PlacedBookEntryBuilder entry : getUnbakedEntries()) {
-            if (entry.hasFragment()) {
-                var fragment = entry.buildFragment();
-                getEntries().add(fragment);
-            }
-            var build = entry.build();
-            getEntries().add(build);
+        var baked = getBaked();
+        for (PlacedBookEntryBuilder builder : unbaked) {
+            baked.add(builder.place());
         }
         isBaked = true;
-        return entries;
+        return baked;
     }
 
-    public void add(PlacedBookEntryBuilder entryBuilder) {
-        unbaked.add(entryBuilder);
+    public void add(PlacedBookEntryBuilder builder) {
+        unbaked.add(builder);
     }
 
-    public List<PlacedBookEntry> getEntries() {
-        return entries;
-    }
-
-    public List<PlacedBookEntryBuilder> getUnbakedEntries() {
-        return unbaked;
+    public List<PlacedBookEntry> getBaked() {
+        return baked;
     }
 }

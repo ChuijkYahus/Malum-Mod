@@ -2,11 +2,11 @@ package com.sammy.malum.client.screen.codex.screens.progression;
 
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.sammy.malum.client.VoidRevelationHandler;
-import com.sammy.malum.client.screen.codex.entries.*;
+import com.sammy.malum.client.screen.codex.chapters.BookChapter;
 import com.sammy.malum.registry.common.sound.*;
 import net.minecraft.resources.ResourceLocation;
 
-import java.awt.*;
+import java.util.List;
 
 import static com.sammy.malum.MalumMod.malumPath;
 import static com.sammy.malum.client.VoidRevelationHandler.RevelationType.VOID_READER;
@@ -28,7 +28,8 @@ public class VoidProgressionScreen extends AbstractProgressionCodexScreen {
     }
 
     @Override
-    public void setupEntries() {
+    public List<BookChapter> getChapters() {
 //        VoidCodexEntries.setupEntries(this);
+        return List.of();
     }
 }

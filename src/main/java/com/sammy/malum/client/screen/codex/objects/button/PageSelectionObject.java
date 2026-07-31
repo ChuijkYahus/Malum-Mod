@@ -29,11 +29,11 @@ public class PageSelectionObject extends ButtonObject {
     }
 
     @Override
-    public String getGizmoId() {
+    public String getGizmoTooltipKey() {
         var page = this.page.pages.get(buttonIndex);
         if (page instanceof IGizmoHolder holder) {
-            return holder.getGizmoId();
+            return holder.getGizmoTooltipKey();
         }
-        return super.getGizmoId();
+        return "";
     }
 }

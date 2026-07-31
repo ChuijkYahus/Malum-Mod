@@ -1,8 +1,0 @@
-{
-  "parent": "minecraft:block/inner_stairs",
-  "textures": {
-    "bottom": "malum:block/building/common_rock/seed_quartz/seed_quartz_tiles",
-    "side": "malum:block/building/common_rock/seed_quartz/seed_quartz_tiles",
-    "top": "malum:block/building/common_rock/seed_quartz/seed_quartz_tiles"
-  }
-}

@@ -16,6 +16,7 @@ import static com.sammy.malum.client.screen.codex.pages.text.HeadlineTextPage.he
 public class PageSelectionPage extends CyclingPage {
 
     public static boolean FLAG = false;
+
     public static class PageSelectionBuilder {
         protected final List<Selection> data = new ArrayList<>();
 

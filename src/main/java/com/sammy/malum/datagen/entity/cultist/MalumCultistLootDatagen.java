@@ -11,6 +11,7 @@ import net.minecraft.world.level.storage.loot.providers.number.UniformGenerator;
 import net.neoforged.neoforge.registries.DeferredHolder;
 
 import java.util.function.Consumer;
+import java.util.stream.Stream;
 
 import static com.sammy.malum.registry.common.MalumContent.Materials.*;
 
@@ -42,6 +43,17 @@ public class MalumCultistLootDatagen extends EntityLootSubProvider {
                 .chitin(UniformGenerator.between(8, 14), 1f)
                 .special(BLADE_MEMORY, ConstantValue.exactly(1), 1f)
         );
+    }
+
+    @Override
+    protected Stream<EntityType<?>> getKnownEntityTypes() {
+        return Stream.of(
+                MalumCultistEntityTypes.ALTAR,
+                MalumCultistEntityTypes.BELIEVER,
+                MalumCultistEntityTypes.CHERUB,
+                MalumCultistEntityTypes.CARDINAL,
+                MalumCultistEntityTypes.EVANGELIST
+        ).map(DeferredHolder::get);
     }
 
     public void addCultistLoot(DeferredHolder<EntityType<?>, ? extends EntityType<? extends CultistMonster>> entityType, Consumer<CultistLootBuilder> consumer) {

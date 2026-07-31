@@ -23,9 +23,4 @@ public class DisplayedTexture extends DisplayedGizmo {
     public void renderDecals(AbstractMalumCodexScreen screen, IGizmoHolder holder, GuiGraphics guiGraphics, int x, int y, int mouseX, int mouseY) {
         renderer.renderIcon(guiGraphics.pose(), x, y);
     }
-
-    @Override
-    public ResourceLocation getPageBackground() {
-        return MalumMod.malumPath("textures/gui/book/pages/headline_icon_page.png");
-    }
 }

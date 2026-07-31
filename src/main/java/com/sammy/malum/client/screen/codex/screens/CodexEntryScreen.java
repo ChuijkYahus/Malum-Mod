@@ -4,7 +4,7 @@ import com.sammy.malum.*;
 import com.sammy.malum.client.screen.codex.*;
 import com.sammy.malum.client.screen.codex.handlers.*;
 import com.sammy.malum.client.screen.codex.objects.ArrowObject;
-import com.sammy.malum.client.screen.codex.objects.EntryReferenceObject;
+import com.sammy.malum.client.screen.codex.objects.EntryBookmarkObject;
 import com.sammy.malum.client.screen.codex.pages.BookPage;
 import com.sammy.malum.client.screen.codex.screens.progression.*;
 import com.sammy.malum.config.*;
@@ -27,8 +27,6 @@ public class CodexEntryScreen extends AbstractMalumCodexScreen {
 
     public static final ResourceLocation FRAME_TEXTURE = MalumMod.malumPath("textures/gui/book/entry_frame.png");
     public static final ResourceLocation PAPER_TEXTURE = MalumMod.malumPath("textures/gui/book/entry_paper.png");
-
-    public static final ResourceLocation TEST_PIECE = MalumMod.malumPath("textures/gui/book/art/canvas.png");
 
     public static final ResourceLocation ITEM_SOCKET = MalumMod.malumPath("textures/gui/book/entry_elements/item_sockets.png");
 
@@ -58,7 +56,8 @@ public class CodexEntryScreen extends AbstractMalumCodexScreen {
     }
 
     public CodexEntryScreen(@Nullable AbstractMalumCodexScreen parentScreen, BookEntry openEntry) {
-        super(Component.empty(), openEntry.isVoid ? MalumSoundEvents.ARCANA_SWEETENER_EVIL : MalumSoundEvents.ARCANA_SWEETENER_NORMAL);
+        super(Component.empty(), MalumSoundEvents.ARCANA_SWEETENER_NORMAL);
+//        super(Component.empty(), openEntry.isVoid ? MalumSoundEvents.ARCANA_SWEETENER_EVIL : MalumSoundEvents.ARCANA_SWEETENER_NORMAL);
         this.parentScreen = parentScreen;
         this.openEntry = openEntry;
         addPageObjects();
@@ -71,20 +70,20 @@ public class CodexEntryScreen extends AbstractMalumCodexScreen {
         var leftBookmarks = openEntry.leftBookmarks;
         int counter = 0;
         for (int i = 0; i < leftBookmarks.size(); i++) {
-            var reference = leftBookmarks.get(i);
-            if (reference.entry.shouldShow()) {
+            var bookmark = leftBookmarks.get(i);
+            if (bookmark.entry.shouldShow()) {
                 int yPos = 28 + counter * 34;
-                bookmarks.add(new EntryReferenceObject(left, yPos, false, reference));
+                bookmarks.add(new EntryBookmarkObject(bookmark, yPos, false, left));
                 counter++;
             }
         }
         var rightBookmarks = openEntry.rightBookmarks;
         counter = 0;
         for (int i = 0; i < rightBookmarks.size(); i++) {
-            var reference = rightBookmarks.get(i);
-            if (reference.entry.shouldShow()) {
+            var bookmark = rightBookmarks.get(i);
+            if (bookmark.entry.shouldShow()) {
                 int yPos = 28 + counter * 34;
-                bookmarks.add(new EntryReferenceObject(right, yPos, true, reference));
+                bookmarks.add(new EntryBookmarkObject(bookmark, yPos, true, right));
                 counter++;
             }
         }

@@ -59,10 +59,6 @@ public class MalumBlockSoundEvents {
     public static final MalumBlockSoundType EBONY_SAPLING = new MalumBlockSoundType("ebony_sapling");
     public static final MalumBlockSoundType EBONY = new MalumBlockSoundType("ebony");
 
-
-    public static final MalumBlockSoundType WILD_WITCHHAZEL = new MalumBlockSoundType("wild_witchhazel");
-    public static final MalumBlockSoundType WITCHHAZEL = new MalumBlockSoundType("witchhazel");
-
     //Runewood
     public static final MalumBlockSoundType RUNEWOOD = new MalumBlockSoundType("runewood");
     public static final MalumBlockSoundType RUNEWOOD_LEAVES = new MalumBlockSoundType("runewood_leaves");

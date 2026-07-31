@@ -11,8 +11,8 @@ public class BookObject<T extends AbstractMalumCodexScreen> {
 
     public static final ResourceLocation WIDGET_FADE_TEXTURE = malumPath("textures/gui/book/widget_fade.png");
 
-    public final int posX;
-    public final int posY;
+    public final int x;
+    public final int y;
     public final int width;
     public final int height;
 
@@ -25,9 +25,9 @@ public class BookObject<T extends AbstractMalumCodexScreen> {
     public float xOffset;
     public float yOffset;
 
-    public BookObject(int posX, int posY, int width, int height) {
-        this.posX = posX;
-        this.posY = posY;
+    public BookObject(int x, int y, int width, int height) {
+        this.x = x;
+        this.y = y;
         this.width = width;
         this.height = height;
     }
@@ -86,23 +86,26 @@ public class BookObject<T extends AbstractMalumCodexScreen> {
         return false;
     }
 
-    public void exit(T screen) {
-
-    }
-
     public boolean isHovering(T screen, double mouseX, double mouseY) {
-        return screen.isHovering(mouseX, mouseY, getOffsetXPosition(), getOffsetYPosition(), width, height);
+        return screen.isHovering(mouseX, mouseY, getOffsetX(), getOffsetY(), width, height);
     }
 
     public boolean isInView(T screen) {
         return true;
     }
 
-    public int getOffsetXPosition() {
-        return (int) (posX + xOffset);
+    public int getAccurateX() {
+        return x;
+    }
+    public int getAccurateY() {
+        return y;
     }
 
-    public int getOffsetYPosition() {
-        return (int) (posY + yOffset);
+    public int getOffsetX() {
+        return (int) (getAccurateX() + xOffset);
+    }
+
+    public int getOffsetY() {
+        return (int) (getAccurateY() + yOffset);
     }
 }

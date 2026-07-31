@@ -42,9 +42,6 @@ public class DisplayedItem extends DisplayedGizmo {
 
     @Override
     public void renderDecals(AbstractMalumCodexScreen screen, IGizmoHolder holder, GuiGraphics guiGraphics, int x, int y, int mouseX, int mouseY) {
-        if (isHoveredOver) {
-            y -= 1;
-        }
         var dynamicTexture = DynamicTextureRenderer.create(itemDisplay.getItem())
                 .setTextureSize(16, 16).requestFlatItemTexture(itemDisplay.getItem().getDefaultInstance());
         if (dynamicTexture == null) {
@@ -76,13 +73,6 @@ public class DisplayedItem extends DisplayedGizmo {
 
     @Override
     public void gatherTooltip(IGizmoHolder holder, List<Component> tooltip) {
-        if (tooltip.isEmpty()) {
-            tooltip.addAll(Screen.getTooltipFromItem(Minecraft.getInstance(), itemDisplay));
-        }
-    }
-
-    @Override
-    public ResourceLocation getPageBackground() {
-        return MalumMod.malumPath("textures/gui/book/pages/headline_item_page.png");
+        tooltip.addAll(Screen.getTooltipFromItem(Minecraft.getInstance(), itemDisplay));
     }
 }
