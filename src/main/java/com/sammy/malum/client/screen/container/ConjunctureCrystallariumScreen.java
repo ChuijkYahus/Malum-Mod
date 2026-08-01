@@ -1,17 +1,12 @@
 package com.sammy.malum.client.screen.container;
 
-import com.sammy.malum.*;
-import com.sammy.malum.client.screen.codex.display.*;
-import com.sammy.malum.common.block.curiosities.artifice.crystallarium.*;
-import net.minecraft.client.*;
-import net.minecraft.client.gui.*;
-import net.minecraft.client.gui.screens.inventory.*;
+import com.sammy.malum.MalumMod;
+import com.sammy.malum.common.block.curiosities.artifice.crystallarium.ConjunctureCrystallariumContainer;
+import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.network.chat.Component;
-import net.minecraft.resources.*;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.Mth;
-import net.minecraft.world.entity.player.*;
-
-import javax.annotation.*;
+import net.minecraft.world.entity.player.Inventory;
 
 //TODO abstract this as well
 public class ConjunctureCrystallariumScreen extends AbstractMalumContainerScreen<ConjunctureCrystallariumContainer> {
@@ -39,12 +34,12 @@ public class ConjunctureCrystallariumScreen extends AbstractMalumContainerScreen
         if (menu.isLit()) {
             int textureSize = 14;
             int progress = Mth.ceil(this.menu.getLitProgress() * 13.0F) + 1;
-            guiGraphics.blitSprite(BURN, textureSize, textureSize, 0, textureSize - progress, leftPos + 45, topPos + 36 + textureSize - progress, textureSize, progress);
+            guiGraphics.blit(BURN, leftPos + 81, topPos + 93 + 14 - progress , 0, (float)0, (float)14 - progress, 14, progress, textureSize, textureSize);
         }
 
         int burnProgress = Mth.ceil(this.menu.getBurnProgress() * 27.0F);
-        guiGraphics.blitSprite(ARROW_LEFT, 18, 27, 0, 0, leftPos + 68, topPos + 34, burnProgress, 16);
-        guiGraphics.blitSprite(ARROW_RIGHT, 19, 27, 0, 0, leftPos + 68, topPos + 34, burnProgress, 16);
+        guiGraphics.blit(ARROW_LEFT, leftPos + 55, topPos + 56 + 27 - burnProgress, 0, (float)0, (float)27 - burnProgress, 18, burnProgress, 18, 27);
+        guiGraphics.blit(ARROW_RIGHT, leftPos + 103, topPos + 56 + 27 - burnProgress, 0, (float)0, (float)27 - burnProgress, 19, burnProgress, 19, 27);
     }
 
     @Override
