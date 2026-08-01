@@ -33,14 +33,12 @@ public abstract class MalumAbstractFurnaceBlockEntity<I extends RecipeInput, R e
     public int cookingProgress;
     public int cookingTotalTime;
     protected final ContainerData dataAccess;
-    private final RecipeManager.CachedCheck<I, R> quickCheck;
     private final RecipeType<R> recipeType;
 
     public MalumAbstractFurnaceBlockEntity(LodestoneBlockEntityType<?> type, BlockPos pos, BlockState state, RecipeType<R> recipeType) {
         super(type, pos, state);
         this.dataAccess = createDataAccess();
         this.recipeType = recipeType;
-        this.quickCheck = RecipeManager.createCheck(recipeType);
     }
 
     @Override
@@ -50,14 +48,13 @@ public abstract class MalumAbstractFurnaceBlockEntity<I extends RecipeInput, R e
             this.litTime--;
         }
 
-        //TODO this logic might be fucked? idk but sometimes the recipe search returns air itemstack
         if (this.isLit() || (hasFuel() && hasInput())) {
             if (hasInput()) {
                 var optionalRecipeHolder = getValidRecipe(level);
                 if (optionalRecipeHolder.isPresent()) {
                     var recipe = optionalRecipeHolder.get();
                     NonNullList<ItemStack> results = rollOutputs(recipe.getFurnaceResults(), recipe.getResultFallback(), level.getRandom());
-                    if (!results.isEmpty() /*&& canProcess(results)*/) {
+                    if (!results.isEmpty() && optionalPreValidation(level, results, recipe)) {
                         if (!isLit()) {
                             int newLitTime = this.getBurnDuration(this.getFuelStack());
                             this.litTime = newLitTime;
@@ -119,19 +116,6 @@ public abstract class MalumAbstractFurnaceBlockEntity<I extends RecipeInput, R e
         return outputList;
     }
 
-    protected boolean canProcess(NonNullList<ItemStack> results) {
-        if (hasInput()) {
-            boolean success = false;
-            for (ItemStack result : results) {
-                //stack is empty -> was able to fill all slots properly
-                success = this.inventory().fillOutputSlotsStacked(result, true).isEmpty();
-            }
-            return success;
-        }
-        return false;
-    }
-
-    //TODO test edge cases
     protected boolean process(R recipe, NonNullList<ItemStack> results, ServerLevel serverLevel) {
         ++this.cookingProgress;
         this.cookingTotalTime = recipe.getProcessingTime();
@@ -155,10 +139,9 @@ public abstract class MalumAbstractFurnaceBlockEntity<I extends RecipeInput, R e
         }
     }
 
+    //TODO add caching for last recipe
     public Optional<R> getValidRecipe(Level level) {
-
-        //TODO check which approach I wanna use later
-        return hasInput() ? /*quickCheck.getRecipeFor(getRecipeInput(), level)*/ Optional.ofNullable(LodestoneRecipeSearch.search(level, recipeType).findRecipe(getRecipeInput())) : Optional.empty();
+        return hasInput() ? Optional.ofNullable(LodestoneRecipeSearch.search(level, recipeType).findRecipe(getRecipeInput())) : Optional.empty();
     }
 
     @Override
@@ -193,6 +176,10 @@ public abstract class MalumAbstractFurnaceBlockEntity<I extends RecipeInput, R e
     protected abstract I getRecipeInput();
 
     protected abstract int getBurnDuration(ItemStack fuel);
+
+    protected boolean optionalPreValidation(ServerLevel level, NonNullList<ItemStack> results, R recipe) {
+        return true;
+    }
 
     protected void onFinishRecipe(R recipe, ServerLevel level) {}
 

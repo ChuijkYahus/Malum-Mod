@@ -38,10 +38,20 @@ public class MalumConjunctureCrystallariumRecipes implements IConditionBuilder {
 
         new ConjunctureCrystallariumRecipeBuilder(
                 Ingredient.of(Items.RAW_IRON),
-                CrystalPropertyModifier.DEFAULT,
                 new MalumSizedChanceResult(MalumContent.AlchemyAndMetallics.IRON_METALLICS.getDerealizedMetal().toStack(), 1.0F),
-                new StoredInSoulstoneMetal(MalumContent.AlchemyAndMetallics.IRON_METALLICS.getId(), MalumContent.AlchemyAndMetallics.IRON_METALLICS.getNuggetTag()),
                 200
-        ).addAdditionalResult(Items.BONE_MEAL).save(recipeOutput);
+        ).growDefaultCrystal().addMetalData(new StoredInSoulstoneMetal(MalumContent.AlchemyAndMetallics.IRON_METALLICS.getId(), MalumContent.AlchemyAndMetallics.IRON_METALLICS.getNuggetTag())).save(recipeOutput);
+
+        new ConjunctureCrystallariumRecipeBuilder(
+                Ingredient.of(Items.RAW_COPPER),
+                new MalumSizedChanceResult(MalumContent.AlchemyAndMetallics.COPPER_METALLICS.getDerealizedMetal().toStack(), 1.0F),
+                200
+        ).growDefaultCrystal().addMetalData(new StoredInSoulstoneMetal(MalumContent.AlchemyAndMetallics.COPPER_METALLICS.getId(), MalumContent.AlchemyAndMetallics.COPPER_METALLICS.getNuggetTag())).save(recipeOutput);
+
+        new ConjunctureCrystallariumRecipeBuilder(
+                Ingredient.of(Items.RAW_GOLD),
+                new MalumSizedChanceResult(MalumContent.AlchemyAndMetallics.GOLD_METALLICS.getDerealizedMetal().toStack(), 1.0F),
+                200
+        ).growDefaultCrystal().addMetalData(new StoredInSoulstoneMetal(MalumContent.AlchemyAndMetallics.GOLD_METALLICS.getId(), MalumContent.AlchemyAndMetallics.GOLD_METALLICS.getNuggetTag())).save(recipeOutput);
     }
 }

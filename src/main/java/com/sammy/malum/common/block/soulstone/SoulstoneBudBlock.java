@@ -94,7 +94,6 @@ public class SoulstoneBudBlock extends LodestoneEntityBlock<SoulstoneBudBlockEnt
         if (level.getRandom().nextFloat() < 0.5f) {
             var attachedPos = SoulstoneBudCommons.getAttachedPos(state, pos);
             var attachedState = level.getBlockState(attachedPos);
-            //var conversion = SoulstoneBudCommons.getValidConversion(random, attachedState, level);
             var recipe = SoulstoneBudCommons.getValidRecipe(random, attachedState, level);
             if (recipe == null) {
                 return;

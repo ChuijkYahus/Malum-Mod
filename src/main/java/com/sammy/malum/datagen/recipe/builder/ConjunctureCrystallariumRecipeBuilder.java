@@ -22,16 +22,14 @@ import java.util.Optional;
 
 public class ConjunctureCrystallariumRecipeBuilder implements LodestoneRecipeBuilder<ConjunctureCrystallariumRecipe> {
     private final Ingredient input;
-    private final CrystalPropertyModifier crystalToGrow;
+    private Optional<CrystalPropertyModifier> crystalToGrow;
     private final NonNullList<MalumSizedChanceResult> additionalResults = NonNullList.create();
-    private final StoredInSoulstoneMetal metalData;
+    private Optional<StoredInSoulstoneMetal> metalData;
     private final int processingTime;
     private Optional<ItemStack> resultFallback = Optional.empty();
 
-    public ConjunctureCrystallariumRecipeBuilder(Ingredient input, CrystalPropertyModifier crystalToGrow, MalumSizedChanceResult result, StoredInSoulstoneMetal metalData, int processingTime) {
+    public ConjunctureCrystallariumRecipeBuilder(Ingredient input, MalumSizedChanceResult result, int processingTime) {
         this.input = input;
-        this.crystalToGrow = crystalToGrow;
-        this.metalData = metalData;
         this.additionalResults.add(result);
         this.processingTime = processingTime;
     }
@@ -56,8 +54,22 @@ public class ConjunctureCrystallariumRecipeBuilder implements LodestoneRecipeBui
 
     public ConjunctureCrystallariumRecipeBuilder addResultFallback(Item item, int count) {
         ItemStack stack = new ItemStack(item, count);
-        resultFallback = Optional.of(stack);
+        this.resultFallback = Optional.of(stack);
         return this;
+    }
+
+    public ConjunctureCrystallariumRecipeBuilder addMetalData(StoredInSoulstoneMetal metalData) {
+        this.metalData = Optional.of(metalData);
+        return this;
+    }
+
+    public ConjunctureCrystallariumRecipeBuilder addCrystalToGrow(CrystalPropertyModifier crystalToGrow) {
+        this.crystalToGrow = Optional.of(crystalToGrow);
+        return this;
+    }
+
+    public ConjunctureCrystallariumRecipeBuilder growDefaultCrystal() {
+        return addCrystalToGrow(CrystalPropertyModifier.DEFAULT);
     }
 
     public ConjunctureCrystallariumRecipeBuilder addResultFallback(Item item) {

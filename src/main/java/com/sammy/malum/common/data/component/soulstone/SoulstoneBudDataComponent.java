@@ -33,13 +33,17 @@ public record SoulstoneBudDataComponent(List<StoredInSoulstoneMetal> composition
     }
 
     public SoulstoneBudDataComponent addMetal(StoredInSoulstoneMetal metal) {
+        return addMetal(metal, 0);
+    }
+
+    public SoulstoneBudDataComponent addMetal(StoredInSoulstoneMetal metal, int purityBonus) {
         int addedPurity = hasMetal(metal) ? 4 : 10;
         return new SoulstoneBudDataComponent(
                 ImmutableList.<StoredInSoulstoneMetal>builder()
                         .addAll(composition)
                         .add(metal)
                         .build(),
-                Math.min(purity() + addedPurity, MAX_PURITY)
+                Math.min(purity() + addedPurity + purityBonus, MAX_PURITY)
         );
     }
 

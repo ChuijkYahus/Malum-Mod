@@ -1,7 +1,7 @@
 package com.sammy.malum.common.block.curiosities.artifice.crystallarium;
 
 import com.sammy.malum.registry.common.MalumContainers;
-import com.sammy.malum.registry.common.MalumTags;
+import com.sammy.malum.registry.common.MalumDataMaps;
 import net.minecraft.network.RegistryFriendlyByteBuf;
 import net.minecraft.network.chat.Component;
 import net.minecraft.util.Mth;
@@ -56,7 +56,7 @@ public class ConjunctureCrystallariumContainer extends LodestoneBlockEntityConta
 
     //TODO handle next 4 methods in MalumAbstractFurnaceContainer later
     private boolean isFuel(ItemStack stack) {
-        return stack.is(MalumTags.Items.CONJUNCTURE_CRYSTALLARIUM_FUEL);
+        return stack.getItemHolder().getData(MalumDataMaps.CONJUNCTURE_CRYSTALLARIUM_FUEL) != null;
     }
 
     public float getBurnProgress() {
