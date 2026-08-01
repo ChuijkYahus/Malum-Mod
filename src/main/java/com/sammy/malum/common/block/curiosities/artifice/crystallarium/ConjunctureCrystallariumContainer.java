@@ -10,6 +10,7 @@ import net.minecraft.world.item.*;
 import net.neoforged.neoforge.items.*;
 import team.lodestar.lodestone.modules.toolkit.inventory.*;
 
+//TODO make sure shift clicking fuel moves to fuel slot
 public class ConjunctureCrystallariumContainer extends LodestoneBlockEntityContainer<ConjunctureCrystallariumBlockEntity> {
 
     public static final Component CONJUNCTURE_CRYSTALLARIUM = Component.translatable("container.malum.conjuncture_crystallarium");

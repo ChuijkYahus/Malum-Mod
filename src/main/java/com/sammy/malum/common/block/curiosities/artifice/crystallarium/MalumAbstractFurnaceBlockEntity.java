@@ -57,7 +57,7 @@ public abstract class MalumAbstractFurnaceBlockEntity<I extends RecipeInput, R e
                 if (optionalRecipeHolder.isPresent()) {
                     var recipe = optionalRecipeHolder.get();
                     NonNullList<ItemStack> results = rollOutputs(recipe.getFurnaceResults(), recipe.getResultFallback(), level.getRandom());
-                    if (!results.isEmpty() && canProcess(results)) {
+                    if (!results.isEmpty() /*&& canProcess(results)*/) {
                         if (!isLit()) {
                             int newLitTime = this.getBurnDuration(this.getFuelStack());
                             this.litTime = newLitTime;
@@ -107,14 +107,13 @@ public abstract class MalumAbstractFurnaceBlockEntity<I extends RecipeInput, R e
 
         for (MalumSizedChanceResult result : results) {
             float rand = random.nextFloat();
-            System.out.println(rand);
             if (rand < result.chance()) {
-                outputList.add(result.result());
+                outputList.add(result.result().copy());
             }
         }
 
         if (outputList.isEmpty() && fallback.isPresent()) {
-            outputList.add(fallback.get()); //TODO roll here too if sammy wants that
+            outputList.add(fallback.get().copy()); //TODO roll here too if sammy wants that
         }
 
         return outputList;
