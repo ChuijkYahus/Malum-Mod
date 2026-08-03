@@ -186,10 +186,6 @@ public class MalumBlockStateDatagen extends LodestoneBlockStateSystem {
         BlockStateSmithTypes.CUSTOM_MODEL.act(data, this::directionalBlock, models()::cubeBottomTop, FLESHBULB);
         MalumBlockStateSmithTypes.WRITHING_FLESH.act(data, WRITHING_FLESH);
 
-        setTexturePath("dungeon/odd_scriptures");
-        BlockStateSmithTypes.GLAZED_TERRACOTTA_BLOCK.act(data,
-                ODD_SCRIPTURES_I, ODD_SCRIPTURES_II, ODD_SCRIPTURES_III, ODD_SCRIPTURES_IV, ODD_SCRIPTURES_V, ODD_SCRIPTURES_VI, ODD_SCRIPTURES_VII, ODD_SCRIPTURES_VIII, ODD_SCRIPTURES_IX);
-
         setTexturePath("dungeon/effigy");
         BlockStateSmithTypes.CUSTOM_MODEL.act(data, BLOCK_MODEL_ITEM, this::horizontalBlock, models()::predefinedModel, MEDITATING_EFFIGY);
 

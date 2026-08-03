@@ -795,15 +795,6 @@ public class MalumContent {
 
         public static final BlockBlockItemHolder<Block, BlockItem> MEDITATING_EFFIGY = registerBlock("meditating_effigy", () -> new MeditatingEffigyBlock(MalumDungeonBlockProperties.MEDITATING_EFFIGY()));
 
-        public static final BlockBlockItemHolder<Block, BlockItem> ODD_SCRIPTURES_I = registerBlock("odd_scriptures_i", () -> new OddScripturesBlock(MalumDungeonBlockProperties.ODD_SCRIPTURES()));
-        public static final BlockBlockItemHolder<Block, BlockItem> ODD_SCRIPTURES_II = registerBlock("odd_scriptures_ii", () -> new OddScripturesBlock(MalumDungeonBlockProperties.ODD_SCRIPTURES()));
-        public static final BlockBlockItemHolder<Block, BlockItem> ODD_SCRIPTURES_III = registerBlock("odd_scriptures_iii", () -> new OddScripturesBlock(MalumDungeonBlockProperties.ODD_SCRIPTURES()));
-        public static final BlockBlockItemHolder<Block, BlockItem> ODD_SCRIPTURES_IV = registerBlock("odd_scriptures_iv", () -> new OddScripturesBlock(MalumDungeonBlockProperties.ODD_SCRIPTURES()));
-        public static final BlockBlockItemHolder<Block, BlockItem> ODD_SCRIPTURES_V = registerBlock("odd_scriptures_v", () -> new OddScripturesBlock(MalumDungeonBlockProperties.ODD_SCRIPTURES()));
-        public static final BlockBlockItemHolder<Block, BlockItem> ODD_SCRIPTURES_VI = registerBlock("odd_scriptures_vi", () -> new OddScripturesBlock(MalumDungeonBlockProperties.ODD_SCRIPTURES()));
-        public static final BlockBlockItemHolder<Block, BlockItem> ODD_SCRIPTURES_VII = registerBlock("odd_scriptures_vii", () -> new OddScripturesBlock(MalumDungeonBlockProperties.ODD_SCRIPTURES()));
-        public static final BlockBlockItemHolder<Block, BlockItem> ODD_SCRIPTURES_VIII = registerBlock("odd_scriptures_viii", () -> new OddScripturesBlock(MalumDungeonBlockProperties.ODD_SCRIPTURES()));
-        public static final BlockBlockItemHolder<Block, BlockItem> ODD_SCRIPTURES_IX = registerBlock("odd_scriptures_ix", () -> new OddScripturesBlock(MalumDungeonBlockProperties.ODD_SCRIPTURES()));
         public static final BlockBlockItemHolder<Block, BlockItem> COLUMNAR_FLESH = registerBlock("columnar_flesh", () -> new ColumnarFleshBlock(MalumDungeonBlockProperties.FLESH_BLOCK()));
         public static final BlockBlockItemHolder<Block, BlockItem> FLESHBULB = registerBlock("fleshbulb", () -> new FleshBulbBlock(MalumDungeonBlockProperties.FLESHBULB()));
         public static final BlockBlockItemHolder<Block, BlockItem> WRITHING_FLESH = registerBlock("writhing_flesh", () -> new WrithingFleshBlock(MalumDungeonBlockProperties.WRITHING_FLESH()));

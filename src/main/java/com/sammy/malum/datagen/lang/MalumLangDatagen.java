@@ -80,9 +80,6 @@ public class MalumLangDatagen extends LanguageProvider {
         var soulwovenBanners = SoulwovenBannerPatternDataComponent.REGISTERED_PATTERNS;
         var crucibleAttributes = ArtificeAttributeType.CRUCIBLE_ATTRIBUTES;
 
-        add(DataHelper.take(blocks, MalumContent.DungeonBlockSets.ODD_SCRIPTURES_I.block()).get(), "Odd Scriptures I");
-
-
         add(DataHelper.take(blocks, MalumContent.WeepingWell.PRIMORDIAL_SOUP.block()).get(), "The Weeping Well");
         add(DataHelper.take(blocks, MalumContent.WeepingWell.VOID_CONDUIT.block()).get(), "The Weeping Well");
 
