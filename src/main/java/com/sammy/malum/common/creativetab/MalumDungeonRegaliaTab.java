@@ -1,10 +1,7 @@
 package com.sammy.malum.common.creativetab;
 
-import com.sammy.malum.common.creativetab.button.ItemChoiceEntry;
-import com.sammy.malum.registry.common.MalumContent;
 import team.lodestar.lodestone.modules.toolkit.creative_tab.CategorizedBuilder;
 
-import static com.sammy.malum.registry.common.MalumContent.*;
 import static com.sammy.malum.registry.common.MalumContent.DungeonBlockSets.*;
 import static com.sammy.malum.registry.common.MalumContent.DungeonGear.*;
 
@@ -22,13 +19,10 @@ public class MalumDungeonRegaliaTab extends AbstractMalumCreativeTab {
 
                 createCategory(DUNGEON_REGALIA)
                         .addItems(
-                                OMINOUS_ALTAR, OMINOUS_OBELISK
-                        )
-                        .addItems(
                                 BROKEN_BLADE, SHAPED_SLAB
                         ).nextLine()
                         .addItems(
-                                IRON_CROWN, VEILED_EFFIGY, CORRUPT_EFFIGY, CRACKED_EFFIGY
+                                IRON_CROWN, MEDITATING_EFFIGY
                         )
                         .bake();
                 createCategory(DUNGEON_ARCHITECTURE)

@@ -43,7 +43,7 @@
               "function": "minecraft:set_count"
             }
           ],
-          "name": "malum:anomalous_entropy"
+          "name": "malum:entropic_anomaly"
         }
       ],
       "rolls": 1.0

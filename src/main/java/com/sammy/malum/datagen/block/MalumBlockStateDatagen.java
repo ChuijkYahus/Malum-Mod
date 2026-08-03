@@ -9,7 +9,6 @@ import com.sammy.malum.registry.common.MalumContent;
 import com.sammy.malum.registry.common.MalumContent.*;
 import com.sammy.malum.registry.common.util.building.MinorBuildingSet;
 import com.sammy.malum.registry.common.util.building.RockBlockSet;
-import com.sammy.malum.registry.common.util.building.WoodBlockSet;
 import com.sammy.malum.registry.common.util.data.*;
 import net.minecraft.data.*;
 import net.minecraft.resources.*;
@@ -192,14 +191,14 @@ public class MalumBlockStateDatagen extends LodestoneBlockStateSystem {
                 ODD_SCRIPTURES_I, ODD_SCRIPTURES_II, ODD_SCRIPTURES_III, ODD_SCRIPTURES_IV, ODD_SCRIPTURES_V, ODD_SCRIPTURES_VI, ODD_SCRIPTURES_VII, ODD_SCRIPTURES_VIII, ODD_SCRIPTURES_IX);
 
         setTexturePath("dungeon/effigy");
-        BlockStateSmithTypes.CUSTOM_MODEL.act(data, BLOCK_MODEL_ITEM, this::horizontalBlock, this::meditatingEffigy, VEILED_EFFIGY, CORRUPT_EFFIGY, CRACKED_EFFIGY);
+        BlockStateSmithTypes.CUSTOM_MODEL.act(data, BLOCK_MODEL_ITEM, this::horizontalBlock, models()::predefinedModel, MEDITATING_EFFIGY);
 
         setTexturePath("");
         BlockStateSmithTypes.CUSTOM_MODEL.act(data, BLOCK_MODEL_ITEM, this::simpleBlock, models()::cubeBottomTop, Totemancy.RITE_ANCHOR, Totemancy.RITE_UNWEAVER);
         BlockStateSmithTypes.CUSTOM_MODEL.act(data, BLOCK_MODEL_ITEM, this::directionalBlock, models()::cubeBottomTop, Totemancy.RITE_SPREADER);
         MalumBlockStateSmithTypes.RITE_CHANNEL.act(data, Totemancy.RITE_CHANNEL);
 
-        BlockStateSmithTypes.CUSTOM_MODEL.act(data, BLOCK_MODEL_ITEM, this::simpleBlock, models()::predefinedModel, SPIRIT_ALTAR, WAND_TINKERER, SOUL_BRAZIER, OMINOUS_ALTAR);
+        BlockStateSmithTypes.CUSTOM_MODEL.act(data, BLOCK_MODEL_ITEM, this::simpleBlock, models()::predefinedModel, SPIRIT_ALTAR, WAND_TINKERER, SOUL_BRAZIER);
 
         BlockStateSmithTypes.CUSTOM_MODEL.act(data, BUILTIN_ENTITY_ITEM, this::simpleBlock, models()::predefinedModel, SPIRIT_JAR);
 
@@ -209,8 +208,7 @@ public class MalumBlockStateDatagen extends LodestoneBlockStateSystem {
                 RUNEWOOD_OBELISK, RUNEWOOD_OBELISK_COMPONENT,
                 BRILLIANT_OBELISK, BRILLIANT_OBELISK_COMPONENT,
                 ARCANA_PYLON, ARCANA_PYLON_COMPONENT,
-                Focusing.SPIRIT_CRUCIBLE, Focusing.SPIRIT_CRUCIBLE_COMPONENT, Focusing.REPAIR_PYLON,
-                OMINOUS_OBELISK, OMINOUS_OBELISK_COMPONENT);
+                Focusing.SPIRIT_CRUCIBLE, Focusing.SPIRIT_CRUCIBLE_COMPONENT, Focusing.REPAIR_PYLON);
 
         BlockStateSmithTypes.CUSTOM_MODEL.act(data, BLOCK_MODEL_ITEM, this::simpleBlock, this::totemBaseModel,
                 Totemancy.RUNEWOOD_TOTEM_BASE, Totemancy.SOULWOOD_TOTEM_BASE, Totemancy.WAVEFORM_RUNEWOOD_TOTEM_BASE, Totemancy.WAVEFORM_SOULWOOD_TOTEM_BASE);

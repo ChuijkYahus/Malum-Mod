@@ -1,0 +1,19 @@
+{
+  "variants": {
+    "facing=east": {
+      "model": "malum:block/meditating_effigy",
+      "y": 90
+    },
+    "facing=north": {
+      "model": "malum:block/meditating_effigy"
+    },
+    "facing=south": {
+      "model": "malum:block/meditating_effigy",
+      "y": 180
+    },
+    "facing=west": {
+      "model": "malum:block/meditating_effigy",
+      "y": 270
+    }
+  }
+}

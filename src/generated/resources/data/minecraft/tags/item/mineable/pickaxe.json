@@ -289,8 +289,7 @@
     "malum:deepslate_derealized_nickel_ore",
     "malum:block_of_derealized_nickel",
     "malum:block_of_harmonized_nickel",
-    "malum:ominous_altar",
-    "malum:ominous_obelisk",
+    "malum:meditating_effigy",
     "malum:odd_scriptures_i",
     "malum:odd_scriptures_ii",
     "malum:odd_scriptures_iii",
@@ -299,9 +298,6 @@
     "malum:odd_scriptures_vi",
     "malum:odd_scriptures_vii",
     "malum:odd_scriptures_viii",
-    "malum:odd_scriptures_ix",
-    "malum:veiled_effigy",
-    "malum:corrupt_effigy",
-    "malum:cracked_effigy"
+    "malum:odd_scriptures_ix"
   ]
 }

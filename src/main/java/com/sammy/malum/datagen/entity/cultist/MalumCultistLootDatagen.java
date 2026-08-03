@@ -37,7 +37,7 @@ public class MalumCultistLootDatagen extends EntityLootSubProvider {
         addCultistLoot(MalumCultistEntityTypes.CARDINAL, b -> b
                 .chitin(UniformGenerator.between(6, 8), 1f)
                 .brimstone(UniformGenerator.between(3, 6), 1f)
-                .special(ANOMALOUS_ENTROPY, ConstantValue.exactly(1), 1f)
+                .special(ENTROPIC_ANOMALY, ConstantValue.exactly(1), 1f)
         );
         addCultistLoot(MalumCultistEntityTypes.EVANGELIST, b -> b
                 .chitin(UniformGenerator.between(8, 14), 1f)

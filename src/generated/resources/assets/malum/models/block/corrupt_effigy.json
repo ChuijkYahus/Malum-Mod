@@ -1,7 +1,0 @@
-{
-  "parent": "malum:block/templates/dungeon/template_meditating_effigy",
-  "render_type": "minecraft:cutout",
-  "textures": {
-    "effigy": "malum:block/dungeon/effigy/corrupt_effigy"
-  }
-}

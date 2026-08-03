@@ -1,9 +1,5 @@
 {
   "values": [
-    "malum:ominous_altar",
-    "malum:ominous_obelisk",
-    "malum:veiled_effigy",
-    "malum:corrupt_effigy",
-    "malum:cracked_effigy"
+    "malum:meditating_effigy"
   ]
 }

@@ -11,11 +11,11 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "malum:ominous_obelisk"
+          "name": "malum:meditating_effigy"
         }
       ],
       "rolls": 1.0
     }
   ],
-  "random_sequence": "malum:blocks/ominous_obelisk"
+  "random_sequence": "malum:blocks/meditating_effigy"
 }
