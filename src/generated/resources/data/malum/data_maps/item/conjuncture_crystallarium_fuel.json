@@ -1,0 +1,10 @@
+{
+  "values": {
+    "malum:calcified_ebony": {
+      "burn_time": 800
+    },
+    "malum:ebony_stalk": {
+      "burn_time": 100
+    }
+  }
+}

@@ -1,15 +1,19 @@
 package com.sammy.malum.common.block.curiosities.artifice.crystallarium;
 
-import com.sammy.malum.registry.common.*;
-import net.minecraft.network.*;
-import net.minecraft.network.chat.*;
+import com.sammy.malum.registry.common.MalumContainers;
+import com.sammy.malum.registry.common.MalumDataMaps;
+import net.minecraft.network.RegistryFriendlyByteBuf;
+import net.minecraft.network.chat.Component;
 import net.minecraft.util.Mth;
-import net.minecraft.world.entity.player.*;
-import net.minecraft.world.inventory.*;
-import net.minecraft.world.item.*;
-import net.neoforged.neoforge.items.*;
-import team.lodestar.lodestone.modules.toolkit.inventory.*;
+import net.minecraft.world.entity.player.Inventory;
+import net.minecraft.world.inventory.ContainerData;
+import net.minecraft.world.inventory.ContainerLevelAccess;
+import net.minecraft.world.inventory.SimpleContainerData;
+import net.minecraft.world.item.ItemStack;
+import net.neoforged.neoforge.items.SlotItemHandler;
+import team.lodestar.lodestone.modules.toolkit.inventory.LodestoneBlockEntityContainer;
 
+//TODO make sure shift clicking fuel moves to fuel slot
 public class ConjunctureCrystallariumContainer extends LodestoneBlockEntityContainer<ConjunctureCrystallariumBlockEntity> {
 
     public static final Component CONJUNCTURE_CRYSTALLARIUM = Component.translatable("container.malum.conjuncture_crystallarium");
@@ -45,12 +49,14 @@ public class ConjunctureCrystallariumContainer extends LodestoneBlockEntityConta
                 });
 
             }
+
+            this.addDataSlots(dataAccess);
         }
     }
 
     //TODO handle next 4 methods in MalumAbstractFurnaceContainer later
     private boolean isFuel(ItemStack stack) {
-        return stack.is(MalumTags.Items.CONJUNCTURE_CRYSTALLARIUM_FUEL);
+        return stack.getItemHolder().getData(MalumDataMaps.CONJUNCTURE_CRYSTALLARIUM_FUEL) != null;
     }
 
     public float getBurnProgress() {

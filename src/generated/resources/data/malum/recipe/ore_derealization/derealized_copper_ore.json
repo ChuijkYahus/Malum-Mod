@@ -6,8 +6,8 @@
   },
   "crystal_to_grow": {
     "block": "malum:soulstone_bud",
-    "operation": "add",
-    "property_name": "stage"
+    "int_operation": "add",
+    "int_property_name": "stage"
   },
   "metal_data": {
     "id": "copper",

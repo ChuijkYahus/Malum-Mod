@@ -6,18 +6,18 @@
     "int_property_name": "stage"
   },
   "input": {
-    "item": "minecraft:raw_iron"
+    "item": "minecraft:raw_gold"
   },
   "metal_data": {
-    "id": "iron",
-    "nuggetForm": "c:nuggets/iron"
+    "id": "gold",
+    "nuggetForm": "c:nuggets/gold"
   },
   "processing_time": 200,
   "results": [
     {
       "item": {
         "count": 1,
-        "id": "malum:derealized_iron"
+        "id": "malum:derealized_gold"
       }
     }
   ]

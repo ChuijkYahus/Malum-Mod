@@ -26,24 +26,19 @@ public record CrystalPropertyModifier(ResourceLocation blockId, String property,
 
     public static final Codec<CrystalPropertyModifier> CODEC = RecordCodecBuilder.create(instance -> instance.group(
             ResourceLocation.CODEC.fieldOf("block").forGetter(CrystalPropertyModifier::blockId),
-            Codec.STRING.fieldOf("property_name").forGetter(CrystalPropertyModifier::property),
-            PropertyOperation.CODEC.fieldOf("operation").forGetter(CrystalPropertyModifier::operation)
+            Codec.STRING.fieldOf("int_property_name").forGetter(CrystalPropertyModifier::property),
+            PropertyOperation.CODEC.fieldOf("int_operation").forGetter(CrystalPropertyModifier::operation)
     ).apply(instance, CrystalPropertyModifier::new));
 
-    public BlockState modify(BlockState toModify) { //TODO
+    public BlockState modify(BlockState toModify) {
         Block block = BuiltInRegistries.BLOCK.get(blockId);
         if (!toModify.getBlock().equals(block)) return toModify;
         var stateDef = block.getStateDefinition();
-        var optionalProperty = checkState(stateDef);
+        var optionalProperty = getOptionalIntProperty(stateDef);
         if (optionalProperty.isEmpty()) {
-            MalumMod.LOGGER.warn("Could not find property {} on {}. Proceeding without modification", property, block.toString());
             return toModify;
         }
-        var actualProperty = optionalProperty.get();
-        if (!(actualProperty instanceof IntegerProperty integerProperty)) {
-            MalumMod.LOGGER.warn("Property {} is not an IntegerProperty", property);
-            return toModify;
-        }
+        var integerProperty = optionalProperty.get();
         if (!toModify.hasProperty(integerProperty)) return toModify; //should be validated enough by now
         int currentStage = toModify.getValue(integerProperty);
         int modified = operation.apply(currentStage, 1);
@@ -56,9 +51,23 @@ public record CrystalPropertyModifier(ResourceLocation blockId, String property,
         return toModify.setValue(integerProperty, modified);
     }
 
-    public Optional<Property<?>> checkState(StateDefinition<?, ?> state) {
+    public Optional<IntegerProperty> getOptionalIntProperty(StateDefinition<?, ?> state) {
         Property<?> property = state.getProperty(this.property);
-        return property == null ? Optional.empty() : Optional.of(property);
+        if (property == null) {
+            MalumMod.LOGGER.warn("Could not find property {} on {}. Proceeding without modification", this.property, state.getOwner());
+            return Optional.empty();
+        }
+
+        if (!(property instanceof IntegerProperty integerProperty)) {
+            MalumMod.LOGGER.warn("Property {} is not an IntegerProperty", this.property);
+            return Optional.empty();
+        }
+
+        return Optional.of(integerProperty);
+    }
+
+    public Block getBlock() {
+        return BuiltInRegistries.BLOCK.get(this.blockId);
     }
 
     public enum PropertyOperation implements StringRepresentable {

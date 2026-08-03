@@ -19,23 +19,23 @@ public class ConjunctureCrystallariumRecipe extends MalumAbstractFurnaceRecipe<S
 
     public static final MapCodec<ConjunctureCrystallariumRecipe> CODEC = RecordCodecBuilder.mapCodec((obj) -> obj.group(
             Ingredient.CODEC.fieldOf("input").forGetter(recipe -> recipe.input),
-            CrystalPropertyModifier.CODEC.fieldOf("crystal_to_grow").forGetter(recipe -> recipe.crystalToGrow),
+            CrystalPropertyModifier.CODEC.optionalFieldOf("crystal_to_grow").forGetter(recipe -> recipe.crystalToGrow),
             NonNullList.codecOf(MalumSizedChanceResult.CODEC).validate(l -> {
                 return !l.isEmpty() && l.size() <= 3
                         ? DataResult.success(l)
                         : DataResult.error(() -> "The recipe must have at least 1 result but no more than 3");
             }).fieldOf("results").forGetter(MalumAbstractFurnaceRecipe::getFurnaceResults),
-            StoredInSoulstoneMetal.CODEC.fieldOf("metal_data").forGetter(recipe -> recipe.metalData),
+            StoredInSoulstoneMetal.CODEC.optionalFieldOf("metal_data").forGetter(recipe -> recipe.metalData),
             Codec.INT.optionalFieldOf("processing_time", 0).forGetter(MalumAbstractFurnaceRecipe::getProcessingTime),
             ItemStack.CODEC.optionalFieldOf("fallback").forGetter(MalumAbstractFurnaceRecipe::getResultFallback)
     ).apply(obj, ConjunctureCrystallariumRecipe::new));
 
     public static final String NAME = "conjuncture_crystallarium";
     private final Ingredient input;
-    private final CrystalPropertyModifier crystalToGrow;
-    private final StoredInSoulstoneMetal metalData;
+    private final Optional<CrystalPropertyModifier> crystalToGrow;
+    private final Optional<StoredInSoulstoneMetal> metalData;
 
-    public ConjunctureCrystallariumRecipe(Ingredient input, CrystalPropertyModifier crystalToGrow, NonNullList<MalumSizedChanceResult> results, StoredInSoulstoneMetal metalData, int processingTime, Optional<ItemStack> resultFallback) {
+    public ConjunctureCrystallariumRecipe(Ingredient input, Optional<CrystalPropertyModifier> crystalToGrow, NonNullList<MalumSizedChanceResult> results, Optional<StoredInSoulstoneMetal> metalData, int processingTime, Optional<ItemStack> resultFallback) {
         super(processingTime, results, resultFallback);
         this.input = input;
         this.crystalToGrow = crystalToGrow;
@@ -66,11 +66,11 @@ public class ConjunctureCrystallariumRecipe extends MalumAbstractFurnaceRecipe<S
         return input;
     }
 
-    public CrystalPropertyModifier getCrystalToGrow() {
+    public Optional<CrystalPropertyModifier> getCrystalToGrow() {
         return crystalToGrow;
     }
 
-    public StoredInSoulstoneMetal getMetalData() {
+    public Optional<StoredInSoulstoneMetal> getMetalData() {
         return metalData;
     }
 
