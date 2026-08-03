@@ -5,7 +5,7 @@ import net.minecraft.world.effect.*;
 import net.minecraft.world.entity.ai.attributes.AttributeModifier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import team.lodestar.lodestone.helpers.*;
-import team.lodestar.lodestone.registry.common.LodestoneAttributes;
+import team.lodestar.wayward_attributes.core.registry.WaywardAttributeTypes;
 
 public class ShakenFaithEffect extends MobEffect {
     public ShakenFaithEffect() {

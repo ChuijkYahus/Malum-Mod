@@ -13,7 +13,7 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.level.ItemLike;
 import net.neoforged.neoforge.common.crafting.SizedIngredient;
-import team.lodestar.lodestone.recipe.builder.LodestoneRecipeBuilder;
+import team.lodestar.lodestone.modules.toolkit.recipe.LodestoneRecipeBuilder;
 
 import java.util.List;
 

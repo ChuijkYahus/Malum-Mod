@@ -14,6 +14,7 @@ import net.minecraft.resources.*;
 import net.minecraft.util.*;
 import team.lodestar.lodestone.helpers.*;
 import team.lodestar.lodestone.systems.rendering.*;
+import team.lodestar.lodestone.systems.rendering.builder.VFXBuilders;
 
 public class SoulstoneGrowthStagePage extends BookPage {
 

@@ -11,7 +11,7 @@ import net.minecraft.resources.*;
 import net.minecraft.util.Mth;
 import team.lodestar.lodestone.helpers.DataHelper;
 import team.lodestar.lodestone.modules.core.easing.Easing;
-import team.lodestar.lodestone.systems.rendering.VFXBuilders;
+import team.lodestar.lodestone.systems.rendering.builder.VFXBuilders;
 
 import java.awt.*;
 

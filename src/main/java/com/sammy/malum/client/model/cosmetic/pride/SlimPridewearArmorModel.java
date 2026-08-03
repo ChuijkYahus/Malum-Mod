@@ -9,11 +9,12 @@ import net.minecraft.client.model.geom.ModelLayerLocation;
 import net.minecraft.client.model.geom.ModelPart;
 import net.minecraft.client.model.geom.PartPose;
 import net.minecraft.client.model.geom.builders.*;
-import team.lodestar.lodestone.systems.model.armor.*;
+import team.lodestar.lodestone.modules.rendering.model.entity.EntityModelHolder;
+import team.lodestar.lodestone.modules.rendering.model.entity.armor.*;
 
 public class SlimPridewearArmorModel extends LodestoneArmorModel {
 
-    public static MalumModels.ModelHolder<SlimPridewearArmorModel> MODEL = new MalumModels.ModelHolder<>("slim_pridewear", SlimPridewearArmorModel::new, SlimPridewearArmorModel::createBodyLayer);
+    public static EntityModelHolder<SlimPridewearArmorModel> MODEL = new EntityModelHolder<>(MalumMod.malumPath("slim_pridewear"), SlimPridewearArmorModel::new, SlimPridewearArmorModel::createBodyLayer);
 
     public SlimPridewearArmorModel(ModelPart root) {
         super(root);

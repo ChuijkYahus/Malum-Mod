@@ -6,7 +6,7 @@ import net.minecraft.world.entity.EquipmentSlotGroup;
 import net.minecraft.world.entity.ai.attributes.AttributeModifier;
 import net.minecraft.world.item.ArmorItem;
 import net.minecraft.world.item.component.ItemAttributeModifiers;
-import team.lodestar.lodestone.registry.common.LodestoneAttributes;
+import team.lodestar.wayward_attributes.core.registry.WaywardAttributeTypes;
 
 import java.util.List;
 
@@ -23,7 +23,7 @@ public class SoulHunterArmorItem extends MalumArmorItem {
         var group = EquipmentSlotGroup.bySlot(getEquipmentSlot());
         var resourcelocation = MalumMod.malumPath("soul_hunter_armor." + type.getName());
         ItemAttributeModifiers.Builder attributes = ItemAttributeModifiers.builder();
-        attributes.add(LodestoneAttributes.MAGIC_PROFICIENCY,
+        attributes.add(WaywardAttributeTypes.MAGIC_PROFICIENCY,
                 new AttributeModifier(resourcelocation, 0.15f, AttributeModifier.Operation.ADD_MULTIPLIED_BASE),
                 group);
         return attributes.build().modifiers();

@@ -9,7 +9,7 @@ import net.minecraft.core.*;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.*;
 import net.neoforged.neoforge.common.crafting.SizedIngredient;
-import team.lodestar.lodestone.recipe.builder.LodestoneRecipeBuilder;
+import team.lodestar.lodestone.modules.toolkit.recipe.LodestoneRecipeBuilder;
 
 import java.util.*;
 

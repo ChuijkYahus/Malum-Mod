@@ -9,11 +9,12 @@ import net.minecraft.client.model.geom.ModelLayerLocation;
 import net.minecraft.client.model.geom.ModelPart;
 import net.minecraft.client.model.geom.PartPose;
 import net.minecraft.client.model.geom.builders.*;
-import team.lodestar.lodestone.systems.model.armor.*;
+import team.lodestar.lodestone.modules.rendering.model.entity.EntityModelHolder;
+import team.lodestar.lodestone.modules.rendering.model.entity.armor.*;
 
 public class PridewearArmorModel extends LodestoneArmorModel {
 
-    public static MalumModels.ModelHolder<PridewearArmorModel> MODEL = new MalumModels.ModelHolder<>("pridewear", PridewearArmorModel::new, PridewearArmorModel::createBodyLayer);
+    public static EntityModelHolder<PridewearArmorModel> MODEL = new EntityModelHolder<>(MalumMod.malumPath("pridewear"), PridewearArmorModel::new, PridewearArmorModel::createBodyLayer);
 
 
     public PridewearArmorModel(ModelPart root) {

@@ -10,10 +10,10 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.entity.EntityRendererProvider;
 import net.minecraft.util.Mth;
-import team.lodestar.lodestone.handlers.LodestoneRenderHandler;
 import team.lodestar.lodestone.helpers.ColorHelper;
+import team.lodestar.lodestone.modules.rendering.LodestoneRenderingSystem;
 import team.lodestar.lodestone.registry.client.LodestoneRenderTypes;
-import team.lodestar.lodestone.systems.rendering.VFXBuilders;
+import team.lodestar.lodestone.systems.rendering.builder.VFXBuilders;
 import team.lodestar.lodestone.systems.rendering.rendeertype.LodestoneRenderTypeBuilder;
 import team.lodestar.lodestone.systems.rendering.rendeertype.RenderTypeToken;
 import team.lodestar.lodestone.systems.rendering.rendeertype.ShaderUniformHandler;
@@ -45,7 +45,7 @@ public class EntropyChargeRenderer extends AbstractBoltEntityRenderer<EntropyCha
             return;
         }
 
-        var builder = VFXBuilders.createWorld().replaceBufferSource(LodestoneRenderHandler.LATE_DEFERRED_RENDER);
+        var builder = VFXBuilders.createWorld().replaceBufferSource(LodestoneRenderingSystem.LATE_DEFERRED_RENDER);
         float delta = Math.min(entity.primedTime / 40f, 1) * entity.getVisualEffectScalar();
         float timeDelta = ((entity.level().getGameTime() + partialTicks) % 80L) / 80f;
         for (int i = 0; i < 6; i++) {

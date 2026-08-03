@@ -11,6 +11,7 @@ import net.minecraft.server.level.*;
 import net.minecraft.util.*;
 import net.minecraft.world.level.block.state.*;
 import team.lodestar.lodestone.helpers.*;
+import team.lodestar.lodestone.modules.toolkit.sound.SoundPlayer;
 
 import java.util.Arrays;
 import java.util.List;
@@ -30,12 +31,11 @@ public abstract class SpiritRiteBlockEffect extends SpiritRiteEffect {
 
     @Override
     public boolean triggerRiteEffect(ServerLevel level, BlockPos pos, SpiritArcanaType definingSpirit, RiteParameters parameters) {
-        var random = level.getRandom();
         Direction direction = parameters.getTotemDirection().orElseThrow();
         BlockRiteEffectActivator entity = new BlockRiteEffectActivator(level, this, pos, direction);
         entity.setSpirit(definingSpirit);
         level.addFreshEntity(entity);
-        SoundHelper.playSound(entity, MalumSoundEvents.SPARK_FORMED.get(), 0.5f, Mth.nextFloat(random, 0.9f, 1.1f));
+        SoundPlayer.create(MalumSoundEvents.SPARK_FORMED).volume(0.5f).pitch(0.9f, 1.1f).play(entity);
         return true;
     }
 

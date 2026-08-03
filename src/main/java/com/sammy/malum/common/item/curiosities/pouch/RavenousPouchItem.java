@@ -8,12 +8,15 @@ import com.sammy.malum.registry.common.sound.*;
 import net.minecraft.core.*;
 import net.minecraft.network.chat.*;
 import net.minecraft.server.level.*;
+import net.minecraft.sounds.SoundEvent;
+import net.minecraft.sounds.SoundEvents;
 import net.minecraft.world.entity.*;
 import net.minecraft.world.entity.item.*;
 import net.minecraft.world.entity.player.*;
 import net.minecraft.world.item.*;
 import net.neoforged.neoforge.event.entity.player.*;
 import team.lodestar.lodestone.helpers.*;
+import team.lodestar.lodestone.modules.toolkit.sound.SoundPlayer;
 
 import java.util.*;
 
@@ -51,6 +54,21 @@ public class RavenousPouchItem extends MalumPouchItem {
     }
 
     @Override
+    protected SoundEvent getExtractSound() {
+        return SoundEvents.BUNDLE_REMOVE_ONE;
+    }
+
+    @Override
+    protected SoundEvent getInsertSound() {
+        return MalumSoundEvents.RAVENOUS_POUCH_INSERT.get();
+    }
+
+    @Override
+    protected SoundEvent getDropSound() {
+        return SoundEvents.BUNDLE_DROP_CONTENTS;
+    }
+
+    @Override
     protected boolean dropContents(ItemStack stack, MalumPouchContentsComponent contents, Player player) {
         if (!contents.isEmpty()) {
             if (player instanceof ServerPlayer) {
@@ -74,11 +92,7 @@ public class RavenousPouchItem extends MalumPouchItem {
 
     @Override
     public void playInsertSound(Entity entity) {
-        //Side Agnostic Implementation
-        if (!entity.level().isClientSide) {
-            SoundHelper.playSound(entity, MalumSoundEvents.RAVENOUS_POUCH_INSERT.get(), 0.4f, 0.8f + entity.level().getRandom().nextFloat() * 0.4F);
-        }
-        entity.playSound(MalumSoundEvents.RAVENOUS_POUCH_INSERT.get(), 0.4F, 0.8F + entity.level().getRandom().nextFloat() * 0.4F);
+        SoundPlayer.create(MalumSoundEvents.RAVENOUS_POUCH_INSERT).volume(0.8f).pitch(0.8f, 1.2f).play(entity);
     }
 
     public static void trySwallowItem(ItemEntityPickupEvent.Pre event) {

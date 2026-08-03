@@ -35,9 +35,9 @@ import net.minecraft.world.phys.Vec3;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
-import team.lodestar.lodestone.registry.common.LodestoneAttributes;
 import team.lodestar.lodestone.modules.core.easing.Easing;
-import team.lodestar.lodestone.systems.particle.data.color.ColorParticleData;
+import team.lodestar.lodestone.modules.rendering.particle.standard.data.color.ColorParticleData;
+import team.lodestar.wayward_attributes.core.registry.WaywardAttributeTypes;
 
 public class AltarCultist extends CultistMonster implements ICherubFriend {
 
@@ -108,8 +108,8 @@ public class AltarCultist extends CultistMonster implements ICherubFriend {
                 .add(Attributes.FOLLOW_RANGE, 35.0)
                 .add(Attributes.MOVEMENT_SPEED, 0.2)
                 .add(Attributes.ATTACK_DAMAGE, 2.0)
-                .add(LodestoneAttributes.MAGIC_DAMAGE, 4.0)
-                .add(LodestoneAttributes.MAGIC_RESISTANCE, 0.5)
+                .add(WaywardAttributeTypes.MAGIC_DAMAGE, 4.0)
+                .add(WaywardAttributeTypes.MAGIC_RESISTANCE, 0.5)
                 .add(Attributes.ARMOR, 8.0)
                 .add(Attributes.STEP_HEIGHT, 1);
     }
@@ -239,7 +239,7 @@ public class AltarCultist extends CultistMonster implements ICherubFriend {
         boolean isBlessing = target instanceof IAltarBlessingRecipient;
         var pos = getProjectileSpawnPos();
         var level = level();
-        float magicDamage = (float) this.getAttributeValue(LodestoneAttributes.MAGIC_DAMAGE);
+        float magicDamage = (float) this.getAttributeValue(WaywardAttributeTypes.MAGIC_DAMAGE);
         double x = target.getX() - pos.x;
         double y = target.getY(0.5f) - pos.y;
         double z = target.getZ() - pos.z;

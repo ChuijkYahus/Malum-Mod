@@ -17,7 +17,7 @@ import net.minecraft.world.inventory.tooltip.*;
 import net.minecraft.world.item.*;
 import net.minecraft.world.level.*;
 import org.apache.commons.lang3.math.*;
-import team.lodestar.lodestone.helpers.*;
+import team.lodestar.lodestone.modules.toolkit.sound.SoundPlayer;
 
 import java.util.*;
 
@@ -33,6 +33,12 @@ public abstract class MalumPouchItem extends Item {
     public abstract MalumPouchContentsComponent emptyContents();
 
     public abstract void setContents(ItemStack stack, MalumPouchContentsComponent contents);
+
+    protected abstract SoundEvent getExtractSound();
+
+    protected abstract SoundEvent getInsertSound();
+
+    protected abstract SoundEvent getDropSound();
 
     @Override
     public boolean overrideStackedOnOther(ItemStack stack, Slot slot, ClickAction action, Player player) {
@@ -180,18 +186,14 @@ public abstract class MalumPouchItem extends Item {
     }
 
     public void playRemoveOneSound(Entity entity) {
-        entity.playSound(SoundEvents.BUNDLE_REMOVE_ONE, 0.8F, 0.8F + entity.level().getRandom().nextFloat() * 0.4F);
+        entity.playSound(getExtractSound(), 0.8F, 0.8F + entity.level().getRandom().nextFloat() * 0.4F);
     }
 
     public void playInsertSound(Entity entity) {
-        //Side Agnostic Implementation
-        if (!entity.level().isClientSide) {
-            SoundHelper.playSound(entity, SoundEvents.BUNDLE_INSERT, 0.8f, 0.8f + entity.level().getRandom().nextFloat() * 0.4F);
-        }
-        entity.playSound(SoundEvents.BUNDLE_INSERT, 0.8F, 0.8F + entity.level().getRandom().nextFloat() * 0.4F);
+        SoundPlayer.create(getInsertSound()).volume(0.8f).pitch(0.8f, 1.2f).play(entity);
     }
 
     public void playDropContentsSound(Entity entity) {
-        entity.playSound(SoundEvents.BUNDLE_DROP_CONTENTS, 0.8F, 0.8F + entity.level().getRandom().nextFloat() * 0.4F);
+        entity.playSound(getDropSound(), 0.8F, 0.8F + entity.level().getRandom().nextFloat() * 0.4F);
     }
 }

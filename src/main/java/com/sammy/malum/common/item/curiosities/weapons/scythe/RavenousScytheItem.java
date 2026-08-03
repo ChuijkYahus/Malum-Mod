@@ -15,6 +15,7 @@ import team.lodestar.lodestone.helpers.*;
 import team.lodestar.lodestone.modules.core.easing.Easing;
 import team.lodestar.lodestone.modules.toolkit.enchanting.LodestoneEnchantmentEffectCommonsHelper;
 import team.lodestar.lodestone.modules.toolkit.item.*;
+import team.lodestar.lodestone.modules.toolkit.sound.SoundPlayer;
 
 
 public class RavenousScytheItem extends MagicScytheItem {
@@ -44,7 +45,8 @@ public class RavenousScytheItem extends MagicScytheItem {
                         return;
                     }
                     float pitch = Easing.SINE_IN_OUT.asWeighedRandom(attacker.getRandom(), 1f, 1.5f);
-                    SoundHelper.playSound(attacker, MalumGearSoundEvents.RAVENOUS_SCYTHE_EATS.get(), 1, pitch);
+
+                    SoundPlayer.create(MalumGearSoundEvents.RAVENOUS_SCYTHE_EATS).pitch(1f, 1.5f).play(attacker);
                 }
                 if (source.is(MalumDamageTypes.SCYTHE_MAELSTROM)) {
                     if (level.getRandom().nextFloat() >= 0.2f) {

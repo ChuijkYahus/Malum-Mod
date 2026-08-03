@@ -219,11 +219,9 @@ public class MalumTags {
 
         public static final TagKey<Biome> HAS_RUNEWOOD = tag("has_runewood");
         public static final TagKey<Biome> HAS_RARE_RUNEWOOD = tag("has_rare_runewood");
-        public static final TagKey<Biome> HAS_RUNIC_SANCTUARY = tag("has_runic_sanctuary");
 
         public static final TagKey<Biome> HAS_AZURE_RUNEWOOD = tag("has_azure_runewood");
         public static final TagKey<Biome> HAS_RARE_AZURE_RUNEWOOD = tag("has_rare_azure_runewood");
-        public static final TagKey<Biome> HAS_AZURE_SANCTUARY = tag("has_azure_sanctuary");
 
         public static final TagKey<Biome> HAS_EBONY = tag("has_ebony");
 

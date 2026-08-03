@@ -13,6 +13,7 @@ import net.minecraft.world.entity.*;
 import net.minecraft.world.entity.ai.attributes.*;
 import net.minecraft.world.entity.player.*;
 import team.lodestar.lodestone.helpers.*;
+import team.lodestar.lodestone.modules.toolkit.sound.SoundPlayer;
 
 import java.util.*;
 
@@ -70,7 +71,7 @@ public class MalignantInfluenceData {
                 if (!(entity instanceof Player player) || !player.isCreative()) {
                     var sound = malignantAegis >= capacity.getValue() ? MalumSoundEvents.MALIGNANT_AEGIS_FULLY_CHARGED : MalumSoundEvents.MALIGNANT_AEGIS_GROW;
                     double pitchOffset = (malignantAegis / capacity.getValue()) * 0.5f;
-                    SoundHelper.playSound(entity, sound.get(), 0.75f, (float) (1f + pitchOffset));
+                    SoundPlayer.create(sound).volume(0.75f).pitchVariance(1f + pitchOffset).play(entity);
                 }
             }
         }

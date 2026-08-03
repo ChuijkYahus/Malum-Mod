@@ -9,6 +9,7 @@ import com.sammy.malum.registry.common.*;
 import com.sammy.malum.registry.common.MalumContent;
 import com.sammy.malum.registry.common.magic.*;
 import com.sammy.malum.registry.common.sound.*;
+import net.minecraft.client.resources.sounds.Sound;
 import net.minecraft.core.BlockPos;
 import net.minecraft.resources.*;
 import net.minecraft.server.level.*;
@@ -24,6 +25,7 @@ import net.minecraft.world.phys.Vec3;
 import net.neoforged.neoforge.event.tick.EntityTickEvent;
 import net.neoforged.neoforge.network.*;
 import team.lodestar.lodestone.helpers.*;
+import team.lodestar.lodestone.modules.toolkit.sound.SoundPlayer;
 
 import static com.sammy.malum.client.VoidRevelationHandler.RevelationType.BLACK_CRYSTAL;
 
@@ -75,11 +77,12 @@ public class WeepingWellRejectionHandler {
 
     public static void handleRejectionState(Level level, LivingEntity living) {
         var data = living.getData(MalumAttachmentTypes.WEEPING_WELL_INFO);
+        int rejection = data.voidRejection;
         if (!level.isClientSide) {
             if (living instanceof Player && level.getGameTime() % 6L == 0) {
-                float volume = 0.5f + data.voidRejection * 0.02f;
-                float pitch = 0.5f + data.voidRejection * 0.03f;
-                SoundHelper.playSound(living, MalumSoundEvents.SONG_OF_THE_VOID.get(), SoundSource.HOSTILE, volume, pitch);
+                float volume = 0.5f + rejection * 0.02f;
+                float pitch = 0.5f + rejection * 0.03f;
+                SoundPlayer.create(MalumSoundEvents.SONG_OF_THE_VOID).volume(0.5f + rejection * 0.02f).pitch(pitch).play(living);
             }
             if (data.wasJustRejected()) {
                 if (!(living instanceof Player player)) {
@@ -89,8 +92,8 @@ public class WeepingWellRejectionHandler {
                 launchPlayer(player);
             }
         }
-        if (data.isInRejectedState && data.voidRejection > 0) {
-            float intensity = data.voidRejection / WeepingWellData.MAX_REJECTION;
+        if (data.isInRejectedState && rejection > 0) {
+            float intensity = rejection / WeepingWellData.MAX_REJECTION;
             Vec3 movement = living.getDeltaMovement();
             living.setDeltaMovement(movement.x, Math.pow(intensity, 2), movement.z);
         }
@@ -119,7 +122,7 @@ public class WeepingWellRejectionHandler {
                         .spawnSpirits(level);
             }
             PacketDistributor.sendToPlayersTrackingEntityAndSelf(player, new VoidRejectionPayload(player.getId()));
-            SoundHelper.playSound(player, MalumSoundEvents.VOID_REJECTION.get(), 2f, Mth.nextFloat(player.getRandom(), 0.5f, 0.8f));
+            SoundPlayer.create(MalumSoundEvents.VOID_REJECTION).volume(2f).pitch(0.5f, 0.8f).play(player);
         } else {
             VoidRevelationHandler.seeTheRevelation(BLACK_CRYSTAL);
         }

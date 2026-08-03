@@ -16,6 +16,8 @@ import org.lwjgl.opengl.*;
 import team.lodestar.lodestone.registry.client.*;
 import team.lodestar.lodestone.modules.core.easing.Easing;
 import team.lodestar.lodestone.systems.rendering.*;
+import team.lodestar.lodestone.systems.rendering.builder.ScreenVFXBuilder;
+import team.lodestar.lodestone.systems.rendering.builder.VFXBuilders;
 import team.lodestar.lodestone.systems.rendering.shader.*;
 
 import javax.annotation.*;
@@ -122,17 +124,14 @@ public class SubspaceEntryObject extends ProgressionEntryObject {
                     size * scale,
                     size * scale);
 
-            screen.captureLateRendering();
             storedObjects.renderObjects(screen, guiGraphics, xOffset, yOffset, mouseX, mouseY, partialTicks);
             GL11.glDisable(GL_SCISSOR_TEST);
             if (isOpen) {
                 storedObjects.renderObjectsLate(screen, guiGraphics, mouseX, mouseY, partialTicks);
             }
-            screen.doLateRendering();
+            screen.doLateRendering(guiGraphics, mouseX, mouseY);
             pose.popPose();
-            return;
         }
-        super.renderLate(screen, guiGraphics, mouseX, mouseY, partialTicks);
     }
 
     @Override
@@ -175,7 +174,7 @@ public class SubspaceEntryObject extends ProgressionEntryObject {
         shaderInstance.safeGetUniform("UVCoordinates").set(new Vector4f(-1f, 2f, -1f, 2f));
         shaderInstance.safeGetUniform("Size").set(3f,3f);
 
-        VFXBuilders.ScreenVFXBuilder builder = VFXBuilders.createScreen()
+        ScreenVFXBuilder builder = VFXBuilders.createScreen()
                 .setShader(shaderInstance)
                 .setAlpha(delta);
 
@@ -185,21 +184,17 @@ public class SubspaceEntryObject extends ProgressionEntryObject {
         builder.setAlpha(0.2f * delta);
         RenderSystem.blendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE);
         shaderInstance.safeGetUniform("Speed").set(800f);
-        renderSubspaceTexture(graphics, builder, x - 1, y, size);
-        renderSubspaceTexture(graphics, builder, x + 1, y, size);
-        renderSubspaceTexture(graphics, builder, x, y - 1, size);
-        renderSubspaceTexture(graphics, builder, x, y + 1, size);
         shaderInstance.setUniformDefaults();
         RenderSystem.defaultBlendFunc();
         RenderSystem.disableDepthTest();
         RenderSystem.disableBlend();
     }
 
-    public static void renderSubspaceTexture(GuiGraphics graphics, VFXBuilders.ScreenVFXBuilder builder, int x, int y, int size) {
+    public static void renderSubspaceTexture(GuiGraphics graphics, ScreenVFXBuilder builder, int x, int y, int size) {
         builder.setTexture(SUBSPACE_TEXTURE).setPositionWithWidth(x, y, size, size).blit(graphics.pose());
     }
 
-    public static void renderGlowTexture(GuiGraphics graphics, VFXBuilders.ScreenVFXBuilder builder, int x, int y) {
+    public static void renderGlowTexture(GuiGraphics graphics, ScreenVFXBuilder builder, int x, int y) {
         builder.setTexture(GLOW_TEXTURE).setPositionWithWidth(x, y, 32, 32).blit(graphics.pose());
     }
 

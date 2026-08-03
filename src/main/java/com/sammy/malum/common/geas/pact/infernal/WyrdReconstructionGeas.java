@@ -20,6 +20,7 @@ import net.neoforged.neoforge.event.entity.living.*;
 import net.neoforged.neoforge.event.tick.*;
 import team.lodestar.lodestone.helpers.*;
 import team.lodestar.lodestone.modules.core.easing.Easing;
+import team.lodestar.lodestone.modules.toolkit.sound.SoundPlayer;
 
 import java.util.function.*;
 
@@ -93,7 +94,8 @@ public class WyrdReconstructionGeas extends GeasEffect {
             for (Entity knockbackTarget : serverLevel.getEntities(target, target.getBoundingBox().inflate(2f), t -> canApplyKnockback(target, t))) {
                 knockbackTarget.setDeltaMovement(knockbackTarget.position().subtract(target.position()).normalize().scale(2f).add(0, 0.5f, 0));
             }
-            SoundHelper.playSound(target, MalumSoundEvents.WYRD_RECONSTRUCTION.get(), 1, 1);
+
+            SoundPlayer.create(MalumSoundEvents.WYRD_RECONSTRUCTION).play(target);
             MalumParticleEffectTypes.WYRD_RECONSTRUCTION_REVIVE.createEffect(target)
                     .color(new MalumNetworkedParticleEffectColorData(MalumSpiritTypes.SACRED_SPIRIT, MalumSpiritTypes.INFERNAL_SPIRIT))
                     .customData(new WyrdReconstructionReviveParticleEffect.WyrdReconstructionEffectData(target.getId()))

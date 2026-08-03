@@ -13,6 +13,7 @@ import org.joml.*;
 import org.lwjgl.opengl.*;
 import team.lodestar.lodestone.registry.client.*;
 import team.lodestar.lodestone.systems.rendering.*;
+import team.lodestar.lodestone.systems.rendering.builder.VFXBuilders;
 import team.lodestar.lodestone.systems.rendering.shader.*;
 
 import java.lang.Math;

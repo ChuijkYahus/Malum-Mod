@@ -171,9 +171,9 @@ import team.lodestar.lodestone.modules.toolkit.block.LodestoneBlockProperties;
 import team.lodestar.lodestone.modules.toolkit.block.LodestoneDirectionalBlock;
 import team.lodestar.lodestone.modules.toolkit.block.LodestoneStairBlock;
 import team.lodestar.lodestone.modules.toolkit.item.LodestoneItemProperties;
-import team.lodestar.lodestone.modules.toolkit.item.tools.magic.*;
 import team.lodestar.lodestone.modules.toolkit.multiblock.MultiBlockItem;
 import team.lodestar.lodestone.modules.toolkit.multiblock.MultiBlockStructure;
+import team.lodestar.wayward_attributes.util.*;
 
 import java.util.function.BiFunction;
 import java.util.function.Function;

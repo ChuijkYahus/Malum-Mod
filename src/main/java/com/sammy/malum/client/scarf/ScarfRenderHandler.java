@@ -11,11 +11,12 @@ import net.minecraft.world.entity.player.*;
 import net.minecraft.world.phys.*;
 import net.neoforged.neoforge.client.event.*;
 import org.joml.*;
-import team.lodestar.lodestone.handlers.LodestoneRenderHandler;
+import team.lodestar.lodestone.modules.rendering.LodestoneRenderingSystem;
 import team.lodestar.lodestone.helpers.*;
 import team.lodestar.lodestone.registry.client.*;
 import team.lodestar.lodestone.modules.core.easing.Easing;
 import team.lodestar.lodestone.systems.rendering.*;
+import team.lodestar.lodestone.systems.rendering.builder.VFXBuilders;
 import team.lodestar.lodestone.systems.rendering.rendeertype.*;
 import team.lodestar.lodestone.systems.rendering.trail.*;
 

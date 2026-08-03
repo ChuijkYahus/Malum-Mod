@@ -13,7 +13,7 @@
  import net.minecraft.world.entity.ai.attributes.*;
  import net.minecraft.world.entity.ai.attributes.AttributeModifier.Operation;
  import net.minecraft.world.item.ItemStack;
- import team.lodestar.lodestone.registry.common.LodestoneAttributes;
+ import team.lodestar.wayward_attributes.core.registry.WaywardAttributeTypes;
  import top.theillusivec4.curios.api.SlotContext;
 
  import java.util.function.*;
@@ -23,8 +23,8 @@
      public static final ResourceLocation INOCULATION_BUFF = MalumMod.malumPath("inoculation_belt");
      public static final Multimap<Holder<Attribute>, AttributeModifier> INOCULATION_MODIFIERS =
              ImmutableMultimap.<Holder<Attribute>, AttributeModifier>builder()
-                     .put(LodestoneAttributes.MAGIC_PROFICIENCY.getDelegate(), new AttributeModifier(INOCULATION_BUFF, 0.05f, Operation.ADD_VALUE))
-                     .put(LodestoneAttributes.MAGIC_RESISTANCE.getDelegate(), new AttributeModifier(INOCULATION_BUFF, 0.05f, Operation.ADD_VALUE))
+                     .put(WaywardAttributeTypes.MAGIC_PROFICIENCY.getDelegate(), new AttributeModifier(INOCULATION_BUFF, 0.05f, Operation.ADD_VALUE))
+                     .put(WaywardAttributeTypes.MAGIC_RESISTANCE.getDelegate(), new AttributeModifier(INOCULATION_BUFF, 0.05f, Operation.ADD_VALUE))
                      .put(Attributes.ARMOR, new AttributeModifier(INOCULATION_BUFF, 0.5f, Operation.ADD_VALUE))
                      .put(Attributes.ARMOR_TOUGHNESS, new AttributeModifier(INOCULATION_BUFF, 0.5f, Operation.ADD_VALUE))
 

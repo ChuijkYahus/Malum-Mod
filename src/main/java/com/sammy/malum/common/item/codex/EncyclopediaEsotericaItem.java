@@ -8,7 +8,7 @@ import net.minecraft.world.item.*;
 import net.minecraft.world.level.*;
 import net.neoforged.api.distmarker.*;
 import team.lodestar.lodestone.handlers.screenparticle.*;
-import team.lodestar.lodestone.systems.particle.screen.*;
+import team.lodestar.lodestone.modules.rendering.particle.standard.screen.*;
 
 public class EncyclopediaEsotericaItem extends EncyclopediaArcanaItem implements ParticleEmitterHandler.ItemParticleSupplier {
 

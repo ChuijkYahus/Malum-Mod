@@ -14,8 +14,8 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.Vec3;
 import team.lodestar.lodestone.modules.core.easing.Easing;
 import team.lodestar.lodestone.systems.network.particle.NetworkedParticleEffectPositionData;
-import team.lodestar.lodestone.systems.particle.render_types.LodestoneWorldParticleRenderType;
-import team.lodestar.lodestone.systems.particle.world.LodestoneWorldParticle;
+import team.lodestar.lodestone.modules.rendering.particle.standard.render_types.LodestoneWorldParticleRenderType;
+import team.lodestar.lodestone.modules.rendering.particle.standard.world.LodestoneWorldParticle;
 
 import java.util.UUID;
 import java.util.function.Consumer;

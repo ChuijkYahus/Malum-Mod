@@ -15,19 +15,19 @@ import net.minecraft.world.entity.*;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.phys.Vec3;
-import team.lodestar.lodestone.handlers.LodestoneRenderHandler;
+import team.lodestar.lodestone.modules.rendering.LodestoneRenderingSystem;
 
 import team.lodestar.lodestone.helpers.VecHelper;
 import team.lodestar.lodestone.registry.common.particle.LodestoneParticleTypes;
 import team.lodestar.lodestone.modules.core.easing.Easing;
-import team.lodestar.lodestone.systems.particle.builder.WorldParticleBuilder;
-import team.lodestar.lodestone.systems.particle.data.GenericParticleData;
-import team.lodestar.lodestone.systems.particle.data.color.ColorParticleData;
-import team.lodestar.lodestone.systems.particle.data.color.ColorParticleDataBuilder;
-import team.lodestar.lodestone.systems.particle.data.spin.SpinParticleData;
-import team.lodestar.lodestone.systems.particle.render_types.LodestoneWorldParticleRenderType;
-import team.lodestar.lodestone.systems.particle.world.behaviors.DirectionalParticleBehavior;
-import team.lodestar.lodestone.systems.particle.world.behaviors.SparkParticleBehavior;
+import team.lodestar.lodestone.modules.rendering.particle.standard.builder.WorldParticleBuilder;
+import team.lodestar.lodestone.modules.rendering.particle.standard.data.GenericParticleData;
+import team.lodestar.lodestone.modules.rendering.particle.standard.data.color.ColorParticleData;
+import team.lodestar.lodestone.modules.rendering.particle.standard.data.color.ColorParticleDataBuilder;
+import team.lodestar.lodestone.modules.rendering.particle.standard.data.spin.SpinParticleData;
+import team.lodestar.lodestone.modules.rendering.particle.standard.render_types.LodestoneWorldParticleRenderType;
+import team.lodestar.lodestone.modules.rendering.particle.standard.world.behaviors.DirectionalParticleBehavior;
+import team.lodestar.lodestone.modules.rendering.particle.standard.world.behaviors.SparkParticleBehavior;
 
 import java.awt.*;
 
@@ -88,7 +88,7 @@ public class SoulBindingBrazierParticleEffects {
                     .setColorData(color.setCoefficient(0.7f).build())
                     .setSpinData(SpinParticleData.create(spin).build())
                     .setBehavior(DirectionalParticleBehavior.directional(new Vec3(0, 1, 0)))
-                    .setRenderTarget(LodestoneRenderHandler.LATE_DEFERRED_RENDER)
+                    .setRenderTarget(LodestoneRenderingSystem.LATE_DEFERRED_RENDER)
                     .setLifetime(lifeTime)
                     .enableNoClip()
                     .spawn(level, x, y - 0.4f, z)
@@ -137,7 +137,7 @@ public class SoulBindingBrazierParticleEffects {
                     .setTransparencyData(GenericParticleData.create(0.1f, 0.3f, 0).setEasing(Easing.SINE_IN, Easing.SINE_IN_OUT).build())
                     .setSpinData(SpinParticleData.createRandomDirection(random, nextFloat(random, 0.05f, 0.1f)).build())
                     .setRandomMotion(0.01f, 0.01f)
-                    .setRenderTarget(LodestoneRenderHandler.LATE_DEFERRED_RENDER)
+                    .setRenderTarget(LodestoneRenderingSystem.LATE_DEFERRED_RENDER)
                     .setColorData(colorData.getColor())
                     .setRandomOffset(0.2f)
                     .setLifetime(25)
@@ -240,7 +240,7 @@ public class SoulBindingBrazierParticleEffects {
                     .setTransparencyData(GenericParticleData.create(0.1f, 0.6f, 0).setEasing(Easing.SINE_IN, Easing.SINE_IN_OUT).build())
                     .setSpinData(SpinParticleData.createRandomDirection(random, nextFloat(random, 0.05f, 0.1f)).build())
                     .setRandomMotion(0.01f, 0.01f)
-                    .setRenderTarget(LodestoneRenderHandler.LATE_DEFERRED_RENDER)
+                    .setRenderTarget(LodestoneRenderingSystem.LATE_DEFERRED_RENDER)
                     .setColorData(color.build())
                     .setLifetime(20)
                     .enableNoClip()
@@ -315,7 +315,7 @@ public class SoulBindingBrazierParticleEffects {
                 lightSpecs.getBuilder()
                         .setTransparencyData(GenericParticleData.create(0.05f, 0.2f, 0).setEasing(Easing.EXPO_OUT, Easing.SINE_IN_OUT).build())
                         .setScaleData(GenericParticleData.create(scale, 0).setEasing(Easing.SINE_IN_OUT).build())
-                        .setRenderTarget(LodestoneRenderHandler.LATE_DEFERRED_RENDER)
+                        .setRenderTarget(LodestoneRenderingSystem.LATE_DEFERRED_RENDER)
                         .addMotion(0, velocity * 1.2f, 0).setLifetime(lifeTime);
                 lightSpecs.spawnParticlesRaw();
             }
@@ -329,7 +329,7 @@ public class SoulBindingBrazierParticleEffects {
                 lightSpecs.getBuilder()
                         .setTransparencyData(GenericParticleData.create(0.1f, 0.6f, 0).setEasing(Easing.EXPO_OUT, Easing.SINE_IN_OUT).build())
                         .setScaleData(GenericParticleData.create(scale, 0).setEasing(Easing.SINE_IN_OUT).build())
-                        .setRenderTarget(LodestoneRenderHandler.LATE_DEFERRED_RENDER)
+                        .setRenderTarget(LodestoneRenderingSystem.LATE_DEFERRED_RENDER)
                         .addMotion(0, velocity * 1.4f, 0)
                         .setBehavior(DirectionalParticleBehavior.directional(pos.subtract(rotatingPos).normalize()))
                         .setLifetime(lifeTime)
@@ -346,7 +346,7 @@ public class SoulBindingBrazierParticleEffects {
                         .setTransparencyData(GenericParticleData.create(0f, 0.8f, 0f).setEasing(Easing.SINE_IN_OUT, Easing.SINE_IN_OUT).build())
                         .setScaleData(GenericParticleData.create(scale*1.5f, 0).setEasing(Easing.SINE_IN).build())
                         .setBehavior(DirectionalParticleBehavior.directional(up))
-                        .setRenderTarget(LodestoneRenderHandler.LATE_DEFERRED_RENDER)
+                        .setRenderTarget(LodestoneRenderingSystem.LATE_DEFERRED_RENDER)
                         .setMotion(0, 0.001f, 0)
                         .setLifetime(lifeTime)
                         .setColorData(color)
@@ -367,7 +367,7 @@ public class SoulBindingBrazierParticleEffects {
                         .setTransparencyData(GenericParticleData.create(0f, 0.5f, 0f).setEasing(Easing.CUBIC_OUT, Easing.CUBIC_OUT).build())
                         .setScaleData(GenericParticleData.create(scale, scale * Easing.SINE_IN_OUT.asWeighedRandom(random, 0.95f, 1.05f)).build())
                         .setBehavior(DirectionalParticleBehavior.directional(up))
-                        .setRenderTarget(LodestoneRenderHandler.LATE_DEFERRED_RENDER)
+                        .setRenderTarget(LodestoneRenderingSystem.LATE_DEFERRED_RENDER)
                         .setSpinData(SpinParticleData.create(spin).build())
                         .setColorData(color.setCoefficient(0.7f).build())
                         .setLifetime(lifeTime)
@@ -402,7 +402,7 @@ public class SoulBindingBrazierParticleEffects {
                             .setSpirit(spiritType)
                             .setTransparencyData(GenericParticleData.create(0.1f, 0.5f, 0).setEasing(Easing.EXPO_OUT, Easing.SINE_IN_OUT).build())
                             .setScaleData(GenericParticleData.create(scale, scale*0.2f).setEasing(Easing.SINE_IN_OUT).build())
-                            .setRenderTarget(LodestoneRenderHandler.LATE_DEFERRED_RENDER)
+                            .setRenderTarget(LodestoneRenderingSystem.LATE_DEFERRED_RENDER)
                             .setRandomOffset(0.1f)
                             .setLifetime(lifeTime)
                             .enableNoClip()
@@ -417,7 +417,7 @@ public class SoulBindingBrazierParticleEffects {
                             .setLengthData(GenericParticleData.create(scale*8f, scale*0.2f).setEasing(Easing.SINE_IN_OUT).build())
                             .setScaleData(GenericParticleData.create(scale*1.4f, scale*0.2f).setEasing(Easing.SINE_IN_OUT).build())
                             .setBehavior(SparkParticleBehavior.sparkBehavior().setForcedDirection(direction).setLengthCenter(1f))
-                            .setRenderTarget(LodestoneRenderHandler.LATE_DEFERRED_RENDER)
+                            .setRenderTarget(LodestoneRenderingSystem.LATE_DEFERRED_RENDER)
                             .setRandomOffset(0.1f)
                             .setLifetime(40)
                             .enableNoClip()
@@ -460,7 +460,7 @@ public class SoulBindingBrazierParticleEffects {
                             .setSpirit(spiritType)
                             .setTransparencyData(GenericParticleData.create(0.1f, 0.5f, 0).setEasing(Easing.EXPO_OUT, Easing.SINE_IN_OUT).build())
                             .setScaleData(GenericParticleData.create(scale, scale*0.2f).setEasing(Easing.SINE_IN_OUT).build())
-                            .setRenderTarget(LodestoneRenderHandler.LATE_DEFERRED_RENDER)
+                            .setRenderTarget(LodestoneRenderingSystem.LATE_DEFERRED_RENDER)
                             .setRandomOffset(0.1f)
                             .setLifetime(lifeTime)
                             .enableNoClip()

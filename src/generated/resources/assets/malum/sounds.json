@@ -4495,19 +4495,19 @@
     "sounds": [
       {
         "name": "malum:mob/cultist/cardinal/cannon_fire1",
-        "pitch": 0.7
+        "pitch": 0.5
       },
       {
         "name": "malum:mob/cultist/cardinal/cannon_fire2",
-        "pitch": 0.7
+        "pitch": 0.5
       },
       {
         "name": "malum:mob/cultist/cardinal/cannon_fire3",
-        "pitch": 0.7
+        "pitch": 0.5
       },
       {
         "name": "malum:mob/cultist/cardinal/cannon_fire4",
-        "pitch": 0.7
+        "pitch": 0.5
       }
     ],
     "subtitle": "malum.subtitle.cardinal_immolation_fire"

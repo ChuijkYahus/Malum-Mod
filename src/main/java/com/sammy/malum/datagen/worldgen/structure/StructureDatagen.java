@@ -1,6 +1,5 @@
 package com.sammy.malum.datagen.worldgen.structure;
 
-import com.sammy.malum.common.worldgen.sanctuary.RunicSanctuaryStructure;
 import com.sammy.malum.common.worldgen.well.*;
 import com.sammy.malum.registry.common.worldgen.*;
 import net.minecraft.core.registries.*;
@@ -23,16 +22,12 @@ public class StructureDatagen {
 
     public static void structureBootstrap(BootstrapContext<Structure> context) {
         structure(context, MalumStructureTypes.StructureKeys.WEEPING_WELL, WeepingWellStructure::new, HAS_WEEPING_WELL, UNDERGROUND_STRUCTURES, NONE);
-        structure(context, MalumStructureTypes.StructureKeys.RUNIC_SANCTUARY, RunicSanctuaryStructure::new, HAS_RUNIC_SANCTUARY, SURFACE_STRUCTURES, NONE);
-        structure(context, MalumStructureTypes.StructureKeys.AZURE_SANCTUARY, RunicSanctuaryStructure::new, HAS_AZURE_SANCTUARY, SURFACE_STRUCTURES, NONE);
 
         GeodeDatagen.structureBootstrap(context);
     }
 
     public static void structureSetBootstrap(BootstrapContext<StructureSet> context) {
         set(context, MalumStructureTypes.StructureKeys.WEEPING_WELL, 24, 18, 546451666);
-        set(context, MalumStructureTypes.StructureKeys.RUNIC_SANCTUARY, 32, 24, 546451665);
-        set(context, MalumStructureTypes.StructureKeys.AZURE_SANCTUARY, 32, 24, 546451665);
 
         GeodeDatagen.structureSetBootstrap(context);
     }

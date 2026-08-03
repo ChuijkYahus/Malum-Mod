@@ -5,8 +5,11 @@ import com.sammy.malum.core.helpers.*;
 import com.sammy.malum.registry.common.*;
 import com.sammy.malum.registry.common.item.*;
 
+import com.sammy.malum.registry.common.sound.MalumSoundEvents;
 import net.minecraft.core.*;
 import net.minecraft.network.chat.*;
+import net.minecraft.sounds.SoundEvent;
+import net.minecraft.sounds.SoundEvents;
 import net.minecraft.world.entity.item.*;
 import net.minecraft.world.entity.player.*;
 import net.minecraft.world.item.*;
@@ -44,6 +47,21 @@ public class SoulwovenPouchItem extends MalumPouchItem {
     @Override
     public void setContents(ItemStack stack, MalumPouchContentsComponent contents) {
         stack.set(MalumDataComponents.SOULWOVEN_POUCH_CONTENTS, (SoulwovenPouchContentsComponent) contents);
+    }
+
+    @Override
+    protected SoundEvent getExtractSound() {
+        return SoundEvents.BUNDLE_REMOVE_ONE;
+    }
+
+    @Override
+    protected SoundEvent getInsertSound() {
+        return SoundEvents.BUNDLE_INSERT;
+    }
+
+    @Override
+    protected SoundEvent getDropSound() {
+        return SoundEvents.BUNDLE_DROP_CONTENTS;
     }
 
     public static void trySwallowItem(ItemEntityPickupEvent.Pre event) {

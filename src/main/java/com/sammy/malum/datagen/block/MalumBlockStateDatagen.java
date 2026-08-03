@@ -1,5 +1,5 @@
-package com.sammy.malum.datagen.block;
 
+package com.sammy.malum.datagen.block;
 import com.sammy.malum.*;
 import com.sammy.malum.datagen.set.MalumCrystalSetDatagen;
 import com.sammy.malum.datagen.set.MalumMetallicsDatagen;

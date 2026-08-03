@@ -5,7 +5,7 @@ import com.sammy.malum.client.model.MalignantStrongholdArmorModel;
 import com.sammy.malum.client.model.SoulHunterArmorModel;
 import com.sammy.malum.client.model.SoulStainedSteelArmorModel;
 import net.neoforged.neoforge.client.extensions.common.*;
-import team.lodestar.lodestone.systems.model.armor.*;
+import team.lodestar.lodestone.modules.rendering.model.entity.armor.*;
 
 import static com.sammy.malum.registry.common.MalumContent.*;
 import static com.sammy.malum.registry.common.MalumContent.Gear.*;

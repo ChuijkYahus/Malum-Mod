@@ -15,6 +15,7 @@ import net.minecraft.world.item.*;
 import net.neoforged.neoforge.event.entity.living.*;
 import team.lodestar.lodestone.handlers.*;
 import team.lodestar.lodestone.modules.core.easing.Easing;
+import team.lodestar.lodestone.modules.toolkit.worldevent.WorldEventHandler;
 
 import java.util.function.*;
 

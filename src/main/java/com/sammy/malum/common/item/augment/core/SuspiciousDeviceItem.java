@@ -13,6 +13,7 @@ import net.minecraft.server.level.*;
 import net.minecraft.sounds.*;
 import team.lodestar.lodestone.handlers.*;
 import team.lodestar.lodestone.modules.core.easing.Easing;
+import team.lodestar.lodestone.modules.toolkit.worldevent.WorldEventHandler;
 
 import java.util.List;
 

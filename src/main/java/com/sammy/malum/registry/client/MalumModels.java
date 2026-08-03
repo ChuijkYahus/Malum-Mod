@@ -17,15 +17,11 @@ import net.minecraft.client.model.geom.builders.LayerDefinition;
 import net.minecraft.resources.ResourceLocation;
 import net.neoforged.neoforge.client.event.*;
 import team.lodestar.lodestone.modules.rendering.handlers.ModelHandler;
-import team.lodestar.lodestone.systems.model.obj.ObjModel;
 
 import java.util.function.Function;
 import java.util.function.Supplier;
 
 public class MalumModels {
-
-    public static final ObjModel WAND_PARTS = (ObjModel) ModelHandler.register(MalumMod.malumPath("models/obj/wand_parts.obj"));
-    public static final ObjModel MAGEHAND = (ObjModel) ModelHandler.register(MalumMod.malumPath("models/obj/magehand.obj"));
 
     public static void registerLayerDefinitions(EntityRenderersEvent.RegisterLayerDefinitions event) {
         event.registerLayerDefinition(AltarModel.LAYER, AltarModel::createBodyLayer);
@@ -49,38 +45,5 @@ public class MalumModels {
 
         PridewearArmorModel.MODEL.bake(event);
         SlimPridewearArmorModel.MODEL.bake(event);
-    }
-
-    public static class ModelHolder<T extends Model> {
-        private final ModelLayerLocation layer;
-        private final Function<ModelPart, T> modelBuilder;
-        private final Supplier<LayerDefinition> definitionBuilder;
-        private T model;
-
-        public ModelHolder(String id, Function<ModelPart, T> modelBuilder, Supplier<LayerDefinition> definitionBuilder) {
-            this(MalumMod.malumPath(id), modelBuilder, definitionBuilder);
-        }
-
-        public ModelHolder(ResourceLocation model, Function<ModelPart, T> modelBuilder, Supplier<LayerDefinition> definitionBuilder) {
-            this(new ModelLayerLocation(model, "main"), modelBuilder, definitionBuilder);
-        }
-
-        public ModelHolder(ModelLayerLocation layer, Function<ModelPart, T> modelBuilder, Supplier<LayerDefinition> definitionBuilder) {
-            this.layer = layer;
-            this.modelBuilder = modelBuilder;
-            this.definitionBuilder = definitionBuilder;
-        }
-
-        public void bake(EntityRenderersEvent.AddLayers event) {
-            model = modelBuilder.apply(event.getEntityModels().bakeLayer(layer));
-        }
-
-        public void register(EntityRenderersEvent.RegisterLayerDefinitions event) {
-            event.registerLayerDefinition(layer, definitionBuilder);
-        }
-
-        public T getModel() {
-            return model;
-        }
     }
 }

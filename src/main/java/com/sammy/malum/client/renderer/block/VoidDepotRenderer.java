@@ -16,9 +16,12 @@ import net.minecraft.util.*;
 import org.joml.*;
 import team.lodestar.lodestone.handlers.*;
 import team.lodestar.lodestone.helpers.*;
+import team.lodestar.lodestone.modules.rendering.LodestoneRenderingSystem;
 import team.lodestar.lodestone.registry.client.*;
 import team.lodestar.lodestone.modules.core.easing.Easing;
 import team.lodestar.lodestone.systems.rendering.*;
+import team.lodestar.lodestone.systems.rendering.builder.VFXBuilders;
+import team.lodestar.lodestone.systems.rendering.builder.WorldVFXBuilder;
 import team.lodestar.lodestone.systems.rendering.rendeertype.*;
 
 import java.awt.*;
@@ -32,8 +35,8 @@ import static com.sammy.malum.registry.client.MalumRenderTypeTokens.VOID_VIGNETT
 
 public class VoidDepotRenderer implements BlockEntityRenderer<VoidDepotBlockEntity> {
 
-    private static final MultiBufferSource ADDITIVE = new LodestoneBufferWrapper(LodestoneRenderTypes.ADDITIVE_TEXT, LodestoneRenderHandler.LATE_DEFERRED_RENDER.getTarget());
-    private static final MultiBufferSource TRANSPARENT = new LodestoneBufferWrapper(LodestoneRenderTypes.TRANSPARENT_TEXT, LodestoneRenderHandler.DEFERRED_RENDER.getTarget());
+    private static final MultiBufferSource ADDITIVE = new LodestoneBufferWrapper(LodestoneRenderTypes.ADDITIVE_TEXT, LodestoneRenderingSystem.LATE_DEFERRED_RENDER.getTarget());
+    private static final MultiBufferSource TRANSPARENT = new LodestoneBufferWrapper(LodestoneRenderTypes.TRANSPARENT_TEXT, LodestoneRenderingSystem.DEFERRED_RENDER.getTarget());
 
     public VoidDepotRenderer(BlockEntityRendererProvider.Context context) {
     }
@@ -44,11 +47,11 @@ public class VoidDepotRenderer implements BlockEntityRenderer<VoidDepotBlockEnti
         float width = 0.3125f;
 
         Vector3f[] positions = new Vector3f[]{new Vector3f(-width, height, width), new Vector3f(width, height, width), new Vector3f(width, height, -width), new Vector3f(-width, height, -width)};
-        VFXBuilders.WorldVFXBuilder builder = VFXBuilders.createWorld();
+        WorldVFXBuilder builder = VFXBuilders.createWorld();
         poseStack.pushPose();
         poseStack.translate(0.5f, 0.01f, 0.5f);
 
-        builder.replaceBufferSource(LodestoneRenderHandler.LATE_DEFERRED_RENDER.getTarget())
+        builder.replaceBufferSource(LodestoneRenderingSystem.LATE_DEFERRED_RENDER.getTarget())
                 .setRenderType(LodestoneRenderTypes.TRANSPARENT_TEXTURE.apply(VOID_VIGNETTE))
                 .renderQuad(poseStack, positions, 1f);
         final long gameTime = blockEntityIn.getLevel().getGameTime();
@@ -57,7 +60,7 @@ public class VoidDepotRenderer implements BlockEntityRenderer<VoidDepotBlockEnti
         float alpha = 0.05f;
 
         var distortion = MalumRenderTypes.WEEPING_WELL_DISTORTED_TEXTURE.apply(VOID_NOISE);
-        builder.replaceBufferSource(LodestoneRenderHandler.DEFERRED_RENDER.getTarget());
+        builder.replaceBufferSource(LodestoneRenderingSystem.DEFERRED_RENDER.getTarget());
         for (int i = 0; i < 2; i++) {
             float speed = 1000f + 250f * i;
             final ShaderUniformHandler uniforms = new ShaderUniformHandler()

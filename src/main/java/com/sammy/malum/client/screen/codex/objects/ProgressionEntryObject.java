@@ -67,7 +67,7 @@ public class ProgressionEntryObject extends SelectableEntryObject<AbstractProgre
         float effectStrength = Mth.lerp(partialTicks, oldOutlineVisibility, outlineVisibility) / 20f;
         if (effectStrength > 0) {
             float offset = Easing.CIRC_OUT.ease(effectStrength) * 2;
-            poseStack.translate(0, -offset, 0);
+//            poseStack.translate(0, -offset, 0);
         }
     }
 

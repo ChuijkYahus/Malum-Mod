@@ -15,6 +15,7 @@ import org.jetbrains.annotations.*;
 import team.lodestar.lodestone.modules.core.easing.Easing;
 import team.lodestar.lodestone.modules.toolkit.blockentity.LodestoneBlockEntity;
 import team.lodestar.lodestone.modules.toolkit.inventory.InventoryInteractionResult;
+import team.lodestar.lodestone.modules.toolkit.inventory.InventoryInteractionResultBuilder;
 import team.lodestar.lodestone.modules.toolkit.inventory.LodestoneItemStackBlockHandler;
 import team.lodestar.lodestone.modules.toolkit.inventory.LodestoneItemStackHandler;
 
@@ -38,13 +39,12 @@ public class MalumBlockItemStackHandler extends LodestoneItemStackBlockHandler {
     }
 
     @Override
-    protected InventoryInteractionResult processResult(ServerLevel level, InventoryInteractionResult result) {
+    protected void processResult(ServerLevel level, InventoryInteractionResult result) {
         if (result.wasSuccessful()) {
-            ItemStack stack = result.getInternalChanges().getUpdated();
+            var stack = result.getTransferredItem();
             var soundEvent = getExtractSound(stack);
             playSound(level, soundEvent, stack);
         }
-        return super.processResult(level, result);
     }
 
     @Override

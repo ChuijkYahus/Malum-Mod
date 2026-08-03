@@ -12,10 +12,10 @@ import net.minecraft.world.level.*;
 import net.minecraft.world.phys.*;
 import team.lodestar.lodestone.helpers.*;
 import team.lodestar.lodestone.modules.core.easing.Easing;
-import team.lodestar.lodestone.systems.particle.*;
-import team.lodestar.lodestone.systems.particle.data.*;
-import team.lodestar.lodestone.systems.particle.world.behaviors.*;
-import team.lodestar.lodestone.systems.particle.world.options.*;
+import team.lodestar.lodestone.modules.rendering.particle.standard.*;
+import team.lodestar.lodestone.modules.rendering.particle.standard.data.*;
+import team.lodestar.lodestone.modules.rendering.particle.standard.world.behaviors.*;
+import team.lodestar.lodestone.modules.rendering.particle.standard.world.options.*;
 
 import static com.sammy.malum.visual_effects.SpiritLightSpecs.*;
 

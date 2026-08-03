@@ -21,6 +21,7 @@ import team.lodestar.lodestone.handlers.*;
 import team.lodestar.lodestone.helpers.*;
 import team.lodestar.lodestone.modules.toolkit.enchanting.LodestoneEnchantmentEffectCommonsHelper;
 import team.lodestar.lodestone.modules.toolkit.item.*;
+import team.lodestar.lodestone.modules.toolkit.sound.SoundPlayer;
 
 
 public class EdgeOfDeliveranceItem extends MalumScytheItem {
@@ -95,9 +96,10 @@ public class EdgeOfDeliveranceItem extends MalumScytheItem {
         NeoForge.EVENT_BUS.post(postEvent);
 
         damageContainer.setNewDamage(damageContainer.getNewDamage() * 2);
-        SoundHelper.playSound(target, MalumGearSoundEvents.MALIGNANT_METAL_CRIT.get(), SoundSource.PLAYERS, 2f, 0.75f);
-        SoundHelper.playSound(target, MalumGearSoundEvents.MALIGNANT_METAL_CRIT.get(), SoundSource.PLAYERS, 3f, 1.25f);
-        SoundHelper.playSound(target, MalumGearSoundEvents.MALIGNANT_METAL_CRIT.get(), SoundSource.PLAYERS, 3f, 1.75f);
+
+        SoundPlayer.create(MalumGearSoundEvents.MALIGNANT_METAL_CRIT).volume(2f).pitch(0.75f).play(target, SoundSource.PLAYERS);
+        SoundPlayer.create(MalumGearSoundEvents.MALIGNANT_METAL_CRIT).volume(3f).pitch(1.25f).play(target, SoundSource.PLAYERS);
+        SoundPlayer.create(MalumGearSoundEvents.MALIGNANT_METAL_CRIT).volume(3f).pitch(1.75f).play(target, SoundSource.PLAYERS);
         return true;
     }
 }

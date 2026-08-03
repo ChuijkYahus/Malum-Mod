@@ -2,7 +2,7 @@ package com.sammy.malum.registry.client;
 
 import com.sammy.malum.*;
 import net.neoforged.neoforge.client.event.RegisterParticleProvidersEvent;
-import team.lodestar.lodestone.systems.particle.screen.*;
+import team.lodestar.lodestone.modules.rendering.particle.standard.screen.*;
 
 import static team.lodestar.lodestone.registry.common.particle.LodestoneScreenParticleTypes.*;
 

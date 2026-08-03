@@ -55,4 +55,9 @@ public class WandTinkererContainer extends LodestoneBlockEntityContainer<WandTin
     public LodestoneItemStackBlockHandler getItemStackHandler() {
         return blockEntity.wandOutput;
     }
+
+    @Override
+    public boolean stillValid(Player player) {
+        return true; //TODO: The usual stuff
+    }
 }

@@ -22,6 +22,7 @@ import net.minecraft.world.level.ItemLike;
 import org.jetbrains.annotations.Nullable;
 import org.joml.Matrix4f;
 import team.lodestar.lodestone.systems.rendering.*;
+import team.lodestar.lodestone.systems.rendering.builder.VFXBuilders;
 
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.TimeUnit;

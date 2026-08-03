@@ -27,22 +27,17 @@ public abstract class DisplayedGizmo {
         if (!isHoveredOver) {
             isHoveredOver = holder.shouldGizmoBeConsideredHoveredOver() || screen.isHovering(mouseX, mouseY, x, y, 16, 16);
         }
-        boolean isHoveredCache = isHoveredOver;
         renderDecals(screen, holder, guiGraphics, x, y, mouseX, mouseY);
-        resetValues();
-        if (!holder.shouldGizmoRenderTooltip()) {
-            return;
-        }
-        if (isHoveredCache) {
+        if (holder.shouldGizmoRenderTooltip() && isHoveredOver) {
             var tooltip = new ArrayList<Component>();
             var builder = new GizmoTooltipBuilder(tooltip);
             holder.addGizmoTooltip(builder);
-
             if (tooltip.isEmpty()) {
                 gatherTooltip(holder, builder);
             }
-            screen.renderLater(() -> guiGraphics.renderComponentTooltip(Minecraft.getInstance().font, tooltip, mouseX, mouseY));
+            screen.renderTooltip(tooltip);
         }
+        resetValues();
     }
 
     public void gatherTooltip(IGizmoHolder holder, GizmoTooltipBuilder tooltip) {

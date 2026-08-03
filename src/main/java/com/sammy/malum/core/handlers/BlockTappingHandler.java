@@ -19,7 +19,7 @@ import net.neoforged.neoforge.event.entity.player.UseItemOnBlockEvent;
 import net.neoforged.neoforge.items.ItemHandlerHelper;
 import team.lodestar.lodestone.helpers.ColorHelper;
 import team.lodestar.lodestone.helpers.block.BlockStateHelper;
-import team.lodestar.lodestone.systems.particle.data.color.ColorParticleData;
+import team.lodestar.lodestone.modules.rendering.particle.standard.data.color.ColorParticleData;
 
 public class BlockTappingHandler {
 

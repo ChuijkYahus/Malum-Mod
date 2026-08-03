@@ -8,12 +8,12 @@ import net.minecraft.world.level.*;
 import net.minecraft.world.phys.*;
 import team.lodestar.lodestone.registry.common.particle.*;
 import team.lodestar.lodestone.modules.core.easing.Easing;
-import team.lodestar.lodestone.systems.particle.*;
-import team.lodestar.lodestone.systems.particle.builder.*;
-import team.lodestar.lodestone.systems.particle.data.*;
-import team.lodestar.lodestone.systems.particle.data.spin.*;
-import team.lodestar.lodestone.systems.particle.world.*;
-import team.lodestar.lodestone.systems.particle.world.options.*;
+import team.lodestar.lodestone.modules.rendering.particle.standard.*;
+import team.lodestar.lodestone.modules.rendering.particle.standard.builder.*;
+import team.lodestar.lodestone.modules.rendering.particle.standard.data.*;
+import team.lodestar.lodestone.modules.rendering.particle.standard.data.spin.*;
+import team.lodestar.lodestone.modules.rendering.particle.standard.world.*;
+import team.lodestar.lodestone.modules.rendering.particle.standard.world.options.*;
 
 import java.util.function.*;
 

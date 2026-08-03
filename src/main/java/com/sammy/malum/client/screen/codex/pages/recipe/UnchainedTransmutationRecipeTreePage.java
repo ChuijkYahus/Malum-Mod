@@ -22,10 +22,10 @@ import team.lodestar.lodestone.handlers.screenparticle.ScreenParticleHandler;
 
 import team.lodestar.lodestone.modules.core.easing.Easing;
 import team.lodestar.lodestone.modules.toolkit.recipe.LodestoneRecipeSearch;
-import team.lodestar.lodestone.systems.particle.builder.ScreenParticleBuilder;
-import team.lodestar.lodestone.systems.particle.data.GenericParticleData;
-import team.lodestar.lodestone.systems.particle.data.spin.SpinParticleData;
-import team.lodestar.lodestone.systems.particle.screen.ScreenParticleHolder;
+import team.lodestar.lodestone.modules.rendering.particle.standard.builder.ScreenParticleBuilder;
+import team.lodestar.lodestone.modules.rendering.particle.standard.data.GenericParticleData;
+import team.lodestar.lodestone.modules.rendering.particle.standard.data.spin.SpinParticleData;
+import team.lodestar.lodestone.modules.rendering.particle.standard.screen.ScreenParticleHolder;
 
 import java.util.ArrayList;
 import java.util.List;

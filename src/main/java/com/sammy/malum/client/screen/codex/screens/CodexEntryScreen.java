@@ -123,7 +123,7 @@ public class CodexEntryScreen extends AbstractMalumCodexScreen {
         codexObjects.renderObjectsLate(this, guiGraphics, mouseX, mouseY, partialTicks);
         renderPageObjects(guiGraphics, leftPage, leftPageObjects, pageTop, leftPageLeft, mouseX, mouseY, partialTicks, false);
         renderPageObjects(guiGraphics, rightPage, rightPageObjects, pageTop, rightPageLeft, mouseX, mouseY, partialTicks, false);
-        doLateRendering();
+        doLateRendering(guiGraphics, mouseX, mouseY);
     }
 
     @Override

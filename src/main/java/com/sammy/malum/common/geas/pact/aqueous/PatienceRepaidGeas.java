@@ -16,6 +16,7 @@ import net.neoforged.neoforge.event.entity.living.*;
 import net.neoforged.neoforge.event.tick.*;
 import team.lodestar.lodestone.helpers.*;
 import team.lodestar.lodestone.modules.core.easing.Easing;
+import team.lodestar.lodestone.modules.toolkit.sound.SoundPlayer;
 
 import java.util.function.*;
 
@@ -74,8 +75,8 @@ public class PatienceRepaidGeas extends GeasEffect {
                     MalumParticleEffectTypes.PATIENCE_REPAID.createEffect(entity)
                             .color(new MalumNetworkedParticleEffectColorData(MalumSpiritTypes.AQUEOUS_SPIRIT, MalumSpiritTypes.ELDRITCH_SPIRIT))
                             .spawn(level);
-                    float pitch = Easing.SINE_IN_OUT.asWeighedRandom(level.random, 0.9f, 1.1f);
-                    SoundHelper.playSound(entity, MalumSoundEvents.PATIENT_DROWNING.get(), entity.getSoundSource(), 1.0f, pitch);
+
+                    SoundPlayer.create(MalumSoundEvents.PATIENT_DROWNING).pitchVariance(0.1f).play(entity);
 
                     bufferedDamage -= damage;
                     damageTimer = 0;

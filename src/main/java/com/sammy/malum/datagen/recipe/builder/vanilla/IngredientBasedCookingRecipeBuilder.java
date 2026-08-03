@@ -5,7 +5,7 @@ import net.minecraft.advancements.*;
 import net.minecraft.data.recipes.*;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.crafting.*;
-import team.lodestar.lodestone.recipe.builder.*;
+import team.lodestar.lodestone.modules.toolkit.recipe.*;
 
 import javax.annotation.*;
 import java.util.*;

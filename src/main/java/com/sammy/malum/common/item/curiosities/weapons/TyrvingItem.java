@@ -23,8 +23,11 @@ import team.lodestar.lodestone.handlers.*;
 import team.lodestar.lodestone.helpers.*;
 import team.lodestar.lodestone.modules.core.easing.Easing;
 import team.lodestar.lodestone.modules.toolkit.item.tools.LodestoneSwordItem;
+import team.lodestar.lodestone.modules.toolkit.sound.SoundPlayer;
+import team.lodestar.lodestone.modules.toolkit.worldevent.WorldEventHandler;
 import team.lodestar.lodestone.registry.common.tag.*;
 import team.lodestar.lodestone.modules.toolkit.item.*;
+import team.lodestar.wayward_attributes.WaywardTags;
 
 public class TyrvingItem extends LodestoneSwordItem implements IMalumEventResponder, ISpiritAffiliatedItem {
 
@@ -53,7 +56,7 @@ public class TyrvingItem extends LodestoneSwordItem implements IMalumEventRespon
     @Override
     public void finalizedOutgoingDamageEvent(LivingDamageEvent.Post event, LivingEntity attacker, LivingEntity target, ItemStack stack) {
         if (attacker.level() instanceof ServerLevel level) {
-            if (!event.getSource().is(LodestoneDamageTypeTags.CAN_TRIGGER_MAGIC_DAMAGE)) {
+            if (!event.getSource().is(WaywardTags.DamageTypeTags.CAN_TRIGGER_MAGIC_DAMAGE)) {
                 return;
             }
             float magicDamage = EntitySpiritDropData.getSpiritData(target).map(EntitySpiritDropData::getTotalSpirits).orElse(0);
@@ -72,9 +75,7 @@ public class TyrvingItem extends LodestoneSwordItem implements IMalumEventRespon
                                 .setDamageData(0, magicDamage, 3));
             }
 
-            float pitch = Easing.SINE_IN_OUT.asWeighedRandom(attacker.getRandom(), 1f, 1.5f);
-            SoundHelper.playSound(attacker, MalumGearSoundEvents.TYRVING_SLASH.get(), 1, pitch);
-
+            SoundPlayer.create(MalumGearSoundEvents.TYRVING_SLASH).pitch(1f, 1.5f).play(attacker);
             MalumParticleEffectTypes.TYRVING_SLASH.createEffect()
                     .originatesFrom(attacker).targets(target)
                     .verticalSlashRotation()

@@ -17,6 +17,7 @@ import net.minecraft.world.phys.*;
 import net.neoforged.api.distmarker.*;
 import org.jetbrains.annotations.NotNull;
 import team.lodestar.lodestone.helpers.*;
+import team.lodestar.lodestone.modules.toolkit.sound.SoundPlayer;
 import team.lodestar.lodestone.systems.rendering.trail.*;
 
 import javax.annotation.Nullable;
@@ -255,7 +256,7 @@ public abstract class AbstractBoltProjectile extends ThrowableProjectile {
     public void playSound(@NotNull SoundEvent sound, float volume, float pitch) {
         if (getOwner() != null) {
             if (position().distanceTo(getOwner().position()) < 2f) {
-                SoundHelper.playSound(getOwner(), sound, volume, pitch);
+                SoundPlayer.create(sound).volume(volume).pitch(pitch).play(getOwner());
                 return;
             }
         }

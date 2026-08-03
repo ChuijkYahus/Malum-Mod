@@ -10,7 +10,9 @@ import net.minecraft.world.level.block.state.*;
 import net.minecraft.world.level.block.state.properties.IntegerProperty;
 import net.minecraft.world.level.levelgen.feature.*;
 import org.joml.Vector2i;
-import team.lodestar.lodestone.systems.worldgen.*;
+import team.lodestar.lodestone.modules.toolkit.worldgen.LodestoneWorldgenBuilder;
+import team.lodestar.lodestone.modules.toolkit.worldgen.LodestoneWorldgenBuilderEntry;
+import team.lodestar.lodestone.modules.toolkit.worldgen.LodestoneWorldgenBuilderLayer;
 
 import java.util.*;
 import java.util.function.*;

@@ -21,13 +21,13 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.EntityHitResult;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
-import team.lodestar.lodestone.handlers.LodestoneRenderHandler;
+import team.lodestar.lodestone.modules.rendering.LodestoneRenderingSystem;
 import team.lodestar.lodestone.modules.core.easing.Easing;
-import team.lodestar.lodestone.systems.particle.builder.WorldParticleBuilder;
-import team.lodestar.lodestone.systems.particle.data.GenericParticleData;
-import team.lodestar.lodestone.systems.particle.data.color.ColorParticleData;
-import team.lodestar.lodestone.systems.particle.data.spin.SpinParticleData;
-import team.lodestar.lodestone.systems.particle.render_types.LodestoneWorldParticleRenderType;
+import team.lodestar.lodestone.modules.rendering.particle.standard.builder.WorldParticleBuilder;
+import team.lodestar.lodestone.modules.rendering.particle.standard.data.GenericParticleData;
+import team.lodestar.lodestone.modules.rendering.particle.standard.data.color.ColorParticleData;
+import team.lodestar.lodestone.modules.rendering.particle.standard.data.spin.SpinParticleData;
+import team.lodestar.lodestone.modules.rendering.particle.standard.render_types.LodestoneWorldParticleRenderType;
 
 import java.awt.*;
 
@@ -138,19 +138,19 @@ public class CultistBlessingProjectile extends AbstractBoltProjectile {
         var color = ColorParticleData.create(CULTIST_PINK, CULTIST_PURPLE);
         var lightSpecs = SpiritLightSpecs.spiritLightSpecs(level, position, color);
         lightSpecs.getBuilder()
-                .setRenderTarget(LodestoneRenderHandler.LATE_DEFERRED_RENDER)
+                .setRenderTarget(LodestoneRenderingSystem.LATE_DEFERRED_RENDER)
                 .setRenderType(LodestoneWorldParticleRenderType.LUMITRANSPARENT)
                 .multiplyLifetime(2f)
                 .setMotion(motion);
         lightSpecs.getBloomBuilder()
-                .setRenderTarget(LodestoneRenderHandler.LATE_DEFERRED_RENDER)
+                .setRenderTarget(LodestoneRenderingSystem.LATE_DEFERRED_RENDER)
                 .setRenderType(LodestoneWorldParticleRenderType.LUMITRANSPARENT)
                 .multiplyLifetime(1.25f)
                 .setMotion(motion);
         lightSpecs.spawnParticles();
 
         var shineBuilder = WorldParticleBuilder.create(MalumParticles.SHINE)
-                .setRenderTarget(LodestoneRenderHandler.LATE_DEFERRED_RENDER)
+                .setRenderTarget(LodestoneRenderingSystem.LATE_DEFERRED_RENDER)
                 .setLengthData(GenericParticleData.create(0.4f, 0.6f, 0f).setEasing(Easing.EXPO_OUT, Easing.SINE_IN_OUT).build())
                 .setScaleData(GenericParticleData.create(0.6f, 0).setEasing(Easing.SINE_IN).build())
                 .setSpinData(SpinParticleData.create(0).randomSpinOffset(random))

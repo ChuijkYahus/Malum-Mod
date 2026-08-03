@@ -32,7 +32,8 @@ import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import team.lodestar.lodestone.helpers.*;
 import team.lodestar.lodestone.modules.core.easing.Easing;
-import team.lodestar.lodestone.registry.common.LodestoneAttributes;
+import team.lodestar.lodestone.modules.toolkit.sound.SoundPlayer;
+import team.lodestar.wayward_attributes.core.registry.WaywardAttributeTypes;
 
 import java.util.function.*;
 
@@ -46,8 +47,8 @@ public abstract class CultistMonster extends Monster implements Enemy {
     public static final ResourceLocation ALTAR_EMPOWERMENT = MalumMod.malumPath("altar_empowerment");
     public static final Multimap<Holder<Attribute>, AttributeModifier> EMPOWERMENT_MODIFIERS =
             ImmutableMultimap.of(
-                    LodestoneAttributes.MAGIC_DAMAGE.getDelegate(), new AttributeModifier(ALTAR_EMPOWERMENT, 2f, AttributeModifier.Operation.ADD_VALUE),
-                    LodestoneAttributes.MAGIC_RESISTANCE.getDelegate(), new AttributeModifier(ALTAR_EMPOWERMENT, 0.5f, AttributeModifier.Operation.ADD_VALUE),
+                    WaywardAttributeTypes.MAGIC_DAMAGE.getDelegate(), new AttributeModifier(ALTAR_EMPOWERMENT, 2f, AttributeModifier.Operation.ADD_VALUE),
+                    WaywardAttributeTypes.MAGIC_RESISTANCE.getDelegate(), new AttributeModifier(ALTAR_EMPOWERMENT, 0.5f, AttributeModifier.Operation.ADD_VALUE),
                     Attributes.MOVEMENT_SPEED, new AttributeModifier(ALTAR_EMPOWERMENT, 0.5f, AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL),
                     Attributes.KNOCKBACK_RESISTANCE, new AttributeModifier(ALTAR_EMPOWERMENT, 0.5f, AttributeModifier.Operation.ADD_VALUE)
             );
@@ -143,7 +144,7 @@ public abstract class CultistMonster extends Monster implements Enemy {
     @Override
     public boolean doHurtTarget(@NotNull Entity target) {
         boolean hurt = super.doHurtTarget(target);
-        float magicDamage = (float) this.getAttributeValue(LodestoneAttributes.MAGIC_DAMAGE);
+        float magicDamage = (float) this.getAttributeValue(WaywardAttributeTypes.MAGIC_DAMAGE);
         var damagesource = DamageTypeHelper.create(level(), MalumDamageTypes.CULTIST_MAGIC, this);
         target.invulnerableTime = 0;
         if (target.hurt(damagesource, magicDamage)) {
@@ -205,7 +206,7 @@ public abstract class CultistMonster extends Monster implements Enemy {
 
     public void broadcastAnimation(byte animationEvent, Supplier<SoundEvent> sound) {
         level().broadcastEntityEvent(this, animationEvent);
-        SoundHelper.playSoundRandomPitch(this, sound, 1.5f, 0.8f, 1.2f);
+        SoundPlayer.create(sound).volume(1.5f).pitch(0.8f, 1.2f).play(this);
     }
 
     public Vec3 directionToTarget(Entity target) {

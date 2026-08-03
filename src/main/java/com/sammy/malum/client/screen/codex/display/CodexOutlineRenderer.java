@@ -12,7 +12,7 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.Mth;
 import org.lwjgl.opengl.GL11;
 import team.lodestar.lodestone.registry.client.LodestoneShaders;
-import team.lodestar.lodestone.systems.rendering.VFXBuilders;
+import team.lodestar.lodestone.systems.rendering.builder.VFXBuilders;
 
 import java.awt.*;
 

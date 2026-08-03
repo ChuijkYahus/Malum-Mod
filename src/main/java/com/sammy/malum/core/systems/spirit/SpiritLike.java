@@ -5,7 +5,7 @@ import com.sammy.malum.registry.common.magic.*;
 import net.minecraft.core.*;
 import net.minecraft.resources.*;
 import net.minecraft.world.item.*;
-import team.lodestar.lodestone.systems.particle.data.color.*;
+import team.lodestar.lodestone.modules.rendering.particle.standard.data.color.ColorParticleDataBuilder;
 
 import javax.annotation.*;
 import java.awt.*;

@@ -8,7 +8,7 @@ import net.minecraft.client.model.*;
 import net.minecraft.world.entity.*;
 import net.minecraft.world.item.*;
 import org.jetbrains.annotations.*;
-import team.lodestar.lodestone.systems.model.armor.*;
+import team.lodestar.lodestone.modules.rendering.model.entity.armor.*;
 import team.lodestar.lodestone.systems.rendering.rendeertype.*;
 
 import java.awt.*;

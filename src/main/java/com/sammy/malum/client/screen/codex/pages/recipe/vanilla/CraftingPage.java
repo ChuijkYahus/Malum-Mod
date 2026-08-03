@@ -9,7 +9,7 @@ import com.sammy.malum.registry.common.util.building.WoodBlockSet;
 import net.minecraft.client.gui.*;
 import net.minecraft.client.renderer.GameRenderer;
 import net.minecraft.resources.ResourceLocation;
-import team.lodestar.lodestone.systems.rendering.VFXBuilders;
+import team.lodestar.lodestone.systems.rendering.builder.VFXBuilders;
 
 import java.util.*;
 import java.util.function.*;

@@ -13,13 +13,14 @@ import net.neoforged.api.distmarker.*;
 import team.lodestar.lodestone.handlers.*;
 import team.lodestar.lodestone.helpers.*;
 import team.lodestar.lodestone.modules.core.easing.Easing;
-import team.lodestar.lodestone.systems.particle.builder.*;
-import team.lodestar.lodestone.systems.particle.data.*;
-import team.lodestar.lodestone.systems.particle.data.color.ColorParticleData;
-import team.lodestar.lodestone.systems.particle.data.spin.*;
-import team.lodestar.lodestone.systems.particle.render_types.*;
-import team.lodestar.lodestone.systems.particle.world.*;
-import team.lodestar.lodestone.systems.particle.world.behaviors.*;
+import team.lodestar.lodestone.modules.rendering.LodestoneRenderingSystem;
+import team.lodestar.lodestone.modules.rendering.particle.standard.builder.*;
+import team.lodestar.lodestone.modules.rendering.particle.standard.data.*;
+import team.lodestar.lodestone.modules.rendering.particle.standard.data.color.ColorParticleData;
+import team.lodestar.lodestone.modules.rendering.particle.standard.data.spin.*;
+import team.lodestar.lodestone.modules.rendering.particle.standard.render_types.*;
+import team.lodestar.lodestone.modules.rendering.particle.standard.world.*;
+import team.lodestar.lodestone.modules.rendering.particle.standard.world.behaviors.*;
 
 import java.util.function.*;
 
@@ -49,11 +50,11 @@ public class HexBolt extends AbstractStaffBoltProjectile {
         Vec3 norm = getDeltaMovement().normalize().scale(0.05f);
         var lightSpecs = SpiritLightSpecs.spiritLightSpecs(level, position, MalumSpiritTypes.WICKED_SPIRIT);
         lightSpecs.getBuilder()
-                .setRenderTarget(LodestoneRenderHandler.LATE_DEFERRED_RENDER)
+                .setRenderTarget(LodestoneRenderingSystem.LATE_DEFERRED_RENDER)
                 .multiplyLifetime(1.25f)
                 .setMotion(norm);
         lightSpecs.getBloomBuilder()
-                .setRenderTarget(LodestoneRenderHandler.LATE_DEFERRED_RENDER)
+                .setRenderTarget(LodestoneRenderingSystem.LATE_DEFERRED_RENDER)
                 .multiplyLifetime(1.25f)
                 .setMotion(norm);
         lightSpecs.spawnParticles();
@@ -64,7 +65,7 @@ public class HexBolt extends AbstractStaffBoltProjectile {
                 .setTransparencyData(GenericParticleData.create(0.9f * scalar, 0.4f * scalar, 0f).setEasing(Easing.SINE_IN_OUT, Easing.SINE_IN).build())
                 .setScaleData(GenericParticleData.create(0.4f * scalar, 0.3f * scalar).setEasing(Easing.SINE_IN_OUT).build())
                 .setColorData(MalumSpiritTypes.WICKED_SPIRIT.createColorData().build())
-                .setRenderTarget(LodestoneRenderHandler.LATE_DEFERRED_RENDER)
+                .setRenderTarget(LodestoneRenderingSystem.LATE_DEFERRED_RENDER)
                 .setLifetime(Math.min(6 + age * 3, 30))
                 .addTickActor(behavior)
                 .setSpinData(spinData)

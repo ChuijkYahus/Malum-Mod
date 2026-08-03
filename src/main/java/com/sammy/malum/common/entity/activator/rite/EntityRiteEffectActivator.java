@@ -15,8 +15,8 @@ import net.minecraft.server.level.ServerLevel;
 import net.minecraft.util.Mth;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.Vec3;
-import team.lodestar.lodestone.helpers.SoundHelper;
 import team.lodestar.lodestone.modules.core.easing.Easing;
+import team.lodestar.lodestone.modules.toolkit.sound.SoundPlayer;
 
 import java.util.UUID;
 
@@ -70,7 +70,7 @@ public class EntityRiteEffectActivator extends FloatingEntity {
             getDestination().getEntityCollector(level)
                     .ifPresent(target -> {
                         effect.tryApplyEffect(level, target);
-                        SoundHelper.playSound(this, effect.getImpactSound().value(), effect.getImpactSoundVolume(target), Mth.nextFloat(random, 0.9f, 1.1f));
+                        SoundPlayer.create(effect.getImpactSound()).volume(effect.getImpactSoundVolume(target)).pitch(0.9f, 1.1f).play(this);
                     });
         }
     }
@@ -99,11 +99,6 @@ public class EntityRiteEffectActivator extends FloatingEntity {
     @Override
     public float getMovementEasing(float windUp, float distance) {
         return 0.02f + Easing.EXPO_IN.lerp(windUp, 0, 0.4f);
-    }
-
-    @Override
-    public boolean isPickable() {
-        return false;
     }
 
     public SpiritArcanaType getSpiritType() {

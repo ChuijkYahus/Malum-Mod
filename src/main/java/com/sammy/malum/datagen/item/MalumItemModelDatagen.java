@@ -9,7 +9,7 @@ import net.minecraft.data.*;
 import net.minecraft.world.item.*;
 import net.neoforged.neoforge.common.data.*;
 import team.lodestar.lodestone.modules.datagen.providers.item.LodestoneItemModelSystem;
-import team.lodestar.lodestone.modules.datagen.smith.itemmodel.ItemModelSystemData;
+import team.lodestar.lodestone.modules.datagen.smith.itemmodel.data.ItemModelSystemData;
 
 import java.util.*;
 import java.util.function.*;
@@ -25,11 +25,8 @@ public class MalumItemModelDatagen extends LodestoneItemModelSystem {
 
     @Override
     protected void registerModels() {
-        Set<Supplier<? extends Item>> items = new HashSet<>(MalumContent.ITEMS.getEntries());
 
-        items.removeIf(i -> i.get() instanceof BlockItem);
-
-        ItemModelSystemData data = new ItemModelSystemData(this, items::remove);;
+        ItemModelSystemData data = new ItemModelSystemData(this, MalumContent.ITEMS);
 
         MalumItemModelSmithTypes.SOUL_OF_AN_ITEM.act(data, MalumContent.SOUL_OF_A_SCYTHE, MalumContent.SOUL_OF_THE_ANCHOR);
         setTexturePath("cosmetic/weaves/pride/");
@@ -41,10 +38,10 @@ public class MalumItemModelDatagen extends LodestoneItemModelSystem {
         );
 
         setTexturePath("spirit/");
-        MalumItemModelSmithTypes.GENERATED_ITEM.act(data, items.stream().filter(i -> i.get() instanceof SpiritShardItem).collect(Collectors.toList()));
+        MalumItemModelSmithTypes.GENERATED_ITEM.act(data, SpiritShardItem.class);
 
         setTexturePath("runes/");
-        MalumItemModelSmithTypes.GENERATED_ITEM.act(data, items.stream().filter(i -> i.get() instanceof AbstractRuneCurioItem).collect(Collectors.toList()));
+        MalumItemModelSmithTypes.GENERATED_ITEM.act(data, AbstractRuneCurioItem.class);
 
         setTexturePath("alchemy/");
         MalumItemModelSmithTypes.IMPETUS_ITEM.act(data, MalumContent.AlchemyAndMetallics.ALCHEMICAL_IMPETUS, MalumContent.AlchemyAndMetallics.FRACTURED_ALCHEMICAL_IMPETUS);
@@ -65,8 +62,8 @@ public class MalumItemModelDatagen extends LodestoneItemModelSystem {
         MalumItemModelSmithTypes.CATALYST_LOBBER.act(data, MalumContent.Gear.CATALYST_LOBBER);
         MalumItemModelSmithTypes.POUCH.act(data, MalumContent.Gear.SOULWOVEN_POUCH, MalumContent.Gear.RAVENOUS_POUCH);
 
-        MalumItemModelSmithTypes.HANDHELD_ITEM.act(data, items.stream().filter(i -> i.get() instanceof DiggerItem).collect(Collectors.toList()));
-        MalumItemModelSmithTypes.HANDHELD_ITEM.act(data, items.stream().filter(i -> i.get() instanceof SwordItem).collect(Collectors.toList()));
+        MalumItemModelSmithTypes.HANDHELD_ITEM.act(data, DiggerItem.class);
+        MalumItemModelSmithTypes.HANDHELD_ITEM.act(data, SwordItem.class);
 
         MalumItemModelSmithTypes.SKIN_APPLICABLE_ARMOR_ITEM.act(data,
                 MalumContent.Gear.SOUL_HUNTER_CLOAK, MalumContent.Gear.SOUL_HUNTER_ROBE, MalumContent.Gear.SOUL_HUNTER_LEGGINGS, MalumContent.Gear.SOUL_HUNTER_BOOTS,
@@ -75,7 +72,7 @@ public class MalumItemModelDatagen extends LodestoneItemModelSystem {
 
         MalumItemModelSmithTypes.LARGE_GENERATED_ITEM.act(data, MalumContent.DungeonGear.IRON_CROWN);
 
-        MalumItemModelSmithTypes.GENERATED_ITEM.act(data, items);
+        MalumItemModelSmithTypes.GENERATED_ITEM.act(data, data.allRemaining());
     }
 
     @Override

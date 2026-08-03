@@ -24,19 +24,19 @@ import net.minecraft.world.phys.*;
 import net.neoforged.api.distmarker.*;
 import net.neoforged.neoforge.client.event.AddAttributeTooltipsEvent;
 import net.neoforged.neoforge.event.entity.living.*;
-import team.lodestar.lodestone.handlers.*;
-import team.lodestar.lodestone.helpers.*;
-import team.lodestar.lodestone.registry.common.*;
-import team.lodestar.lodestone.registry.common.tag.LodestoneDamageTypeTags;
 import team.lodestar.lodestone.modules.core.easing.Easing;
+import team.lodestar.lodestone.modules.rendering.LodestoneRenderingSystem;
 import team.lodestar.lodestone.modules.toolkit.item.*;
 
-import team.lodestar.lodestone.systems.particle.builder.*;
-import team.lodestar.lodestone.systems.particle.data.*;
-import team.lodestar.lodestone.systems.particle.data.color.*;
-import team.lodestar.lodestone.systems.particle.data.spin.*;
-import team.lodestar.lodestone.systems.particle.render_types.*;
-import team.lodestar.lodestone.systems.particle.world.behaviors.*;
+import team.lodestar.lodestone.modules.rendering.particle.standard.builder.*;
+import team.lodestar.lodestone.modules.rendering.particle.standard.data.*;
+import team.lodestar.lodestone.modules.rendering.particle.standard.data.color.*;
+import team.lodestar.lodestone.modules.rendering.particle.standard.data.spin.*;
+import team.lodestar.lodestone.modules.rendering.particle.standard.render_types.*;
+import team.lodestar.lodestone.modules.rendering.particle.standard.world.behaviors.*;
+import team.lodestar.lodestone.modules.toolkit.sound.SoundPlayer;
+import team.lodestar.wayward_attributes.WaywardTags;
+import team.lodestar.wayward_attributes.core.registry.WaywardAttributeTypes;
 
 import java.util.*;
 
@@ -92,7 +92,7 @@ public class UnwindingChaosStaffItem extends AbstractStaffItem implements ISpiri
             addStaffCharges(serverLevel, attacker, target, 40);
         }
 
-        boolean canTriggerMagic = source.is(LodestoneDamageTypeTags.CAN_TRIGGER_MAGIC_DAMAGE);
+        boolean canTriggerMagic = source.is(WaywardTags.DamageTypeTags.CAN_TRIGGER_MAGIC_DAMAGE);
         if (canTriggerMagic || source.is(MalumDamageTypes.INVERTED_HEART_PROPAGATION)) {
             target.igniteForSeconds(5);
         }
@@ -109,8 +109,7 @@ public class UnwindingChaosStaffItem extends AbstractStaffItem implements ISpiri
                         .spawn(serverLevel);
 
             }
-            float pitch = Easing.SINE_IN_OUT.asWeighedRandom(level.getRandom(), 0.75f, 2f);
-            SoundHelper.playSound(attacker, MalumGearSoundEvents.WORLDSOUL_MOTIF_HEAVY_IMPACT.get(), 2f, pitch);
+            SoundPlayer.create(MalumGearSoundEvents.WORLDSOUL_MOTIF_HEAVY_IMPACT).volume(2f).pitch(0.75f, 2f).play(attacker);
         }
     }
 
@@ -131,7 +130,7 @@ public class UnwindingChaosStaffItem extends AbstractStaffItem implements ISpiri
         float spread = count > 0 ? ceil * 0.1f * (count % 2L == 0 ? 1 : -1) : 0f;
         float pitchOffset = count > 4 ? 2f + (2f - ceil * 1.5f) : 0.5f;
         float velocity = 3f;
-        float magicDamage = (float) player.getAttributes().getValue(LodestoneAttributes.MAGIC_DAMAGE);
+        float magicDamage = (float) player.getAttributes().getValue(WaywardAttributeTypes.MAGIC_DAMAGE);
         var projectile = fireProjectile(player, hand, EntropicFlameBolt::new, velocity, pitchOffset, magicDamage, spawnDelay);
         var direction = projectile.getDeltaMovement();
         float yRot = ((float) (Mth.atan2(direction.x, direction.z) * (double) (180F / (float) Math.PI)));
@@ -144,8 +143,7 @@ public class UnwindingChaosStaffItem extends AbstractStaffItem implements ISpiri
 
     public void addStaffCharges(ServerLevel serverLevel, LivingEntity attacker, LivingEntity target, int charge) {
         attacker.getData(MalumAttachmentTypes.STAFF_ABILITIES).reduceStaffChargeCooldown(attacker, charge);
-        float pitch = Easing.SINE_IN_OUT.asWeighedRandom(attacker.getRandom(), 0.75f, 1.25f);
-        SoundHelper.playSound(target, MalumGearSoundEvents.WORLDSOUL_MOTIF_LIGHT_IMPACT.get(), attacker.getSoundSource(), 1.5f, pitch);
+        SoundPlayer.create(MalumGearSoundEvents.WORLDSOUL_MOTIF_LIGHT_IMPACT).volume(1.5f).pitch(0.75f, 1.25f).play(attacker);
         MalumParticleEffectTypes.UNWINDING_CHAOS_CHARGE.createEffect(target)
                 .color(getDefiningSpiritType())
                 .customData(new UnwindingChaosChargeParticleEffect.UnwindingChaosChargeEffectData(attacker.getId()))
@@ -160,7 +158,7 @@ public class UnwindingChaosStaffItem extends AbstractStaffItem implements ISpiri
                 .setBehavior(DirectionalParticleBehavior.directional(pLivingEntity.getLookAngle().normalize()))
                 .setScaleData(GenericParticleData.create(0.3f * pct, 0).setEasing(Easing.SINE_IN_OUT).build())
                 .setMotion(pLivingEntity.getLookAngle().normalize().scale(0.2f * pct))
-                .setRenderTarget(LodestoneRenderHandler.LATE_DEFERRED_RENDER)
+                .setRenderTarget(LodestoneRenderingSystem.LATE_DEFERRED_RENDER)
                 .enableForcedSpawn()
                 .setLifetime(4)
                 .enableNoClip();

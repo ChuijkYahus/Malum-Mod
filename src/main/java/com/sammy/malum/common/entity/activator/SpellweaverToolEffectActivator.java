@@ -22,6 +22,7 @@ import net.minecraft.world.phys.*;
 import net.neoforged.neoforge.event.level.*;
 import team.lodestar.lodestone.helpers.*;
 import team.lodestar.lodestone.modules.core.easing.Easing;
+import team.lodestar.lodestone.modules.toolkit.sound.SoundPlayer;
 
 import java.util.*;
 
@@ -139,7 +140,7 @@ public class SpellweaverToolEffectActivator extends FloatingEntity {
                 u -> MalumGearSoundEvents.SPELLWOVEN_SPRITE_RETURNS,
                 b -> MalumGearSoundEvents.SPELLWOVEN_SPRITE_HARVESTS
         );
-        SoundHelper.playSound(this, sound.get(), 0.5f, 1f);
+        SoundPlayer.create(sound).volume(0.5f).play(this);
         playSound(sound.get(), 0.5f, 1f);
         destination.getTargetLocation().ifRight(pos -> {
             var state = level.getBlockState(pos);

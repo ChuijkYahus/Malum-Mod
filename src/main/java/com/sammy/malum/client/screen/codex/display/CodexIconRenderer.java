@@ -8,7 +8,8 @@ import net.minecraft.resources.ResourceLocation;
 import org.joml.Vector4f;
 import org.lwjgl.opengl.GL11;
 import team.lodestar.lodestone.registry.client.LodestoneShaders;
-import team.lodestar.lodestone.systems.rendering.VFXBuilders;
+import team.lodestar.lodestone.systems.rendering.builder.ScreenVFXBuilder;
+import team.lodestar.lodestone.systems.rendering.builder.VFXBuilders;
 
 import java.awt.*;
 
@@ -84,7 +85,7 @@ public class CodexIconRenderer {
         shader.safeGetUniform("Speed").set(1500f);
         shader.safeGetUniform("Intensity").set(distortion);
         shader.safeGetUniform("UVCoordinates").set(new Vector4f(0f, 1f, 0f, 1f));
-        VFXBuilders.ScreenVFXBuilder builder = VFXBuilders.createScreen()
+        ScreenVFXBuilder builder = VFXBuilders.createScreen()
                 .setTexture(texture)
                 .setShader(shader)
                 .setZLevel(20);

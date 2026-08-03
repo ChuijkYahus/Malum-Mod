@@ -22,8 +22,10 @@ import net.minecraft.world.item.enchantment.*;
 import net.minecraft.world.level.*;
 import net.neoforged.neoforge.event.entity.living.*;
 import team.lodestar.lodestone.helpers.*;
+import team.lodestar.lodestone.modules.toolkit.sound.SoundPlayer;
 import team.lodestar.lodestone.registry.common.*;
 import team.lodestar.lodestone.modules.toolkit.item.*;
+import team.lodestar.wayward_attributes.core.registry.WaywardAttributeTypes;
 
 
 public class MalumScytheItem extends LodestoneCombatItem implements IMalumEventResponder {
@@ -62,11 +64,12 @@ public class MalumScytheItem extends LodestoneCombatItem implements IMalumEventR
                 .upwardOffset(-0.4f)
                 .forwardOffset(0.8f);
         if (!canSweep(attacker)) {
-            SoundHelper.playSound(attacker, getScytheSound(false).value(), 1, 0.75f);
+            SoundPlayer.create(getScytheSound(false)).pitch(0.75f).play(attacker);
             particle.verticalSlashRotation().horizontalOffset(0.6f).spawn(serverLevel);
             return;
         }
-        SoundHelper.playSound(attacker, getScytheSound(true).value(), 1, 1);
+
+        SoundPlayer.create(getScytheSound(true)).play(attacker);
         particle.mirroredRandomly(attacker.getRandom()).spawn(serverLevel);
 
         trySweep(attacker, target, event.getNewDamage());
@@ -116,7 +119,7 @@ public class MalumScytheItem extends LodestoneCombatItem implements IMalumEventR
             isBoomerang = true;
         } else {
             physicalDamage = (float) (attacker.getAttribute(Attributes.ATTACK_DAMAGE).getValue());
-            magicDamage = (float) (attacker.getAttribute(LodestoneAttributes.MAGIC_DAMAGE).getValue());
+            magicDamage = (float) (attacker.getAttribute(WaywardAttributeTypes.MAGIC_DAMAGE).getValue());
         }
         return new ScytheDamage(physicalDamage, magicDamage, isBoomerang);
     }

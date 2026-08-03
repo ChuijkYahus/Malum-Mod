@@ -12,6 +12,8 @@ import org.lwjgl.opengl.*;
 import team.lodestar.lodestone.helpers.*;
 import team.lodestar.lodestone.registry.client.*;
 import team.lodestar.lodestone.systems.rendering.*;
+import team.lodestar.lodestone.systems.rendering.builder.ScreenVFXBuilder;
+import team.lodestar.lodestone.systems.rendering.builder.VFXBuilders;
 import team.lodestar.lodestone.systems.rendering.shader.*;
 
 import java.awt.*;
@@ -22,7 +24,7 @@ public class CodexRenderHelper {
 
     //TODO: This whole class SUCKS !!!!!!!!!!!!!!!!!!!!!!!!!!
 
-    protected static final VFXBuilders.ScreenVFXBuilder VFX_BUILDER = VFXBuilders.createScreen();
+    protected static final ScreenVFXBuilder VFX_BUILDER = VFXBuilders.createScreen();
 
 //    public static <T extends AbstractProgressionCodexScreen> void renderTransitionFade(T screen, PoseStack stack) {
 //        float pct = screen.getVoidFadeoutDelta();
@@ -39,7 +41,7 @@ public class CodexRenderHelper {
 //        int top = screen.getInsideTop();
 //        int width = AbstractProgressionCodexScreen.BOOK_INSIDE_WIDTH;
 //        int height = AbstractProgressionCodexScreen.BOOK_INSIDE_HEIGHT;
-//        VFXBuilders.ScreenVFXBuilder builder = VFXBuilders.createScreen().setPositionWithWidth(left, top, width, height)
+//        ScreenVFXBuilder builder = VFXBuilders.createScreen().setPositionWithWidth(left, top, width, height)
 //                .setColor(0, 0, 0)
 //                .setAlpha(overlayAlpha)
 //                .setZLevel(200)
@@ -76,7 +78,7 @@ public class CodexRenderHelper {
         shaderInstance.safeGetUniform("Speed").set(2000f);
         shaderInstance.safeGetUniform("Intensity").set(50f);
         shaderInstance.safeGetUniform("UVCoordinates").set(new Vector4f(0f, 1f, 0f, 1f));
-        VFXBuilders.ScreenVFXBuilder builder = VFXBuilders.createScreen()
+        ScreenVFXBuilder builder = VFXBuilders.createScreen()
                 .setShader(shaderInstance)
                 .setZLevel(z);
 
@@ -135,7 +137,7 @@ public class CodexRenderHelper {
         shaderInstance.safeGetUniform("Intensity").set(50f);
         shaderInstance.safeGetUniform("UVCoordinates").set(new Vector4f(0f, 1f, 0f, 1f));
 
-        VFXBuilders.ScreenVFXBuilder builder = VFXBuilders.createScreen()
+        ScreenVFXBuilder builder = VFXBuilders.createScreen()
                 .setShader(shaderInstance)
                 .setAlpha(0.7f)
                 .setZLevel(z);
@@ -177,7 +179,7 @@ public class CodexRenderHelper {
         shaderInstance.safeGetUniform("Speed").set(corrupted ? -1000f : 1500f);
         shaderInstance.safeGetUniform("Intensity").set(intensity);
         shaderInstance.safeGetUniform("UVCoordinates").set(new Vector4f(0f, 1f, 0f, 1f));
-        VFXBuilders.ScreenVFXBuilder builder = VFXBuilders.createScreen()
+        ScreenVFXBuilder builder = VFXBuilders.createScreen()
                 .setShader(shaderInstance)
                 .setZLevel(z);
 
@@ -219,27 +221,27 @@ public class CodexRenderHelper {
         renderTexture(texture, poseStack, VFX_BUILDER, x, y, z, u, v, width, height, canvasWidth, canvasHeight);
     }
 
-    public static void renderTexture(ResourceLocation texture, PoseStack poseStack, VFXBuilders.ScreenVFXBuilder builder, float x, float y, int z, float u, float v, int width, int height) {
+    public static void renderTexture(ResourceLocation texture, PoseStack poseStack, ScreenVFXBuilder builder, float x, float y, int z, float u, float v, int width, int height) {
         renderTexture(texture, poseStack, builder, x, y, z, u, v, width, height, width, height);
     }
 
-    public static void renderTexture(ResourceLocation texture, PoseStack poseStack, VFXBuilders.ScreenVFXBuilder builder, float x, float y, float u, float v, int width, int height, int canvasWidth, int canvasHeight) {
+    public static void renderTexture(ResourceLocation texture, PoseStack poseStack, ScreenVFXBuilder builder, float x, float y, float u, float v, int width, int height, int canvasWidth, int canvasHeight) {
         renderTexture(texture, poseStack, builder, x, y, 0, u, v, width, height, canvasWidth, canvasHeight);
     }
 
-    public static void renderTexture(ResourceLocation texture, PoseStack poseStack, VFXBuilders.ScreenVFXBuilder builder, float x, float y, int z, float u, float v, int width, int height, int canvasWidth, int canvasHeight) {
+    public static void renderTexture(ResourceLocation texture, PoseStack poseStack, ScreenVFXBuilder builder, float x, float y, int z, float u, float v, int width, int height, int canvasWidth, int canvasHeight) {
         renderTexture(poseStack, builder.setTexture(texture).setPositionWithWidth(x, y, width, height), z, u, v, width, height, canvasWidth, canvasHeight);
     }
 
-    public static void renderTexture(ResourceLocation texture, PoseStack poseStack, VFXBuilders.ScreenVFXBuilder builder, float x, float y, float u, float v, int width, int height, int textureWidth, int textureHeight, int canvasWidth, int canvasHeight) {
+    public static void renderTexture(ResourceLocation texture, PoseStack poseStack, ScreenVFXBuilder builder, float x, float y, float u, float v, int width, int height, int textureWidth, int textureHeight, int canvasWidth, int canvasHeight) {
         renderTexture(texture, poseStack, builder, x, y, 0, u, v, width, height, textureWidth, textureHeight, canvasWidth, canvasHeight);
     }
 
-    public static void renderTexture(ResourceLocation texture, PoseStack poseStack, VFXBuilders.ScreenVFXBuilder builder, float x, float y, int z, float u, float v, int width, int height, int textureWidth, int textureHeight, int canvasWidth, int canvasHeight) {
+    public static void renderTexture(ResourceLocation texture, PoseStack poseStack, ScreenVFXBuilder builder, float x, float y, int z, float u, float v, int width, int height, int textureWidth, int textureHeight, int canvasWidth, int canvasHeight) {
         renderTexture(poseStack, builder.setTexture(texture).setPositionWithWidth(x, y, width, height), z, u, v, textureWidth, textureHeight, canvasWidth, canvasHeight);
     }
 
-    private static void renderTexture(PoseStack poseStack, VFXBuilders.ScreenVFXBuilder builder, int z, float u, float v, int width, int height, int canvasWidth, int canvasHeight) {
+    private static void renderTexture(PoseStack poseStack, ScreenVFXBuilder builder, int z, float u, float v, int width, int height, int canvasWidth, int canvasHeight) {
         RenderSystem.enableBlend();
         RenderSystem.enableDepthTest();
         builder.setZLevel(z)

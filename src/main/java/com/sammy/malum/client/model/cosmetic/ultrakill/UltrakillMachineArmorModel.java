@@ -15,7 +15,7 @@ import net.minecraft.client.model.geom.PartPose;
 import net.minecraft.client.model.geom.builders.*;
 import net.minecraft.world.entity.EquipmentSlot;
 import team.lodestar.lodestone.helpers.RenderHelper;
-import team.lodestar.lodestone.systems.model.armor.*;
+import team.lodestar.lodestone.modules.rendering.model.entity.armor.*;
 
 public class UltrakillMachineArmorModel extends LodestoneArmorModel {
     public static ModelLayerLocation LAYER = new ModelLayerLocation(MalumMod.malumPath("ultrakill_machine"), "main");

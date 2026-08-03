@@ -3,8 +3,8 @@ package com.sammy.malum.registry.common;
 import com.sammy.malum.*;
 import com.sammy.malum.common.worldevent.*;
 import net.neoforged.neoforge.registries.*;
+import team.lodestar.lodestone.modules.toolkit.worldevent.WorldEventType;
 import team.lodestar.lodestone.registry.common.LodestoneWorldEventTypes;
-import team.lodestar.lodestone.systems.worldevent.WorldEventType;
 
 public class MalumWorldEventTypes {
 

@@ -2,6 +2,7 @@ package com.sammy.malum.client.model;
 
 
 import com.google.common.collect.ImmutableList;
+import com.sammy.malum.MalumMod;
 import com.sammy.malum.registry.client.MalumModels;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.model.HumanoidModel;
@@ -12,11 +13,12 @@ import net.minecraft.client.player.AbstractClientPlayer;
 import net.minecraft.util.Mth;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.LivingEntity;
-import team.lodestar.lodestone.systems.model.armor.*;
+import team.lodestar.lodestone.modules.rendering.model.entity.EntityModelHolder;
+import team.lodestar.lodestone.modules.rendering.model.entity.armor.*;
 
 public class SoulHunterArmorModel extends LodestoneArmorModel {
 
-    public static MalumModels.ModelHolder<SoulHunterArmorModel> MODEL = new MalumModels.ModelHolder<>("soul_hunter_armor", SoulHunterArmorModel::new, SoulHunterArmorModel::createBodyLayer);
+    public static EntityModelHolder<SoulHunterArmorModel> MODEL = new EntityModelHolder<>(MalumMod.malumPath("soul_hunter_armor"), SoulHunterArmorModel::new, SoulHunterArmorModel::createBodyLayer);
 
     public CachedModelPart cape;
     public CachedModelPart hood;

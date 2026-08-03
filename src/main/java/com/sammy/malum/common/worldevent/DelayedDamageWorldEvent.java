@@ -13,9 +13,11 @@ import net.minecraft.world.entity.*;
 import net.minecraft.world.level.*;
 import team.lodestar.lodestone.helpers.*;
 import team.lodestar.lodestone.modules.core.easing.Easing;
+import team.lodestar.lodestone.modules.toolkit.sound.SoundPlayer;
+import team.lodestar.lodestone.modules.toolkit.worldevent.WorldEventType;
 import team.lodestar.lodestone.systems.network.*;
 import team.lodestar.lodestone.systems.network.particle.*;
-import team.lodestar.lodestone.systems.worldevent.*;
+import team.lodestar.lodestone.modules.toolkit.worldevent.WorldEventInstance;
 
 import javax.annotation.*;
 import java.util.*;
@@ -140,7 +142,7 @@ public class DelayedDamageWorldEvent extends WorldEventInstance {
                     if (soundEvent != null) {
                         float pitch = Easing.SINE_IN_OUT.asWeighedRandom(serverLevel.getRandom(), minPitch, maxPitch);
                         float volume = Easing.SINE_IN_OUT.asWeighedRandom(serverLevel.getRandom(), minVolume, maxVolume);
-                        SoundHelper.playSound(target, soundEvent.value(), volume, pitch);
+                        SoundPlayer.create(soundEvent).pitch(minPitch, maxPitch).volume(minVolume, maxVolume).play(target);
                     }
                     if (particleEffect != null) {
                         if (particleEffect instanceof MalumNetworkedWeaponParticleEffectType weaponParticleEffect) {

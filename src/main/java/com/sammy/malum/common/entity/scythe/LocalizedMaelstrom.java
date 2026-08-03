@@ -9,6 +9,7 @@ import net.minecraft.util.*;
 import net.minecraft.world.entity.*;
 import net.minecraft.world.level.*;
 import team.lodestar.lodestone.helpers.*;
+import team.lodestar.lodestone.modules.toolkit.sound.SoundPlayer;
 
 public class LocalizedMaelstrom extends AbstractScytheProjectileEntity {
 
@@ -47,7 +48,7 @@ public class LocalizedMaelstrom extends AbstractScytheProjectileEntity {
                 volumeScalar *= 0.2f;
                 pitch *= 0.5f;
             }
-            SoundHelper.playSound(this, MalumGearSoundEvents.SCYTHE_SWEEP.get(), 0.4f * volumeScalar, pitch);
+            SoundPlayer.create(MalumGearSoundEvents.SCYTHE_SWEEP).volume(0.4f * volumeScalar).pitch(pitch).play(this);
         }
     }
 }

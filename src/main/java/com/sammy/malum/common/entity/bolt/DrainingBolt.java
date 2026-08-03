@@ -17,11 +17,12 @@ import org.jetbrains.annotations.NotNull;
 import team.lodestar.lodestone.handlers.*;
 import team.lodestar.lodestone.helpers.*;
 import team.lodestar.lodestone.modules.core.easing.Easing;
-import team.lodestar.lodestone.systems.particle.builder.*;
-import team.lodestar.lodestone.systems.particle.data.*;
-import team.lodestar.lodestone.systems.particle.data.spin.*;
-import team.lodestar.lodestone.systems.particle.render_types.*;
-import team.lodestar.lodestone.systems.particle.world.behaviors.*;
+import team.lodestar.lodestone.modules.rendering.LodestoneRenderingSystem;
+import team.lodestar.lodestone.modules.rendering.particle.standard.builder.*;
+import team.lodestar.lodestone.modules.rendering.particle.standard.data.*;
+import team.lodestar.lodestone.modules.rendering.particle.standard.data.spin.*;
+import team.lodestar.lodestone.modules.rendering.particle.standard.render_types.*;
+import team.lodestar.lodestone.modules.rendering.particle.standard.world.behaviors.*;
 
 import static com.sammy.malum.common.item.curiosities.weapons.staff.ErosionScepterItem.SCEPTER_COLOR_DATA;
 
@@ -77,12 +78,12 @@ public class DrainingBolt extends AbstractStaffBoltProjectile {
         var lightSpecs = SpiritLightSpecs.spiritLightSpecs(level, position, SCEPTER_COLOR_DATA);
         lightSpecs.getBuilder()
                 .setRenderType(LodestoneWorldParticleRenderType.LUMITRANSPARENT)
-                .setRenderTarget(LodestoneRenderHandler.LATE_DEFERRED_RENDER)
+                .setRenderTarget(LodestoneRenderingSystem.LATE_DEFERRED_RENDER)
                 .multiplyLifetime(1.5f)
                 .setMotion(norm);
         lightSpecs.getBloomBuilder()
                 .setRenderType(LodestoneWorldParticleRenderType.LUMITRANSPARENT)
-                .setRenderTarget(LodestoneRenderHandler.LATE_DEFERRED_RENDER)
+                .setRenderTarget(LodestoneRenderingSystem.LATE_DEFERRED_RENDER)
                 .multiplyLifetime(1.5f)
                 .setMotion(norm);
         lightSpecs.spawnParticles();
@@ -91,7 +92,7 @@ public class DrainingBolt extends AbstractStaffBoltProjectile {
                 .setTransparencyData(GenericParticleData.create(0.4f * scalar, 0.2f * scalar, 0f).setEasing(Easing.SINE_IN_OUT, Easing.SINE_IN).build())
                 .setSpinData(SpinParticleData.createRandomDirection(random, Easing.SINE_IN_OUT.asWeighedRandom(random, 0.25f, 0.5f)).randomSpinOffset(random).build())
                 .setScaleData(GenericParticleData.create(0.3f * scalar, 0.1f * scalar).setEasing(Easing.SINE_IN_OUT).build())
-                .setRenderTarget(LodestoneRenderHandler.LATE_DEFERRED_RENDER)
+                .setRenderTarget(LodestoneRenderingSystem.LATE_DEFERRED_RENDER)
                 .setLifetime(Math.min(6 + age * 3, 24))
                 .setColorData(SCEPTER_COLOR_DATA)
                 .setFriction(0.95f)

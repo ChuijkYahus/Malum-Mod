@@ -11,12 +11,12 @@ import net.minecraft.client.model.geom.builders.*;
 import net.minecraft.client.player.*;
 import net.minecraft.util.*;
 import net.minecraft.world.entity.*;
-import team.lodestar.lodestone.systems.model.*;
-import team.lodestar.lodestone.systems.model.armor.*;
+import team.lodestar.lodestone.modules.rendering.model.entity.EntityModelHolder;
+import team.lodestar.lodestone.modules.rendering.model.entity.armor.*;
 
 public class MalignantStrongholdArmorModel extends LodestoneArmorModel {
 
-    public static MalumModels.ModelHolder<MalignantStrongholdArmorModel> MODEL = new MalumModels.ModelHolder<>("malignant_stronghold", MalignantStrongholdArmorModel::new, MalignantStrongholdArmorModel::createBodyLayer);
+    public static EntityModelHolder<MalignantStrongholdArmorModel> MODEL = new EntityModelHolder<>(MalumMod.malumPath("malignant_stronghold"), MalignantStrongholdArmorModel::new, MalignantStrongholdArmorModel::createBodyLayer);
 
 
     public ModelPart scarf;

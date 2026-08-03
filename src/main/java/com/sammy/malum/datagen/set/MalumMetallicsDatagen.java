@@ -14,7 +14,7 @@ import net.minecraft.world.level.levelgen.structure.templatesystem.TagMatchTest;
 import net.neoforged.neoforge.common.Tags;
 import net.neoforged.neoforge.common.data.DataMapProvider;
 import team.lodestar.lodestone.modules.datagen.smith.blockstate.BlockStateSystemData;
-import team.lodestar.lodestone.modules.datagen.smith.itemmodel.ItemModelSystemData;
+import team.lodestar.lodestone.modules.datagen.smith.itemmodel.data.ItemModelSystemData;
 
 import java.util.List;
 import java.util.Optional;

@@ -143,9 +143,21 @@ public class BookObjectHandler<T extends AbstractMalumCodexScreen> {
             if (priorityOnly && !object.hasPriority(screen)) {
                 continue;
             }
-            if (object.isValid(screen)) {
-                object.renderLate(screen, guiGraphics, mouseX, mouseY, partialTicks);
+            if (!object.isValid(screen)) {
+                continue;
             }
+            object.renderLate(screen, guiGraphics, mouseX, mouseY, partialTicks);
+        }
+    }
+
+    public void offsetObjects(T screen, int x, int y) {
+        for (int i = objects.size() - 1; i >= 0; i--) {
+            BookObject<T> object = objects.get(i);
+            if (!object.isValid(screen)) {
+                continue;
+            }
+            object.xOffset += x;
+            object.yOffset += y;
         }
     }
 }

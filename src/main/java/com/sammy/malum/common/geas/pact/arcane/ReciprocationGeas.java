@@ -13,6 +13,7 @@ import net.minecraft.world.entity.ai.attributes.*;
 import net.minecraft.world.item.*;
 import net.neoforged.neoforge.event.entity.living.*;
 import team.lodestar.lodestone.registry.common.tag.*;
+import team.lodestar.wayward_attributes.WaywardTags;
 
 import java.util.function.*;
 
@@ -25,7 +26,7 @@ public class ReciprocationGeas extends GeasEffect {
     @Override
     public void outgoingDamageEvent(LivingDamageEvent.Pre event, LivingEntity attacker, LivingEntity target, ItemStack stack) {
         if (attacker instanceof ServerPlayer player) {
-            if (event.getSource().is(LodestoneDamageTypeTags.IS_MAGIC)) {
+            if (event.getSource().is(WaywardTags.DamageTypeTags.IS_MAGIC)) {
                 var data = player.getData(MalumAttachmentTypes.SOUL_WARD);
                 double attackSpeed = Math.max(attacker.getAttributeValue(Attributes.ATTACK_SPEED), 0.01f);
                 data.recoverSoulWard(player, 0.25f / attackSpeed);

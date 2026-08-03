@@ -86,4 +86,9 @@ public class ConjunctureCrystallariumContainer extends LodestoneBlockEntityConta
     public MalumFurnaceBlockItemStackHandler getItemStackHandler() {
         return blockEntity.inventory();
     }
+
+    @Override
+    public boolean stillValid(Player player) {
+        return true; //TODO: The usual stuff
+    }
 }

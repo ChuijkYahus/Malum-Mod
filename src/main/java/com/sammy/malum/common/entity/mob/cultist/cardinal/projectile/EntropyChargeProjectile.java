@@ -33,13 +33,14 @@ import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
 import team.lodestar.lodestone.helpers.*;
 import team.lodestar.lodestone.modules.core.easing.Easing;
-import team.lodestar.lodestone.systems.particle.SimpleParticleOptions;
-import team.lodestar.lodestone.systems.particle.builder.WorldParticleBuilder;
-import team.lodestar.lodestone.systems.particle.data.GenericParticleData;
-import team.lodestar.lodestone.systems.particle.data.color.ColorParticleData;
-import team.lodestar.lodestone.systems.particle.data.spin.SpinParticleData;
-import team.lodestar.lodestone.systems.particle.render_types.LodestoneWorldParticleRenderType;
-import team.lodestar.lodestone.systems.particle.world.behaviors.DirectionalParticleBehavior;
+import team.lodestar.lodestone.modules.rendering.particle.standard.SimpleParticleOptions;
+import team.lodestar.lodestone.modules.rendering.particle.standard.builder.WorldParticleBuilder;
+import team.lodestar.lodestone.modules.rendering.particle.standard.data.GenericParticleData;
+import team.lodestar.lodestone.modules.rendering.particle.standard.data.color.ColorParticleData;
+import team.lodestar.lodestone.modules.rendering.particle.standard.data.spin.SpinParticleData;
+import team.lodestar.lodestone.modules.rendering.particle.standard.render_types.LodestoneWorldParticleRenderType;
+import team.lodestar.lodestone.modules.rendering.particle.standard.world.behaviors.DirectionalParticleBehavior;
+import team.lodestar.lodestone.modules.toolkit.sound.SoundPlayer;
 import team.lodestar.lodestone.systems.rendering.trail.TrailPointBuilder;
 
 import java.awt.*;
@@ -236,7 +237,7 @@ public class EntropyChargeProjectile extends AbstractBoltProjectile {
             explosionAffectedTarget.hurt(source, magicDamage);
         }
         entityData.set(DATA_FADING_AWAY, true);
-        SoundHelper.playSound(this, MalumCultistSoundEvents.CARDINAL_ENTROPY_DETONATE.get(), 2f, Easing.SINE_IN_OUT.asWeighedRandom(random, 0.8f, 1.2f));
+        SoundPlayer.create(MalumCultistSoundEvents.CARDINAL_ENTROPY_DETONATE).volume(2f).pitchVariance(0.2f).play(this);
         MalumParticleEffectTypes.ENTROPY_CHARGE_DETONATES
                 .createEffect(position())
                 .color(MalumNetworkedParticleEffectColorData.fromColors(

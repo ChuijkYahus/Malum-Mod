@@ -29,6 +29,7 @@ import org.joml.Vector2i;
 import org.joml.Vector2ic;
 import org.lwjgl.opengl.*;
 import team.lodestar.lodestone.systems.rendering.*;
+import team.lodestar.lodestone.systems.rendering.builder.VFXBuilders;
 
 import java.util.List;
 
@@ -102,8 +103,8 @@ public abstract class AbstractProgressionCodexScreen extends AbstractMalumCodexS
 //        }
 //        renderFade(poseStack);
 
-        progressionObjects.renderObjectsLate(this, guiGraphics, mouseX, mouseY, partialTicks);
-        doLateRendering();
+        renderObjectsLate(guiGraphics, mouseX, mouseY, partialTicks);
+        doLateRendering(guiGraphics, mouseX, mouseY);
     }
 
     public void renderFrameCutout(GuiGraphics guiGraphics) {
@@ -162,7 +163,7 @@ public abstract class AbstractProgressionCodexScreen extends AbstractMalumCodexS
         RenderSystem.setProjectionMatrix(oldProjMat, VertexSorting.ORTHOGRAPHIC_Z);
     }
 
-    public void renderObjects(GuiGraphics graphics, int mouseX, int mouseY, float partialTicks) {
+    public void renderObjects(GuiGraphics guiGraphics, int mouseX, int mouseY, float partialTicks) {
         float delta = minecraft.getTimer().getGameTimeDeltaPartialTick(true);
         float x = Mth.lerp(delta, oldObjectXOffset, objectXOffset) - 16;
         float y = Mth.lerp(delta, oldObjectYOffset, objectYOffset) - 16;
@@ -170,17 +171,18 @@ public abstract class AbstractProgressionCodexScreen extends AbstractMalumCodexS
         mouseX -= getGuiLeft();
         mouseY -= getGuiTop();
 
-        progressionObjects.renderObjects(this, graphics, BOOK_WIDTH / 2f + x, BOOK_HEIGHT / 2f + y, mouseX, mouseY, partialTicks);
+        progressionObjects.renderObjects(this, guiGraphics, BOOK_WIDTH / 2f + x, BOOK_HEIGHT / 2f + y, mouseX, mouseY, partialTicks);
     }
 
+    public void renderObjectsLate(GuiGraphics guiGraphics, int mouseX, int mouseY, float partialTicks) {
+        /*
+        Normally we'd have to always adjust objects like this, however
+        Since movable objects are now being rendered onto another render target, their root relative to the screen is simply 0, 0 as the offset is effectively applied later in renderFrameCutout
+        Thus, we manually reintroduce the offset for late object rendering which exists outside our render target.
+        */
+        progressionObjects.offsetObjects(this, getGuiLeft(), getGuiTop());
 
-    public void constrictEntryRendering() {
-        int scale = (int) getMinecraft().getWindow().getGuiScale();
-        GL11.glScissor(
-                getGuiLeft() * scale,
-                getMinecraft().getWindow().getHeight() - (getGuiTop() + BOOK_HEIGHT) * scale,
-                BOOK_WIDTH * scale,
-                BOOK_HEIGHT * scale);
+        progressionObjects.renderObjectsLate(this, guiGraphics, mouseX, mouseY, partialTicks);
     }
 
     public Matrix4f getProjectionMatrix() {

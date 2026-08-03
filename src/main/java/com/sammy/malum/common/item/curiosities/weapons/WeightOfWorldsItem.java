@@ -19,8 +19,10 @@ import team.lodestar.lodestone.helpers.*;
 import team.lodestar.lodestone.modules.core.easing.Easing;
 import team.lodestar.lodestone.modules.toolkit.enchanting.LodestoneEnchantmentEffectCommonsHelper;
 import team.lodestar.lodestone.modules.toolkit.item.tools.LodestoneAxeItem;
+import team.lodestar.lodestone.modules.toolkit.sound.SoundPlayer;
 import team.lodestar.lodestone.registry.common.tag.*;
 import team.lodestar.lodestone.modules.toolkit.item.*;
+import team.lodestar.wayward_attributes.WaywardTags;
 
 import static com.sammy.malum.common.item.curiosities.weapons.scythe.EdgeOfDeliveranceItem.triggerMalignantCrit;
 
@@ -56,7 +58,7 @@ public class WeightOfWorldsItem extends LodestoneAxeItem implements ItemEventHan
                 return;
             }
             var source = event.getSource();
-            if (source.is(LodestoneDamageTypeTags.CAN_TRIGGER_MAGIC_DAMAGE) || source.is(MalumDamageTypes.INVERTED_HEART_PROPAGATION)) {
+            if (source.is(WaywardTags.DamageTypeTags.CAN_TRIGGER_MAGIC_DAMAGE) || source.is(MalumDamageTypes.INVERTED_HEART_PROPAGATION)) {
                 MalumNetworkedWeaponParticleEffectType<?> particleEffectType = MalumParticleEffectTypes.SCYTHE_SLASH;
                 var effectType = MalumMobEffects.GRIM_CERTAINTY;
                 if (attacker.hasEffect(effectType) || level.random.nextFloat() < 0.25f) {
@@ -67,7 +69,7 @@ public class WeightOfWorldsItem extends LodestoneAxeItem implements ItemEventHan
                 } else {
                     //We want only the crit to be present in case of exterior triggers such as Soulwashing
                     //Regular swing animations are still tied to the melee attack only
-                    if (!source.is(LodestoneDamageTypeTags.CAN_TRIGGER_MAGIC_DAMAGE)) {
+                    if (!source.is(WaywardTags.DamageTypeTags.CAN_TRIGGER_MAGIC_DAMAGE)) {
                         return;
                     }
                 }
@@ -80,7 +82,7 @@ public class WeightOfWorldsItem extends LodestoneAxeItem implements ItemEventHan
                     effectBuilder.tiedToTarget().horizontalOffset(0.2f).horizontalDeviation(Easing.SINE_IN_OUT.asWeighedRandom(attacker.getRandom(), -0.5f, 0.5f)).forwardOffset(-0.8f);
                 }
                 effectBuilder.spawn(level);
-                SoundHelper.playSound(target, MalumGearSoundEvents.WEIGHT_OF_WORLDS_CUT.get(), SoundSource.PLAYERS, 2f, 0.75f);
+                SoundPlayer.create(MalumGearSoundEvents.WEIGHT_OF_WORLDS_CUT).volume(2f).pitch(0.75f).play(target, SoundSource.PLAYERS);
             }
         }
     }

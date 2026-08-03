@@ -12,7 +12,7 @@ import net.minecraft.world.item.crafting.*;
 import net.minecraft.world.level.*;
 import net.neoforged.neoforge.common.Tags;
 import net.neoforged.neoforge.common.conditions.IConditionBuilder;
-import team.lodestar.lodestone.recipe.builder.*;
+import team.lodestar.lodestone.modules.toolkit.recipe.*;
 
 import static com.sammy.malum.MalumMod.*;
 import static com.sammy.malum.datagen.recipe.RecipeDatagenCommons.smeltAndBlast;
@@ -120,21 +120,7 @@ public class MalumVanillaRecipes implements IConditionBuilder {
                 .requires(Tags.Items.GEMS_QUARTZ)
                 .unlockedBy("has_iron_impetus", RecipeDatagenCommons.has(MalumContent.AlchemyAndMetallics.IRON_METALLICS.getImpetus())).save(output);
 
-        //ETHER
-        etherTorch(output, ETHER_TORCH, ETHER);
-        etherTorch(output, IRIDESCENT_ETHER_TORCH, IRIDESCENT_ETHER);
-
-        etherCandle(output, ETHER_CANDLE, ETHER);
-        etherCandle(output, IRIDESCENT_ETHER_CANDLE, IRIDESCENT_ETHER);
-
-        etherBrazier(output, ETHER_BRAZIER, IRON_INGOT, ETHER);
-        etherBrazier(output, IRIDESCENT_ETHER_BRAZIER, IRON_INGOT, ETHER);
-
-        etherCresset(output, ETHER_CRESSET, IRON_INGOT, ETHER);
-        etherCresset(output, IRIDESCENT_ETHER_CRESSET, IRON_INGOT, IRIDESCENT_ETHER);
-
         shapeless(RecipeCategory.MISC, RUNIC_SAPBALL).requires(RUNIC_SAP_BOTTLE).requires(WHEAT).unlockedBy("has_runic_sap", RecipeDatagenCommons.has(RUNIC_SAP_BOTTLE)).save(output);
-
         shapeless(RecipeCategory.MISC, AZOIC_SAPBALL).requires(AZOIC_SAP_BOTTLE).requires(WHEAT).unlockedBy("has_azoic_sap", RecipeDatagenCommons.has(AZOIC_SAP_BOTTLE)).save(output);
 
         //BLIGHT
@@ -282,44 +268,5 @@ public class MalumVanillaRecipes implements IConditionBuilder {
                 .pattern(" X ")
                 .unlockedBy("has_" + itemName, RecipeDatagenCommons.has(ingotForm))
                 .save(consumer);
-    }
-
-    protected static void etherTorch(RecipeOutput recipeoutput, ItemLike output, ItemLike ether) {
-        var id = BuiltInRegistries.ITEM.getKey(output.asItem()).getPath();
-        new NBTCarryRecipeBuilder(RecipeCategory.BUILDING_BLOCKS, new ItemStack(output.asItem(), 2), Ingredient.of(ether))
-                .define('X', ether)
-                .define('Y', Ingredient.of(Tags.Items.RODS_WOODEN))
-                .pattern("X").pattern("Y")
-                .unlockedBy("has_ether", RecipeDatagenCommons.has(ether))
-                .save(recipeoutput, id + "_crafting");
-    }
-
-    protected static void etherCandle(RecipeOutput recipeoutput, ItemLike output, ItemLike ether) {
-        var id = BuiltInRegistries.ITEM.getKey(output.asItem()).getPath();
-        new NBTCarryRecipeBuilder(RecipeCategory.BUILDING_BLOCKS, new ItemStack(output.asItem(), 2), Ingredient.of(ether))
-                .define('X', ether)
-                .define('Y', HONEYCOMB)
-                .pattern("X").pattern("Y")
-                .unlockedBy("has_ether", RecipeDatagenCommons.has(ether))
-                .save(recipeoutput, id + "_crafting");
-    }
-
-    protected static void etherBrazier(RecipeOutput recipeoutput, ItemLike output, ItemLike metal, ItemLike ether) {
-        new NBTCarryRecipeBuilder(RecipeCategory.BUILDING_BLOCKS, new ItemStack(output.asItem(), 2), Ingredient.of(ether))
-                .define('X', ether)
-                .define('Y', metal)
-                .pattern("X").pattern("Y")
-                .unlockedBy("has_ether", RecipeDatagenCommons.has(ether))
-                .save(recipeoutput, BuiltInRegistries.ITEM.getKey(output.asItem()).getPath());
-    }
-
-
-    protected static void etherCresset(RecipeOutput recipeoutput, ItemLike output, ItemLike metal, ItemLike ether) {
-        new NBTCarryRecipeBuilder(RecipeCategory.BUILDING_BLOCKS, new ItemStack(output.asItem(), 2), Ingredient.of(ether))
-                .define('X', ether)
-                .define('Y', metal)
-                .pattern("X").pattern("Y").pattern("Y")
-                .unlockedBy("has_ether", RecipeDatagenCommons.has(ether))
-                .save(recipeoutput, BuiltInRegistries.ITEM.getKey(output.asItem()).getPath());
     }
 }

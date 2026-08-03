@@ -34,9 +34,13 @@ import net.neoforged.neoforge.event.entity.living.*;
 import team.lodestar.lodestone.handlers.*;
 import team.lodestar.lodestone.helpers.*;
 import team.lodestar.lodestone.modules.core.easing.Easing;
+import team.lodestar.lodestone.modules.toolkit.sound.SoundPlayer;
+import team.lodestar.lodestone.modules.toolkit.worldevent.WorldEventHandler;
 import team.lodestar.lodestone.registry.common.*;
 import team.lodestar.lodestone.registry.common.tag.*;
 import team.lodestar.lodestone.modules.toolkit.item.*;
+import team.lodestar.wayward_attributes.WaywardTags;
+import team.lodestar.wayward_attributes.core.registry.WaywardAttributeTypes;
 
 
 import java.util.*;
@@ -54,7 +58,7 @@ public class SunderingAnchorItem extends LodestoneCombatItem implements IMalumEv
                 .component(DataComponents.TOOL, createToolProperties(tier, MalumTags.Blocks.FD_MINEABLE_WITH_KNIFE))
                 .mergeAttributes(
                         ItemAttributeModifiers.builder()
-                                .add(LodestoneAttributes.MAGIC_DAMAGE, new AttributeModifier(LodestoneAttributes.BASE_MAGIC_DAMAGE, magicDamage, AttributeModifier.Operation.ADD_VALUE), EquipmentSlotGroup.MAINHAND)
+                                .add(WaywardAttributeTypes.MAGIC_DAMAGE, new AttributeModifier(WaywardAttributeTypes.BASE_MAGIC_DAMAGE, magicDamage, AttributeModifier.Operation.ADD_VALUE), EquipmentSlotGroup.MAINHAND)
                                 .build()));
     }
 
@@ -91,7 +95,7 @@ public class SunderingAnchorItem extends LodestoneCombatItem implements IMalumEv
         if (player instanceof ServerPlayer serverPlayer) {
             int slot = usedHand == InteractionHand.OFF_HAND ? player.getInventory().getContainerSize() - 1 : player.getInventory().selected;
             float physicalDamage = (float) player.getAttributes().getValue(Attributes.ATTACK_DAMAGE);
-            float magicDamage = (float) player.getAttributes().getValue(LodestoneAttributes.MAGIC_DAMAGE);
+            float magicDamage = (float) player.getAttributes().getValue(WaywardAttributeTypes.MAGIC_DAMAGE);
             Vec3 pos = getProjectileSpawnPos(player, usedHand, 0.5f, 0.5f);
             SunderingAnchorProjectile entity = new SunderingAnchorProjectile(level, pos.x, pos.y, pos.z);
             entity.setData(player, physicalDamage, magicDamage, slot);
@@ -99,7 +103,7 @@ public class SunderingAnchorItem extends LodestoneCombatItem implements IMalumEv
 
             entity.shootFromRotation(player, player.getXRot(), player.getYRot(), 0, 2.5f, 0F);
             level.addFreshEntity(entity);
-            SoundHelper.playSound(player, MalumGearSoundEvents.SUNDERING_ANCHOR_THROW.get(), 0.5f, Easing.SINE_IN_OUT.asWeighedRandom(level.getRandom(), 1.5f, 2f));
+            SoundPlayer.create(MalumGearSoundEvents.SUNDERING_ANCHOR_THROW).volume(0.5f).pitch(1.5f, 2f).play(player);
             TemporarilyDisabledItem.disable(serverPlayer, slot, MalumContent.SOUL_OF_THE_ANCHOR);
             applyCooldown(stack, player);
         }
@@ -112,10 +116,10 @@ public class SunderingAnchorItem extends LodestoneCombatItem implements IMalumEv
             var source = event.getSource();
             var random = level.random;
 
-            if (source.is(LodestoneDamageTypeTags.IS_MAGIC)) {
+            if (source.is(WaywardTags.DamageTypeTags.IS_MAGIC)) {
                 applyHatred(target);
             }
-            if (source.is(LodestoneDamageTypeTags.CAN_TRIGGER_MAGIC_DAMAGE)) {
+            if (source.is(WaywardTags.DamageTypeTags.CAN_TRIGGER_MAGIC_DAMAGE)) {
                 int slashCount = 3 + Mth.floor(random.nextFloat() * 3);
                 float splitDamage = event.getNewDamage() / slashCount;
                 if (target.isAlive()) {
@@ -130,8 +134,7 @@ public class SunderingAnchorItem extends LodestoneCombatItem implements IMalumEv
                     }
                 }
                 event.setNewDamage(splitDamage);
-                float pitch = Easing.SINE_IN_OUT.asWeighedRandom(level.getRandom(), 1, 1.2f);
-                SoundHelper.playSound(attacker, MalumGearSoundEvents.SUNDERING_ANCHOR_SWING.get(), 2f, pitch);
+                SoundPlayer.create(MalumGearSoundEvents.SUNDERING_ANCHOR_SWING).volume(1f).pitch(0.8f, 1.2f).play(attacker);
                 MalumParticleEffectTypes.SUNDERING_ANCHOR_SLASH.createEffect()
                         .originatesFrom(attacker)
                         .forwardOffset(1.5f)

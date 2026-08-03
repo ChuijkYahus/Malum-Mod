@@ -1,6 +1,7 @@
 package com.sammy.malum.client.screen.codex.screens;
 
 import net.minecraft.client.*;
+import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.screens.*;
 import net.minecraft.core.*;
 import net.minecraft.network.chat.*;
@@ -15,8 +16,7 @@ public abstract class AbstractMalumCodexScreen extends Screen {
     protected final Holder<SoundEvent> sweetenerSound;
 
     protected List<Runnable> lateRendering = new ArrayList<>();
-    protected List<Runnable> lateRenderingCapture = new ArrayList<>();
-    protected boolean isCapturingLateRendering = false;
+    protected List<Component> tooltip = new ArrayList<>();
 
     protected boolean isVoidTouched;
 
@@ -63,33 +63,22 @@ public abstract class AbstractMalumCodexScreen extends Screen {
         minecraft.player.playNotifySound(soundEvent.value(), SoundSource.PLAYERS, volume, pitch);
     }
 
-    public boolean captureLateRendering() {
-        lateRenderingCapture = new ArrayList<>();
-        isCapturingLateRendering = true;
-        return false;
+    public void renderTooltip(List<Component> tooltip) {
+        this.tooltip = tooltip;
     }
 
-    public void renderLater(Runnable runnable) {
-        if (isCapturingLateRendering) {
-            lateRenderingCapture.add(runnable);
-            return;
-        }
-        lateRendering.add(runnable);
-    }
-
-    public void doLateRendering() {
-        if (isCapturingLateRendering) {
-            lateRendering.addAll(lateRenderingCapture);
-            lateRenderingCapture.clear();
-            isCapturingLateRendering = false;
-        }
+    public void doLateRendering(GuiGraphics guiGraphics, int mouseX, int mouseY) {
         lateRendering.forEach(Runnable::run);
         lateRendering.clear();
+
+        guiGraphics.renderComponentTooltip(Minecraft.getInstance().font, tooltip, mouseX, mouseY);
+        tooltip.clear();
     }
 
     public void setVoidTouched(boolean isVoidTouched) {
         this.isVoidTouched = isVoidTouched;
     }
+
     public boolean isVoidTouched() {
         return isVoidTouched;
     }

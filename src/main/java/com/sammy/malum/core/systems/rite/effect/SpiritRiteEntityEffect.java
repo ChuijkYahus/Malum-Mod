@@ -14,6 +14,7 @@ import net.minecraft.world.entity.player.*;
 import net.minecraft.world.phys.*;
 import team.lodestar.lodestone.helpers.*;
 import team.lodestar.lodestone.modules.core.easing.Easing;
+import team.lodestar.lodestone.modules.toolkit.sound.SoundPlayer;
 
 import java.util.*;
 import java.util.stream.Stream;
@@ -58,7 +59,7 @@ public abstract class SpiritRiteEntityEffect<T extends LivingEntity> extends Spi
             EntityRiteEffectActivator entity = new EntityRiteEffectActivator(level, this, uuid, position, velocity);
             entity.setSpirit(definingSpirit);
             level.addFreshEntity(entity);
-            SoundHelper.playSound(entity, MalumSoundEvents.SPARK_FORMED.get(), 0.5f, Mth.nextFloat(random, 0.9f, 1.1f));
+            SoundPlayer.create(MalumSoundEvents.SPARK_FORMED).volume(0.5f).pitchVariance(0.2f).play(entity);
         }
         return true;
     }

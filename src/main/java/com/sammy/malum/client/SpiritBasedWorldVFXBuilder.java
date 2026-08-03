@@ -6,10 +6,10 @@ import com.sammy.malum.core.systems.spirit.umbral.UmbralSpiritArcanaType;
 import net.minecraft.client.renderer.RenderType;
 import team.lodestar.lodestone.systems.rendering.LodestoneRenderType;
 import team.lodestar.lodestone.systems.rendering.StateShards;
-import team.lodestar.lodestone.systems.rendering.VFXBuilders;
+import team.lodestar.lodestone.systems.rendering.builder.WorldVFXBuilder;
 import team.lodestar.lodestone.systems.rendering.rendeertype.ShaderUniformHandler;
 
-public class SpiritBasedWorldVFXBuilder extends VFXBuilders.WorldVFXBuilder {
+public class SpiritBasedWorldVFXBuilder extends WorldVFXBuilder {
 
     public static SpiritBasedWorldVFXBuilder create(SpiritLike spirit) {
         return new SpiritBasedWorldVFXBuilder(spirit.getSpirit());
@@ -26,7 +26,7 @@ public class SpiritBasedWorldVFXBuilder extends VFXBuilders.WorldVFXBuilder {
     }
 
     @Override
-    public VFXBuilders.WorldVFXBuilder setRenderType(RenderType renderType) {
+    public WorldVFXBuilder setRenderType(RenderType renderType) {
         if (spiritType instanceof UmbralSpiritArcanaType && renderType instanceof LodestoneRenderType lodestoneRenderType) {
             var umbral = lodestoneRenderType.copy("umbral", ShaderUniformHandler.LUMITRANSPARENT, b -> b.setTransparencyState(StateShards.NORMAL_TRANSPARENCY));
             return super.setRenderType(umbral);
@@ -35,7 +35,7 @@ public class SpiritBasedWorldVFXBuilder extends VFXBuilders.WorldVFXBuilder {
     }
 
     @Override
-    public VFXBuilders.WorldVFXBuilder setAlpha(float a) {
+    public WorldVFXBuilder setAlpha(float a) {
         return super.setAlpha(a * spiritType.getAlphaMultiplier());
     }
 }

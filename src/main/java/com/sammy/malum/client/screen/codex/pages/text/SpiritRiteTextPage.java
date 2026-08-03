@@ -11,6 +11,8 @@ import net.minecraft.client.gui.*;
 import net.minecraft.network.chat.*;
 import net.minecraft.resources.ResourceLocation;
 
+import java.util.List;
+
 import static com.sammy.malum.client.screen.codex.helper.CodexRenderHelper.*;
 
 public class SpiritRiteTextPage extends BookPage {
@@ -39,7 +41,8 @@ public class SpiritRiteTextPage extends BookPage {
         int riteIconY = top + 38;
         renderRiteIcon(rite, guiGraphics.pose(), riteIconX, riteIconY);
         if (screen.isHovering(mouseX, mouseY, riteIconX, riteIconY, 16, 16)) {
-            screen.renderLater(()->guiGraphics.renderComponentTooltip(Minecraft.getInstance().font, rite.getDetailedDescription(), mouseX, mouseY));
+            List<Component> tooltip = rite.getDetailedDescription();
+            screen.renderTooltip(tooltip);
         }
     }
 }

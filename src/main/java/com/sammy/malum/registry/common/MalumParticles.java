@@ -6,7 +6,7 @@ import net.minecraft.core.registries.BuiltInRegistries;
 import net.neoforged.neoforge.client.event.*;
 import net.neoforged.neoforge.registries.DeferredHolder;
 import net.neoforged.neoforge.registries.DeferredRegister;
-import team.lodestar.lodestone.systems.particle.world.type.*;
+import team.lodestar.lodestone.modules.rendering.particle.standard.world.type.*;
 
 public class MalumParticles {
     public static DeferredRegister<ParticleType<?>> PARTICLES = DeferredRegister.create(BuiltInRegistries.PARTICLE_TYPE, MalumMod.MALUM);

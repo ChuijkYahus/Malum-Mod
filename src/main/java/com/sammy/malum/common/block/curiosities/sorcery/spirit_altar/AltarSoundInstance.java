@@ -1,7 +1,7 @@
 package com.sammy.malum.common.block.curiosities.sorcery.spirit_altar;
 
 import com.sammy.malum.registry.common.sound.*;
-import team.lodestar.lodestone.systems.sound.*;
+import team.lodestar.lodestone.modules.toolkit.sound.CachedBlockEntitySoundInstance;
 
 public class AltarSoundInstance extends CachedBlockEntitySoundInstance<SpiritAltarBlockEntity> {
     public AltarSoundInstance(SpiritAltarBlockEntity blockEntity, float volume, float pitch) {

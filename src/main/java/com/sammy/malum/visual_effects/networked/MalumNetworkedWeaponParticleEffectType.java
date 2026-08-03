@@ -15,7 +15,7 @@ import net.minecraft.world.phys.*;
 import team.lodestar.lodestone.systems.network.*;
 import team.lodestar.lodestone.systems.network.WeaponParticleEffectType.*;
 import team.lodestar.lodestone.systems.network.particle.*;
-import team.lodestar.lodestone.systems.particle.data.color.*;
+import team.lodestar.lodestone.modules.rendering.particle.standard.data.color.*;
 
 import java.awt.*;
 import java.util.List;

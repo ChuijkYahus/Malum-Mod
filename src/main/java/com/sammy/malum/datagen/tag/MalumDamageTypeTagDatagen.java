@@ -19,8 +19,7 @@ import static com.sammy.malum.registry.common.MalumTags.DamageTypes.*;
 import static net.minecraft.tags.DamageTypeTags.*;
 import static net.minecraft.world.damagesource.DamageTypes.*;
 import static net.neoforged.neoforge.common.Tags.DamageTypes.*;
-import static team.lodestar.lodestone.registry.common.tag.LodestoneDamageTypeTags.*;
-import static team.lodestar.lodestone.registry.common.tag.LodestoneDamageTypeTags.IS_MAGIC;
+import static team.lodestar.wayward_attributes.WaywardTags.DamageTypeTags.CAN_TRIGGER_MAGIC_DAMAGE;
 
 public class MalumDamageTypeTagDatagen extends DamageTypeTagsProvider {
 

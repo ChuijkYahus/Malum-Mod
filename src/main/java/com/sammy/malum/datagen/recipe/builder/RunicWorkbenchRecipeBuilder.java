@@ -14,7 +14,7 @@ import net.minecraft.world.item.*;
 import net.minecraft.world.item.crafting.*;
 import net.minecraft.world.level.*;
 import net.neoforged.neoforge.common.crafting.SizedIngredient;
-import team.lodestar.lodestone.recipe.builder.LodestoneRecipeBuilder;
+import team.lodestar.lodestone.modules.toolkit.recipe.LodestoneRecipeBuilder;
 
 public class RunicWorkbenchRecipeBuilder implements LodestoneRecipeBuilder<RuneworkingRecipe> {
     private final ItemStack output;

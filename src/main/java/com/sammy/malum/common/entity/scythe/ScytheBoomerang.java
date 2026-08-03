@@ -14,6 +14,7 @@ import net.minecraft.world.level.*;
 import net.minecraft.world.phys.*;
 import team.lodestar.lodestone.helpers.*;
 import team.lodestar.lodestone.modules.core.easing.Easing;
+import team.lodestar.lodestone.modules.toolkit.sound.SoundPlayer;
 import team.lodestar.lodestone.systems.rendering.trail.*;
 
 public class ScytheBoomerang extends AbstractScytheProjectileEntity {
@@ -140,7 +141,7 @@ public class ScytheBoomerang extends AbstractScytheProjectileEntity {
                             ReboundHandler.pickupScythe(this, scythe, player);
                         }
                         float pitch = Easing.SINE_IN_OUT.asWeighedRandom(level().getRandom(), 0.75f, 1.25f);
-                        SoundHelper.playSound(scytheOwner, MalumGearSoundEvents.SCYTHE_CATCH.get(), 0.5f, pitch);
+                        SoundPlayer.create(MalumGearSoundEvents.SCYTHE_CATCH).volume(0.5f).pitch(pitch).play(scytheOwner);
                         remove(RemovalReason.DISCARDED);
                     }
                 }
@@ -159,13 +160,12 @@ public class ScytheBoomerang extends AbstractScytheProjectileEntity {
     public void playSound() {
         if (age % 3 == 0) {
             float pitch = (float) (0.8f + Math.sin(level().getGameTime() * 0.5f) * 0.2f);
-            float volumeScalar = Mth.clamp(age / 12f, 0, 1f);
+            float volumeScalar = Mth.clamp(age / 18f, 0, 0.6f);
             if (isInWater()) {
                 volumeScalar *= 0.2f;
                 pitch *= 0.5f;
             }
-            SoundHelper.playSound(this, MalumGearSoundEvents.SCYTHE_SPINS.get(), 0.6f * volumeScalar, pitch);
-            SoundHelper.playSound(this, MalumGearSoundEvents.SCYTHE_SWEEP.get(), 0.4f * volumeScalar, pitch);
+            SoundPlayer.create(MalumGearSoundEvents.SCYTHE_SPINS).volume(volumeScalar).pitch(pitch).play(this);
         }
     }
 

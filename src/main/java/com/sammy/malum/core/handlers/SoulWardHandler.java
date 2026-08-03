@@ -11,7 +11,9 @@ import net.neoforged.neoforge.event.entity.living.*;
 import net.neoforged.neoforge.event.tick.*;
 import team.lodestar.lodestone.helpers.*;
 import team.lodestar.lodestone.modules.core.easing.Easing;
+import team.lodestar.lodestone.modules.toolkit.sound.SoundPlayer;
 import team.lodestar.lodestone.registry.common.tag.*;
+import team.lodestar.wayward_attributes.WaywardTags;
 
 import static team.lodestar.lodestone.handlers.ItemEventHandler.*;
 
@@ -59,7 +61,7 @@ public class SoulWardHandler {
             physicalDamageAbsorption = propertiesEvent.getNewPhysicalDamageAbsorption();
             integrity = propertiesEvent.getNewIntegrity();
 
-            double absorptionMultiplier = source.is(LodestoneDamageTypeTags.IS_MAGIC) ? magicDamageAbsorption : physicalDamageAbsorption;
+            double absorptionMultiplier = source.is(WaywardTags.DamageTypeTags.IS_MAGIC) ? magicDamageAbsorption : physicalDamageAbsorption;
             double absorbedDamage = amount * (absorptionMultiplier);
             double soulWardDamage = absorbedDamage / Math.max(integrity, 0.01f);
             data.reduceSoulWard(soulWardDamage);
@@ -71,8 +73,7 @@ public class SoulWardHandler {
 
             var sound = data.getSoulWard() == 0 ? MalumSoundEvents.SOUL_WARD_DEPLETE : MalumSoundEvents.SOUL_WARD_HIT;
             var volume = source.is(MalumDamageTypes.KARMIC) ? 0.2f : 0.5f; //reduced volume for karmic damage, specifically with the pact of patience repaid in mind
-            float pitch = Easing.SINE_IN_OUT.asWeighedRandom(living.getRandom(), 1f, 1.5f);
-            SoundHelper.playSound(living, sound.get(), volume, pitch);
+            SoundPlayer.create(sound).volume(volume).pitch(1f, 1.5f).play(living);
             event.setNewDamage((float) (amount - absorbedDamage));
         }
     }

@@ -1,7 +1,6 @@
 package com.sammy.malum.common.worldgen.geode;
 
 import com.mojang.serialization.Codec;
-import com.sammy.malum.common.worldgen.sanctuary.SanctuaryGenerationData;
 import net.minecraft.core.BlockPos;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.NbtOps;

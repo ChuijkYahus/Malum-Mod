@@ -14,7 +14,7 @@ import net.minecraft.world.entity.*;
 import net.minecraft.world.entity.ai.attributes.Attribute;
 import net.minecraft.world.entity.ai.attributes.AttributeModifier;
 import net.minecraft.world.item.ItemStack;
-import team.lodestar.lodestone.registry.common.tag.LodestoneDamageTypeTags;
+import team.lodestar.wayward_attributes.WaywardTags;
 import top.theillusivec4.curios.api.SlotContext;
 
 import java.util.function.Consumer;
@@ -33,7 +33,7 @@ public class CurioMagebaneBelt extends MalumCurioItem implements IMalumEventResp
 
     @Override
     public void modifySoulWardPropertiesEvent(ModifySoulWardPropertiesEvent event, LivingEntity wardedEntity, ItemStack stack) {
-        if (event.getSource().is(LodestoneDamageTypeTags.IS_MAGIC)) {
+        if (event.getSource().is(WaywardTags.DamageTypeTags.IS_MAGIC)) {
             event.setNewIntegrity(event.getOriginalIntegrity()*1.5f);
         }
     }
@@ -46,7 +46,7 @@ public class CurioMagebaneBelt extends MalumCurioItem implements IMalumEventResp
             handler.addCooldown(wardedEntity, 8f);
             return;
         }
-        if (event.getSource().is(LodestoneDamageTypeTags.IS_MAGIC)) {
+        if (event.getSource().is(WaywardTags.DamageTypeTags.IS_MAGIC)) {
             handler.recoverSoulWard(wardedEntity, 1.5f);
         }
     }

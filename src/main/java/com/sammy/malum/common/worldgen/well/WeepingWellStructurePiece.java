@@ -3,6 +3,7 @@ package com.sammy.malum.common.worldgen.well;
 import com.sammy.malum.common.block.curiosities.weeping_well.*;
 import com.sammy.malum.common.block.curiosities.weeping_well.encasement.*;
 import com.sammy.malum.registry.common.MalumContent;
+import com.sammy.malum.registry.common.MalumContent.WeepingWell;
 import com.sammy.malum.registry.common.worldgen.*;
 import net.minecraft.core.*;
 import net.minecraft.nbt.*;
@@ -13,12 +14,14 @@ import net.minecraft.world.level.block.state.properties.*;
 import net.minecraft.world.level.chunk.*;
 import net.minecraft.world.level.levelgen.structure.*;
 import net.minecraft.world.level.levelgen.structure.pieces.*;
-import team.lodestar.lodestone.systems.worldgen.*;
+import team.lodestar.lodestone.modules.toolkit.worldgen.LodestoneWorldgenBuilder;
 
-import static team.lodestar.lodestone.systems.worldgen.LodestoneBlockFiller.create;
+import static com.sammy.malum.common.block.curiosities.weeping_well.encasement.WeepingWellLayeredBlock.*;
+import static com.sammy.malum.registry.common.MalumContent.WeepingWell.*;
+import static net.minecraft.world.level.block.state.properties.BlockStateProperties.*;
+
 
 public class WeepingWellStructurePiece extends StructurePiece {
-    public static final LodestoneBlockFiller.LodestoneLayerToken WELL = new LodestoneBlockFiller.LodestoneLayerToken();
 
     private final BlockPos startPos;
 
@@ -41,14 +44,15 @@ public class WeepingWellStructurePiece extends StructurePiece {
     public void postProcess(WorldGenLevel level, StructureManager structureManager, ChunkGenerator generator, RandomSource random, BoundingBox box, ChunkPos chunkPos, BlockPos pos) {
         BlockPos wellPosition = startPos;
 
-        LodestoneBlockFiller filler = new LodestoneBlockFiller().addLayers(WELL);
-        var layer = filler.getLayer(WELL);
-        var caveAir = create(Blocks.CAVE_AIR.defaultBlockState()).setForcePlace();
+        LodestoneWorldgenBuilder builder = LodestoneWorldgenBuilder.create();
+
+        var layer = builder.createLayer();
+        var caveAir = Blocks.CAVE_AIR.defaultBlockState();
 
 
-        var primordialSoupTop = create(MalumContent.WeepingWell.PRIMORDIAL_SOUP.get().defaultBlockState()).setForcePlace();
-        var primordialSoup = create(MalumContent.WeepingWell.PRIMORDIAL_SOUP.get().defaultBlockState().setValue(PrimordialSoupBlock.TOP, false)).setForcePlace();
-        var voidConduit = create(MalumContent.WeepingWell.VOID_CONDUIT.get().defaultBlockState()).setForcePlace();
+        var primordialSoupTop = PRIMORDIAL_SOUP.getDefaultState();
+        var primordialSoup = PRIMORDIAL_SOUP.getDefaultState().setValue(PrimordialSoupBlock.TOP, false);
+        var voidConduit = VOID_CONDUIT.getDefaultState();
 
         int airLayer = 3;
         int wellDepth = random.nextInt(8, 12);
@@ -57,7 +61,7 @@ public class WeepingWellStructurePiece extends StructurePiece {
             for (int z = -2; z <= 2; z++) {
                 for (int y = 0; y <= airLayer; y++) {
                     mutable.set(wellPosition).move(x, y, z);
-                    layer.put(mutable.immutable(), caveAir);
+                    layer.add(mutable, caveAir);
                 }
             }
         }
@@ -72,21 +76,17 @@ public class WeepingWellStructurePiece extends StructurePiece {
                     else if (y > 2) {
                         state = primordialSoup;
                     }
-                    layer.put(mutable.immutable(), state);
+                    layer.add(mutable, state);
                 }
             }
         }
-        var flagstoneState = create(MalumContent.WeepingWell.WEEPING_WELL_FLAGSTONE.get().defaultBlockState())
-                .setForcePlace();
+        var flagstoneState = WEEPING_WELL_FLAGSTONE.getDefaultState();
         for (int i = 0; i < 4; i++) {
             Direction direction = Direction.from2DDataValue(i);
             if (direction.getAxis().equals(Direction.Axis.X)) {
-                var columnBase = create(MalumContent.WeepingWell.WEEPING_WELL_COLUMN_BASE.get().defaultBlockState())
-                        .setForcePlace();
-                var column = create(MalumContent.WeepingWell.WEEPING_WELL_COLUMN.get().defaultBlockState())
-                        .setForcePlace();
-                var columnCap = create(MalumContent.WeepingWell.WEEPING_WELL_COLUMN_CAP.get().defaultBlockState())
-                        .setForcePlace();
+                var columnBase = WEEPING_WELL_COLUMN_BASE.getDefaultState();
+                var column = WEEPING_WELL_COLUMN.getDefaultState();
+                var columnCap = WEEPING_WELL_COLUMN_CAP.getDefaultState();
 
 
                 mutable.set(wellPosition).move(direction, 5);
@@ -102,31 +102,23 @@ public class WeepingWellStructurePiece extends StructurePiece {
                     else if (j == columnHeight) {
                         state = columnCap;
                     }
-                    layer.put(mutable.above(j), state);
+                    layer.add(mutable.above(j), state);
                 }
 
                 for (int j = 0; j < 4; j++) {
                     Direction columnDirection = Direction.from2DDataValue(j);
-                    var centerState = create(MalumContent.WeepingWell.WEEPING_WELL_CENTER.get().defaultBlockState()
-                            .setValue(BlockStateProperties.HORIZONTAL_FACING, columnDirection))
-                            .setForcePlace();
-                    var cornerState = create(MalumContent.WeepingWell.WEEPING_WELL_CORNER.get().defaultBlockState()
-                            .setValue(BlockStateProperties.HORIZONTAL_FACING, columnDirection))
-                            .setForcePlace();
+                    var centerState = WEEPING_WELL_CENTER.getDefaultState().setValue(HORIZONTAL_FACING, columnDirection);
+                    var cornerState = WEEPING_WELL_CORNER.getDefaultState().setValue(HORIZONTAL_FACING, columnDirection);
                     var centerPos = mutable.relative(columnDirection);
-                    layer.put(centerPos, centerState);
+                    layer.add(centerPos, centerState);
                     var cornerPos = centerPos.relative(columnDirection.getClockWise());
-                    layer.put(cornerPos, cornerState);
+                    layer.add(cornerPos, cornerState);
                     for (int k = 0; k < 4; k++) {
                         int state = Math.min(k+1, 4);
-                        centerState = create(MalumContent.WeepingWell.WEEPING_WELL_CENTER.get().defaultBlockState()
-                                .setValue(BlockStateProperties.HORIZONTAL_FACING, columnDirection)
-                                .setValue(WeepingWellLayeredBlock.LAYER, state));
-                        cornerState = create(MalumContent.WeepingWell.WEEPING_WELL_CORNER.get().defaultBlockState()
-                                .setValue(BlockStateProperties.HORIZONTAL_FACING, columnDirection)
-                                .setValue(WeepingWellLayeredBlock.LAYER, state));
-                        layer.put(centerPos.below(state), centerState);
-                        layer.put(cornerPos.below(state), cornerState);
+                        centerState = WEEPING_WELL_CENTER.getDefaultState().setValue(HORIZONTAL_FACING, columnDirection).setValue(LAYER, state);
+                        cornerState = WEEPING_WELL_CORNER.getDefaultState().setValue(HORIZONTAL_FACING, columnDirection).setValue(LAYER, state);
+                        layer.add(centerPos.below(state), centerState);
+                        layer.add(cornerPos.below(state), cornerState);
                     }
                 }
             }
@@ -135,45 +127,30 @@ public class WeepingWellStructurePiece extends StructurePiece {
                 if (j == wellDepth) {
                     state++;
                 }
-                var centerState = create(MalumContent.WeepingWell.WEEPING_WELL_CENTER.get().defaultBlockState()
-                        .setValue(BlockStateProperties.HORIZONTAL_FACING, direction)
-                        .setValue(WeepingWellLayeredBlock.LAYER, state))
-                        .setForcePlace();
-                var sideState = create(MalumContent.WeepingWell.WEEPING_WELL_SIDE.get().defaultBlockState()
-                        .setValue(BlockStateProperties.HORIZONTAL_FACING, direction)
-                        .setValue(WeepingWellLayeredBlock.LAYER, state))
-                        .setForcePlace();
-                var sideMirroredState = create(MalumContent.WeepingWell.WEEPING_WELL_SIDE_MIRROR.get().defaultBlockState()
-                        .setValue(BlockStateProperties.HORIZONTAL_FACING, direction)
-                        .setValue(WeepingWellLayeredBlock.LAYER, state))
-                        .setForcePlace();
-                var cornerState = create(MalumContent.WeepingWell.WEEPING_WELL_CORNER.get().defaultBlockState()
-                        .setValue(BlockStateProperties.HORIZONTAL_FACING, direction)
-                        .setValue(WeepingWellLayeredBlock.LAYER, state))
-                        .setForcePlace();
+                var centerState = WEEPING_WELL_CENTER.getDefaultState().setValue(HORIZONTAL_FACING, direction).setValue(LAYER, state);
+                var sideState = WEEPING_WELL_SIDE.getDefaultState().setValue(HORIZONTAL_FACING, direction).setValue(LAYER, state);
+                var sideMirroredState = WEEPING_WELL_SIDE_MIRROR.getDefaultState().setValue(HORIZONTAL_FACING, direction).setValue(LAYER, state);
+                var cornerState = WEEPING_WELL_CORNER.getDefaultState().setValue(HORIZONTAL_FACING, direction).setValue(LAYER, state);
                 mutable.set(wellPosition).move(direction, 2).setY(wellPosition.getY()-j);
-                layer.put(mutable.immutable(), centerState);
-                layer.put(mutable.relative(direction.getClockWise()), sideState);
-                layer.put(mutable.relative(direction.getCounterClockWise()), sideMirroredState);
-                layer.put(mutable.relative(direction.getClockWise(), 2), cornerState);
+                layer.add(mutable, centerState);
+                layer.add(mutable.relative(direction.getClockWise()), sideState);
+                layer.add(mutable.relative(direction.getCounterClockWise()), sideMirroredState);
+                layer.add(mutable.relative(direction.getClockWise(), 2), cornerState);
             }
         }
         for (int i = 0; i < 4; i++) {
             Direction columnDirection = Direction.from2DDataValue(i);
-            var centerState = create(MalumContent.WeepingWell.WEEPING_WELL_CENTER.get().defaultBlockState()
-                    .setValue(BlockStateProperties.HORIZONTAL_FACING, columnDirection))
-                    .setForcePlace();
-            var cornerState = create(MalumContent.WeepingWell.WEEPING_WELL_CORNER.get().defaultBlockState()
-                    .setValue(BlockStateProperties.HORIZONTAL_FACING, columnDirection))
-                    .setForcePlace();
+            var centerState = WEEPING_WELL_CENTER.getDefaultState()
+                    .setValue(HORIZONTAL_FACING, columnDirection);
+            var cornerState = WEEPING_WELL_CORNER.getDefaultState().setValue(HORIZONTAL_FACING, columnDirection);
             var flagstonePos = mutable.set(wellPosition).move(Direction.DOWN, wellDepth+1);
-            layer.put(flagstonePos.immutable(), flagstoneState);
+            layer.add(flagstonePos.immutable(), flagstoneState);
             var sidePos = flagstonePos.relative(columnDirection);
-            layer.put(sidePos, centerState);
+            layer.add(sidePos, centerState);
             var cornerPos = sidePos.relative(columnDirection.getClockWise());
-            layer.put(cornerPos, cornerState);
+            layer.add(cornerPos, cornerState);
         }
 
-        filler.fill(level);
+        builder.place(level);
     }
 }

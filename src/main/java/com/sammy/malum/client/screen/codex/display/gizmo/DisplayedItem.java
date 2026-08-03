@@ -16,7 +16,7 @@ import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.ItemLike;
-import team.lodestar.lodestone.systems.rendering.VFXBuilders;
+import team.lodestar.lodestone.systems.rendering.builder.VFXBuilders;
 
 import java.util.List;
 
@@ -49,6 +49,7 @@ public class DisplayedItem extends DisplayedGizmo {
         }
         dynamicTexture.bind(0);
         PoseStack stack = guiGraphics.pose();
+        stack.pushPose();
         var builder = VFXBuilders.createScreen()
                 .setShader(GameRenderer::getPositionTexColorShader)
                 .setUV(0, 1, 1, 0)
@@ -69,6 +70,7 @@ public class DisplayedItem extends DisplayedGizmo {
         }
 
         guiGraphics.renderItemDecorations(Minecraft.getInstance().font, itemDisplay, x, y, null);
+        stack.popPose();
     }
 
     @Override

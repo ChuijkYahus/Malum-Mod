@@ -18,8 +18,10 @@ import org.joml.*;
 import team.lodestar.lodestone.helpers.StateShardHelper;
 import team.lodestar.lodestone.helpers.TextureHelper;
 import team.lodestar.lodestone.systems.rendering.*;
+import team.lodestar.lodestone.systems.rendering.builder.VFXBuilders;
 import team.lodestar.lodestone.systems.rendering.rendeertype.*;
-import team.lodestar.lodestone.systems.rendering.cube.CubeVertexData;
+import team.lodestar.lodestone.systems.rendering.builder.data.CubeVertexData;
+
 import team.lodestar.lodestone.systems.rendering.renderpass.BeforeLevelRenderPass;
 
 import java.awt.*;

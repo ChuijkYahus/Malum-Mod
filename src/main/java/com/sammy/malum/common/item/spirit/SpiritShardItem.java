@@ -13,7 +13,7 @@ import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
 import org.jetbrains.annotations.*;
 import team.lodestar.lodestone.handlers.screenparticle.ParticleEmitterHandler.ItemParticleSupplier;
-import team.lodestar.lodestone.systems.particle.screen.ScreenParticleHolder;
+import team.lodestar.lodestone.modules.rendering.particle.standard.screen.ScreenParticleHolder;
 
 import java.util.List;
 

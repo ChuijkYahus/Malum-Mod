@@ -24,9 +24,12 @@ import net.neoforged.api.distmarker.*;
 import net.neoforged.neoforge.event.entity.living.*;
 import team.lodestar.lodestone.helpers.*;
 import team.lodestar.lodestone.modules.core.easing.Easing;
+import team.lodestar.lodestone.modules.toolkit.sound.SoundPlayer;
 import team.lodestar.lodestone.registry.common.*;
 import team.lodestar.lodestone.registry.common.tag.*;
 import team.lodestar.lodestone.modules.toolkit.item.*;
+import team.lodestar.wayward_attributes.WaywardTags;
+import team.lodestar.wayward_attributes.core.registry.WaywardAttributeTypes;
 
 
 public abstract class AbstractStaffItem extends LodestoneCombatItem implements IMalumEventResponder {
@@ -38,7 +41,7 @@ public abstract class AbstractStaffItem extends LodestoneCombatItem implements I
         super(tier, attackDamage, attackSpeed, properties.mergeAttributes(
                 ItemAttributeModifiers.builder()
                         .add(Attributes.ATTACK_DAMAGE, new AttributeModifier(BASE_ATTACK_DAMAGE_ID,  attackDamage, AttributeModifier.Operation.ADD_VALUE), EquipmentSlotGroup.MAINHAND)
-                        .add(LodestoneAttributes.MAGIC_DAMAGE, new AttributeModifier(LodestoneAttributes.BASE_MAGIC_DAMAGE, magicDamage, AttributeModifier.Operation.ADD_VALUE), EquipmentSlotGroup.MAINHAND)
+                        .add(WaywardAttributeTypes.MAGIC_DAMAGE, new AttributeModifier(WaywardAttributeTypes.BASE_MAGIC_DAMAGE, magicDamage, AttributeModifier.Operation.ADD_VALUE), EquipmentSlotGroup.MAINHAND)
                         .add(MalumAttributes.CHARGE_CAPACITY, new AttributeModifier(MalumAttributes.BASE_CHARGE_CAPACITY, chargeCapacity, AttributeModifier.Operation.ADD_VALUE), EquipmentSlotGroup.MAINHAND)
                         .add(MalumAttributes.CHARGE_DURATION, new AttributeModifier(MalumAttributes.BASE_CHARGE_DURATION, chargeRate, AttributeModifier.Operation.ADD_VALUE), EquipmentSlotGroup.MAINHAND)
                         .build()));
@@ -53,10 +56,9 @@ public abstract class AbstractStaffItem extends LodestoneCombatItem implements I
 
     @Override
     public void outgoingDamageEvent(LivingDamageEvent.Pre event, LivingEntity attacker, LivingEntity target, ItemStack stack) {
-        if (attacker instanceof ServerPlayer player && event.getSource().is(LodestoneDamageTypeTags.CAN_TRIGGER_MAGIC_DAMAGE)) {
+        if (attacker instanceof ServerPlayer player && event.getSource().is(WaywardTags.DamageTypeTags.CAN_TRIGGER_MAGIC_DAMAGE)) {
             var level = player.serverLevel();
-            float pitch = Easing.SINE_IN_OUT.asWeighedRandom(level.random, 0.85f, 1.25f);
-            SoundHelper.playSound(target, MalumGearSoundEvents.STAFF_STRIKES.get(), attacker.getSoundSource(), 2f, pitch);
+            SoundPlayer.create(MalumGearSoundEvents.STAFF_STRIKES).volume(2f).pitch(0.85f, 1.25f).play(target, attacker.getSoundSource());
             MalumParticleEffectTypes.STAFF_SLAM.createEffect()
                     .originatesFrom(attacker)
                     .targets(target)
@@ -144,7 +146,7 @@ public abstract class AbstractStaffItem extends LodestoneCombatItem implements I
 
     public void shoot(ItemStack stack, ServerLevel level, LivingEntity entity, int projectileCount) {
         InteractionHand hand = entity.getUsedItemHand();
-        float magicDamage = (float) entity.getAttributes().getValue(LodestoneAttributes.MAGIC_DAMAGE);
+        float magicDamage = (float) entity.getAttributes().getValue(WaywardAttributeTypes.MAGIC_DAMAGE);
         if (magicDamage == 0) {
             float pitch = Mth.nextFloat(level.random, 0.5f, 0.8f);
             level.playSound(null, entity.blockPosition(), MalumGearSoundEvents.STAFF_SIZZLES_OUT.get(), SoundSource.PLAYERS, 0.5f, pitch);

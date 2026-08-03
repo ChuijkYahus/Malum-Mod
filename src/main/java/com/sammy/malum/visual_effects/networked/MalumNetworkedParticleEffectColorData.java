@@ -7,7 +7,7 @@ import com.sammy.malum.core.systems.spirit.SpiritLike;
 import io.netty.buffer.*;
 import net.minecraft.network.codec.*;
 import team.lodestar.lodestone.systems.network.particle.NetworkedParticleEffectColorData;
-import team.lodestar.lodestone.systems.particle.data.color.*;
+import team.lodestar.lodestone.modules.rendering.particle.standard.data.color.*;
 
 import java.util.*;
 import java.util.List;

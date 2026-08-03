@@ -7,7 +7,7 @@ import net.minecraft.client.renderer.blockentity.BlockEntityRenderer;
 import net.minecraft.client.renderer.blockentity.BlockEntityRendererProvider;
 import net.minecraft.world.phys.AABB;
 import org.jetbrains.annotations.NotNull;
-import team.lodestar.lodestone.modules.toolkit.client.ItemStackDisplayDataRenderer;
+import team.lodestar.lodestone.modules.toolkit.inventory.display.ItemStackDisplayDataRenderer;
 
 public class SpiritAltarRenderer implements BlockEntityRenderer<SpiritAltarBlockEntity> {
     public SpiritAltarRenderer(BlockEntityRendererProvider.Context context) {

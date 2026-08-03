@@ -8,12 +8,12 @@ import net.minecraft.client.model.geom.ModelLayerLocation;
 import net.minecraft.client.model.geom.ModelPart;
 import net.minecraft.client.model.geom.PartPose;
 import net.minecraft.client.model.geom.builders.*;
-import team.lodestar.lodestone.systems.model.armor.*;
+import team.lodestar.lodestone.modules.rendering.model.entity.EntityModelHolder;
+import team.lodestar.lodestone.modules.rendering.model.entity.armor.*;
 
 public class SoulStainedSteelArmorModel extends LodestoneArmorModel {
 
-    public static MalumModels.ModelHolder<SoulStainedSteelArmorModel> MODEL = new MalumModels.ModelHolder<>("soul_stained_armor", SoulStainedSteelArmorModel::new, SoulStainedSteelArmorModel::createBodyLayer);
-
+    public static EntityModelHolder<SoulStainedSteelArmorModel> MODEL = new EntityModelHolder<>(MalumMod.malumPath("soul_stained_armor"), SoulStainedSteelArmorModel::new, SoulStainedSteelArmorModel::createBodyLayer);
 
     public SoulStainedSteelArmorModel(ModelPart root) {
         super(root);

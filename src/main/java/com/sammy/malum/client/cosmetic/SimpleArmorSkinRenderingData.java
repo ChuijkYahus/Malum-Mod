@@ -3,7 +3,7 @@ package com.sammy.malum.client.cosmetic;
 import com.sammy.malum.common.data.component.*;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.LivingEntity;
-import team.lodestar.lodestone.systems.model.armor.*;
+import team.lodestar.lodestone.modules.rendering.model.entity.armor.LodestoneArmorModel;
 
 import static com.sammy.malum.MalumMod.malumPath;
 

@@ -7,6 +7,7 @@ import net.minecraft.world.entity.*;
 import team.lodestar.lodestone.helpers.*;
 import team.lodestar.lodestone.modules.core.easing.Easing;
 import team.lodestar.lodestone.systems.rendering.*;
+import team.lodestar.lodestone.systems.rendering.builder.WorldVFXBuilder;
 import team.lodestar.lodestone.systems.rendering.trail.*;
 
 import java.awt.*;
@@ -14,26 +15,26 @@ import java.util.function.*;
 
 public class RenderUtils {
 
-    public static void renderEntityTrail(PoseStack poseStack, VFXBuilders.WorldVFXBuilder builder, TrailPointBuilder trailPointBuilder, Entity entity, SpiritLike spirit, float effectScalar, float partialTicks) {
+    public static void renderEntityTrail(PoseStack poseStack, WorldVFXBuilder builder, TrailPointBuilder trailPointBuilder, Entity entity, SpiritLike spirit, float effectScalar, float partialTicks) {
         renderEntityTrail(poseStack, builder, trailPointBuilder, entity, spirit.getPrimaryColor(), spirit.getSecondaryColor(), effectScalar, effectScalar, partialTicks);
     }
-    public static void renderEntityTrail(PoseStack poseStack, VFXBuilders.WorldVFXBuilder builder, TrailPointBuilder trailPointBuilder, Entity entity, Color primaryColor, Color secondaryColor, float effectScalar, float partialTicks) {
+    public static void renderEntityTrail(PoseStack poseStack, WorldVFXBuilder builder, TrailPointBuilder trailPointBuilder, Entity entity, Color primaryColor, Color secondaryColor, float effectScalar, float partialTicks) {
         renderEntityTrail(poseStack, builder, trailPointBuilder, entity, t -> primaryColor, t -> secondaryColor, effectScalar, effectScalar, partialTicks);
     }
 
-    public static void renderEntityTrail(PoseStack poseStack, VFXBuilders.WorldVFXBuilder builder, TrailPointBuilder trailPointBuilder, Entity entity, Function<Float, Color> primaryColor, Function<Float, Color> secondaryColor, float effectScalar, float partialTicks) {
+    public static void renderEntityTrail(PoseStack poseStack, WorldVFXBuilder builder, TrailPointBuilder trailPointBuilder, Entity entity, Function<Float, Color> primaryColor, Function<Float, Color> secondaryColor, float effectScalar, float partialTicks) {
         renderEntityTrail(poseStack, builder, trailPointBuilder, entity, primaryColor, secondaryColor, effectScalar, effectScalar, partialTicks);
     }
 
-    public static void renderEntityTrail(PoseStack poseStack, VFXBuilders.WorldVFXBuilder builder, TrailPointBuilder trailPointBuilder, Entity entity, SpiritLike spirit, float scaleScalar, float alphaScalar, float partialTicks) {
+    public static void renderEntityTrail(PoseStack poseStack, WorldVFXBuilder builder, TrailPointBuilder trailPointBuilder, Entity entity, SpiritLike spirit, float scaleScalar, float alphaScalar, float partialTicks) {
         renderEntityTrail(poseStack, builder, trailPointBuilder, entity, spirit.getPrimaryColor(), spirit.getSecondaryColor(), scaleScalar, alphaScalar, partialTicks);
     }
 
-    public static void renderEntityTrail(PoseStack poseStack, VFXBuilders.WorldVFXBuilder builder, TrailPointBuilder trailPointBuilder, Entity entity, Color primaryColor, Color secondaryColor, float scaleScalar, float alphaScalar, float partialTicks) {
+    public static void renderEntityTrail(PoseStack poseStack, WorldVFXBuilder builder, TrailPointBuilder trailPointBuilder, Entity entity, Color primaryColor, Color secondaryColor, float scaleScalar, float alphaScalar, float partialTicks) {
         renderEntityTrail(poseStack, builder, trailPointBuilder, entity, t -> primaryColor, t -> secondaryColor, scaleScalar, alphaScalar, partialTicks);
     }
 
-    public static void renderEntityTrail(PoseStack poseStack, VFXBuilders.WorldVFXBuilder builder, TrailPointBuilder trailPointBuilder, Entity entity, Function<Float, Color> primaryColor, Function<Float, Color> secondaryColor, float scaleScalar, float alphaScalar, float partialTicks) {
+    public static void renderEntityTrail(PoseStack poseStack, WorldVFXBuilder builder, TrailPointBuilder trailPointBuilder, Entity entity, Function<Float, Color> primaryColor, Function<Float, Color> secondaryColor, float scaleScalar, float alphaScalar, float partialTicks) {
         poseStack.pushPose();
         float trailOffsetX = (float) Mth.lerp(partialTicks, entity.xOld, entity.getX());
         float trailOffsetY = (float) Mth.lerp(partialTicks, entity.yOld, entity.getY());

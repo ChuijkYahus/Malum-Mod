@@ -10,7 +10,8 @@ import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.entity.*;
 import net.minecraft.util.Mth;
 import team.lodestar.lodestone.helpers.ColorHelper;
-import team.lodestar.lodestone.systems.rendering.VFXBuilders;
+import team.lodestar.lodestone.systems.rendering.builder.VFXBuilders;
+import team.lodestar.lodestone.systems.rendering.builder.WorldVFXBuilder;
 
 import java.awt.*;
 
@@ -49,7 +50,7 @@ public class EntropicFlameBoltRenderer extends AbstractBoltEntityRenderer<Entrop
         float delta = entity.getVisualEffectScalar();
         float scale = delta * getScaleMultiplier();
         float alpha = Mth.clamp(delta * getAlphaMultiplier() * 0.5f, 0, 1);
-        VFXBuilders.WorldVFXBuilder builder = VFXBuilders.createWorld().setRenderType(getTrailRenderType(true));
+        WorldVFXBuilder builder = VFXBuilders.createWorld().setRenderType(getTrailRenderType(true));
         Color aqueousPrimaryColor = MalumSpiritTypes.AQUEOUS_SPIRIT.getPrimaryColor();
         Color darkerPrimary = ColorHelper.darker(aqueousPrimaryColor, 2);
         Color aqueousSecondaryColor = MalumSpiritTypes.EARTHEN_SPIRIT.getSecondaryColor();

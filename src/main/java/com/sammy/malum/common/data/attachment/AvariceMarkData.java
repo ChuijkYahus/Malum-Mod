@@ -25,7 +25,7 @@ import net.neoforged.neoforge.event.entity.player.ItemEntityPickupEvent;
 import net.neoforged.neoforge.event.level.BlockDropsEvent;
 import net.neoforged.neoforge.event.tick.EntityTickEvent;
 import team.lodestar.lodestone.helpers.EntityHelper;
-import team.lodestar.lodestone.helpers.SoundHelper;
+import team.lodestar.lodestone.modules.toolkit.sound.SoundPlayer;
 
 public class AvariceMarkData {
 
@@ -126,6 +126,6 @@ public class AvariceMarkData {
                 player.getFoodData().eat(1, 2f);
             }
         }
-        SoundHelper.playSound(target, MalumSoundEvents.AVARICE_COLLECT.get(), volume, 0.8f + target.getRandom().nextFloat() * 0.4f);
+        SoundPlayer.create(MalumSoundEvents.AVARICE_COLLECT).volume(volume).pitch(0.8f, 1.2f).play(target);
     }
 }

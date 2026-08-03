@@ -17,9 +17,9 @@ import team.lodestar.lodestone.modules.core.easing.Easing;
 import team.lodestar.lodestone.systems.network.particle.NetworkedParticleEffectExtraData;
 import team.lodestar.lodestone.systems.network.particle.NetworkedParticleEffectPositionData;
 import team.lodestar.lodestone.systems.network.particle.NetworkedParticleEffectType;
-import team.lodestar.lodestone.systems.particle.builder.WorldParticleBuilder;
-import team.lodestar.lodestone.systems.particle.data.GenericParticleData;
-import team.lodestar.lodestone.systems.particle.data.spin.SpinParticleData;
+import team.lodestar.lodestone.modules.rendering.particle.standard.builder.WorldParticleBuilder;
+import team.lodestar.lodestone.modules.rendering.particle.standard.data.GenericParticleData;
+import team.lodestar.lodestone.modules.rendering.particle.standard.data.spin.SpinParticleData;
 
 import java.util.function.Supplier;
 

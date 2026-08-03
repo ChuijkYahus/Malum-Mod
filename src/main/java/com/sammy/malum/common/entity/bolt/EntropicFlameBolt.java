@@ -18,12 +18,13 @@ import net.neoforged.api.distmarker.*;
 import org.jetbrains.annotations.NotNull;
 import team.lodestar.lodestone.handlers.*;
 import team.lodestar.lodestone.modules.core.easing.Easing;
-import team.lodestar.lodestone.systems.particle.builder.*;
-import team.lodestar.lodestone.systems.particle.data.*;
-import team.lodestar.lodestone.systems.particle.data.color.ColorParticleData;
-import team.lodestar.lodestone.systems.particle.render_types.*;
-import team.lodestar.lodestone.systems.particle.world.*;
-import team.lodestar.lodestone.systems.particle.world.behaviors.*;
+import team.lodestar.lodestone.modules.rendering.LodestoneRenderingSystem;
+import team.lodestar.lodestone.modules.rendering.particle.standard.builder.*;
+import team.lodestar.lodestone.modules.rendering.particle.standard.data.*;
+import team.lodestar.lodestone.modules.rendering.particle.standard.data.color.ColorParticleData;
+import team.lodestar.lodestone.modules.rendering.particle.standard.render_types.*;
+import team.lodestar.lodestone.modules.rendering.particle.standard.world.*;
+import team.lodestar.lodestone.modules.rendering.particle.standard.world.behaviors.*;
 import team.lodestar.lodestone.systems.rendering.trail.TrailPointBuilder;
 
 import java.util.function.*;
@@ -117,13 +118,13 @@ public class EntropicFlameBolt extends AbstractStaffBoltProjectile {
         var lightSpecs = SpiritLightSpecs.spiritLightSpecs(level, position, AURIC_COLOR_DATA);
         lightSpecs.getBuilder()
                 .modifyScaleData(d -> d.multiplyValue(3 * scalar))
-                .setRenderTarget(LodestoneRenderHandler.LATE_DEFERRED_RENDER)
+                .setRenderTarget(LodestoneRenderingSystem.LATE_DEFERRED_RENDER)
                 .multiplyLifetime(2.5f)
                 .setRenderType(LodestoneWorldParticleRenderType.LUMITRANSPARENT)
                 .enableForcedSpawn()
                 .setMotion(norm);
         lightSpecs.getBloomBuilder()
-                .setRenderTarget(LodestoneRenderHandler.LATE_DEFERRED_RENDER)
+                .setRenderTarget(LodestoneRenderingSystem.LATE_DEFERRED_RENDER)
                 .multiplyLifetime(1.5f)
                 .setRenderType(LodestoneWorldParticleRenderType.LUMITRANSPARENT)
                 .setMotion(norm);
@@ -136,7 +137,7 @@ public class EntropicFlameBolt extends AbstractStaffBoltProjectile {
                 .setLengthData(GenericParticleData.create(1.8f * scalar, 2.4f * scalar, 0.1f * scalar).setEasing(Easing.CUBIC_IN).build())
                 .setTransparencyData(GenericParticleData.create(0.5f * min, 0f).setEasing(Easing.SINE_IN_OUT, Easing.SINE_IN).build())
                 .setScaleData(GenericParticleData.create(1.2f * scalar, 0.1f * scalar).setEasing(Easing.SINE_IN_OUT).build())
-                .setRenderTarget(LodestoneRenderHandler.LATE_DEFERRED_RENDER)
+                .setRenderTarget(LodestoneRenderingSystem.LATE_DEFERRED_RENDER)
                 .setLifetime(Math.min(2 + age, 16))
                 .setColorData(AURIC_COLOR_DATA)
                 .addTickActor(behavior)

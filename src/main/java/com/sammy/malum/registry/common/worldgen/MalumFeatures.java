@@ -2,12 +2,10 @@ package com.sammy.malum.registry.common.worldgen;
 
 import com.sammy.malum.common.worldgen.flora.EbonyFeature;
 import com.sammy.malum.common.worldgen.ore.*;
-import com.sammy.malum.common.worldgen.sanctuary.feature.*;
 import com.sammy.malum.common.worldgen.tree.*;
 import net.minecraft.core.registries.*;
 import net.minecraft.resources.*;
 import net.minecraft.world.level.levelgen.feature.*;
-import net.minecraft.world.level.levelgen.feature.configurations.NoneFeatureConfiguration;
 import net.minecraft.world.level.levelgen.placement.*;
 import net.neoforged.neoforge.registries.DeferredHolder;
 import net.neoforged.neoforge.registries.DeferredRegister;
@@ -17,10 +15,6 @@ import static com.sammy.malum.MalumMod.*;
 public class MalumFeatures {
 
     public static final DeferredRegister<Feature<?>> FEATURE_TYPES = DeferredRegister.create(BuiltInRegistries.FEATURE, MALUM);
-
-    public static final DeferredHolder<Feature<?>, SanctuaryPillarFeature> SANCTUARY_PILLAR = FEATURE_TYPES.register("sanctuary_pillar", SanctuaryPillarFeature::new);
-    public static final DeferredHolder<Feature<?>, SanctuaryWallFeature> SANCTUARY_WALL = FEATURE_TYPES.register("sanctuary_wall", SanctuaryWallFeature::new);
-
 
     public static final DeferredHolder<Feature<?>, RunewoodTreeFeature> RUNEWOOD_TREE = FEATURE_TYPES.register("runewood_tree", RunewoodTreeFeature::new);
     public static final DeferredHolder<Feature<?>, SoulwoodTreeFeature> SOULWOOD_TREE = FEATURE_TYPES.register("soulwood_tree", SoulwoodTreeFeature::new);

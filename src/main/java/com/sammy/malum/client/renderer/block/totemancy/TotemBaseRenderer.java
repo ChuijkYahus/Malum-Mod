@@ -12,7 +12,8 @@ import net.minecraft.client.renderer.blockentity.*;
 import net.minecraft.world.phys.*;
 import team.lodestar.lodestone.registry.client.*;
 import team.lodestar.lodestone.modules.core.easing.Easing;
-import team.lodestar.lodestone.systems.rendering.cube.CubeVertexData;
+import team.lodestar.lodestone.systems.rendering.builder.data.CubeVertexData;
+
 import team.lodestar.lodestone.systems.rendering.rendeertype.*;
 
 
