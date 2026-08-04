@@ -183,6 +183,7 @@ public class MalumItemTagDatagen extends LodestoneItemTagsSystem {
         tag(FRACTURED_METAL_IMPETUS, FracturedMetalImpetusItem.class).addTag(FRACTURED_IMPETUS);
 
         tag(ARMORS, MalumArmorItem.class);
+        tag(ItemTags.TRIMMABLE_ARMOR).addTags(ARMORS);
 
         tag(RUNES_STONE, MiracleRuneCurioItem.class);
         tag(RUNES_VOID, MadnessRuneCurioItem.class);

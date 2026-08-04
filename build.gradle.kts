@@ -161,9 +161,14 @@ dependencies {
 //    modRuntime("dev.eriksonn.aeronautics:aeronautics-neoforge-1.21.1:1.3.0")
 //    modRuntime("dev.simulated_team.simulated:simulated-neoforge-1.21.1:1.3.0")
 
+
     runtimeOnly("curse.maven:ftb-library-forge-404465:5754910")
     runtimeOnly("curse.maven:architectury-api-419699:5786327")
+
     localRuntime("curse.maven:neat-238372:7774002")
+
+    localRuntime("curse.maven:blueprint-382216:8397829")
+    localRuntime("curse.maven:caverns-and-chasms-438005:8155745")
 }
 
 val generateModMetadata by tasks.registering(ProcessResources::class) {

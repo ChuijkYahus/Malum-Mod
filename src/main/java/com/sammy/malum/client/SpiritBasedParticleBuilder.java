@@ -22,7 +22,7 @@ import team.lodestar.lodestone.modules.rendering.particle.standard.world.*;
 import team.lodestar.lodestone.modules.rendering.particle.standard.world.behaviors.*;
 import team.lodestar.lodestone.modules.rendering.particle.standard.world.options.*;
 import team.lodestar.lodestone.modules.rendering.particle.standard.world.type.*;
-import team.lodestar.lodestone.systems.rendering.buffer.LodestoneRenderLayer;
+import team.lodestar.lodestone.systems.rendering.LodestoneRenderLayer;
 
 import javax.annotation.*;
 import java.util.function.*;

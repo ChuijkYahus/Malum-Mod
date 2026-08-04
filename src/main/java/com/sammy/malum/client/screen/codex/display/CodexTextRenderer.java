@@ -15,6 +15,7 @@ import org.joml.*;
 import team.lodestar.lodestone.modules.core.easing.*;
 import team.lodestar.lodestone.registry.client.*;
 import team.lodestar.lodestone.systems.rendering.*;
+import team.lodestar.lodestone.systems.rendering.wrapper.LodestoneBufferWrapper;
 
 import java.awt.*;
 import java.lang.Math;

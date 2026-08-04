@@ -25,6 +25,7 @@ import team.lodestar.lodestone.modules.toolkit.inventory.LodestoneItemStackHandl
 import team.lodestar.lodestone.registry.client.*;
 import team.lodestar.lodestone.modules.core.easing.Easing;
 import team.lodestar.lodestone.systems.rendering.*;
+import team.lodestar.lodestone.systems.rendering.wrapper.LodestoneBufferWrapper;
 
 import java.lang.Math;
 

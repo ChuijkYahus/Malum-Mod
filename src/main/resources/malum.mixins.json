@@ -25,6 +25,7 @@
     "client.AbstractContainerScreenMixin",
     "client.CreativeModeInventoryScreenMixin",
     "client.CreativeModeTabMixin",
+    "client.HumanoidArmorLayerMixin",
     "client.ItemInHandLayerMixin",
     "client.ItemInHandRendererMixin",
     "client.LocalPlayerMixin",

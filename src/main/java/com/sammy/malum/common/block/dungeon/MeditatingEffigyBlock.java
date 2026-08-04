@@ -1,5 +1,6 @@
 package com.sammy.malum.common.block.dungeon;
 
+import net.minecraft.client.renderer.entity.layers.HumanoidArmorLayer;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.block.Block;

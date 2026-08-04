@@ -24,6 +24,7 @@ import team.lodestar.lodestone.systems.rendering.*;
 import team.lodestar.lodestone.systems.rendering.builder.ScreenVFXBuilder;
 import team.lodestar.lodestone.systems.rendering.builder.VFXBuilders;
 import team.lodestar.lodestone.systems.rendering.shader.*;
+import team.lodestar.lodestone.systems.rendering.wrapper.LodestoneBufferWrapper;
 
 import java.text.*;
 import java.util.function.*;

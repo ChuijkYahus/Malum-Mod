@@ -4,9 +4,9 @@ import com.sammy.malum.core.systems.spirit.SpiritArcanaType;
 import com.sammy.malum.core.systems.spirit.SpiritLike;
 import com.sammy.malum.core.systems.spirit.umbral.UmbralSpiritArcanaType;
 import net.minecraft.client.renderer.RenderType;
-import team.lodestar.lodestone.systems.rendering.LodestoneRenderType;
 import team.lodestar.lodestone.systems.rendering.StateShards;
 import team.lodestar.lodestone.systems.rendering.builder.WorldVFXBuilder;
+import team.lodestar.lodestone.systems.rendering.rendeertype.LodestoneRenderType;
 import team.lodestar.lodestone.systems.rendering.rendeertype.ShaderUniformHandler;
 
 public class SpiritBasedWorldVFXBuilder extends WorldVFXBuilder {

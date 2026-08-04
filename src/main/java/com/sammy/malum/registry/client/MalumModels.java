@@ -1,25 +1,17 @@
 package com.sammy.malum.registry.client;
 
-import com.sammy.malum.MalumMod;
-import com.sammy.malum.client.model.*;
-import com.sammy.malum.client.model.cosmetic.pride.PridewearArmorModel;
-import com.sammy.malum.client.model.cosmetic.pride.SlimPridewearArmorModel;
+import com.sammy.malum.client.model.armor.MalignantStrongholdArmorModel;
+import com.sammy.malum.client.model.armor.SoulHunterArmorModel;
+import com.sammy.malum.client.model.armor.SoulStainedSteelArmorModel;
+import com.sammy.malum.client.model.armor.pride.PridewearArmorModel;
+import com.sammy.malum.client.model.armor.pride.SlimPridewearArmorModel;
 
 import com.sammy.malum.client.model.mob.altar.AltarModel;
 import com.sammy.malum.client.model.mob.believer.BelieverModel;
 import com.sammy.malum.client.model.mob.cardinal.CardinalModel;
 import com.sammy.malum.client.model.mob.cherub.CherubModel;
 import com.sammy.malum.client.model.mob.evangelist.EvangelistModel;
-import net.minecraft.client.model.Model;
-import net.minecraft.client.model.geom.ModelLayerLocation;
-import net.minecraft.client.model.geom.ModelPart;
-import net.minecraft.client.model.geom.builders.LayerDefinition;
-import net.minecraft.resources.ResourceLocation;
 import net.neoforged.neoforge.client.event.*;
-import team.lodestar.lodestone.modules.rendering.handlers.ModelHandler;
-
-import java.util.function.Function;
-import java.util.function.Supplier;
 
 public class MalumModels {
 
