@@ -70,11 +70,12 @@ public class SpiritRiteType {
 
     public boolean matches(ServerLevel level, TotemBaseBlockEntity totemBase) {
         var totemSpirits = totemBase.getSpirits(level);
-        var state = totemBase.getState();
+        var state = totemBase.getBlockState();
 
-//        if (totemBase.corrupted != isCorrupted) {
-//            return false;
-//        }
+        if (state.getBlock() instanceof TotemBaseBlock<?> block
+                && block.corrupted != isCorrupted) {
+            return false;
+        }
         if (totemSpirits.size() != spirits.size()) {
             return false;
         }
