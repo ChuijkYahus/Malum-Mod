@@ -27,7 +27,7 @@ import team.lodestar.lodestone.modules.toolkit.sound.SoundPlayer;
 public class EdgeOfDeliveranceItem extends MalumScytheItem {
 
     public EdgeOfDeliveranceItem(Tier tier, float attackDamage, float attackSpeed, LodestoneItemProperties properties) {
-        super(tier, attackDamage, attackSpeed, properties);
+        super(tier, attackDamage, attackSpeed, 0.5f, 2f, properties);
     }
 
     @Override

@@ -37,6 +37,10 @@ public class MalumItemModelDatagen extends LodestoneItemModelSystem {
                 POLY_PRIDEWEAVE, PRIDE_PRIDEWEAVE, TRANS_PRIDEWEAVE
         );
 
+
+        setTexturePath("trim");
+        MalumItemModelSmithTypes.GENERATED_ITEM.act(data, SmithingTemplateItem.class);
+
         setTexturePath("spirit/");
         MalumItemModelSmithTypes.GENERATED_ITEM.act(data, SpiritShardItem.class);
 

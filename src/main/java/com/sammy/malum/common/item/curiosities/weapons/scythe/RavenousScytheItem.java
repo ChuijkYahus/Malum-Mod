@@ -21,7 +21,7 @@ import team.lodestar.lodestone.modules.toolkit.sound.SoundPlayer;
 public class RavenousScytheItem extends MagicScytheItem {
 
     public RavenousScytheItem(Tier tier, float attackDamage, float attackSpeed, float magicDamage, LodestoneItemProperties properties) {
-        super(tier, attackDamage, attackSpeed, magicDamage, properties);
+        super(tier, attackDamage, attackSpeed, magicDamage, 0.5f, 3f, properties);
     }
 
     @Override
@@ -39,24 +39,23 @@ public class RavenousScytheItem extends MagicScytheItem {
         super.outgoingDamageEvent(event, attacker, target, stack);
         if (attacker.level() instanceof ServerLevel level) {
             var source = event.getSource();
-            if (source.is(MalumTags.DamageTypes.IS_SCYTHE) || source.is(MalumDamageTypes.INVERTED_HEART_PROPAGATION)) {
-                if (source.is(MalumTags.DamageTypes.IS_SCYTHE_MELEE)) {
-                    if (!LodestoneEnchantmentEffectCommonsHelper.isChargedAttack(attacker)) {
-                        return;
-                    }
-                    float pitch = Easing.SINE_IN_OUT.asWeighedRandom(attacker.getRandom(), 1f, 1.5f);
-
-                    SoundPlayer.create(MalumGearSoundEvents.RAVENOUS_SCYTHE_EATS).pitch(1f, 1.5f).play(attacker);
-                }
-                if (source.is(MalumDamageTypes.SCYTHE_MAELSTROM)) {
-                    if (level.getRandom().nextFloat() >= 0.2f) {
-                        return;
-                    }
-                }
-                GluttonyEffect.applyGluttony(attacker, b -> b
-                        .setAmplifierGain(1)
-                        .setAmplifierLimit(5));
+            if (!source.is(MalumTags.DamageTypes.IS_SCYTHE) && !source.is(MalumDamageTypes.INVERTED_HEART_PROPAGATION)) {
+                return;
             }
+            if (source.is(MalumTags.DamageTypes.IS_SCYTHE_MELEE)) {
+                if (!LodestoneEnchantmentEffectCommonsHelper.isChargedAttack(attacker)) {
+                    return;
+                }
+                SoundPlayer.create(MalumGearSoundEvents.RAVENOUS_SCYTHE_EATS).pitch(1f, 1.5f).play(attacker);
+            }
+            if (source.is(MalumDamageTypes.SCYTHE_MAELSTROM)) {
+                if (level.getRandom().nextFloat() >= 0.2f) {
+                    return;
+                }
+            }
+            GluttonyEffect.applyGluttony(attacker, b -> b
+                    .setAmplifierGain(1)
+                    .setAmplifierLimit(5));
         }
     }
 }

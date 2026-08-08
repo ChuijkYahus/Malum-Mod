@@ -3,6 +3,7 @@ package com.sammy.malum.client.model.armor.armor_trim;
 import com.mojang.blaze3d.vertex.VertexConsumer;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import net.minecraft.util.Mth;
+import net.minecraft.world.item.armortrim.TrimMaterials;
 import org.jetbrains.annotations.NotNull;
 import team.lodestar.lodestone.systems.rendering.wrapper.LodestoneVertexConsumerWrapper;
 

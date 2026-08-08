@@ -167,8 +167,8 @@ dependencies {
 
     localRuntime("curse.maven:neat-238372:7774002")
 
-    localRuntime("curse.maven:blueprint-382216:8397829")
-    localRuntime("curse.maven:caverns-and-chasms-438005:8155745")
+//    localRuntime("curse.maven:blueprint-382216:8397829")
+//    localRuntime("curse.maven:caverns-and-chasms-438005:8155745")
 }
 
 val generateModMetadata by tasks.registering(ProcessResources::class) {

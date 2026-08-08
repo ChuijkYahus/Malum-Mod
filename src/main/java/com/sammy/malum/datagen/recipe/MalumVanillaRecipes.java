@@ -7,14 +7,19 @@ import com.sammy.malum.registry.common.MalumContent;
 import net.minecraft.advancements.*;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.data.recipes.*;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.tags.ItemTags;
+import net.minecraft.tags.TagKey;
 import net.minecraft.world.item.*;
 import net.minecraft.world.item.crafting.*;
 import net.minecraft.world.level.*;
+import net.minecraft.world.level.block.Blocks;
 import net.neoforged.neoforge.common.Tags;
 import net.neoforged.neoforge.common.conditions.IConditionBuilder;
 import team.lodestar.lodestone.modules.toolkit.recipe.*;
 
 import static com.sammy.malum.MalumMod.*;
+import static com.sammy.malum.datagen.recipe.RecipeDatagenCommons.has;
 import static com.sammy.malum.datagen.recipe.RecipeDatagenCommons.smeltAndBlast;
 import static com.sammy.malum.registry.common.MalumContent.Blight.*;
 import static com.sammy.malum.registry.common.MalumContent.BlockSets.*;
@@ -30,21 +35,21 @@ import static net.minecraft.world.item.Items.*;
 public class MalumVanillaRecipes implements IConditionBuilder {
 
     protected static void buildRecipes(RecipeOutput output) {
-        var hasBlight = RecipeDatagenCommons.has(MalumContent.Blight.BLIGHTED_GUNK);
-        var hasHallowedGold = RecipeDatagenCommons.has(HALLOWED_GOLD_INGOT);
-        var hasSoulStainedSteel = RecipeDatagenCommons.has(SOUL_STAINED_STEEL_INGOT);
+        var hasBlight = has(MalumContent.Blight.BLIGHTED_GUNK);
+        var hasHallowedGold = has(HALLOWED_GOLD_INGOT);
+        var hasSoulStainedSteel = has(SOUL_STAINED_STEEL_INGOT);
 
-        Pair<String, Criterion<?>> hasBrilliance = Pair.of("has_brilliance", RecipeDatagenCommons.has(RAW_BRILLIANCE));
-        Pair<String, Criterion<?>> hasSoulstone = Pair.of("has_soulstone", RecipeDatagenCommons.has(RAW_SOULSTONE));
+        Pair<String, Criterion<?>> hasBrilliance = Pair.of("has_brilliance", has(RAW_BRILLIANCE));
+        Pair<String, Criterion<?>> hasSoulstone = Pair.of("has_soulstone", has(RAW_SOULSTONE));
 
-        Pair<String, Criterion<?>> hasBlazingQuartz = Pair.of("has_blazing_quartz", RecipeDatagenCommons.has(BLAZING_QUARTZ));
+        Pair<String, Criterion<?>> hasBlazingQuartz = Pair.of("has_blazing_quartz", has(BLAZING_QUARTZ));
 
 
         //KEY ITEMS
         shapeless(RecipeCategory.MISC, MalumContent.ENCYCLOPEDIA_ARCANA)
                 .requires(BOOK)
                 .requires(REFINED_SOULSTONE)
-                .unlockedBy("has_soulstone", RecipeDatagenCommons.has(RAW_SOULSTONE))
+                .unlockedBy("has_soulstone", has(RAW_SOULSTONE))
                 .save(output);
         shaped(RecipeCategory.MISC, MalumContent.Gear.CRUDE_SCYTHE)
                 .define('#', Tags.Items.RODS_WOODEN)
@@ -53,7 +58,7 @@ public class MalumVanillaRecipes implements IConditionBuilder {
                 .pattern("XXY")
                 .pattern(" #X")
                 .pattern("#  ")
-                .unlockedBy("has_soulstone", RecipeDatagenCommons.has(RAW_SOULSTONE))
+                .unlockedBy("has_soulstone", has(RAW_SOULSTONE))
                 .save(output);
         shaped(RecipeCategory.MISC, MalumContent.Sorcery.SPIRIT_ALTAR)
                 .define('Z', Tags.Items.INGOTS_GOLD)
@@ -62,7 +67,7 @@ public class MalumVanillaRecipes implements IConditionBuilder {
                 .pattern(" Y ")
                 .pattern("ZXZ")
                 .pattern("XXX")
-                .unlockedBy("has_soulstone", RecipeDatagenCommons.has(RAW_SOULSTONE))
+                .unlockedBy("has_soulstone", has(RAW_SOULSTONE))
                 .save(output);
         shaped(RecipeCategory.MISC, MalumContent.Sorcery.WEAVERS_WORKBENCH)
                 .define('Z', HALLOWED_GOLD_INGOT)
@@ -70,7 +75,7 @@ public class MalumVanillaRecipes implements IConditionBuilder {
                 .define('X', RUNEWOOD_SET.planks.block)
                 .pattern("XYX")
                 .pattern("XZX")
-                .unlockedBy("has_hex_ash", RecipeDatagenCommons.has(HEX_ASH))
+                .unlockedBy("has_hex_ash", has(HEX_ASH))
                 .save(output);
         shaped(RecipeCategory.MISC, MalumContent.Sorcery.SOUL_BRAZIER)
                 .define('Z', CTHONIC_GOLD)
@@ -94,7 +99,7 @@ public class MalumVanillaRecipes implements IConditionBuilder {
                 .define('Y', SOULWOVEN_SILK)
                 .pattern("X")
                 .pattern("Y")
-                .unlockedBy("has_soulwoven_silk", RecipeDatagenCommons.has(SOULWOVEN_SILK))
+                .unlockedBy("has_soulwoven_silk", has(SOULWOVEN_SILK))
                 .save(output);
         shaped(RecipeCategory.MISC, MalumContent.Totemancy.TOTEMIC_STAFF)
                 .define('X', Tags.Items.RODS_WOODEN)
@@ -102,7 +107,7 @@ public class MalumVanillaRecipes implements IConditionBuilder {
                 .pattern("  Y")
                 .pattern(" X ")
                 .pattern("X  ")
-                .unlockedBy("has_totem_base", RecipeDatagenCommons.has(MalumContent.Totemancy.RUNEWOOD_TOTEM_BASE))
+                .unlockedBy("has_totem_base", has(MalumContent.Totemancy.RUNEWOOD_TOTEM_BASE))
                 .save(output);
 
         //CRAFTING COMPONENTS
@@ -118,10 +123,10 @@ public class MalumVanillaRecipes implements IConditionBuilder {
                 .requires(MalumContent.AlchemyAndMetallics.IRON_METALLICS.getNode())
                 .requires(CTHONIC_GOLD_FRAGMENT)
                 .requires(Tags.Items.GEMS_QUARTZ)
-                .unlockedBy("has_iron_impetus", RecipeDatagenCommons.has(MalumContent.AlchemyAndMetallics.IRON_METALLICS.getImpetus())).save(output);
+                .unlockedBy("has_iron_impetus", has(MalumContent.AlchemyAndMetallics.IRON_METALLICS.getImpetus())).save(output);
 
-        shapeless(RecipeCategory.MISC, RUNIC_SAPBALL).requires(RUNIC_SAP_BOTTLE).requires(WHEAT).unlockedBy("has_runic_sap", RecipeDatagenCommons.has(RUNIC_SAP_BOTTLE)).save(output);
-        shapeless(RecipeCategory.MISC, AZOIC_SAPBALL).requires(AZOIC_SAP_BOTTLE).requires(WHEAT).unlockedBy("has_azoic_sap", RecipeDatagenCommons.has(AZOIC_SAP_BOTTLE)).save(output);
+        shapeless(RecipeCategory.MISC, RUNIC_SAPBALL).requires(RUNIC_SAP_BOTTLE).requires(WHEAT).unlockedBy("has_runic_sap", has(RUNIC_SAP_BOTTLE)).save(output);
+        shapeless(RecipeCategory.MISC, AZOIC_SAPBALL).requires(AZOIC_SAP_BOTTLE).requires(WHEAT).unlockedBy("has_azoic_sap", has(AZOIC_SAP_BOTTLE)).save(output);
 
         //BLIGHT
         shapeless(RecipeCategory.MISC, BLIGHT).requires(BLIGHTED_GUNK).unlockedBy("has_blight", hasBlight).save(output);
@@ -138,7 +143,7 @@ public class MalumVanillaRecipes implements IConditionBuilder {
                 .unlockedBy("has_blight", hasBlight).save(output);
 
         //BANNERS
-        shaped(RecipeCategory.BUILDING_BLOCKS, SOULWOVEN_BANNER).define('X', RUNEWOOD_SET.planks.block).define('Y', SOULWOVEN_SILK).pattern("X").pattern("Y").pattern("Y").unlockedBy("has_soulwoven_silk", RecipeDatagenCommons.has(SOULWOVEN_SILK)).save(output);
+        shaped(RecipeCategory.BUILDING_BLOCKS, SOULWOVEN_BANNER).define('X', RUNEWOOD_SET.planks.block).define('Y', SOULWOVEN_SILK).pattern("X").pattern("Y").pattern("Y").unlockedBy("has_soulwoven_silk", has(SOULWOVEN_SILK)).save(output);
         bannerRecipe(output, ROTTING_ESSENCE, SoulwovenBannerPatternDataComponent.HUNGER);
         bannerRecipe(output, GRIM_TALC, SoulwovenBannerPatternDataComponent.HORNS);
         bannerRecipe(output, EERIE_WEAVE, SoulwovenBannerPatternDataComponent.HEFT);
@@ -216,17 +221,17 @@ public class MalumVanillaRecipes implements IConditionBuilder {
         RecipeDatagenCommons.blockIngotExchange(output, AURIC_EMBERS, BLOCK_OF_AURIC_EMBERS);
 
         //MISC
-        shaped(RecipeCategory.MISC, NETHERRACK, 2).define('Z', BLAZING_QUARTZ).define('Y', Tags.Items.COBBLESTONES).pattern("ZY").pattern("YZ").unlockedBy("has_blazing_quartz", RecipeDatagenCommons.has(BLAZING_QUARTZ)).save(output, malumPath("netherrack_from_blazing_quartz"));
-        shapeless(RecipeCategory.MISC, EXPERIENCE_BOTTLE).requires(REFINED_BRILLIANCE).requires(GLASS_BOTTLE).unlockedBy("has_brilliance", RecipeDatagenCommons.has(REFINED_BRILLIANCE)).save(output, malumPath("experience_bottle_from_brilliance"));
+        shaped(RecipeCategory.MISC, NETHERRACK, 2).define('Z', BLAZING_QUARTZ).define('Y', Tags.Items.COBBLESTONES).pattern("ZY").pattern("YZ").unlockedBy("has_blazing_quartz", has(BLAZING_QUARTZ)).save(output, malumPath("netherrack_from_blazing_quartz"));
+        shapeless(RecipeCategory.MISC, EXPERIENCE_BOTTLE).requires(REFINED_BRILLIANCE).requires(GLASS_BOTTLE).unlockedBy("has_brilliance", has(REFINED_BRILLIANCE)).save(output, malumPath("experience_bottle_from_brilliance"));
 
-        shapeless(RecipeCategory.MISC, BONE_MEAL, 6).requires(GRIM_TALC).unlockedBy("has_grim_talc", RecipeDatagenCommons.has(GRIM_TALC)).save(output, malumPath("bonemeal_from_grim_talc"));
-        shaped(RecipeCategory.MISC, SKELETON_SKULL).define('#', GRIM_TALC).define('&', Tags.Items.BONES).pattern("&&&").pattern("&#&").pattern("&&&").unlockedBy("has_grim_talc", RecipeDatagenCommons.has(GRIM_TALC)).save(output, malumPath("skeleton_skull_from_grim_talc"));
-        shaped(RecipeCategory.MISC, ZOMBIE_HEAD).define('#', GRIM_TALC).define('&', ROTTEN_FLESH).pattern("&&&").pattern("&#&").pattern("&&&").unlockedBy("has_grim_talc", RecipeDatagenCommons.has(GRIM_TALC)).save(output, malumPath("zombie_head_from_grim_talc"));
+        shapeless(RecipeCategory.MISC, BONE_MEAL, 6).requires(GRIM_TALC).unlockedBy("has_grim_talc", has(GRIM_TALC)).save(output, malumPath("bonemeal_from_grim_talc"));
+        shaped(RecipeCategory.MISC, SKELETON_SKULL).define('#', GRIM_TALC).define('&', Tags.Items.BONES).pattern("&&&").pattern("&#&").pattern("&&&").unlockedBy("has_grim_talc", has(GRIM_TALC)).save(output, malumPath("skeleton_skull_from_grim_talc"));
+        shaped(RecipeCategory.MISC, ZOMBIE_HEAD).define('#', GRIM_TALC).define('&', ROTTEN_FLESH).pattern("&&&").pattern("&#&").pattern("&&&").unlockedBy("has_grim_talc", has(GRIM_TALC)).save(output, malumPath("zombie_head_from_grim_talc"));
 
-        shaped(RecipeCategory.MISC, TORCH, 6).define('#', BLAZING_QUARTZ).define('&', STICK).pattern("#").pattern("&").unlockedBy("has_blazing_quartz", RecipeDatagenCommons.has(BLAZING_QUARTZ)).save(output, malumPath("torch_from_blazing_quartz"));
+        shaped(RecipeCategory.MISC, TORCH, 6).define('#', BLAZING_QUARTZ).define('&', STICK).pattern("#").pattern("&").unlockedBy("has_blazing_quartz", has(BLAZING_QUARTZ)).save(output, malumPath("torch_from_blazing_quartz"));
 
         //THE DEVICE
-        shaped(RecipeCategory.MISC, THE_DEVICE).define('X', TWISTED_ROCK_SET.rock.block).define('Y', TAINTED_ROCK_SET.rock.block).pattern("XYX").pattern("YXY").pattern("XYX").unlockedBy("has_bedrock", RecipeDatagenCommons.has(BEDROCK)).save(output);
+        shaped(RecipeCategory.MISC, THE_DEVICE).define('X', TWISTED_ROCK_SET.rock.block).define('Y', TAINTED_ROCK_SET.rock.block).pattern("XYX").pattern("YXY").pattern("XYX").unlockedBy("has_bedrock", has(BEDROCK)).save(output);
 
 
         //WEAVES
@@ -251,11 +256,11 @@ public class MalumVanillaRecipes implements IConditionBuilder {
     }
 
     protected static void bannerRecipe(RecipeOutput consumer, ItemLike material, SoulwovenBannerPatternDataComponent pattern) {
-        shapeless(RecipeCategory.BUILDING_BLOCKS, pattern.getDefaultStack()).requires(SOULWOVEN_BANNER).requires(material).unlockedBy("has_soulwoven_silk", RecipeDatagenCommons.has(SOULWOVEN_SILK)).save(consumer, pattern.getRecipeId());
+        shapeless(RecipeCategory.BUILDING_BLOCKS, pattern.getDefaultStack()).requires(SOULWOVEN_BANNER).requires(material).unlockedBy("has_soulwoven_silk", has(SOULWOVEN_SILK)).save(consumer, pattern.getRecipeId());
     }
 
     protected static void weaveRecipe(RecipeOutput consumer, ItemLike sideItem, ItemLike output) {
-        shapeless(RecipeCategory.MISC, output).requires(ESOTERIC_SPOOL).requires(sideItem).unlockedBy("has_spool", RecipeDatagenCommons.has(ESOTERIC_SPOOL)).save(consumer);
+        shapeless(RecipeCategory.MISC, output).requires(ESOTERIC_SPOOL).requires(sideItem).unlockedBy("has_spool", has(ESOTERIC_SPOOL)).save(consumer);
     }
 
     protected static void plating(RecipeOutput consumer, ItemLike nuggetForm, ItemLike ingotForm, ItemLike result) {
@@ -266,7 +271,7 @@ public class MalumVanillaRecipes implements IConditionBuilder {
                 .pattern(" X ")
                 .pattern("XYX")
                 .pattern(" X ")
-                .unlockedBy("has_" + itemName, RecipeDatagenCommons.has(ingotForm))
+                .unlockedBy("has_" + itemName, has(ingotForm))
                 .save(consumer);
     }
 }

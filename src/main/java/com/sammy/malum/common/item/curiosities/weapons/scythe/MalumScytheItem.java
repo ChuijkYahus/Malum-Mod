@@ -9,6 +9,7 @@ import com.sammy.malum.registry.common.enchantment.*;
 
 import com.sammy.malum.registry.common.sound.*;
 import net.minecraft.core.*;
+import net.minecraft.resources.ResourceKey;
 import net.minecraft.server.level.*;
 import net.minecraft.sounds.*;
 import net.minecraft.util.*;
@@ -18,20 +19,39 @@ import net.minecraft.world.entity.*;
 import net.minecraft.world.entity.ai.attributes.*;
 import net.minecraft.world.entity.player.*;
 import net.minecraft.world.item.*;
+import net.minecraft.world.item.component.ItemAttributeModifiers;
 import net.minecraft.world.item.enchantment.*;
 import net.minecraft.world.level.*;
+import net.neoforged.neoforge.common.ItemAbility;
 import net.neoforged.neoforge.event.entity.living.*;
+import net.neoforged.neoforge.event.entity.player.SweepAttackEvent;
 import team.lodestar.lodestone.helpers.*;
 import team.lodestar.lodestone.modules.toolkit.sound.SoundPlayer;
 import team.lodestar.lodestone.registry.common.*;
 import team.lodestar.lodestone.modules.toolkit.item.*;
 import team.lodestar.wayward_attributes.core.registry.WaywardAttributeTypes;
 
+import java.util.Optional;
+
+import static team.lodestar.wayward_attributes.tweaks.SweepAttackTweaks.BASE_SWEEP_DAMAGE;
+import static team.lodestar.wayward_attributes.tweaks.SweepAttackTweaks.BASE_SWEEP_RADIUS;
+
 
 public class MalumScytheItem extends LodestoneCombatItem implements IMalumEventResponder {
 
-    public MalumScytheItem(Tier tier, float attackDamage, float attackSpeed, LodestoneItemProperties properties) {
-        super(tier, attackDamage + 3, attackSpeed - 3.2f, properties);
+    public MalumScytheItem(Tier tier, float attackDamage, float attackSpeed, float sweepingDamage, float sweepingRadius, LodestoneItemProperties properties) {
+        super(tier, attackDamage + 3, attackSpeed - 3.2f,
+                properties.mergeAttributes(ItemAttributeModifiers.builder()
+                        .add(Attributes.SWEEPING_DAMAGE_RATIO.getDelegate(), new AttributeModifier(BASE_SWEEP_DAMAGE, sweepingDamage, AttributeModifier.Operation.ADD_VALUE), EquipmentSlotGroup.MAINHAND)
+                        .add(WaywardAttributeTypes.SWEEPING_DAMAGE_RADIUS.getDelegate(), new AttributeModifier(BASE_SWEEP_RADIUS, sweepingRadius, AttributeModifier.Operation.ADD_VALUE), EquipmentSlotGroup.MAINHAND)
+                        .build()));
+    }
+
+    public static void enableScytheSweeping(SweepAttackEvent event) {
+        Player attacker = event.getEntity();
+        if (canSweep(attacker)) {
+            event.setSweeping(true);
+        }
     }
 
     @Override
@@ -68,12 +88,8 @@ public class MalumScytheItem extends LodestoneCombatItem implements IMalumEventR
             particle.verticalSlashRotation().horizontalOffset(0.6f).spawn(serverLevel);
             return;
         }
-
         SoundPlayer.create(getScytheSound(true)).play(attacker);
         particle.mirroredRandomly(attacker.getRandom()).spawn(serverLevel);
-
-        trySweep(attacker, target, event.getNewDamage());
-
     }
 
     public Holder<SoundEvent> getScytheSound(boolean canSweep) {
@@ -132,11 +148,19 @@ public class MalumScytheItem extends LodestoneCombatItem implements IMalumEventR
         return CurioHelper.hasCurioEquipped(attacker, MalumContent.Gear.NECKLACE_OF_THE_NARROW_EDGE.get());
     }
 
-    public static DamageSource replaceDamageSource(Player player, DamageSource source) {
-        if (player.getMainHandItem().is(MalumTags.Items.SCYTHES)) {
-            return DamageTypeHelper.create(player.level(), MalumDamageTypes.SCYTHE_MELEE, player);
+    public static Optional<DamageSource> replaceSweepingDamage(Player player, ItemStack weapon) {
+        return replaceDamageSource(player, weapon, MalumDamageTypes.SCYTHE_SWEEP);
+    }
+
+    public static Optional<DamageSource> replaceDirectDamage(Player player, ItemStack weapon) {
+        return replaceDamageSource(player, weapon, MalumDamageTypes.SCYTHE_MELEE);
+    }
+
+    private static Optional<DamageSource> replaceDamageSource(Player player, ItemStack weapon, ResourceKey<DamageType> damageType) {
+        if (weapon.is(MalumTags.Items.SCYTHES)) {
+            return Optional.of(DamageTypeHelper.create(player.level(), damageType, player));
         }
-        return source;
+        return Optional.empty();
     }
 
     public record ScytheDamage(float physicalDamage, float magicDamage, boolean isBoomerang) {

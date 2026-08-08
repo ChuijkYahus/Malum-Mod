@@ -25,7 +25,7 @@ import com.sammy.malum.common.item.curiosities.curios.sets.rotten.*;
 import com.sammy.malum.common.item.curiosities.curios.sets.weeping.*;
 import com.sammy.malum.common.item.curiosities.pouch.*;
 import com.sammy.malum.common.item.curiosities.tools.spellweaver.*;
-import com.sammy.malum.compat.tetra.*;
+import com.sammy.malum.common.item.curiosities.weapons.scythe.MalumScytheItem;
 import com.sammy.malum.core.handlers.*;
 import net.neoforged.bus.api.*;
 import net.neoforged.fml.common.*;
@@ -44,7 +44,6 @@ public class RuntimeEventHandler {
     public static void onEntityJoin(EntityJoinLevelEvent event) {
         SoulDataHandler.syncData(event);
         GeasEffectHandler.syncGeas(event);
-        TetraCompat.entityJoin(event);
     }
 
     @SubscribeEvent
@@ -53,10 +52,14 @@ public class RuntimeEventHandler {
     }
 
     @SubscribeEvent
+    public static void sweepAttack(SweepAttackEvent event) {
+        MalumScytheItem.enableScytheSweeping(event);
+    }
+
+    @SubscribeEvent
     public static void onEntityJoin(MobSpawnEvent.PositionCheck event) {
         SoulDataHandler.markAsSpawnerSpawned(event);
     }
-
 
     @SubscribeEvent
     public static void onEntityFall(LivingFallEvent event) {
