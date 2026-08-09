@@ -1280,9 +1280,9 @@ public class CodexLangDatagen {
         addSimpleRiteEntry(MalumSpiritRiteTypes.RITE_OF_CREATION, "To Form From Nothing",
                 "An advanced rite, while active it will weave a Bound Rite Locus. When this Locus travels over empty space it will transmute air molecules into earth, forming Cobblestone.",
                 "Creates a Bound Rite Locus\nWhen The Locus Travels Over Empty Space, It Will Form Cobblestone Where Possible");
-        addSimpleRiteEntry(MalumSpiritRiteTypes.RITE_OF_DESTRUCTION, "To Unmake What Was",
-                "An advanced rite, while active it will weave a Bound Rite Locus. When this Locus travels over blocks it will it will attempt to break them",
-                "Creates a Bound Rite Locus\nWhen The Locus Travels Over Blocks It Will Attempt To Break Them\nBlocks Are Broken Regardless Of Any Mining Gear Requirements Unless Strictly Impossible");
+//        addSimpleRiteEntry(MalumSpiritRiteTypes.RITE_OF_DESTRUCTION, "To Unmake What Was",
+//                "An advanced rite, while active it will weave a Bound Rite Locus. When this Locus travels over blocks it will it will attempt to break them",
+//                "Creates a Bound Rite Locus\nWhen The Locus Travels Over Blocks It Will Attempt To Break Them\nBlocks Are Broken Regardless Of Any Mining Gear Requirements Unless Strictly Impossible");
 
         addEntryLang("infernal_rites", "Infernal Rites", "Totemic Arts of Scorching");
         addSimpleRiteEntry(MalumSpiritRiteTypes.RITE_OF_THE_BURNING_FERVOR, "To Ignite One's Spirit",

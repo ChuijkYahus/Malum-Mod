@@ -1,0 +1,10 @@
+{
+  "spirits": [
+    "malum:eldritch",
+    "malum:arcane",
+    "malum:earthen",
+    "malum:earthen"
+  ],
+  "corrupted": true,
+  "effect": "malum:destruction_effect"
+}
