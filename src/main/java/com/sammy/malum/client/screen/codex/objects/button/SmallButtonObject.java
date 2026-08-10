@@ -1,8 +1,7 @@
 package com.sammy.malum.client.screen.codex.objects.button;
 
 import com.sammy.malum.*;
-import com.sammy.malum.client.screen.codex.display.*;
-import net.minecraft.resources.*;
+import com.sammy.malum.client.screen.codex.display.gizmo.DisplayedGizmo;
 
 public class SmallButtonObject extends AbstractButtonObject{
 

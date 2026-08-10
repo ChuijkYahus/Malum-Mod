@@ -6,7 +6,7 @@ import net.minecraft.core.registries.BuiltInRegistries;
 import net.neoforged.neoforge.client.event.*;
 import net.neoforged.neoforge.registries.DeferredHolder;
 import net.neoforged.neoforge.registries.DeferredRegister;
-import team.lodestar.lodestone.systems.particle.world.type.*;
+import team.lodestar.lodestone.modules.rendering.particle.standard.world.type.*;
 
 public class MalumParticles {
     public static DeferredRegister<ParticleType<?>> PARTICLES = DeferredRegister.create(BuiltInRegistries.PARTICLE_TYPE, MalumMod.MALUM);
@@ -20,6 +20,7 @@ public class MalumParticles {
     public static DeferredHolder<ParticleType<?>, LodestoneWorldParticleType> HEXAGON = PARTICLES.register("hexagon", LodestoneWorldParticleType::new);
     public static DeferredHolder<ParticleType<?>, LodestoneWorldParticleType> CIRCLE = PARTICLES.register("circle", LodestoneWorldParticleType::new);
     public static DeferredHolder<ParticleType<?>, LodestoneWorldParticleType> SQUARE = PARTICLES.register("square", LodestoneWorldParticleType::new);
+    public static DeferredHolder<ParticleType<?>, LodestoneWorldParticleType> SWIRL = PARTICLES.register("swirl", LodestoneWorldParticleType::new);
     public static DeferredHolder<ParticleType<?>, LodestoneWorldParticleType> SAW = PARTICLES.register("saw", LodestoneWorldParticleType::new);
     public static DeferredHolder<ParticleType<?>, LodestoneWorldParticleType> SHINE = PARTICLES.register("shine", LodestoneWorldParticleType::new);
     public static DeferredHolder<ParticleType<?>, LodestoneWorldParticleType> SPARK = PARTICLES.register("spark", LodestoneWorldParticleType::new);

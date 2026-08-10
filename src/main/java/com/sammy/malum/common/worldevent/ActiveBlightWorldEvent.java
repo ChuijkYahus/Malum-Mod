@@ -5,7 +5,8 @@ import net.minecraft.core.*;
 import net.minecraft.nbt.*;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.level.*;
-import team.lodestar.lodestone.systems.worldevent.*;
+import team.lodestar.lodestone.modules.toolkit.worldevent.WorldEventInstance;
+import team.lodestar.lodestone.modules.toolkit.worldevent.WorldEventType;
 
 import java.util.*;
 

@@ -44,12 +44,14 @@ public class MalumMobSoundDatagen extends MalumSoundDatagenWrapper {
         add(MalumCultistSoundEvents.CARDINAL_ENTROPY_IMMOLATE, s -> s.with(allSounds("mob/cultist/cardinal/entropy_charge/immolate")));
 
         add(MalumCultistSoundEvents.CARDINAL_KNOCKBACK_CHARGE, s -> s.with(allSounds("mob/cultist/cardinal/knockback_charge")));
-        add(MalumCultistSoundEvents.CARDINAL_CANNON_CHARGE, s -> s.with(allSounds("mob/cultist/cardinal/cannon_charge")));
-        add(MalumCultistSoundEvents.CARDINAL_IMMOLATION_CHARGE, s -> s.with(allSounds("mob/cultist/cardinal/cannon_charge", se -> se.pitch(0.7f))));
-
         add(MalumCultistSoundEvents.CARDINAL_KNOCKBACK_FIRE, s -> s.with(allSounds("mob/cultist/cardinal/knockback_fire")));
+
+        add(MalumCultistSoundEvents.CARDINAL_CANNON_CHARGE, s -> s.with(allSounds("mob/cultist/cardinal/cannon_charge")));
         add(MalumCultistSoundEvents.CARDINAL_CANNON_FIRE, s -> s.with(allSounds("mob/cultist/cardinal/cannon_fire")));
-        add(MalumCultistSoundEvents.CARDINAL_IMMOLATION_FIRE, s -> s.with(allSounds("mob/cultist/cardinal/cannon_fire", se -> se.pitch(0.7f))));
+
+        add(MalumCultistSoundEvents.CARDINAL_IMMOLATION_CHARGE, s -> s.with(allSounds("mob/cultist/cardinal/cannon_charge", se -> se.pitch(0.7f))));
+        add(MalumCultistSoundEvents.CARDINAL_IMMOLATION_FIRE, s -> s.with(allSounds("mob/cultist/cardinal/cannon_fire", se -> se.pitch(0.5f))));
+
     }
 
     public void addCultistSounds(CultistSoundDefinition definition, float pitch) {

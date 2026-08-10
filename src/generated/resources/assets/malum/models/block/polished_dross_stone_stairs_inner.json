@@ -1,8 +1,0 @@
-{
-  "parent": "minecraft:block/inner_stairs",
-  "textures": {
-    "bottom": "malum:block/building/arcane_rock/dross/polished_dross_stone",
-    "side": "malum:block/building/arcane_rock/dross/polished_dross_stone",
-    "top": "malum:block/building/arcane_rock/dross/polished_dross_stone"
-  }
-}

@@ -13,6 +13,7 @@ import net.minecraft.world.item.ItemStack;
 import net.neoforged.neoforge.event.entity.living.*;
 import team.lodestar.lodestone.helpers.*;
 import team.lodestar.lodestone.handlers.*;
+import team.lodestar.lodestone.modules.toolkit.sound.SoundPlayer;
 
 import java.util.function.Consumer;
 
@@ -42,6 +43,7 @@ public class RuneHeresyItem extends MadnessRuneCurioItem implements ItemEventHan
             }
             EntityHelper.extendEffect(effect, attacker, 30, 600);
         }
-        SoundHelper.playSound(attacked, MalumGearSoundEvents.DRAINING_MOTIF.get(), 1f, 1.5f);
+
+        SoundPlayer.create(MalumGearSoundEvents.DRAINING_MOTIF).pitch(1.5f).play(attacked);
     }
 }

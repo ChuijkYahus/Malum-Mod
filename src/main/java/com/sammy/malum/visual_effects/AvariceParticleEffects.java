@@ -14,8 +14,8 @@ import net.minecraft.world.phys.Vec3;
 
 import team.lodestar.lodestone.helpers.VecHelper;
 import team.lodestar.lodestone.modules.core.easing.Easing;
-import team.lodestar.lodestone.systems.particle.data.GenericParticleData;
-import team.lodestar.lodestone.systems.particle.world.LodestoneWorldParticle;
+import team.lodestar.lodestone.modules.rendering.particle.standard.data.GenericParticleData;
+import team.lodestar.lodestone.modules.rendering.particle.standard.world.LodestoneWorldParticle;
 
 import java.util.function.Consumer;
 

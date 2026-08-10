@@ -17,9 +17,9 @@ import org.apache.commons.lang3.mutable.*;
 import team.lodestar.lodestone.handlers.*;
 import team.lodestar.lodestone.modules.core.easing.*;
 import team.lodestar.lodestone.modules.toolkit.blockentity.*;
-import team.lodestar.lodestone.systems.particle.builder.*;
-import team.lodestar.lodestone.systems.particle.data.*;
-import team.lodestar.lodestone.systems.particle.data.color.*;
+import team.lodestar.lodestone.modules.rendering.particle.standard.builder.*;
+import team.lodestar.lodestone.modules.rendering.particle.standard.data.*;
+import team.lodestar.lodestone.modules.rendering.particle.standard.data.color.*;
 
 import java.awt.*;
 

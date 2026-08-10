@@ -3,6 +3,7 @@ package com.sammy.malum.registry.common.util.building;
 import com.mojang.datafixers.util.*;
 import com.sammy.malum.*;
 import com.sammy.malum.datagen.block.MalumBlockStateDatagen;
+import com.sammy.malum.datagen.block.MalumBlockStateSmithTypes;
 import com.sammy.malum.datagen.recipe.RecipeDatagenCommons;
 import com.sammy.malum.datagen.sound.MalumBlockSoundDatagen;
 import com.sammy.malum.registry.common.*;
@@ -31,7 +32,8 @@ import static com.sammy.malum.registry.common.MalumContent.*;
 public class MinorBuildingSet extends MalumRegistrySet {
 
     public static List<MinorBuildingSet> getMalumSets() {
-        return List.of(BlockSets.TRODDEN_STONE, BlockSets.COMPOSITE_STONE, BlockSets.IGNEOUS_ROCK, BlockSets.SEED_QUARTZ, BlockSets.EBONSTONE);
+//        return List.of(BlockSets.SEED_QUARTZ, BlockSets.TRODDEN_STONE, BlockSets.IGNEOUS_ROCK, BlockSets.COMPOSITE_STONE, BlockSets.EBONSTONE);
+        return List.of(BlockSets.TRODDEN_STONE, BlockSets.IGNEOUS_ROCK, BlockSets.COMPOSITE_STONE, BlockSets.EBONSTONE);
     }
 
     private final MalumBlockSoundType rawSound;
@@ -45,8 +47,12 @@ public class MinorBuildingSet extends MalumRegistrySet {
     private final BlockBundle raw;
     private final BlockBundle smooth;
     private final BlockBundle polished;
+
     private final BlockBundleWithWall bricks;
     private final BlockBundleWithWall tiles;
+
+    private final BlockBlockItemHolder<Block, BlockItem> cut;
+    private final BlockBlockItemHolder<Block, BlockItem> chiseled;
     private final BlockBlockItemHolder<Block, BlockItem> pillar;
 
     public MinorBuildingSet(String id, Function<SoundType, LodestoneBlockProperties> properties) {
@@ -69,6 +75,9 @@ public class MinorBuildingSet extends MalumRegistrySet {
 
         bricks = new BlockBundleWithWall(name("%s_bricks"), polishedProperties, blocksTag, stairsTag, slabsTag, wallsTag);
         tiles = new BlockBundleWithWall(name("%s_tiles"), polishedProperties, blocksTag, stairsTag, slabsTag, wallsTag);
+
+        cut = registerBlock(name("cut_%s"), () -> new Block(polishedProperties.get()));
+        chiseled = registerBlock(name("chiseled_%s"), () -> new Block(polishedProperties.get()));
         pillar = registerBlock(name("%s_pillar"), () -> new RotatedPillarBlock(polishedProperties.get()));
     }
 
@@ -87,19 +96,23 @@ public class MinorBuildingSet extends MalumRegistrySet {
                 .addItems(raw.block, smooth.block, polished.block, bricks.block, tiles.block).nextLine()
                 .addItems(raw.stairs, smooth.stairs, polished.stairs, bricks.stairs, tiles.stairs).nextLine()
                 .addItems(raw.slab, smooth.slab, polished.slab, bricks.slab, tiles.slab).nextLine()
-                .addItems(pillar, bricks.wall, tiles.wall)
+                .addItems(pillar, cut, chiseled, bricks.wall, tiles.wall)
                 .bake();
     }
 
     public void addBlockStates(MalumBlockStateDatagen datagen, BlockStateSystemData<MalumBlockStateDatagen> data) {
-        datagen.setTexturePath("building/common_rock/" + id);
+        datagen.setTexturePath("building/stone/" + id);
 
         datagen.generateBlockBundle(data, getRaw());
         datagen.generateBlockBundle(data, getSmooth());
         datagen.generateBlockBundle(data, getPolished());
         datagen.generateBlockBundle(data, getBricks());
         datagen.generateBlockBundle(data, getTiles());
+
+        BlockStateSmithTypes.FULL_BLOCK.act(data, getChiseled());
+        MalumBlockStateSmithTypes.CUT_STONE_BLOCK.act(data, getCut());
         BlockStateSmithTypes.LOG_BLOCK.act(data, getPillar());
+
     }
 
     public void addSounds(MalumBlockSoundDatagen datagen) {
@@ -136,6 +149,14 @@ public class MinorBuildingSet extends MalumRegistrySet {
 
     public BlockBundleWithWall getTiles() {
         return tiles;
+    }
+
+    public BlockBlockItemHolder<Block, BlockItem> getCut() {
+        return cut;
+    }
+
+    public BlockBlockItemHolder<Block, BlockItem> getChiseled() {
+        return chiseled;
     }
 
     public BlockBlockItemHolder<Block, BlockItem> getPillar() {

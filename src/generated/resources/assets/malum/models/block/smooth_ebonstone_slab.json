@@ -1,8 +1,8 @@
 {
   "parent": "minecraft:block/slab",
   "textures": {
-    "bottom": "malum:block/building/common_rock/ebonstone/smooth_ebonstone",
-    "side": "malum:block/building/common_rock/ebonstone/smooth_ebonstone",
-    "top": "malum:block/building/common_rock/ebonstone/smooth_ebonstone"
+    "bottom": "malum:block/building/stone/ebonstone/smooth_ebonstone",
+    "side": "malum:block/building/stone/ebonstone/smooth_ebonstone",
+    "top": "malum:block/building/stone/ebonstone/smooth_ebonstone"
   }
 }

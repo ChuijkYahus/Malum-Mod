@@ -1,8 +1,8 @@
 {
   "parent": "minecraft:block/outer_stairs",
   "textures": {
-    "bottom": "malum:block/building/common_rock/ebonstone/ebonstone_bricks",
-    "side": "malum:block/building/common_rock/ebonstone/ebonstone_bricks",
-    "top": "malum:block/building/common_rock/ebonstone/ebonstone_bricks"
+    "bottom": "malum:block/building/stone/ebonstone/ebonstone_bricks",
+    "side": "malum:block/building/stone/ebonstone/ebonstone_bricks",
+    "top": "malum:block/building/stone/ebonstone/ebonstone_bricks"
   }
 }

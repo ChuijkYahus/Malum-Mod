@@ -16,15 +16,17 @@ import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
 import net.neoforged.neoforge.client.event.AddAttributeTooltipsEvent;
 import team.lodestar.lodestone.handlers.*;
+import team.lodestar.lodestone.modules.rendering.LodestoneRenderingSystem;
 import team.lodestar.lodestone.registry.common.*;
 import team.lodestar.lodestone.modules.core.easing.Easing;
 import team.lodestar.lodestone.modules.toolkit.item.*;
 
-import team.lodestar.lodestone.systems.particle.builder.*;
-import team.lodestar.lodestone.systems.particle.data.*;
-import team.lodestar.lodestone.systems.particle.data.spin.*;
-import team.lodestar.lodestone.systems.particle.render_types.*;
-import team.lodestar.lodestone.systems.particle.world.behaviors.*;
+import team.lodestar.lodestone.modules.rendering.particle.standard.builder.*;
+import team.lodestar.lodestone.modules.rendering.particle.standard.data.*;
+import team.lodestar.lodestone.modules.rendering.particle.standard.data.spin.*;
+import team.lodestar.lodestone.modules.rendering.particle.standard.render_types.*;
+import team.lodestar.lodestone.modules.rendering.particle.standard.world.behaviors.*;
+import team.lodestar.wayward_attributes.core.registry.WaywardAttributeTypes;
 
 public class HexStaffItem extends AbstractStaffItem implements ISpiritAffiliatedItem {
 
@@ -53,7 +55,7 @@ public class HexStaffItem extends AbstractStaffItem implements ISpiritAffiliated
                 .setScaleData(GenericParticleData.create(0.3f * pct, 0).setEasing(Easing.SINE_IN_OUT).build())
                 .setColorData(MalumSpiritTypes.WICKED_SPIRIT.createColorData().build())
                 .setMotion(pLivingEntity.getLookAngle().normalize().scale(0.2f * pct))
-                .setRenderTarget(LodestoneRenderHandler.LATE_DEFERRED_RENDER)
+                .setRenderTarget(LodestoneRenderingSystem.LATE_DEFERRED_RENDER)
                 .enableForcedSpawn()
                 .setLifeDelay(2)
                 .enableNoClip()
@@ -73,7 +75,7 @@ public class HexStaffItem extends AbstractStaffItem implements ISpiritAffiliated
         float pitchOffset = 3f + count;
         int spawnDelay = count * 3;
         float velocity = 3f + 0.5f * count;
-        float magicDamage = (float) player.getAttributes().getValue(LodestoneAttributes.MAGIC_DAMAGE);
+        float magicDamage = (float) player.getAttributes().getValue(WaywardAttributeTypes.MAGIC_DAMAGE);
         var projectile = fireProjectile(player, hand, HexBolt::new, velocity, pitchOffset, magicDamage, spawnDelay);
         level.addFreshEntity(projectile);
     }

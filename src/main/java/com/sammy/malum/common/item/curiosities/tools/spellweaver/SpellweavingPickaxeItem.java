@@ -28,11 +28,11 @@ import net.minecraft.world.level.block.state.*;
 import net.minecraft.world.phys.*;
 import net.neoforged.neoforge.common.extensions.*;
 import net.neoforged.neoforge.event.level.*;
-import team.lodestar.lodestone.helpers.*;
 import team.lodestar.lodestone.modules.core.easing.Easing;
 import team.lodestar.lodestone.modules.toolkit.enchanting.LodestoneEnchantmentEffectActivator;
 import team.lodestar.lodestone.modules.toolkit.item.*;
-import team.lodestar.lodestone.modules.toolkit.item.tools.magic.MagicPickaxeItem;
+import team.lodestar.lodestone.modules.toolkit.sound.SoundPlayer;
+import team.lodestar.wayward_attributes.util.MagicPickaxeItem;
 
 import java.util.*;
 import java.util.stream.*;
@@ -192,7 +192,7 @@ public class SpellweavingPickaxeItem extends MagicPickaxeItem implements ISpirit
                 }
             }
             if (playSound) {
-                SoundHelper.playSound(player, MalumGearSoundEvents.SPELLWOVEN_SPRITE_SPAWN.get(), 1f, 1f);
+                SoundPlayer.create(MalumGearSoundEvents.SPELLWOVEN_SPRITE_SPAWN).play(player);
             }
         }
     }
@@ -227,7 +227,7 @@ public class SpellweavingPickaxeItem extends MagicPickaxeItem implements ISpirit
         boolean isPrimed = component.isPrimed();
         var sound = isPrimed ? MalumGearSoundEvents.SPELLWEAVING_TOOL_DAMPEN.get() : MalumGearSoundEvents.SPELLWEAVING_TOOL_PRIME.get();
         stack.set(MalumDataComponents.SPELLWEAVING_TOOL_STATE, new SpellweavingToolStateComponent(!isPrimed, 0));
-        SoundHelper.playSound(player, sound, 1f, 1f);
+        SoundPlayer.create(sound).play(player);
         player.swing(usedHand, true);
         final ItemCooldowns cooldowns = player.getCooldowns();
         boolean wasOnCooldown = cooldowns.isOnCooldown(stack.getItem());
@@ -247,7 +247,7 @@ public class SpellweavingPickaxeItem extends MagicPickaxeItem implements ISpirit
             if (timer >= 40) {
                 timer = 0;
                 isPrimed = false;
-                SoundHelper.playSound(entity, MalumGearSoundEvents.SPELLWEAVING_TOOL_DAMPEN.get(), 1f, 1f);
+                SoundPlayer.create(MalumGearSoundEvents.SPELLWEAVING_TOOL_DAMPEN).play(entity);
             }
             stack.set(MalumDataComponents.SPELLWEAVING_TOOL_STATE, new SpellweavingToolStateComponent(isPrimed, timer));
         }

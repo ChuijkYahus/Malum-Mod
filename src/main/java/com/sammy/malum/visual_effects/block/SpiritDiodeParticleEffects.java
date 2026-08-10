@@ -10,14 +10,14 @@ import net.minecraft.world.phys.Vec3;
 
 import team.lodestar.lodestone.modules.core.easing.Easing;
 import team.lodestar.lodestone.systems.network.particle.NetworkedParticleEffectPositionData;
-import team.lodestar.lodestone.systems.particle.ParticleEffectSpawner;
-import team.lodestar.lodestone.systems.particle.builder.WorldParticleBuilder;
-import team.lodestar.lodestone.systems.particle.data.GenericParticleData;
-import team.lodestar.lodestone.systems.particle.data.color.ColorParticleData;
-import team.lodestar.lodestone.systems.particle.data.spin.SpinParticleData;
-import team.lodestar.lodestone.systems.particle.render_types.LodestoneWorldParticleRenderType;
-import team.lodestar.lodestone.systems.particle.world.LodestoneWorldParticle;
-import team.lodestar.lodestone.systems.particle.world.behaviors.*;
+import team.lodestar.lodestone.modules.rendering.particle.standard.ParticleEffectSpawner;
+import team.lodestar.lodestone.modules.rendering.particle.standard.builder.WorldParticleBuilder;
+import team.lodestar.lodestone.modules.rendering.particle.standard.data.GenericParticleData;
+import team.lodestar.lodestone.modules.rendering.particle.standard.data.color.ColorParticleData;
+import team.lodestar.lodestone.modules.rendering.particle.standard.data.spin.SpinParticleData;
+import team.lodestar.lodestone.modules.rendering.particle.standard.render_types.LodestoneWorldParticleRenderType;
+import team.lodestar.lodestone.modules.rendering.particle.standard.world.LodestoneWorldParticle;
+import team.lodestar.lodestone.modules.rendering.particle.standard.world.behaviors.*;
 
 import java.util.function.Consumer;
 

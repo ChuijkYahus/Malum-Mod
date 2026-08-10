@@ -5,6 +5,7 @@ import com.sammy.malum.common.item.spirit.*;
 import net.minecraft.client.*;
 import net.minecraft.client.gui.*;
 import net.minecraft.client.gui.screens.*;
+import net.minecraft.network.chat.Component;
 import net.minecraft.world.item.*;
 import net.minecraft.world.item.crafting.*;
 import net.neoforged.neoforge.common.crafting.*;
@@ -55,7 +56,8 @@ public class CodexItemHelper {
             guiGraphics.renderItem(stack, posX, posY);
             guiGraphics.renderItemDecorations(Minecraft.getInstance().font, stack, posX, posY, null);
             if (screen.isHovering(mouseX, mouseY, posX, posY, 16, 16)) {
-                screen.renderLater(() -> guiGraphics.renderComponentTooltip(Minecraft.getInstance().font, Screen.getTooltipFromItem(Minecraft.getInstance(), stack), mouseX, mouseY));
+                List<Component> tooltip = Screen.getTooltipFromItem(Minecraft.getInstance(), stack);
+                screen.renderTooltip(tooltip);
             }
         }
     }

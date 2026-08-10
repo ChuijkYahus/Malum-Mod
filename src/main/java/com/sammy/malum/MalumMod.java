@@ -3,7 +3,6 @@ package com.sammy.malum;
 import com.sammy.malum.compat.attributelib.*;
 import com.sammy.malum.compat.create.*;
 import com.sammy.malum.compat.farmersdelight.*;
-import com.sammy.malum.compat.tetra.*;
 import com.sammy.malum.config.*;
 import com.sammy.malum.registry.common.*;
 import com.sammy.malum.registry.common.MalumContent;
@@ -52,7 +51,6 @@ public class MalumMod {
 
         NeoForgeMod.enableMergedAttributeTooltips();
 
-        TetraCompat.init();
         FarmersDelightCompat.init();
         AttributeLibCompat.init();
         CreateCompat.init();

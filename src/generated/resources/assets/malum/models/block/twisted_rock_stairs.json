@@ -1,8 +1,8 @@
 {
   "parent": "minecraft:block/stairs",
   "textures": {
-    "bottom": "malum:block/building/arcane_rock/twisted_rock/twisted_rock",
-    "side": "malum:block/building/arcane_rock/twisted_rock/twisted_rock",
-    "top": "malum:block/building/arcane_rock/twisted_rock/twisted_rock"
+    "bottom": "malum:block/building/stone/twisted_rock/twisted_rock",
+    "side": "malum:block/building/stone/twisted_rock/twisted_rock",
+    "top": "malum:block/building/stone/twisted_rock/twisted_rock"
   }
 }

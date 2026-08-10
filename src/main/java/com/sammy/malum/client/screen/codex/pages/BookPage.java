@@ -68,16 +68,12 @@ public abstract class BookPage {
     }
 
     protected void renderRecipeInfo(GuiGraphics guiGraphics, CodexEntryScreen screen, String recipeName, int left, int top, int mouseX, int mouseY) {
-        screen.renderLater(() -> {
-            if (screen.isHovering(mouseX, mouseY, left, top, 18, 18)) {
-                var headline = Component.translatable(getRecipeInfoHeadlineKey(recipeName)).withStyle(isVoidThemed ? ChatFormatting.DARK_PURPLE : ChatFormatting.GOLD);
-                var header = Component.literal("┇ ").withStyle(ChatFormatting.DARK_GRAY);
-                var info = Component.translatable(getRecipeInfoKey(recipeName)).withStyle(ChatFormatting.GRAY);
-                var wrapped = CodexTextHelper.wrapComponent(info, header, 300);
-                List<Component> tooltip = Stream.concat(Stream.of(headline), wrapped.stream()).toList();
-                guiGraphics.renderComponentTooltip(Minecraft.getInstance().font, tooltip, mouseX, mouseY);
-            }
-        });
+        var headline = Component.translatable(getRecipeInfoHeadlineKey(recipeName)).withStyle(isVoidThemed ? ChatFormatting.DARK_PURPLE : ChatFormatting.GOLD);
+        var header = Component.literal("┇ ").withStyle(ChatFormatting.DARK_GRAY);
+        var info = Component.translatable(getRecipeInfoKey(recipeName)).withStyle(ChatFormatting.GRAY);
+        var wrapped = CodexTextHelper.wrapComponent(info, header, 300);
+        List<Component> tooltip = Stream.concat(Stream.of(headline), wrapped.stream()).toList();
+        screen.renderTooltip(tooltip);
     }
 
     public int getPageMiddle(int left) {

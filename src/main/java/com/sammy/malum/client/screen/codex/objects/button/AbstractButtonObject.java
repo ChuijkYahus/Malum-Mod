@@ -1,6 +1,7 @@
 package com.sammy.malum.client.screen.codex.objects.button;
 
 import com.sammy.malum.client.screen.codex.display.*;
+import com.sammy.malum.client.screen.codex.display.gizmo.DisplayedGizmo;
 import com.sammy.malum.client.screen.codex.objects.BookObject;
 import com.sammy.malum.client.screen.codex.screens.CodexEntryScreen;
 import com.sammy.malum.registry.common.sound.MalumSoundEvents;
@@ -17,20 +18,20 @@ public abstract class AbstractButtonObject extends BookObject<CodexEntryScreen> 
     protected final ResourceLocation pressed;
     protected final ResourceLocation active;
 
-    protected final DisplayedGizmo gizmo;
+    protected final DisplayedGizmo icon;
     protected final int buttonIndex;
 
     protected float oldOutlineVisibility;
     protected float outlineVisibility;
 
-    public AbstractButtonObject(DisplayedGizmo gizmo, ResourceLocation baseTexture, int buttonIndex, int posX, int posY, int width, int height) {
+    public AbstractButtonObject(DisplayedGizmo icon, ResourceLocation baseTexture, int buttonIndex, int posX, int posY, int width, int height) {
         super(posX, posY, width, height);
         this.base = baseTexture.withSuffix(".png");
         this.hover = baseTexture.withSuffix("_hover.png");
         this.pressed = baseTexture.withSuffix("_pressed.png");
         this.active = baseTexture.withSuffix("_active.png");
 
-        this.gizmo = gizmo;
+        this.icon = icon;
         this.buttonIndex = buttonIndex;
     }
 
@@ -40,8 +41,8 @@ public abstract class AbstractButtonObject extends BookObject<CodexEntryScreen> 
 
     @Override
     public void render(CodexEntryScreen screen, GuiGraphics guiGraphics, int mouseX, int mouseY, float partialTicks) {
-        int x = getOffsetXPosition();
-        int y = getOffsetYPosition();
+        int x = getOffsetX();
+        int y = getOffsetY();
 
         y += choose(0, -1, 1, -2);
         var texture = choose(base, hover, pressed, active);
@@ -57,12 +58,9 @@ public abstract class AbstractButtonObject extends BookObject<CodexEntryScreen> 
                 .setShadowWidth(5)
                 .renderOutline(poseStack);
         renderTexture(texture, poseStack, x, y, 0, 0, width, height);
-        if (gizmo != null) {
+        if (icon != null) {
             int offset = getGizmoOffset();
-            if (isHoveredOver) {
-                gizmo.setHoveredOver();
-            }
-            gizmo.render(screen, this, guiGraphics, x + offset, y + offset, mouseX, mouseY);
+            icon.render(screen, this, guiGraphics, x + offset, y + offset, mouseX, mouseY);
         }
     }
 

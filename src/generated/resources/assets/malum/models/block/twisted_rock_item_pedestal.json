@@ -1,6 +1,6 @@
 {
   "parent": "malum:block/templates/template_item_pedestal_rock",
   "textures": {
-    "pedestal": "malum:block/building/arcane_rock/twisted_rock/twisted_rock_item_pedestal"
+    "pedestal": "malum:block/building/stone/twisted_rock/twisted_rock_item_pedestal"
   }
 }

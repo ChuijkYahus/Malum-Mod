@@ -19,7 +19,9 @@ import net.neoforged.neoforge.event.entity.living.*;
 import net.neoforged.neoforge.event.tick.*;
 import team.lodestar.lodestone.helpers.*;
 import team.lodestar.lodestone.modules.core.easing.Easing;
+import team.lodestar.lodestone.modules.toolkit.sound.SoundPlayer;
 import team.lodestar.lodestone.registry.common.*;
+import team.lodestar.wayward_attributes.core.registry.WaywardAttributeTypes;
 
 import java.util.function.*;
 
@@ -44,11 +46,9 @@ public class CurioHiddenBladeNecklace extends MalumCurioItem implements IMalumEv
         }
         if (attacked.getData(MalumAttachmentTypes.CURIO_DATA).hiddenBladeNecklaceCooldown == 0) {
             float damage = event.getOriginalDamage();
-            //Every 3 points of damage raises the amplifier by one
             int amplifier = Math.min(Mth.floor(damage / 3), 9);
             attacked.addEffect(new MobEffectInstance(MalumMobEffects.WICKED_INTENT, 100, amplifier));
-            float pitch = Easing.SINE_IN_OUT.asWeighedRandom(attacked.level().getRandom(), 1.4f, 1.6f);
-            SoundHelper.playSound(attacked, MalumGearSoundEvents.HIDDEN_BLADE_PRIMED.get(), 1f, pitch);
+            SoundPlayer.create(MalumGearSoundEvents.HIDDEN_BLADE_PRIMED).pitch(1.4f, 1.6f).play(attacked);
         }
     }
 
@@ -64,7 +64,7 @@ public class CurioHiddenBladeNecklace extends MalumCurioItem implements IMalumEv
                 var random = level.getRandom();
                 if (data.hiddenBladeNecklaceCooldown != 0) {
                     if (data.hiddenBladeNecklaceCooldown <= COOLDOWN_DURATION) {
-                        SoundHelper.playSound(attacker, MalumGearSoundEvents.HIDDEN_BLADE_DISRUPTED.get(), 1f, Easing.SINE_IN_OUT.asWeighedRandom(random, 0.7f, 0.8f));
+                        SoundPlayer.create(MalumGearSoundEvents.HIDDEN_BLADE_DISRUPTED).pitch(0.7f, 0.8f).play(attacker);
                     }
                     data.hiddenBladeNecklaceCooldown = (int) (COOLDOWN_DURATION * 1.5);
                     attacker.syncData(MalumAttachmentTypes.CURIO_DATA);
@@ -82,7 +82,7 @@ public class CurioHiddenBladeNecklace extends MalumCurioItem implements IMalumEv
                 float baseDamage = 10;
                 float damageBonus = 1 + (effect.amplifier + 1) * 0.15f;
                 float physicalDamage = (float) (event.getNewDamage() + attributes.getValue(Attributes.ATTACK_DAMAGE));
-                float magicDamage = (float) (attributes.getValue(LodestoneAttributes.MAGIC_DAMAGE));
+                float magicDamage = (float) (attributes.getValue(WaywardAttributeTypes.MAGIC_DAMAGE));
                 float totalDamage = physicalDamage + magicDamage;
                 float physicalPct = physicalDamage / totalDamage;
                 float magicPct = magicDamage / totalDamage;
@@ -111,7 +111,7 @@ public class CurioHiddenBladeNecklace extends MalumCurioItem implements IMalumEv
                     attacker.removeEffect(effect.getEffect());
                 }
                 for (int i = 0; i < 3; i++) {
-                    SoundHelper.playSound(attacker, MalumGearSoundEvents.HIDDEN_BLADE_UNLEASHED.get(), 3f, Easing.SINE_IN_OUT.asWeighedRandom(random, 0.75f, 1.25f));
+                    SoundPlayer.create(MalumGearSoundEvents.HIDDEN_BLADE_UNLEASHED).volume(3f).pitch(0.75f, 1.25f).play(attacker);
                 }
                 MalumParticleEffectTypes.HIDDEN_BLADE_COUNTER_FLURRY.createEffect()
                         .originatesFrom(attacker)
@@ -132,7 +132,7 @@ public class CurioHiddenBladeNecklace extends MalumCurioItem implements IMalumEv
                 data.hiddenBladeNecklaceCooldown--;
                 if (!level.isClientSide()) {
                     if (data.hiddenBladeNecklaceCooldown == 0) {
-                        SoundHelper.playSound(entity, MalumGearSoundEvents.HIDDEN_BLADE_CHARGED.get(), 1f, Easing.SINE_IN_OUT.asWeighedRandom(level.getRandom(), 1.0f, 1.2f));
+                        SoundPlayer.create(MalumGearSoundEvents.HIDDEN_BLADE_CHARGED).pitch(1.0f, 1.2f).play(entity);
                     }
                 }
             }

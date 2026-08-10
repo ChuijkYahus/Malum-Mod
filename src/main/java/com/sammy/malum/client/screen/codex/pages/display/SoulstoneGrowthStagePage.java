@@ -2,7 +2,7 @@ package com.sammy.malum.client.screen.codex.pages.display;
 
 import com.mojang.blaze3d.systems.*;
 import com.sammy.malum.*;
-import com.sammy.malum.client.screen.codex.display.*;
+import com.sammy.malum.client.screen.codex.display.gizmo.DisplayedItem;
 import com.sammy.malum.client.screen.codex.handlers.*;
 import com.sammy.malum.client.screen.codex.objects.button.*;
 import com.sammy.malum.client.screen.codex.pages.*;
@@ -10,11 +10,11 @@ import com.sammy.malum.client.screen.codex.screens.*;
 import com.sammy.malum.registry.client.*;
 import com.sammy.malum.registry.common.*;
 import net.minecraft.client.gui.*;
-import net.minecraft.client.renderer.*;
 import net.minecraft.resources.*;
 import net.minecraft.util.*;
 import team.lodestar.lodestone.helpers.*;
 import team.lodestar.lodestone.systems.rendering.*;
+import team.lodestar.lodestone.systems.rendering.builder.VFXBuilders;
 
 public class SoulstoneGrowthStagePage extends BookPage {
 
@@ -35,7 +35,7 @@ public class SoulstoneGrowthStagePage extends BookPage {
         int objectTop = Mth.floor(CodexEntryScreen.PAGE_HEIGHT * 0.6f);
         for (int i = 0; i < 4; i++) {
             int objectLeft = objectStart + i * step;
-            handler.add(new SoulstoneGrowthStageSelectionObject(this, DisplayedGizmo.item(MalumContent.Materials.SOULSTONE_BUD), i, objectLeft, objectTop));
+            handler.add(new SoulstoneGrowthStageSelectionObject(this, DisplayedItem.item(MalumContent.Materials.SOULSTONE_BUD), i, objectLeft, objectTop));
         }
         return handler;
     }

@@ -6,7 +6,7 @@ import com.sammy.malum.core.systems.rite.effect.SpiritRiteEffectTag;
 import com.sammy.malum.core.systems.spirit.SpiritArcanaType;
 import net.minecraft.core.*;
 import net.minecraft.server.level.ServerLevel;
-import team.lodestar.lodestone.handlers.WorldEventHandler;
+import team.lodestar.lodestone.modules.toolkit.worldevent.WorldEventHandler;
 
 import java.util.List;
 

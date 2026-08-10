@@ -12,6 +12,7 @@ import net.minecraft.world.item.*;
 import net.minecraft.world.level.*;
 import net.minecraft.world.phys.*;
 import team.lodestar.lodestone.helpers.*;
+import team.lodestar.lodestone.modules.toolkit.sound.SoundPlayer;
 
 public class HiddenBladeDelayedImpact extends ThrowableItemProjectile {
 
@@ -95,7 +96,7 @@ public class HiddenBladeDelayedImpact extends ThrowableItemProjectile {
             }
             owner.setItemInHand(InteractionHand.MAIN_HAND, heldItem);
             target.setDeltaMovement(motion);
-            SoundHelper.playSound(this, MalumGearSoundEvents.SCYTHE_CUT.get(), 1.0F, 0.9f + level().getRandom().nextFloat() * 0.2f);
+            SoundPlayer.create(MalumGearSoundEvents.SCYTHE_CUT).pitch(0.9f, 1.1f).play(this);
         }
         super.onHitEntity(result);
     }

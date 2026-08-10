@@ -1,8 +1,6 @@
 package com.sammy.malum.common.item.spirit;
 
-import com.sammy.malum.core.systems.spirit.SpiritArcanaType;
 import com.sammy.malum.registry.common.item.MalumDataComponents;
-import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.*;
 import net.minecraft.world.item.*;
 import net.minecraft.world.level.block.Block;
@@ -30,7 +28,7 @@ public class SpiritJarItem extends BlockItem {
         if (contents != null) {
             var spirit = contents.spirit();
             int count = contents.count();
-            spirit.getTextData().countSpiritInTooltip(stack, context, tooltipComponents, tooltipFlag, count, true);
+            spirit.getTextData().addSpiritCounterToItemTooltip(tooltipComponents, count, true);
         }
     }
 }

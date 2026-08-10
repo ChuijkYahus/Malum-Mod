@@ -1,8 +1,0 @@
-{
-	"parent": "malum:block/spirit_altar",
-	"texture_size": [32, 32],
-	"textures": {
-		"altar": "malum:block/dungeon/ominous_altar",
-		"particle": "malum:block/arcane_rock/dross/dross_stone_bricks"
-	}
-}

@@ -22,9 +22,6 @@ public class MalumDataComponents {
     public static final DeferredHolder<DataComponentType<?>, DataComponentType<SoulstoneBudDataComponent>> SOULSTONE_BUD_DATA = register("soulstone_bud_data", builder ->
             builder.persistent(SoulstoneBudDataComponent.CODEC).networkSynchronized(SoulstoneBudDataComponent.STREAM_CODEC));
 
-    public static final DeferredHolder<DataComponentType<?>, DataComponentType<WandPartsComponent>> WAND_PARTS = register("wand_parts", builder ->
-            builder.persistent(WandPartsComponent.CODEC).networkSynchronized(WandPartsComponent.STREAM_CODEC));
-
     public static final DeferredHolder<DataComponentType<?>, DataComponentType<GeasDataComponent>> GEAS_EFFECT = register("geas_effect", builder ->
             builder.persistent(GeasDataComponent.CODEC).networkSynchronized(GeasDataComponent.STREAM_CODEC));
     

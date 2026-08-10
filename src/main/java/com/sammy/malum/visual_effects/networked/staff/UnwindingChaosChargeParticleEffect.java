@@ -15,12 +15,12 @@ import net.neoforged.api.distmarker.*;
 import team.lodestar.lodestone.registry.common.particle.*;
 import team.lodestar.lodestone.modules.core.easing.Easing;
 import team.lodestar.lodestone.systems.network.particle.*;
-import team.lodestar.lodestone.systems.particle.data.*;
-import team.lodestar.lodestone.systems.particle.data.color.*;
-import team.lodestar.lodestone.systems.particle.render_types.*;
-import team.lodestar.lodestone.systems.particle.world.*;
-import team.lodestar.lodestone.systems.particle.world.behaviors.*;
-import team.lodestar.lodestone.systems.particle.world.options.*;
+import team.lodestar.lodestone.modules.rendering.particle.standard.data.*;
+import team.lodestar.lodestone.modules.rendering.particle.standard.data.color.*;
+import team.lodestar.lodestone.modules.rendering.particle.standard.render_types.*;
+import team.lodestar.lodestone.modules.rendering.particle.standard.world.*;
+import team.lodestar.lodestone.modules.rendering.particle.standard.world.behaviors.*;
+import team.lodestar.lodestone.modules.rendering.particle.standard.world.options.*;
 
 import java.awt.*;
 import java.util.*;

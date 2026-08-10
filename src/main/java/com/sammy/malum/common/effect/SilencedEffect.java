@@ -7,13 +7,14 @@ import net.minecraft.world.entity.*;
 import net.minecraft.world.entity.ai.attributes.*;
 import team.lodestar.lodestone.helpers.*;
 import team.lodestar.lodestone.registry.common.*;
+import team.lodestar.wayward_attributes.core.registry.WaywardAttributeTypes;
 
 public class SilencedEffect extends MobEffect {
     public SilencedEffect() {
         super(MobEffectCategory.HARMFUL, ColorHelper.getColor(20, 14, 22));
         float ratio = -0.05f;
         var id = MalumMod.malumPath("silenced");
-        addAttributeModifier(LodestoneAttributes.MAGIC_PROFICIENCY, id, ratio, AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL);
+        addAttributeModifier(WaywardAttributeTypes.MAGIC_PROFICIENCY, id, ratio, AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL);
 
         addAttributeModifier(MalumAttributes.SOUL_WARD_INTEGRITY, id, ratio, AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL);
         addAttributeModifier(MalumAttributes.SOUL_WARD_CAPACITY, id, ratio, AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL);

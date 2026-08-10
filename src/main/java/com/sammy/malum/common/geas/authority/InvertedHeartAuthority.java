@@ -21,7 +21,9 @@ import net.minecraft.world.phys.*;
 import net.neoforged.neoforge.event.entity.living.*;
 import net.neoforged.neoforge.event.tick.*;
 import team.lodestar.lodestone.handlers.*;
+import team.lodestar.lodestone.modules.toolkit.worldevent.WorldEventHandler;
 import team.lodestar.lodestone.registry.common.*;
+import team.lodestar.wayward_attributes.core.registry.WaywardAttributeTypes;
 
 import javax.annotation.*;
 import java.util.*;
@@ -44,7 +46,7 @@ public class InvertedHeartAuthority extends GeasEffect {
 
     @Override
     public Multimap<Holder<Attribute>, AttributeModifier> createAttributeModifiers(LivingEntity entity, Multimap<Holder<Attribute>, AttributeModifier> modifiers) {
-        addAttributeModifier(modifiers, LodestoneAttributes.MAGIC_RESISTANCE, -0.75f, AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL);
+        addAttributeModifier(modifiers, WaywardAttributeTypes.MAGIC_RESISTANCE, -0.75f, AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL);
         return modifiers;
     }
 

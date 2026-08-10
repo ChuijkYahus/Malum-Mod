@@ -2,11 +2,12 @@ package com.sammy.malum.client.screen.codex.pages;
 
 import com.sammy.malum.MalumMod;
 import com.sammy.malum.client.screen.codex.display.*;
+import com.sammy.malum.client.screen.codex.display.gizmo.DisplayedGizmo;
 import com.sammy.malum.client.screen.codex.screens.CodexEntryScreen;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.renderer.GameRenderer;
 import net.minecraft.resources.ResourceLocation;
-import team.lodestar.lodestone.systems.rendering.VFXBuilders;
+import team.lodestar.lodestone.systems.rendering.builder.VFXBuilders;
 
 public class InteractionPage extends BookPage implements IGizmoHolder {
 

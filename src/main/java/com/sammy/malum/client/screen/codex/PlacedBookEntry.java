@@ -1,37 +1,49 @@
 package com.sammy.malum.client.screen.codex;
 
-import com.google.common.collect.ImmutableList;
-import com.sammy.malum.client.screen.codex.objects.progression.ProgressionEntryObject;
-import com.sammy.malum.client.screen.codex.pages.BookPage;
-import com.sammy.malum.client.screen.codex.pages.EntryReference;
-import com.sammy.malum.core.systems.spirit.SpiritLike;
-import net.minecraft.network.chat.Style;
+import com.sammy.malum.client.screen.codex.display.gizmo.DisplayedGizmo;
+import com.sammy.malum.client.screen.codex.objects.ProgressionEntryObject;
 
-import javax.annotation.*;
-import java.util.function.BooleanSupplier;
-import java.util.function.Consumer;
-import java.util.function.UnaryOperator;
+public class PlacedBookEntry {
 
-public class PlacedBookEntry extends BookEntry {
-    private final BookEntryWidgetPlacementData widgetData;
+    private final BookEntry entry;
+    private final DisplayedGizmo icon;
 
-    public PlacedBookEntry(String identifier, boolean isVoid,
-                           BookEntryWidgetPlacementData widgetData,
-                           ImmutableList<BookPage> bookPages, ImmutableList<EntryReference> leftBookmarks, ImmutableList<EntryReference> rightBookmarks, BooleanSupplier condition,
-                           @Nullable SpiritLike associatedSpirit, boolean isFragment,
-                           UnaryOperator<Style> titleStyle, UnaryOperator<Style> subtitleStyle, boolean hasTooltip) {
-        super(identifier, isVoid, bookPages, leftBookmarks, rightBookmarks, condition, associatedSpirit, isFragment, titleStyle, subtitleStyle, hasTooltip);
-        this.widgetData = widgetData;
+    private final BookObjectBuilder objectBuilder;
+    private final int x, y;
+
+    public PlacedBookEntry(BookEntry entry, DisplayedGizmo icon, BookObjectBuilder objectBuilder, int x, int y) {
+        this.entry = entry;
+        this.icon = icon;
+        this.objectBuilder = objectBuilder;
+        this.x = x;
+        this.y = y;
     }
 
-    public BookEntryWidgetPlacementData getWidgetData() {
-        return widgetData;
+    public BookEntry getEntry() {
+        return entry;
     }
 
-    public interface WidgetSupplier {
-        ProgressionEntryObject getBookObject(BookEntry entry, int x, int y);
+    public DisplayedGizmo getIcon() {
+        return icon;
     }
 
-    public record BookEntryWidgetPlacementData(int xOffset, int yOffset, WidgetSupplier widgetSupplier, Consumer<ProgressionEntryObject> widgetConfig) {
+    public int getX() {
+        return x;
+    }
+
+    public int getY() {
+        return y;
+    }
+
+    public static PlacedBookEntryBuilder create(String identifier, int x, int y) {
+        return new PlacedBookEntryBuilder(identifier, x, y);
+    }
+
+    public ProgressionEntryObject createBookObject() {
+        return objectBuilder.createBookObject(this);
+    }
+
+    public interface BookObjectBuilder {
+        ProgressionEntryObject createBookObject(PlacedBookEntry entry);
     }
 }

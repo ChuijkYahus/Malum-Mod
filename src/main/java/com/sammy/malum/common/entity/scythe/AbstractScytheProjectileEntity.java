@@ -13,6 +13,7 @@ import net.minecraft.world.level.*;
 import net.minecraft.world.phys.*;
 import team.lodestar.lodestone.helpers.*;
 import team.lodestar.lodestone.modules.core.easing.Easing;
+import team.lodestar.lodestone.modules.toolkit.sound.SoundPlayer;
 
 public abstract class AbstractScytheProjectileEntity extends ThrowableItemProjectile {
 
@@ -108,7 +109,7 @@ public abstract class AbstractScytheProjectileEntity extends ThrowableItemProjec
             }
             owner.setItemInHand(InteractionHand.MAIN_HAND, heldItem);
             float pitch = Easing.SINE_IN_OUT.asWeighedRandom(level().getRandom(), 0.75f, 1.25f);
-            SoundHelper.playSound(this, MalumGearSoundEvents.SCYTHE_SWEEP.get(),1.0f, pitch);
+            SoundPlayer.create(MalumGearSoundEvents.SCYTHE_SWEEP).pitch(pitch).play(this);
         }
         super.onHitEntity(result);
     }

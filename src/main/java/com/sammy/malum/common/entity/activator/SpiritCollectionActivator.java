@@ -13,6 +13,7 @@ import net.minecraft.util.*;
 import net.minecraft.world.level.*;
 import net.minecraft.world.phys.*;
 import team.lodestar.lodestone.helpers.*;
+import team.lodestar.lodestone.modules.toolkit.sound.SoundPlayer;
 import team.lodestar.lodestone.systems.rendering.trail.*;
 
 import java.util.*;
@@ -49,7 +50,7 @@ public class SpiritCollectionActivator extends FloatingEntity {
     @Override
     public void collect(ServerLevel level) {
         getDestination().getEntityCollector(level).ifPresent(SoulHarvestHandler::triggerSpiritCollection);
-        SoundHelper.playSound(this, MalumSoundEvents.SPIRIT_PICKUP.get(), 0.3f, Mth.nextFloat(random, 1.2f, 1.5f));
+        SoundPlayer.create(MalumSoundEvents.SPIRIT_PICKUP).volume(0.3f).pitch(1.2f, 1.5f).play(this);
     }
 
     @Override

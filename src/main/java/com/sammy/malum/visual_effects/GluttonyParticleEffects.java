@@ -1,5 +1,6 @@
 package com.sammy.malum.visual_effects;
 
+import team.lodestar.lodestone.modules.rendering.LodestoneRenderingSystem;
 import team.lodestar.lodestone.systems.network.*;
 import net.minecraft.client.*;
 import net.minecraft.world.level.*;
@@ -9,14 +10,14 @@ import team.lodestar.lodestone.helpers.*;
 import team.lodestar.lodestone.registry.common.particle.*;
 import team.lodestar.lodestone.modules.core.easing.Easing;
 import team.lodestar.lodestone.systems.network.particle.NetworkedParticleEffectPositionData;
-import team.lodestar.lodestone.systems.particle.*;
-import team.lodestar.lodestone.systems.particle.builder.*;
-import team.lodestar.lodestone.systems.particle.data.*;
-import team.lodestar.lodestone.systems.particle.data.color.*;
-import team.lodestar.lodestone.systems.particle.data.spin.*;
-import team.lodestar.lodestone.systems.particle.render_types.*;
-import team.lodestar.lodestone.systems.particle.world.behaviors.*;
-import team.lodestar.lodestone.systems.particle.world.options.*;
+import team.lodestar.lodestone.modules.rendering.particle.standard.*;
+import team.lodestar.lodestone.modules.rendering.particle.standard.builder.*;
+import team.lodestar.lodestone.modules.rendering.particle.standard.data.*;
+import team.lodestar.lodestone.modules.rendering.particle.standard.data.color.*;
+import team.lodestar.lodestone.modules.rendering.particle.standard.data.spin.*;
+import team.lodestar.lodestone.modules.rendering.particle.standard.render_types.*;
+import team.lodestar.lodestone.modules.rendering.particle.standard.world.behaviors.*;
+import team.lodestar.lodestone.modules.rendering.particle.standard.world.options.*;
 
 import java.awt.*;
 
@@ -119,7 +120,7 @@ public class GluttonyParticleEffects {
                     float lengthMultiplier = (isAdditive ? 0.75f : 1.25f) * Easing.SINE_IN_OUT.asWeighedRandom(random, 0.8f, 1.2f);;
                     float colorCoefficient = isAdditive ? 1f : 1.75f;
                     var renderType = isAdditive ? LodestoneWorldParticleRenderType.ADDITIVE : LodestoneWorldParticleRenderType.LUMITRANSPARENT;
-                    var renderTarget = j < 2 ? LodestoneRenderHandler.LATE_DEFERRED_RENDER : LodestoneRenderHandler.DEFERRED_RENDER;
+                    var renderTarget = j < 2 ? LodestoneRenderingSystem.LATE_DEFERRED_RENDER : LodestoneRenderingSystem.DEFERRED_RENDER;
                     builder
                             .modifyLengthData(d -> d.copy().multiplyValue(lengthMultiplier))
                             .modifyTransparencyData(d -> d.copy().multiplyValue(alphaMultiplier))

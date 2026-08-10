@@ -27,14 +27,17 @@ import org.jetbrains.annotations.*;
 import team.lodestar.lodestone.handlers.*;
 import team.lodestar.lodestone.helpers.*;
 import team.lodestar.lodestone.modules.core.easing.Easing;
-import team.lodestar.lodestone.systems.particle.*;
-import team.lodestar.lodestone.systems.particle.builder.*;
-import team.lodestar.lodestone.systems.particle.data.*;
-import team.lodestar.lodestone.systems.particle.data.color.*;
-import team.lodestar.lodestone.systems.particle.data.spin.*;
-import team.lodestar.lodestone.systems.particle.render_types.*;
-import team.lodestar.lodestone.systems.particle.world.*;
-import team.lodestar.lodestone.systems.particle.world.behaviors.*;
+import team.lodestar.lodestone.modules.rendering.LodestoneRenderingSystem;
+import team.lodestar.lodestone.modules.rendering.particle.standard.*;
+import team.lodestar.lodestone.modules.rendering.particle.standard.builder.*;
+import team.lodestar.lodestone.modules.rendering.particle.standard.data.*;
+import team.lodestar.lodestone.modules.rendering.particle.standard.data.color.*;
+import team.lodestar.lodestone.modules.rendering.particle.standard.data.spin.*;
+import team.lodestar.lodestone.modules.rendering.particle.standard.render_types.*;
+import team.lodestar.lodestone.modules.rendering.particle.standard.world.*;
+import team.lodestar.lodestone.modules.rendering.particle.standard.world.behaviors.*;
+import team.lodestar.lodestone.modules.toolkit.sound.SoundPlayer;
+import team.lodestar.lodestone.modules.toolkit.worldevent.WorldEventHandler;
 import team.lodestar.lodestone.systems.rendering.trail.*;
 
 import java.util.*;
@@ -224,7 +227,7 @@ public class SunderingAnchorProjectile extends ThrowableItemProjectile {
                     setDeltaMovement(motion.lerp(returnMotion, 0.3f));
 
                     if (isAlive() && distanceTo(owner) < 2.5f) {
-                        SoundHelper.playSound(owner, MalumGearSoundEvents.SUNDERING_ANCHOR_CATCH.get(), 0.5f, Easing.SINE_IN_OUT.asWeighedRandom(level().getRandom(), 1.5f, 2f));
+                        SoundPlayer.create(MalumGearSoundEvents.SUNDERING_ANCHOR_CATCH).volume(0.5f).pitch(1.5f, 2.0f).play(owner);
                         if (owner instanceof ServerPlayer player) {
                             float cooldownScalar = hitCount.isEmpty() ? 0.25f : 1f;
                             TemporarilyDisabledItem.enable(player, slot);
@@ -340,8 +343,7 @@ public class SunderingAnchorProjectile extends ThrowableItemProjectile {
                 var physicalDamageType = MalumDamageTypes.SUNDERING_ANCHOR_PHYSICAL_COMBO;
                 var magicDamageType = MalumDamageTypes.SUNDERING_ANCHOR_MAGIC_COMBO;
                 int delay = 8;
-                float pitch = Easing.SINE_IN_OUT.asWeighedRandom(level.getRandom(), 1.5f, 2f);
-                SoundHelper.playSound(this, MalumGearSoundEvents.SUNDERING_ANCHOR_SWING.get(), 2f, pitch);
+                SoundPlayer.create(MalumGearSoundEvents.SUNDERING_ANCHOR_SWING).volume(2f).pitch(1.5f, 2f).play(this);
                 applyHatred(livingEntity);
                 for (int j = 0; j < slashCount; j++) {
                     int comboDelay = delay + j;
@@ -487,11 +489,11 @@ public class SunderingAnchorProjectile extends ThrowableItemProjectile {
         var spirit = getSunderingAnchorSpirit();
         var lightSpecs = SpiritLightSpecs.spiritLightSpecs(level, position(), spirit);
         lightSpecs.getBuilder()
-                .setRenderTarget(LodestoneRenderHandler.LATE_DEFERRED_RENDER)
+                .setRenderTarget(LodestoneRenderingSystem.LATE_DEFERRED_RENDER)
                 .multiplyLifetime(5f)
                 .setMotion(norm);
         lightSpecs.getBloomBuilder()
-                .setRenderTarget(LodestoneRenderHandler.LATE_DEFERRED_RENDER)
+                .setRenderTarget(LodestoneRenderingSystem.LATE_DEFERRED_RENDER)
                 .multiplyLifetime(5f)
                 .setMotion(norm);
         lightSpecs.spawnParticles();
@@ -507,7 +509,7 @@ public class SunderingAnchorProjectile extends ThrowableItemProjectile {
                     .setSpinData(SpinParticleData.createRandomDirection(random, Easing.SINE_IN_OUT.asWeighedRandom(random, 0.25f, 0.5f)).randomSpinOffset(random).build())
                     .setScaleData(GenericParticleData.create(0.2f * scalar, 0.4f * scalar).setEasing(Easing.SINE_IN_OUT).build())
                     .setSpritePicker(SimpleParticleOptions.ParticleSpritePicker.WITH_AGE)
-                    .setRenderTarget(LodestoneRenderHandler.LATE_DEFERRED_RENDER)
+                    .setRenderTarget(LodestoneRenderingSystem.LATE_DEFERRED_RENDER)
                     .setColorData(spirit.createColorData().build())
                     .setLifetime(Math.min(5 + age * 2, 20))
                     .addTickActor(behavior)

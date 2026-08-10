@@ -12,7 +12,8 @@ import net.minecraft.resources.*;
 import net.minecraft.util.*;
 import team.lodestar.lodestone.helpers.ColorHelper;
 import team.lodestar.lodestone.registry.client.*;
-import team.lodestar.lodestone.systems.rendering.VFXBuilders;
+import team.lodestar.lodestone.systems.rendering.builder.VFXBuilders;
+import team.lodestar.lodestone.systems.rendering.builder.WorldVFXBuilder;
 import team.lodestar.lodestone.systems.rendering.rendeertype.*;
 
 import java.awt.*;
@@ -70,7 +71,7 @@ public abstract class AbstractBoltEntityRenderer<T extends AbstractBoltProjectil
         float delta = entity.getVisualEffectScalar();
         float scale = delta * getScaleMultiplier();
         float alpha = Mth.clamp(delta * getAlphaMultiplier(), 0, 1);
-        VFXBuilders.WorldVFXBuilder builder = VFXBuilders.createWorld().setRenderType(getTrailRenderType(true));
+        WorldVFXBuilder builder = VFXBuilders.createWorld().setRenderType(getTrailRenderType(true));
         RenderUtils.renderEntityTrail(poseStack, builder, entity.trailPointBuilder, entity, getPrimaryColor(0), getSecondaryColor(0), scale * 2f, alpha, partialTicks);
         RenderUtils.renderEntityTrail(poseStack, builder, entity.spinningTrailPointBuilder, entity, getPrimaryColor(1), getSecondaryColor(1), scale * 2f, alpha, partialTicks);
         builder.setRenderType(getTrailRenderType(false));

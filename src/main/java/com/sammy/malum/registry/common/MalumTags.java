@@ -125,6 +125,8 @@ public class MalumTags {
         public static final TagKey<Block> PREFERRED_WITCHHAZEL_SURFACE = tag("preferred_witchhazel_surface");
         public static final TagKey<Block> PREFERRED_EBONY_SURFACE = tag("preferred_ebony_surface");
 
+        public static final TagKey<Block> EBONY_REPLACEABLE = tag("ebony_replaceable");
+
         public static final TagKey<Block> UNCHAINED_RITE_CATALYST = tag("unchained_rite_catalyst");
         public static final TagKey<Block> IS_RITE_IMMUNE = tag("is_rite_immune");
         public static final TagKey<Block> GREATER_AERIAL_WHITELIST = tag("greater_aerial_whitelist");
@@ -217,12 +219,11 @@ public class MalumTags {
 
         public static final TagKey<Biome> HAS_RUNEWOOD = tag("has_runewood");
         public static final TagKey<Biome> HAS_RARE_RUNEWOOD = tag("has_rare_runewood");
-        public static final TagKey<Biome> HAS_RUNIC_SANCTUARY = tag("has_runic_sanctuary");
 
         public static final TagKey<Biome> HAS_AZURE_RUNEWOOD = tag("has_azure_runewood");
         public static final TagKey<Biome> HAS_RARE_AZURE_RUNEWOOD = tag("has_rare_azure_runewood");
-        public static final TagKey<Biome> HAS_AZURE_SANCTUARY = tag("has_azure_sanctuary");
 
+        public static final TagKey<Biome> HAS_EBONY = tag("has_ebony");
 
         public static final TagKey<Biome> HAS_WEEPING_WELL = tag("has_weeping_well");
 

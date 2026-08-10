@@ -10,7 +10,7 @@ import net.minecraft.network.codec.*;
 import net.minecraft.util.*;
 import net.minecraft.world.entity.*;
 import net.minecraft.world.entity.player.Player;
-import team.lodestar.lodestone.helpers.SoundHelper;
+import team.lodestar.lodestone.modules.toolkit.sound.SoundPlayer;
 
 public class StaffAbilityData {
 
@@ -79,7 +79,7 @@ public class StaffAbilityData {
             if (!(livingEntity instanceof Player player) || !player.isCreative()) {
                 double pitchOffset = 1.5f - (Mth.ceil(staffChargeDebt) % 3) * 0.25f;
                 var soundType = staffChargeDebt % 3 == 0 ? MalumSoundEvents.SPELL_CHARGE_FULL : MalumSoundEvents.SPELL_CHARGE_GROW;
-                SoundHelper.playSound(livingEntity, soundType.get(), 0.75f, (float) (1f + pitchOffset));
+                SoundPlayer.create(soundType).volume(0.75f).pitch(1f + pitchOffset).play(livingEntity);
             }
             setDirty(true);
         }

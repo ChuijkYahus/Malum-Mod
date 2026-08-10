@@ -1,5 +1,5 @@
-package com.sammy.malum.datagen.block;
 
+package com.sammy.malum.datagen.block;
 import com.sammy.malum.*;
 import com.sammy.malum.datagen.set.MalumCrystalSetDatagen;
 import com.sammy.malum.datagen.set.MalumMetallicsDatagen;
@@ -9,7 +9,6 @@ import com.sammy.malum.registry.common.MalumContent;
 import com.sammy.malum.registry.common.MalumContent.*;
 import com.sammy.malum.registry.common.util.building.MinorBuildingSet;
 import com.sammy.malum.registry.common.util.building.RockBlockSet;
-import com.sammy.malum.registry.common.util.building.WoodBlockSet;
 import com.sammy.malum.registry.common.util.data.*;
 import net.minecraft.data.*;
 import net.minecraft.resources.*;
@@ -75,33 +74,6 @@ public class MalumBlockStateDatagen extends LodestoneBlockStateSystem {
             malumSet.addBlockStates(this, data);
         }
 
-        setTexturePath("building/arcane_rock/dross");
-        BlockStateSmithTypes.FULL_BLOCK.act(data,
-                DROSS_STONE, POLISHED_DROSS_STONE, DROSS_STONE_BRICKS, DROSS_STONE_TILES, DROSS_STONE_MOSAIC, CHISELED_DROSS_STONE,
-                GRAY_DROSS_TILES, DARK_DROSS_TILES);
-
-        BlockStateSmithTypes.SLAB_BLOCK.act(data,
-                DROSS_STONE_SLAB, POLISHED_DROSS_STONE_SLAB, DROSS_STONE_BRICKS_SLAB, DROSS_STONE_TILES_SLAB, DROSS_STONE_MOSAIC_SLAB,
-                GRAY_DROSS_TILES_SLAB, DARK_DROSS_TILES_SLAB);
-
-        BlockStateSmithTypes.STAIRS_BLOCK.act(data,
-                DROSS_STONE_STAIRS, POLISHED_DROSS_STONE_STAIRS, DROSS_STONE_BRICKS_STAIRS, DROSS_STONE_TILES_STAIRS, DROSS_STONE_MOSAIC_STAIRS,
-                GRAY_DROSS_TILES_STAIRS, DARK_DROSS_TILES_STAIRS);
-
-        BlockStateSmithTypes.WALL_BLOCK.act(data,
-                DROSS_STONE_WALL, POLISHED_DROSS_STONE_WALL, DROSS_STONE_BRICKS_WALL, DROSS_STONE_TILES_WALL, DROSS_STONE_MOSAIC_WALL,
-                GRAY_DROSS_TILES_WALL, DARK_DROSS_TILES_WALL);
-
-        MalumBlockStateSmithTypes.COLUMN.act(data, DROSS_STONE_COLUMN);
-        BlockStateSmithTypes.CUSTOM_MODEL.act(data, this::simpleBlock, models()::cubeBottomTop, DROSS_STONE_ALTAR);
-        BlockStateSmithTypes.CUSTOM_MODEL.act(data, this::simpleBlock, this::cutRockBlockModel, CUT_DROSS_STONE);
-
-        BlockStateSmithTypes.BUTTON_BLOCK.act(data, DROSS_STONE_BUTTON);
-        BlockStateSmithTypes.PRESSURE_PLATE_BLOCK.act(data, DROSS_STONE_PRESSURE_PLATE);
-
-        BlockStateSmithTypes.CUSTOM_MODEL.act(data, this::simpleBlock, this::rockItemPedestalModel, DROSS_STONE_ITEM_PEDESTAL);
-        BlockStateSmithTypes.CUSTOM_MODEL.act(data, this::directionalBlock, this::itemStandModel, DROSS_STONE_ITEM_STAND);
-
         setTexturePath("building/runewood");
         BlockSets.RUNEWOOD_SET.generateWoodSet(data);
         BlockStateSmithTypes.POTTED_PLANT.act(data, BlockSets.POTTED_RUNEWOOD_SAPLING, BlockSets.POTTED_AZURE_RUNEWOOD_SAPLING);
@@ -150,7 +122,6 @@ public class MalumBlockStateDatagen extends LodestoneBlockStateSystem {
         MalumBlockStateSmithTypes.STORAGE_BLOCK.act(data, BLOCK_OF_HEX_ASH, BLOCK_OF_LIVING_FLESH, BLOCK_OF_ALCHEMICAL_CALX, BLOCK_OF_ARCANE_CHARCOAL);
 
         MalumBlockStateSmithTypes.STORAGE_BLOCK.act(data, BLOCK_OF_EBONY);
-        BlockStateSmithTypes.CUSTOM_MODEL.act(data, this::simpleBlock, models()::cubeBottomTop, CRATE_OF_WITCHHAZEL);
 
         setTexturePath("storage_blocks/metallics");
         MalumMetallicsDatagen.MALUM.addBlockStates(data);
@@ -158,10 +129,6 @@ public class MalumBlockStateDatagen extends LodestoneBlockStateSystem {
         setTexturePath("flora");
         BlockStateSmithTypes.CROSS_MODEL_BLOCK.act(data, NO_DATAGEN, EBONY_SAPLING);
         MalumBlockStateSmithTypes.EBONY.act(data, EBONY_STALK);
-
-
-        BlockStateSmithTypes.CROSS_MODEL_BLOCK.act(data, GENERATED_ITEM, WILD_WITCHHAZEL);
-        BlockStateSmithTypes.CROSS_CROP_MODEL_BLOCK.act(data, GENERATED_ITEM, WITCHHAZEL);
 
 
         setTexturePath("blight");
@@ -219,19 +186,15 @@ public class MalumBlockStateDatagen extends LodestoneBlockStateSystem {
         BlockStateSmithTypes.CUSTOM_MODEL.act(data, this::directionalBlock, models()::cubeBottomTop, FLESHBULB);
         MalumBlockStateSmithTypes.WRITHING_FLESH.act(data, WRITHING_FLESH);
 
-        setTexturePath("dungeon/odd_scriptures");
-        BlockStateSmithTypes.GLAZED_TERRACOTTA_BLOCK.act(data,
-                ODD_SCRIPTURES_I, ODD_SCRIPTURES_II, ODD_SCRIPTURES_III, ODD_SCRIPTURES_IV, ODD_SCRIPTURES_V, ODD_SCRIPTURES_VI, ODD_SCRIPTURES_VII, ODD_SCRIPTURES_VIII, ODD_SCRIPTURES_IX);
-
         setTexturePath("dungeon/effigy");
-        BlockStateSmithTypes.CUSTOM_MODEL.act(data, BLOCK_MODEL_ITEM, this::horizontalBlock, this::meditatingEffigy, VEILED_EFFIGY, CORRUPT_EFFIGY, CRACKED_EFFIGY);
+        BlockStateSmithTypes.CUSTOM_MODEL.act(data, BLOCK_MODEL_ITEM, this::horizontalBlock, models()::predefinedModel, MEDITATING_EFFIGY);
 
         setTexturePath("");
         BlockStateSmithTypes.CUSTOM_MODEL.act(data, BLOCK_MODEL_ITEM, this::simpleBlock, models()::cubeBottomTop, Totemancy.RITE_ANCHOR, Totemancy.RITE_UNWEAVER);
         BlockStateSmithTypes.CUSTOM_MODEL.act(data, BLOCK_MODEL_ITEM, this::directionalBlock, models()::cubeBottomTop, Totemancy.RITE_SPREADER);
         MalumBlockStateSmithTypes.RITE_CHANNEL.act(data, Totemancy.RITE_CHANNEL);
 
-        BlockStateSmithTypes.CUSTOM_MODEL.act(data, BLOCK_MODEL_ITEM, this::simpleBlock, models()::predefinedModel, SPIRIT_ALTAR, WAND_TINKERER, SOUL_BRAZIER, OMINOUS_ALTAR);
+        BlockStateSmithTypes.CUSTOM_MODEL.act(data, BLOCK_MODEL_ITEM, this::simpleBlock, models()::predefinedModel, SPIRIT_ALTAR, WAND_TINKERER, SOUL_BRAZIER);
 
         BlockStateSmithTypes.CUSTOM_MODEL.act(data, BUILTIN_ENTITY_ITEM, this::simpleBlock, models()::predefinedModel, SPIRIT_JAR);
 
@@ -241,8 +204,7 @@ public class MalumBlockStateDatagen extends LodestoneBlockStateSystem {
                 RUNEWOOD_OBELISK, RUNEWOOD_OBELISK_COMPONENT,
                 BRILLIANT_OBELISK, BRILLIANT_OBELISK_COMPONENT,
                 ARCANA_PYLON, ARCANA_PYLON_COMPONENT,
-                Focusing.SPIRIT_CRUCIBLE, Focusing.SPIRIT_CRUCIBLE_COMPONENT, Focusing.REPAIR_PYLON,
-                OMINOUS_OBELISK, OMINOUS_OBELISK_COMPONENT);
+                Focusing.SPIRIT_CRUCIBLE, Focusing.SPIRIT_CRUCIBLE_COMPONENT, Focusing.REPAIR_PYLON);
 
         BlockStateSmithTypes.CUSTOM_MODEL.act(data, BLOCK_MODEL_ITEM, this::simpleBlock, this::totemBaseModel,
                 Totemancy.RUNEWOOD_TOTEM_BASE, Totemancy.SOULWOOD_TOTEM_BASE, Totemancy.WAVEFORM_RUNEWOOD_TOTEM_BASE, Totemancy.WAVEFORM_SOULWOOD_TOTEM_BASE);
@@ -269,8 +231,7 @@ public class MalumBlockStateDatagen extends LodestoneBlockStateSystem {
         VariedBlockStateSmithTypes.VARIED_STAIRS_BLOCK.act(data, bundle.stairs);
         VariedBlockStateSmithTypes.VARIED_SLAB_BLOCK.act(data, bundle.slab);
         if (bundle instanceof BlockBundleWithWall wall) {
-            //TODO: Varied wall
-            BlockStateSmithTypes.WALL_BLOCK.act(data, wall.wall);
+            VariedBlockStateSmithTypes.VARIED_WALL_BLOCK.act(data, wall.wall);
         }
     }
 
@@ -280,25 +241,6 @@ public class MalumBlockStateDatagen extends LodestoneBlockStateSystem {
         BlockStateSmithTypes.SLAB_BLOCK.act(data, bundle.slab);
         if (bundle instanceof BlockBundleWithWall wall) {
             BlockStateSmithTypes.WALL_BLOCK.act(data, wall.wall);
-        }
-    }
-
-    public void generateVariedBlockBundle(BlockStateSystemData<MalumBlockStateDatagen> data, ItemlessBlockBundle bundle) {
-        VariedBlockStateSmithTypes.VARIED_FULL_BLOCK.act(data, NO_DATAGEN, bundle.block);
-        VariedBlockStateSmithTypes.VARIED_STAIRS_BLOCK.act(data, NO_DATAGEN, bundle.stairs);
-        VariedBlockStateSmithTypes.VARIED_SLAB_BLOCK.act(data, NO_DATAGEN, bundle.slab);
-        if (bundle instanceof ItemlessBlockBundleWithWall wall) {
-            //TODO: Varied wall
-//            BlockStateSmithTypes.WALL_BLOCK.act(data, NO_DATAGEN, wall.wall);
-        }
-    }
-
-    public void generateBlockBundle(BlockStateSystemData<MalumBlockStateDatagen> data, ItemlessBlockBundle bundle) {
-        BlockStateSmithTypes.FULL_BLOCK.act(data, NO_DATAGEN, bundle.block);
-        BlockStateSmithTypes.STAIRS_BLOCK.act(data, NO_DATAGEN, bundle.stairs);
-        BlockStateSmithTypes.SLAB_BLOCK.act(data, NO_DATAGEN, bundle.slab);
-        if (bundle instanceof ItemlessBlockBundleWithWall wall) {
-            BlockStateSmithTypes.WALL_BLOCK.act(data, NO_DATAGEN, wall.wall);
         }
     }
 

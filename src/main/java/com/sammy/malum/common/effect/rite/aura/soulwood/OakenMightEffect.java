@@ -10,7 +10,9 @@ import net.minecraft.world.entity.*;
 import net.minecraft.world.entity.player.*;
 import net.neoforged.neoforge.event.entity.living.*;
 import team.lodestar.lodestone.helpers.*;
+import team.lodestar.lodestone.modules.toolkit.sound.SoundPlayer;
 import team.lodestar.lodestone.registry.common.tag.*;
+import team.lodestar.wayward_attributes.WaywardTags;
 
 public class OakenMightEffect extends MobEffect {
     public OakenMightEffect() {
@@ -20,7 +22,7 @@ public class OakenMightEffect extends MobEffect {
     public static void increaseDamage(LivingDamageEvent.Pre event) {
         final DamageSource source = event.getSource();
         if (source.getDirectEntity() instanceof LivingEntity entity) {
-            if (!source.is(LodestoneDamageTypeTags.CAN_TRIGGER_MAGIC_DAMAGE)) {
+            if (!source.is(WaywardTags.DamageTypeTags.CAN_TRIGGER_MAGIC_DAMAGE)) {
                 return;
             }
             var instance = entity.getEffect(MalumMobEffects.OAKEN_MIGHT);
@@ -34,7 +36,7 @@ public class OakenMightEffect extends MobEffect {
             var weapon = entity.getWeaponItem();
             if (weapon.isEmpty() || weapon.is(MalumTags.Items.COUNTS_AS_EMPTY_HAND)) {
                 amplifier *= 2;
-                SoundHelper.playSound(entity, MalumSoundEvents.OAKEN_MIGHT_HIT.get(), 1.0f, 0.8f + entity.getRandom().nextFloat() * 0.4f);
+                SoundPlayer.create(MalumSoundEvents.OAKEN_MIGHT_HIT).pitch(0.8f, 1.2f).play(entity);
             }
             event.setNewDamage(event.getNewDamage() + amplifier);
         }

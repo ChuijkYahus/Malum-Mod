@@ -2,6 +2,8 @@ package com.sammy.malum.client.screen.codex.pages.text;
 
 import com.sammy.malum.MalumMod;
 import com.sammy.malum.client.screen.codex.display.*;
+import com.sammy.malum.client.screen.codex.display.gizmo.DisplayedGizmo;
+import com.sammy.malum.client.screen.codex.display.gizmo.GizmoTooltipBuilder;
 import com.sammy.malum.client.screen.codex.pages.*;
 import com.sammy.malum.client.screen.codex.screens.*;
 import net.minecraft.client.gui.GuiGraphics;
@@ -15,7 +17,6 @@ public class HeadlineTextPage extends BookPage implements IGizmoHolder {
 
     protected final String id;
 
-
     public static HeadlineTextPage headlineText(String text) {
         return new HeadlineTextPage(text, text +".1");
     }
@@ -25,12 +26,8 @@ public class HeadlineTextPage extends BookPage implements IGizmoHolder {
     }
 
     protected HeadlineTextPage(String headline, String text) {
-        if (PageSelectionPage.FLAG) {
-            this.headline = Component.translatable(DisplayedGizmo.title(headline));
-        }
-        else {
-            this.headline = Component.translatable(headlineKey(headline));
-        }
+        this.headline = Component.translatable(headlineKey(headline));
+
         this.text = Component.translatable(textKey(text));
         this.id = headline;
     }
@@ -48,7 +45,8 @@ public class HeadlineTextPage extends BookPage implements IGizmoHolder {
     }
 
     @Override
-    public String getGizmoId() {
-        return id;
+    public void addGizmoTooltip(GizmoTooltipBuilder builder) {
+        builder.addTitle(BookPage.headlineKey(id));
+        builder.addDefaultSubtext(id);
     }
 }

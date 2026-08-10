@@ -11,8 +11,11 @@ import net.minecraft.client.renderer.blockentity.*;
 import net.minecraft.world.phys.*;
 import org.joml.*;
 import team.lodestar.lodestone.handlers.*;
+import team.lodestar.lodestone.modules.rendering.LodestoneRenderingSystem;
 import team.lodestar.lodestone.registry.client.*;
 import team.lodestar.lodestone.systems.rendering.*;
+import team.lodestar.lodestone.systems.rendering.builder.VFXBuilders;
+import team.lodestar.lodestone.systems.rendering.builder.WorldVFXBuilder;
 import team.lodestar.lodestone.systems.rendering.rendeertype.*;
 
 import java.awt.*;
@@ -29,19 +32,19 @@ public class VoidConduitRenderer implements BlockEntityRenderer<VoidConduitBlock
         float width = 1.5f;
 
         Vector3f[] positions = new Vector3f[]{new Vector3f(-width, height, width), new Vector3f(width, height, width), new Vector3f(width, height, -width), new Vector3f(-width, height, -width)};
-        VFXBuilders.WorldVFXBuilder builder = VFXBuilders.createWorld();
+        WorldVFXBuilder builder = VFXBuilders.createWorld();
         poseStack.pushPose();
         poseStack.translate(0.5f, 0.01f, 0.5f);
 
         var vignette = LodestoneRenderTypes.TRANSPARENT_TEXTURE.apply(MalumRenderTypeTokens.VOID_VIGNETTE);
-        builder.replaceBufferSource(LodestoneRenderHandler.LATE_DEFERRED_RENDER)
+        builder.replaceBufferSource(LodestoneRenderingSystem.LATE_DEFERRED_RENDER)
                 .setRenderType(vignette)
                 .renderQuad(poseStack, positions, 1f);
         long gameTime = blockEntityIn.getLevel().getGameTime();
         float uOffset = ((gameTime + partialTicks) % 4000) / 2000f;
         float vOffset = ((gameTime + 500f + partialTicks) % 8000) / 8000f;
 
-        builder.replaceBufferSource(LodestoneRenderHandler.DEFERRED_RENDER.getTarget());
+        builder.replaceBufferSource(LodestoneRenderingSystem.DEFERRED_RENDER.getTarget());
 
         Color[] colors = new Color[] {
                 MalumSpiritTypes.ELDRITCH_SPIRIT.getPrimaryColor(),

@@ -15,6 +15,8 @@ import net.minecraft.util.*;
 import net.minecraft.world.item.*;
 import team.lodestar.lodestone.registry.client.*;
 import team.lodestar.lodestone.systems.rendering.*;
+import team.lodestar.lodestone.systems.rendering.builder.VFXBuilders;
+import team.lodestar.lodestone.systems.rendering.builder.WorldVFXBuilder;
 
 import java.awt.*;
 
@@ -83,7 +85,7 @@ public class FloatingItemRenderer extends EntityRenderer<FloatingItemEntity> {
         renderSpiritGlimmer(poseStack, VFXBuilders.createWorld(), primaryColor, secondaryColor, scaleScalar, alphaScalar, partialTicks);
     }
 
-    public static void renderSpiritGlimmer(PoseStack poseStack, VFXBuilders.WorldVFXBuilder builder, Color primaryColor, Color secondaryColor, float scaleScalar, float alphaScalar, float partialTicks) {
+    public static void renderSpiritGlimmer(PoseStack poseStack, WorldVFXBuilder builder, Color primaryColor, Color secondaryColor, float scaleScalar, float alphaScalar, float partialTicks) {
         var minecraft = Minecraft.getInstance();
         var level = minecraft.level;
         var star = LodestoneRenderTypes.ADDITIVE_TEXTURE.apply(MalumRenderTypeTokens.STAR);

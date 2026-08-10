@@ -1,8 +1,0 @@
-{
-  "remove": [
-    "#c:is_snowy"
-  ],
-  "values": [
-    "#c:is_plains"
-  ]
-}

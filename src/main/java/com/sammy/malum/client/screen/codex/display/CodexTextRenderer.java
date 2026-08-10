@@ -15,6 +15,7 @@ import org.joml.*;
 import team.lodestar.lodestone.modules.core.easing.*;
 import team.lodestar.lodestone.registry.client.*;
 import team.lodestar.lodestone.systems.rendering.*;
+import team.lodestar.lodestone.systems.rendering.wrapper.LodestoneBufferWrapper;
 
 import java.awt.*;
 import java.lang.Math;
@@ -68,7 +69,7 @@ public class CodexTextRenderer {
     }
 
     public CodexTextRenderer renderHeadlineGizmoPageContents(GuiGraphics guiGraphics, Component text, float x, float y) {
-        return renderWrappingText(guiGraphics, text, x + 6, y + 87, 140);
+        return renderWrappingText(guiGraphics, text, x + 6, y + 91, 140);
     }
 
     public CodexTextRenderer renderPageContents(GuiGraphics guiGraphics, Component text, float x, float y) {

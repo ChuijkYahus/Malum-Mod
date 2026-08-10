@@ -24,7 +24,7 @@ import team.lodestar.lodestone.handlers.*;
 import team.lodestar.lodestone.helpers.*;
 import team.lodestar.lodestone.modules.core.easing.Easing;
 import team.lodestar.lodestone.modules.toolkit.enchanting.LodestoneEnchantmentEffectCommonsHelper;
-import team.lodestar.lodestone.registry.common.LodestoneAttributes;
+import team.lodestar.wayward_attributes.core.registry.WaywardAttributeTypes;
 
 import java.util.function.*;
 
@@ -35,7 +35,7 @@ public class GluttonyEffect extends MobEffect {
     public GluttonyEffect() {
         super(MobEffectCategory.BENEFICIAL, ColorHelper.getColor(88, 86, 60));
         var id = MalumMod.malumPath("gluttony");
-        addAttributeModifier(LodestoneAttributes.MAGIC_PROFICIENCY, id, 0.05f, AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL);
+        addAttributeModifier(WaywardAttributeTypes.MAGIC_PROFICIENCY, id, 0.05f, AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL);
     }
 
     @Override

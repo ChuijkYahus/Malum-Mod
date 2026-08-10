@@ -14,7 +14,8 @@ import net.minecraft.world.item.*;
 import net.minecraft.world.item.crafting.*;
 import net.minecraft.world.level.ItemLike;
 import net.neoforged.neoforge.common.crafting.*;
-import team.lodestar.lodestone.recipe.builder.*;
+import team.lodestar.lodestone.modules.toolkit.recipe.LodestoneRecipeBuilder;
+import team.lodestar.lodestone.modules.toolkit.recipe.*;
 
 import java.util.*;
 

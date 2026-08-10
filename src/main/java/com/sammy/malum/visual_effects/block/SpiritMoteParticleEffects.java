@@ -11,10 +11,10 @@ import net.minecraft.world.phys.shapes.*;
 
 import team.lodestar.lodestone.modules.core.easing.Easing;
 import team.lodestar.lodestone.registry.common.particle.*;
-import team.lodestar.lodestone.systems.particle.data.*;
-import team.lodestar.lodestone.systems.particle.render_types.*;
-import team.lodestar.lodestone.systems.particle.world.LodestoneWorldParticle;
-import team.lodestar.lodestone.systems.particle.world.options.*;
+import team.lodestar.lodestone.modules.rendering.particle.standard.data.*;
+import team.lodestar.lodestone.modules.rendering.particle.standard.render_types.*;
+import team.lodestar.lodestone.modules.rendering.particle.standard.world.LodestoneWorldParticle;
+import team.lodestar.lodestone.modules.rendering.particle.standard.world.options.*;
 
 import java.util.function.Consumer;
 

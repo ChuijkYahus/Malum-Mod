@@ -9,18 +9,16 @@ import net.minecraft.network.codec.*;
 import net.minecraft.tags.*;
 import net.minecraft.world.item.*;
 import team.lodestar.lodestone.modules.toolkit.codec.LodestoneStreamCodecs;
-import team.lodestar.lodestone.network.*;
-
-import java.util.*;
 
 public record StoredInSoulstoneMetal(String id, TagKey<Item> nuggetForm) {
 
     private static String path(String key) {
         return "malum.metal_data." + key;
     }
+
     public static final String METAL_COMPOSITION = path("composition");
-    public static final String METAL_PURITY = path( "purity");
-    public static final String METAL_ENTRY = path( "entry.");
+    public static final String METAL_PURITY = path("purity");
+    public static final String METAL_ENTRY = path("entry.");
     public static final String EMPTY = path("entry.empty");
 
     public static Codec<StoredInSoulstoneMetal> CODEC = RecordCodecBuilder.create(instance -> instance.group(

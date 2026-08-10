@@ -15,7 +15,8 @@ import net.minecraft.world.level.*;
 import net.neoforged.neoforge.event.entity.player.*;
 import org.jetbrains.annotations.*;
 import team.lodestar.lodestone.handlers.screenparticle.*;
-import team.lodestar.lodestone.systems.particle.screen.*;
+import team.lodestar.lodestone.modules.rendering.particle.standard.screen.ScreenParticleHolder;
+import team.lodestar.lodestone.modules.rendering.particle.standard.screen.*;
 import top.theillusivec4.curios.api.*;
 import top.theillusivec4.curios.api.type.capability.*;
 

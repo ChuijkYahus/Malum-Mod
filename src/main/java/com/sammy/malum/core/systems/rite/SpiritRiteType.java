@@ -1,28 +1,33 @@
 package com.sammy.malum.core.systems.rite;
 
 import com.google.common.collect.ImmutableList;
-import com.mojang.datafixers.util.Pair;
-import com.mojang.serialization.*;
+import com.mojang.serialization.Codec;
 import com.sammy.malum.client.screen.codex.pages.BookPage;
-import com.sammy.malum.common.block.curiosities.totem.*;
+import com.sammy.malum.common.block.curiosities.totem.TotemBaseBlock;
+import com.sammy.malum.common.block.curiosities.totem.TotemBaseBlockEntity;
 import com.sammy.malum.core.helpers.TooltipComponentHelper;
-import com.sammy.malum.core.systems.registry.*;
-import com.sammy.malum.core.systems.registry.rite.*;
-import com.sammy.malum.core.systems.rite.effect.*;
+import com.sammy.malum.core.systems.registry.SpiritHolder;
+import com.sammy.malum.core.systems.registry.rite.RiteEffectHolder;
+import com.sammy.malum.core.systems.rite.effect.SpiritRiteEffect;
+import com.sammy.malum.core.systems.rite.effect.SpiritRiteEffectTag;
 import com.sammy.malum.core.systems.spirit.SpiritArcanaType;
-import com.sammy.malum.registry.common.magic.rite.*;
+import com.sammy.malum.registry.common.magic.rite.MalumSpiritRiteTypes;
 import io.netty.buffer.ByteBuf;
 import net.minecraft.ChatFormatting;
 import net.minecraft.core.Holder;
 import net.minecraft.nbt.CompoundTag;
-import net.minecraft.nbt.NbtOps;
-import net.minecraft.network.chat.*;
+import net.minecraft.network.chat.Component;
+import net.minecraft.network.chat.MutableComponent;
 import net.minecraft.network.codec.ByteBufCodecs;
 import net.minecraft.network.codec.StreamCodec;
-import net.minecraft.resources.*;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerLevel;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Optional;
 
 public class SpiritRiteType {
 
@@ -32,16 +37,25 @@ public class SpiritRiteType {
 
     public static StreamCodec<ByteBuf, SpiritRiteType> STREAM_CODEC = ByteBufCodecs.fromCodec(CODEC);
 
+    protected final ResourceLocation id;
     protected final List<SpiritHolder<SpiritArcanaType>> spirits;
     protected final boolean isCorrupted;
     protected final RiteEffectHolder<? extends SpiritRiteEffect> effect;
 
     private List<Component> detailedDescription;
 
-    public SpiritRiteType(RiteEffectHolder<? extends SpiritRiteEffect> effect, boolean isSoulwood, List<SpiritHolder<SpiritArcanaType>> spirits) {
+    public SpiritRiteType( ResourceLocation id, RiteEffectHolder<? extends SpiritRiteEffect> effect, boolean isCorrupted, List<SpiritHolder<SpiritArcanaType>> spirits) {
+        this.id = id;
         this.effect = effect;
-        this.isCorrupted = isSoulwood;
-        this.spirits = spirits;
+        this.isCorrupted = isCorrupted;
+        this.spirits = List.copyOf(spirits);
+    }
+
+    public SpiritRiteType(RiteEffectHolder<? extends SpiritRiteEffect> effect, boolean isCorrupted, List<SpiritHolder<SpiritArcanaType>> spirits) {
+        this.id = null;
+        this.effect = effect;
+        this.isCorrupted = isCorrupted;
+        this.spirits = List.copyOf(spirits);
     }
 
     public List<SpiritHolder<SpiritArcanaType>> getSpirits() {
@@ -70,28 +84,33 @@ public class SpiritRiteType {
 
     public boolean matches(ServerLevel level, TotemBaseBlockEntity totemBase) {
         var totemSpirits = totemBase.getSpirits(level);
-        var state = totemBase.getState();
+        var state = totemBase.getBlockState();
 
-//        if (totemBase.corrupted != isCorrupted) {
-//            return false;
-//        }
+        if (state.getBlock() instanceof TotemBaseBlock<?> block
+                && block.corrupted != isCorrupted) {
+            return false;
+        }
+
         if (totemSpirits.size() != spirits.size()) {
             return false;
         }
+
         for (int i = 0; i < totemSpirits.size(); i++) {
             var spirit = spirits.get(i);
             var totemSpirit = totemSpirits.get(i);
+
             if (!spirit.is(totemSpirit)) {
                 return false;
             }
         }
+
         return true;
     }
 
     public List<Component> getDetailedDescription() {
         if (detailedDescription == null) {
             ArrayList<Component> tooltip = new ArrayList<>();
-            var color = getIdentifyingSpirit().getTextData().getStyle(0.9f);
+            var color = getIdentifyingSpirit().getTextData().createStyle(0.9f);
             var title = Component.translatable(getLangKey()).withStyle(color);
             var tags = getTags();
             var effectDetails = getEffectDetails();
@@ -101,12 +120,14 @@ public class SpiritRiteType {
             tooltip.addAll(effectDetails);
             detailedDescription = ImmutableList.copyOf(tooltip);
         }
+
         return detailedDescription;
     }
 
     public List<Component> getEffectDetails() {
         MutableComponent effect = Component.translatable(getEffectLangKey());
         String text = effect.getString();
+
         String[] parts = text.split("\n");
         return Arrays.stream(parts).map(p -> TooltipComponentHelper.riteEffect(p, this)).toList();
     }
@@ -116,6 +137,7 @@ public class SpiritRiteType {
         List<SpiritRiteEffectTag> tags = new ArrayList<>(getEffect().getTags());
         tags.addFirst(isCorrupted() ? SpiritRiteEffectTag.SOULWOOD : SpiritRiteEffectTag.RUNEWOOD);
         Iterator<SpiritRiteEffectTag> iterator = tags.iterator();
+
         while (iterator.hasNext()) {
             SpiritRiteEffectTag tag = iterator.next();
             component.append(Component.translatable(tag.getLangKey()));
@@ -127,6 +149,10 @@ public class SpiritRiteType {
     }
 
     public ResourceLocation getRegistryName() {
+        if (id != null) {
+            return id;
+        }
+
         return MalumSpiritRiteTypes.RITE_REGISTRY.getKey(this);
     }
 
@@ -154,15 +180,44 @@ public class SpiritRiteType {
         save(tag, "rite");
     }
 
+
     public final void save(CompoundTag tag, String name) {
-        tag.put(name, CODEC.encodeStart(NbtOps.INSTANCE, this).getOrThrow());
+        ResourceLocation registryName = getRegistryName();
+
+        if (registryName == null) {
+            throw new IllegalStateException(
+                    "Cannot save SpiritRiteType without an ID"
+            );
+        }
+
+        tag.putString(
+                name,
+                registryName.toString()
+        );
     }
 
-    public static Optional<SpiritRiteType> load(CompoundTag tag) {
-        return load(tag, "rite");
+    public static Optional<SpiritRiteType> load(ServerLevel level, CompoundTag tag) {
+        return load(level, tag, "rite");
     }
 
-    public static Optional<SpiritRiteType> load(CompoundTag tag, String name) {
-        return CODEC.decode(NbtOps.INSTANCE, tag.get(name)).map(Pair::getFirst).result();
+    public static Optional<SpiritRiteType> load(ServerLevel level, CompoundTag tag, String name) {
+        if (!tag.contains(name)) {
+            return Optional.empty();
+        }
+
+        ResourceLocation id;
+
+        try {
+            id = ResourceLocation.parse(
+                    tag.getString(name)
+            );
+        } catch (Exception exception) {
+            return Optional.empty();
+        }
+
+        SpiritRiteType rite =
+                MalumSpiritRiteTypes.RITE_RECIPES.get(id);
+
+        return Optional.ofNullable(rite);
     }
 }

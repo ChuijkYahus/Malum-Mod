@@ -22,6 +22,7 @@ import net.minecraft.world.level.ItemLike;
 import org.jetbrains.annotations.Nullable;
 import org.joml.Matrix4f;
 import team.lodestar.lodestone.systems.rendering.*;
+import team.lodestar.lodestone.systems.rendering.builder.VFXBuilders;
 
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.TimeUnit;
@@ -52,6 +53,8 @@ public class DynamicTextureRenderer {
     protected int width, height;
     protected float hScale = 1, vScale = 1;
 
+    protected boolean isTicking = false;
+
     protected Consumer<NativeImage> postProcessing;
 
     public static DynamicTextureRenderer create(ResourceLocation texturePath) {
@@ -72,7 +75,6 @@ public class DynamicTextureRenderer {
         return setTextureSize(size, size);
     }
 
-
     public DynamicTextureRenderer setTextureSize(int width, int height) {
         this.width = width;
         this.height = height;
@@ -82,6 +84,11 @@ public class DynamicTextureRenderer {
     public DynamicTextureRenderer setScale(float scale) {
         this.hScale = scale;
         this.vScale = scale;
+        return this;
+    }
+
+    public DynamicTextureRenderer setTicking(boolean isTicking) {
+        this.isTicking = isTicking;
         return this;
     }
 
@@ -96,46 +103,36 @@ public class DynamicTextureRenderer {
     }
 
     public RenderableDynamicTexture requestFlatItemTexture(ItemLike item) {
-        return requestFlatItemTexture(item, false);
-    }
-
-    public RenderableDynamicTexture requestFlatItemTexture(ItemLike item, boolean updateEachFrame) {
-        return requestFlatItemTexture(item.asItem().getDefaultInstance(), updateEachFrame);
+        return requestFlatItemTexture(item.asItem().getDefaultInstance());
     }
 
     public RenderableDynamicTexture requestFlatItemTexture(ItemStack stack) {
-        return requestFlatItemTexture(stack, false);
-    }
-
-    public RenderableDynamicTexture requestFlatItemTexture(ItemStack stack, boolean updateEachFrame) {
         if (stack.getItem() instanceof BlockItem) {
             setTextureSize(64);
             setScale(4);
         }
-        return drawAndRequestTexture(t -> drawItem(t, stack), updateEachFrame);
+        return drawAndRequestTexture(t -> drawItem(t, stack));
     }
 
 
-    public RenderableDynamicTexture requestOutline(ResourceLocation texture, int sourceWidth, int sourceHeight, int outlineWidth, boolean updateEachFrame) {
-        return drawAndRequestTexture(t -> drawOutline(t, texture, sourceWidth, sourceHeight, outlineWidth), updateEachFrame);
+    public RenderableDynamicTexture requestOutline(ResourceLocation texture, int sourceWidth, int sourceHeight, int outlineWidth) {
+        return drawAndRequestTexture(t -> drawOutline(t, texture, sourceWidth, sourceHeight, outlineWidth));
     }
 
-    public RenderableDynamicTexture requestTexture(ResourceLocation texture, boolean updateEachFrame) {
-        return drawAndRequestTexture(t -> drawTexture(t, texture), updateEachFrame);
+    public RenderableDynamicTexture requestTexture(ResourceLocation texture) {
+        return drawAndRequestTexture(t -> drawTexture(t, texture));
     }
 
-    public RenderableDynamicTexture drawAndRequestTexture(Consumer<RenderableDynamicTexture> textureDrawingFunction, boolean updateEachFrame) {
+    public RenderableDynamicTexture drawAndRequestTexture(Consumer<RenderableDynamicTexture> textureDrawingFunction) {
         var t = requestTexture((rl) -> new RenderableDynamicTexture(rl, width, height, textureDrawingFunction));
-        if (t != null && updateEachFrame) {
+        if (t != null && isTicking) {
             t.setUpdateNextTick(true);
         }
         return t;
     }
 
 
-    public <T extends RenderableDynamicTexture> T requestTexture(
-            Function<ResourceLocation, T> textureSupplier
-    ) {
+    public <T extends RenderableDynamicTexture> T requestTexture(Function<ResourceLocation, T> textureSupplier) {
         var future =
                 TEXTURE_CACHE.asMap().computeIfAbsent(texturePath, key -> {
                     var nested = new CompletableFuture<RenderableDynamicTexture>();

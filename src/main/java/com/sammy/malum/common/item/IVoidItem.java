@@ -4,7 +4,7 @@ import com.sammy.malum.visual_effects.ScreenParticleEffects;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import team.lodestar.lodestone.handlers.screenparticle.ParticleEmitterHandler;
-import team.lodestar.lodestone.systems.particle.screen.ScreenParticleHolder;
+import team.lodestar.lodestone.modules.rendering.particle.standard.screen.ScreenParticleHolder;
 
 public interface IVoidItem extends ParticleEmitterHandler.ItemParticleSupplier {
 

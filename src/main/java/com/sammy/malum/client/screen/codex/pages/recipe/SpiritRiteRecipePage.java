@@ -15,10 +15,10 @@ import net.minecraft.resources.ResourceLocation;
 import team.lodestar.lodestone.handlers.screenparticle.*;
 
 import team.lodestar.lodestone.modules.core.easing.Easing;
-import team.lodestar.lodestone.systems.particle.builder.*;
-import team.lodestar.lodestone.systems.particle.data.*;
-import team.lodestar.lodestone.systems.particle.data.spin.*;
-import team.lodestar.lodestone.systems.particle.screen.*;
+import team.lodestar.lodestone.modules.rendering.particle.standard.builder.*;
+import team.lodestar.lodestone.modules.rendering.particle.standard.data.*;
+import team.lodestar.lodestone.modules.rendering.particle.standard.data.spin.*;
+import team.lodestar.lodestone.modules.rendering.particle.standard.screen.*;
 
 import static com.sammy.malum.client.screen.codex.helper.CodexRenderHelper.*;
 

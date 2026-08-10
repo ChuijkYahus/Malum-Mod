@@ -11,12 +11,10 @@ import net.minecraft.world.level.block.state.*;
 import net.minecraft.world.level.block.state.properties.*;
 import net.minecraft.world.level.levelgen.feature.*;
 import net.minecraft.world.level.levelgen.feature.configurations.*;
-import team.lodestar.lodestone.systems.worldgen.*;
+import team.lodestar.lodestone.modules.toolkit.worldgen.LodestoneWorldgenBuilder;
 
 import java.util.*;
 import java.util.stream.*;
-
-import static com.sammy.malum.common.worldgen.blight.BlightFeature.fetchCoveringPositions;
 
 public class ScarstoneFeature extends Feature<NoneFeatureConfiguration> {
 

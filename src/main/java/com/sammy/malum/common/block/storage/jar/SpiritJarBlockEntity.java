@@ -27,6 +27,7 @@ import team.lodestar.lodestone.helpers.*;
 import team.lodestar.lodestone.helpers.block.*;
 import team.lodestar.lodestone.modules.core.easing.Easing;
 import team.lodestar.lodestone.modules.toolkit.blockentity.*;
+import team.lodestar.lodestone.modules.toolkit.sound.SoundPlayer;
 
 import java.util.*;
 import java.util.function.Supplier;
@@ -131,7 +132,7 @@ public class SpiritJarBlockEntity extends LodestoneBlockEntity implements IInven
             inserted = insertHeldItem(player);
         }
         if (inserted > 0) {
-            SoundHelper.playSound(player, MalumSoundEvents.PEDESTAL_SPIRIT_INSERT.get(), SoundSource.BLOCKS, 0.7f, Easing.SINE_IN_OUT.asWeighedRandom(player.getRandom(), 0.8f, 1.2f));
+            SoundPlayer.create(MalumSoundEvents.PEDESTAL_SPIRIT_INSERT).volume(0.7f).pitchVariance(0.2f).play(player, SoundSource.BLOCKS);
         }
 
         lastClickTime = getLevel().getGameTime();
@@ -149,7 +150,7 @@ public class SpiritJarBlockEntity extends LodestoneBlockEntity implements IInven
             ItemHandlerHelper.giveItemToPlayer(pPlayer, item, pPlayer.getInventory().selected);
             if (!level.isClientSide()) {
                 BlockStateHelper.updateAndNotifyState(level, worldPosition);
-                SoundHelper.playSound(pPlayer, MalumSoundEvents.PEDESTAL_SPIRIT_PICKUP.get(), SoundSource.BLOCKS, 0.7f, Easing.SINE_IN_OUT.asWeighedRandom(pPlayer.getRandom(), 0.8f, 1.2f));
+                SoundPlayer.create(MalumSoundEvents.PEDESTAL_SPIRIT_PICKUP).volume(0.7f).pitchVariance(0.2f).play(pPlayer);
             }
 
             return true;
@@ -198,7 +199,7 @@ public class SpiritJarBlockEntity extends LodestoneBlockEntity implements IInven
                     remainingSpirits.add(item);
                 }
             }
-            SoundHelper.playSound(player, SoundEvents.BUNDLE_DROP_CONTENTS, SoundSource.BLOCKS, 1.2f, Easing.SINE_IN_OUT.asWeighedRandom(player.getRandom(), 0.8f, 1.2f));
+            SoundPlayer.create(SoundEvents.BUNDLE_DROP_CONTENTS).volume(1.2f).pitchVariance(0.2f).play(player, SoundSource.BLOCKS);
             stack.set(MalumDataComponents.SOULWOVEN_POUCH_CONTENTS, new SoulwovenPouchContentsComponent(remainingSpirits));
 
             return inserted;
@@ -212,8 +213,8 @@ public class SpiritJarBlockEntity extends LodestoneBlockEntity implements IInven
                     remainingSpirits.add(item);
                 }
             }
-            SoundHelper.playSound(player, SoundEvents.BUNDLE_DROP_CONTENTS, SoundSource.BLOCKS, 1.2f, Easing.SINE_IN_OUT.asWeighedRandom(player.getRandom(), 0.8f, 1.2f));
-            stack.set(MalumDataComponents.SOULWOVEN_POUCH_CONTENTS, new SoulwovenPouchContentsComponent(remainingSpirits));
+            SoundPlayer.create(SoundEvents.BUNDLE_DROP_CONTENTS).volume(1.2f).pitchVariance(0.2f).play(player, SoundSource.BLOCKS);
+            stack.set(MalumDataComponents.RAVENOUS_POUCH_CONTENTS, new RavenousPouchContentsComponent(remainingSpirits));
 
             return inserted;
         }

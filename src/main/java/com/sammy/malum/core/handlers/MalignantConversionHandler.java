@@ -18,6 +18,7 @@ import net.minecraft.world.entity.player.*;
 import net.neoforged.neoforge.event.entity.living.*;
 import net.neoforged.neoforge.event.tick.*;
 import team.lodestar.lodestone.helpers.*;
+import team.lodestar.lodestone.modules.toolkit.sound.SoundPlayer;
 
 import java.util.function.*;
 
@@ -52,9 +53,12 @@ public class MalignantConversionHandler {
         int invulnerabilityTicks = Math.min(container.getPostAttackInvulnerabilityTicks() * 2, 40);
         container.setPostAttackInvulnerabilityTicks(invulnerabilityTicks);
         entity.syncData(MalumAttachmentTypes.MALIGNANT_INFLUENCE);
-        SoundHelper.playSound(entity, MalumSoundEvents.MALIGNANT_AEGIS_HIT.get(), 0.25f, 1f);
+
         if (data.getMalignantAegis() == 0) {
-            SoundHelper.playSound(entity, MalumSoundEvents.MALIGNANT_AEGIS_DEPLETE.get(), 1f, 1f);
+            SoundPlayer.create(MalumSoundEvents.MALIGNANT_AEGIS_DEPLETE).play(entity);
+        }
+        else {
+            SoundPlayer.create(MalumSoundEvents.MALIGNANT_AEGIS_HIT).volume(0.25f).play(entity);
         }
         event.setCanceled(true);
     }

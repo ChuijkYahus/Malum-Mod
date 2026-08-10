@@ -11,7 +11,8 @@
 //import net.minecraft.client.renderer.blockentity.*;
 //import net.minecraft.core.*;
 //import team.lodestar.lodestone.registry.client.*;
-//import team.lodestar.lodestone.systems.rendering.cube.CubeVertexData;
+//import team.lodestar.lodestone.systems.rendering.builder.data.CubeVertexData;
+
 //import team.lodestar.lodestone.systems.rendering.rendeertype.*;
 //
 //import java.util.*;

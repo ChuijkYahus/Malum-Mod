@@ -5,6 +5,7 @@ import com.mojang.blaze3d.pipeline.TextureTarget;
 import com.mojang.blaze3d.systems.*;
 import com.mojang.blaze3d.vertex.*;
 import com.sammy.malum.client.screen.codex.*;
+import com.sammy.malum.client.screen.codex.chapters.BookChapter;
 import com.sammy.malum.client.screen.codex.handlers.*;
 import com.sammy.malum.client.screen.codex.objects.*;
 import com.sammy.malum.client.screen.codex.screens.*;
@@ -28,13 +29,13 @@ import org.joml.Vector2i;
 import org.joml.Vector2ic;
 import org.lwjgl.opengl.*;
 import team.lodestar.lodestone.systems.rendering.*;
+import team.lodestar.lodestone.systems.rendering.builder.VFXBuilders;
 
-import java.util.*;
 import java.util.List;
 
 import static com.sammy.malum.MalumMod.*;
 
-public abstract class AbstractProgressionCodexScreen extends AbstractMalumCodexScreen implements PlacedEntryAcceptor {
+public abstract class AbstractProgressionCodexScreen extends AbstractMalumCodexScreen {
 
     public static final ResourceLocation FRAME_TEXTURE = malumPath("textures/gui/book/progression_frame.png");
     public static final ResourceLocation FRAME_CUTOUT_TEXTURE = malumPath("textures/gui/book/progression_cutout.png");
@@ -66,8 +67,8 @@ public abstract class AbstractProgressionCodexScreen extends AbstractMalumCodexS
     protected int voidFadeoutTimer;
     protected int voidFadeoutCounter;
 
-    public final EntryObjectHandler progressionObjects = new EntryObjectHandler();
-    public final EntryStorage entryStorage = new EntryStorage();
+    public final ProgressionObjectHandler progressionObjects = new ProgressionObjectHandler();
+    public final List<BookChapter> chapters;
 
     protected final int backgroundImageWidth;
     protected final int backgroundImageHeight;
@@ -79,8 +80,8 @@ public abstract class AbstractProgressionCodexScreen extends AbstractMalumCodexS
         super(Component.empty(), sweetenerSound);
         this.backgroundImageWidth = backgroundImageWidth;
         this.backgroundImageHeight = backgroundImageHeight;
+        chapters = getChapters();
 
-        setupEntries();
         NeoForge.EVENT_BUS.post(new SetupMalumCodexEntriesEvent(this));
         setupObjects();
         faceOrigin();
@@ -89,12 +90,7 @@ public abstract class AbstractProgressionCodexScreen extends AbstractMalumCodexS
 
     public abstract void renderBackground(PoseStack poseStack);
 
-    public abstract void setupEntries();
-
-    @Override
-    public EntryStorage getEntryStorage() {
-        return entryStorage;
-    }
+    public abstract List<BookChapter> getChapters();
 
     @Override
     public void render(@NotNull GuiGraphics guiGraphics, int mouseX, int mouseY, float partialTicks) {
@@ -107,8 +103,8 @@ public abstract class AbstractProgressionCodexScreen extends AbstractMalumCodexS
 //        }
 //        renderFade(poseStack);
 
-        progressionObjects.renderObjectsLate(this, guiGraphics, mouseX, mouseY, partialTicks);
-        doLateRendering();
+        renderObjectsLate(guiGraphics, mouseX, mouseY, partialTicks);
+        doLateRendering(guiGraphics, mouseX, mouseY);
     }
 
     public void renderFrameCutout(GuiGraphics guiGraphics) {
@@ -167,7 +163,7 @@ public abstract class AbstractProgressionCodexScreen extends AbstractMalumCodexS
         RenderSystem.setProjectionMatrix(oldProjMat, VertexSorting.ORTHOGRAPHIC_Z);
     }
 
-    public void renderObjects(GuiGraphics graphics, int mouseX, int mouseY, float partialTicks) {
+    public void renderObjects(GuiGraphics guiGraphics, int mouseX, int mouseY, float partialTicks) {
         float delta = minecraft.getTimer().getGameTimeDeltaPartialTick(true);
         float x = Mth.lerp(delta, oldObjectXOffset, objectXOffset) - 16;
         float y = Mth.lerp(delta, oldObjectYOffset, objectYOffset) - 16;
@@ -175,17 +171,18 @@ public abstract class AbstractProgressionCodexScreen extends AbstractMalumCodexS
         mouseX -= getGuiLeft();
         mouseY -= getGuiTop();
 
-        progressionObjects.renderObjects(this, graphics, BOOK_WIDTH / 2f + x, BOOK_HEIGHT / 2f + y, mouseX, mouseY, partialTicks);
+        progressionObjects.renderObjects(this, guiGraphics, BOOK_WIDTH / 2f + x, BOOK_HEIGHT / 2f + y, mouseX, mouseY, partialTicks);
     }
 
+    public void renderObjectsLate(GuiGraphics guiGraphics, int mouseX, int mouseY, float partialTicks) {
+        /*
+        Normally we'd have to always adjust objects like this, however
+        Since movable objects are now being rendered onto another render target, their root relative to the screen is simply 0, 0 as the offset is effectively applied later in renderFrameCutout
+        Thus, we manually reintroduce the offset for late object rendering which exists outside our render target.
+        */
+        progressionObjects.offsetObjects(this, getGuiLeft(), getGuiTop());
 
-    public void constrictEntryRendering() {
-        int scale = (int) getMinecraft().getWindow().getGuiScale();
-        GL11.glScissor(
-                getGuiLeft() * scale,
-                getMinecraft().getWindow().getHeight() - (getGuiTop() + BOOK_HEIGHT) * scale,
-                BOOK_WIDTH * scale,
-                BOOK_HEIGHT * scale);
+        progressionObjects.renderObjectsLate(this, guiGraphics, mouseX, mouseY, partialTicks);
     }
 
     public Matrix4f getProjectionMatrix() {
@@ -277,19 +274,22 @@ public abstract class AbstractProgressionCodexScreen extends AbstractMalumCodexS
         var window = minecraft.getWindow();
         this.width = window.getGuiScaledWidth();
         this.height = window.getGuiScaledHeight();
-        progressionObjects.setupEntryObjects(this);
+        for (BookChapter chapter : chapters) {
+            chapter.place(this, progressionObjects);
+        }
     }
 
     public void faceOrigin() {
-        faceObject(progressionObjects.getOriginObject());
+        var first = progressionObjects.getFirst();
+        faceObject(first);
     }
 
     public void faceObject(BookObject<?> object) {
         var window = minecraft.getWindow();
         this.width = window.getGuiScaledWidth();
         this.height = window.getGuiScaledHeight();
-        xOffset = -object.posX;
-        yOffset = -object.posY;
+        xOffset = -object.x;
+        yOffset = -object.y;
         backgroundXOffset = xOffset;
         backgroundYOffset = yOffset;
     }

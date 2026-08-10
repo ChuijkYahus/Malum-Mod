@@ -13,15 +13,15 @@ import net.minecraft.world.phys.Vec3;
 import team.lodestar.lodestone.helpers.VecHelper;
 import team.lodestar.lodestone.modules.core.easing.Easing;
 import team.lodestar.lodestone.systems.network.particle.NetworkedParticleEffectPositionData;
-import team.lodestar.lodestone.systems.particle.builder.WorldParticleBuilder;
-import team.lodestar.lodestone.systems.particle.data.GenericParticleData;
-import team.lodestar.lodestone.systems.particle.data.color.ColorParticleData;
-import team.lodestar.lodestone.systems.particle.data.spin.SpinParticleData;
-import team.lodestar.lodestone.systems.particle.render_types.LodestoneWorldParticleRenderType;
-import team.lodestar.lodestone.systems.particle.world.LodestoneWorldParticle;
-import team.lodestar.lodestone.systems.particle.world.behaviors.DirectionalParticleBehavior;
-import team.lodestar.lodestone.systems.particle.world.behaviors.SparkParticleBehavior;
-import team.lodestar.lodestone.systems.particle.world.options.WorldParticleOptions;
+import team.lodestar.lodestone.modules.rendering.particle.standard.builder.WorldParticleBuilder;
+import team.lodestar.lodestone.modules.rendering.particle.standard.data.GenericParticleData;
+import team.lodestar.lodestone.modules.rendering.particle.standard.data.color.ColorParticleData;
+import team.lodestar.lodestone.modules.rendering.particle.standard.data.spin.SpinParticleData;
+import team.lodestar.lodestone.modules.rendering.particle.standard.render_types.LodestoneWorldParticleRenderType;
+import team.lodestar.lodestone.modules.rendering.particle.standard.world.LodestoneWorldParticle;
+import team.lodestar.lodestone.modules.rendering.particle.standard.world.behaviors.DirectionalParticleBehavior;
+import team.lodestar.lodestone.modules.rendering.particle.standard.world.behaviors.SparkParticleBehavior;
+import team.lodestar.lodestone.modules.rendering.particle.standard.world.options.WorldParticleOptions;
 
 import java.util.function.Consumer;
 import java.util.function.Function;
@@ -195,7 +195,7 @@ public class CultistParticleEffects {
         var position = positionData.getAsVector();
 
         Function<Vec3, Consumer<LodestoneWorldParticle>> behavior = initialOffset -> p -> {
-            var targetPosition = cardinalCultist.getRetaliationBlastPos(p.partialTicksCache);
+            var targetPosition = cardinalCultist.getDetonationBlastPos(p.partialTicksCache);
             p.setParticlePosition(targetPosition.add(initialOffset).add(p.getInterpolatedTravelledDistance()));
         };
         var direction = entropyCharge.getEyePosition().subtract(cardinalCultist.getEyePosition()).normalize();

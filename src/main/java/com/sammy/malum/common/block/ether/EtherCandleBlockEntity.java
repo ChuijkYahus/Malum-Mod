@@ -9,13 +9,13 @@ import net.minecraft.util.RandomSource;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.Vec3;
-import team.lodestar.lodestone.handlers.LodestoneRenderHandler;
+import team.lodestar.lodestone.modules.rendering.LodestoneRenderingSystem;
 
 import team.lodestar.lodestone.modules.core.easing.Easing;
 import team.lodestar.lodestone.modules.toolkit.blockentity.LodestoneBlockEntityType;
-import team.lodestar.lodestone.systems.particle.builder.WorldParticleBuilder;
-import team.lodestar.lodestone.systems.particle.data.GenericParticleData;
-import team.lodestar.lodestone.systems.particle.data.color.ColorParticleData;
+import team.lodestar.lodestone.modules.rendering.particle.standard.builder.WorldParticleBuilder;
+import team.lodestar.lodestone.modules.rendering.particle.standard.data.GenericParticleData;
+import team.lodestar.lodestone.modules.rendering.particle.standard.data.color.ColorParticleData;
 
 import java.awt.*;
 import java.util.List;
@@ -89,7 +89,7 @@ public class EtherCandleBlockEntity extends EtherBlockEntity {
                 float velocity = Easing.SINE_IN_OUT.asWeighedRandom(random, 0.012f, 0.024f);
                 var lightSpecs = SpiritLightSpecs.spiritLightSpecs(level, candleFlameCenter, color);
                 lightSpecs.getBuilder()
-                        .setRenderTarget(LodestoneRenderHandler.LATE_DEFERRED_RENDER)
+                        .setRenderTarget(LodestoneRenderingSystem.LATE_DEFERRED_RENDER)
                         .setTransparencyData(GenericParticleData.create(0.2f, 0.4f, 0).setEasing(Easing.EXPO_OUT, Easing.SINE_IN_OUT).build())
                         .setScaleData(GenericParticleData.create(scale, 0).setEasing(Easing.SINE_IN_OUT).build())
                         .addMotion(0, velocity, 0)
@@ -108,7 +108,7 @@ public class EtherCandleBlockEntity extends EtherBlockEntity {
                 float velocity = Easing.SINE_IN_OUT.asWeighedRandom(random, 0.02f, 0.025f);
                 var lightSpecs = SparkParticleEffects.spiritMotionSparks(level, candleFlameCenter, color);
                 lightSpecs.getBuilder()
-                        .setRenderTarget(LodestoneRenderHandler.LATE_DEFERRED_RENDER)
+                        .setRenderTarget(LodestoneRenderingSystem.LATE_DEFERRED_RENDER)
                         .setLifeDelay(lifeDelay)
                         .setLifetime(lifeTime)
                         .setScaleData(GenericParticleData.create(scale, 0).setEasing(Easing.SINE_IN_OUT).build())
@@ -127,7 +127,7 @@ public class EtherCandleBlockEntity extends EtherBlockEntity {
                 WorldParticleBuilder.create(MalumParticles.STAR)
                         .setTransparencyData(GenericParticleData.create(0.1f, 0.6f, 1f).setEasing(Easing.SINE_IN_OUT, Easing.SINE_IN_OUT).build())
                         .setScaleData(GenericParticleData.create(scale, 0).setEasing(Easing.CIRC_IN).build())
-                        .setRenderTarget(LodestoneRenderHandler.LATE_DEFERRED_RENDER)
+                        .setRenderTarget(LodestoneRenderingSystem.LATE_DEFERRED_RENDER)
                         .setLifeDelay(lifeDelay)
                         .setLifetime(lifeTime)
                         .setColorData(color)

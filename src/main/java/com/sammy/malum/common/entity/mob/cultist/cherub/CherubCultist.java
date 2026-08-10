@@ -27,7 +27,7 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.AABB;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
-import team.lodestar.lodestone.registry.common.LodestoneAttributes;
+import team.lodestar.wayward_attributes.core.registry.WaywardAttributeTypes;
 
 public class CherubCultist extends CultistMonster {
 
@@ -106,9 +106,9 @@ public class CherubCultist extends CultistMonster {
                 .add(Attributes.FOLLOW_RANGE, 35.0)
                 .add(Attributes.MOVEMENT_SPEED, 0.22)
                 .add(Attributes.ATTACK_DAMAGE, 0.0)
-                .add(LodestoneAttributes.MAGIC_DAMAGE, 2.0)
+                .add(WaywardAttributeTypes.MAGIC_DAMAGE, 2.0)
                 .add(Attributes.KNOCKBACK_RESISTANCE, 0.5)
-                .add(LodestoneAttributes.MAGIC_RESISTANCE, 0.5)
+                .add(WaywardAttributeTypes.MAGIC_RESISTANCE, 0.5)
                 .add(Attributes.ARMOR, 8.0);
     }
 

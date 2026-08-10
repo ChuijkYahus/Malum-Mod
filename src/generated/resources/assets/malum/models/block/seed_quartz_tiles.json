@@ -1,6 +1,0 @@
-{
-  "parent": "minecraft:block/cube_all",
-  "textures": {
-    "all": "malum:block/building/common_rock/seed_quartz/seed_quartz_tiles"
-  }
-}

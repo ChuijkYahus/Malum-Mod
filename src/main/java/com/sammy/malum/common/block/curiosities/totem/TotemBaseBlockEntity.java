@@ -13,6 +13,7 @@ import net.minecraft.world.*;
 import net.minecraft.world.entity.player.*;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.block.state.*;
+import org.jetbrains.annotations.NotNull;
 import team.lodestar.lodestone.helpers.block.*;
 import team.lodestar.lodestone.modules.toolkit.blockentity.*;
 
@@ -26,7 +27,7 @@ public class TotemBaseBlockEntity extends LodestoneBlockEntity {
     public enum TotemBaseState {
         INACTIVE,
         ASSEMBLING,
-        ACTIVE;
+        ACTIVE
     }
 
     protected TotemBaseState state = TotemBaseState.INACTIVE;
@@ -65,7 +66,9 @@ public class TotemBaseBlockEntity extends LodestoneBlockEntity {
         if (compound.contains("state")) {
             state = TotemBaseState.values()[compound.getInt("state")];
         }
-        rite = SpiritRiteType.load(compound).orElse(null);
+        if(!level.isClientSide()){
+            rite = SpiritRiteType.load((ServerLevel) level,compound).orElse(null);
+        }
         if (compound.contains("direction")) {
             totemDirection = Direction.values()[compound.getInt("direction")];
         }

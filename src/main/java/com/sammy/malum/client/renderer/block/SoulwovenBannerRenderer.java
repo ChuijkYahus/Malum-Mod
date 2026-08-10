@@ -11,6 +11,7 @@ import net.minecraft.world.phys.*;
 import org.joml.*;
 import team.lodestar.lodestone.registry.client.*;
 import team.lodestar.lodestone.systems.rendering.*;
+import team.lodestar.lodestone.systems.rendering.builder.VFXBuilders;
 import team.lodestar.lodestone.systems.rendering.rendeertype.*;
 
 import java.awt.*;

@@ -4,7 +4,6 @@ import com.sammy.malum.*;
 import com.sammy.malum.common.block.curiosities.totem.*;
 import com.sammy.malum.core.systems.registry.rite.*;
 import com.sammy.malum.core.systems.rite.*;
-import com.sammy.malum.registry.common.MalumContent;
 import net.minecraft.core.*;
 import net.minecraft.resources.*;
 import net.minecraft.server.level.*;
@@ -21,6 +20,8 @@ public class MalumSpiritRiteTypes {
             .defaultKey(MalumMod.malumPath("undirected_rite"))
             .sync(true));
 
+    public static final SpiritRiteRecipeManager RITE_RECIPES =
+            new SpiritRiteRecipeManager();
     //TODO: Spirit Rites will be data driven, the only information a rite really is is just name, spirit pattern and effect. Might as well
 
     public static final RiteHolder<SpiritRiteType> UNDIRECTED_RITE = RITE_TYPES.register("undirected_rite", () ->
@@ -70,8 +71,8 @@ public class MalumSpiritRiteTypes {
             minorTotemRite(EARTHEN_SPIRIT).setCorrupted().build(MalumSpiritRiteEffectTypes.APPLY_OAKEN_MIGHT_EFFECT));
     public static final RiteHolder<SpiritRiteType> RITE_OF_CREATION = RITE_TYPES.register("rite_of_creation", () ->
             majorTotemRite(EARTHEN_SPIRIT).build(MalumSpiritRiteEffectTypes.CREATION_EFFECT));
-    public static final RiteHolder<SpiritRiteType> RITE_OF_DESTRUCTION = RITE_TYPES.register("rite_of_destruction", () ->
-            majorTotemRite(EARTHEN_SPIRIT).setCorrupted().build(MalumSpiritRiteEffectTypes.DESTRUCTION_EFFECT));
+//    public static final RiteHolder<SpiritRiteType> RITE_OF_DESTRUCTION = RITE_TYPES.register("rite_of_destruction", () ->
+//            majorTotemRite(EARTHEN_SPIRIT).setCorrupted().build(MalumSpiritRiteEffectTypes.DESTRUCTION_EFFECT));
 
     public static final RiteHolder<SpiritRiteType> RITE_OF_THE_BURNING_FERVOR = RITE_TYPES.register("rite_of_the_burning_fervor", () ->
             minorTotemRite(INFERNAL_SPIRIT).build(MalumSpiritRiteEffectTypes.APPLY_BURNING_FERVOR_EFFECT));
@@ -84,14 +85,22 @@ public class MalumSpiritRiteTypes {
 
 
 
-    public static SpiritRiteType getRite(ServerLevel level, TotemBaseBlockEntity totemBase) {
 
-        var rites = MalumSpiritRiteTypes.RITE_TYPES.getEntries().stream().map(DeferredHolder::get).toList();
+    public static SpiritRiteType getRite(ServerLevel level, TotemBaseBlockEntity totemBase) {
+        var rites = RITE_TYPES.getEntries()
+                .stream()
+                .map(DeferredHolder::get)
+                .toList();
+
         for (SpiritRiteType rite : rites) {
             if (rite.matches(level, totemBase)) {
                 return rite;
             }
         }
-        return null;
+
+        return RITE_RECIPES.findMatching(
+                level,
+                totemBase
+        );
     }
 }

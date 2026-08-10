@@ -14,6 +14,7 @@ import net.minecraft.network.syncher.*;
 import net.minecraft.server.level.*;
 import net.minecraft.util.*;
 import net.minecraft.world.entity.*;
+import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.*;
 import net.minecraft.world.phys.*;
 import team.lodestar.lodestone.helpers.*;
@@ -25,6 +26,7 @@ public class BlockRiteEffectActivator extends MovingEntity implements ILociAttri
 
     public final TrailPointBuilder trail = TrailPointBuilder.create(6);
     public final TrailPointBuilder longTrail = TrailPointBuilder.create(20);
+    private final NonNullList<ItemStack> storedItems = NonNullList.withSize(27, ItemStack.EMPTY);
 
     protected static final EntityDataAccessor<SpiritArcanaType> DATA_SPIRIT_GLOW = SynchedEntityData.defineId(BlockRiteEffectActivator.class, MalumEntityDataSerializers.SPIRIT_ARCANA.get());
 
@@ -75,51 +77,105 @@ public class BlockRiteEffectActivator extends MovingEntity implements ILociAttri
     }
 
     @Override
-    public void addAdditionalSaveData(CompoundTag pCompound) {
+    public void addAdditionalSaveData(CompoundTag tag) {
         var spirit = getSpiritType();
         if (spirit != null) {
-            spirit.save(pCompound);
+            spirit.save(tag);
         }
+
         if (effect != null) {
-            effect.save(pCompound);
+            effect.save(tag);
         }
-        attributes.save(pCompound);
+
+        attributes.save(tag);
 
         if (sourcePosition != null) {
-            pCompound.put("sourcePosition", NBTHelper.saveBlockPos(sourcePosition));
+            tag.put("sourcePosition", NBTHelper.saveBlockPos(sourcePosition));
         }
+
         if (activationPosition != null) {
-            pCompound.put("activationPosition", NBTHelper.saveBlockPos(activationPosition));
+            tag.put("activationPosition", NBTHelper.saveBlockPos(activationPosition));
         }
+
         if (movementDirection != null) {
-            pCompound.putInt("movementDirection", movementDirection.ordinal());
+            tag.putInt("movementDirection", movementDirection.ordinal());
         }
-        pCompound.putInt("blockCounter", blockCounter);
-        pCompound.putInt("blocksTraveled", totalBlocksTraveled);
-        pCompound.putInt("age", age);
 
-        pCompound.putInt("healDuration", healDuration);
-        pCompound.putInt("healCounter", healCounter);
-        pCompound.putInt("copyCounter", copyCounter);
+        tag.putInt("blockCounter", blockCounter);
+        tag.putInt("blocksTraveled", totalBlocksTraveled);
+        tag.putInt("age", age);
+
+        tag.putInt("healDuration", healDuration);
+        tag.putInt("healCounter", healCounter);
+        tag.putInt("copyCounter", copyCounter);
+
+        ListTag items = new ListTag();
+
+        for (int i = 0; i < storedItems.size(); i++) {
+            ItemStack stack = storedItems.get(i);
+
+            if (!stack.isEmpty()) {
+                CompoundTag itemTag = new CompoundTag();
+                itemTag.putInt("Slot", i);
+                stack.save(level().registryAccess(), itemTag);
+                items.add(itemTag);
+            }
+        }
+
+        tag.put("StoredItems", items);
     }
-
     @Override
-    public void readAdditionalSaveData(CompoundTag pCompound) {
-        setSpirit(SpiritArcanaType.load(pCompound).orElse(MalumSpiritTypes.ARCANE_SPIRIT.get()));
-        effect = SpiritRiteEntityEffect.CODEC.load(pCompound, SpiritRiteBlockEffect.class).orElse(null);
-        attributes.load(pCompound);
+    public void readAdditionalSaveData(CompoundTag tag) {
+        setSpirit(
+                SpiritArcanaType.load(tag)
+                        .orElse(MalumSpiritTypes.ARCANE_SPIRIT.get())
+        );
 
-        sourcePosition = NBTHelper.readBlockPos(pCompound.getCompound("sourcePosition"));
-        activationPosition = NBTHelper.readBlockPos(pCompound.getCompound("activationPosition"));
-        movementDirection = Direction.values()[pCompound.getInt("movementDirection")];
+        effect = SpiritRiteEntityEffect.CODEC
+                .load(tag, SpiritRiteBlockEffect.class)
+                .orElse(null);
 
-        blockCounter = pCompound.getInt("blockCounter");
-        totalBlocksTraveled = pCompound.getInt("blocksTraveled");
-        age = pCompound.getInt("age");
+        attributes.load(tag);
 
-        healDuration = pCompound.getInt("healDuration");
-        healCounter = pCompound.getInt("healCounter");
-        copyCounter = pCompound.getInt("copyCounter");
+        sourcePosition = NBTHelper.readBlockPos(
+                tag.getCompound("sourcePosition")
+        );
+
+        activationPosition = NBTHelper.readBlockPos(
+                tag.getCompound("activationPosition")
+        );
+
+        movementDirection = Direction.values()[
+                tag.getInt("movementDirection")
+                ];
+
+        blockCounter = tag.getInt("blockCounter");
+        totalBlocksTraveled = tag.getInt("blocksTraveled");
+        age = tag.getInt("age");
+
+        healDuration = tag.getInt("healDuration");
+        healCounter = tag.getInt("healCounter");
+        copyCounter = tag.getInt("copyCounter");
+
+        storedItems.clear();
+
+        ListTag items = tag.getList("StoredItems", Tag.TAG_COMPOUND);
+
+        for (int i = 0; i < items.size(); i++) {
+            CompoundTag itemTag = items.getCompound(i);
+
+            int slot = itemTag.getInt("Slot");
+
+            if (slot >= 0 && slot < storedItems.size()) {
+                storedItems.set(
+                        slot,
+                        ItemStack.parse(
+                                level().registryAccess(),
+                                itemTag
+                        ).orElse(ItemStack.EMPTY)
+                );
+            }
+        }
     }
 
     @Override
@@ -149,7 +205,7 @@ public class BlockRiteEffectActivator extends MovingEntity implements ILociAttri
                 }
                 if (canTriggerEffect) {
                     if (blockCounter >= attributes.distance.getValue()) {
-                        discard();
+                        destroyAndDropItems();
                         return;
                     }
                     if (triggerRiteEffect(serverLevel, affectedPos)) {
@@ -320,5 +376,56 @@ public class BlockRiteEffectActivator extends MovingEntity implements ILociAttri
 
     public void setSpirit(SpiritArcanaType spirit) {
         getEntityData().set(DATA_SPIRIT_GLOW, spirit);
+    }
+
+    public NonNullList<ItemStack> getStoredItems() {
+        return storedItems;
+    }
+
+    public boolean addItem(ItemStack stack) {
+        if (stack.isEmpty()) {
+            return false;
+        }
+
+        for (int i = 0; i < storedItems.size(); i++) {
+            ItemStack existing = storedItems.get(i);
+
+            if (existing.isEmpty()) {
+                storedItems.set(i, stack.copy());
+                return true;
+            }
+
+            if (ItemStack.isSameItemSameComponents(existing, stack)) {
+                int space = existing.getMaxStackSize() - existing.getCount();
+
+                if (space > 0) {
+                    int amount = Math.min(space, stack.getCount());
+                    existing.grow(amount);
+
+                    if (amount == stack.getCount()) {
+                        return true;
+                    }
+
+                    stack.shrink(amount);
+                }
+            }
+        }
+
+        return stack.isEmpty();
+    }
+    public void destroyAndDropItems() {
+        if (level().isClientSide) {
+            discard();
+            return;
+        }
+
+        for (ItemStack stack : storedItems) {
+            if (!stack.isEmpty()) {
+                spawnAtLocation(stack.copy());
+            }
+        }
+
+        storedItems.clear();
+        discard();
     }
 }

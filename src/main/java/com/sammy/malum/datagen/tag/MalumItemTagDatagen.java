@@ -59,6 +59,8 @@ public class MalumItemTagDatagen extends LodestoneItemTagsSystem {
         var items = ITEMS.getEntries();
         addTagsFromBlockProperties(blocks);
 
+        tag(ItemTags.TRIMMABLE_ARMOR).addTags(ARMORS);
+        tag(ItemTags.TRIM_TEMPLATES, SmithingTemplateItem.class);
 
         tag(ItemTags.BOOKSHELF_BOOKS).add(ENCYCLOPEDIA_ARCANA.get(), ENCYCLOPEDIA_ESOTERICA.get());
 

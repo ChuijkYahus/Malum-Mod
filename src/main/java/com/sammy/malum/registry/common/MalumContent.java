@@ -50,17 +50,12 @@ import com.sammy.malum.common.block.curiosities.weeping_well.VoidConduitBlock;
 import com.sammy.malum.common.block.curiosities.weeping_well.encasement.WeepingWellBlock;
 import com.sammy.malum.common.block.curiosities.weeping_well.encasement.WeepingWellDirectionalBlock;
 import com.sammy.malum.common.block.curiosities.weeping_well.encasement.WeepingWellLayeredBlock;
-import com.sammy.malum.common.block.curiosities.decor.ColumnBlock;
 import com.sammy.malum.common.block.curiosities.decor.SpiritedGlassBlock;
 import com.sammy.malum.common.block.curiosities.decor.VarnishedTerracottaBlock;
 import com.sammy.malum.common.block.dungeon.*;
-import com.sammy.malum.common.block.dungeon.curiosities.OminousAltarBlock;
-import com.sammy.malum.common.block.dungeon.curiosities.OminousObeliskCoreBlock;
 import com.sammy.malum.common.block.ether.*;
 import com.sammy.malum.common.block.flora.EbonySaplingBlock;
 import com.sammy.malum.common.block.flora.EbonyStalkBlock;
-import com.sammy.malum.common.block.flora.WildWitchhazelPlantBlock;
-import com.sammy.malum.common.block.flora.WitchhazelCropBlock;
 import com.sammy.malum.common.block.flora.wood.runewood.HangingRunewoodLeavesBlock;
 import com.sammy.malum.common.block.flora.wood.runewood.RunewoodLeavesBlock;
 import com.sammy.malum.common.block.flora.wood.soulwood.HangingSoulwoodLeavesBlock;
@@ -69,8 +64,6 @@ import com.sammy.malum.common.block.flora.wood.soulwood.SoulwoodSaplingBlock;
 import com.sammy.malum.common.block.flora.wood.MalumSaplingBlock;
 import com.sammy.malum.common.block.soulstone.*;
 import com.sammy.malum.common.block.storage.jar.SpiritJarBlock;
-import com.sammy.malum.common.block.storage.pedestal.ItemPedestalBlock;
-import com.sammy.malum.common.block.storage.stand.ItemStandBlock;
 import com.sammy.malum.common.block.the_device.TheDevice;
 import com.sammy.malum.common.block.the_device.TheVessel;
 import com.sammy.malum.common.data.component.ItemSkinComponent;
@@ -84,7 +77,6 @@ import com.sammy.malum.common.block.curiosities.decor.banner.SoulwovenBannerBloc
 import com.sammy.malum.common.item.codex.EncyclopediaArcanaItem;
 import com.sammy.malum.common.item.codex.EncyclopediaEsotericaItem;
 import com.sammy.malum.common.item.curiosities.TemporarilyDisabledItem;
-import com.sammy.malum.common.item.curiosities.WandItem;
 import com.sammy.malum.common.item.curiosities.armor.MalignantStrongholdArmorItem;
 import com.sammy.malum.common.item.curiosities.armor.SoulHunterArmorItem;
 import com.sammy.malum.common.item.curiosities.armor.SoulStainedSteelArmorItem;
@@ -160,7 +152,6 @@ import net.minecraft.util.valueproviders.UniformInt;
 import net.minecraft.world.food.FoodProperties;
 import net.minecraft.world.item.*;
 import net.minecraft.world.level.block.*;
-import net.minecraft.world.level.block.state.properties.BlockSetType;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.neoforged.neoforge.registries.DeferredBlock;
@@ -170,11 +161,10 @@ import net.neoforged.neoforge.registries.DeferredRegister;
 import team.lodestar.lodestone.modules.toolkit.block.BlockBlockItemHolder;
 import team.lodestar.lodestone.modules.toolkit.block.LodestoneBlockProperties;
 import team.lodestar.lodestone.modules.toolkit.block.LodestoneDirectionalBlock;
-import team.lodestar.lodestone.modules.toolkit.block.LodestoneStairBlock;
 import team.lodestar.lodestone.modules.toolkit.item.LodestoneItemProperties;
-import team.lodestar.lodestone.modules.toolkit.item.tools.magic.*;
 import team.lodestar.lodestone.modules.toolkit.multiblock.MultiBlockItem;
 import team.lodestar.lodestone.modules.toolkit.multiblock.MultiBlockStructure;
+import team.lodestar.wayward_attributes.util.*;
 
 import java.util.function.BiFunction;
 import java.util.function.Function;
@@ -184,7 +174,6 @@ import static com.sammy.malum.MalumMod.MALUM;
 import static com.sammy.malum.registry.common.MalumTags.Blocks.*;
 import static com.sammy.malum.registry.common.block.properties.MalumBlockProperties.*;
 import static com.sammy.malum.registry.common.item.MalumItemTiers.*;
-import static net.minecraft.tags.BlockTags.*;
 import static net.minecraft.world.item.Rarity.*;
 
 public class MalumContent {
@@ -218,7 +207,6 @@ public class MalumContent {
     public static final DeferredItem<Item> ENCYCLOPEDIA_ESOTERICA = register("encyclopedia_esoterica", () -> MalumItemProperties.GEAR().rarity(EPIC), EncyclopediaEsotericaItem::new);
 
     public static final DeferredItem<GeasItem> GEAS = register("geas", () -> MalumItemProperties.GEAR().rarity(RARE), GeasItem::new);
-    public static final DeferredItem<WandItem> WAND = register("wand", () -> MalumItemProperties.GEAR().rarity(RARE), WandItem::new);
 
     public static final DeferredItem<Item> ARCANE_ELEGY = register("music_disc_arcane_elegy", () -> MalumItemProperties.GEAR().rarity(RARE), ArcaneElegyMusicDiscItem::new);
     public static final DeferredItem<Item> AESTHETICA = register("music_disc_aesthetica", () -> MalumItemProperties.GEAR().rarity(RARE), AestheticaMusicDiscItem::new);
@@ -283,8 +271,10 @@ public class MalumContent {
         public static final BlockBlockItemHolder<Block, BlockItem> BLOCK_OF_ALCHEMICAL_CALX = registerBlock("block_of_alchemical_calx", () -> new LodestoneDirectionalBlock(MalumStorageBlockProperties.GENERIC_STORAGE_BLOCK(SoundType.CALCITE, DyeColor.YELLOW).requiresCorrectToolForDrops().needsPickaxe()));
         public static final BlockBlockItemHolder<Block, BlockItem> BLOCK_OF_ARCANE_CHARCOAL = registerBlock("block_of_arcane_charcoal", () -> new LodestoneDirectionalBlock(MalumStorageBlockProperties.ARCANE_CHARCOAL_BLOCK()));
 
+        public static final BlockBlockItemHolder<Block, BlockItem> BLOCK_OF_IGNEOUS_CHITIN = registerBlock("block_of_igneous_chitin", () -> new LodestoneDirectionalBlock(MalumStorageBlockProperties.GENERIC_STORAGE_BLOCK(SoundType.CALCITE, DyeColor.YELLOW).requiresCorrectToolForDrops().needsPickaxe()));
+        public static final BlockBlockItemHolder<Block, BlockItem> BLOCK_OF_TORN_BRIMSTONE = registerBlock("block_of_torn_brimstone", () -> new LodestoneDirectionalBlock(MalumStorageBlockProperties.ARCANE_CHARCOAL_BLOCK()));
+
         public static final BlockBlockItemHolder<Block, BlockItem> BLOCK_OF_EBONY = registerBlock("block_of_ebony", () -> new LodestoneDirectionalBlock(MalumStorageBlockProperties.EBONY_BLOCK()));
-        public static final BlockBlockItemHolder<Block, BlockItem> CRATE_OF_WITCHHAZEL = registerBlock("crate_of_witchhazel", () -> new Block(MalumStorageBlockProperties.WITCHHAZEL_CRATE()));
 
         public static final BlockBlockItemHolder<Block, BlockItem> BLOCK_OF_NULL_SLATE = registerBlock("block_of_null_slate", () -> new Block(MalumStorageBlockProperties.SOULSTONE_BLOCK(false)));
         public static final BlockBlockItemHolder<Block, BlockItem> BLOCK_OF_VOID_SALTS = registerBlock("block_of_void_salts", () -> new Block(MalumStorageBlockProperties.GENERIC_STORAGE_BLOCK(SoundType.WOOL, DyeColor.PURPLE).needsHoe()));
@@ -303,6 +293,7 @@ public class MalumContent {
         public static void init() {
 
         }
+
 
         public static final BlockBlockItemHolder<Block, BlockItem> DEEPSLATE_SOULSTONE_ORE = registerBlock("deepslate_soulstone_ore", () -> new DropExperienceBlock(UniformInt.of(14, 18), MalumOreBlockProperties.SOULSTONE_ORE(true)));
         public static final BlockBlockItemHolder<Block, BlockItem> SOULSTONE_ORE = registerBlock("soulstone_ore", () -> new DropExperienceBlock(UniformInt.of(14, 18), MalumOreBlockProperties.SOULSTONE_ORE(false)));
@@ -350,18 +341,20 @@ public class MalumContent {
         public static final DeferredItem<Item> ALCHEMICAL_CALX = register("alchemical_calx", MalumItemProperties::DEFAULT, Item::new);
         public static final DeferredItem<Item> ARCANE_CHARCOAL = register("arcane_charcoal", MalumItemProperties::DEFAULT, Item::new);
 
+        public static final DeferredItem<Item> IGNEOUS_CHITIN = register("igneous_chitin", MalumItemProperties::DEFAULT, Item::new);
+        public static final DeferredItem<Item> TORN_BRIMSTONE = register("torn_brimstone", MalumItemProperties::DEFAULT, Item::new);
+        public static final DeferredItem<Item> ENTROPIC_ANOMALY = register("entropic_anomaly", MalumItemProperties::DEFAULT, Item::new);
+        public static final DeferredItem<Item> BLADE_MEMORY = register("blade_memory", MalumItemProperties::DEFAULT, Item::new);
+
         public static final DeferredBlock<Block> EBONY_SAPLING = registerBlockNoItem("ebony_sapling", () -> new EbonySaplingBlock(MalumFloraBlockProperties.EBONY_SAPLING()));
         public static final BlockBlockItemHolder<Block, BlockItem> EBONY_STALK = registerItemNameBlock("ebony", "ebony_stalk", () -> new EbonyStalkBlock(MalumFloraBlockProperties.EBONY()));
         public static final DeferredItem<Item> CALCIFIED_EBONY = register("calcified_ebony", MalumItemProperties::DEFAULT, Item::new);
 
-        public static final BlockBlockItemHolder<Block, BlockItem> WILD_WITCHHAZEL = registerBlock("wild_witchhazel", () -> new WildWitchhazelPlantBlock(MalumFloraBlockProperties.WILD_WITCHHAZEL()));
-        public static final BlockBlockItemHolder<Block, BlockItem> WITCHHAZEL = registerBlock("witchhazel", () -> new WitchhazelCropBlock(MalumFloraBlockProperties.WITCHHAZEL_CROP()));
-
-        public static final DeferredItem<Item> RUNIC_SAP_BOTTLE = register("runic_sap_bottle", MalumItemProperties::DEFAULT, (p) -> new BottledDrinkItem(MalumItemProperties.DEFAULT().food(MalumFoodProperties.RUNIC_SAP)));
+        public static final DeferredItem<Item> RUNIC_SAP_BOTTLE = register("runic_sap_bottle", MalumItemProperties::DEFAULT, (p) -> new BottledDrinkItem(p.food(MalumFoodProperties.RUNIC_SAP)));
         public static final DeferredItem<Item> RUNIC_SAPBALL = register("runic_sapball", MalumItemProperties::DEFAULT, Item::new);
         public static final DeferredBlock<Block> RUNIC_SAP_CAULDRON = registerBlockNoItem("runic_sap_cauldron", SapFilledCauldronBlock::new);
 
-        public static final DeferredItem<Item> AZOIC_SAP_BOTTLE = register("azoic_sap_bottle", MalumItemProperties::DEFAULT, (p) -> new BottledDrinkItem(MalumItemProperties.DEFAULT().food(MalumFoodProperties.AZOIC_SAP)));
+        public static final DeferredItem<Item> AZOIC_SAP_BOTTLE = register("azoic_sap_bottle", MalumItemProperties::DEFAULT, (p) -> new BottledDrinkItem(p.food(MalumFoodProperties.AZOIC_SAP)));
         public static final DeferredItem<Item> AZOIC_SAPBALL = register("azoic_sapball", MalumItemProperties::DEFAULT, Item::new);
         public static final DeferredBlock<Block> AZOIC_SAP_CAULDRON = registerBlockNoItem("azoic_sap_cauldron", SapFilledCauldronBlock::new);
 
@@ -478,6 +471,9 @@ public class MalumContent {
 
         public static final RockBlockSet TAINTED_ROCK_SET = new RockBlockSet("tainted_rock", MalumBlockProperties::TAINTED_ROCK, MalumBlockProperties::TAINTED_ROCK_BRICKS, MalumBlockProperties::CHISELED_TAINTED_ROCK);
         public static final RockBlockSet TWISTED_ROCK_SET = new RockBlockSet("twisted_rock", MalumBlockProperties::TWISTED_ROCK, MalumBlockProperties::TWISTED_ROCK_BRICKS, MalumBlockProperties::CHISELED_TWISTED_ROCK);
+
+
+
 
         public static final BlockBlockItemHolder<Block, BlockItem> RUNEWOOD_SAPLING = registerBlock("runewood_sapling", () -> new MalumSaplingBlock(MalumTreeGrowers.RUNEWOOD, MalumWoodBlockProperties.RUNEWOOD_SAPLING()));
         public static final BlockBlockItemHolder<Block, BlockItem> RUNEWOOD_LEAVES = registerBlock("runewood_leaves", () -> new RunewoodLeavesBlock(MalumWoodBlockProperties.RUNEWOOD_LEAVES()));
@@ -663,7 +659,7 @@ public class MalumContent {
         public static final DeferredItem<Item> SOULWOVEN_POUCH = register("soulwoven_pouch", MalumItemProperties::GEAR, SoulwovenPouchItem::new);
         public static final DeferredItem<Item> RAVENOUS_POUCH = register("ravenous_pouch", MalumItemProperties::GEAR, RavenousPouchItem::new);
 
-        public static final DeferredItem<Item> CRUDE_SCYTHE = register("crude_scythe", MalumItemProperties::GEAR, (p) -> new MalumScytheItem(Tiers.IRON, 0, 0.1f, p.durability(500)));
+        public static final DeferredItem<Item> CRUDE_SCYTHE = register("crude_scythe", MalumItemProperties::GEAR, (p) -> new MalumScytheItem(Tiers.IRON, 0, 0.1f, 0.5f, 1.5f, p.durability(500)));
 
         public static final DeferredItem<Item> SOUL_HUNTER_CLOAK = register("soul_hunter_cloak", MalumItemProperties::GEAR, (p) -> new SoulHunterArmorItem(ArmorItem.Type.HELMET, p));
         public static final DeferredItem<Item> SOUL_HUNTER_ROBE = register("soul_hunter_robe", MalumItemProperties::GEAR, (p) -> new SoulHunterArmorItem(ArmorItem.Type.CHESTPLATE, p));
@@ -680,7 +676,7 @@ public class MalumContent {
         public static final DeferredItem<Item> MALIGNANT_STRONGHOLD_LEGGINGS = register("malignant_stronghold_leggings", MalumItemProperties::GEAR, (p) -> new MalignantStrongholdArmorItem(ArmorItem.Type.LEGGINGS, p));
         public static final DeferredItem<Item> MALIGNANT_STRONGHOLD_BOOTS = register("malignant_stronghold_boots", MalumItemProperties::GEAR, (p) -> new MalignantStrongholdArmorItem(ArmorItem.Type.BOOTS, p));
 
-        public static final DeferredItem<Item> SOUL_STAINED_STEEL_SCYTHE = register("soul_stained_steel_scythe", MalumItemProperties::GEAR, (p) -> new MagicScytheItem(SOUL_STAINED_STEEL, -3.5f, 0.2f, 4, p));
+        public static final DeferredItem<Item> SOUL_STAINED_STEEL_SCYTHE = register("soul_stained_steel_scythe", MalumItemProperties::GEAR, (p) -> new MagicScytheItem(SOUL_STAINED_STEEL, -3.5f, 0.2f, 4, 0.5f, 1.5f, p));
         public static final DeferredItem<Item> SOUL_STAINED_STEEL_KNIFE = register("soul_stained_steel_knife", MalumItemProperties::GEAR, (p) -> FarmersDelightCompat.LOADED ? FarmersDelightCompat.LoadedOnly.makeMagicKnife(p) : new Item(p));
         public static final DeferredItem<Item> SOUL_STAINED_STEEL_SWORD = register("soul_stained_steel_sword", MalumItemProperties::GEAR, (p) -> new MagicSwordItem(SOUL_STAINED_STEEL, -3, 0, 3, p));
 
@@ -798,58 +794,8 @@ public class MalumContent {
 
         }
 
-        public static final BlockBlockItemHolder<Block, BlockItem> DROSS_STONE = registerBlock("dross_stone", () -> new Block(DROSS_STONE().addTag(DROSS_STONE_BLOCKS)));
-        public static final BlockBlockItemHolder<Block, BlockItem> GRAY_DROSS_TILES_STAIRS = registerBlock("gray_dross_tiles_stairs", () -> new LodestoneStairBlock(DROSS_STONE().addTags(STAIRS)));
-        public static final BlockBlockItemHolder<Block, BlockItem> DARK_DROSS_TILES_STAIRS = registerBlock("dark_dross_tiles_stairs", () -> new LodestoneStairBlock(DROSS_STONE().addTags(STAIRS)));
-        public static final BlockBlockItemHolder<Block, BlockItem> DROSS_STONE_MOSAIC_STAIRS = registerBlock("dross_stone_mosaic_stairs", () -> new LodestoneStairBlock(DROSS_STONE_BRICKS().addTags(STAIRS, MalumTags.Blocks.DROSS_STONE_STAIRS)));
-        public static final BlockBlockItemHolder<Block, BlockItem> DROSS_STONE_TILES_STAIRS = registerBlock("dross_stone_tiles_stairs", () -> new LodestoneStairBlock(DROSS_STONE_BRICKS().addTags(STAIRS, MalumTags.Blocks.DROSS_STONE_STAIRS)));
-        public static final BlockBlockItemHolder<Block, BlockItem> DROSS_STONE_BRICKS_STAIRS = registerBlock("dross_stone_bricks_stairs", () -> new LodestoneStairBlock(DROSS_STONE_BRICKS().addTags(STAIRS, MalumTags.Blocks.DROSS_STONE_STAIRS)));
-        public static final BlockBlockItemHolder<Block, BlockItem> POLISHED_DROSS_STONE_STAIRS = registerBlock("polished_dross_stone_stairs", () -> new LodestoneStairBlock(DROSS_STONE().addTags(STAIRS, MalumTags.Blocks.DROSS_STONE_STAIRS)));
-        public static final BlockBlockItemHolder<Block, BlockItem> DROSS_STONE_STAIRS = registerBlock("dross_stone_stairs", () -> new LodestoneStairBlock(DROSS_STONE().addTags(STAIRS, MalumTags.Blocks.DROSS_STONE_STAIRS)));
-        public static final BlockBlockItemHolder<Block, BlockItem> POLISHED_DROSS_STONE = registerBlock("polished_dross_stone", () -> new Block(DROSS_STONE().addTag(DROSS_STONE_BLOCKS)));
-        public static final BlockBlockItemHolder<Block, BlockItem> DROSS_STONE_BRICKS = registerBlock("dross_stone_bricks", () -> new Block(DROSS_STONE_BRICKS().addTag(DROSS_STONE_BLOCKS)));
-        public static final BlockBlockItemHolder<Block, BlockItem> DROSS_STONE_TILES = registerBlock("dross_stone_tiles", () -> new Block(DROSS_STONE_BRICKS().addTag(DROSS_STONE_BLOCKS)));
-        public static final BlockBlockItemHolder<Block, BlockItem> DROSS_STONE_MOSAIC = registerBlock("dross_stone_mosaic", () -> new Block(DROSS_STONE_BRICKS().addTag(DROSS_STONE_BLOCKS)));
-        public static final BlockBlockItemHolder<Block, BlockItem> DARK_DROSS_TILES = registerBlock("dark_dross_tiles", () -> new Block(DROSS_STONE()));
-        public static final BlockBlockItemHolder<Block, BlockItem> GRAY_DROSS_TILES = registerBlock("gray_dross_tiles", () -> new Block(DROSS_STONE()));
-        public static final BlockBlockItemHolder<Block, BlockItem> DROSS_STONE_COLUMN = registerBlock("dross_stone_column", () -> new ColumnBlock(CHISELED_DROSS_STONE()));
-        public static final BlockBlockItemHolder<Block, BlockItem> DROSS_STONE_ALTAR = registerBlock("dross_stone_altar", () -> new Block(CHISELED_DROSS_STONE().addTag(EIDOLON_ALTAR_BLOCK)));
-        public static final BlockBlockItemHolder<Block, BlockItem> CUT_DROSS_STONE = registerBlock("cut_dross_stone", () -> new Block(CHISELED_DROSS_STONE()));
-        public static final BlockBlockItemHolder<Block, BlockItem> CHISELED_DROSS_STONE = registerBlock("chiseled_dross_stone", () -> new Block(CHISELED_DROSS_STONE()));
-        public static final BlockBlockItemHolder<Block, BlockItem> DROSS_STONE_SLAB = registerBlock("dross_stone_slab", () -> new SlabBlock(DROSS_STONE().addTags(SLABS, DROSS_STONE_SLABS)));
-        public static final BlockBlockItemHolder<Block, BlockItem> POLISHED_DROSS_STONE_SLAB = registerBlock("polished_dross_stone_slab", () -> new SlabBlock(DROSS_STONE().addTags(SLABS, DROSS_STONE_SLABS)));
-        public static final BlockBlockItemHolder<Block, BlockItem> DROSS_STONE_BRICKS_SLAB = registerBlock("dross_stone_bricks_slab", () -> new SlabBlock(DROSS_STONE_BRICKS().addTags(SLABS, DROSS_STONE_SLABS)));
-        public static final BlockBlockItemHolder<Block, BlockItem> DROSS_STONE_TILES_SLAB = registerBlock("dross_stone_tiles_slab", () -> new SlabBlock(DROSS_STONE_BRICKS().addTags(SLABS, DROSS_STONE_SLABS)));
-        public static final BlockBlockItemHolder<Block, BlockItem> DROSS_STONE_MOSAIC_SLAB = registerBlock("dross_stone_mosaic_slab", () -> new SlabBlock(DROSS_STONE_BRICKS().addTags(SLABS, DROSS_STONE_SLABS)));
-        public static final BlockBlockItemHolder<Block, BlockItem> DARK_DROSS_TILES_SLAB = registerBlock("dark_dross_tiles_slab", () -> new SlabBlock(DROSS_STONE().addTags(SLABS)));
-        public static final BlockBlockItemHolder<Block, BlockItem> GRAY_DROSS_TILES_SLAB = registerBlock("gray_dross_tiles_slab", () -> new SlabBlock(DROSS_STONE().addTags(SLABS)));
-        public static final BlockBlockItemHolder<Block, BlockItem> DROSS_STONE_WALL = registerBlock("dross_stone_wall", () -> new WallBlock(DROSS_STONE().addTags(WALLS, DROSS_STONE_WALLS)));
-        public static final BlockBlockItemHolder<Block, BlockItem> POLISHED_DROSS_STONE_WALL = registerBlock("polished_dross_stone_wall", () -> new WallBlock(DROSS_STONE().addTags(WALLS, DROSS_STONE_WALLS)));
-        public static final BlockBlockItemHolder<Block, BlockItem> DROSS_STONE_BRICKS_WALL = registerBlock("dross_stone_bricks_wall", () -> new WallBlock(DROSS_STONE_BRICKS().addTags(WALLS, DROSS_STONE_WALLS)));
-        public static final BlockBlockItemHolder<Block, BlockItem> DROSS_STONE_TILES_WALL = registerBlock("dross_stone_tiles_wall", () -> new WallBlock(DROSS_STONE_BRICKS().addTags(WALLS, DROSS_STONE_WALLS)));
-        public static final BlockBlockItemHolder<Block, BlockItem> DROSS_STONE_MOSAIC_WALL = registerBlock("dross_stone_mosaic_wall", () -> new WallBlock(DROSS_STONE_BRICKS().addTags(WALLS, DROSS_STONE_WALLS)));
-        public static final BlockBlockItemHolder<Block, BlockItem> DARK_DROSS_TILES_WALL = registerBlock("dark_dross_tiles_wall", () -> new WallBlock(DROSS_STONE().addTags(WALLS)));
-        public static final BlockBlockItemHolder<Block, BlockItem> GRAY_DROSS_TILES_WALL = registerBlock("gray_dross_tiles_wall", () -> new WallBlock(DROSS_STONE().addTags(WALLS)));
-        public static final BlockBlockItemHolder<Block, BlockItem> DROSS_STONE_BUTTON = registerBlock("dross_stone_button", () -> new ButtonBlock(BlockSetType.STONE, 20, DROSS_STONE().noCollission().addTag(BUTTONS)));
-        public static final BlockBlockItemHolder<Block, BlockItem> DROSS_STONE_PRESSURE_PLATE = registerBlock("dross_stone_pressure_plate", () -> new PressurePlateBlock(BlockSetType.STONE, DROSS_STONE().noCollission().addTag(PRESSURE_PLATES)));
-        public static final BlockBlockItemHolder<Block, BlockItem> DROSS_STONE_ITEM_STAND = registerBlock("dross_stone_item_stand", () -> new ItemStandBlock<>(DROSS_STONE().noOcclusion()));
-        public static final BlockBlockItemHolder<Block, BlockItem> DROSS_STONE_ITEM_PEDESTAL = registerBlock("dross_stone_item_pedestal", () -> new ItemPedestalBlock<>(DROSS_STONE().noOcclusion()));
-        //region dungeon
-        public static final BlockBlockItemHolder<Block, BlockItem> OMINOUS_ALTAR = registerBlock("ominous_altar", () -> new OminousAltarBlock(MalumDungeonBlockProperties.OMINOUS_CRAFT()));
-        public static final BlockBlockItemHolder<Block, MultiBlockItem> OMINOUS_OBELISK = registerMultiBlock("ominous_obelisk", () -> new OminousObeliskCoreBlock(MalumDungeonBlockProperties.OMINOUS_CRAFT().setCutout().noOcclusion()), RunewoodObeliskBlockEntity.STRUCTURE);
-        public static final DeferredBlock<Block> OMINOUS_OBELISK_COMPONENT = registerBlockNoItem("ominous_obelisk_component", () -> new ObeliskComponentBlock(MalumDungeonBlockProperties.OMINOUS_CRAFT().setCutout().lootFrom(OMINOUS_OBELISK).noOcclusion()));
-        public static final BlockBlockItemHolder<Block, BlockItem> ODD_SCRIPTURES_I = registerBlock("odd_scriptures_i", () -> new OddScripturesBlock(MalumDungeonBlockProperties.ODD_SCRIPTURES()));
-        public static final BlockBlockItemHolder<Block, BlockItem> ODD_SCRIPTURES_II = registerBlock("odd_scriptures_ii", () -> new OddScripturesBlock(MalumDungeonBlockProperties.ODD_SCRIPTURES()));
-        public static final BlockBlockItemHolder<Block, BlockItem> ODD_SCRIPTURES_III = registerBlock("odd_scriptures_iii", () -> new OddScripturesBlock(MalumDungeonBlockProperties.ODD_SCRIPTURES()));
-        public static final BlockBlockItemHolder<Block, BlockItem> ODD_SCRIPTURES_IV = registerBlock("odd_scriptures_iv", () -> new OddScripturesBlock(MalumDungeonBlockProperties.ODD_SCRIPTURES()));
-        public static final BlockBlockItemHolder<Block, BlockItem> ODD_SCRIPTURES_V = registerBlock("odd_scriptures_v", () -> new OddScripturesBlock(MalumDungeonBlockProperties.ODD_SCRIPTURES()));
-        public static final BlockBlockItemHolder<Block, BlockItem> ODD_SCRIPTURES_VI = registerBlock("odd_scriptures_vi", () -> new OddScripturesBlock(MalumDungeonBlockProperties.ODD_SCRIPTURES()));
-        public static final BlockBlockItemHolder<Block, BlockItem> ODD_SCRIPTURES_VII = registerBlock("odd_scriptures_vii", () -> new OddScripturesBlock(MalumDungeonBlockProperties.ODD_SCRIPTURES()));
-        public static final BlockBlockItemHolder<Block, BlockItem> ODD_SCRIPTURES_VIII = registerBlock("odd_scriptures_viii", () -> new OddScripturesBlock(MalumDungeonBlockProperties.ODD_SCRIPTURES()));
-        public static final BlockBlockItemHolder<Block, BlockItem> ODD_SCRIPTURES_IX = registerBlock("odd_scriptures_ix", () -> new OddScripturesBlock(MalumDungeonBlockProperties.ODD_SCRIPTURES()));
-        public static final BlockBlockItemHolder<Block, BlockItem> VEILED_EFFIGY = registerBlock("veiled_effigy", () -> new MeditatingEffigyBlock(MalumDungeonBlockProperties.MEDITATING_EFFIGY()));
-        public static final BlockBlockItemHolder<Block, BlockItem> CORRUPT_EFFIGY = registerBlock("corrupt_effigy", () -> new MeditatingEffigyBlock(MalumDungeonBlockProperties.MEDITATING_EFFIGY()));
-        public static final BlockBlockItemHolder<Block, BlockItem> CRACKED_EFFIGY = registerBlock("cracked_effigy", () -> new MeditatingEffigyBlock(MalumDungeonBlockProperties.MEDITATING_EFFIGY()));
+        public static final BlockBlockItemHolder<Block, BlockItem> MEDITATING_EFFIGY = registerBlock("meditating_effigy", () -> new MeditatingEffigyBlock(MalumDungeonBlockProperties.MEDITATING_EFFIGY()));
+
         public static final BlockBlockItemHolder<Block, BlockItem> COLUMNAR_FLESH = registerBlock("columnar_flesh", () -> new ColumnarFleshBlock(MalumDungeonBlockProperties.FLESH_BLOCK()));
         public static final BlockBlockItemHolder<Block, BlockItem> FLESHBULB = registerBlock("fleshbulb", () -> new FleshBulbBlock(MalumDungeonBlockProperties.FLESHBULB()));
         public static final BlockBlockItemHolder<Block, BlockItem> WRITHING_FLESH = registerBlock("writhing_flesh", () -> new WrithingFleshBlock(MalumDungeonBlockProperties.WRITHING_FLESH()));

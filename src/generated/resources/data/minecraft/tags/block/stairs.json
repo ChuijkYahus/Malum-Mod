@@ -48,20 +48,6 @@
     "malum:soulwood_blocks_stairs",
     "malum:soulwood_planks_stairs",
     "malum:vertical_soulwood_planks_stairs",
-    "malum:soulwood_tiles_stairs",
-    "malum:gray_dross_tiles_stairs",
-    "malum:gray_dross_tiles_stairs",
-    "malum:dark_dross_tiles_stairs",
-    "malum:dark_dross_tiles_stairs",
-    "malum:dross_stone_mosaic_stairs",
-    "malum:dross_stone_mosaic_stairs",
-    "malum:dross_stone_tiles_stairs",
-    "malum:dross_stone_tiles_stairs",
-    "malum:dross_stone_bricks_stairs",
-    "malum:dross_stone_bricks_stairs",
-    "malum:polished_dross_stone_stairs",
-    "malum:polished_dross_stone_stairs",
-    "malum:dross_stone_stairs",
-    "malum:dross_stone_stairs"
+    "malum:soulwood_tiles_stairs"
   ]
 }

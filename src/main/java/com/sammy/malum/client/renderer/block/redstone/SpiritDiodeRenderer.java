@@ -20,21 +20,22 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.Mth;
 import net.minecraft.world.level.block.state.BlockState;
 import org.joml.Matrix4f;
-import team.lodestar.lodestone.handlers.LodestoneRenderHandler;
+import team.lodestar.lodestone.modules.rendering.LodestoneRenderingSystem;
 import team.lodestar.lodestone.helpers.ColorHelper;
 import team.lodestar.lodestone.registry.client.LodestoneRenderTypes;
 import team.lodestar.lodestone.modules.core.easing.Easing;
-import team.lodestar.lodestone.systems.rendering.LodestoneBufferWrapper;
-import team.lodestar.lodestone.systems.rendering.VFXBuilders;
-import team.lodestar.lodestone.systems.rendering.cube.CubeVertexData;
+import team.lodestar.lodestone.systems.rendering.builder.VFXBuilders;
+import team.lodestar.lodestone.systems.rendering.builder.data.CubeVertexData;
+
 import team.lodestar.lodestone.systems.rendering.rendeertype.RenderTypeToken;
+import team.lodestar.lodestone.systems.rendering.wrapper.LodestoneBufferWrapper;
 
 import java.awt.*;
 
 
 public abstract class SpiritDiodeRenderer<T extends SpiritDiodeBlockEntity> implements BlockEntityRenderer<T> {
 
-    private static final MultiBufferSource TEXT = new LodestoneBufferWrapper(LodestoneRenderTypes.ADDITIVE_TEXT, LodestoneRenderHandler.DEFERRED_RENDER.getTarget());
+    private static final MultiBufferSource TEXT = new LodestoneBufferWrapper(LodestoneRenderTypes.ADDITIVE_TEXT, LodestoneRenderingSystem.DEFERRED_RENDER.getTarget());
 
     protected final RenderTypeToken output;
     protected final String langKey;

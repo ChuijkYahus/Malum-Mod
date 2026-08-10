@@ -8,6 +8,7 @@ import net.minecraft.world.effect.*;
 import net.minecraft.world.entity.*;
 import net.minecraft.world.phys.Vec3;
 import team.lodestar.lodestone.helpers.*;
+import team.lodestar.lodestone.modules.toolkit.sound.SoundPlayer;
 
 import javax.annotation.Nullable;
 
@@ -42,7 +43,9 @@ public class AvariceEffect extends MobEffect {
                             .color(MalumSpiritTypes.INFERNAL_SPIRIT)
                             .spawn(level);
                 }
-                SoundHelper.playSound(entity, MalumSoundEvents.AVARICE_FORTUNE.get(), 1.0f, 0.8f + entity.getRandom().nextFloat() * 0.4f);
+
+                SoundPlayer.create(MalumSoundEvents.AVARICE_FORTUNE).pitch(0.8f, 1.2f).play(entity);
+
             }
             return bonus;
         }

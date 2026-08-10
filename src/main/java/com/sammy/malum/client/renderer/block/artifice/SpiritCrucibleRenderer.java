@@ -20,10 +20,12 @@ import net.minecraft.world.phys.*;
 import org.joml.*;
 import team.lodestar.lodestone.handlers.*;
 import team.lodestar.lodestone.helpers.*;
+import team.lodestar.lodestone.modules.rendering.LodestoneRenderingSystem;
 import team.lodestar.lodestone.modules.toolkit.inventory.LodestoneItemStackHandler;
 import team.lodestar.lodestone.registry.client.*;
 import team.lodestar.lodestone.modules.core.easing.Easing;
 import team.lodestar.lodestone.systems.rendering.*;
+import team.lodestar.lodestone.systems.rendering.wrapper.LodestoneBufferWrapper;
 
 import java.lang.Math;
 
@@ -32,7 +34,7 @@ import static net.minecraft.client.renderer.texture.OverlayTexture.*;
 
 public class SpiritCrucibleRenderer extends ArtificeAcceptorRenderer<SpiritCrucibleCoreBlockEntity> {
 
-    private static final MultiBufferSource TEXT = new LodestoneBufferWrapper(LodestoneRenderTypes.ADDITIVE_TEXT, LodestoneRenderHandler.DEFERRED_RENDER.getTarget());
+    private static final MultiBufferSource TEXT = new LodestoneBufferWrapper(LodestoneRenderTypes.ADDITIVE_TEXT, LodestoneRenderingSystem.DEFERRED_RENDER.getTarget());
 
     public SpiritCrucibleRenderer(BlockEntityRendererProvider.Context context) {
     }

@@ -12,6 +12,7 @@ import net.minecraft.world.entity.ai.attributes.*;
 import net.minecraft.world.item.enchantment.*;
 import net.minecraft.world.item.enchantment.effects.*;
 import team.lodestar.lodestone.registry.common.*;
+import team.lodestar.wayward_attributes.core.registry.WaywardAttributeTypes;
 
 import static net.minecraft.world.item.enchantment.Enchantment.enchantment;
 
@@ -44,7 +45,7 @@ public class MalumEnchantmentDatagen {
                 .withEffect(EnchantmentEffectComponents.ATTRIBUTES,
                         new EnchantmentAttributeEffect(
                                 MalumMod.malumPath("enchantment.magic_damage"),
-                                LodestoneAttributes.MAGIC_DAMAGE,
+                                WaywardAttributeTypes.MAGIC_DAMAGE,
                                 LevelBasedValue.perLevel(1F),
                                 AttributeModifier.Operation.ADD_VALUE
                         )

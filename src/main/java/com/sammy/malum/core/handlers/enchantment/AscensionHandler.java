@@ -21,7 +21,9 @@ import net.minecraft.world.phys.*;
 import net.neoforged.neoforge.common.*;
 import team.lodestar.lodestone.helpers.*;
 import team.lodestar.lodestone.modules.core.easing.Easing;
+import team.lodestar.lodestone.modules.toolkit.sound.SoundPlayer;
 import team.lodestar.lodestone.registry.common.*;
+import team.lodestar.wayward_attributes.core.registry.WaywardAttributeTypes;
 
 import static com.sammy.malum.registry.common.enchantment.EnchantmentKeys.getEnchantmentLevel;
 
@@ -88,7 +90,7 @@ public class AscensionHandler {
         boolean hasFunnyRing = CurioHelper.hasCurioEquipped(player, MalumContent.Gear.RING_OF_THE_RISING_EDGE.get());
         var random = level.getRandom();
         float baseDamage = (float) player.getAttributes().getValue(Attributes.ATTACK_DAMAGE);
-        float magicDamage = (float) player.getAttributes().getValue(LodestoneAttributes.MAGIC_DAMAGE);
+        float magicDamage = (float) player.getAttributes().getValue(WaywardAttributeTypes.MAGIC_DAMAGE);
         var area = player.getBoundingBox().inflate(4f, 1f, 4f);
         var sound = MalumGearSoundEvents.SCYTHE_SWEEP.get();
 
@@ -117,8 +119,7 @@ public class AscensionHandler {
                         living.hurt(magicDamageType, magicDamage);
                     }
                 }
-                float pitch = Easing.SINE_IN_OUT.asWeighedRandom(random, 0.75f, 1.25f);
-                SoundHelper.playSound(player, sound, 0.8f, pitch);
+                SoundPlayer.create(sound).volume(0.8f).pitchVariance(0.25f).play(player);
                 dealtDamage = true;
                 if (hasFunnyRing) {
                     CurioRisingEdgeRing.launchEntity(player, living, isUppercut);
@@ -130,9 +131,9 @@ public class AscensionHandler {
         }
 
         for (int i = 0; i < 3; i++) {
-            SoundHelper.playSound(player, sound, 0.4f, Easing.SINE_IN_OUT.asWeighedRandom(random, 1.25f, 1.75f));
+            SoundPlayer.create(sound).volume(0.4f).pitch(1.25f, 1.75f).play(player);
         }
-        SoundHelper.playSound(player, MalumGearSoundEvents.SCYTHE_ASCENSION.get(), 0.8f, Easing.SINE_IN_OUT.asWeighedRandom(random, 1.25f, 1.5f));
+        SoundPlayer.create(MalumGearSoundEvents.SCYTHE_ASCENSION).volume(0.8f).pitch(1.25f, 1.5f).play(player);
     }
 
     protected static boolean ascensionCanHitEntity(Player attacker, Entity pTarget) {

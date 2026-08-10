@@ -22,7 +22,7 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.ServerLevelAccessor;
 import net.minecraft.world.phys.Vec3;
 import org.jetbrains.annotations.Nullable;
-import team.lodestar.lodestone.registry.common.LodestoneAttributes;
+import team.lodestar.wayward_attributes.core.registry.WaywardAttributeTypes;
 
 public class BelieverCultist extends CultistMonster implements IAltarBlessingRecipient, ICherubFriend {
 
@@ -59,9 +59,9 @@ public class BelieverCultist extends CultistMonster implements IAltarBlessingRec
                 .add(Attributes.FOLLOW_RANGE, 35.0)
                 .add(Attributes.MOVEMENT_SPEED, 0.2)
                 .add(Attributes.ATTACK_DAMAGE, 2.0)
-                .add(LodestoneAttributes.MAGIC_DAMAGE, 2.0)
+                .add(WaywardAttributeTypes.MAGIC_DAMAGE, 2.0)
                 .add(Attributes.KNOCKBACK_RESISTANCE, 0.25)
-                .add(LodestoneAttributes.MAGIC_RESISTANCE, 0.75)
+                .add(WaywardAttributeTypes.MAGIC_RESISTANCE, 0.75)
                 .add(Attributes.ARMOR, 8.0)
                 .add(Attributes.STEP_HEIGHT, 1);
     }

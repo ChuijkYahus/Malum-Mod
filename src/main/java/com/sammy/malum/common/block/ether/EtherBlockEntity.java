@@ -16,11 +16,12 @@ import net.minecraft.world.level.block.state.*;
 import net.minecraft.world.phys.*;
 import org.apache.commons.lang3.mutable.MutableDouble;
 import team.lodestar.lodestone.handlers.*;
+import team.lodestar.lodestone.modules.rendering.LodestoneRenderingSystem;
 import team.lodestar.lodestone.modules.toolkit.blockentity.*;
 import team.lodestar.lodestone.modules.core.easing.Easing;
-import team.lodestar.lodestone.systems.particle.builder.*;
-import team.lodestar.lodestone.systems.particle.data.*;
-import team.lodestar.lodestone.systems.particle.data.color.*;
+import team.lodestar.lodestone.modules.rendering.particle.standard.builder.*;
+import team.lodestar.lodestone.modules.rendering.particle.standard.data.*;
+import team.lodestar.lodestone.modules.rendering.particle.standard.data.color.*;
 
 import java.awt.*;
 
@@ -108,7 +109,7 @@ public class EtherBlockEntity extends LodestoneBlockEntity {
             float velocity = Easing.SINE_IN_OUT.asWeighedRandom(random, 0.02f, 0.025f);
             var lightSpecs = SpiritLightSpecs.spiritLightSpecs(level, sparkPos, color);
             lightSpecs.getBuilder()
-                    .setRenderTarget(LodestoneRenderHandler.LATE_DEFERRED_RENDER)
+                    .setRenderTarget(LodestoneRenderingSystem.LATE_DEFERRED_RENDER)
                     .setLifetime(lifeTime)
                     .setScaleData(GenericParticleData.create(scale, 0).setEasing(Easing.SINE_IN_OUT).build())
                     .setTransparencyData(GenericParticleData.create(0.05f, 0.2f, 0).setEasing(Easing.EXPO_OUT, Easing.SINE_IN_OUT).build())
@@ -123,7 +124,7 @@ public class EtherBlockEntity extends LodestoneBlockEntity {
             float velocity = Easing.SINE_IN_OUT.asWeighedRandom(random, 0.02f, 0.025f);
             var lightSpecs = SparkParticleEffects.spiritMotionSparks(level, sparkPos, color);
             lightSpecs.getBuilder()
-                    .setRenderTarget(LodestoneRenderHandler.LATE_DEFERRED_RENDER)
+                    .setRenderTarget(LodestoneRenderingSystem.LATE_DEFERRED_RENDER)
                     .setLifetime(lifeTime)
                     .setScaleData(GenericParticleData.create(scale, 0).setEasing(Easing.SINE_IN_OUT).build())
                     .setTransparencyData(GenericParticleData.create(0.1f, 0.6f, 0).setEasing(Easing.EXPO_OUT, Easing.SINE_IN_OUT).build())
@@ -140,7 +141,7 @@ public class EtherBlockEntity extends LodestoneBlockEntity {
             WorldParticleBuilder.create(MalumParticles.GIANT_GLOWING_STAR)
                     .setTransparencyData(GenericParticleData.create(0f, 0.2f, 0f).setEasing(Easing.SINE_IN_OUT, Easing.SINE_IN_OUT).build())
                     .setScaleData(GenericParticleData.create(scale, 0).setEasing(Easing.SINE_IN).build())
-                    .setRenderTarget(LodestoneRenderHandler.LATE_DEFERRED_RENDER)
+                    .setRenderTarget(LodestoneRenderingSystem.LATE_DEFERRED_RENDER)
                     .setLifetime(lifeTime)
                     .setColorData(color)
                     .enableNoClip()
@@ -154,7 +155,7 @@ public class EtherBlockEntity extends LodestoneBlockEntity {
             WorldParticleBuilder.create(MalumParticles.STAR)
                     .setTransparencyData(GenericParticleData.create(0f, 0.6f, 0f).setEasing(Easing.SINE_IN_OUT, Easing.SINE_IN_OUT).build())
                     .setScaleData(GenericParticleData.create(scale, 0).setEasing(Easing.SINE_IN).build())
-                    .setRenderTarget(LodestoneRenderHandler.LATE_DEFERRED_RENDER)
+                    .setRenderTarget(LodestoneRenderingSystem.LATE_DEFERRED_RENDER)
                     .setLifetime(lifeTime)
                     .setColorData(color)
                     .enableNoClip()

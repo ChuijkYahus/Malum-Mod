@@ -17,9 +17,12 @@ import net.neoforged.neoforge.event.entity.living.*;
 import team.lodestar.lodestone.helpers.*;
 import team.lodestar.lodestone.modules.core.easing.Easing;
 import team.lodestar.lodestone.modules.toolkit.enchanting.LodestoneEnchantmentEffectCommonsHelper;
+import team.lodestar.lodestone.modules.toolkit.sound.SoundPlayer;
 import team.lodestar.lodestone.registry.common.*;
 import team.lodestar.lodestone.registry.common.tag.*;
 import team.lodestar.lodestone.modules.toolkit.item.*;
+import team.lodestar.wayward_attributes.WaywardTags;
+import team.lodestar.wayward_attributes.core.registry.WaywardAttributeTypes;
 
 
 import static com.sammy.malum.common.effect.gluttony.GluttonyEffect.spawnLocusts;
@@ -29,7 +32,7 @@ public class GluttonousBludgeonItem extends LodestoneCombatItem implements IMalu
     public GluttonousBludgeonItem(Tier tier, float attackDamage, float attackSpeed, float magicDamage, LodestoneItemProperties properties) {
         super(tier, attackDamage, attackSpeed, properties.mergeAttributes(
                 ItemAttributeModifiers.builder()
-                        .add(LodestoneAttributes.MAGIC_DAMAGE, new AttributeModifier(LodestoneAttributes.BASE_MAGIC_DAMAGE, magicDamage, AttributeModifier.Operation.ADD_VALUE), EquipmentSlotGroup.MAINHAND)
+                        .add(WaywardAttributeTypes.MAGIC_DAMAGE, new AttributeModifier(WaywardAttributeTypes.BASE_MAGIC_DAMAGE, magicDamage, AttributeModifier.Operation.ADD_VALUE), EquipmentSlotGroup.MAINHAND)
                         .build()));
     }
 
@@ -47,13 +50,12 @@ public class GluttonousBludgeonItem extends LodestoneCombatItem implements IMalu
     public void outgoingDamageEvent(LivingDamageEvent.Pre event, LivingEntity attacker, LivingEntity target, ItemStack stack) {
         if (attacker.level() instanceof ServerLevel level) {
             var source = event.getSource();
-            if (source.is(LodestoneDamageTypeTags.CAN_TRIGGER_MAGIC_DAMAGE) || source.is(MalumDamageTypes.INVERTED_HEART_PROPAGATION)) {
+            if (source.is(WaywardTags.DamageTypeTags.CAN_TRIGGER_MAGIC_DAMAGE) || source.is(MalumDamageTypes.INVERTED_HEART_PROPAGATION)) {
                 if (!LodestoneEnchantmentEffectCommonsHelper.isChargedAttack(attacker)) {
                     return;
                 }
-                if (source.is(LodestoneDamageTypeTags.CAN_TRIGGER_MAGIC_DAMAGE)) {
-                    float pitch = Easing.SINE_IN_OUT.asWeighedRandom(attacker.getRandom(), 1f, 1.5f);
-                    SoundHelper.playSound(attacker, MalumGearSoundEvents.GLUTTONOUS_BLUDGEON_SPROUTS.get(), 1, pitch);
+                if (source.is(WaywardTags.DamageTypeTags.CAN_TRIGGER_MAGIC_DAMAGE)) {
+                    SoundPlayer.create(MalumGearSoundEvents.GLUTTONOUS_BLUDGEON_SPROUTS).pitch(1f, 1.5f).play(attacker);
                     MalumParticleEffectTypes.BLUDGEON_SLAM.createEffect()
                             .originatesFrom(attacker)
                             .targets(target)

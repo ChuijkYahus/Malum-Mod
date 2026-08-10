@@ -22,13 +22,13 @@ public class IntroductionChapterLangDatagen extends CodexLangDatagen {
         addPages("runewood",
                 "Runewood is a strange mix of magic and nature that has always stood out amongst the many trees of the overworld. While pretty, I am more interested in practicality. Runewood is soaked in magic, and as such, can serve as the basis for the arcane.");
 
-        addStandaloneGizmo("runewood.placement", "Runewood's Habitat", "Where to locate");
+        addHeadline("runewood.placement", "Runewood's Habitat", "Where to locate");
         addPages("runewood.placement",
                 "The tree is predominantly found within large open plains and sometimes forests. It is rare, but not outrageously so. It stands taller than most trees found within the same climate and thus can be easily identified by its leaves, proudly displaying an orange-yellow palette soaked in hues of the sun.");
-        addStandaloneGizmo("runewood.genesis", "Runewood's Genesis", "How it came to be");
+        addHeadline("runewood.genesis", "Runewood's Genesis", "How it came to be");
         addPages("runewood.genesis",
                 "The exact origins of the tree are yet unknown to me. It has clear ancestral connection rooted in that of Oak, yes, however the reason behind that connection remains rather enigmatic. Given the arcana involved, it may be impossible to tell the true origin of Runewood.");
-        addStandaloneGizmo("runewood.azure", "Runewood's Brilliant Blue", "A twin sister");
+        addHeadline("runewood.azure", "Runewood's Brilliant Blue", "A twin sister");
         addPages("runewood.azure",
                 "During recent travel I came across another discovery. Azure Runewood, as I have named it, is a variant of the tree that adapted to grow in a colder climate. Its arcane composition and looks are all mostly the same, though its crown took on a bluish appearance. It can be found in most colder biomes.");
 
@@ -55,13 +55,13 @@ public class IntroductionChapterLangDatagen extends CodexLangDatagen {
         addEntryLang("soulstone", "Soulstone", "Out of phase", "A new dawn");
         addPages("soulstone",
                 "Sometimes, it appears that matter can be charged with the energies of a soul, despite not having a soul of its own. This serves as the basis for spirit arcana and sorcery as a whole - the ensouling of the soulless, a means of taking what is static and showing it a new purpose.");
-        addStandaloneGizmo("soulstone.synopsis", "Soulstone's Existence", "It's truth");
+        addHeadline("soulstone.synopsis", "Soulstone's Existence", "It's truth");
         addPages("soulstone.synopsis",
                 "Soulstone is an ore that exists more in the arcane than the physical, and, when refined, presents many uses for my magic. Refined Soulstone strongly radiates it's internal pool of arcana upon physical contact. The sensation builds up rather slowly and while uncomfortable, does not appear to have any true repercussions that can be observed through just touch.");
-        addStandaloneGizmo("soulstone.ore_deposits", "Soulstone' Deposits", "Where to locate");
+        addHeadline("soulstone.ore_deposits", "Soulstone' Deposits", "Where to locate");
         addPages("soulstone.ore_deposits",
                 "Soulstone ore deposits can be found exclusively underground, forming most commonly in the deepslate layer. To be as precise as can be with my current knowledge at hand, the ore can generate starting from approximately fourteen blocks beneath sea level, continuing to appear all the way down until bedrock.");
-        addStandaloneGizmo("soulstone.buds", "Soulstone' Buds", "Odd formations");
+        addHeadline("soulstone.buds", "Soulstone' Buds", "Odd formations");
         addPages("soulstone.buds",
                 "Ore deposits of Soulstone take shape through a natural process of assimilation with other, existing metal deposits. Seemingly so, as a result said process, the ore forms Buds which stick out outwards and support the growth of a small Soulstone shard.");
 

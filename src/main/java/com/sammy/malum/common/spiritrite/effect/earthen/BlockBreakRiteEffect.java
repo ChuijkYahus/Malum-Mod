@@ -22,12 +22,19 @@ public class BlockBreakRiteEffect extends SpiritRiteBlockEffect {
         boolean canBreak = !state.isAir() && state.getDestroySpeed(level, pos) != -1;
         if (canBreak) {
             var blockentity = state.hasBlockEntity() ? level.getBlockEntity(pos) : null;
-            Block.dropResources(state, level, pos, blockentity, entity, ItemStack.EMPTY);
+//            Block.dropResources(state, level, pos, blockentity, entity, ItemStack.EMPTY);
+            var drops = Block.getDrops(state, level, pos, blockentity, entity, ItemStack.EMPTY);
+            for (ItemStack stack : drops) {
+                if (!stack.isEmpty()) {
+                    entity.addItem(stack);
+                }
+            }
             playBreakSound(level, state, pos, 0.7f);
             level.setBlock(pos, Blocks.AIR.defaultBlockState(), 3);
             createEffect(level, pos, EARTHEN_SPIRIT, ELDRITCH_SPIRIT);
         }
     }
+
 
     public static void playBreakSound(ServerLevel level, BlockState state, BlockPos pos, float pitch) {
         var soundType = state.getSoundType(level, pos, null);

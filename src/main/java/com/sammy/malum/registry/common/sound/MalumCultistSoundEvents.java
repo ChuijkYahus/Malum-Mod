@@ -39,11 +39,13 @@ public class MalumCultistSoundEvents {
     public static final DeferredHolder<SoundEvent, SoundEvent> CARDINAL_ENTROPY_IMMOLATE = MalumSoundEvents.registerVariable("cardinal_entropy_immolate");
 
     public static final DeferredHolder<SoundEvent, SoundEvent> CARDINAL_KNOCKBACK_CHARGE = MalumSoundEvents.registerVariable("cardinal_knockback_charge");
-    public static final DeferredHolder<SoundEvent, SoundEvent> CARDINAL_CANNON_CHARGE = MalumSoundEvents.registerVariable("cardinal_cannon_charge");
-    public static final DeferredHolder<SoundEvent, SoundEvent> CARDINAL_IMMOLATION_CHARGE = MalumSoundEvents.registerVariable("cardinal_immolation_charge");
-
     public static final DeferredHolder<SoundEvent, SoundEvent> CARDINAL_KNOCKBACK_FIRE = MalumSoundEvents.registerVariable("cardinal_knockback_fire");
+
+    public static final DeferredHolder<SoundEvent, SoundEvent> CARDINAL_CANNON_CHARGE = MalumSoundEvents.registerVariable("cardinal_cannon_charge");
     public static final DeferredHolder<SoundEvent, SoundEvent> CARDINAL_CANNON_FIRE = MalumSoundEvents.registerVariable("cardinal_cannon_fire");
+
+    public static final DeferredHolder<SoundEvent, SoundEvent> CARDINAL_IMMOLATION_CHARGE = MalumSoundEvents.registerVariable("cardinal_immolation_charge");
     public static final DeferredHolder<SoundEvent, SoundEvent> CARDINAL_IMMOLATION_FIRE = MalumSoundEvents.registerVariable("cardinal_immolation_fire");
+
 
 }

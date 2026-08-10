@@ -40,7 +40,6 @@ import static com.sammy.malum.registry.common.MalumMobEffects.MOB_EFFECTS;
 import static com.sammy.malum.registry.common.sound.MalumSoundEvents.SOUND_EVENTS;
 import static com.sammy.malum.registry.common.magic.MalumGeasEffectTypes.GEAS_TYPES;
 import static com.sammy.malum.registry.common.magic.rite.MalumSpiritRiteTypes.RITE_TYPES;
-import static com.sammy.malum.registry.common.magic.MalumSpiritTypes.SPIRIT_TYPES;
 import static com.sammy.malum.registry.common.MalumContent.BLOCKS;
 import static com.sammy.malum.registry.common.entity.MalumEntityTypes.ENTITY_TYPES;
 
@@ -80,9 +79,6 @@ public class MalumLangDatagen extends LanguageProvider {
         var geasa = new HashSet<>(GEAS_TYPES.getEntries());
         var soulwovenBanners = SoulwovenBannerPatternDataComponent.REGISTERED_PATTERNS;
         var crucibleAttributes = ArtificeAttributeType.CRUCIBLE_ATTRIBUTES;
-
-        add(DataHelper.take(blocks, MalumContent.DungeonBlockSets.ODD_SCRIPTURES_I.block()).get(), "Odd Scriptures I");
-
 
         add(DataHelper.take(blocks, MalumContent.WeepingWell.PRIMORDIAL_SOUP.block()).get(), "The Weeping Well");
         add(DataHelper.take(blocks, MalumContent.WeepingWell.VOID_CONDUIT.block()).get(), "The Weeping Well");
@@ -151,15 +147,42 @@ public class MalumLangDatagen extends LanguageProvider {
 
         add("item.malum.filled_spirit_jar", "Filled Spirit Jar");
         add(SpiritTextData.STORED_SPIRITS, "Contains Stored Arcana");
-        addSpiritLang(MalumSpiritTypes.SACRED_SPIRIT, "Innocent");
-        addSpiritLang(MalumSpiritTypes.WICKED_SPIRIT, "Malicious");
-        addSpiritLang(MalumSpiritTypes.ARCANE_SPIRIT, "Fundamental");
-        addSpiritLang(MalumSpiritTypes.ELDRITCH_SPIRIT, "Esoteric");
-        addSpiritLang(MalumSpiritTypes.AERIAL_SPIRIT, "Swift");
-        addSpiritLang(MalumSpiritTypes.AQUEOUS_SPIRIT, "Malleable");
-        addSpiritLang(MalumSpiritTypes.INFERNAL_SPIRIT, "Radiant");
-        addSpiritLang(MalumSpiritTypes.EARTHEN_SPIRIT, "Steady");
-        addSpiritLang(MalumSpiritTypes.UMBRAL_SPIRIT, "Antithesis");
+        addSpiritLang(MalumSpiritTypes.SACRED_SPIRIT, "Innocent",
+                "'The world itself bears no such concept as a moral truth, it is improper to see human sentiment as anything other than simply our perspective. And yet, through Sacred and it's opposite, a primordial divider does indeed exist.'",
+                "Over-application has proven to enable ceaseless growth of nearby life. Caution must never be omitted, especially here."
+        );
+        addSpiritLang(MalumSpiritTypes.WICKED_SPIRIT, "Malicious",
+                "'The reaper's tithe, an emblem of undeath, strife, and sheer, unfiltered malice. Wicked is a spirit that signifies humanity's downfall, born from our primal vices, it serves to fuel them.'",
+                "Prolonged exposure creates a painful sensation at the meeting point. Higher dosages of Wicked produce an even more tangible sensation."
+        );
+        addSpiritLang(MalumSpiritTypes.ARCANE_SPIRIT, "Fundamental",
+                "'That which forms consciousness in its thinnest details. A manifestation of a potentiality, Arcane serves as a fundamental fuel for the many arts of sorcery.'",
+                "When calculating the amount used the upmost precision is required, even the slightest deviation can lead to cascading flaws."
+        );
+        addSpiritLang(MalumSpiritTypes.ELDRITCH_SPIRIT, "Esoteric",
+                "'To warp the unchanging, to influence causality, to realign with the truth, Eldritch bears unnerving implications.'",
+                "The smallest possible amount of Eldritch needed in order to create a localized distortion phenomena happens to be exactly one. Spirits simply cannot be divided."
+        );
+        addSpiritLang(MalumSpiritTypes.AERIAL_SPIRIT, "Swift",
+                "'It stands as a cornerstone in the magecraft of aviation, Aerial proves capable of swaying the core laws of motion ever so slightly.'",
+                "It wishes to defy the concept of stillness. If properly directed, this wish allows for the creation of motion with no traceable origin."
+        );
+        addSpiritLang(MalumSpiritTypes.AQUEOUS_SPIRIT, "Malleable",
+                "'All life originates from the oceans of our Overworld, and yet as evolution progressed, the definition of life and that which is Aqueous eventually differed. As I collect and document each Soul I shatter, I wonder more and more about the different permutations of Arcana. Are we all just arrangements of different forms and impulses? Perhaps it is not in Arcana where consciousness rests and thus such thoughts serve as pointless rumination.'",
+                ""
+        );
+        addSpiritLang(MalumSpiritTypes.INFERNAL_SPIRIT, "Radiant",
+                "'The borrowed flame visible emanating from the Infernal crystal is not to be confused with actual light. The spirit defines itself as an unending desire to burn, so much so that the sensation of flame does manifest in the eyes of the passing observer. It is nothing more than a harmless possibility of fire that we are made to observe. Fascinating.''",
+                "The sound of crackling fire can be heard just barely when brought close to the ear."
+        );
+        addSpiritLang(MalumSpiritTypes.EARTHEN_SPIRIT, "Steady",
+                "''",
+                ""
+        );
+        addSpiritLang(MalumSpiritTypes.UMBRAL_SPIRIT, "Antithesis",
+                "''",
+                ""
+        );
 
         add("malum.gui.slot", "Slot: ");
 
@@ -349,8 +372,8 @@ public class MalumLangDatagen extends LanguageProvider {
 
     }
 
-    private void addSpiritLang(SpiritHolder<SpiritArcanaType> spirit, String flavor) {
-        spirit.getTextData().addLangDatagen(this, flavor);
+    private void addSpiritLang(SpiritHolder<SpiritArcanaType> spirit, String flavor, String verboseFlavour, String info) {
+        spirit.getTextData().addLangDatagen(this, flavor, verboseFlavour, info);
     }
 
     @Override

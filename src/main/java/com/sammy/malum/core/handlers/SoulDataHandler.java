@@ -3,7 +3,6 @@ package com.sammy.malum.core.handlers;
 import com.sammy.malum.common.entity.scythe.*;
 import com.sammy.malum.common.item.curiosities.weapons.scythe.*;
 import com.sammy.malum.common.item.curiosities.weapons.staff.*;
-import com.sammy.malum.compat.tetra.*;
 import com.sammy.malum.registry.common.*;
 import net.minecraft.world.damagesource.*;
 import net.minecraft.world.entity.*;
@@ -62,7 +61,7 @@ public class SoulDataHandler {
         }
         if (source.getEntity() instanceof LivingEntity attacker) {
             ItemStack stack = getSoulHunterWeapon(source, attacker);
-            if (stack.is(MalumTags.Items.SOUL_SHATTER_CAPABLE_WEAPON) || TetraCompat.hasSoulStrikeModifier(stack)) {
+            if (stack.is(MalumTags.Items.SOUL_SHATTER_CAPABLE_WEAPON)) {
                 data.setExposed();
             }
         }

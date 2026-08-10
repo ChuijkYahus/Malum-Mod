@@ -8,17 +8,9 @@ import com.sammy.malum.datagen.tag.MalumItemTagDatagen;
 import com.sammy.malum.datagen.lang.*;
 import com.sammy.malum.datagen.recipe.*;
 import com.sammy.malum.datagen.tag.*;
-import com.sammy.malum.datagen.wand.WandMaterialTypeDatagen;
-import com.sammy.malum.datagen.wand.WandPartTypeDatagen;
-import net.minecraft.core.*;
-import net.minecraft.data.DataGenerator;
-import net.minecraft.data.PackOutput;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
-import net.neoforged.neoforge.common.data.*;
 import net.neoforged.neoforge.data.event.GatherDataEvent;
-
-import java.util.concurrent.CompletableFuture;
 
 @EventBusSubscriber(modid = MalumMod.MALUM)
 public class DataGenerators {
@@ -44,7 +36,6 @@ public class DataGenerators {
         var soundDatagen = new MalumSoundDatagen(output, helper);
 
         var dataMapDatagen = new MalumDataMapDatagen(output, registryProvider);
-        var blockLootDatagen = new MalumBlockLootTables(output, registryProvider);
 
         var blockTagsDatagen = new MalumBlockTagDatagen(output, registryProvider, helper);
         var itemTagDatagen = new MalumItemTagDatagen(output, provider, blockTagsDatagen.contentsGetter(), helper);
@@ -57,9 +48,8 @@ public class DataGenerators {
 
         var curioDataDatagen = new MalumCuriosThings(output, helper, registryProvider);
         var recipeDatagen = new MalumRecipes(output, registryProvider);
+        var lootTableDatagen = new MalumLootTableDatagen(output, registryProvider);
 
-        var wandPartTypes = new WandPartTypeDatagen(output, registryProvider, helper);
-        var wandMaterialTypes = new WandMaterialTypeDatagen(output, registryProvider, helper);
 
         generator.addProvider(includeClient, itemModelsDatagen);
         generator.addProvider(includeClient, blockStateDatagen);
@@ -67,7 +57,6 @@ public class DataGenerators {
         generator.addProvider(includeClient, soundDatagen);
 
         generator.addProvider(includeServer, dataMapDatagen);
-        generator.addProvider(includeServer, blockLootDatagen);
 
         generator.addProvider(includeServer, blockTagsDatagen);
         generator.addProvider(includeServer, itemTagDatagen);
@@ -80,8 +69,6 @@ public class DataGenerators {
 
         generator.addProvider(includeServer, curioDataDatagen);
         generator.addProvider(includeServer, recipeDatagen);
-
-        generator.addProvider(includeServer, wandPartTypes);
-        generator.addProvider(includeServer, wandMaterialTypes);
+        generator.addProvider(includeServer, lootTableDatagen);
     }
 }

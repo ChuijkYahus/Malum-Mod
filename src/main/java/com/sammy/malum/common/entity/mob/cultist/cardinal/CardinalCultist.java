@@ -33,8 +33,9 @@ import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.Vec3;
 import org.jetbrains.annotations.NotNull;
 import team.lodestar.lodestone.helpers.*;
-import team.lodestar.lodestone.registry.common.LodestoneAttributes;
-import team.lodestar.lodestone.systems.particle.data.color.ColorParticleData;
+import team.lodestar.lodestone.modules.toolkit.sound.SoundPlayer;
+import team.lodestar.wayward_attributes.core.registry.WaywardAttributeTypes;
+import team.lodestar.lodestone.modules.rendering.particle.standard.data.color.ColorParticleData;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -45,18 +46,18 @@ public class CardinalCultist extends CultistMonster implements IAltarBlessingRec
 
     public static final float AVOID_TARGET_RADIUS = 5f;
 
-    public static final float RETALIATION_BLAST_TRIGGER_RADIUS = 4f;
-    public static final float RETALIATION_BLAST_DAMAGE_RADIUS = 3.75f;
-    public static final int RETALIATION_BLAST_COOLDOWN = 100;
-    public static final float RETALIATION_BLAST_DAMAGE = 0.25f;
+    public static final float RETALIATION_BLAST_TRIGGER_RADIUS = 6f;
+    public static final float RETALIATION_BLAST_DAMAGE_RADIUS = 5f;
+    public static final int RETALIATION_BLAST_COOLDOWN = 40;
+    public static final float RETALIATION_BLAST_DAMAGE = 0.75f;
 
-    public static final float IMMOLATION_BLAST_CHANCE = 0.15f;
+    public static final float IMMOLATION_BLAST_CHANCE = 0.2f;
     public static final float IMMOLATION_BLAST_TRIGGER_RADIUS = 3f;
     public static final float IMMOLATION_BLAST_DAMAGE_RADIUS = 10f;
     public static final float IMMOLATION_BLAST_DAMAGE = 4f;
 
-    public static final int ENTROPY_THROW_INTERVAL = 80;
-    public static final float ENTROPY_THROW_RADIUS = 16f;
+    public static final int ENTROPY_THROW_INTERVAL = 40;
+    public static final float ENTROPY_THROW_RADIUS = 24f;
     public static final float ENTROPY_DETONATION_RADIUS = 24f;
     public static final float ENTROPY_DETONATION_DAMAGE = 2f;
 
@@ -116,9 +117,9 @@ public class CardinalCultist extends CultistMonster implements IAltarBlessingRec
                 .add(Attributes.FOLLOW_RANGE, 35.0)
                 .add(Attributes.MOVEMENT_SPEED, 0.12)
                 .add(Attributes.ATTACK_DAMAGE, 2.0)
-                .add(LodestoneAttributes.MAGIC_DAMAGE, 4.0)
+                .add(WaywardAttributeTypes.MAGIC_DAMAGE, 4.0)
                 .add(Attributes.KNOCKBACK_RESISTANCE, 0.5)
-                .add(LodestoneAttributes.MAGIC_RESISTANCE, 1.5)
+                .add(WaywardAttributeTypes.MAGIC_RESISTANCE, 1.5)
                 .add(Attributes.ARMOR, 10.0)
                 .add(Attributes.STEP_HEIGHT, 1);
     }
@@ -203,7 +204,7 @@ public class CardinalCultist extends CultistMonster implements IAltarBlessingRec
     public void throwEntropyCharge(LivingEntity target) {
         var pos = getEntropyChargePos();
         var level = level();
-        float magicDamage = (float) this.getAttributeValue(LodestoneAttributes.MAGIC_DAMAGE) * ENTROPY_DETONATION_DAMAGE;
+        float magicDamage = (float) this.getAttributeValue(WaywardAttributeTypes.MAGIC_DAMAGE) * ENTROPY_DETONATION_DAMAGE;
         double x = target.getX() - pos.x;
         double y = target.getY(0.25f) - pos.y;
         double z = target.getZ() - pos.z;
@@ -223,19 +224,17 @@ public class CardinalCultist extends CultistMonster implements IAltarBlessingRec
 
     public void detonateEntropyCharge(ServerLevel level, EntropyChargeProjectile target) {
         target.scheduleDelayedDetonation(level);
-
-        //Feedback
-        SoundHelper.playSoundRandomPitch(this, MalumCultistSoundEvents.CARDINAL_CANNON_FIRE, 1.5f, 0.8f, 1.2f);
+        SoundPlayer.create(MalumCultistSoundEvents.CARDINAL_CANNON_FIRE).volume(1.5f).pitchVariance(0.2f).play(this);
         MalumParticleEffectTypes.CARDINAL_DETONATION_BLAST
-                .createEffect(getRetaliationBlastPos())
+                .createEffect(getDetonationBlastPos(-1))
                 .customData(new CardinalDetonationBlastParticleEffect.CardinalDetonationBlastParticleData(getId(), target.getId()))
                 .color(ColorParticleData.create(CursedBoltProjectile.CULTIST_RED, CursedBoltProjectile.CULTIST_CRIMSON))
                 .spawn(level);
     }
 
     public void triggerRetaliationBlast(ServerLevel level) {
-        var pos = getRetaliationBlastPos();
-        float magicDamage = (float) getAttributeValue(LodestoneAttributes.MAGIC_DAMAGE) * RETALIATION_BLAST_DAMAGE;
+        var pos = getRetaliationBlastPos(-1);
+        float magicDamage = (float) getAttributeValue(WaywardAttributeTypes.MAGIC_DAMAGE) * RETALIATION_BLAST_DAMAGE;
         float radius = RETALIATION_BLAST_DAMAGE_RADIUS;
         var area = new AABB(pos.subtract(radius, radius, radius), pos.add(radius, radius, radius));
         var targets = level().getEntities(this, area, t -> !(t instanceof CultistMonster) && t.isAlive() && hasLineOfSight(t));
@@ -286,7 +285,7 @@ public class CardinalCultist extends CultistMonster implements IAltarBlessingRec
 
         //Feedback
         var blastDirection = getRetaliationBlastParticleDirection(directions);
-        SoundHelper.playSoundRandomPitch(this, MalumCultistSoundEvents.CARDINAL_KNOCKBACK_FIRE, 0.8f, 1.2f);
+        SoundPlayer.create(MalumCultistSoundEvents.CARDINAL_KNOCKBACK_FIRE).volume(1.5f).pitchVariance(0.2f).play(this);
         MalumParticleEffectTypes.CARDINAL_RETALIATION_BLAST
                 .createEffect(pos)
                 .customData(new CardinalRetaliationBlastParticleEffect.CardinalRetaliationBlastParticleData(getId(), blastDirection))
@@ -296,7 +295,7 @@ public class CardinalCultist extends CultistMonster implements IAltarBlessingRec
 
     public void triggerImmolationBlast(ServerLevel level) {
         var pos = getImmolationBlastPos();
-        float magicDamage = (float) getAttributeValue(LodestoneAttributes.MAGIC_DAMAGE) * IMMOLATION_BLAST_DAMAGE;
+        float magicDamage = (float) getAttributeValue(WaywardAttributeTypes.MAGIC_DAMAGE) * IMMOLATION_BLAST_DAMAGE;
         float radius = IMMOLATION_BLAST_DAMAGE_RADIUS;
         var area = new AABB(pos.subtract(radius, radius, radius), pos.add(radius, radius, radius));
         var targets = level().getEntities(this, area, t -> t.isAlive() && hasLineOfSight(t));
@@ -325,8 +324,8 @@ public class CardinalCultist extends CultistMonster implements IAltarBlessingRec
         hurt(damagesource, magicDamage);
 
         //Feedback
-        SoundHelper.playSoundRandomPitch(this, MalumCultistSoundEvents.CARDINAL_IMMOLATION_FIRE, 0.8f, 1.2f);
-        SoundHelper.playSoundRandomPitch(this, MalumCultistSoundEvents.CARDINAL_ENTROPY_IMMOLATE, 0.8f, 1.2f);
+        SoundPlayer.create(MalumCultistSoundEvents.CARDINAL_IMMOLATION_FIRE).volume(0.8f).pitchVariance(0.2f).play(this);
+        SoundPlayer.create(MalumCultistSoundEvents.CARDINAL_ENTROPY_IMMOLATE).volume(0.8f).pitchVariance(0.2f).play(this);
         MalumParticleEffectTypes.CARDINAL_IMMOLATION_BLAST
                 .createEffect(pos)
                 .customData(new CardinalImmolationBlastParticleEffect.CardinalImmolationBlastParticleData(getId()))
@@ -352,16 +351,16 @@ public class CardinalCultist extends CultistMonster implements IAltarBlessingRec
         return new Vec3(x, y, z);
     }
 
-    public Vec3 getEntropyChargePos() {
-        return getHandPosition(-0.8f, 0.4f, 1.4f, -1);
-    }
-
-    public Vec3 getRetaliationBlastPos() {
-        return getRetaliationBlastPos(-1);
+    public Vec3 getDetonationBlastPos(float partialTicks) {
+        return getHandPosition(0.8f, 0.7f, 1.8f, partialTicks);
     }
 
     public Vec3 getRetaliationBlastPos(float partialTicks) {
         return getHandPosition(0.8f, 0.6f, 1.2f, partialTicks);
+    }
+
+    public Vec3 getEntropyChargePos() {
+        return getHandPosition(-0.8f, 0.4f, 1.4f, -1);
     }
 
     public Vec3 getImmolationBlastPos() {

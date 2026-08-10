@@ -21,7 +21,10 @@ import team.lodestar.lodestone.modules.core.easing.Easing;
 import team.lodestar.lodestone.registry.client.*;
 import team.lodestar.lodestone.modules.toolkit.blockentity.*;
 import team.lodestar.lodestone.systems.rendering.*;
+import team.lodestar.lodestone.systems.rendering.builder.ScreenVFXBuilder;
+import team.lodestar.lodestone.systems.rendering.builder.VFXBuilders;
 import team.lodestar.lodestone.systems.rendering.shader.*;
+import team.lodestar.lodestone.systems.rendering.wrapper.LodestoneBufferWrapper;
 
 import java.text.*;
 import java.util.function.*;
@@ -299,7 +302,7 @@ public abstract class AbstractValueConfigurationScreen extends Screen {
         shaderInstance.safeGetUniform("Speed").set(400f);
         shaderInstance.safeGetUniform("Intensity").set(100f);
 
-        VFXBuilders.ScreenVFXBuilder builder = VFXBuilders.createScreen()
+        ScreenVFXBuilder builder = VFXBuilders.createScreen()
                 .setShader(shaderInstance)
                 .setAlpha(0.9f)
                 .setColor(0.7f, 0.1f, 0.1f);
@@ -329,7 +332,7 @@ public abstract class AbstractValueConfigurationScreen extends Screen {
         shaderInstance.safeGetUniform("Angle").set(angle);
         shaderInstance.safeGetUniform("LightAngleRange").set(range);
 
-        VFXBuilders.ScreenVFXBuilder builder = VFXBuilders.createScreen()
+        ScreenVFXBuilder builder = VFXBuilders.createScreen()
                 .setShader(shaderInstance)
                 .setAlpha(0.95f * alpha)
                 .setColor(0.5f, 0.2f, 0.7f);
@@ -350,7 +353,7 @@ public abstract class AbstractValueConfigurationScreen extends Screen {
         RenderSystem.disableBlend();
     }
 
-    public void renderDialTexture(GuiGraphics graphics, VFXBuilders.ScreenVFXBuilder builder, ResourceLocation texture, int x, int y) {
+    public void renderDialTexture(GuiGraphics graphics, ScreenVFXBuilder builder, ResourceLocation texture, int x, int y) {
         builder.setTexture(texture).setPositionWithWidth(x, y, interfaceWidth, interfaceHeight).blit(graphics.pose());
     }
 }

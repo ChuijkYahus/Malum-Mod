@@ -15,7 +15,9 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import team.lodestar.lodestone.helpers.*;
 import team.lodestar.lodestone.modules.core.easing.Easing;
+import team.lodestar.lodestone.modules.toolkit.sound.SoundPlayer;
 import team.lodestar.lodestone.registry.common.*;
+import team.lodestar.wayward_attributes.core.registry.WaywardAttributeTypes;
 
 public class ReboundHandler {
 
@@ -25,7 +27,7 @@ public class ReboundHandler {
             boolean isEnhanced = MalumScytheItem.isEnhanced(player);
             boolean isMaelstrom = CurioHelper.hasCurioEquipped(player, MalumContent.Gear.RING_OF_THE_HOWLING_MAELSTROM.get());
             float baseDamage = (float) player.getAttributes().getValue(Attributes.ATTACK_DAMAGE);
-            float magicDamage = (float) player.getAttributes().getValue(LodestoneAttributes.MAGIC_DAMAGE);
+            float magicDamage = (float) player.getAttributes().getValue(WaywardAttributeTypes.MAGIC_DAMAGE);
             float velocity = (isEnhanced ? 3f : 1.75f);
 
             var position = player.position().add(0, player.getBbHeight() * 0.5f, 0);
@@ -44,8 +46,8 @@ public class ReboundHandler {
             entity.setMaelstrom(isMaelstrom);
             entity.shootFromRotation(player, player.getXRot(), player.getYRot(), 0.0F, velocity, 0F);
             level.addFreshEntity(entity);
-            float pitch = Easing.SINE_IN_OUT.asWeighedRandom(level.getRandom(), 0.75f, 1.25f);
-            SoundHelper.playSound(player, MalumGearSoundEvents.SCYTHE_THROW.get(), 0.5f, pitch);
+
+            SoundPlayer.create(MalumGearSoundEvents.SCYTHE_THROW).volume(0.5f).pitchVariance(0.25f).play(player);
             TemporarilyDisabledItem.disable(serverPlayer, slot, MalumContent.SOUL_OF_A_SCYTHE);
         }
         player.swing(hand, false);

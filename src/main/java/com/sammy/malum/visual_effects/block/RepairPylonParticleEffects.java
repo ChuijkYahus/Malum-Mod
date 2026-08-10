@@ -16,7 +16,7 @@ import net.minecraft.world.phys.*;
 import team.lodestar.lodestone.helpers.*;
 import team.lodestar.lodestone.modules.core.easing.Easing;
 import team.lodestar.lodestone.modules.toolkit.inventory.LodestoneItemStackHandler;
-import team.lodestar.lodestone.systems.particle.builder.*;
+import team.lodestar.lodestone.modules.rendering.particle.standard.builder.*;
 
 import javax.annotation.*;
 import java.util.function.*;

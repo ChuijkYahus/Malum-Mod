@@ -59,7 +59,6 @@ public class MalumCultistEntityTypes {
                     .clientTrackingRange(8)
     );
 
-
     public static final DeferredHolder<EntityType<?>, EntityType<CursedBoltProjectile>> CURSED_BOLT =
             register("cursed_bolt", CursedBoltProjectile::new, 1F, 1F, 10);
 

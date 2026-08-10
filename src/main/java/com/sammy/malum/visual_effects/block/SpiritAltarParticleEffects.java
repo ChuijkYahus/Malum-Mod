@@ -20,12 +20,13 @@ import team.lodestar.lodestone.helpers.*;
 import team.lodestar.lodestone.modules.core.easing.Easing;
 import team.lodestar.lodestone.modules.toolkit.inventory.ItemStackHandlerItemDisplayData;
 import team.lodestar.lodestone.modules.toolkit.inventory.LodestoneItemStackHandler;
-import team.lodestar.lodestone.systems.particle.SimpleParticleOptions;
-import team.lodestar.lodestone.systems.particle.builder.*;
-import team.lodestar.lodestone.systems.particle.data.GenericParticleData;
-import team.lodestar.lodestone.systems.particle.data.spin.SpinParticleData;
-import team.lodestar.lodestone.systems.particle.world.*;
-import team.lodestar.lodestone.systems.particle.world.options.WorldParticleOptions;
+import team.lodestar.lodestone.modules.rendering.particle.standard.SimpleParticleOptions;
+import team.lodestar.lodestone.modules.rendering.particle.standard.builder.*;
+import team.lodestar.lodestone.modules.rendering.particle.standard.data.GenericParticleData;
+import team.lodestar.lodestone.modules.rendering.particle.standard.data.spin.SpinParticleData;
+import team.lodestar.lodestone.modules.rendering.particle.standard.world.*;
+import team.lodestar.lodestone.modules.rendering.particle.standard.world.options.WorldParticleOptions;
+import team.lodestar.lodestone.modules.toolkit.inventory.display.ItemDisplayDataEntry;
 
 import java.util.function.*;
 
@@ -70,7 +71,7 @@ public class SpiritAltarParticleEffects {
         }
 
         var spiritDisplayData = altar.spiritInventory.getDisplayData();
-        for (ItemStackHandlerItemDisplayData.ItemDisplayDataEntry dataEntry : spiritDisplayData.getDataEntries()) {
+        for (ItemDisplayDataEntry dataEntry : spiritDisplayData.getDataEntries()) {
             var stack = dataEntry.getStack();
             if (stack.getItem() instanceof SpiritShardItem shard) {
                 Vec3 spiritPosition = spiritDisplayData.getItemPosition(dataEntry);

@@ -19,6 +19,7 @@ import net.neoforged.neoforge.event.entity.living.*;
 import org.jetbrains.annotations.*;
 import team.lodestar.lodestone.helpers.*;
 import team.lodestar.lodestone.registry.common.tag.*;
+import team.lodestar.wayward_attributes.WaywardTags;
 
 import java.util.function.*;
 
@@ -58,7 +59,7 @@ public class ArcanaphageGeas extends GeasEffect {
 
     @Override
     public void incomingDamageEvent(LivingIncomingDamageEvent event, LivingEntity attacker, LivingEntity target, ItemStack stack) {
-        if (!event.getSource().is(LodestoneDamageTypeTags.IS_MAGIC)) {
+        if (!event.getSource().is(WaywardTags.DamageTypeTags.IS_MAGIC)) {
             event.setCanceled(true);
             target.hurt(new ArcanaphageDamageSource(event.getSource()), event.getAmount());
         }
@@ -75,7 +76,7 @@ public class ArcanaphageGeas extends GeasEffect {
 
         @Override
         public boolean is(TagKey<DamageType> damageTypeKey) {
-            if (damageTypeKey.equals(LodestoneDamageTypeTags.IS_MAGIC)) {
+            if (damageTypeKey.equals(WaywardTags.DamageTypeTags.IS_MAGIC)) {
                 return true;
             }
             return super.is(damageTypeKey);

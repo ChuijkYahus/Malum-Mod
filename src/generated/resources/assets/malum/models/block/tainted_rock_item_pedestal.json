@@ -1,6 +1,6 @@
 {
   "parent": "malum:block/templates/template_item_pedestal_rock",
   "textures": {
-    "pedestal": "malum:block/building/arcane_rock/tainted_rock/tainted_rock_item_pedestal"
+    "pedestal": "malum:block/building/stone/tainted_rock/tainted_rock_item_pedestal"
   }
 }

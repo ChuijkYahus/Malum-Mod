@@ -12,19 +12,23 @@ import net.minecraft.world.level.*;
 import net.minecraft.world.phys.*;
 import team.lodestar.lodestone.handlers.*;
 import team.lodestar.lodestone.helpers.*;
+import team.lodestar.lodestone.modules.rendering.LodestoneRenderingSystem;
+import team.lodestar.lodestone.modules.rendering.particle.standard.world.LodestoneWorldParticle;
 import team.lodestar.lodestone.registry.common.particle.*;
 import team.lodestar.lodestone.modules.core.easing.Easing;
 import team.lodestar.lodestone.systems.network.*;
 import team.lodestar.lodestone.systems.network.particle.NetworkedParticleEffectPositionData;
-import team.lodestar.lodestone.systems.particle.*;
-import team.lodestar.lodestone.systems.particle.builder.*;
-import team.lodestar.lodestone.systems.particle.data.*;
-import team.lodestar.lodestone.systems.particle.data.color.*;
-import team.lodestar.lodestone.systems.particle.data.spin.*;
-import team.lodestar.lodestone.systems.particle.render_types.*;
-import team.lodestar.lodestone.systems.particle.world.*;
-import team.lodestar.lodestone.systems.particle.world.behaviors.*;
-import team.lodestar.lodestone.systems.particle.world.options.*;
+import team.lodestar.lodestone.modules.rendering.particle.standard.*;
+import team.lodestar.lodestone.modules.rendering.particle.standard.builder.*;
+import team.lodestar.lodestone.modules.rendering.particle.standard.data.*;
+import team.lodestar.lodestone.modules.rendering.particle.standard.data.color.*;
+import team.lodestar.lodestone.modules.rendering.particle.standard.data.spin.*;
+import team.lodestar.lodestone.modules.rendering.particle.standard.render_types.*;
+import team.lodestar.lodestone.modules.rendering.particle.standard.world.*;
+import team.lodestar.lodestone.modules.rendering.particle.standard.world.behaviors.*;
+import team.lodestar.lodestone.modules.rendering.particle.standard.world.options.*;
+import team.lodestar.lodestone.systems.rendering.LodestoneRenderSystem;
+import team.lodestar.lodestone.systems.rendering.renderpass.RenderPassHandler;
 
 import java.awt.*;
 import java.util.function.*;
@@ -435,7 +439,7 @@ public class GeasParticleEffects {
                 float alphaMultiplier = isAdditive ? 1.5f : 3f;
                 float colorCoefficient = isAdditive ? 1f : 1.75f;
                 var renderType = isAdditive ? LodestoneWorldParticleRenderType.ADDITIVE : LodestoneWorldParticleRenderType.LUMITRANSPARENT;
-                var renderTarget = isAdditive ? LodestoneRenderHandler.LATE_DEFERRED_RENDER : LodestoneRenderHandler.DEFERRED_RENDER;
+                var renderTarget = isAdditive ? LodestoneRenderingSystem.LATE_DEFERRED_RENDER : LodestoneRenderingSystem.DEFERRED_RENDER;
                 WorldParticleBuilder.create(new WorldParticleOptions(MalumParticles.GIANT_GLOWING_STAR))
                         .setBehavior(SparkParticleBehavior.sparkBehavior().setForcedDirection(new Vec3(0, 1, 0)))
                         .setLengthData(GenericParticleData.create(0.1f, 0.6f, 0.3f).setEasing(Easing.SINE_IN_OUT, Easing.SINE_IN_OUT).setCoefficient(1.25f).build().multiplyValue(lengthMultiplier))

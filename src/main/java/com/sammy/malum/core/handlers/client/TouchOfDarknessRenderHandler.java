@@ -12,6 +12,8 @@ import net.minecraft.world.entity.player.*;
 import org.lwjgl.opengl.*;
 import team.lodestar.lodestone.modules.core.easing.Easing;
 import team.lodestar.lodestone.systems.rendering.*;
+import team.lodestar.lodestone.systems.rendering.builder.ScreenVFXBuilder;
+import team.lodestar.lodestone.systems.rendering.builder.VFXBuilders;
 import team.lodestar.lodestone.systems.rendering.shader.*;
 
 import java.util.function.*;
@@ -38,7 +40,7 @@ public class TouchOfDarknessRenderHandler {
         shaderInstance.safeGetUniform("Speed").set(1000f);
         Consumer<Float> setZoom = f -> shaderInstance.safeGetUniform("Zoom").set(f);
         Consumer<Float> setIntensity = f -> shaderInstance.safeGetUniform("Intensity").set(f);
-        VFXBuilders.ScreenVFXBuilder builder = VFXBuilders.createScreen()
+        ScreenVFXBuilder builder = VFXBuilders.createScreen()
                 .setPositionWithWidth(screenWidth*-0.2f, screenHeight*-0.2f, screenWidth*1.4f, screenHeight*1.4f)
                 .setAlpha(alpha)
                 .setShader(shaderInstance);

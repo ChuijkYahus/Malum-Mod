@@ -14,7 +14,7 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.TooltipFlag;
 import net.neoforged.neoforge.event.entity.living.*;
 import net.neoforged.neoforge.event.tick.*;
-import team.lodestar.lodestone.handlers.WorldEventHandler;
+import team.lodestar.lodestone.modules.toolkit.worldevent.WorldEventHandler;
 
 import java.util.function.Consumer;
 

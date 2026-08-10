@@ -1,6 +1,0 @@
-{
-  "parent": "minecraft:block/cube_all",
-  "textures": {
-    "all": "malum:block/building/arcane_rock/dross/chiseled_dross_stone"
-  }
-}

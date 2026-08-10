@@ -2,7 +2,8 @@ package com.sammy.malum.core.systems.spirit;
 
 import team.lodestar.lodestone.helpers.*;
 import team.lodestar.lodestone.modules.core.easing.Easing;
-import team.lodestar.lodestone.systems.particle.data.color.*;
+import team.lodestar.lodestone.modules.rendering.particle.standard.data.color.ColorParticleData;
+import team.lodestar.lodestone.modules.rendering.particle.standard.data.color.ColorParticleDataBuilder;
 
 import java.awt.*;
 

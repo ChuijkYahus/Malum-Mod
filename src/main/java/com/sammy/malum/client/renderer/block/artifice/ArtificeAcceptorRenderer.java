@@ -16,7 +16,7 @@ import net.minecraft.world.level.block.entity.BlockEntity;
 import team.lodestar.lodestone.helpers.ColorHelper;
 import team.lodestar.lodestone.registry.client.LodestoneRenderTypes;
 import team.lodestar.lodestone.modules.toolkit.blockentity.*;
-import team.lodestar.lodestone.systems.rendering.VFXBuilders;
+import team.lodestar.lodestone.systems.rendering.builder.VFXBuilders;
 
 import java.awt.*;
 import java.util.WeakHashMap;

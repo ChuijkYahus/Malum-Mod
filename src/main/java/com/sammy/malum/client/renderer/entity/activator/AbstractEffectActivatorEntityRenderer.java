@@ -11,6 +11,7 @@ import net.minecraft.resources.*;
 import net.minecraft.world.entity.*;
 import team.lodestar.lodestone.registry.client.*;
 import team.lodestar.lodestone.systems.rendering.*;
+import team.lodestar.lodestone.systems.rendering.builder.VFXBuilders;
 import team.lodestar.lodestone.systems.rendering.trail.*;
 
 public abstract class AbstractEffectActivatorEntityRenderer<T extends Entity> extends EntityRenderer<T> {

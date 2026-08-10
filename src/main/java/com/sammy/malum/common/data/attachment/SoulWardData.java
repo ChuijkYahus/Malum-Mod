@@ -12,6 +12,7 @@ import net.minecraft.world.entity.*;
 import net.minecraft.world.entity.ai.attributes.*;
 import net.minecraft.world.entity.player.*;
 import team.lodestar.lodestone.helpers.*;
+import team.lodestar.lodestone.modules.toolkit.sound.SoundPlayer;
 
 import java.util.*;
 
@@ -75,7 +76,7 @@ public class SoulWardData {
                 if (!(entity instanceof Player player) || !player.isCreative()) {
                     var sound = soulWard >= attribute.getValue() ? MalumSoundEvents.SOUL_WARD_FULLY_CHARGED : MalumSoundEvents.SOUL_WARD_GROW;
                     double pitchOffset = (soulWard / attribute.getValue()) * 0.5f + (Mth.ceil(soulWard) % 3) * 0.25f;
-                    SoundHelper.playSound(entity, sound.get(), 0.25f, (float) (1f + pitchOffset));
+                    SoundPlayer.create(sound).volume(0.25f).pitch(1f + pitchOffset).play(entity);
                 }
             }
         }

@@ -6,8 +6,6 @@ import com.sammy.malum.common.data.custom.malignant_conversion.MalignantConversi
 import com.sammy.malum.common.data.custom.reaping.ReapingDataReloadListener;
 import com.sammy.malum.common.data.custom.spellweaving.SpellweavingEqualityReloadListener;
 import com.sammy.malum.common.data.custom.spirit.SpiritDataReloadListener;
-import com.sammy.malum.common.data.custom.wand_parts.WandMaterialTypeDataReloadListener;
-import com.sammy.malum.common.data.custom.wand_parts.WandPartTypeDataReloadListener;
 import com.sammy.malum.common.effect.ascension.*;
 import com.sammy.malum.common.effect.rite.aura.*;
 import com.sammy.malum.common.effect.rite.aura.soulwood.*;
@@ -27,7 +25,7 @@ import com.sammy.malum.common.item.curiosities.curios.sets.rotten.*;
 import com.sammy.malum.common.item.curiosities.curios.sets.weeping.*;
 import com.sammy.malum.common.item.curiosities.pouch.*;
 import com.sammy.malum.common.item.curiosities.tools.spellweaver.*;
-import com.sammy.malum.compat.tetra.*;
+import com.sammy.malum.common.item.curiosities.weapons.scythe.MalumScytheItem;
 import com.sammy.malum.core.handlers.*;
 import net.neoforged.bus.api.*;
 import net.neoforged.fml.common.*;
@@ -46,7 +44,6 @@ public class RuntimeEventHandler {
     public static void onEntityJoin(EntityJoinLevelEvent event) {
         SoulDataHandler.syncData(event);
         GeasEffectHandler.syncGeas(event);
-        TetraCompat.entityJoin(event);
     }
 
     @SubscribeEvent
@@ -55,10 +52,14 @@ public class RuntimeEventHandler {
     }
 
     @SubscribeEvent
+    public static void sweepAttack(SweepAttackEvent event) {
+        MalumScytheItem.enableScytheSweeping(event);
+    }
+
+    @SubscribeEvent
     public static void onEntityJoin(MobSpawnEvent.PositionCheck event) {
         SoulDataHandler.markAsSpawnerSpawned(event);
     }
-
 
     @SubscribeEvent
     public static void onEntityFall(LivingFallEvent event) {
@@ -114,9 +115,6 @@ public class RuntimeEventHandler {
 
     @SubscribeEvent
     public static void registerListeners(AddReloadListenerEvent event) {
-        WandPartTypeDataReloadListener.register(event);
-        WandMaterialTypeDataReloadListener.register(event);
-
         SpellweavingEqualityReloadListener.register(event);
         SpiritDataReloadListener.register(event);
         ReapingDataReloadListener.register(event);

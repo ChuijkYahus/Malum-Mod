@@ -14,9 +14,11 @@ import net.minecraft.world.phys.*;
 import org.jetbrains.annotations.*;
 import org.joml.*;
 import team.lodestar.lodestone.handlers.*;
+import team.lodestar.lodestone.modules.rendering.LodestoneRenderingSystem;
 import team.lodestar.lodestone.registry.client.*;
 import team.lodestar.lodestone.systems.rendering.*;
-import team.lodestar.lodestone.systems.rendering.cube.*;
+import team.lodestar.lodestone.systems.rendering.builder.VFXBuilders;
+import team.lodestar.lodestone.systems.rendering.builder.data.CubeVertexData;
 import team.lodestar.lodestone.systems.rendering.rendeertype.*;
 
 import static com.sammy.malum.core.handlers.WindTunnelHandler.MAX_STRENGTH;
@@ -129,7 +131,7 @@ public class WindTunnelRenderer implements BlockEntityRenderer<WindTunnelBlockEn
                 float v0 = isInward ? -vOffset : vOffset;
                 float v1 = v0 + tunnelLength * (isInward ? -1f : 1f);
                 builder
-                        .replaceBufferSource(LodestoneRenderHandler.LATE_DEFERRED_RENDER)
+                        .replaceBufferSource(LodestoneRenderingSystem.LATE_DEFERRED_RENDER)
                         .setAlpha(alpha)
                         .setUV(u0, v0, u1, v1)
                         .setRenderType(renderType)
@@ -162,7 +164,7 @@ public class WindTunnelRenderer implements BlockEntityRenderer<WindTunnelBlockEn
         poseStack.mulPose(Axis.XN.rotationDegrees(90));
         poseStack.mulPose(Axis.ZN.rotationDegrees(180));
         builder
-                .replaceBufferSource(LodestoneRenderHandler.LATE_DEFERRED_RENDER)
+                .replaceBufferSource(LodestoneRenderingSystem.LATE_DEFERRED_RENDER)
                 .setAlpha(0.9f)
                 .setUV(u0, v0, u1, v1)
                 .setRenderType(border)

@@ -16,7 +16,6 @@ import net.minecraft.world.level.ExplosionDamageCalculator;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.SimpleExplosionDamageCalculator;
 import net.minecraft.world.phys.Vec3;
-import team.lodestar.lodestone.modules.toolkit.item.LodestoneFuelItem;
 
 import java.util.Optional;
 

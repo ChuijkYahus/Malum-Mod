@@ -1,30 +1,21 @@
 package com.sammy.malum.datagen.set;
 
-import com.google.common.collect.ImmutableMap;
 import com.sammy.malum.datagen.block.MalumBlockStateDatagen;
-import com.sammy.malum.datagen.block.MalumBlockStateSmithTypes;
-import com.sammy.malum.datagen.block.VariedBlockStateSmithTypes;
 import com.sammy.malum.registry.common.MalumContent;
-import com.sammy.malum.registry.common.util.DyedVariantBundle;
-import com.sammy.malum.registry.common.util.GeodeCrystalRegistrySet;
 import com.sammy.malum.registry.common.util.PoppetRegistrySet;
 import net.minecraft.data.recipes.RecipeOutput;
 import net.minecraft.data.tags.IntrinsicHolderTagsProvider;
 import net.minecraft.tags.TagKey;
-import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.DyeColor;
 import net.minecraft.world.level.block.Block;
-import net.neoforged.neoforge.client.model.generators.ModelFile;
 import team.lodestar.lodestone.modules.datagen.BlockStateSmithTypes;
 import team.lodestar.lodestone.modules.datagen.DatagenSystemCommons;
 import team.lodestar.lodestone.modules.datagen.smith.blockstate.BlockStateSystemData;
-import team.lodestar.lodestone.modules.toolkit.block.BlockBlockItemHolder;
 
 import java.util.List;
 import java.util.function.Function;
 
 import static com.sammy.malum.MalumMod.malumPath;
-import static com.sammy.malum.registry.common.MalumContent.DungeonBlockSets.DROSS_STONE_ITEM_STAND;
 
 public class MalumPoppetrySetDatagen {
 

@@ -18,6 +18,7 @@ import net.minecraft.world.entity.ai.attributes.*;
 import net.minecraft.world.item.*;
 import net.neoforged.neoforge.event.entity.living.*;
 import team.lodestar.lodestone.handlers.*;
+import team.lodestar.lodestone.modules.toolkit.worldevent.WorldEventHandler;
 
 import java.util.function.*;
 

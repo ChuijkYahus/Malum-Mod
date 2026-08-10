@@ -42,7 +42,6 @@ import com.sammy.malum.common.block.curiosities.totem.waveform.*;
 import com.sammy.malum.common.block.curiosities.weeping_well.void_depot.*;
 import com.sammy.malum.common.block.curiosities.weavers_workbench.*;
 import com.sammy.malum.common.block.curiosities.weeping_well.*;
-import com.sammy.malum.common.block.dungeon.curiosities.*;
 import com.sammy.malum.common.block.ether.*;
 import com.sammy.malum.common.block.soulstone.*;
 import com.sammy.malum.common.block.storage.jar.*;
@@ -122,9 +121,6 @@ public class MalumBlockEntities {
     public static final Supplier<LodestoneBlockEntityType<GustIgniterBlockEntity>> GUST_IGNITER = BLOCK_ENTITY_TYPES.register("gust_igniter", () -> create(GustIgniterBlockEntity::new, MalumContent.Artifice.GUST_IGNITER).setTickerType(Type.BOTH).build());
     public static final Supplier<LodestoneBlockEntityType<WindTunnelBlockEntity>> WIND_TUNNEL = BLOCK_ENTITY_TYPES.register("wind_tunnel", () -> create(WindTunnelBlockEntity::new, MalumContent.Artifice.WIND_TUNNEL).build());
 
-    public static final Supplier<LodestoneBlockEntityType<OminousAltarBlockEntity>> OMINOUS_ALTAR = BLOCK_ENTITY_TYPES.register("ominous_altar", () -> create(OminousAltarBlockEntity::new, MalumContent.DungeonBlockSets.OMINOUS_ALTAR).setTickerType(Type.BOTH).build());
-    public static final Supplier<LodestoneBlockEntityType<OminousObeliskBlockEntity>> OMINOUS_OBELISK = BLOCK_ENTITY_TYPES.register("ominous_obelisk", () -> create(OminousObeliskBlockEntity::new, MalumContent.DungeonBlockSets.OMINOUS_OBELISK).setTickerType(Type.BOTH).build());
-
     public static final Supplier<LodestoneBlockEntityType<VoidConduitBlockEntity>> VOID_CONDUIT = BLOCK_ENTITY_TYPES.register("void_conduit", () -> create(VoidConduitBlockEntity::new, MalumContent.WeepingWell.VOID_CONDUIT).setTickerType(Type.BOTH).build());
     public static final Supplier<LodestoneBlockEntityType<VoidDepotBlockEntity>> VOID_DEPOT = BLOCK_ENTITY_TYPES.register("void_depot", () -> create(VoidDepotBlockEntity::new, MalumContent.WeepingWell.VOID_DEPOT).setTickerType(Type.CLIENT).build());
 
@@ -199,8 +195,6 @@ public class MalumBlockEntities {
             event.registerBlockEntityRenderer(WAVEBREAKER.get(), WaveBreakerRenderer::new);
 
             event.registerBlockEntityRenderer(WIND_TUNNEL.get(), WindTunnelRenderer::new);
-
-            event.registerBlockEntityRenderer(OMINOUS_ALTAR.get(), SpiritAltarRenderer::new);
 
             event.registerBlockEntityRenderer(SOULWOVEN_BANNER.get(), SoulwovenBannerRenderer::new);
         }

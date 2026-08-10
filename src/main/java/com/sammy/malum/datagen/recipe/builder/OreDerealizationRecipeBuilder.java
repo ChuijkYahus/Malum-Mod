@@ -8,7 +8,7 @@ import net.minecraft.data.recipes.RecipeOutput;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.levelgen.structure.templatesystem.RuleTest;
-import team.lodestar.lodestone.recipe.builder.LodestoneRecipeBuilder;
+import team.lodestar.lodestone.modules.toolkit.recipe.LodestoneRecipeBuilder;
 
 public class OreDerealizationRecipeBuilder implements LodestoneRecipeBuilder<OreDerealizationRecipe> {
     private final RuleTest input;

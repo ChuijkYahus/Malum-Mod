@@ -35,6 +35,7 @@ public class CardinalThrowEntropyGoal extends Goal {
     public CardinalThrowEntropyGoal(CardinalCultist cardinal, double speedModifier) {
         this(cardinal, speedModifier, CardinalCultist.ENTROPY_THROW_INTERVAL, CardinalCultist.ENTROPY_THROW_RADIUS);
     }
+    
     public CardinalThrowEntropyGoal(CardinalCultist cardinal, double speedModifier, int attackInterval, float attackRadius) {
         this.cardinal = cardinal;
         this.navigation = cardinal.getNavigation();

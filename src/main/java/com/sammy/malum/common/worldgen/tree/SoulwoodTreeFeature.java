@@ -14,7 +14,10 @@ import net.minecraft.world.level.block.state.properties.*;
 import net.minecraft.world.level.levelgen.feature.*;
 import net.minecraft.world.level.levelgen.feature.configurations.*;
 import net.minecraft.world.phys.Vec2;
-import team.lodestar.lodestone.systems.worldgen.*;
+import team.lodestar.lodestone.modules.toolkit.worldgen.LodestoneWorldgenBuilder;
+import team.lodestar.lodestone.modules.toolkit.worldgen.LodestoneWorldgenBuilderEntry;
+import team.lodestar.lodestone.modules.toolkit.worldgen.LodestoneWorldgenBuilderLayer;
+import team.lodestar.lodestone.modules.toolkit.worldgen.PlacementCondition;
 
 import java.util.HashMap;
 import java.util.Map;

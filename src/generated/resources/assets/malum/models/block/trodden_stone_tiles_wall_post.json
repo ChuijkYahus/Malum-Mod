@@ -1,6 +1,6 @@
 {
   "parent": "minecraft:block/template_wall_post",
   "textures": {
-    "wall": "malum:block/building/common_rock/trodden_stone/trodden_stone_tiles"
+    "wall": "malum:block/building/stone/trodden_stone/trodden_stone_tiles"
   }
 }

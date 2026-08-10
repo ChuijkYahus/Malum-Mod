@@ -35,24 +35,4 @@ public class MalumFloraBlockProperties {
                 .offsetType(BlockBehaviour.OffsetType.XZ)
                 .sound(MalumBlockSoundEvents.EBONY);
     }
-
-    public static LodestoneBlockProperties WITCHHAZEL_CROP() {
-        return new LodestoneBlockProperties()
-                .strength(0.25F, 6.0F)
-                .needsHoe()
-                .addTags(STORAGE_BLOCKS)
-                .mapColor(MapColor.COLOR_BLACK)
-                .sound(MalumBlockSoundEvents.WITCHHAZEL);
-    }
-
-    public static LodestoneBlockProperties WILD_WITCHHAZEL() {
-        return new LodestoneBlockProperties()
-                .strength(0.5F, 6.0F)
-                .needsHoe()
-                .noOcclusion()
-                .noCollission()
-                .setCutout()
-                .offsetType(BlockBehaviour.OffsetType.XZ)
-                .sound(MalumBlockSoundEvents.WILD_WITCHHAZEL);
-    }
 }

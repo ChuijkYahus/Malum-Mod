@@ -1,6 +1,6 @@
 package com.sammy.malum.client.screen.codex.pages;
 
-import com.sammy.malum.client.screen.codex.display.DisplayedGizmo;
+import com.sammy.malum.client.screen.codex.display.gizmo.DisplayedGizmo;
 import com.sammy.malum.client.screen.codex.handlers.BookObjectHandler;
 import com.sammy.malum.client.screen.codex.objects.button.PageSelectionObject;
 import com.sammy.malum.client.screen.codex.screens.CodexEntryScreen;
@@ -10,12 +10,11 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.function.*;
 
-import static com.sammy.malum.client.screen.codex.display.DisplayedGizmo.item;
+import static com.sammy.malum.client.screen.codex.display.gizmo.DisplayedItem.item;
 import static com.sammy.malum.client.screen.codex.pages.text.HeadlineTextPage.headlineText;
 
 public class PageSelectionPage extends CyclingPage {
 
-    public static boolean FLAG = false;
     public static class PageSelectionBuilder {
         protected final List<Selection> data = new ArrayList<>();
 
@@ -43,9 +42,7 @@ public class PageSelectionPage extends CyclingPage {
 
     public static PageSelectionPage create(Consumer<PageSelectionBuilder> builder) {
         var result = new PageSelectionBuilder();
-        FLAG = true;
         builder.accept(result);
-        FLAG = false;
         return new PageSelectionPage(result);
     }
 

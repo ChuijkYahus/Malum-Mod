@@ -1,0 +1,24 @@
+{
+  "type": "malum:conjuncture_crystallarium",
+  "crystal_to_grow": {
+    "block": "malum:soulstone_bud",
+    "int_operation": "add",
+    "int_property_name": "stage"
+  },
+  "input": {
+    "item": "minecraft:raw_copper"
+  },
+  "metal_data": {
+    "id": "copper",
+    "nuggetForm": "c:nuggets/copper"
+  },
+  "processing_time": 200,
+  "results": [
+    {
+      "item": {
+        "count": 1,
+        "id": "malum:derealized_copper"
+      }
+    }
+  ]
+}

@@ -2,12 +2,14 @@ package com.sammy.malum.client.screen.codex.display;
 
 import com.mojang.blaze3d.systems.RenderSystem;
 import com.mojang.blaze3d.vertex.PoseStack;
+import com.sammy.malum.MalumMod;
 import com.sammy.malum.core.systems.spirit.SpiritLike;
 import net.minecraft.resources.ResourceLocation;
 import org.joml.Vector4f;
 import org.lwjgl.opengl.GL11;
 import team.lodestar.lodestone.registry.client.LodestoneShaders;
-import team.lodestar.lodestone.systems.rendering.VFXBuilders;
+import team.lodestar.lodestone.systems.rendering.builder.ScreenVFXBuilder;
+import team.lodestar.lodestone.systems.rendering.builder.VFXBuilders;
 
 import java.awt.*;
 
@@ -23,6 +25,19 @@ public class CodexIconRenderer {
     protected float distortion = 35f;
     protected boolean corrupted = false;
     protected int offset;
+
+    public static CodexIconRenderer create(String texture, int width, int height) {
+        var modId = MalumMod.MALUM;
+        if (texture.contains(":")) {
+            int index = texture.indexOf(":");
+            modId = texture.substring(0, index);
+            texture = texture.substring(index+1);
+        }
+
+        var full = "textures/gui/book/icons/" + texture + ".png";
+
+        return create(ResourceLocation.fromNamespaceAndPath(modId, full), width, height);
+    }
 
     public static CodexIconRenderer create(ResourceLocation texture, int width, int height) {
         return new CodexIconRenderer(texture, width, height);
@@ -70,7 +85,7 @@ public class CodexIconRenderer {
         shader.safeGetUniform("Speed").set(1500f);
         shader.safeGetUniform("Intensity").set(distortion);
         shader.safeGetUniform("UVCoordinates").set(new Vector4f(0f, 1f, 0f, 1f));
-        VFXBuilders.ScreenVFXBuilder builder = VFXBuilders.createScreen()
+        ScreenVFXBuilder builder = VFXBuilders.createScreen()
                 .setTexture(texture)
                 .setShader(shader)
                 .setZLevel(20);
