@@ -4,6 +4,7 @@ import com.sammy.malum.MalumMod;
 import com.sammy.malum.datagen.block.*;
 import com.sammy.malum.datagen.item.MalumItemModelDatagen;
 import com.sammy.malum.datagen.sound.*;
+import com.sammy.malum.datagen.spiritRite.SpiritRiteDatagen;
 import com.sammy.malum.datagen.tag.MalumItemTagDatagen;
 import com.sammy.malum.datagen.lang.*;
 import com.sammy.malum.datagen.recipe.*;
@@ -50,6 +51,7 @@ public class DataGenerators {
         var recipeDatagen = new MalumRecipes(output, registryProvider);
         var lootTableDatagen = new MalumLootTableDatagen(output, registryProvider);
 
+        var spiritRiteDatagen = new SpiritRiteDatagen(output);
 
         generator.addProvider(includeClient, itemModelsDatagen);
         generator.addProvider(includeClient, blockStateDatagen);
@@ -58,6 +60,8 @@ public class DataGenerators {
 
         generator.addProvider(includeServer, dataMapDatagen);
 
+
+        generator.addProvider(includeServer, spiritRiteDatagen);
         generator.addProvider(includeServer, blockTagsDatagen);
         generator.addProvider(includeServer, itemTagDatagen);
         generator.addProvider(includeServer, geasTagDatagen);
