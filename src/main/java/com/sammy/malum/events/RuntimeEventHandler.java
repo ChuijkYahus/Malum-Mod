@@ -4,6 +4,7 @@ import com.sammy.malum.common.block.storage.jar.*;
 import com.sammy.malum.common.data.attachment.AvariceMarkData;
 import com.sammy.malum.common.data.custom.malignant_conversion.MalignantConversionReloadListener;
 import com.sammy.malum.common.data.custom.reaping.ReapingDataReloadListener;
+import com.sammy.malum.common.data.custom.rite.*;
 import com.sammy.malum.common.data.custom.spellweaving.SpellweavingEqualityReloadListener;
 import com.sammy.malum.common.data.custom.spirit.SpiritDataReloadListener;
 import com.sammy.malum.common.effect.ascension.*;
@@ -115,8 +116,10 @@ public class RuntimeEventHandler {
 
     @SubscribeEvent
     public static void registerListeners(AddReloadListenerEvent event) {
-        SpellweavingEqualityReloadListener.register(event);
         SpiritDataReloadListener.register(event);
+        SpiritRiteTypeReloadListener.register(event);
+
+        SpellweavingEqualityReloadListener.register(event);
         ReapingDataReloadListener.register(event);
         MalignantConversionReloadListener.register(event);
     }

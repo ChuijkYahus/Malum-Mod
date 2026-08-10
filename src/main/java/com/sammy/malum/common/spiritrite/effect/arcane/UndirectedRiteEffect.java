@@ -1,8 +1,7 @@
 package com.sammy.malum.common.spiritrite.effect.arcane;
 
 import com.sammy.malum.common.worldevent.UnchainedTotemConversionWorldEvent;
-import com.sammy.malum.core.systems.rite.effect.SpiritRiteEffect;
-import com.sammy.malum.core.systems.rite.effect.SpiritRiteEffectTag;
+import com.sammy.malum.core.systems.rite.effect.*;
 import com.sammy.malum.core.systems.spirit.SpiritArcanaType;
 import net.minecraft.core.*;
 import net.minecraft.server.level.ServerLevel;
@@ -17,7 +16,7 @@ public class UndirectedRiteEffect extends SpiritRiteEffect {
     }
 
     @Override
-    public boolean triggerRiteEffect(ServerLevel level, BlockPos pos, SpiritArcanaType definingSpirit, RiteParameters parameters) {
+    public boolean triggerRiteEffect(ServerLevel level, BlockPos pos, SpiritArcanaType definingSpirit, RiteEffectConfig parameters) {
         WorldEventHandler.addWorldEvent(level,
                 new UnchainedTotemConversionWorldEvent()
                         .setPosition(pos)

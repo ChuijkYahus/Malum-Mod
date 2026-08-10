@@ -8,9 +8,7 @@ import com.sammy.malum.registry.common.sound.*;
 import com.sammy.malum.visual_effects.networked.MalumNetworkedParticleEffectType;
 import net.minecraft.core.*;
 import net.minecraft.server.level.*;
-import net.minecraft.util.*;
 import net.minecraft.world.level.block.state.*;
-import team.lodestar.lodestone.helpers.*;
 import team.lodestar.lodestone.modules.toolkit.sound.SoundPlayer;
 
 import java.util.Arrays;
@@ -30,7 +28,7 @@ public abstract class SpiritRiteBlockEffect extends SpiritRiteEffect {
     }
 
     @Override
-    public boolean triggerRiteEffect(ServerLevel level, BlockPos pos, SpiritArcanaType definingSpirit, RiteParameters parameters) {
+    public boolean triggerRiteEffect(ServerLevel level, BlockPos pos, SpiritArcanaType definingSpirit, RiteEffectConfig parameters) {
         Direction direction = parameters.getTotemDirection().orElseThrow();
         BlockRiteEffectActivator entity = new BlockRiteEffectActivator(level, this, pos, direction);
         entity.setSpirit(definingSpirit);

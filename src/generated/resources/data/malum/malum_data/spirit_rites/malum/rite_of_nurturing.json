@@ -1,0 +1,11 @@
+{
+  "effect": "malum:nurturing_effect",
+  "id": "malum:rite_of_nurturing",
+  "is_soulwood": false,
+  "pattern": [
+    "malum:eldritch",
+    "malum:arcane",
+    "malum:sacred",
+    "malum:sacred"
+  ]
+}

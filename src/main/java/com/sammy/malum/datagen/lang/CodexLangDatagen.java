@@ -1187,116 +1187,116 @@ public class CodexLangDatagen {
                 "I have created a staff to act as a tuning fork of sorts for the energies of rites. Simply holding it resonates with the flow of arcana through the world, allowing me to visualize the area each totem can affect.",
                 "Interestingly, the staff also allows me to 'tune' a rune into an active state by interacting with it, even if it's not on a totem. This is as far as I can tell purely visual, but if nothing else, it will make good decoration.");
 
-        addEntryLang("undirected_rite", "A Rite Undirected", "Creation Without Direction");
-        addPages("undirected_rite",
-                "Raw arcana provides the basis for all rites. Without power, nothing would be accomplished. This naturally makes one wonder what effect raw arcana would have as the focus of a rite. The answer is a complex and dangerous one.",
-                "In order to form any meaningful effect, the spirit rite in question requires far more to form than other rites, taking the entire five runes to activate. It's as though I am pushing on some threshold, and need to break through. And in breaking through... momentum is conserved.");
-        addRiteDetails(MalumSpiritRiteTypes.UNDIRECTED_RITE,
-                "The rite - if you could call something so chaotic that - corrupts and burns through the totem, altering its very base nature, and transmuting the world around it into some indeterminate blighted substance.",
-                "Note: Requires Containment");
-
-        addEntryLang("unchained_rite", "A Rite Unchained", "Creation Without Control");
-        addPages("unchained_rite",
-                "As arcane energy within the totem amassed, lacking direction, it dispersed. Chaotic, but expected given the rune composition. The Undirected Rite brought about erratic change to the totem; what I dub Soulwood bears scars from the violent method of its creation. Those scars warp magic, altering its fundamental nature.",
-                "Any spirit rite performed with a Soulwood totem will produce a vastly different effect. Following this logic, the behavior of the Undirected Rite itself can also be altered by the newly formed soulwood structure...");
-        addHeadline("unchained_rite.soulwood", "Soulwood Transmutation");
-        addPages("unchained_rite.soulwood",
-                "One of the immediate applications of the Unchained Transmutation I have found thus far is the ability to transform any Runewood block into it's Soulwood equivalent. It works with any wooden block or even the Runewood Sapling itself",
-                "Naturally, the Soulwood Totem Base can be created by using Soulwood in place of Runewood within the Spirit Infusion process.");
-        addRiteDetails(MalumSpiritRiteTypes.UNCHAINED_RITE,
-                "Now already scarred, the power bleeds from the soulwood totem in the form of a Blight-Bound Rite Locus. When this Locus travels through blight, it will transmute the block above.",
-                "Creates a Bound Rite Locus\nLocus Travels Through Blight and Affects The Block Above\nAffected Blocks Undergo Unchained Transmutation\nLocus Requires Blight To Survive");
-
-        addEntryLang("sacred_rites", "Sacred Rites", "Totemic Arts of Mending");
-        addSimpleRiteEntry(MalumSpiritRiteTypes.RITE_OF_HEALING, "To Mend Open Wounds",
-                "A simple rite, while active it will slowly mend the wounds of nearby beings.",
-                "Affected Creatures Are Healed For Two Hearts Of Damage");
-        addSimpleRiteEntry(MalumSpiritRiteTypes.RITE_OF_NOURISHMENT, "To Nourish The Body",
-                "A simple rite, while active it will idly recover lost stamina of nearby players, preserving hunger for longer.",
-                "Affected Players Receive Sacred Nourishment\n Sacred Nourishment Slowly Absorbs Exhaustion");
-        addSimpleRiteEntry(MalumSpiritRiteTypes.RITE_OF_NURTURING, "To Nurture Young Life",
-                "An advanced rite, while active it apply a spiritually nurturing effect to nearby animals, accelerating growth and certain biological processes.",
-                """
-                        Affected Animals Are Aged Twenty Five Seconds Worth
-                        Different Species React Differently:
-                         Sheep Will Feed On Grass More Frequently
-                         Chickens Lay Eggs More Frequently
-                         Bees Pollinate Faster And More Frequently
-                         Allays Duplicate Faster""");
-        addSimpleRiteEntry(MalumSpiritRiteTypes.RITE_OF_LUST, "To Inspire Desires",
-                "An advanced rite, while active... nearby animals are made... " + italic("vigorous") + ", as if I had fed them myself.",
-                "Affected Animals Are Made Vigorous\nEffect Ceases When Given Species Faces Overpopulation");
-
-        addEntryLang("wicked_rites", "Wicked Rites", "Totemic Arts Of Harming");
-        addSimpleRiteEntry(MalumSpiritRiteTypes.RITE_OF_HARMING, "To Cut Deep",
-                "A simple rite, while active it will slowly harm souls of nearby beings.",
-                "Affected Creatures Are Struck For Two Hearts Of Damage");
-        addSimpleRiteEntry(MalumSpiritRiteTypes.RITE_OF_EMPOWERMENT, "To Forge Power",
-                "A simple rite, while active it will empower the souls of nearby hostiles.",
-                "Affected Hostiles Receive Wicked Empowerment\nWicked Empowerment Strengthens Damage And Health");
-        addSimpleRiteEntry(MalumSpiritRiteTypes.RITE_OF_CULLING, "To Cull The Herd",
-                "An advanced rite, while active it will cull herds of nearby overcrowded animals.",
-                "Affected Animals Are Obliterated\nEffect Demands Overpopulation Within Given Species");
-        addSimpleRiteEntry(MalumSpiritRiteTypes.RITE_OF_RAISING, "To Seal One's Fate",
-                "An advanced rite, while active it will strike vulnerable monsters, dealing a fatal blow to their soul and body.", //\nThe affected target is then reanimated as a soulless husk, a mindless being that lacks a soul.",
-                "Affected Monsters Are Struck a Fatal Blow");//\nUpon Death, They Are Then Reanimated As A Soulless Husk\nSoulless Husks, Lacking A Soul, Do Not Drop Spirits");
-
-
-        addEntryLang("aerial_rites", "Aerial Rites", "Totemic Arts of Soaring");
-        addSimpleRiteEntry(MalumSpiritRiteTypes.RITE_OF_THE_HOWLING_GALE, "To Hasten One's Spirit",
-                "A simple rite, while active it will bless nearby creatures with Howling Gale, increasing movement speed and attack speed.",
-                "Affected Creatures Are Blessed With Howling Gale\nHowling Gale increases movement speed and attack speed by two fifths.");
-        addSimpleRiteEntry(MalumSpiritRiteTypes.RITE_OF_THE_SKY_TETHER, "To Lift One's Weight",
-                "A simple rite, while active it will bless nearby creatures with Sky Tether, increasing jump height and reducing gravity with minimal fall damage reduction.",
-                "Affected Creatures Are Blessed With Sky Tether\nSky Tether reduces gravity and increases jump height by two fifths each.\nFall damage is also moderately dampened");
-        addSimpleRiteEntry(MalumSpiritRiteTypes.RITE_OF_GRAVITY, "To Imbue With Weight",
-                "An advanced rite, while active it will weave a Bound Rite Locus. When this Locus travels over blocks it will apply a gravity effect to them, causing them to fall.",
-                "Creates a Bound Rite Locus\nWhen The Locus Travels Over Blocks, It Will Apply a Gravity Effect As Observed In Sand or Gravel\nGravity Effect Can Only Affect Blocks That Can Be Preserved Using Silktouch");
-        addSimpleRiteEntry(MalumSpiritRiteTypes.RITE_OF_ASCENSION, "To Invert The Law",
-                "An advanced rite, while active it will weave a Bound Rite Locus. When this Locus travels over blocks it will apply an inverted gravity effect to them, causing them to rise for up to sixteen blocks worth of height.",
-                "Creates a Bound Rite Locus\nWhen The Locus Travels Over Blocks, It Will Apply an Inverse Gravity Effect As Observed In Sand or Gravel\nInverse Gravity Effect Has A Lifting Range Of Sixteen Blocks\nInverse Gravity Effect Can Only Affect Blocks That Can Be Preserved Using Silktouch");
-
-        addEntryLang("aqueous_rites", "Aqueous Rites", "Totemic Arts of Flowing");
-        addSimpleRiteEntry(MalumSpiritRiteTypes.RITE_OF_THE_FLOWING_GRASP, "To Extend One's Reach",
-                "A simple rite, while active it will bless nearby creatures with Flowing Grasp, increasing block interaction range and item pickup distance.",
-                "Affected Creatures Are Blessed With Flowing Grasp\nFlowing Grasp increases block interaction range and item pickup distance by two fifths");
-        addSimpleRiteEntry(MalumSpiritRiteTypes.RITE_OF_THE_GOOD_TIDES, "To Bless One's Bounty",
-                "A simple rite, while active it will bless nearby creatures with Good Tides, providing one level worth of benefits granted by Lure and Luck of The Sea.",
-                "Affected Creatures Are Blessed With Good Tides\nGood Tides grants effects equivalent to one level of Lure and Luck of The Sea");
-        addSimpleRiteEntry(MalumSpiritRiteTypes.RITE_OF_SOAKING, "To Enable Nature's Growth",
-                "An advanced rite, while active it will weave a Bound Rite Locus. When this Locus travels over blocks it will apply a growth-inducing effect similar to bonemeal or simply an accelerated passage of time.",
-                "Creates a Bound Rite Locus\nWhen The Locus Travels Over Plants, It Will Apply a Growth-Inducing Effect\nCrops Receive An Instantaneous Time Accelerating Effect\nOther Bonemeal Applicable Plants Are Grown As If With Actual Bonemeal\nWhen Passing Over Tilted Soil, The Crop Above Will Be Affected Instead");
-        addSimpleRiteEntry(MalumSpiritRiteTypes.RITE_OF_SAPPING, "To Gather From Earth",
-                "An advanced rite, while active it will weave a Bound Rite Locus. When this Locus travels over cauldrons it will greatly accelerate the process of fluid accumulation from any pointed dripstone found above.",
-                "Creates a Bound Rite Locus\nWhen The Locus Travels Over Cauldrons, It Will Accelerate Fluid Accumulation From Any Pointed Dripstone Found Above");
-
-        addEntryLang("earthen_rites", "Earthen Rites", "Totemic Arts of Forming");
-        addSimpleRiteEntry(MalumSpiritRiteTypes.RITE_OF_THE_STONE_WARD, "To Harden One's Flesh",
-                "A simple rite, while active it will bless nearby creatures with Stone Ward, providing a damage reduction that grows in power when unarmored.",
-                "Affected Creatures Are Blessed With Stone Ward\nStone Ward reduces damage taken by one fifth\nStone Ward Doubles in power when Unarmored");
-        addSimpleRiteEntry(MalumSpiritRiteTypes.RITE_OF_THE_OAKEN_MIGHT, "To Ossify One's Blows",
-                "A simple rite, while active it will bless nearby creatures with Oaken Might, providing a flat damage increase that grows in powered when empty handed.",
-                "Affected Creatures Are Blessed With Oaken Might\nOaken Might increases damage dealt by one heart worth\nOaken Might Doubles in power when Empty Handed");
-        addSimpleRiteEntry(MalumSpiritRiteTypes.RITE_OF_CREATION, "To Form From Nothing",
-                "An advanced rite, while active it will weave a Bound Rite Locus. When this Locus travels over empty space it will transmute air molecules into earth, forming Cobblestone.",
-                "Creates a Bound Rite Locus\nWhen The Locus Travels Over Empty Space, It Will Form Cobblestone Where Possible");
+//        addEntryLang("undirected_rite", "A Rite Undirected", "Creation Without Direction");
+//        addPages("undirected_rite",
+//                "Raw arcana provides the basis for all rites. Without power, nothing would be accomplished. This naturally makes one wonder what effect raw arcana would have as the focus of a rite. The answer is a complex and dangerous one.",
+//                "In order to form any meaningful effect, the spirit rite in question requires far more to form than other rites, taking the entire five runes to activate. It's as though I am pushing on some threshold, and need to break through. And in breaking through... momentum is conserved.");
+//        addRiteDetails(MalumSpiritRiteTypes.UNDIRECTED_RITE,
+//                "The rite - if you could call something so chaotic that - corrupts and burns through the totem, altering its very base nature, and transmuting the world around it into some indeterminate blighted substance.",
+//                "Note: Requires Containment");
+//
+//        addEntryLang("unchained_rite", "A Rite Unchained", "Creation Without Control");
+//        addPages("unchained_rite",
+//                "As arcane energy within the totem amassed, lacking direction, it dispersed. Chaotic, but expected given the rune composition. The Undirected Rite brought about erratic change to the totem; what I dub Soulwood bears scars from the violent method of its creation. Those scars warp magic, altering its fundamental nature.",
+//                "Any spirit rite performed with a Soulwood totem will produce a vastly different effect. Following this logic, the behavior of the Undirected Rite itself can also be altered by the newly formed soulwood structure...");
+//        addHeadline("unchained_rite.soulwood", "Soulwood Transmutation");
+//        addPages("unchained_rite.soulwood",
+//                "One of the immediate applications of the Unchained Transmutation I have found thus far is the ability to transform any Runewood block into it's Soulwood equivalent. It works with any wooden block or even the Runewood Sapling itself",
+//                "Naturally, the Soulwood Totem Base can be created by using Soulwood in place of Runewood within the Spirit Infusion process.");
+//        addRiteDetails(MalumSpiritRiteTypes.UNCHAINED_RITE,
+//                "Now already scarred, the power bleeds from the soulwood totem in the form of a Blight-Bound Rite Locus. When this Locus travels through blight, it will transmute the block above.",
+//                "Creates a Bound Rite Locus\nLocus Travels Through Blight and Affects The Block Above\nAffected Blocks Undergo Unchained Transmutation\nLocus Requires Blight To Survive");
+//
+//        addEntryLang("sacred_rites", "Sacred Rites", "Totemic Arts of Mending");
+//        addSimpleRiteEntry(MalumSpiritRiteTypes.RITE_OF_HEALING, "To Mend Open Wounds",
+//                "A simple rite, while active it will slowly mend the wounds of nearby beings.",
+//                "Affected Creatures Are Healed For Two Hearts Of Damage");
+//        addSimpleRiteEntry(MalumSpiritRiteTypes.RITE_OF_NOURISHMENT, "To Nourish The Body",
+//                "A simple rite, while active it will idly recover lost stamina of nearby players, preserving hunger for longer.",
+//                "Affected Players Receive Sacred Nourishment\n Sacred Nourishment Slowly Absorbs Exhaustion");
+//        addSimpleRiteEntry(MalumSpiritRiteTypes.RITE_OF_NURTURING, "To Nurture Young Life",
+//                "An advanced rite, while active it apply a spiritually nurturing effect to nearby animals, accelerating growth and certain biological processes.",
+//                """
+//                        Affected Animals Are Aged Twenty Five Seconds Worth
+//                        Different Species React Differently:
+//                         Sheep Will Feed On Grass More Frequently
+//                         Chickens Lay Eggs More Frequently
+//                         Bees Pollinate Faster And More Frequently
+//                         Allays Duplicate Faster""");
+//        addSimpleRiteEntry(MalumSpiritRiteTypes.RITE_OF_LUST, "To Inspire Desires",
+//                "An advanced rite, while active... nearby animals are made... " + italic("vigorous") + ", as if I had fed them myself.",
+//                "Affected Animals Are Made Vigorous\nEffect Ceases When Given Species Faces Overpopulation");
+//
+//        addEntryLang("wicked_rites", "Wicked Rites", "Totemic Arts Of Harming");
+//        addSimpleRiteEntry(MalumSpiritRiteTypes.RITE_OF_HARMING, "To Cut Deep",
+//                "A simple rite, while active it will slowly harm souls of nearby beings.",
+//                "Affected Creatures Are Struck For Two Hearts Of Damage");
+//        addSimpleRiteEntry(MalumSpiritRiteTypes.RITE_OF_EMPOWERMENT, "To Forge Power",
+//                "A simple rite, while active it will empower the souls of nearby hostiles.",
+//                "Affected Hostiles Receive Wicked Empowerment\nWicked Empowerment Strengthens Damage And Health");
+//        addSimpleRiteEntry(MalumSpiritRiteTypes.RITE_OF_CULLING, "To Cull The Herd",
+//                "An advanced rite, while active it will cull herds of nearby overcrowded animals.",
+//                "Affected Animals Are Obliterated\nEffect Demands Overpopulation Within Given Species");
+//        addSimpleRiteEntry(MalumSpiritRiteTypes.RITE_OF_RAISING, "To Seal One's Fate",
+//                "An advanced rite, while active it will strike vulnerable monsters, dealing a fatal blow to their soul and body.", //\nThe affected target is then reanimated as a soulless husk, a mindless being that lacks a soul.",
+//                "Affected Monsters Are Struck a Fatal Blow");//\nUpon Death, They Are Then Reanimated As A Soulless Husk\nSoulless Husks, Lacking A Soul, Do Not Drop Spirits");
+//
+//
+//        addEntryLang("aerial_rites", "Aerial Rites", "Totemic Arts of Soaring");
+//        addSimpleRiteEntry(MalumSpiritRiteTypes.RITE_OF_THE_HOWLING_GALE, "To Hasten One's Spirit",
+//                "A simple rite, while active it will bless nearby creatures with Howling Gale, increasing movement speed and attack speed.",
+//                "Affected Creatures Are Blessed With Howling Gale\nHowling Gale increases movement speed and attack speed by two fifths.");
+//        addSimpleRiteEntry(MalumSpiritRiteTypes.RITE_OF_THE_SKY_TETHER, "To Lift One's Weight",
+//                "A simple rite, while active it will bless nearby creatures with Sky Tether, increasing jump height and reducing gravity with minimal fall damage reduction.",
+//                "Affected Creatures Are Blessed With Sky Tether\nSky Tether reduces gravity and increases jump height by two fifths each.\nFall damage is also moderately dampened");
+//        addSimpleRiteEntry(MalumSpiritRiteTypes.RITE_OF_GRAVITY, "To Imbue With Weight",
+//                "An advanced rite, while active it will weave a Bound Rite Locus. When this Locus travels over blocks it will apply a gravity effect to them, causing them to fall.",
+//                "Creates a Bound Rite Locus\nWhen The Locus Travels Over Blocks, It Will Apply a Gravity Effect As Observed In Sand or Gravel\nGravity Effect Can Only Affect Blocks That Can Be Preserved Using Silktouch");
+//        addSimpleRiteEntry(MalumSpiritRiteTypes.RITE_OF_ASCENSION, "To Invert The Law",
+//                "An advanced rite, while active it will weave a Bound Rite Locus. When this Locus travels over blocks it will apply an inverted gravity effect to them, causing them to rise for up to sixteen blocks worth of height.",
+//                "Creates a Bound Rite Locus\nWhen The Locus Travels Over Blocks, It Will Apply an Inverse Gravity Effect As Observed In Sand or Gravel\nInverse Gravity Effect Has A Lifting Range Of Sixteen Blocks\nInverse Gravity Effect Can Only Affect Blocks That Can Be Preserved Using Silktouch");
+//
+//        addEntryLang("aqueous_rites", "Aqueous Rites", "Totemic Arts of Flowing");
+//        addSimpleRiteEntry(MalumSpiritRiteTypes.RITE_OF_THE_FLOWING_GRASP, "To Extend One's Reach",
+//                "A simple rite, while active it will bless nearby creatures with Flowing Grasp, increasing block interaction range and item pickup distance.",
+//                "Affected Creatures Are Blessed With Flowing Grasp\nFlowing Grasp increases block interaction range and item pickup distance by two fifths");
+//        addSimpleRiteEntry(MalumSpiritRiteTypes.RITE_OF_THE_GOOD_TIDES, "To Bless One's Bounty",
+//                "A simple rite, while active it will bless nearby creatures with Good Tides, providing one level worth of benefits granted by Lure and Luck of The Sea.",
+//                "Affected Creatures Are Blessed With Good Tides\nGood Tides grants effects equivalent to one level of Lure and Luck of The Sea");
+//        addSimpleRiteEntry(MalumSpiritRiteTypes.RITE_OF_SOAKING, "To Enable Nature's Growth",
+//                "An advanced rite, while active it will weave a Bound Rite Locus. When this Locus travels over blocks it will apply a growth-inducing effect similar to bonemeal or simply an accelerated passage of time.",
+//                "Creates a Bound Rite Locus\nWhen The Locus Travels Over Plants, It Will Apply a Growth-Inducing Effect\nCrops Receive An Instantaneous Time Accelerating Effect\nOther Bonemeal Applicable Plants Are Grown As If With Actual Bonemeal\nWhen Passing Over Tilted Soil, The Crop Above Will Be Affected Instead");
+//        addSimpleRiteEntry(MalumSpiritRiteTypes.RITE_OF_SAPPING, "To Gather From Earth",
+//                "An advanced rite, while active it will weave a Bound Rite Locus. When this Locus travels over cauldrons it will greatly accelerate the process of fluid accumulation from any pointed dripstone found above.",
+//                "Creates a Bound Rite Locus\nWhen The Locus Travels Over Cauldrons, It Will Accelerate Fluid Accumulation From Any Pointed Dripstone Found Above");
+//
+//        addEntryLang("earthen_rites", "Earthen Rites", "Totemic Arts of Forming");
+//        addSimpleRiteEntry(MalumSpiritRiteTypes.RITE_OF_THE_STONE_WARD, "To Harden One's Flesh",
+//                "A simple rite, while active it will bless nearby creatures with Stone Ward, providing a damage reduction that grows in power when unarmored.",
+//                "Affected Creatures Are Blessed With Stone Ward\nStone Ward reduces damage taken by one fifth\nStone Ward Doubles in power when Unarmored");
+//        addSimpleRiteEntry(MalumSpiritRiteTypes.RITE_OF_THE_OAKEN_MIGHT, "To Ossify One's Blows",
+//                "A simple rite, while active it will bless nearby creatures with Oaken Might, providing a flat damage increase that grows in powered when empty handed.",
+//                "Affected Creatures Are Blessed With Oaken Might\nOaken Might increases damage dealt by one heart worth\nOaken Might Doubles in power when Empty Handed");
+//        addSimpleRiteEntry(MalumSpiritRiteTypes.RITE_OF_CREATION, "To Form From Nothing",
+//                "An advanced rite, while active it will weave a Bound Rite Locus. When this Locus travels over empty space it will transmute air molecules into earth, forming Cobblestone.",
+//                "Creates a Bound Rite Locus\nWhen The Locus Travels Over Empty Space, It Will Form Cobblestone Where Possible");
 //        addSimpleRiteEntry(MalumSpiritRiteTypes.RITE_OF_DESTRUCTION, "To Unmake What Was",
 //                "An advanced rite, while active it will weave a Bound Rite Locus. When this Locus travels over blocks it will it will attempt to break them",
 //                "Creates a Bound Rite Locus\nWhen The Locus Travels Over Blocks It Will Attempt To Break Them\nBlocks Are Broken Regardless Of Any Mining Gear Requirements Unless Strictly Impossible");
 
-        addEntryLang("infernal_rites", "Infernal Rites", "Totemic Arts of Scorching");
-        addSimpleRiteEntry(MalumSpiritRiteTypes.RITE_OF_THE_BURNING_FERVOR, "To Ignite One's Spirit",
-                "A simple rite, while active it will bless nearby creatures with Burning Fervor, increasing attack speed and mining speed.",
-                "Affected Creatures Are Blessed With Burning Fervor\nBurning Fervor increases attack speed and mining speed by two fifths");
-        addSimpleRiteEntry(MalumSpiritRiteTypes.RITE_OF_THE_FIERY_EMBRACE, "To Calm One's Flames",
-                "A simple rite, while active it will extinguish nearby creatures and then grant the blessing of Fiery Embrace, providing a passive healing effect.",
-                "Affected Creatures are Extinguished and Blessed with Fiery Embrace\nFiery Embrace recovers one heart of damage twice every second\nWill only target creatures that are on fire");
-        addSimpleRiteEntry(MalumSpiritRiteTypes.RITE_OF_SMELTING, "To Refine What Is Raw",
-                "An advanced rite, while active it will weave a Bound Rite Locus. When this Locus travels over blocks it will imbue them with fire, Smelting them instantaneously as if in a furnace.",
-                "Creates a Bound Rite Locus\nWhen The Locus Travels Over Blocks It Will Attempt To Smelt Them\nBlocks Are Smelted As If In A Furnace");
-        addSimpleRiteEntry(MalumSpiritRiteTypes.RITE_OF_QUICKENING, "To Hasten Progress",
-                "An advanced rite, while active it will weave a Bound Rite Locus. When this Locus travels over furnaces of any kind it will accelerate their smelting process greatly.",
-                "Creates a Bound Rite Locus\nWhen The Locus Travels Over Furnaces It Will Accelerate Their Smelting Process\nFuel Consumption Remains Proportional");
+//        addEntryLang("infernal_rites", "Infernal Rites", "Totemic Arts of Scorching");
+//        addSimpleRiteEntry(MalumSpiritRiteTypes.RITE_OF_THE_BURNING_FERVOR, "To Ignite One's Spirit",
+//                "A simple rite, while active it will bless nearby creatures with Burning Fervor, increasing attack speed and mining speed.",
+//                "Affected Creatures Are Blessed With Burning Fervor\nBurning Fervor increases attack speed and mining speed by two fifths");
+//        addSimpleRiteEntry(MalumSpiritRiteTypes.RITE_OF_THE_FIERY_EMBRACE, "To Calm One's Flames",
+//                "A simple rite, while active it will extinguish nearby creatures and then grant the blessing of Fiery Embrace, providing a passive healing effect.",
+//                "Affected Creatures are Extinguished and Blessed with Fiery Embrace\nFiery Embrace recovers one heart of damage twice every second\nWill only target creatures that are on fire");
+//        addSimpleRiteEntry(MalumSpiritRiteTypes.RITE_OF_SMELTING, "To Refine What Is Raw",
+//                "An advanced rite, while active it will weave a Bound Rite Locus. When this Locus travels over blocks it will imbue them with fire, Smelting them instantaneously as if in a furnace.",
+//                "Creates a Bound Rite Locus\nWhen The Locus Travels Over Blocks It Will Attempt To Smelt Them\nBlocks Are Smelted As If In A Furnace");
+//        addSimpleRiteEntry(MalumSpiritRiteTypes.RITE_OF_QUICKENING, "To Hasten Progress",
+//                "An advanced rite, while active it will weave a Bound Rite Locus. When this Locus travels over furnaces of any kind it will accelerate their smelting process greatly.",
+//                "Creates a Bound Rite Locus\nWhen The Locus Travels Over Furnaces It Will Accelerate Their Smelting Process\nFuel Consumption Remains Proportional");
 
         addEntryHeader("blight", "A Study on Blight", "What, why, and how");
         addHeadline("blight.intro", "A Study on Blight");

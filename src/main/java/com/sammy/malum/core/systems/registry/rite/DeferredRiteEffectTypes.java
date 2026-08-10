@@ -10,14 +10,14 @@ import org.jetbrains.annotations.*;
 import java.util.function.*;
 
 @SuppressWarnings("unchecked")
-public class DeferredRiteEntityEffectTypes extends DeferredRegister<SpiritRiteEffect> {
+public class DeferredRiteEffectTypes extends DeferredRegister<SpiritRiteEffect> {
 
-    protected DeferredRiteEntityEffectTypes(String namespace) {
+    protected DeferredRiteEffectTypes(String namespace) {
         super(MalumSpiritRiteEffectTypes.EFFECT_KEY, namespace);
     }
 
-    public static DeferredRiteEntityEffectTypes create(String modid) {
-        return new DeferredRiteEntityEffectTypes(modid);
+    public static DeferredRiteEffectTypes create(String modid) {
+        return new DeferredRiteEffectTypes(modid);
     }
 
     @SuppressWarnings("unchecked")

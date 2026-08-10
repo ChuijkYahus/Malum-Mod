@@ -1,0 +1,12 @@
+{
+  "effect": "malum:unchained_rite_effect",
+  "id": "malum:unchained_rite",
+  "is_soulwood": true,
+  "pattern": [
+    "malum:arcane",
+    "malum:arcane",
+    "malum:arcane",
+    "malum:arcane",
+    "malum:arcane"
+  ]
+}

@@ -1,0 +1,10 @@
+{
+  "effect": "malum:harming_effect",
+  "id": "malum:rite_of_harming",
+  "is_soulwood": false,
+  "pattern": [
+    "malum:arcane",
+    "malum:wicked",
+    "malum:wicked"
+  ]
+}

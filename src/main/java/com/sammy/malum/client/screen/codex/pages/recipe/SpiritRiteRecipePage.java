@@ -39,10 +39,10 @@ public class SpiritRiteRecipePage extends BookPage {
 
     @Override
     public void render(CodexEntryScreen screen, GuiGraphics guiGraphics, int left, int top, int mouseX, int mouseY, float partialTicks, boolean isRepeat) {
-        var totemBase = riteType.isCorrupted() ? MalumContent.Totemancy.SOULWOOD_TOTEM_BASE : MalumContent.Totemancy.RUNEWOOD_TOTEM_BASE;
+        var totemBase = riteType.isSoulwood() ? MalumContent.Totemancy.SOULWOOD_TOTEM_BASE : MalumContent.Totemancy.RUNEWOOD_TOTEM_BASE;
         CodexItemHelper.renderItem(screen, guiGraphics, totemBase.getDefaultInstance(), left + 63, top + 147, mouseX, mouseY);
 
-        var spirits = riteType.getSpirits();
+        var spirits = riteType.getPattern();
         var minecraft = Minecraft.getInstance();
         var rand = minecraft.level.random;
         var poseStack = guiGraphics.pose();
@@ -57,10 +57,10 @@ public class SpiritRiteRecipePage extends BookPage {
         int riteStartY = top + 118;
         for (int i = 0; i < spirits.size(); i++) {
             int y = riteStartY - 20 * i;
-            var spiritType = spirits.get(i);
-            var spiritTexture = spiritType.getSpirit().getGlowTexture();
-            var stack = spirits.get(i).getSpiritStack();
-            var isCorrupt = riteType.isCorrupted();
+            var spiritType = spirits.get(i).value();
+            var spiritTexture = spiritType.getGlowTexture();
+            var stack = spiritType.getSpiritStack();
+            var isCorrupt = riteType.isSoulwood();
             renderSpiritIcon(spiritTexture, poseStack, spiritType, isCorrupt, riteStartX, y);
             if (screen.isHovering(mouseX, mouseY, riteStartX, y, 16, 16)) {
                 guiGraphics.renderComponentTooltip(minecraft.font, Screen.getTooltipFromItem(minecraft, stack), mouseX, mouseY);

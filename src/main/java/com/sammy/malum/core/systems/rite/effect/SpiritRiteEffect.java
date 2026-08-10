@@ -24,7 +24,7 @@ public abstract class SpiritRiteEffect implements RegistryCodecBuddy.RegistryCod
         this.tags = ImmutableList.copyOf(tags);
     }
 
-    public abstract boolean triggerRiteEffect(ServerLevel level, BlockPos pos, SpiritArcanaType definingSpirit, RiteParameters parameters);
+    public abstract boolean triggerRiteEffect(ServerLevel level, BlockPos pos, SpiritArcanaType definingSpirit, RiteEffectConfig parameters);
 
     public List<SpiritRiteEffectTag> getTags() {
         return tags;
@@ -41,46 +41,5 @@ public abstract class SpiritRiteEffect implements RegistryCodecBuddy.RegistryCod
     @Override
     public RegistryCodecBuddy<SpiritRiteEffect> getCodec() {
         return CODEC;
-    }
-
-    public static RiteParametersBuilder builder() {
-        return new RiteParametersBuilder();
-    }
-
-    public static class RiteParametersBuilder {
-        private int totemHeight = 0;
-        private Direction totemDirection = Direction.NORTH;
-
-        public RiteParametersBuilder setTotemHeight(int totemHeight) {
-            this.totemHeight = totemHeight;
-            return this;
-        }
-
-        public RiteParametersBuilder setTotemDirection(Direction totemDirection) {
-            this.totemDirection = totemDirection;
-            return this;
-        }
-
-        public RiteParameters build() {
-            return new RiteParameters(totemHeight, totemDirection);
-        }
-    }
-
-    public static class RiteParameters {
-        private final int totemHeight;
-        private final Direction totemDirection;
-
-        public RiteParameters(int totemHeight, Direction totemDirection) {
-            this.totemHeight = totemHeight;
-            this.totemDirection = totemDirection;
-        }
-
-        public int getTotemHeight() {
-            return totemHeight;
-        }
-
-        public Optional<Direction> getTotemDirection() {
-            return Optional.ofNullable(totemDirection);
-        }
     }
 }

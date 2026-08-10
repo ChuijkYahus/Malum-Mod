@@ -1,0 +1,10 @@
+{
+  "effect": "malum:nourishment_effect",
+  "id": "malum:rite_of_nourishment",
+  "is_soulwood": true,
+  "pattern": [
+    "malum:arcane",
+    "malum:sacred",
+    "malum:sacred"
+  ]
+}

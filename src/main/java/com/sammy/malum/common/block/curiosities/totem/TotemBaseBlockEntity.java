@@ -1,6 +1,7 @@
 package com.sammy.malum.common.block.curiosities.totem;
 
 import com.sammy.malum.*;
+import com.sammy.malum.common.data.custom.rite.*;
 import com.sammy.malum.core.systems.rite.*;
 import com.sammy.malum.core.systems.spirit.SpiritArcanaType;
 import com.sammy.malum.registry.common.block.*;
@@ -66,9 +67,8 @@ public class TotemBaseBlockEntity extends LodestoneBlockEntity {
         if (compound.contains("state")) {
             state = TotemBaseState.values()[compound.getInt("state")];
         }
-        if(!level.isClientSide()){
-            rite = SpiritRiteType.load((ServerLevel) level,compound).orElse(null);
-        }
+        rite = SpiritRiteType.load(compound).orElse(null);
+
         if (compound.contains("direction")) {
             totemDirection = Direction.values()[compound.getInt("direction")];
         }
@@ -90,7 +90,7 @@ public class TotemBaseBlockEntity extends LodestoneBlockEntity {
                         timer = INTERVAL;
                         addTotemPole(level, pole);
                     } else {
-                        var rite = MalumSpiritRiteTypes.getRite(level, this);
+                        var rite = SpiritRiteTypeReloadListener.DATA.findMatching(level, this);
                         if (rite == null) {
                             setState(level, TotemBaseState.INACTIVE);
                             return;

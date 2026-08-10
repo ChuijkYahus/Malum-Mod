@@ -13,6 +13,7 @@ import com.sammy.malum.core.systems.rite.effect.SpiritRiteEffectTag;
 import com.sammy.malum.core.systems.spirit.SpiritArcanaType;
 import com.sammy.malum.core.systems.spirit.SpiritTextData;
 import com.sammy.malum.datagen.lang.effect.*;
+import com.sammy.malum.datagen.magic.*;
 import com.sammy.malum.registry.common.*;
 import com.sammy.malum.registry.common.MalumContent;
 import com.sammy.malum.registry.common.enchantment.*;
@@ -39,7 +40,6 @@ import static com.sammy.malum.registry.common.MalumAttributes.ATTRIBUTES;
 import static com.sammy.malum.registry.common.MalumMobEffects.MOB_EFFECTS;
 import static com.sammy.malum.registry.common.sound.MalumSoundEvents.SOUND_EVENTS;
 import static com.sammy.malum.registry.common.magic.MalumGeasEffectTypes.GEAS_TYPES;
-import static com.sammy.malum.registry.common.magic.rite.MalumSpiritRiteTypes.RITE_TYPES;
 import static com.sammy.malum.registry.common.MalumContent.BLOCKS;
 import static com.sammy.malum.registry.common.entity.MalumEntityTypes.ENTITY_TYPES;
 
@@ -75,7 +75,6 @@ public class MalumLangDatagen extends LanguageProvider {
         var effects = new HashSet<>(MOB_EFFECTS.getEntries());
         var attributes = new HashSet<>(ATTRIBUTES.getEntries());
         var entities = new HashSet<>(ENTITY_TYPES.getEntries());
-        var rites = new HashSet<>(RITE_TYPES.getEntries());
         var geasa = new HashSet<>(GEAS_TYPES.getEntries());
         var soulwovenBanners = SoulwovenBannerPatternDataComponent.REGISTERED_PATTERNS;
         var crucibleAttributes = ArtificeAttributeType.CRUCIBLE_ATTRIBUTES;
@@ -122,11 +121,6 @@ public class MalumLangDatagen extends LanguageProvider {
         entities.forEach(e -> {
             String name = DataHelper.toTitleCase(e.getId().getPath(), "_");
             add("entity.malum." + BuiltInRegistries.ENTITY_TYPE.getKey(e.get()).getPath(), name);
-        });
-        rites.forEach(r -> {
-            SpiritRiteType rite = r.get();
-            String name = DataHelper.toTitleCase(rite.getName(), "_");
-            add(rite.getLangKey(), name);
         });
         geasa.forEach(g -> {
             GeasEffectType effect = g.get();

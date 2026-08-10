@@ -1,0 +1,11 @@
+{
+  "effect": "malum:block_gravity_effect",
+  "id": "malum:rite_of_gravity",
+  "is_soulwood": false,
+  "pattern": [
+    "malum:eldritch",
+    "malum:arcane",
+    "malum:aerial",
+    "malum:aerial"
+  ]
+}

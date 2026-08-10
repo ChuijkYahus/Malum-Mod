@@ -182,7 +182,7 @@ public class ArcanaPylonBlockEntity extends ObeliskCoreBlockEntity implements IA
         if (RITE_EMPOWERMENT_EFFECTS.containsKey(holder)) {
             var effectHolder = RITE_EMPOWERMENT_EFFECTS.get(holder);
             if (effectHolder != null) {
-                var params = SpiritRiteEffect.builder()
+                var params = RiteEffectConfig.builder()
                         .setTotemHeight(2)
                         .build();
                 var effect = effectHolder.get();
