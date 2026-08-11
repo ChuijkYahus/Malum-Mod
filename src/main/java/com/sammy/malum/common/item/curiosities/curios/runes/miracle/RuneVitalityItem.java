@@ -7,6 +7,7 @@ import com.sammy.malum.registry.common.magic.*;
 import net.minecraft.core.*;
 import net.minecraft.world.entity.ai.attributes.*;
 import net.minecraft.world.item.ItemStack;
+import team.lodestar.wayward_attributes.core.registry.WaywardAttributeTypes;
 import top.theillusivec4.curios.api.SlotContext;
 
 public class RuneVitalityItem extends MiracleRuneCurioItem {
@@ -17,7 +18,7 @@ public class RuneVitalityItem extends MiracleRuneCurioItem {
 
     @Override
     public void addAttributeModifiers(Multimap<Holder<Attribute>, AttributeModifier> map, SlotContext slotContext, ItemStack stack) {
-        addAttributeModifier(map, MalumAttributes.HEALING_MULTIPLIER,
+        addAttributeModifier(map, WaywardAttributeTypes.HEALING_MULTIPLIER,
                 new AttributeModifier(MalumMod.malumPath("vitality_rune"), 0.2f, AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL));
     }
 }

@@ -12,10 +12,6 @@
     "texture": "wayward_attributes:icon/sigil"
   },
   {
-    "attribute": "malum:healing_received",
-    "texture": "wayward_attributes:icon/heart"
-  },
-  {
     "attribute": "malum:malignant_conversion",
     "texture": "wayward_attributes:icon/barrier"
   },

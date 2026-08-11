@@ -14,6 +14,7 @@ import net.minecraft.world.item.*;
 import net.neoforged.neoforge.common.*;
 import net.neoforged.neoforge.event.entity.living.*;
 import net.neoforged.neoforge.event.tick.*;
+import team.lodestar.wayward_attributes.core.registry.WaywardAttributeTypes;
 
 import java.util.function.*;
 
@@ -37,11 +38,11 @@ public class TidalAffinityGeas extends GeasEffect {
             addAttributeModifier(modifiers, Attributes.BLOCK_BREAK_SPEED, attackSpeed, AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL);
             addAttributeModifier(modifiers, Attributes.SUBMERGED_MINING_SPEED, 4f, AttributeModifier.Operation.ADD_VALUE);
             if (hasConduitEffect) {
-                addAttributeModifier(modifiers, MalumAttributes.HEALING_MULTIPLIER, 0.5f, AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL);
+                addAttributeModifier(modifiers, WaywardAttributeTypes.HEALING_MULTIPLIER, 0.5f, AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL);
             }
         }
         else {
-            addAttributeModifier(modifiers, MalumAttributes.HEALING_MULTIPLIER, -1f, AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL);
+            addAttributeModifier(modifiers, WaywardAttributeTypes.HEALING_MULTIPLIER, -1f, AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL);
         }
         return modifiers;
     }

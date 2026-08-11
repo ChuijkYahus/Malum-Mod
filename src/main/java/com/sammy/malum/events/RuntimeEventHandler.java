@@ -184,7 +184,6 @@ public class RuntimeEventHandler {
 
     @SubscribeEvent
     public static void onHeal(LivingHealEvent event) {
-        MalumAttributeEventHandler.heal(event);
         LifeweaverGeas.onHeal(event);
         TrialOfFaithEffect.spawnLocusts(event);
     }

@@ -25,18 +25,6 @@ public class MalumAttributeEventHandler {
         }
     }
 
-    public static void heal(LivingHealEvent event) {
-        if (event.getAmount() <= 0) {
-            return;
-        }
-        final LivingEntity entity = event.getEntity();
-        if (!entity.getAttributes().hasAttribute(MalumAttributes.HEALING_MULTIPLIER)) {
-            return;
-        }
-        float multiplier = (float) entity.getAttributeValue(MalumAttributes.HEALING_MULTIPLIER);
-        event.setAmount(event.getAmount() * multiplier);
-    }
-
     public static Optional<Float> modifyMagicDamageArmorPiercing(LivingEntity livingEntity, DamageSource damageSource, float damageAmount) {
         if (CommonConfig.MAGIC_DAMAGE_REDUCED_ARMOR_PIERCING.getConfigValue()) {
             if (damageSource.is(MalumTags.DamageTypes.BYPASSES_HALF_ARMOR)) {

@@ -9,11 +9,12 @@ import net.minecraft.world.entity.ai.attributes.*;
 import net.minecraft.world.entity.player.*;
 import net.neoforged.neoforge.event.entity.living.*;
 import team.lodestar.lodestone.helpers.*;
+import team.lodestar.wayward_attributes.core.registry.WaywardAttributeTypes;
 
 public class TrialOfFaithEffect extends MobEffect {
     public TrialOfFaithEffect() {
         super(MobEffectCategory.BENEFICIAL, ColorHelper.getColor(88, 86, 60));
-        addAttributeModifier(MalumAttributes.HEALING_MULTIPLIER, MalumMod.malumPath("trial_of_faith"), 0.1f, AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL);
+        addAttributeModifier(WaywardAttributeTypes.HEALING_MULTIPLIER, MalumMod.malumPath("trial_of_faith"), 0.1f, AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL);
     }
 
     @Override
