@@ -49,8 +49,10 @@ public class MalumScytheItem extends LodestoneCombatItem implements IMalumEventR
 
     public static void enableScytheSweeping(SweepAttackEvent event) {
         Player attacker = event.getEntity();
-        if (canSweep(attacker)) {
-            event.setSweeping(true);
+        if (attacker.getMainHandItem().getItem() instanceof MalumScytheItem) {
+            if (canSweep(attacker)) {
+                event.setSweeping(true);
+            }
         }
     }
 
