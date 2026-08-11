@@ -8,18 +8,18 @@ import com.sammy.malum.client.screen.codex.objects.ProgressionEntryObject;
 
 import java.util.function.Consumer;
 
-public class SubspaceBookObjectBuilder implements PlacedBookEntry.BookObjectBuilder, EntryAcceptor {
+public class SubspaceBookObjectSupplier implements PlacedBookEntry.BookObjectSupplier, EntryAcceptor {
 
     protected final EntryStorage entryStorage = new EntryStorage();
     protected final int x, y;
     protected int size = 160;
 
-    public SubspaceBookObjectBuilder(int x, int y) {
+    public SubspaceBookObjectSupplier(int x, int y) {
         this.x = x;
         this.y = y;
     }
 
-    public SubspaceBookObjectBuilder setSize(int size) {
+    public SubspaceBookObjectSupplier setSize(int size) {
         this.size = size;
         return this;
     }
@@ -30,7 +30,7 @@ public class SubspaceBookObjectBuilder implements PlacedBookEntry.BookObjectBuil
     }
 
     @Override
-    public SubspaceBookObjectBuilder addSubspaceEntry(String identifier, int x, int y, Consumer<PlacedBookEntryBuilder> config) {
+    public SubspaceBookObjectSupplier addSubspaceEntry(String identifier, int x, int y, Consumer<PlacedBookEntryBuilder> config) {
         throw new UnsupportedOperationException();
     }
 
