@@ -238,7 +238,7 @@ public class SoulBrazierBlockEntity extends LodestoneBlockEntity implements IInv
             return false;
         }
         var item = stack.getItem();
-        if (MalumContent.BlockSets.ETHER.is(item)) {
+        if (MalumContent.BuildingBlocks.ETHER.is(item)) {
             beginSoulbinding(level, BrazierState.BINDING);
         } else if (item.equals(MalumContent.Materials.PARACAUSAL_FLAME.get())) {
             beginSoulbinding(level, BrazierState.UNBINDING);

@@ -449,40 +449,10 @@ public class MalumBlockStateSmithTypes {
         });
     });
 
-    public static BlockStateSmith<WeepingWellBlock> WEEPING_WELL_BLOCK = new BlockStateSmith<>(WeepingWellBlock.class, MalumItemModelSmithTypes.WEEPING_WELL_BLOCK_ITEM, (block, provider) -> {
-        String name = provider.getBlockName(block);
-        ModelFile model = provider.models().getExistingFile(MalumMod.malumPath("block/weeping_well/" + name));
-        provider.getVariantBuilder(block).forAllStates(s -> ConfiguredModel.builder().modelFile(model).build());
-    });
-
-    public static BlockStateSmith<WeepingWellLayeredBlock> WEEPING_WELL_LAYERED_BLOCK = new BlockStateSmith<>(WeepingWellLayeredBlock.class, MalumItemModelSmithTypes.LAYERED_WEEPING_WELL_BLOCK_ITEM, (block, provider) -> {
-        String name = provider.getBlockName(block);
-
-        provider.getVariantBuilder(block).forAllStates(s -> {
-            ModelFile model = provider.models().getExistingFile(MalumMod.malumPath("block/weeping_well/" + name + "_" + s.getValue(WeepingWellLayeredBlock.LAYER)));
-            var direction = s.getValue(WeepingWellLayeredBlock.FACING);
-            return ConfiguredModel.builder().modelFile(model).rotationY((int) (direction.toYRot() % 360)).build();
-        });
-    });
-
-    public static BlockStateSmith<WeepingWellDirectionalBlock> WEEPING_WELL_DIRECTIONAL_BLOCK = new BlockStateSmith<>(WeepingWellDirectionalBlock.class, MalumItemModelSmithTypes.WEEPING_WELL_BLOCK_ITEM, (block, provider) -> {
-        String name = provider.getBlockName(block);
-        ModelFile model = provider.models().getExistingFile(MalumMod.malumPath("block/weeping_well/" + name));
-        provider.getVariantBuilder(block)
-                .forAllStates(state -> {
-                    Direction dir = state.getValue(BlockStateProperties.FACING);
-                    return ConfiguredModel.builder()
-                            .modelFile(model)
-                            .rotationX(dir == Direction.DOWN ? 180 : dir.getAxis().isHorizontal() ? 90 : 0)
-                            .rotationY(dir.getAxis().isVertical() ? 0 : (((int) dir.toYRot())) % 360)
-                            .build();
-                });
-    });
-
     public static BlockStateSmith<PrimordialSoupBlock> PRIMORDIAL_SOUP = new BlockStateSmith<>(PrimordialSoupBlock.class, ItemModelSmithTypes.BLOCK_MODEL_ITEM.addTextureNameAffix("_top"), (block, provider) -> {
         String name = provider.getBlockName(block);
-        ModelFile model = provider.models().withExistingParent(name, ResourceLocation.withDefaultNamespace("block/powder_snow")).texture("texture", malumPath("block/weeping_well/" + name));
-        ModelFile topModel = provider.models().getExistingFile(malumPath("block/" + name + "_top"));
+        var model = provider.models().withExistingParent(name, ResourceLocation.withDefaultNamespace("block/powder_snow")).texture("texture", malumPath("block/weeping_well/" + name));
+        var topModel = provider.models().getExistingFile(malumPath("block/" + name + "_top"));
         provider.getVariantBuilder(block).forAllStates(s -> ConfiguredModel.builder().modelFile(s.getValue(PrimordialSoupBlock.TOP) ? topModel : model).build());
     });
 

@@ -18,7 +18,7 @@ public enum MalumItemTiers implements Tier{
     MALIGNANT_ALLOY(BlockTags.INCORRECT_FOR_NETHERITE_TOOL, 2500, 8f, 4f, 24, MalumContent.Materials.MALIGNANT_PEWTER_INGOT),
     HARNESSED_CHAOS(BlockTags.INCORRECT_FOR_DIAMOND_TOOL, 2500, 8f, 2.5f, 24, MalumContent.Materials.FUSED_CONSCIOUSNESS),
 
-    TYRVING(BlockTags.INCORRECT_FOR_DIAMOND_TOOL, 1500, 8f, 1f, 16, MalumContent.BlockSets.TWISTED_ROCK_SET.rock.block),
+    TYRVING(BlockTags.INCORRECT_FOR_DIAMOND_TOOL, 1500, 8f, 1f, 16, MalumContent.BuildingBlocks.TWISTED_ROCK_SET.rock.block),
     HEX_STAFF(BlockTags.INCORRECT_FOR_DIAMOND_TOOL, 1250, 8f, 2.5f, 16, MalumContent.Materials.MNEMONIC_FRAGMENT);
     
     private final TagKey<Block> incorrectBlocksForDrops;

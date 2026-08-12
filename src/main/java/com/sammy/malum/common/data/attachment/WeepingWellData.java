@@ -11,7 +11,7 @@ import java.util.*;
 
 public class WeepingWellData {
 
-    public static final float MAX_REJECTION = 60;
+    public static final float MAX_REJECTION = 100;
 
     public static final Codec<WeepingWellData> CODEC = RecordCodecBuilder.create(obj -> obj.group(
             Codec.BOOL.optionalFieldOf("isNearWeepingWell", false).forGetter(h -> h.isNearWeepingWell),

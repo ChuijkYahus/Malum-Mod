@@ -11,11 +11,11 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "malum:primordial_soup"
+          "name": "malum:weeping_well"
         }
       ],
       "rolls": 1.0
     }
   ],
-  "random_sequence": "malum:blocks/primordial_soup"
+  "random_sequence": "malum:blocks/weeping_well"
 }

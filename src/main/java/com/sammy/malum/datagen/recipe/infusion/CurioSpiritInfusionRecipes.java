@@ -7,7 +7,7 @@ import net.minecraft.world.item.*;
 import net.neoforged.neoforge.common.*;
 import net.neoforged.neoforge.common.crafting.*;
 
-import static com.sammy.malum.registry.common.MalumContent.BlockSets.*;
+import static com.sammy.malum.registry.common.MalumContent.BuildingBlocks.*;
 import static com.sammy.malum.registry.common.MalumContent.Materials.*;
 import static com.sammy.malum.registry.common.magic.MalumSpiritTypes.*;
 

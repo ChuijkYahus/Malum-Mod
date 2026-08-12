@@ -38,7 +38,7 @@ import java.util.stream.Collectors;
 
 import static com.sammy.malum.registry.common.MalumContent.BLOCKS;
 import static com.sammy.malum.registry.common.MalumContent.Blight.*;
-import static com.sammy.malum.registry.common.MalumContent.BlockSets.*;
+import static com.sammy.malum.registry.common.MalumContent.BuildingBlocks.*;
 import static com.sammy.malum.registry.common.MalumContent.Materials.*;
 
 public class MalumBlockLootDatagen extends BlockLootSubProvider {

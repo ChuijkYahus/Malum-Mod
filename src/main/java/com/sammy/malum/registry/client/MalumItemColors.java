@@ -8,14 +8,12 @@ import com.sammy.malum.common.item.curiosities.pouch.SoulwovenPouchItem;
 import com.sammy.malum.common.item.curiosities.tools.CatalystLobberItem;
 import com.sammy.malum.common.item.curiosities.tools.spellweaver.SpellweavingPickaxeItem;
 import com.sammy.malum.common.item.ether.EtherItem;
-import com.sammy.malum.common.item.spirit.SpiritShardItem;
 import com.sammy.malum.registry.common.MalumContent;
 import net.minecraft.client.renderer.item.ItemProperties;
 import net.neoforged.bus.api.EventPriority;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.event.lifecycle.FMLClientSetupEvent;
 import net.neoforged.neoforge.client.event.RegisterColorHandlersEvent;
-import team.lodestar.lodestone.helpers.ColorHelper;
 import team.lodestar.lodestone.modules.toolkit.item.LodestoneArmorItem;
 
 public class MalumItemColors {
@@ -37,7 +35,7 @@ public class MalumItemColors {
                     MalumMod.malumPath("filled"),
                     (stack, level, holder, holderID) -> RavenousPouchItem.getFullnessDisplay(stack));
             ItemProperties.register(
-                    MalumContent.BlockSets.SOULWOVEN_BANNER.getItem(),
+                    MalumContent.BuildingBlocks.SOULWOVEN_BANNER.getItem(),
                     MalumMod.malumPath("pattern"),
                     (stack, level, holder, holderID) -> SoulwovenBannerBlockItem.getBannerPattern(stack));
             ItemProperties.register(
@@ -62,12 +60,12 @@ public class MalumItemColors {
                     case 1 -> EtherItem.getPrimaryColor(s);
                     default -> -1;
                 },
-                MalumContent.BlockSets.ETHER_TORCH, MalumContent.BlockSets.IRIDESCENT_ETHER_TORCH,
-                MalumContent.BlockSets.ETHER_CANDLE, MalumContent.BlockSets.IRIDESCENT_ETHER_CANDLE,
-                MalumContent.BlockSets.ETHER_BRAZIER, MalumContent.BlockSets.IRIDESCENT_ETHER_BRAZIER,
-                MalumContent.BlockSets.ETHER_CRESSET, MalumContent.BlockSets.IRIDESCENT_ETHER_CRESSET);
+                MalumContent.BuildingBlocks.ETHER_TORCH, MalumContent.BuildingBlocks.IRIDESCENT_ETHER_TORCH,
+                MalumContent.BuildingBlocks.ETHER_CANDLE, MalumContent.BuildingBlocks.IRIDESCENT_ETHER_CANDLE,
+                MalumContent.BuildingBlocks.ETHER_BRAZIER, MalumContent.BuildingBlocks.IRIDESCENT_ETHER_BRAZIER,
+                MalumContent.BuildingBlocks.ETHER_CRESSET, MalumContent.BuildingBlocks.IRIDESCENT_ETHER_CRESSET);
 
         event.register((s, c) -> c == 0 ? EtherItem.getPrimaryColor(s) : EtherItem.getSecondaryColor(s),
-                MalumContent.BlockSets.ETHER, MalumContent.BlockSets.IRIDESCENT_ETHER);
+                MalumContent.BuildingBlocks.ETHER, MalumContent.BuildingBlocks.IRIDESCENT_ETHER);
     }
 }

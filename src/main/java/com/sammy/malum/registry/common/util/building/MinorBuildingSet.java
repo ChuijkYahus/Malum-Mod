@@ -6,7 +6,6 @@ import com.sammy.malum.datagen.block.MalumBlockStateDatagen;
 import com.sammy.malum.datagen.block.MalumBlockStateSmithTypes;
 import com.sammy.malum.datagen.recipe.RecipeDatagenCommons;
 import com.sammy.malum.datagen.sound.MalumBlockSoundDatagen;
-import com.sammy.malum.registry.common.*;
 import com.sammy.malum.registry.common.sound.MalumBlockSoundType;
 import com.sammy.malum.registry.common.util.MalumRegistrySet;
 import com.sammy.malum.registry.common.util.data.BlockBundle;
@@ -26,14 +25,13 @@ import java.util.function.Function;
 import java.util.function.Supplier;
 
 import static com.sammy.malum.datagen.recipe.RecipeDatagenCommons.*;
-import static com.sammy.malum.datagen.recipe.crafting.MalumRockSetDatagen.bricksLikeRecipe;
 import static com.sammy.malum.registry.common.MalumContent.*;
 
 public class MinorBuildingSet extends MalumRegistrySet {
 
     public static List<MinorBuildingSet> getMalumSets() {
 //        return List.of(BlockSets.SEED_QUARTZ, BlockSets.TRODDEN_STONE, BlockSets.IGNEOUS_ROCK, BlockSets.COMPOSITE_STONE, BlockSets.EBONSTONE);
-        return List.of(BlockSets.TRODDEN_STONE, BlockSets.IGNEOUS_ROCK, BlockSets.COMPOSITE_STONE, BlockSets.EBONSTONE);
+        return List.of(BuildingBlocks.TRODDEN_STONE, BuildingBlocks.IGNEOUS_ROCK, BuildingBlocks.COMPOSITE_STONE, BuildingBlocks.EBONSTONE);
     }
 
     private final MalumBlockSoundType rawSound;

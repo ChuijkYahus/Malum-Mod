@@ -9,8 +9,8 @@ import net.neoforged.neoforge.registries.datamaps.builtin.*;
 
 import java.util.concurrent.CompletableFuture;
 
-import static com.sammy.malum.registry.common.MalumContent.BlockSets.*;
-import static com.sammy.malum.registry.common.MalumContent.BlockSets.RUNEWOOD_SET;
+import static com.sammy.malum.registry.common.MalumContent.BuildingBlocks.*;
+import static com.sammy.malum.registry.common.MalumContent.BuildingBlocks.RUNEWOOD_SET;
 import static com.sammy.malum.registry.common.MalumContent.Materials.*;
 import static com.sammy.malum.registry.common.MalumDataMaps.*;
 import static com.sammy.malum.registry.common.MalumContent.*;

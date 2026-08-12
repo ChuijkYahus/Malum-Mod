@@ -15,26 +15,26 @@ public class MalumLesserSoulstuffTab extends AbstractMalumCreativeTab {
         public void buildCategories() {
                 createCategory("soulstuff")
                         .addItems(
-                                BlockSets.SACRED_SPIRITED_GLASS,
-                                BlockSets.WICKED_SPIRITED_GLASS,
-                                BlockSets.ARCANE_SPIRITED_GLASS,
-                                BlockSets.ELDRITCH_SPIRITED_GLASS,
-                                BlockSets.AERIAL_SPIRITED_GLASS,
-                                BlockSets.AQUEOUS_SPIRITED_GLASS,
-                                BlockSets.EARTHEN_SPIRITED_GLASS,
-                                BlockSets.INFERNAL_SPIRITED_GLASS,
-                                BlockSets.NULL_SPIRITED_GLASS
+                                BuildingBlocks.SACRED_SPIRITED_GLASS,
+                                BuildingBlocks.WICKED_SPIRITED_GLASS,
+                                BuildingBlocks.ARCANE_SPIRITED_GLASS,
+                                BuildingBlocks.ELDRITCH_SPIRITED_GLASS,
+                                BuildingBlocks.AERIAL_SPIRITED_GLASS,
+                                BuildingBlocks.AQUEOUS_SPIRITED_GLASS,
+                                BuildingBlocks.EARTHEN_SPIRITED_GLASS,
+                                BuildingBlocks.INFERNAL_SPIRITED_GLASS,
+                                BuildingBlocks.NULL_SPIRITED_GLASS
                         ).nextLine()
                         .addItems(
-                                BlockSets.SACRED_VARNISHED_TERRACOTTA,
-                                BlockSets.WICKED_VARNISHED_TERRACOTTA,
-                                BlockSets.ARCANE_VARNISHED_TERRACOTTA,
-                                BlockSets.ELDRITCH_VARNISHED_TERRACOTTA,
-                                BlockSets.AERIAL_VARNISHED_TERRACOTTA,
-                                BlockSets.AQUEOUS_VARNISHED_TERRACOTTA,
-                                BlockSets.EARTHEN_VARNISHED_TERRACOTTA,
-                                BlockSets.INFERNAL_VARNISHED_TERRACOTTA,
-                                BlockSets.NULL_VARNISHED_TERRACOTTA
+                                BuildingBlocks.SACRED_VARNISHED_TERRACOTTA,
+                                BuildingBlocks.WICKED_VARNISHED_TERRACOTTA,
+                                BuildingBlocks.ARCANE_VARNISHED_TERRACOTTA,
+                                BuildingBlocks.ELDRITCH_VARNISHED_TERRACOTTA,
+                                BuildingBlocks.AERIAL_VARNISHED_TERRACOTTA,
+                                BuildingBlocks.AQUEOUS_VARNISHED_TERRACOTTA,
+                                BuildingBlocks.EARTHEN_VARNISHED_TERRACOTTA,
+                                BuildingBlocks.INFERNAL_VARNISHED_TERRACOTTA,
+                                BuildingBlocks.NULL_VARNISHED_TERRACOTTA
                         ).nextLine()
                         .addItems(SoulwovenBannerBlockItem::addBannerPatterns)
                         .bake();
@@ -43,54 +43,54 @@ public class MalumLesserSoulstuffTab extends AbstractMalumCreativeTab {
                         .bake();
                 createCategory("ether")
                         .addItems(
-                                BlockSets.ETHER,
-                                BlockSets.ETHER_CANDLE,
-                                BlockSets.ETHER_TORCH,
-                                BlockSets.ETHER_BRAZIER,
-                                BlockSets.ETHER_CRESSET
+                                BuildingBlocks.ETHER,
+                                BuildingBlocks.ETHER_CANDLE,
+                                BuildingBlocks.ETHER_TORCH,
+                                BuildingBlocks.ETHER_BRAZIER,
+                                BuildingBlocks.ETHER_CRESSET
                         ).nextLine()
                         .addItems(
-                                BlockSets.IRIDESCENT_ETHER,
-                                BlockSets.IRIDESCENT_ETHER_CANDLE,
-                                BlockSets.IRIDESCENT_ETHER_TORCH,
-                                BlockSets.IRIDESCENT_ETHER_BRAZIER,
-                                BlockSets.IRIDESCENT_ETHER_CRESSET
+                                BuildingBlocks.IRIDESCENT_ETHER,
+                                BuildingBlocks.IRIDESCENT_ETHER_CANDLE,
+                                BuildingBlocks.IRIDESCENT_ETHER_TORCH,
+                                BuildingBlocks.IRIDESCENT_ETHER_BRAZIER,
+                                BuildingBlocks.IRIDESCENT_ETHER_CRESSET
                         )
                         .bake();
                 createCategory("runewood")
                         .addItems(
                                 Materials.RUNIC_SAP_BOTTLE,
                                 Materials.RUNIC_SAPBALL,
-                                BlockSets.RUNEWOOD_SAPLING,
-                                BlockSets.RUNEWOOD_LEAVES,
-                                BlockSets.HANGING_RUNEWOOD_LEAVES,
-                                BlockSets.AZURE_RUNEWOOD_SAPLING,
-                                BlockSets.AZURE_RUNEWOOD_LEAVES,
-                                BlockSets.HANGING_AZURE_RUNEWOOD_LEAVES
+                                BuildingBlocks.RUNEWOOD_SAPLING,
+                                BuildingBlocks.RUNEWOOD_LEAVES,
+                                BuildingBlocks.HANGING_RUNEWOOD_LEAVES,
+                                BuildingBlocks.AZURE_RUNEWOOD_SAPLING,
+                                BuildingBlocks.AZURE_RUNEWOOD_LEAVES,
+                                BuildingBlocks.HANGING_AZURE_RUNEWOOD_LEAVES
                         ).nextLine()
-                        .addItems(BlockSets.RUNEWOOD_SET::addToCreativeTab)
+                        .addItems(BuildingBlocks.RUNEWOOD_SET::addToCreativeTab)
                         .addItems(
-                                BlockSets.RUNEWOOD_BOAT,
-                                BlockSets.RUNEWOOD_CHEST_BOAT
+                                BuildingBlocks.RUNEWOOD_BOAT,
+                                BuildingBlocks.RUNEWOOD_CHEST_BOAT
                         )
                         .bake();
                 createCategory("soulwood")
                         .addItems(
                                 Materials.AZOIC_SAP_BOTTLE,
                                 Materials.AZOIC_SAPBALL,
-                                BlockSets.SOULWOOD_SAPLING,
-                                BlockSets.SOULWOOD_LEAVES,
-                                BlockSets.HANGING_SOULWOOD_LEAVES
+                                BuildingBlocks.SOULWOOD_SAPLING,
+                                BuildingBlocks.SOULWOOD_LEAVES,
+                                BuildingBlocks.HANGING_SOULWOOD_LEAVES
                         ).nextLine()
-                        .addItems(BlockSets.SOULWOOD_SET::addToCreativeTab)
+                        .addItems(BuildingBlocks.SOULWOOD_SET::addToCreativeTab)
                         .addItems(
-                                BlockSets.SOULWOOD_BOAT,
-                                BlockSets.SOULWOOD_CHEST_BOAT
+                                BuildingBlocks.SOULWOOD_BOAT,
+                                BuildingBlocks.SOULWOOD_CHEST_BOAT
                         )
                         .bake();
                 createCategory("blight")
                         .addItems(
-                                BlockSets.BLIGHTED_SOULWOOD,
+                                BuildingBlocks.BLIGHTED_SOULWOOD,
                                 Blight.COLUMNAR_BLIGHT,
                                 Blight.BLIGHTED_EARTH,
                                 Blight.BLIGHT,
@@ -107,10 +107,10 @@ public class MalumLesserSoulstuffTab extends AbstractMalumCreativeTab {
                         .bake();
 
                 createCategory("tainted_rock")
-                        .addItems(BlockSets.TAINTED_ROCK_SET::addToCreativeTab)
+                        .addItems(BuildingBlocks.TAINTED_ROCK_SET::addToCreativeTab)
                         .bake();
                 createCategory("twisted_rock")
-                        .addItems(BlockSets.TWISTED_ROCK_SET::addToCreativeTab)
+                        .addItems(BuildingBlocks.TWISTED_ROCK_SET::addToCreativeTab)
                         .bake();
         }
 }

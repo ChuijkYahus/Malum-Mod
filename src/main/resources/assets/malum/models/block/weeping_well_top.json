@@ -1,0 +1,62 @@
+{
+	"credit": "Made with Blockbench",
+	"parent": "block/block",
+	"textures": {
+		"well": "malum:block/weeping_well/weeping_well",
+		"particle": "#well"
+	},
+	"elements": [
+		{
+			"from": [0, 0, 0],
+			"to": [16, 6, 16],
+			"rotation": {"angle": 0, "axis": "y", "origin": [8, 8, 8]},
+			"faces": {
+				"north": {"uv": [0, 10, 16, 16], "texture": "#well", "cullface": "north"},
+				"east": {"uv": [0, 10, 16, 16], "texture": "#well", "cullface": "east"},
+				"south": {"uv": [0, 10, 16, 16], "texture": "#well", "cullface": "south"},
+				"west": {"uv": [0, 10, 16, 16], "texture": "#well", "cullface": "west"},
+				"up": {"uv": [0, 0, 16, 16], "texture": "#well", "cullface": "up"}
+			}
+		},
+		{
+			"from": [0, 5.998, 0],
+			"to": [16, 6, 16],
+			"faces": {
+				"up": {"uv": [0, 0, 16, 16], "texture": "#well", "cullface": "up"},
+				"down": {"uv": [0, 16, 16, 0], "texture": "#well", "cullface": "up"}
+			}
+		},
+		{
+			"from": [0, 0, 0],
+			"to": [16, 6, 0.002],
+			"faces": {
+				"north": {"uv": [0, 10, 16, 16], "texture": "#well", "cullface": "north"},
+				"south": {"uv": [16, 10, 0, 16], "texture": "#well", "cullface": "north"}
+			}
+		},
+		{
+			"from": [0, 0, 15.998],
+			"to": [16, 6, 16],
+			"faces": {
+				"north": {"uv": [16, 10, 0, 16], "texture": "#well", "cullface": "south"},
+				"south": {"uv": [0, 10, 16, 16], "texture": "#well", "cullface": "south"}
+			}
+		},
+		{
+			"from": [0, 0, 0],
+			"to": [0.002, 6, 16],
+			"faces": {
+				"east": {"uv": [16, 10, 0, 16], "texture": "#well", "cullface": "west"},
+				"west": {"uv": [0, 10, 16, 16], "texture": "#well", "cullface": "west"}
+			}
+		},
+		{
+			"from": [15.998, 0, 0],
+			"to": [16, 6, 16],
+			"faces": {
+				"east": {"uv": [0, 10, 16, 16], "texture": "#well", "cullface": "east"},
+				"west": {"uv": [16, 10, 0, 16], "texture": "#well", "cullface": "east"}
+			}
+		}
+	]
+}

@@ -11,11 +11,11 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "malum:void_conduit"
+          "name": "malum:weeping_well_centerpiece"
         }
       ],
       "rolls": 1.0
     }
   ],
-  "random_sequence": "malum:blocks/void_conduit"
+  "random_sequence": "malum:blocks/weeping_well_centerpiece"
 }

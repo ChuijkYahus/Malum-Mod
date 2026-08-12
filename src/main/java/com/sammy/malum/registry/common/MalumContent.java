@@ -43,7 +43,6 @@ import com.sammy.malum.common.block.curiosities.totem.channel.RiteChannelBlock;
 import com.sammy.malum.common.block.curiosities.totem.spreader.RiteSpreaderBlock;
 import com.sammy.malum.common.block.curiosities.totem.unweaver.RiteUnweaverBlock;
 import com.sammy.malum.common.block.curiosities.totem.waveform.WaveformTotemBaseBlock;
-import com.sammy.malum.common.block.curiosities.weeping_well.void_depot.VoidDepotBlock;
 import com.sammy.malum.common.block.curiosities.weavers_workbench.WeaversWorkbenchBlock;
 import com.sammy.malum.common.block.curiosities.weeping_well.PrimordialSoupBlock;
 import com.sammy.malum.common.block.curiosities.weeping_well.VoidConduitBlock;
@@ -189,7 +188,7 @@ public class MalumContent {
         CompactBlocks.init();
         Materials.init();
         Blight.init();
-        BlockSets.init();
+        BuildingBlocks.init();
         Sorcery.init();
         Poppetry.init();
         Totemancy.init();
@@ -413,7 +412,7 @@ public class MalumContent {
 
     }
 
-    public static class BlockSets {
+    public static class BuildingBlocks {
 
         public static void init() {
 
@@ -472,6 +471,8 @@ public class MalumContent {
         public static final RockBlockSet TAINTED_ROCK_SET = new RockBlockSet("tainted_rock", MalumBlockProperties::TAINTED_ROCK, MalumBlockProperties::TAINTED_ROCK_BRICKS, MalumBlockProperties::CHISELED_TAINTED_ROCK);
         public static final RockBlockSet TWISTED_ROCK_SET = new RockBlockSet("twisted_rock", MalumBlockProperties::TWISTED_ROCK, MalumBlockProperties::TWISTED_ROCK_BRICKS, MalumBlockProperties::CHISELED_TWISTED_ROCK);
 
+
+//        public static final MinorBuildingSet SEED_QUARTZ = new MinorBuildingSet("seed_quartz", MalumBlockProperties::SEED_QUARTZ);
 
 
 
@@ -556,8 +557,8 @@ public class MalumContent {
         public static final BlockBlockItemHolder<Block, BlockItem> WAVEFORM_RUNEWOOD_TOTEM_BASE = registerBlock("waveform_runewood_totem_base", () -> new WaveformTotemBaseBlock<>(COPPER_ARTIFICE().addTag(IS_RITE_IMMUNE).noOcclusion(), false));
         public static final BlockBlockItemHolder<Block, BlockItem> WAVEFORM_SOULWOOD_TOTEM_BASE = registerBlock("waveform_soulwood_totem_base", () -> new WaveformTotemBaseBlock<>(COPPER_ARTIFICE().addTag(IS_RITE_IMMUNE).noOcclusion(), true));
 
-        public static final DeferredBlock<Block> RUNEWOOD_TOTEM_POLE = registerBlockNoItem("runewood_totem_pole", () -> new TotemPoleBlock<>(MalumWoodBlockProperties.RUNEWOOD().addTag(IS_RITE_IMMUNE).noOcclusion(), BlockSets.RUNEWOOD_SET.log));
-        public static final DeferredBlock<Block> SOULWOOD_TOTEM_POLE = registerBlockNoItem("soulwood_totem_pole", () -> new TotemPoleBlock<>(MalumWoodBlockProperties.SOULWOOD().addTag(IS_RITE_IMMUNE).noOcclusion(), BlockSets.SOULWOOD_SET.log));
+        public static final DeferredBlock<Block> RUNEWOOD_TOTEM_POLE = registerBlockNoItem("runewood_totem_pole", () -> new TotemPoleBlock<>(MalumWoodBlockProperties.RUNEWOOD().addTag(IS_RITE_IMMUNE).noOcclusion(), BuildingBlocks.RUNEWOOD_SET.log));
+        public static final DeferredBlock<Block> SOULWOOD_TOTEM_POLE = registerBlockNoItem("soulwood_totem_pole", () -> new TotemPoleBlock<>(MalumWoodBlockProperties.SOULWOOD().addTag(IS_RITE_IMMUNE).noOcclusion(), BuildingBlocks.SOULWOOD_SET.log));
 
         public static final BlockBlockItemHolder<Block, BlockItem> RITE_ANCHOR = registerBlock("rite_anchor", () -> new RiteAnchorBlock(TAINTED_ROCK_TOTEMANCY()));
         public static final BlockBlockItemHolder<Block, BlockItem> RITE_UNWEAVER = registerBlock("rite_unweaver", () -> new RiteUnweaverBlock(TWISTED_ROCK_TOTEMANCY()));
@@ -806,19 +807,8 @@ public class MalumContent {
 
         }
 
-        public static final BlockBlockItemHolder<Block, BlockItem> VOID_CONDUIT = registerBlock("void_conduit", () -> new VoidConduitBlock<>(PRIMORDIAL_SOUP()));
-        public static final BlockBlockItemHolder<Block, BlockItem> PRIMORDIAL_SOUP = registerBlock("primordial_soup", () -> new PrimordialSoupBlock(PRIMORDIAL_SOUP()));
-
-        public static final BlockBlockItemHolder<Block, BlockItem> VOID_DEPOT = registerBlock("void_depot", () -> new VoidDepotBlock<>(WEEPING_WELL()));
-
-        public static final BlockBlockItemHolder<Block, BlockItem> WEEPING_WELL_CENTER = registerBlock("weeping_well_center", () -> new WeepingWellLayeredBlock(WEEPING_WELL()));
-        public static final BlockBlockItemHolder<Block, BlockItem> WEEPING_WELL_SIDE = registerBlock("weeping_well_side", () -> new WeepingWellLayeredBlock(WEEPING_WELL()));
-        public static final BlockBlockItemHolder<Block, BlockItem> WEEPING_WELL_SIDE_MIRROR = registerBlock("weeping_well_side_mirror", () -> new WeepingWellLayeredBlock(WEEPING_WELL()));
-        public static final BlockBlockItemHolder<Block, BlockItem> WEEPING_WELL_CORNER = registerBlock("weeping_well_corner", () -> new WeepingWellLayeredBlock(WEEPING_WELL()));
-        public static final BlockBlockItemHolder<Block, BlockItem> WEEPING_WELL_FLAGSTONE = registerBlock("weeping_well_flagstone", () -> new WeepingWellBlock(WEEPING_WELL()));
-        public static final BlockBlockItemHolder<Block, BlockItem> WEEPING_WELL_COLUMN_BASE = registerBlock("weeping_well_column_base", () -> new WeepingWellDirectionalBlock(WEEPING_WELL()));
-        public static final BlockBlockItemHolder<Block, BlockItem> WEEPING_WELL_COLUMN = registerBlock("weeping_well_column", () -> new WeepingWellDirectionalBlock(WEEPING_WELL()));
-        public static final BlockBlockItemHolder<Block, BlockItem> WEEPING_WELL_COLUMN_CAP = registerBlock("weeping_well_column_cap", () -> new WeepingWellDirectionalBlock(WEEPING_WELL()));
+        public static final BlockBlockItemHolder<Block, BlockItem> WEEPING_WELL_CENTERPIECE = registerBlock("weeping_well_centerpiece", () -> new VoidConduitBlock<>(PRIMORDIAL_SOUP()));
+        public static final BlockBlockItemHolder<Block, BlockItem> WEEPING_WELL = registerBlock("weeping_well", () -> new PrimordialSoupBlock(PRIMORDIAL_SOUP()));
     }
 
 
@@ -887,11 +877,11 @@ public class MalumContent {
 
     public static void addPottedBlocks(FMLCommonSetupEvent event) {
         FlowerPotBlock flowerPot = (FlowerPotBlock) Blocks.FLOWER_POT;
-        flowerPot.addPlant(BlockSets.RUNEWOOD_SAPLING.block().getId(), BlockSets.POTTED_RUNEWOOD_SAPLING);
-        flowerPot.addPlant(BlockSets.AZURE_RUNEWOOD_SAPLING.block().getId(), BlockSets.POTTED_AZURE_RUNEWOOD_SAPLING);
-        flowerPot.addPlant(BlockSets.SOULWOOD_SAPLING.block().getId(), BlockSets.POTTED_SOULWOOD_SAPLING);
-        flowerPot.addPlant(Blight.BLIGHTROOT.block().getId(), BlockSets.POTTED_BLIGHTROOT);
-        flowerPot.addPlant(Blight.BLIGHTPEARL.block().getId(), BlockSets.POTTED_BLIGHTPEARL);
-        flowerPot.addPlant(Blight.STRANGEROOT.block().getId(), BlockSets.POTTED_STRANGEROOT);
+        flowerPot.addPlant(BuildingBlocks.RUNEWOOD_SAPLING.block().getId(), BuildingBlocks.POTTED_RUNEWOOD_SAPLING);
+        flowerPot.addPlant(BuildingBlocks.AZURE_RUNEWOOD_SAPLING.block().getId(), BuildingBlocks.POTTED_AZURE_RUNEWOOD_SAPLING);
+        flowerPot.addPlant(BuildingBlocks.SOULWOOD_SAPLING.block().getId(), BuildingBlocks.POTTED_SOULWOOD_SAPLING);
+        flowerPot.addPlant(Blight.BLIGHTROOT.block().getId(), BuildingBlocks.POTTED_BLIGHTROOT);
+        flowerPot.addPlant(Blight.BLIGHTPEARL.block().getId(), BuildingBlocks.POTTED_BLIGHTPEARL);
+        flowerPot.addPlant(Blight.STRANGEROOT.block().getId(), BuildingBlocks.POTTED_STRANGEROOT);
     }
 }

@@ -29,7 +29,7 @@ public class VoidConduitRenderer implements BlockEntityRenderer<VoidConduitBlock
     @Override
     public void render(VoidConduitBlockEntity blockEntityIn, float partialTicks, PoseStack poseStack, MultiBufferSource bufferIn, int combinedLightIn, int combinedOverlayIn) {
         float height = 0.375f;
-        float width = 1.5f;
+        float width = 4.5f;
 
         Vector3f[] positions = new Vector3f[]{new Vector3f(-width, height, width), new Vector3f(width, height, width), new Vector3f(width, height, -width), new Vector3f(-width, height, -width)};
         WorldVFXBuilder builder = VFXBuilders.createWorld();
@@ -80,6 +80,6 @@ public class VoidConduitRenderer implements BlockEntityRenderer<VoidConduitBlock
     @Override
     public AABB getRenderBoundingBox(VoidConduitBlockEntity voidConduit) {
         var pos = voidConduit.getBlockPos();
-        return new AABB(pos.getX() - 2, pos.getY() - 2, pos.getZ() - 2, pos.getX() + 3, pos.getY() + 3, pos.getZ() + 3);
+        return new AABB(pos.getX() - 6, pos.getY() - 2, pos.getZ() - 6, pos.getX() + 7, pos.getY() + 3, pos.getZ() + 7);
     }
 }

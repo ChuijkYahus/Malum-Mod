@@ -8,12 +8,10 @@ import com.sammy.malum.core.systems.artifice.ArtificeAttributeType;
 import com.sammy.malum.common.block.ether.EtherWallTorchBlock;
 import com.sammy.malum.core.systems.geas.*;
 import com.sammy.malum.core.systems.registry.*;
-import com.sammy.malum.core.systems.rite.*;
 import com.sammy.malum.core.systems.rite.effect.SpiritRiteEffectTag;
 import com.sammy.malum.core.systems.spirit.SpiritArcanaType;
 import com.sammy.malum.core.systems.spirit.SpiritTextData;
 import com.sammy.malum.datagen.lang.effect.*;
-import com.sammy.malum.datagen.magic.*;
 import com.sammy.malum.registry.common.*;
 import com.sammy.malum.registry.common.MalumContent;
 import com.sammy.malum.registry.common.enchantment.*;
@@ -79,8 +77,8 @@ public class MalumLangDatagen extends LanguageProvider {
         var soulwovenBanners = SoulwovenBannerPatternDataComponent.REGISTERED_PATTERNS;
         var crucibleAttributes = ArtificeAttributeType.CRUCIBLE_ATTRIBUTES;
 
-        add(DataHelper.take(blocks, MalumContent.WeepingWell.PRIMORDIAL_SOUP.block()).get(), "The Weeping Well");
-        add(DataHelper.take(blocks, MalumContent.WeepingWell.VOID_CONDUIT.block()).get(), "The Weeping Well");
+        add(DataHelper.take(blocks, MalumContent.WeepingWell.WEEPING_WELL.block()).get(), "The Weeping Well");
+        add(DataHelper.take(blocks, MalumContent.WeepingWell.WEEPING_WELL_CENTERPIECE.block()).get(), "The Weeping Well");
 
         if (CreateCompat.LOADED) { //If Create is loaded, the copper nugget won't exist.
             add("item.malum.copper_nugget", "Copper Nugget");

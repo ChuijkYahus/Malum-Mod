@@ -80,9 +80,7 @@ public class WeepingWellRejectionHandler {
         int rejection = data.voidRejection;
         if (!level.isClientSide) {
             if (living instanceof Player && level.getGameTime() % 6L == 0) {
-                float volume = 0.5f + rejection * 0.02f;
-                float pitch = 0.5f + rejection * 0.03f;
-                SoundPlayer.create(MalumSoundEvents.SONG_OF_THE_VOID).volume(0.5f + rejection * 0.02f).pitch(pitch).play(living);
+                SoundPlayer.create(MalumSoundEvents.SONG_OF_THE_VOID).volume(0.5f + rejection * 0.02f).pitch(0.5f + rejection * 0.03f).play(living);
             }
             if (data.wasJustRejected()) {
                 if (!(living instanceof Player player)) {

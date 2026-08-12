@@ -1,7 +1,7 @@
 package com.sammy.malum.datagen.recipe.crafting;
 
 import com.sammy.malum.datagen.recipe.RecipeDatagenCommons;
-import com.sammy.malum.registry.common.MalumContent.BlockSets;
+import com.sammy.malum.registry.common.MalumContent.BuildingBlocks;
 import com.sammy.malum.registry.common.util.building.RockBlockSet;
 import net.minecraft.data.recipes.*;
 import net.minecraft.world.level.*;
@@ -14,8 +14,8 @@ public class MalumRockSetDatagen {
 
 
     public static void buildRecipes(RecipeOutput consumer) {
-        buildRecipes(consumer, BlockSets.TAINTED_ROCK_SET);
-        buildRecipes(consumer, BlockSets.TWISTED_ROCK_SET);
+        buildRecipes(consumer, BuildingBlocks.TAINTED_ROCK_SET);
+        buildRecipes(consumer, BuildingBlocks.TWISTED_ROCK_SET);
     }
 
     public static void buildRecipes(RecipeOutput recipeOutput, RockBlockSet set) {

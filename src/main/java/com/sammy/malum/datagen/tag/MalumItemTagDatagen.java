@@ -28,14 +28,13 @@ import java.util.concurrent.*;
 
 import static com.sammy.malum.registry.common.MalumContent.AlchemyAndMetallics.*;
 import static com.sammy.malum.registry.common.MalumContent.Blight.BLIGHTED_GUNK;
-import static com.sammy.malum.registry.common.MalumContent.BlockSets.*;
+import static com.sammy.malum.registry.common.MalumContent.BuildingBlocks.*;
 import static com.sammy.malum.registry.common.MalumContent.CompactBlocks.*;
 import static com.sammy.malum.registry.common.MalumContent.DungeonGear.*;
 import static com.sammy.malum.registry.common.MalumContent.*;
 import static com.sammy.malum.registry.common.MalumContent.Gear.*;
 import static com.sammy.malum.registry.common.MalumContent.Materials.*;
 import static com.sammy.malum.registry.common.MalumContent.Spirits.*;
-import static com.sammy.malum.registry.common.MalumContent.Vanity.*;
 import static com.sammy.malum.registry.common.MalumTags.Items.*;
 import static com.sammy.malum.registry.common.MalumContent.BLOCKS;
 import static net.minecraft.world.item.Items.*;

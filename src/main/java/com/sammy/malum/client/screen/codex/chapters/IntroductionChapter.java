@@ -26,7 +26,7 @@ import static com.sammy.malum.client.screen.codex.pages.recipe.vanilla.CraftingP
 import static com.sammy.malum.client.screen.codex.pages.text.HeadlineTextGizmoPage.headlineTextGizmoPage;
 import static com.sammy.malum.client.screen.codex.pages.text.HeadlineTextPage.headlineText;
 import static com.sammy.malum.client.screen.codex.pages.text.TextPage.textPage;
-import static com.sammy.malum.registry.common.MalumContent.BlockSets.*;
+import static com.sammy.malum.registry.common.MalumContent.BuildingBlocks.*;
 import static com.sammy.malum.registry.common.MalumContent.CompactBlocks.*;
 import static com.sammy.malum.registry.common.MalumContent.ENCYCLOPEDIA_ARCANA;
 import static net.minecraft.world.item.Items.GRASS_BLOCK;

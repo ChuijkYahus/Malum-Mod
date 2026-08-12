@@ -3,7 +3,6 @@ package com.sammy.malum.registry.common.worldgen;
 import com.sammy.malum.*;
 import com.sammy.malum.common.worldgen.geode.MalumGeodePiece;
 import com.sammy.malum.common.worldgen.geode.MalumGeodeStructure;
-import com.sammy.malum.common.worldgen.well.*;
 import net.minecraft.core.registries.*;
 import net.minecraft.resources.*;
 import net.minecraft.world.level.levelgen.structure.*;
@@ -18,7 +17,6 @@ public class MalumStructureTypes {
 
         public static final DeferredHolder<StructurePieceType, StructurePieceType> GEODE = register("geode", MalumGeodePiece::new);
 
-        public static final DeferredHolder<StructurePieceType, StructurePieceType> WEEPING_WELL = register("weeping_well", WeepingWellStructurePiece::new);
 
 
         private static DeferredHolder<StructurePieceType, StructurePieceType> register(String id, StructurePieceType.ContextlessType type) {
@@ -31,13 +29,11 @@ public class MalumStructureTypes {
 
         public static final Supplier<StructureType<MalumGeodeStructure>> GEODE = STRUCTURE_TYPES.register("geode", ()-> ()-> MalumGeodeStructure.CODEC);
 
-        public static final DeferredHolder<StructureType<?>, StructureType<WeepingWellStructure>> WEEPING_WELL = STRUCTURE_TYPES.register("weeping_well", () -> () -> WeepingWellStructure.CODEC);
 
     }
 
     public static class StructureKeys {
 
-        public static final StructureKey WEEPING_WELL = new StructureKey("weeping_well");
 
         public static final StructureKey OVERWORLD_GEODES = new StructureKey("overworld_geodes");
 

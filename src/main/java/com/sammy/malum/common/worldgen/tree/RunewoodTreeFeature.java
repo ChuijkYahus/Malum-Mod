@@ -19,7 +19,7 @@ import java.util.function.*;
 import java.util.stream.Collectors;
 
 import static com.sammy.malum.common.worldgen.WorldgenHelper.*;
-import static com.sammy.malum.registry.common.MalumContent.BlockSets.*;
+import static com.sammy.malum.registry.common.MalumContent.BuildingBlocks.*;
 
 public class RunewoodTreeFeature extends Feature<RunewoodTreeConfiguration> {
 

@@ -29,7 +29,7 @@ public class RockBlockSet extends MalumRegistrySet {
 
 
     public static List<RockBlockSet> getMalumSets() {
-        return List.of(MalumContent.BlockSets.TAINTED_ROCK_SET, MalumContent.BlockSets.TWISTED_ROCK_SET);
+        return List.of(MalumContent.BuildingBlocks.TAINTED_ROCK_SET, MalumContent.BuildingBlocks.TWISTED_ROCK_SET);
     }
 
     public final BlockItemTagKey blocksTag;
