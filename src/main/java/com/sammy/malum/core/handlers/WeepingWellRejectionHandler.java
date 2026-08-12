@@ -93,7 +93,7 @@ public class WeepingWellRejectionHandler {
         if (data.isInRejectedState && rejection > 0) {
             float intensity = rejection / WeepingWellData.MAX_REJECTION;
             Vec3 movement = living.getDeltaMovement();
-            living.setDeltaMovement(movement.x, Math.pow(intensity, 2), movement.z);
+            living.setDeltaMovement(movement.x, Math.pow(intensity, 2)/2f, movement.z);
         }
     }
 

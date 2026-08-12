@@ -31,7 +31,6 @@ import static com.sammy.malum.visual_effects.SpiritLightSpecs.*;
 public class WeepingWellParticleEffects {
 
     private static final VoxelShape WELL_SHAPE = Block.box(-64.0D, 4f, -64.0D, 80.0D, 5f, 80.0D);
-    private static final VoxelShape DEPOT_SHAPE = Block.box(3f, 14f, 3f, 13f, 15f, 13f);
 
     public static Color getWeepingWellSmokeColor(RandomSource rand) {
         float colorMultiplier = Easing.SINE_IN_OUT.asWeighedRandom(rand, 0.6f, 1.2f);
@@ -142,14 +141,14 @@ public class WeepingWellParticleEffects {
 
 
             for (int i = 0; i < 4; i++) {
-                Direction direction = Direction.from2DDataValue(i);
-                Vec3 offset = new Vec3(direction.getStepX()*1.48f, 0f, direction.getStepZ()*1.48f);
-                Vec3 offsetPosition = new Vec3(blockPos.getX() + 0.5f, blockPos.getY() + 0.5f, blockPos.getZ() + 0.5f).add(offset);
+                var direction = Direction.from2DDataValue(i);
+                var offset = new Vec3(direction.getStepX()*4.48f, 0f, direction.getStepZ()*4.48f);
+                var offsetPosition = new Vec3(blockPos.getX() + 0.5f, blockPos.getY() + 0.5f, blockPos.getZ() + 0.5f).add(offset);
                 WorldParticleBuilder.create(LodestoneParticleTypes.WISP_PARTICLE)
                         .setBehavior(DirectionalParticleBehavior.directional(offset))
                         .setTransparencyData(GenericParticleData.create(0.1f, 0.3f, 0f).setEasing(Easing.SINE_IN, Easing.SINE_OUT).build())
-                        .setScaleData(GenericParticleData.create(0f, 3f, 0.3f).setEasing(Easing.SINE_IN, Easing.SINE_OUT).build())
-                        .setLengthData(GenericParticleData.create(0f, 2f, 0.3f).setEasing(Easing.SINE_IN, Easing.SINE_OUT).build())
+                        .setScaleData(GenericParticleData.create(0f, 16f, 0.3f).setEasing(Easing.SINE_IN, Easing.SINE_OUT).build())
+                        .setLengthData(GenericParticleData.create(0f, 3f, 0.3f).setEasing(Easing.SINE_IN, Easing.SINE_OUT).build())
                         .setColorData(ColorParticleData.create(0f, 0f, 0f).build())
                         .setLifetime(80)
                         .addMotion(0, yMotion, 0)
@@ -161,7 +160,7 @@ public class WeepingWellParticleEffects {
 
             if (rand.nextFloat() < 0.75f) {
                 int rotation = rand.nextInt(16);
-                Vec3 offsetPosition = VecHelper.rotatingRadialOffset(new Vec3(blockPos.getX() + 0.5f, blockPos.getY() + 0.75f, blockPos.getZ() + 0.5f), 1.1f, rotation, 16, level.getGameTime(), 640);
+                Vec3 offsetPosition = VecHelper.rotatingRadialOffset(new Vec3(blockPos.getX() + 0.5f, blockPos.getY() + 0.75f, blockPos.getZ() + 0.5f), 3.5f, rotation, 16, level.getGameTime(), 640);
                 float acceleration = Easing.SINE_IN_OUT.asWeighedRandom(rand, 0.002f, 0.02f);
                 long gameTime = level.getGameTime();
                 final Consumer<LodestoneWorldParticle> behavior = p -> {

@@ -41,7 +41,7 @@ public class ParallelWorldRenderer extends BeforeLevelRenderPass {
         Minecraft mc = Minecraft.getInstance();
         long gameTime = mc.level.getGameTime();
         var partialTicks = deltaTracker.getGameTimeDeltaTicks();
-        float uOffset = ((gameTime + partialTicks) % 4000) / 2000f;
+        float uOffset = ((gameTime + partialTicks) % 8000) / 4000f;
         float vOffset = ((gameTime + 500f + partialTicks) % 8000) / 8000f;
 
         target.setClearColor(0, 0, 0, 0);
@@ -56,17 +56,17 @@ public class ParallelWorldRenderer extends BeforeLevelRenderPass {
 
         PoseStack poseStack = new PoseStack();
         poseStack.pushPose();
-        int cubeScale = 100;
+        int cubeScale = 20;
         poseStack.scale(cubeScale, cubeScale, cubeScale);
 //        Vector3f cameraPosition = camera.getPosition().toVector3f();
 //        poseStack.translate(-cameraPosition.x(), -cameraPosition.y(), -cameraPosition.z());
-        poseStack.mulPose(Axis.XP.rotationDegrees(((gameTime + partialTicks) * 0.4f) % 360));
-        poseStack.mulPose(Axis.YP.rotationDegrees(((gameTime + partialTicks) * 0.2f) % 360));
-        poseStack.mulPose(Axis.ZP.rotationDegrees(((gameTime + partialTicks) * 0.1f) % 360));
+        poseStack.mulPose(Axis.XP.rotationDegrees(((gameTime + partialTicks) * 0.2f) % 360));
+        poseStack.mulPose(Axis.YP.rotationDegrees(((gameTime + partialTicks) * 0.1f) % 360));
+        poseStack.mulPose(Axis.ZP.rotationDegrees(((gameTime + partialTicks) * 0.05f) % 360));
 
 
         for (int i = 0; i < 4; i++) {
-            float speed = 1000f + 750f * i;
+            float speed = 200f + 100f * i;
             float distortion = 4f + 2 * i;
             float scale = (2 - 0.05f * i);
             float red = 0.8f;

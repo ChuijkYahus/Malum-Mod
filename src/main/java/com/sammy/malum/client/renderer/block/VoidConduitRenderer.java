@@ -52,9 +52,9 @@ public class VoidConduitRenderer implements BlockEntityRenderer<VoidConduitBlock
                 MalumSpiritTypes.AQUEOUS_SPIRIT.getPrimaryColor(),
                 MalumSpiritTypes.AERIAL_SPIRIT.getSecondaryColor()
         };
-        for (int i = 0; i < 4; i++) {
+        for (int i = 0; i < 8; i++) {
             float speed = 1000f + 250f * i;
-            float alpha = 0.2f - i * 0.05f;
+            float alpha = 0.115f - i * 0.01f;
 
 
             ShaderUniformHandler uniforms = new ShaderUniformHandler()
@@ -63,15 +63,17 @@ public class VoidConduitRenderer implements BlockEntityRenderer<VoidConduitBlock
                     .modifyUniform("Height", 1024f)
                     .setSamplerTexture("Skybox", ParallelWorldRenderer.INSTANCE.getTarget().getColorTextureId());
             var distortion = MalumRenderTypes.WEEPING_SPYHOLE.apply(MalumRenderTypeTokens.VOID_NOISE).withUniformHandler(uniforms);
-
-            builder.setColor(colors[i]).setRenderType(distortion);
+            if (i % 2 == 1) {
+                distortion.withModifier(b -> b.setTransparencyState(StateShards.NORMAL_TRANSPARENCY));
+            }
+            builder.setColor(colors[i % 4]).setRenderType(distortion);
 
             builder.setAlpha(alpha);
             builder.setUV(-uOffset, vOffset, 1 - uOffset, 1 + vOffset).renderQuad(poseStack, positions, 1f);
             builder.setUV(uOffset, -vOffset, 1 + uOffset, 1 - vOffset).renderQuad(poseStack, positions, 1f);
             uOffset = -uOffset - 0.2f;
-            vOffset = -vOffset + 0.4f;
-            poseStack.translate(0, 0.05f, 0);
+            vOffset = -vOffset + 0.7f;
+            poseStack.translate(0, 0.15f, 0);
             poseStack.mulPose(Axis.YP.rotationDegrees(90));
         }
         poseStack.popPose();
