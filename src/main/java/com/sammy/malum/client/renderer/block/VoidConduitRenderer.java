@@ -63,10 +63,7 @@ public class VoidConduitRenderer implements BlockEntityRenderer<VoidConduitBlock
                     .modifyUniform("Height", 1024f)
                     .setSamplerTexture("Skybox", ParallelWorldRenderer.INSTANCE.getTarget().getColorTextureId());
             var distortion = MalumRenderTypes.WEEPING_SPYHOLE.apply(MalumRenderTypeTokens.VOID_NOISE).withUniformHandler(uniforms);
-            if (i % 2 == 1) {
-                distortion.withModifier(b -> b.setTransparencyState(StateShards.NORMAL_TRANSPARENCY));
-            }
-            builder.setColor(colors[i % 4]).setRenderType(distortion);
+            builder.setColor(colors[i % 4]).setLightLevel(blockEntityIn.getBlockPos()).setRenderType(distortion);
 
             builder.setAlpha(alpha);
             builder.setUV(-uOffset, vOffset, 1 - uOffset, 1 + vOffset).renderQuad(poseStack, positions, 1f);

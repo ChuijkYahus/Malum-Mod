@@ -40,7 +40,7 @@ public class WeepingWellData {
     public void update(LivingEntity living) {
         var level = living.level();
         if (living instanceof Player) {
-            if (level.getGameTime() % 20L == 0) {
+            if (level.getGameTime() % 80L == 0) {
                 isNearWeepingWell = checkForWeepingWell(living).isPresent();
             }
         }
@@ -80,6 +80,6 @@ public class WeepingWellData {
     }
 
     public static Optional<VoidConduitBlockEntity> checkForWeepingWell(LivingEntity livingEntity) {
-        return BlockEntityHelper.getBlockEntitiesStream(VoidConduitBlockEntity.class, livingEntity.level(), livingEntity.blockPosition(), 8).findFirst();
+        return BlockEntityHelper.getBlockEntitiesStream(VoidConduitBlockEntity.class, livingEntity.level(), livingEntity.blockPosition(), 24).findFirst();
     }
 }

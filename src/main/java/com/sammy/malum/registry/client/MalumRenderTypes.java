@@ -22,7 +22,7 @@ public class MalumRenderTypes extends RenderStateShard {
 
     public static final RenderTypeProvider WEEPING_SPYHOLE = new RenderTypeProvider((token) ->
             createGenericRenderType(token, "weeping_spyhole", POSITION_COLOR_TEX_LIGHTMAP, QUADS,
-                    b -> b.setStateShards(StateShards.ADDITIVE_TRANSPARENCY, MalumShaders.WEEPING_SPYHOLE, NO_CULL, COLOR_WRITE, LIGHTMAP)));
+                    b -> b.setStateShards(StateShards.NORMAL_TRANSPARENCY, MalumShaders.WEEPING_SPYHOLE, NO_CULL, COLOR_WRITE, LIGHTMAP)));
 
 
     public MalumRenderTypes(String pName, Runnable pSetupState, Runnable pClearState) {
