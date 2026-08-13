@@ -42,7 +42,7 @@ public class VoidConduitRenderer implements BlockEntityRenderer<VoidConduitBlock
 
         poseStack.pushPose();
         for (int i = 0; i < 5; i++) {
-            float alpha = 0.75f - i * 0.05f;
+            float alpha = 0.75f - i * 0.1f;
             builder.setAlpha(alpha).renderQuad(poseStack, positions);
             poseStack.translate(0, 0.15f, 0);
         }
@@ -64,12 +64,12 @@ public class VoidConduitRenderer implements BlockEntityRenderer<VoidConduitBlock
             float speed = 1000f + 250f * i;
             float alpha = 0.115f - i * 0.01f;
 
-
             ShaderUniformHandler uniforms = new ShaderUniformHandler()
                     .modifyUniform("Speed", speed)
                     .modifyUniform("Width", 1024f)
                     .modifyUniform("Height", 1024f)
                     .setSamplerTexture("Skybox", ParallelWorldRenderer.INSTANCE.getTarget().getColorTextureId());
+
             var distortion = MalumRenderTypes.WEEPING_SPYHOLE.apply(MalumRenderTypeTokens.VOID_NOISE).withUniformHandler(uniforms);
             builder.setColor(colors[i % 4]).setLightLevel(blockEntityIn.getBlockPos()).setRenderType(distortion);
 
