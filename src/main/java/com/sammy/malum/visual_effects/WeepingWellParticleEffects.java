@@ -122,23 +122,7 @@ public class WeepingWellParticleEffects {
         if (level.getGameTime() % 6L == 0) {
             var blockPos = voidConduit.getBlockPos();
             var rand = level.random;
-            int lifetime = Easing.SINE_IN_OUT.asWeighedRandom(rand, 80, 120);
             float yMotion = 0.004f;
-            Color color = getWeepingWellSmokeColor(rand);
-            ColorParticleData colorData = ColorParticleData.create(color, color.darker()).setCoefficient(0.5f).build();
-            WorldParticleBuilder.create(LodestoneParticleTypes.WISP_PARTICLE)
-                    .setBehavior(DirectionalParticleBehavior.directional())
-                    .setTransparencyData(GenericParticleData.create(0.6f, 0.4f, 0f).setEasing(Easing.SINE_IN, Easing.SINE_OUT).build())
-                    .setSpinData(SpinParticleData.createRandomDirection(rand, 0.02f, 0.04f, 0).setEasing(Easing.SINE_IN, Easing.SINE_OUT).build())
-                    .setScaleData(GenericParticleData.create(0f, 0.6f, 0.3f).setEasing(Easing.SINE_IN, Easing.SINE_OUT).build())
-                    .setColorData(colorData)
-                    .setLifetime(lifetime)
-                    .addMotion(0, yMotion, 0)
-                    .enableNoClip()
-                    .setRenderType(LodestoneWorldParticleRenderType.LUMITRANSPARENT)
-                    .setRenderTarget(LodestoneRenderingSystem.LATE_DEFERRED_RENDER)
-                    .surroundVoxelShape(level, blockPos, WELL_SHAPE, 12);
-
 
             for (int i = 0; i < 4; i++) {
                 var direction = Direction.from2DDataValue(i);

@@ -45,7 +45,7 @@ public class WeepingWellRejectionHandler {
         if (entity instanceof FloatingItemEntity) {
             return;
         }
-        entity.setDeltaMovement(entity.getDeltaMovement().scale(0.6f));
+        entity.setDeltaMovement(entity.getDeltaMovement().scale(0.3f));
     }
 
     public static void entityTick(EntityTickEvent.Pre event) {

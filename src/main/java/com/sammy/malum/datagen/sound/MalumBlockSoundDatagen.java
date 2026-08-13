@@ -4,7 +4,7 @@ import com.sammy.malum.registry.common.MalumContent;
 import com.sammy.malum.registry.common.util.GeodeCrystalRegistrySet;
 import com.sammy.malum.registry.common.util.MetallicsItemRegistryBundle;
 import com.sammy.malum.registry.common.sound.*;
-import com.sammy.malum.registry.common.util.building.MinorBuildingSet;
+import com.sammy.malum.registry.common.util.building.CommonStoneBuildingSet;
 
 import static team.lodestar.lodestone.modules.datagen.providers.sound.LodestoneSoundEventSystem.sound;
 
@@ -28,7 +28,7 @@ public class MalumBlockSoundDatagen extends MalumSoundDatagenWrapper {
         addMetallicsSounds(MalumContent.AlchemyAndMetallics.ALUMINIUM_METALLICS, 1.6f);
         addMetallicsSounds(MalumContent.AlchemyAndMetallics.NICKEL_METALLICS, 1.25f);
 
-        for (MinorBuildingSet malumSet : MinorBuildingSet.getMalumSets()) {
+        for (CommonStoneBuildingSet malumSet : CommonStoneBuildingSet.getMalumSets()) {
             malumSet.addSounds(this);
         }
 

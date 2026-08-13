@@ -18,24 +18,6 @@ public class MalumDungeonBlockProperties {
                 .strength(3.5F, -1.0F);
     }
 
-    public static LodestoneBlockProperties OMINOUS_CRAFT() {
-        return MalumBlockProperties.CHISELED_DROSS_STONE()
-                .setCutout()
-                .noOcclusion()
-                .strength(3.5F, -1.0F);
-    }
-
-    public static LodestoneBlockProperties ODD_SCRIPTURES() {
-        return new LodestoneBlockProperties()
-                .sound(MalumBlockSoundEvents.ODD_SCRIPTURES)
-                .instrument(NoteBlockInstrument.BASEDRUM)
-                .pushReaction(PushReaction.PUSH_ONLY)
-                .requiresCorrectToolForDrops()
-                .mapColor(DyeColor.BLACK)
-                .strength(2.5F)
-                .needsPickaxe();
-    }
-
     public static LodestoneBlockProperties FLESH() {
         return new LodestoneBlockProperties()
                 .mapColor(MapColor.COLOR_BLACK);

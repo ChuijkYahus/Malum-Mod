@@ -39,6 +39,15 @@ public class MalumVanillaRecipes implements IConditionBuilder {
         Pair<String, Criterion<?>> hasBlazingQuartz = Pair.of("has_blazing_quartz", has(BLAZING_QUARTZ));
 
 
+        shaped(RecipeCategory.MISC, STONE_BOOKSHELF)
+                .define('#', STONE_BRICKS)
+                .define('X', BOOK)
+                .pattern("###")
+                .pattern("XXX")
+                .pattern("###")
+                .unlockedBy("has_book", has(BOOK)).save(output);
+
+
         //KEY ITEMS
         shapeless(RecipeCategory.MISC, MalumContent.ENCYCLOPEDIA_ARCANA)
                 .requires(BOOK)

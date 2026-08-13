@@ -18,7 +18,7 @@ public class MalumRenderTypes extends RenderStateShard {
 
     public static final RenderTypeProvider WEEPING_SKYBOX = new RenderTypeProvider((token) ->
             createGenericRenderType(token, "weeping_skybox", POSITION_TEX_COLOR, QUADS,
-                    b -> b.setStateShards(StateShards.ADDITIVE_TRANSPARENCY, MalumShaders.WEEPING_SKYBOX, ParallelWorldRenderer.getOutputState())));
+                    b -> b.setStateShards(StateShards.NORMAL_TRANSPARENCY, MalumShaders.WEEPING_SKYBOX, ParallelWorldRenderer.getOutputState())));
 
     public static final RenderTypeProvider WEEPING_SPYHOLE = new RenderTypeProvider((token) ->
             createGenericRenderType(token, "weeping_spyhole", POSITION_COLOR_TEX_LIGHTMAP, QUADS,

@@ -1,7 +1,7 @@
 package com.sammy.malum.common.creativetab;
 
 import com.sammy.malum.common.block.curiosities.decor.banner.SoulwovenBannerBlockItem;
-import com.sammy.malum.registry.common.util.building.MinorBuildingSet;
+import com.sammy.malum.registry.common.util.building.CommonStoneBuildingSet;
 import team.lodestar.lodestone.modules.toolkit.creative_tab.CategorizedBuilder;
 
 import static com.sammy.malum.registry.common.MalumContent.*;
@@ -39,7 +39,7 @@ public class MalumLesserSoulstuffTab extends AbstractMalumCreativeTab {
                         .addItems(SoulwovenBannerBlockItem::addBannerPatterns)
                         .bake();
                 createCategory("common_rock")
-                        .addItems(MinorBuildingSet::addCommonRock)
+                        .addItems(CommonStoneBuildingSet::addCommonRock)
                         .bake();
                 createCategory("ether")
                         .addItems(

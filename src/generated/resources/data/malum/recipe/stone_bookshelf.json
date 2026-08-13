@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "#": {
+      "item": "minecraft:stone_bricks"
+    },
+    "X": {
+      "item": "minecraft:book"
+    }
+  },
+  "pattern": [
+    "###",
+    "XXX",
+    "###"
+  ],
+  "result": {
+    "count": 1,
+    "id": "malum:stone_bookshelf"
+  }
+}

@@ -27,9 +27,9 @@ import java.util.function.Supplier;
 import static com.sammy.malum.datagen.recipe.RecipeDatagenCommons.*;
 import static com.sammy.malum.registry.common.MalumContent.*;
 
-public class MinorBuildingSet extends MalumRegistrySet {
+public class CommonStoneBuildingSet extends MalumRegistrySet {
 
-    public static List<MinorBuildingSet> getMalumSets() {
+    public static List<CommonStoneBuildingSet> getMalumSets() {
 //        return List.of(BlockSets.SEED_QUARTZ, BlockSets.TRODDEN_STONE, BlockSets.IGNEOUS_ROCK, BlockSets.COMPOSITE_STONE, BlockSets.EBONSTONE);
         return List.of(BuildingBlocks.TRODDEN_STONE, BuildingBlocks.IGNEOUS_ROCK, BuildingBlocks.COMPOSITE_STONE, BuildingBlocks.EBONSTONE);
     }
@@ -53,7 +53,7 @@ public class MinorBuildingSet extends MalumRegistrySet {
     private final BlockBlockItemHolder<Block, BlockItem> chiseled;
     private final BlockBlockItemHolder<Block, BlockItem> pillar;
 
-    public MinorBuildingSet(String id, Function<SoundType, LodestoneBlockProperties> properties) {
+    public CommonStoneBuildingSet(String id, Function<SoundType, LodestoneBlockProperties> properties) {
         super(id);
 
         blocksTag = createTag("blocks");
@@ -84,7 +84,7 @@ public class MinorBuildingSet extends MalumRegistrySet {
     }
 
     public static void addCommonRock(CreativeTabCategoryBuilder builder) {
-        for (MinorBuildingSet set : getMalumSets()) {
+        for (CommonStoneBuildingSet set : getMalumSets()) {
             set.addToCreativeTab(builder);
         }
     }

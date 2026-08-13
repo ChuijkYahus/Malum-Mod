@@ -1,13 +1,12 @@
 
 package com.sammy.malum.datagen.block;
-import com.sammy.malum.*;
 import com.sammy.malum.datagen.set.MalumCrystalSetDatagen;
 import com.sammy.malum.datagen.set.MalumMetallicsDatagen;
 import com.sammy.malum.datagen.item.*;
 import com.sammy.malum.datagen.set.MalumPoppetrySetDatagen;
 import com.sammy.malum.registry.common.MalumContent;
 import com.sammy.malum.registry.common.MalumContent.*;
-import com.sammy.malum.registry.common.util.building.MinorBuildingSet;
+import com.sammy.malum.registry.common.util.building.CommonStoneBuildingSet;
 import com.sammy.malum.registry.common.util.building.RockBlockSet;
 import com.sammy.malum.registry.common.util.data.*;
 import net.minecraft.data.*;
@@ -66,7 +65,10 @@ public class MalumBlockStateDatagen extends LodestoneBlockStateSystem {
                 BuildingBlocks.AERIAL_VARNISHED_TERRACOTTA, BuildingBlocks.AQUEOUS_VARNISHED_TERRACOTTA, BuildingBlocks.EARTHEN_VARNISHED_TERRACOTTA, BuildingBlocks.INFERNAL_VARNISHED_TERRACOTTA,
                 BuildingBlocks.NULL_VARNISHED_TERRACOTTA);
 
-        for (MinorBuildingSet malumSet : MinorBuildingSet.getMalumSets()) {
+        setTexturePath("building/stone");
+        BlockStateSmithTypes.CUSTOM_MODEL.act(data, BLOCK_MODEL_ITEM, this::simpleBlock, this::stoneBookshelfModel, BuildingBlocks.STONE_BOOKSHELF);
+
+        for (CommonStoneBuildingSet malumSet : CommonStoneBuildingSet.getMalumSets()) {
             malumSet.addBlockStates(this, data);
         }
 
@@ -93,7 +95,6 @@ public class MalumBlockStateDatagen extends LodestoneBlockStateSystem {
         setTexturePath("building/soulwood/leaves");
         MalumBlockStateSmithTypes.STAGED_LEAVES.act(data, BuildingBlocks.SOULWOOD_LEAVES);
         MalumBlockStateSmithTypes.STAGED_HANGING_LEAVES.act(data, BuildingBlocks.HANGING_SOULWOOD_LEAVES);
-
 
         setTexturePath("ores");
         BlockStateSmithTypes.FULL_BLOCK.act(data, BRILLIANT_STONE, BRILLIANT_DEEPSLATE, CTHONIC_GOLD_ORE, BLAZING_QUARTZ_ORE);
@@ -239,6 +240,12 @@ public class MalumBlockStateDatagen extends LodestoneBlockStateSystem {
         }
     }
 
+    public ModelFile stoneBookshelfModel(Block block) {
+        var texture = getBlockTexture(block);
+        var stoneBricks = ResourceLocation.parse("minecraft:block/stone_bricks");
+        return models().cubeBottomTop(getBlockName(block), texture, stoneBricks, stoneBricks);
+    }
+
     public ModelFile rockItemPedestalModel(Block block) {
         return itemPedestalModel(block, "template_item_pedestal_rock");
     }
@@ -293,10 +300,6 @@ public class MalumBlockStateDatagen extends LodestoneBlockStateSystem {
 
     public ModelFile totemBaseModel(Block block) {
         return models().withExistingParent(block, malumPath("block/templates/template_totem_base"), "totem_base");
-    }
-
-    public ModelFile meditatingEffigy(Block block) {
-        return models().withExistingParent(block, malumPath("block/templates/dungeon/template_meditating_effigy"), "effigy");
     }
 
     public ModelFile blightedSoulwoodModel(Block block) {

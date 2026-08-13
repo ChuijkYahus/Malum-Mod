@@ -38,8 +38,16 @@ public class VoidConduitRenderer implements BlockEntityRenderer<VoidConduitBlock
 
         var vignette = LodestoneRenderTypes.TRANSPARENT_TEXTURE.apply(MalumRenderTypeTokens.VOID_VIGNETTE);
         builder.replaceBufferSource(LodestoneRenderingSystem.LATE_DEFERRED_RENDER)
-                .setRenderType(vignette)
-                .renderQuad(poseStack, positions, 1f);
+                .setRenderType(vignette);
+
+        poseStack.pushPose();
+        for (int i = 0; i < 5; i++) {
+            float alpha = 0.75f - i * 0.05f;
+            builder.setAlpha(alpha).renderQuad(poseStack, positions);
+            poseStack.translate(0, 0.15f, 0);
+        }
+        poseStack.popPose();
+
         long gameTime = blockEntityIn.getLevel().getGameTime();
         float uOffset = ((gameTime + partialTicks) % 4000) / 2000f;
         float vOffset = ((gameTime + 500f + partialTicks) % 8000) / 8000f;

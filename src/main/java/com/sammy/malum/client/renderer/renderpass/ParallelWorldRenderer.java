@@ -56,7 +56,7 @@ public class ParallelWorldRenderer extends BeforeLevelRenderPass {
 
         PoseStack poseStack = new PoseStack();
         poseStack.pushPose();
-        int cubeScale = 20;
+        int cubeScale = 200;
         poseStack.scale(cubeScale, cubeScale, cubeScale);
 //        Vector3f cameraPosition = camera.getPosition().toVector3f();
 //        poseStack.translate(-cameraPosition.x(), -cameraPosition.y(), -cameraPosition.z());
@@ -73,7 +73,6 @@ public class ParallelWorldRenderer extends BeforeLevelRenderPass {
             float green = 0.6f;
             float blue = 0.7f;
             float alpha = 0.8f - i * 0.05f;
-            var color = new Color(red, green, blue);
 
             var uniforms = new ShaderUniformHandler()
                     .modifyUniform("Speed", speed)
@@ -90,7 +89,7 @@ public class ParallelWorldRenderer extends BeforeLevelRenderPass {
             var vfxBuilder = VFXBuilders.createWorld()
                     .setVertexConsumer(consumer)
                     .setRenderType(renderType)
-                    .setColor(color)
+                    .setColor(red, green, blue)
                     .setAlpha(alpha);
             var cubeData = CubeVertexData.makeCubePositions(-scale).applyWobble(0, 0.5f, 0.015f);
 
