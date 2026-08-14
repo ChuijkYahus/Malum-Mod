@@ -955,16 +955,6 @@ public class CodexLangDatagen {
                          -Reach Effect faces cooldown upon taking damage from an enemy
                          -Cooldown state reduces Movement Speed""");
 
-        addEntryLang("pact_of_tidal_affinity", "Pact of Tidal Affinity", "To be one with the sea");
-        addGeasDetails(MalumGeasEffectTypes.PACT_OF_TIDAL_AFFINITY,
-                scaled(0.7f) + """
-                        Confine yourself to the ocean, memorize the conduit's choral pull.
-                         -Increases Agility, Attack Speed, Mining Speed and Damage Resistance while submerged
-                         -Conduit Power amplifies listed effects and passively recovers health""",
-                """
-                        The chains of the ocean grip your heart tightly.
-                         -You cannot heal outside of water""");
-
         addEntryLang("pact_of_patience_repaid", "Pact of Patience Repaid", "To dilute one's pain");
         addGeasDetails(MalumGeasEffectTypes.PACT_OF_PATIENCE_REPAID,
                 scaled(0.8f) + """

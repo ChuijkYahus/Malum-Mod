@@ -15,9 +15,7 @@ import net.minecraft.world.phys.*;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
 import net.neoforged.neoforge.client.event.AddAttributeTooltipsEvent;
-import team.lodestar.lodestone.handlers.*;
 import team.lodestar.lodestone.modules.rendering.LodestoneRenderingSystem;
-import team.lodestar.lodestone.registry.common.*;
 import team.lodestar.lodestone.modules.core.easing.Easing;
 import team.lodestar.lodestone.modules.toolkit.item.*;
 
@@ -40,7 +38,7 @@ public class HexStaffItem extends AbstractStaffItem implements ISpiritAffiliated
     }
 
     @Override
-    public SpiritLike getDefiningSpiritType() {
+    public SpiritLike getDefiningSpiritType(ItemStack stack) {
         return MalumSpiritTypes.WICKED_SPIRIT;
     }
 

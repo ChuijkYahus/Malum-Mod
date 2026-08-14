@@ -37,6 +37,8 @@ public class MalumDataComponents {
     public static final DeferredHolder<DataComponentType<?>, DataComponentType<ArtificeAugmentDataComponent>> ARTIFICE_AUGMENT = register("artifice_augment", builder ->
             builder.persistent(ArtificeAugmentDataComponent.CODEC).networkSynchronized(ArtificeAugmentDataComponent.STREAM_CODEC));
 
+    public static final DeferredHolder<DataComponentType<?>, DataComponentType<VindicativeBrandDataComponent>> VINDICATIVE_BRAND_UNLEASHED = register("vindicative_brand_state", builder ->
+            builder.persistent(VindicativeBrandDataComponent.CODEC).networkSynchronized(VindicativeBrandDataComponent.STREAM_CODEC));
 
     public static final DeferredHolder<DataComponentType<?>, DataComponentType<ItemSkinComponent>> ITEM_SKIN = register("item_skin", builder ->
             builder.persistent(ItemSkinComponent.CODEC).networkSynchronized(ItemSkinComponent.STREAM_CODEC));

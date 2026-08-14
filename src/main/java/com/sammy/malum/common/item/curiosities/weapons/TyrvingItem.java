@@ -19,13 +19,10 @@ import net.neoforged.neoforge.client.event.*;
 import net.neoforged.neoforge.common.ItemAbilities;
 import net.neoforged.neoforge.common.ItemAbility;
 import net.neoforged.neoforge.event.entity.living.LivingDamageEvent;
-import team.lodestar.lodestone.handlers.*;
 import team.lodestar.lodestone.helpers.*;
-import team.lodestar.lodestone.modules.core.easing.Easing;
 import team.lodestar.lodestone.modules.toolkit.item.tools.LodestoneSwordItem;
 import team.lodestar.lodestone.modules.toolkit.sound.SoundPlayer;
 import team.lodestar.lodestone.modules.toolkit.worldevent.WorldEventHandler;
-import team.lodestar.lodestone.registry.common.tag.*;
 import team.lodestar.lodestone.modules.toolkit.item.*;
 import team.lodestar.wayward_attributes.WaywardTags;
 
@@ -49,7 +46,7 @@ public class TyrvingItem extends LodestoneSwordItem implements IMalumEventRespon
     }
 
     @Override
-    public SpiritLike getDefiningSpiritType() {
+    public SpiritLike getDefiningSpiritType(ItemStack stack) {
         return MalumSpiritTypes.WICKED_SPIRIT;
     }
 
@@ -79,7 +76,7 @@ public class TyrvingItem extends LodestoneSwordItem implements IMalumEventRespon
             MalumParticleEffectTypes.TYRVING_SLASH.createEffect()
                     .originatesFrom(attacker).targets(target)
                     .verticalSlashRotation()
-                    .color(stack.getItem())
+                    .color(stack)
                     .horizontalOffset(0.2f).forwardOffset(0.8f).upwardOffset(-0.2f)
                     .spawn(level);
         }

@@ -61,7 +61,7 @@ public class UnwindingChaosStaffItem extends AbstractStaffItem implements ISpiri
     }
 
     @Override
-    public SpiritLike getDefiningSpiritType() {
+    public SpiritLike getDefiningSpiritType(ItemStack stack) {
         return getUnwindingChaosSpirit();
     }
 
@@ -74,7 +74,7 @@ public class UnwindingChaosStaffItem extends AbstractStaffItem implements ISpiri
             return;
         }
         if (target.isOnFire()) {
-            addStaffCharges(serverLevel, attacker, target, 160);
+            addStaffCharges(serverLevel, stack, attacker, target, 160);
         }
     }
 
@@ -89,7 +89,7 @@ public class UnwindingChaosStaffItem extends AbstractStaffItem implements ISpiri
         }
 
         if (source.is(DamageTypeTags.IS_FIRE)) {
-            addStaffCharges(serverLevel, attacker, target, 40);
+            addStaffCharges(serverLevel, stack, attacker, target, 40);
         }
 
         boolean canTriggerMagic = source.is(WaywardTags.DamageTypeTags.CAN_TRIGGER_MAGIC_DAMAGE);
@@ -141,11 +141,11 @@ public class UnwindingChaosStaffItem extends AbstractStaffItem implements ISpiri
         level.addFreshEntity(projectile);
     }
 
-    public void addStaffCharges(ServerLevel serverLevel, LivingEntity attacker, LivingEntity target, int charge) {
+    public void addStaffCharges(ServerLevel serverLevel, ItemStack stack, LivingEntity attacker, LivingEntity target, int charge) {
         attacker.getData(MalumAttachmentTypes.STAFF_ABILITIES).reduceStaffChargeCooldown(attacker, charge);
         SoundPlayer.create(MalumGearSoundEvents.WORLDSOUL_MOTIF_LIGHT_IMPACT).volume(1.5f).pitch(0.75f, 1.25f).play(attacker);
         MalumParticleEffectTypes.UNWINDING_CHAOS_CHARGE.createEffect(target)
-                .color(getDefiningSpiritType())
+                .color(getDefiningSpiritType(stack))
                 .customData(new UnwindingChaosChargeParticleEffect.UnwindingChaosChargeEffectData(attacker.getId()))
                 .spawn(serverLevel);
     }

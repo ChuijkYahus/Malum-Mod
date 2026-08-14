@@ -85,15 +85,16 @@ public class MalumItemTagDatagen extends LodestoneItemTagsSystem {
 
         tag(SOUL_SHATTER_CAPABLE_WEAPON)
                 .addTags(SCYTHES, STAVES)
-                .add(SHAPED_SLAB.get(), BROKEN_BLADE.get())
-                .add(TYRVING.get(), WEIGHT_OF_WORLDS.get(), SUNDERING_ANCHOR.get())
                 .add(SOUL_STAINED_STEEL_AXE.get(), SOUL_STAINED_STEEL_PICKAXE.get(), SOUL_STAINED_STEEL_SHOVEL.get(), SOUL_STAINED_STEEL_SWORD.get(), SOUL_STAINED_STEEL_HOE.get(), SOUL_STAINED_STEEL_KNIFE.get())
+                .add(SHAPED_SLAB.get())
+                .add(TYRVING.get(), WEIGHT_OF_WORLDS.get())
                 .add(SPELLWEAVING_PICKAXE.get(), SPELLWEAVING_AXE.get());
 
         tag(MAGIC_CAPABLE_WEAPON)
                 .addTags(SCYTHES, STAVES)
                 .add(SOUL_STAINED_STEEL_SWORD.get(), SOUL_STAINED_STEEL_KNIFE.get())
-                .add(GLUTTONOUS_BLUDGEON.get(), TYRVING.get(), SUNDERING_ANCHOR.get())
+                .add(GLUTTONOUS_BLUDGEON.get(), TYRVING.get())
+                .add(SUNDERING_ANCHOR.get(), VINDICATIVE_BRAND.get())
                 .remove(EDGE_OF_DELIVERANCE.get());
 
         tag(SCYTHES)
@@ -108,8 +109,8 @@ public class MalumItemTagDatagen extends LodestoneItemTagsSystem {
                 CRUDE_SCYTHE.get(), SOUL_STAINED_STEEL_SCYTHE.get(), RAVENOUS_SCYTHE.get(), EDGE_OF_DELIVERANCE.get(),
                 SOUL_STAINED_STEEL_KNIFE.get(), SOUL_STAINED_STEEL_SWORD.get(), SOUL_STAINED_STEEL_AXE.get(),
                 GLUTTONOUS_BLUDGEON.get(), TYRVING.get(),
-                MNEMONIC_HEX_STAFF.get(), EROSION_SCEPTER.get(), UNWINDING_CHAOS.get(),
-                SUNDERING_ANCHOR.get());
+                MNEMONIC_HEX_STAFF.get(), EROSION_SCEPTER.get(),
+                UNWINDING_CHAOS.get(), SUNDERING_ANCHOR.get(), VINDICATIVE_BRAND.get());
         tag(Tags.Items.RANGED_WEAPON_TOOLS).add(MNEMONIC_HEX_STAFF.get(), EROSION_SCEPTER.get(), UNWINDING_CHAOS.get(), SUNDERING_ANCHOR.get());
         tag(ItemTags.SWORDS).add(SOUL_STAINED_STEEL_SWORD.get(), TYRVING.get());
         tag(ItemTags.PICKAXES).add(SOUL_STAINED_STEEL_PICKAXE.get(), SPELLWEAVING_PICKAXE.get());

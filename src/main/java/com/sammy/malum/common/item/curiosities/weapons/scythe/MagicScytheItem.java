@@ -7,7 +7,6 @@ import net.minecraft.world.entity.*;
 import net.minecraft.world.entity.ai.attributes.*;
 import net.minecraft.world.item.*;
 import net.minecraft.world.item.component.*;
-import team.lodestar.lodestone.registry.common.*;
 import team.lodestar.lodestone.modules.toolkit.item.*;
 import team.lodestar.wayward_attributes.core.registry.WaywardAttributeTypes;
 
@@ -22,7 +21,7 @@ public class MagicScytheItem extends MalumScytheItem implements ISpiritAffiliate
     }
 
     @Override
-    public SpiritLike getDefiningSpiritType() {
+    public SpiritLike getDefiningSpiritType(ItemStack stack) {
         return MalumSpiritTypes.WICKED_SPIRIT;
     }
 }

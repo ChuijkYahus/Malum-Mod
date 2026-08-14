@@ -1,21 +1,21 @@
 {
   "parent": "minecraft:item/handheld",
   "base": {
-    "parent": "malum:item/edge_of_deliverance_huge"
+    "parent": "malum:item/edge_of_deliverance_gui"
   },
   "loader": "neoforge:separate_transforms",
   "perspectives": {
-    "fixed": {
-      "parent": "malum:item/edge_of_deliverance_gui"
+    "firstperson_lefthand": {
+      "parent": "malum:item/edge_of_deliverance_huge"
     },
-    "ground": {
-      "parent": "malum:item/edge_of_deliverance_gui"
+    "firstperson_righthand": {
+      "parent": "malum:item/edge_of_deliverance_huge"
     },
-    "gui": {
-      "parent": "malum:item/edge_of_deliverance_gui"
+    "thirdperson_lefthand": {
+      "parent": "malum:item/edge_of_deliverance_huge"
+    },
+    "thirdperson_righthand": {
+      "parent": "malum:item/edge_of_deliverance_huge"
     }
-  },
-  "textures": {
-    "layer0": "malum:item/edge_of_deliverance"
   }
 }

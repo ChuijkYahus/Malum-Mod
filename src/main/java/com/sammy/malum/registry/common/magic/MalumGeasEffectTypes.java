@@ -45,7 +45,6 @@ public class MalumGeasEffectTypes {
 
     public static final GeasHolder<GeasEffectType> PACT_OF_SELF_CARE = GEAS_TYPES.register("pact_of_self_care", () -> new GeasEffectType(SelfCareGeas::new, AQUEOUS_SPIRIT, SACRED_SPIRIT));
     public static final GeasHolder<GeasEffectType> PACT_OF_THE_HIGH_PRIEST = GEAS_TYPES.register("pact_of_the_high_priest", () -> new GeasEffectType(HighPriestGeas::new, AQUEOUS_SPIRIT, AERIAL_SPIRIT));
-    public static final GeasHolder<GeasEffectType> PACT_OF_TIDAL_AFFINITY = GEAS_TYPES.register("pact_of_tidal_affinity", () -> new GeasEffectType(TidalAffinityGeas::new, AQUEOUS_SPIRIT, SACRED_SPIRIT));
     public static final GeasHolder<GeasEffectType> PACT_OF_PATIENCE_REPAID = GEAS_TYPES.register("pact_of_patience_repaid", () -> new GeasEffectType(PatienceRepaidGeas::new, AQUEOUS_SPIRIT, EARTHEN_SPIRIT));
 
     public static final GeasHolder<GeasEffectType> PACT_OF_THE_WINDSWEPT = GEAS_TYPES.register("pact_of_the_windswept", () -> new GeasEffectType(WindsweptGeas::new, AERIAL_SPIRIT, ARCANE_SPIRIT));

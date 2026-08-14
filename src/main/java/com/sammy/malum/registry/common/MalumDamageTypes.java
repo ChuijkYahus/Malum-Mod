@@ -34,6 +34,10 @@ public class MalumDamageTypes {
     public static final ResourceKey<DamageType> SUNDERING_ANCHOR_PHYSICAL_COMBO = createDamageType("sundering_anchor_physical_combo");
     public static final ResourceKey<DamageType> SUNDERING_ANCHOR_MAGIC_COMBO = createDamageType("sundering_anchor_magic_combo");
 
+    public static final ResourceKey<DamageType> VINDICATIVE_BRAND_MELEE = createDamageType("vindicative_brand_melee");
+    public static final ResourceKey<DamageType> VINDICATIVE_BRAND_SWEEP = createDamageType("vindicative_brand_sweep");
+    public static final ResourceKey<DamageType> VINDICATIVE_BRAND_COMBO = createDamageType("vindicative_brand_combo");
+
     //Geas
     public static final ResourceKey<DamageType> WARLOCK_SPIRIT_IMPACT = createDamageType("warlock_spirit_impact");
     public static final ResourceKey<DamageType> BERSERKER_SPIRIT_IMPACT = createDamageType("berserker_spirit_impact");

@@ -56,7 +56,7 @@ public class SpellweavingPickaxeItem extends MagicPickaxeItem implements ISpirit
     }
 
     @Override
-    public SpiritLike getDefiningSpiritType() {
+    public SpiritLike getDefiningSpiritType(ItemStack stack) {
         return MalumSpiritTypes.EARTHEN_SPIRIT;
     }
 
@@ -150,7 +150,7 @@ public class SpellweavingPickaxeItem extends MagicPickaxeItem implements ISpirit
                 return;
             }
             boolean isNearest = spellweavingTool.getMode().equals(Mode.NEAREST);
-            var spirit = tool.getItem() instanceof ISpiritAffiliatedItem spiritItem ? spiritItem.getDefiningSpiritType() : MalumSpiritTypes.ARCANE_SPIRIT;
+            var spirit = tool.getItem() instanceof ISpiritAffiliatedItem spiritItem ? spiritItem.getDefiningSpiritType(tool) : MalumSpiritTypes.ARCANE_SPIRIT;
             int spawnedLoci = getSpawnedLoci(level, tool, player);
             float lociSpeed = getLociSpeed(level, tool, player);
 

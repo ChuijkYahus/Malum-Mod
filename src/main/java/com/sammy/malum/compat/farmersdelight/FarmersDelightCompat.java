@@ -22,7 +22,7 @@ public class FarmersDelightCompat {
     public static class LoadedOnly {
 
         public static Item makeMagicKnife(LodestoneItemProperties properties) {
-            return new MagicKnifeItem(MalumItemTiers.SOUL_STAINED_STEEL, -1.5f, 0, 2, properties);
+            return new MagicKnifeItem(MalumItemTiers.SOUL_STAINED_STEEL, 2, 2, 2, properties);
         }
     }
 

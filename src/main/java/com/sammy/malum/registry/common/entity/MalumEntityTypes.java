@@ -5,6 +5,7 @@ import com.sammy.malum.common.entity.*;
 import com.sammy.malum.common.entity.activator.*;
 import com.sammy.malum.common.entity.activator.gluttony.*;
 import com.sammy.malum.common.entity.activator.rite.*;
+import com.sammy.malum.common.entity.activator.vindicative_brand.*;
 import com.sammy.malum.common.entity.bolt.*;
 import com.sammy.malum.common.entity.hidden_blade.*;
 import com.sammy.malum.common.entity.nitrate.EthericNitrate;
@@ -59,6 +60,7 @@ public class MalumEntityTypes {
 
     public static final DeferredHolder<EntityType<?>, EntityType<SunderingAnchorProjectile>> SUNDERING_ANCHOR = register("sundering_anchor", SunderingAnchorProjectile::new, 2f, 2f, 10);
 
+    public static final DeferredHolder<EntityType<?>, EntityType<ResentmentRitualActivator>> RESENTMENT_RITUAL = register("resentment_ritual", ResentmentRitualActivator::new, 0.25f, 0.25f, 4, 1);
 
     protected static <T extends Entity> DeferredHolder<EntityType<?>, EntityType<T>> register(String name, MalumEntityFactory<T> factory, float width, float height, int trackingRange) {
         return register(name, factory, width, height, trackingRange, 3);

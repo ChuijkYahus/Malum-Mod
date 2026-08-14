@@ -7,6 +7,7 @@ import com.sammy.malum.common.item.curiosities.pouch.RavenousPouchItem;
 import com.sammy.malum.common.item.curiosities.pouch.SoulwovenPouchItem;
 import com.sammy.malum.common.item.curiosities.tools.CatalystLobberItem;
 import com.sammy.malum.common.item.curiosities.tools.spellweaver.SpellweavingPickaxeItem;
+import com.sammy.malum.common.item.curiosities.weapons.greatsword.*;
 import com.sammy.malum.common.item.ether.EtherItem;
 import com.sammy.malum.registry.common.MalumContent;
 import net.minecraft.client.renderer.item.ItemProperties;
@@ -22,34 +23,31 @@ public class MalumItemColors {
         event.enqueueWork(() -> {
             MalumContent.ITEMS.getEntries().stream().filter(r -> r.get() instanceof LodestoneArmorItem).forEach(armor ->
                     ItemProperties.register(
-                            armor.get(),
-                            MalumMod.malumPath("item_skin"),
+                            armor.get(), MalumMod.malumPath("item_skin"),
                             (stack, level, holder, holderID) -> ItemSkinComponent.getAppliedSkinId(stack)));
 
             ItemProperties.register(
-                    MalumContent.Gear.SOULWOVEN_POUCH.get(),
-                    MalumMod.malumPath("filled"),
+                    MalumContent.Gear.SOULWOVEN_POUCH.get(), MalumMod.malumPath("filled"),
                     (stack, level, holder, holderID) -> SoulwovenPouchItem.getFullnessDisplay(stack));
             ItemProperties.register(
-                    MalumContent.Gear.RAVENOUS_POUCH.get(),
-                    MalumMod.malumPath("filled"),
+                    MalumContent.Gear.RAVENOUS_POUCH.get(), MalumMod.malumPath("filled"),
                     (stack, level, holder, holderID) -> RavenousPouchItem.getFullnessDisplay(stack));
             ItemProperties.register(
-                    MalumContent.BuildingBlocks.SOULWOVEN_BANNER.getItem(),
-                    MalumMod.malumPath("pattern"),
+                    MalumContent.BuildingBlocks.SOULWOVEN_BANNER.getItem(), MalumMod.malumPath("pattern"),
                     (stack, level, holder, holderID) -> SoulwovenBannerBlockItem.getBannerPattern(stack));
             ItemProperties.register(
-                    MalumContent.Gear.CATALYST_LOBBER.get(),
-                    MalumMod.malumPath("state"),
+                    MalumContent.Gear.CATALYST_LOBBER.get(), MalumMod.malumPath("state"),
                     (stack, level, holder, holderID) -> CatalystLobberItem.getStateDisplay(stack));
             ItemProperties.register(
-                    MalumContent.Gear.SPELLWEAVING_PICKAXE.get(),
-                    MalumMod.malumPath("primed"),
+                    MalumContent.Gear.SPELLWEAVING_PICKAXE.get(), MalumMod.malumPath("primed"),
                     (stack, level, holder, holderID) -> SpellweavingPickaxeItem.getStateDisplay(stack));
             ItemProperties.register(
-                    MalumContent.Gear.SPELLWEAVING_AXE.get(),
-                    MalumMod.malumPath("primed"),
+                    MalumContent.Gear.SPELLWEAVING_AXE.get(), MalumMod.malumPath("primed"),
                     (stack, level, holder, holderID) -> SpellweavingPickaxeItem.getStateDisplay(stack));
+
+            ItemProperties.register(
+                    MalumContent.Gear.VINDICATIVE_BRAND.get(), MalumMod.malumPath("unsealed"),
+                    (stack, level, holder, holderID) -> VindicativeBrandSwordItem.getUnsealedState(stack));
         });
     }
 

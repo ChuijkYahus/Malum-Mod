@@ -1,6 +1,5 @@
 package com.sammy.malum.registry.common.item;
 
-import com.sammy.malum.registry.common.*;
 import net.minecraft.world.item.Rarity;
 import team.lodestar.lodestone.modules.toolkit.item.*;
 
@@ -12,6 +11,9 @@ public class MalumItemProperties {
 
     public static LodestoneItemProperties GEAR() {
         return DEFAULT().stacksTo(1);
+    }
+    public static LodestoneItemProperties RELIC() {
+        return GEAR().rarity(Rarity.EPIC);
     }
 
     public static LodestoneItemProperties IMPETUS() {

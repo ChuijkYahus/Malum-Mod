@@ -18,7 +18,7 @@ public class MalumDungeonRegaliaTab extends AbstractMalumCreativeTab {
 
                 createCategory(DUNGEON_REGALIA)
                         .addItems(
-                                BROKEN_BLADE, SHAPED_SLAB
+                                SHAPED_SLAB
                         ).nextLine()
                         .addItems(
                                 IRON_CROWN, MEDITATING_EFFIGY

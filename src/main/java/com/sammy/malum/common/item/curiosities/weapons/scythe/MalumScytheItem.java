@@ -2,6 +2,7 @@ package com.sammy.malum.common.item.curiosities.weapons.scythe;
 
 import com.sammy.malum.common.entity.scythe.*;
 import com.sammy.malum.common.item.*;
+import com.sammy.malum.common.item.curiosities.weapons.*;
 import com.sammy.malum.core.handlers.enchantment.*;
 import com.sammy.malum.registry.common.*;
 import com.sammy.malum.registry.common.MalumContent;
@@ -37,22 +38,20 @@ import static team.lodestar.wayward_attributes.tweaks.SweepAttackTweaks.BASE_SWE
 import static team.lodestar.wayward_attributes.tweaks.SweepAttackTweaks.BASE_SWEEP_RADIUS;
 
 
-public class MalumScytheItem extends LodestoneCombatItem implements IMalumEventResponder {
+public class MalumScytheItem extends LodestoneCombatItem implements IMalumEventResponder, ICustomMeleeDamageTypeItem {
 
     public MalumScytheItem(Tier tier, float attackDamage, float attackSpeed, float sweepingDamage, float sweepingRadius, LodestoneItemProperties properties) {
-        super(tier, attackDamage + 3, attackSpeed - 3.2f,
+        super(tier, attackDamage - 1, attackSpeed - 4f,
                 properties.mergeAttributes(ItemAttributeModifiers.builder()
-                        .add(Attributes.SWEEPING_DAMAGE_RATIO.getDelegate(), new AttributeModifier(BASE_SWEEP_DAMAGE, sweepingDamage, AttributeModifier.Operation.ADD_VALUE), EquipmentSlotGroup.MAINHAND)
-                        .add(WaywardAttributeTypes.SWEEPING_DAMAGE_RADIUS.getDelegate(), new AttributeModifier(BASE_SWEEP_RADIUS, sweepingRadius, AttributeModifier.Operation.ADD_VALUE), EquipmentSlotGroup.MAINHAND)
+                        .add(Attributes.SWEEPING_DAMAGE_RATIO, new AttributeModifier(BASE_SWEEP_DAMAGE, sweepingDamage, AttributeModifier.Operation.ADD_VALUE), EquipmentSlotGroup.MAINHAND)
+                        .add(WaywardAttributeTypes.SWEEPING_DAMAGE_RADIUS, new AttributeModifier(BASE_SWEEP_RADIUS, sweepingRadius, AttributeModifier.Operation.ADD_VALUE), EquipmentSlotGroup.MAINHAND)
                         .build()));
     }
 
     public static void enableScytheSweeping(SweepAttackEvent event) {
         Player attacker = event.getEntity();
         if (attacker.getMainHandItem().getItem() instanceof MalumScytheItem) {
-            if (canSweep(attacker)) {
-                event.setSweeping(true);
-            }
+            event.setSweeping(canSweep(attacker));
         }
     }
 
@@ -82,7 +81,7 @@ public class MalumScytheItem extends LodestoneCombatItem implements IMalumEventR
         var particle = MalumParticleEffectTypes.SCYTHE_SLASH.createEffect()
                 .originatesFrom(attacker)
                 .targets(target)
-                .color(stack.getItem())
+                .color(stack)
                 .upwardOffset(-0.4f)
                 .forwardOffset(0.8f);
         if (!canSweep(attacker)) {
@@ -136,8 +135,8 @@ public class MalumScytheItem extends LodestoneCombatItem implements IMalumEventR
             magicDamage = scytheBoomerang.magicDamage;
             isBoomerang = true;
         } else {
-            physicalDamage = (float) (attacker.getAttribute(Attributes.ATTACK_DAMAGE).getValue());
-            magicDamage = (float) (attacker.getAttribute(WaywardAttributeTypes.MAGIC_DAMAGE).getValue());
+            physicalDamage = (float) (attacker.getAttributeValue(Attributes.ATTACK_DAMAGE));
+            magicDamage = (float) (attacker.getAttributeValue(WaywardAttributeTypes.MAGIC_DAMAGE));
         }
         return new ScytheDamage(physicalDamage, magicDamage, isBoomerang);
     }
@@ -150,19 +149,14 @@ public class MalumScytheItem extends LodestoneCombatItem implements IMalumEventR
         return CurioHelper.hasCurioEquipped(attacker, MalumContent.Gear.NECKLACE_OF_THE_NARROW_EDGE.get());
     }
 
-    public static Optional<DamageSource> replaceSweepingDamage(Player player, ItemStack weapon) {
-        return replaceDamageSource(player, weapon, MalumDamageTypes.SCYTHE_SWEEP);
+    @Override
+    public ResourceKey<DamageType> getDirectDamageType(Player player, ItemStack weapon) {
+        return MalumDamageTypes.SCYTHE_MELEE;
     }
 
-    public static Optional<DamageSource> replaceDirectDamage(Player player, ItemStack weapon) {
-        return replaceDamageSource(player, weapon, MalumDamageTypes.SCYTHE_MELEE);
-    }
-
-    private static Optional<DamageSource> replaceDamageSource(Player player, ItemStack weapon, ResourceKey<DamageType> damageType) {
-        if (weapon.is(MalumTags.Items.SCYTHES)) {
-            return Optional.of(DamageTypeHelper.create(player.level(), damageType, player));
-        }
-        return Optional.empty();
+    @Override
+    public ResourceKey<DamageType> getSweepingDamageType(Player player, ItemStack weapon) {
+        return MalumDamageTypes.SCYTHE_SWEEP;
     }
 
     public record ScytheDamage(float physicalDamage, float magicDamage, boolean isBoomerang) {

@@ -23,7 +23,7 @@ public class SpellweavingAxeItem extends MagicAxeItem implements ISpiritAffiliat
     }
 
     @Override
-    public SpiritLike getDefiningSpiritType() {
+    public SpiritLike getDefiningSpiritType(ItemStack stack) {
         return MalumSpiritTypes.AQUEOUS_SPIRIT;
     }
 

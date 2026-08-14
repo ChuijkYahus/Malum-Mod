@@ -108,6 +108,7 @@ import com.sammy.malum.common.item.curiosities.tools.TinkeringToolItem;
 import com.sammy.malum.common.item.curiosities.tools.spellweaver.SpellweavingAxeItem;
 import com.sammy.malum.common.item.curiosities.tools.spellweaver.SpellweavingPickaxeItem;
 import com.sammy.malum.common.item.curiosities.weapons.*;
+import com.sammy.malum.common.item.curiosities.weapons.greatsword.*;
 import com.sammy.malum.common.item.curiosities.weapons.scythe.EdgeOfDeliveranceItem;
 import com.sammy.malum.common.item.curiosities.weapons.scythe.MagicScytheItem;
 import com.sammy.malum.common.item.curiosities.weapons.scythe.MalumScytheItem;
@@ -656,7 +657,7 @@ public class MalumContent {
         public static final DeferredItem<Item> SOULWOVEN_POUCH = register("soulwoven_pouch", MalumItemProperties::GEAR, SoulwovenPouchItem::new);
         public static final DeferredItem<Item> RAVENOUS_POUCH = register("ravenous_pouch", MalumItemProperties::GEAR, RavenousPouchItem::new);
 
-        public static final DeferredItem<Item> CRUDE_SCYTHE = register("crude_scythe", MalumItemProperties::GEAR, (p) -> new MalumScytheItem(Tiers.IRON, 0, 0.1f, 0.5f, 1.5f, p.durability(500)));
+        public static final DeferredItem<Item> CRUDE_SCYTHE = register("crude_scythe", MalumItemProperties::GEAR, (p) -> new MalumScytheItem(Tiers.IRON, 4, 1f, 0.5f, 1.5f, p.durability(500)));
 
         public static final DeferredItem<Item> SOUL_HUNTER_CLOAK = register("soul_hunter_cloak", MalumItemProperties::GEAR, (p) -> new SoulHunterArmorItem(ArmorItem.Type.HELMET, p));
         public static final DeferredItem<Item> SOUL_HUNTER_ROBE = register("soul_hunter_robe", MalumItemProperties::GEAR, (p) -> new SoulHunterArmorItem(ArmorItem.Type.CHESTPLATE, p));
@@ -673,14 +674,14 @@ public class MalumContent {
         public static final DeferredItem<Item> MALIGNANT_STRONGHOLD_LEGGINGS = register("malignant_stronghold_leggings", MalumItemProperties::GEAR, (p) -> new MalignantStrongholdArmorItem(ArmorItem.Type.LEGGINGS, p));
         public static final DeferredItem<Item> MALIGNANT_STRONGHOLD_BOOTS = register("malignant_stronghold_boots", MalumItemProperties::GEAR, (p) -> new MalignantStrongholdArmorItem(ArmorItem.Type.BOOTS, p));
 
-        public static final DeferredItem<Item> SOUL_STAINED_STEEL_SCYTHE = register("soul_stained_steel_scythe", MalumItemProperties::GEAR, (p) -> new MagicScytheItem(SOUL_STAINED_STEEL, -3.5f, 0.2f, 4, 0.5f, 1.5f, p));
+        public static final DeferredItem<Item> SOUL_STAINED_STEEL_SCYTHE = register("soul_stained_steel_scythe", MalumItemProperties::GEAR, (p) -> new MagicScytheItem(SOUL_STAINED_STEEL, 3f, 1.2f, 4, 0.5f, 1.5f, p));
         public static final DeferredItem<Item> SOUL_STAINED_STEEL_KNIFE = register("soul_stained_steel_knife", MalumItemProperties::GEAR, (p) -> FarmersDelightCompat.LOADED ? FarmersDelightCompat.LoadedOnly.makeMagicKnife(p) : new Item(p));
-        public static final DeferredItem<Item> SOUL_STAINED_STEEL_SWORD = register("soul_stained_steel_sword", MalumItemProperties::GEAR, (p) -> new MagicSwordItem(SOUL_STAINED_STEEL, -3, 0, 3, p));
+        public static final DeferredItem<Item> SOUL_STAINED_STEEL_SWORD = register("soul_stained_steel_sword", MalumItemProperties::GEAR, (p) -> new MagicSwordItem(SOUL_STAINED_STEEL, 3, 1.6f, 3, p));
 
-        public static final DeferredItem<Item> SOUL_STAINED_STEEL_PICKAXE = register("soul_stained_steel_pickaxe", MalumItemProperties::GEAR, (p) -> new MagicPickaxeItem(SOUL_STAINED_STEEL, -2, 0, 2, p));
-        public static final DeferredItem<Item> SOUL_STAINED_STEEL_AXE = register("soul_stained_steel_axe", MalumItemProperties::GEAR, (p) -> new MagicAxeItem(SOUL_STAINED_STEEL, -3, 0, 4, p));
-        public static final DeferredItem<Item> SOUL_STAINED_STEEL_SHOVEL = register("soul_stained_steel_shovel", MalumItemProperties::GEAR, (p) -> new MagicShovelItem(SOUL_STAINED_STEEL, -2, 0, 2, p));
-        public static final DeferredItem<Item> SOUL_STAINED_STEEL_HOE = register("soul_stained_steel_hoe", MalumItemProperties::GEAR, (p) -> new MagicHoeItem(SOUL_STAINED_STEEL, 0, -1.5f, 1, p));
+        public static final DeferredItem<Item> SOUL_STAINED_STEEL_PICKAXE = register("soul_stained_steel_pickaxe", MalumItemProperties::GEAR, (p) -> new MagicPickaxeItem(SOUL_STAINED_STEEL, 2, 1.2f, 3, p));
+        public static final DeferredItem<Item> SOUL_STAINED_STEEL_AXE = register("soul_stained_steel_axe", MalumItemProperties::GEAR, (p) -> new MagicAxeItem(SOUL_STAINED_STEEL, 4, 0.9f, 5, p));
+        public static final DeferredItem<Item> SOUL_STAINED_STEEL_SHOVEL = register("soul_stained_steel_shovel", MalumItemProperties::GEAR, (p) -> new MagicShovelItem(SOUL_STAINED_STEEL, 2, 1, 3, p));
+        public static final DeferredItem<Item> SOUL_STAINED_STEEL_HOE = register("soul_stained_steel_hoe", MalumItemProperties::GEAR, (p) -> new MagicHoeItem(SOUL_STAINED_STEEL, 1, 4f, 1, p));
 
         public static final DeferredItem<Item> SPELLWEAVING_PICKAXE = register("spellweaving_pickaxe", MalumItemProperties::GEAR, (p) -> new SpellweavingPickaxeItem(SPELLWEAVING_TOOLS, -3, 0, 4, p));
         public static final DeferredItem<Item> SPELLWEAVING_AXE = register("spellweaving_axe", MalumItemProperties::GEAR, (p) -> new SpellweavingAxeItem(SPELLWEAVING_TOOLS, -4, 0, 6, p));
@@ -696,8 +697,9 @@ public class MalumContent {
         public static final DeferredItem<Item> WEIGHT_OF_WORLDS = register("weight_of_worlds", MalumItemProperties::GEAR, (p) -> new WeightOfWorldsItem(MalumItemTiers.MALIGNANT_ALLOY, 1, -0.2f, p));
         public static final DeferredItem<Item> EDGE_OF_DELIVERANCE = register("edge_of_deliverance", MalumItemProperties::GEAR, (p) -> new EdgeOfDeliveranceItem(MalumItemTiers.MALIGNANT_ALLOY, 2, -0.1f, p));
 
-        public static final DeferredItem<Item> UNWINDING_CHAOS = register("unwinding_chaos", () -> MalumItemProperties.GEAR().rarity(EPIC), (p) -> new UnwindingChaosStaffItem(HARNESSED_CHAOS, 5, 1.5f, 3, p));
-        public static final DeferredItem<Item> SUNDERING_ANCHOR = register("sundering_anchor", () -> MalumItemProperties.GEAR().rarity(EPIC), (p) -> new SunderingAnchorItem(HARNESSED_CHAOS, 4, p));
+        public static final DeferredItem<Item> UNWINDING_CHAOS = register("unwinding_chaos", MalumItemProperties::RELIC, (p) -> new UnwindingChaosStaffItem(HARNESSED_CHAOS, 5, 1.5f, 3, p));
+        public static final DeferredItem<Item> SUNDERING_ANCHOR = register("sundering_anchor", MalumItemProperties::RELIC, (p) -> new SunderingAnchorItem(HARNESSED_CHAOS, 4, p));
+        public static final DeferredItem<Item> VINDICATIVE_BRAND = register("vindicative_brand", MalumItemProperties::RELIC, VindicativeBrandSwordItem::new);
 
         public static final DeferredItem<Item> GILDED_RING = register("gilded_ring", MalumItemProperties::GEAR, CurioGildedRing::new);
         public static final DeferredItem<Item> GILDED_BELT = register("gilded_belt", MalumItemProperties::GEAR, CurioGildedBelt::new);
@@ -781,7 +783,6 @@ public class MalumContent {
         }
 
         public static final DeferredItem<Item> SHAPED_SLAB = register("shaped_slab", MalumItemProperties::GEAR, (p) -> new ShapedSlabSwordItem(ARCHAIC_SLATE, 2.5f, -0.8f, p));
-        public static final DeferredItem<Item> BROKEN_BLADE = register("broken_blade", MalumItemProperties::GEAR, (p) -> new BrokenBladeSwordItem(ARCHAIC_SLATE, -0.5f, -0.6f, p));
         public static final DeferredItem<Item> IRON_CROWN = register("iron_crown", MalumItemProperties::DEFAULT, Item::new);
     }
 

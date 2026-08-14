@@ -64,18 +64,27 @@ public class MalumGearSoundEvents {
     public static final DeferredHolder<SoundEvent, SoundEvent> MALIGNANT_METAL_CRIT = MalumSoundEvents.registerVariable("malignant_deliverance_triggers");
     public static final DeferredHolder<SoundEvent, SoundEvent> MALIGNANT_METAL_COMBO = MalumSoundEvents.registerVariable("malignant_deliverance_strikes_again");
 
-    //Catalyst Lobber
-    public static final DeferredHolder<SoundEvent, SoundEvent> CATALYST_LOBBER_UNLOCKED = MalumSoundEvents.registerVariable("catalyst_lobber_unlocked");
-    public static final DeferredHolder<SoundEvent, SoundEvent> CATALYST_LOBBER_LOCKED = MalumSoundEvents.registerVariable("catalyst_lobber_locked");
-    public static final DeferredHolder<SoundEvent, SoundEvent> CATALYST_LOBBER_PRIMED = MalumSoundEvents.registerVariable("catalyst_lobber_primed");
-    public static final DeferredHolder<SoundEvent, SoundEvent> CATALYST_LOBBER_FIRED = MalumSoundEvents.registerVariable("catalyst_lobber_fired");
-
     //Sundering Anchor
     public static final DeferredHolder<SoundEvent, SoundEvent> SUNDERING_ANCHOR_SWING = MalumSoundEvents.registerVariable("sundering_anchor_cuts");
     public static final DeferredHolder<SoundEvent, SoundEvent> SUNDERING_ANCHOR_EXTRA_SWING = MalumSoundEvents.registerVariable("sundering_anchor_twists_gracefully");
     public static final DeferredHolder<SoundEvent, SoundEvent> SUNDERING_ANCHOR_PROJECTILE_SWING = MalumSoundEvents.registerVariable("sundering_anchor_lashes_out_ecstatically");
     public static final DeferredHolder<SoundEvent, SoundEvent> SUNDERING_ANCHOR_THROW = MalumSoundEvents.registerVariable("sundering_anchor_leaps_out_eagerly");
     public static final DeferredHolder<SoundEvent, SoundEvent> SUNDERING_ANCHOR_CATCH = MalumSoundEvents.registerVariable("sundering_anchor_returns_with_euphoria");
+
+
+    //Sundering Anchor
+    public static final DeferredHolder<SoundEvent, SoundEvent> VINDICATIVE_BRAND_SWING = MalumSoundEvents.registerVariable("vindicative_brand_swings");
+    public static final DeferredHolder<SoundEvent, SoundEvent> VINDICATIVE_BRAND_UNLEASHED_SWING = MalumSoundEvents.registerVariable("vindicative_brand_outright_devastates");
+    public static final DeferredHolder<SoundEvent, SoundEvent> VINDICATIVE_BRAND_EXTRA_SWING = MalumSoundEvents.registerVariable("vindicative_brand_reverberates");
+    public static final DeferredHolder<SoundEvent, SoundEvent> VINDICATIVE_BRAND_SPROUT_RESENTMENT = MalumSoundEvents.registerVariable("vindicative_brand_sprouts_resentment");
+    public static final DeferredHolder<SoundEvent, SoundEvent> VINDICATIVE_BRAND_PROGRESS_RITUAL = MalumSoundEvents.registerVariable("vindicative_brand_progresses_the_ritual");
+
+
+    //Catalyst Lobber
+    public static final DeferredHolder<SoundEvent, SoundEvent> CATALYST_LOBBER_UNLOCKED = MalumSoundEvents.registerVariable("catalyst_lobber_unlocked");
+    public static final DeferredHolder<SoundEvent, SoundEvent> CATALYST_LOBBER_LOCKED = MalumSoundEvents.registerVariable("catalyst_lobber_locked");
+    public static final DeferredHolder<SoundEvent, SoundEvent> CATALYST_LOBBER_PRIMED = MalumSoundEvents.registerVariable("catalyst_lobber_primed");
+    public static final DeferredHolder<SoundEvent, SoundEvent> CATALYST_LOBBER_FIRED = MalumSoundEvents.registerVariable("catalyst_lobber_fired");
 
     //Misc Motifs
     public static final DeferredHolder<SoundEvent, SoundEvent> DRAINING_MOTIF = MalumSoundEvents.registerVariable("the_sound_of_silence");

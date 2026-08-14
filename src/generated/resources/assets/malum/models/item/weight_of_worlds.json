@@ -1,21 +1,21 @@
 {
   "parent": "minecraft:item/handheld",
   "base": {
-    "parent": "malum:item/weight_of_worlds_huge"
+    "parent": "malum:item/weight_of_worlds_gui"
   },
   "loader": "neoforge:separate_transforms",
   "perspectives": {
-    "fixed": {
-      "parent": "malum:item/weight_of_worlds_gui"
+    "firstperson_lefthand": {
+      "parent": "malum:item/weight_of_worlds_huge"
     },
-    "ground": {
-      "parent": "malum:item/weight_of_worlds_gui"
+    "firstperson_righthand": {
+      "parent": "malum:item/weight_of_worlds_huge"
     },
-    "gui": {
-      "parent": "malum:item/weight_of_worlds_gui"
+    "thirdperson_lefthand": {
+      "parent": "malum:item/weight_of_worlds_huge"
+    },
+    "thirdperson_righthand": {
+      "parent": "malum:item/weight_of_worlds_huge"
     }
-  },
-  "textures": {
-    "layer0": "malum:item/weight_of_worlds"
   }
 }
