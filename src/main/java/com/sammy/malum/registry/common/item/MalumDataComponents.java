@@ -24,11 +24,13 @@ import static vectorwing.farmersdelight.common.registry.ModDataComponents.DATA_C
 public class MalumDataComponents {
     public static final DeferredRegister<DataComponentType<?>> COMPONENTS = DeferredRegister.create(Registries.DATA_COMPONENT_TYPE, MalumMod.MALUM);
 
-    public static final DeferredHolder<DataComponentType<?>, DataComponentType<UUID>> SOUL_TAG_TARGET =
-            DATA_COMPONENTS.registerComponentType("soul_tag_target", builder -> builder.persistent(UUIDUtil.CODEC));
-
-    public static final DeferredHolder<DataComponentType<?>, DataComponentType<Component>> SOUL_TAG_TARGET_NAME =
-            register("soul_tag_target_name", ComponentSerialization.CODEC);
+    public static final DeferredHolder<DataComponentType<?>, DataComponentType<SoulTagDataComponent>> SOUL_TAG_DATA =
+            register(
+                    "soul_tag_data",
+                    builder -> builder
+                            .persistent(SoulTagDataComponent.CODEC)
+                            .networkSynchronized(SoulTagDataComponent.STREAM_CODEC)
+            );
 
     public static final DeferredHolder<DataComponentType<?>, DataComponentType<SoulstoneBudDataComponent>> SOULSTONE_BUD_DATA = register("soulstone_bud_data", builder ->
             builder.persistent(SoulstoneBudDataComponent.CODEC).networkSynchronized(SoulstoneBudDataComponent.STREAM_CODEC));

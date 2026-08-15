@@ -291,7 +291,6 @@ public class MalumContent {
 
         }
 
-        public static final DeferredItem<Item> SOUL_TAG_ITEM = register("soul_tag_item", MalumItemProperties::DEFAULT, SoulTagItem::new);
 
         public static final BlockBlockItemHolder<Block, BlockItem> DEEPSLATE_SOULSTONE_ORE = registerBlock("deepslate_soulstone_ore", () -> new DropExperienceBlock(UniformInt.of(14, 18), MalumOreBlockProperties.SOULSTONE_ORE(true)));
         public static final BlockBlockItemHolder<Block, BlockItem> SOULSTONE_ORE = registerBlock("soulstone_ore", () -> new DropExperienceBlock(UniformInt.of(14, 18), MalumOreBlockProperties.SOULSTONE_ORE(false)));
@@ -512,6 +511,8 @@ public class MalumContent {
         public static void init() {
 
         }
+
+        public static final DeferredItem<Item> SOUL_TAG_ITEM = register("soul_tag_item", MalumItemProperties::DEFAULT, SoulTagItem::new);
 
         public static final BlockBlockItemHolder<Block, BlockItem> SPIRIT_ALTAR = registerBlock("spirit_altar", () -> new SpiritAltarBlock<>(RUNEWOOD_IMPLEMENT()));
         public static final BlockBlockItemHolder<Block, BlockItem> SPIRIT_JAR = registerBlock("spirit_jar", () -> new SpiritJarBlock<>(SPIRIT_JAR()), SpiritJarItem::new);
