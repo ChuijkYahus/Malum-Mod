@@ -6,6 +6,7 @@ import com.sammy.malum.visual_effects.networked.attack.*;
 import com.sammy.malum.visual_effects.networked.attack.scythe.*;
 import com.sammy.malum.visual_effects.networked.attack.sundering_anchor.*;
 import com.sammy.malum.visual_effects.networked.attack.vindicative_brand.*;
+import com.sammy.malum.visual_effects.networked.attack.vindicative_brand.unleashed.*;
 import com.sammy.malum.visual_effects.networked.avarice.AvariceFortuneParticleEffect;
 import com.sammy.malum.visual_effects.networked.banner.*;
 import com.sammy.malum.visual_effects.networked.blight.*;
@@ -109,6 +110,11 @@ public class MalumParticleEffectTypes {
 
     public static final VindicativeBrandSlashParticleEffect VINDICATIVE_BRAND_SLASH = new VindicativeBrandSlashParticleEffect("vindicative_brand_slash");
     public static final VindicativeBrandUnleashedSlashParticleEffect VINDICATIVE_BRAND_UNLEASHED_SLASH = new VindicativeBrandUnleashedSlashParticleEffect("vindicative_brand_unleashed_slash");
+
+    public static final VindicativeBrandDashCleaveParticleEffect VINDICATIVE_BRAND_DASH_CLEAVE = new VindicativeBrandDashCleaveParticleEffect("vindicative_brand_dash_cleave");
+    public static final VindicativeBrandUnleashedDashCleaveParticleEffect VINDICATIVE_BRAND_UNLEASHED_DASH_CLEAVE = new VindicativeBrandUnleashedDashCleaveParticleEffect("vindicative_brand_unleashed_dash_cleave");
+
+
     public static final VindicativeBrandExtraSlashParticleEffect VINDICATIVE_BRAND_EXTRA_SLASH = new VindicativeBrandExtraSlashParticleEffect("vindicative_brand_extra_slash");
 
 

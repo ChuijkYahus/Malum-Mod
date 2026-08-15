@@ -1,6 +1,5 @@
 package com.sammy.malum.registry.common.sound;
 
-import com.sammy.malum.*;
 import net.minecraft.sounds.*;
 import net.neoforged.neoforge.registries.*;
 
@@ -78,6 +77,10 @@ public class MalumGearSoundEvents {
     public static final DeferredHolder<SoundEvent, SoundEvent> VINDICATIVE_BRAND_EXTRA_SWING = MalumSoundEvents.registerVariable("vindicative_brand_reverberates");
     public static final DeferredHolder<SoundEvent, SoundEvent> VINDICATIVE_BRAND_SPROUT_RESENTMENT = MalumSoundEvents.registerVariable("vindicative_brand_sprouts_resentment");
     public static final DeferredHolder<SoundEvent, SoundEvent> VINDICATIVE_BRAND_PROGRESS_RITUAL = MalumSoundEvents.registerVariable("vindicative_brand_progresses_the_ritual");
+
+    public static final DeferredHolder<SoundEvent, SoundEvent> VINDICATIVE_BRAND_DASH = MalumSoundEvents.registerVariable("vindicative_brand_user_lunges_forward");
+    public static final DeferredHolder<SoundEvent, SoundEvent> VINDICATIVE_BRAND_DASH_CLEAVE = MalumSoundEvents.registerVariable("vindicative_brand_cleaves_the_world");
+    public static final DeferredHolder<SoundEvent, SoundEvent> VINDICATIVE_BRAND_UNLEASHED_DASH_CLEAVE = MalumSoundEvents.registerVariable("vindicative_brand_erases_the_world");
 
 
     //Catalyst Lobber

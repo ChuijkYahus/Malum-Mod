@@ -104,10 +104,6 @@ public class WeepingWellRejectionHandler {
             WeepingWellData.checkForWeepingWell(player).ifPresent(weepingWell -> {
                 BlockPos worldPosition = weepingWell.getBlockPos();
                 MalumParticleEffectTypes.WEEPING_WELL_REACTS.createEffect(worldPosition.getCenter()).spawn(serverLevel);
-                if (weepingWell.reachedStreakGoal) {
-                    GeasEffectHandler.addGeasEffect(player, MalumGeasEffectTypes.CREED_OF_THE_BLIGHT_EATER.get());
-                    weepingWell.reachedStreakGoal = false;
-                }
             });
             MalumParticleEffectTypes.WEEPING_WELL_REACTS.createEffect(player).spawn(serverLevel);
             if (!player.isCreative()) {

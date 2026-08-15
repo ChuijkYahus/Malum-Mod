@@ -1,8 +1,8 @@
 package com.sammy.malum.common.item.curiosities.weapons.greatsword;
 
 import com.sammy.malum.*;
-import com.sammy.malum.common.data.component.*;
-import com.sammy.malum.common.data.component.pouch.*;
+import com.sammy.malum.common.data.attachment.gear.*;
+import com.sammy.malum.common.data.component.gear.*;
 import com.sammy.malum.common.entity.activator.vindicative_brand.*;
 import com.sammy.malum.common.item.*;
 import com.sammy.malum.common.item.curiosities.weapons.*;
@@ -14,11 +14,9 @@ import com.sammy.malum.registry.common.item.*;
 import com.sammy.malum.registry.common.magic.*;
 import com.sammy.malum.registry.common.sound.*;
 import com.sammy.malum.visual_effects.networked.*;
-import com.sammy.malum.visual_effects.networked.attack.vindicative_brand.*;
 import net.minecraft.resources.*;
 import net.minecraft.server.level.*;
-import net.minecraft.sounds.*;
-import net.minecraft.util.*;
+import net.minecraft.world.*;
 import net.minecraft.world.damagesource.*;
 import net.minecraft.world.effect.*;
 import net.minecraft.world.entity.*;
@@ -30,15 +28,17 @@ import net.minecraft.world.level.*;
 import net.minecraft.world.phys.*;
 import net.neoforged.neoforge.common.extensions.*;
 import net.neoforged.neoforge.event.entity.living.*;
-import net.neoforged.neoforge.registries.*;
+import net.neoforged.neoforge.event.tick.*;
 import team.lodestar.lodestone.helpers.*;
 import team.lodestar.lodestone.modules.core.easing.*;
+import team.lodestar.lodestone.modules.toolkit.enchanting.*;
 import team.lodestar.lodestone.modules.toolkit.item.*;
 import team.lodestar.lodestone.modules.toolkit.item.tools.*;
 import team.lodestar.lodestone.modules.toolkit.sound.*;
 import team.lodestar.lodestone.modules.toolkit.worldevent.*;
-import team.lodestar.lodestone.systems.network.particle.*;
 import team.lodestar.wayward_attributes.core.registry.*;
+
+import java.util.function.*;
 
 import static team.lodestar.wayward_attributes.tweaks.SweepAttackTweaks.*;
 
@@ -68,6 +68,49 @@ public class VindicativeBrandSwordItem extends LodestoneSwordItem implements IMa
         return stack.has(MalumDataComponents.VINDICATIVE_BRAND_UNLEASHED) ? 1 : 0;
     }
 
+    public static void entityTick(EntityTickEvent.Pre event) {
+        if (event.getEntity() instanceof Player player) {
+            player.getExistingData(MalumAttachmentTypes.VINDICATIVE_BRAND_DASH_DATA).ifPresent(d -> d.tickData(player));
+        }
+    }
+
+    public static void triggerDashAttack(ServerLevel level, Player player, ItemStack weapon) {
+        var random = level.random;
+        float baseDamage = (float) player.getAttributes().getValue(Attributes.ATTACK_DAMAGE);
+
+        float range = 5f;
+        var area = player.getBoundingBox().inflate(range, 2f, range);
+
+        var physicalDamageType = DamageTypeHelper.create(level, MalumDamageTypes.VINDICATIVE_BRAND_SWEEP, player);
+        var predicate = dashAttackDamagePredicate(player, range);
+        for (Entity target : level.getEntitiesOfClass(LivingEntity.class, area, predicate)) {
+            target.invulnerableTime = 0;
+            target.hurt(physicalDamageType, baseDamage);
+        }
+
+        MalumNetworkedWeaponParticleEffectType<?> particleType = MalumParticleEffectTypes.VINDICATIVE_BRAND_DASH_CLEAVE;
+        var sound = MalumGearSoundEvents.VINDICATIVE_BRAND_DASH_CLEAVE;
+
+        if (weapon.has(MalumDataComponents.VINDICATIVE_BRAND_UNLEASHED)) {
+            particleType = MalumParticleEffectTypes.VINDICATIVE_BRAND_UNLEASHED_DASH_CLEAVE;
+            sound = MalumGearSoundEvents.VINDICATIVE_BRAND_UNLEASHED_DASH_CLEAVE;
+        }
+
+        particleType.createEffect()
+                .originatesFrom(player)
+                .horizontalDeviation(0.5f)
+                .color(weapon)
+                .upwardOffset(-0.8f)
+                .mirroredRandomly(random)
+                .spawn(level);
+
+        SoundPlayer.create(sound).pitchVariance(0.2f).play(player);
+    }
+
+    public static Predicate<LivingEntity> dashAttackDamagePredicate(LivingEntity attacker, float range) {
+        return LodestoneEnchantmentEffectCommonsHelper.attackPredicate(attacker).and(e -> attacker.distanceTo(e) <= range);
+    }
+
     @Override
     public void inventoryTick(ItemStack stack, Level level, Entity entity, int slotId, boolean isSelected) {
         if (entity instanceof LivingEntity livingEntity) {
@@ -78,6 +121,21 @@ public class VindicativeBrandSwordItem extends LodestoneSwordItem implements IMa
                 stack.remove(MalumDataComponents.VINDICATIVE_BRAND_UNLEASHED);
             }
         }
+    }
+
+    @Override
+    public InteractionResultHolder<ItemStack> use(Level level, Player player, InteractionHand usedHand) {
+        var cooldowns = player.getCooldowns();
+        if (!cooldowns.isOnCooldown(this)) {
+            var stack = player.getItemInHand(usedHand);
+            boolean isEmpowered = stack.has(MalumDataComponents.VINDICATIVE_BRAND_UNLEASHED);
+            var cooldown = isEmpowered ? 30 : 100;
+            cooldowns.addCooldown(this, cooldown);
+            player.setData(MalumAttachmentTypes.VINDICATIVE_BRAND_DASH_DATA, new VindicativeBrandDashData(player, 5));
+            SoundPlayer.create(MalumGearSoundEvents.VINDICATIVE_BRAND_DASH).pitchVariance(0.2f).play(player);
+            return InteractionResultHolder.success(stack);
+        }
+        return super.use(level, player, usedHand);
     }
 
     public static void applyResentment(LivingEntity target) {

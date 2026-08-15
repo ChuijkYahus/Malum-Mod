@@ -31,8 +31,6 @@ public class VoidConduitBlockEntity extends LodestoneBlockEntity {
 
     public final List<ItemStack> eatenItems = new ArrayList<>();
     public int progress;
-    public int streak;
-    public boolean reachedStreakGoal;
 
     public VoidConduitBlockEntity(BlockPos pos, BlockState state) {
         super(MalumBlockEntities.VOID_CONDUIT.get(), pos, state);
@@ -50,8 +48,6 @@ public class VoidConduitBlockEntity extends LodestoneBlockEntity {
             }
         }
         compound.putInt("progress", progress);
-        compound.putInt("streak", streak);
-        compound.putBoolean("reachedStreakGoal", reachedStreakGoal);
         super.saveAdditional(compound, registries);
     }
 
@@ -63,8 +59,6 @@ public class VoidConduitBlockEntity extends LodestoneBlockEntity {
             ItemStack.parse(pRegistries, itemTag).ifPresent(eatenItems::add);
         }
         progress = compound.getInt("progress");
-        streak = compound.getInt("streak");
-        reachedStreakGoal = compound.getBoolean("reachedStreakGoal");
     }
 
     @Override
@@ -87,8 +81,6 @@ public class VoidConduitBlockEntity extends LodestoneBlockEntity {
             if (eatenItems.isEmpty()) {
                 progress = 0;
             }
-        } else if (streak != 0) {
-            streak = 0;
         }
     }
 
@@ -112,27 +104,14 @@ public class VoidConduitBlockEntity extends LodestoneBlockEntity {
     public void processItem(ServerLevel serverLevel) {
         var particleEffectType = MalumParticleEffectTypes.WEEPING_WELL_REACTS;
         var stack = eatenItems.getLast();
-        if (stack.is(MalumContent.Blight.BLIGHTED_GUNK.item())) {
-            eatGunk(stack);
-        } else {
-            spitOutItem(stack);
-        }
+
+        spitOutItem(stack);
+
         progress = PROCESSING_TIME-20;
         eatenItems.removeLast();
 
         particleEffectType.createEffect(worldPosition.getCenter()).spawn(serverLevel);
         setDirty();
-    }
-
-    public void eatGunk(ItemStack stack) {
-        streak += stack.getCount();
-        if (streak >= 4096) {
-            reachedStreakGoal = true;
-        }
-        float volume = 0.7f;
-        float pitch = Easing.SINE_IN_OUT.asWeighedRandom(level.getRandom(), 0.5f, 2f);
-        playSound(SoundEvents.GENERIC_EAT, volume, pitch);
-        playSound(MalumSoundEvents.VOID_EATS_GUNK.get(), volume, pitch);
     }
 
     public void spitOutItem(ItemStack stack) {

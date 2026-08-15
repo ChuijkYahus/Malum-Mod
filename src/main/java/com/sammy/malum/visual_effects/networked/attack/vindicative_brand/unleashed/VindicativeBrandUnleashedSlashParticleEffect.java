@@ -1,4 +1,4 @@
-package com.sammy.malum.visual_effects.networked.attack.vindicative_brand;
+package com.sammy.malum.visual_effects.networked.attack.vindicative_brand.unleashed;
 
 import com.sammy.malum.registry.common.*;
 import com.sammy.malum.visual_effects.*;
@@ -13,27 +13,29 @@ import team.lodestar.lodestone.modules.rendering.particle.standard.world.behavio
 import team.lodestar.lodestone.systems.network.*;
 import team.lodestar.lodestone.systems.network.particle.*;
 
-public class VindicativeBrandExtraSlashParticleEffect extends MalumNetworkedWeaponParticleEffectType<WeaponParticleEffectType.WeaponParticleEffectData> {
+public class VindicativeBrandUnleashedSlashParticleEffect extends MalumNetworkedWeaponParticleEffectType<WeaponParticleEffectType.WeaponParticleEffectData> {
 
-    public VindicativeBrandExtraSlashParticleEffect(String id) {
+    public VindicativeBrandUnleashedSlashParticleEffect(String id) {
         super(id);
     }
 
     @OnlyIn(Dist.CLIENT)
     @Override
     public void act(Level level, RandomSource random, NetworkedParticleEffectPositionData positionData, MalumNetworkedParticleEffectColorData colorData, WeaponParticleEffectData extraData) {
+        var slash = WeaponParticleEffects.spawnSlashParticle(level, positionData.getAsVector(), MalumParticles.SLASH, colorData);
         var direction = extraData.getDirection();
-        var slash = WeaponParticleEffects.spawnSlashParticle(level, positionData.getAsVector().subtract(direction.scale(4)), MalumParticles.SLASH, colorData);
         slash.getBuilder()
-                .setScaleData(GenericParticleData.create(Easing.SINE_IN_OUT.asWeighedRandom(random, 3f, 4f)).build())
-                .setMotion(direction.scale(Easing.SINE_IN_OUT.asWeighedRandom(random, 0.5f, 0.7f)))
+                .setMotion(direction.scale(Easing.SINE_IN_OUT.asWeighedRandom(random, 0.7f, 0.9f)))
                 .setBehavior(PointyDirectionalParticleBehavior.pointyDirectional(direction));
-        for (int i = 0; i < 3; i++) {
-            float spin = random.nextFloat() * 6.28f;
+        for (int i = 0; i < 5; i++) {
+            var spin = Easing.SINE_IN_OUT.asWeighedRandom(random, -0.3f, 0.3f);
+            var scale = Easing.SINE_IN_OUT.asWeighedRandom(random, 3f, 4f) * (1 + i * 0.15f);
+            var transparency = 1f - i * 0.2f;
             slash.getBuilder()
-                    .setSpinData(SpinParticleData.create(0).setSpinOffset(spin + extraData.getSlashRotation()+(extraData.isMirrored()?3.14f:0)).build())
-                    .setTransparencyData(GenericParticleData.create(1f - i * 0.4f).build())
-                    .setLifeDelay(i * 2);
+                    .setSpinData(SpinParticleData.create(spin).setSpinOffset(extraData.getSlashRotation()+(extraData.isMirrored()?3.14f:0)).build())
+                    .setTransparencyData(GenericParticleData.create(transparency).build())
+                    .setScaleData(GenericParticleData.create(scale).build())
+                    .setLifeDelay(i);
             slash.spawnParticles();
 
         }

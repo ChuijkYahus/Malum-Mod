@@ -1,12 +1,8 @@
-package com.sammy.malum.common.data.component;
+package com.sammy.malum.common.data.component.gear;
 
 import com.mojang.serialization.*;
-import com.mojang.serialization.codecs.*;
-import com.sammy.malum.common.item.curiosities.weapons.greatsword.*;
-import com.sammy.malum.core.handlers.*;
 import io.netty.buffer.*;
 import net.minecraft.network.codec.*;
-import net.minecraft.util.*;
 
 public record VindicativeBrandDataComponent() {
 

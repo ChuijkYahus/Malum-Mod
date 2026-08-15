@@ -26,6 +26,7 @@ import com.sammy.malum.common.item.curiosities.curios.sets.rotten.*;
 import com.sammy.malum.common.item.curiosities.curios.sets.weeping.*;
 import com.sammy.malum.common.item.curiosities.pouch.*;
 import com.sammy.malum.common.item.curiosities.tools.spellweaver.*;
+import com.sammy.malum.common.item.curiosities.weapons.greatsword.*;
 import com.sammy.malum.common.item.curiosities.weapons.scythe.MalumScytheItem;
 import com.sammy.malum.core.handlers.*;
 import net.neoforged.bus.api.*;
@@ -90,6 +91,7 @@ public class RuntimeEventHandler {
         CurioWatcherNecklace.entityTick(event);
         TouchOfDarknessHandler.entityTick(event);
         CurioHiddenBladeNecklace.entityTick(event);
+        VindicativeBrandSwordItem.entityTick(event);
         MalignantConversionHandler.entityTick(event);
         WeepingWellRejectionHandler.entityTick(event);
     }

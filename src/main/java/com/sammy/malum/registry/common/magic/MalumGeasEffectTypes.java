@@ -1,7 +1,6 @@
 package com.sammy.malum.registry.common.magic;
 
 import com.sammy.malum.*;
-import com.sammy.malum.common.geas.*;
 import com.sammy.malum.common.geas.authority.*;
 import com.sammy.malum.common.geas.oath.deliverance.*;
 import com.sammy.malum.common.geas.oath.staff.*;
@@ -93,5 +92,4 @@ public class MalumGeasEffectTypes {
 //    public static final GeasHolder<GeasEffectType> AUTHORITY_OF_CRUSHING_MELANCHOLY = GEAS_TYPES.register("authority_of_crushing_melancholy", () -> new GeasEffectType(CrushingMelancholyAuthority::new, ARCANE_SPIRIT, AERIAL_SPIRIT, ELDRITCH_SPIRIT));
     public static final GeasHolder<GeasEffectType> AUTHORITY_OF_THE_GLEEFUL_TARGET = GEAS_TYPES.register("authority_of_the_gleeful_target", () -> new GeasEffectType(GleefulTargetAuthority::new, ARCANE_SPIRIT, AQUEOUS_SPIRIT, ELDRITCH_SPIRIT));
 
-    public static final GeasHolder<GeasEffectType> CREED_OF_THE_BLIGHT_EATER = GEAS_TYPES.register("creed_of_the_blight_eater", () -> new GeasEffectType(BlightEaterCreed::new, ELDRITCH_SPIRIT));
 }

@@ -247,8 +247,6 @@ public class MalumLangDatagen extends LanguageProvider {
 //        addGeasDescription(MalumGeasEffectTypes.AUTHORITY_OF_CRUSHING_MELANCHOLY, "Dissociate from the weight of your existence");
         addGeasDescription(MalumGeasEffectTypes.AUTHORITY_OF_THE_GLEEFUL_TARGET, "Take it all, let it never stop, more, and more, and more");
 
-        addGeasDescription(MalumGeasEffectTypes.CREED_OF_THE_BLIGHT_EATER, "Mmmm... Blight... So Tasty..");
-
         add("jukebox_song.malum.arcane_elegy", "Kultik - Arcane Elegy");
         add("jukebox_song.malum.aesthetica", "Kultik - Aesthetica");
 

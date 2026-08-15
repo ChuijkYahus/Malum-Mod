@@ -141,26 +141,6 @@ public class WeepingWellParticleEffects {
                         .setRenderTarget(LodestoneRenderingSystem.LATE_DEFERRED_RENDER)
                         .spawn(level, offsetPosition.x, offsetPosition.y, offsetPosition.z);
             }
-
-            if (rand.nextFloat() < 0.75f) {
-                int rotation = rand.nextInt(16);
-                Vec3 offsetPosition = VecHelper.rotatingRadialOffset(new Vec3(blockPos.getX() + 0.5f, blockPos.getY() + 0.75f, blockPos.getZ() + 0.5f), 1.8f, rotation, 16, level.getGameTime(), 640);
-                float acceleration = Easing.SINE_IN_OUT.asWeighedRandom(rand, 0.002f, 0.02f);
-                long gameTime = level.getGameTime();
-                final Consumer<LodestoneWorldParticle> behavior = p -> {
-                    if (level.getGameTime() < gameTime + 10) {
-                        p.setParticleSpeed(p.getParticleSpeed().add(0, acceleration, 0));
-                    }
-                };
-                for (int i = 0; i < 2; i++) {
-                    var lightSpecs = weepingWellSpecs(level, offsetPosition);
-                    lightSpecs.getBuilder().addTickActor(behavior);
-                    lightSpecs.getBuilder().setRenderTarget(LodestoneRenderingSystem.LATE_DEFERRED_RENDER);
-                    lightSpecs.getBloomBuilder().addTickActor(behavior);
-                    lightSpecs.getBloomBuilder().setRenderTarget(LodestoneRenderingSystem.LATE_DEFERRED_RENDER);
-                    lightSpecs.spawnParticles();
-                }
-            }
         }
     }
 

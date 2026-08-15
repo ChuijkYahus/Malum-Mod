@@ -3,6 +3,7 @@ package com.sammy.malum.registry.common.item;
 import com.mojang.serialization.Codec;
 import com.sammy.malum.MalumMod;
 import com.sammy.malum.common.data.component.*;
+import com.sammy.malum.common.data.component.gear.*;
 import com.sammy.malum.common.data.component.pouch.*;
 import com.sammy.malum.common.data.component.soulstone.*;
 import com.sammy.malum.common.item.curiosities.TemporarilyDisabledItem.Disabled;

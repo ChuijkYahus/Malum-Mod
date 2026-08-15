@@ -88,7 +88,8 @@ public class MalumItemTagDatagen extends LodestoneItemTagsSystem {
                 .add(SOUL_STAINED_STEEL_AXE.get(), SOUL_STAINED_STEEL_PICKAXE.get(), SOUL_STAINED_STEEL_SHOVEL.get(), SOUL_STAINED_STEEL_SWORD.get(), SOUL_STAINED_STEEL_HOE.get(), SOUL_STAINED_STEEL_KNIFE.get())
                 .add(SHAPED_SLAB.get())
                 .add(TYRVING.get(), WEIGHT_OF_WORLDS.get())
-                .add(SPELLWEAVING_PICKAXE.get(), SPELLWEAVING_AXE.get());
+                .add(SPELLWEAVING_PICKAXE.get(), SPELLWEAVING_AXE.get())
+                .add(SUNDERING_ANCHOR.get(), VINDICATIVE_BRAND.get());
 
         tag(MAGIC_CAPABLE_WEAPON)
                 .addTags(SCYTHES, STAVES)

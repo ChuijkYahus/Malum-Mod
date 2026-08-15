@@ -12428,6 +12428,28 @@
     ],
     "subtitle": "malum.subtitle.varnished_terracotta_step"
   },
+  "vindicative_brand_cleaves_the_world": {
+    "sounds": [
+      "malum:curiosities/gear/weapons/vindicative_brand/dash_cleave1",
+      "malum:curiosities/gear/weapons/vindicative_brand/dash_cleave2",
+      "malum:curiosities/gear/weapons/vindicative_brand/dash_cleave3",
+      "malum:curiosities/gear/weapons/vindicative_brand/dash_cleave4",
+      "malum:curiosities/gear/weapons/vindicative_brand/dash_cleave5",
+      "malum:curiosities/gear/weapons/vindicative_brand/dash_cleave6"
+    ],
+    "subtitle": "malum.subtitle.vindicative_brand_cleaves_the_world"
+  },
+  "vindicative_brand_erases_the_world": {
+    "sounds": [
+      "malum:curiosities/gear/weapons/vindicative_brand/unleashed_dash_cleave1",
+      "malum:curiosities/gear/weapons/vindicative_brand/unleashed_dash_cleave2",
+      "malum:curiosities/gear/weapons/vindicative_brand/unleashed_dash_cleave3",
+      "malum:curiosities/gear/weapons/vindicative_brand/unleashed_dash_cleave4",
+      "malum:curiosities/gear/weapons/vindicative_brand/unleashed_dash_cleave5",
+      "malum:curiosities/gear/weapons/vindicative_brand/unleashed_dash_cleave6"
+    ],
+    "subtitle": "malum.subtitle.vindicative_brand_erases_the_world"
+  },
   "vindicative_brand_outright_devastates": {
     "sounds": [
       "malum:curiosities/gear/weapons/vindicative_brand/unleashed_swing1",
@@ -12480,6 +12502,17 @@
       "malum:curiosities/gear/weapons/vindicative_brand/swing6"
     ],
     "subtitle": "malum.subtitle.vindicative_brand_swings"
+  },
+  "vindicative_brand_user_lunges_forward": {
+    "sounds": [
+      "malum:curiosities/gear/weapons/vindicative_brand/dash1",
+      "malum:curiosities/gear/weapons/vindicative_brand/dash2",
+      "malum:curiosities/gear/weapons/vindicative_brand/dash3",
+      "malum:curiosities/gear/weapons/vindicative_brand/dash4",
+      "malum:curiosities/gear/weapons/vindicative_brand/dash5",
+      "malum:curiosities/gear/weapons/vindicative_brand/dash6"
+    ],
+    "subtitle": "malum.subtitle.vindicative_brand_user_lunges_forward"
   },
   "void_eats_gunk": {
     "sounds": [
