@@ -124,6 +124,7 @@ import com.sammy.malum.common.item.impetus.FracturedImpetusItem;
 import com.sammy.malum.common.item.impetus.ImpetusItem;
 import com.sammy.malum.common.item.nucleus.PyreNucleusItem;
 import com.sammy.malum.common.item.nucleus.WindNucleusItem;
+import com.sammy.malum.common.item.soulTags.SoulTagItem;
 import com.sammy.malum.common.item.spirit.FusedConsciousnessItem;
 import com.sammy.malum.common.item.spirit.SpiritJarItem;
 import com.sammy.malum.common.item.spirit.SpiritShardItem;
@@ -290,6 +291,7 @@ public class MalumContent {
 
         }
 
+        public static final DeferredItem<Item> SOUL_TAG_ITEM = register("soul_tag_item", MalumItemProperties::DEFAULT, SoulTagItem::new);
 
         public static final BlockBlockItemHolder<Block, BlockItem> DEEPSLATE_SOULSTONE_ORE = registerBlock("deepslate_soulstone_ore", () -> new DropExperienceBlock(UniformInt.of(14, 18), MalumOreBlockProperties.SOULSTONE_ORE(true)));
         public static final BlockBlockItemHolder<Block, BlockItem> SOULSTONE_ORE = registerBlock("soulstone_ore", () -> new DropExperienceBlock(UniformInt.of(14, 18), MalumOreBlockProperties.SOULSTONE_ORE(false)));

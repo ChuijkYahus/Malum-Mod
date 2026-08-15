@@ -11,6 +11,7 @@ import com.sammy.malum.common.entity.hidden_blade.*;
 import com.sammy.malum.common.entity.nitrate.EthericNitrate;
 import com.sammy.malum.common.entity.nitrate.VividNitrate;
 import com.sammy.malum.common.entity.scythe.*;
+import com.sammy.malum.common.entity.soulTag.SoulTagEntity;
 import com.sammy.malum.common.entity.spirit.SpiritItemEntity;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.world.entity.Entity;
@@ -31,6 +32,8 @@ public class MalumEntityTypes {
         ENTITY_TYPES.register(modEventBus);
         MalumCultistEntityTypes.init();
     }
+
+    public static final DeferredHolder<EntityType<?>, EntityType<SoulTagEntity>> SOUL_TAG_ENTITY = register("soul_tag_entity", SoulTagEntity::new, 0.98F, 0.98F, 10, 20);
 
     public static final DeferredHolder<EntityType<?>, EntityType<AscendingBlock>> ASCENDING_BLOCK = register("ascending_block", AscendingBlock::new, 0.98F, 0.98F, 10, 20);
     public static final DeferredHolder<EntityType<?>, EntityType<PillowSeatEntity>> PILLOW_SEAT = register("pillow_seat", PillowSeatEntity::new, 0.25F, 0.25F, 2, 20);
