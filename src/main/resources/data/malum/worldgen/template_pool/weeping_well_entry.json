@@ -7,7 +7,7 @@
       "element": {
         "element_type": "minecraft:single_pool_element",
         "projection": "rigid",
-        "location": "malum:weeping_well/containment/weeping_well_entry_0",
+        "location": "malum:weeping_well/entry/weeping_well_entry_0",
         "processors": "minecraft:empty"
       }
     }
