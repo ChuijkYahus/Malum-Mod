@@ -22,6 +22,7 @@ public class SoulTagEntity extends Entity {
     private static final EntityDataAccessor<ItemStack> ITEM = SynchedEntityData.defineId(SoulTagEntity.class, EntityDataSerializers.ITEM_STACK);
 
     private static final int FLOAT_TIME = 30;
+    private static final int LIFETIME = 200;
 
     private int age;
 
@@ -74,6 +75,9 @@ public class SoulTagEntity extends Entity {
         } else {
             setDeltaMovement(Vec3.ZERO);
         }
+        if(age > LIFETIME){
+            createSoulTag(null);
+        }
     }
     public void createSoulTag(LivingEntity target) {
         if (level().isClientSide()) {
@@ -82,16 +86,18 @@ public class SoulTagEntity extends Entity {
 
         ItemStack stack = getItem().copy();
 
-        UUID uuid = target.getUUID();
-        Component name = target.getDisplayName();
+        if(target != null) {
+            UUID uuid = target.getUUID();
+            Component name = target.getDisplayName();
 
-        // Store on the entity.
-        setTargetUUID(uuid);
+            // Store on the entity.
+            setTargetUUID(uuid);
 
-        // Store on the resulting item.
-        SoulTagItem.setTarget(stack, uuid);
+            // Store on the resulting item.
+            SoulTagItem.setTarget(stack, uuid);
 
-        SoulTagItem.setTargetName(stack, name);
+            SoulTagItem.setTargetName(stack, name);
+        }
 
         ItemEntity itemEntity = new ItemEntity(level(), getX(), getY(), getZ(), stack);
 
