@@ -1,5 +1,6 @@
 package com.sammy.malum.common.item.soulTags;
 
+import com.sammy.malum.common.data.component.SoulTagDataComponent;
 import com.sammy.malum.common.entity.soulTag.SoulTagEntity;
 import com.sammy.malum.registry.common.item.MalumDataComponents;
 import net.minecraft.ChatFormatting;
@@ -11,7 +12,6 @@ import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.phys.Vec3;
 
 import java.util.List;
-import java.util.UUID;
 
 public class SoulTagItem extends Item {
 
@@ -19,37 +19,37 @@ public class SoulTagItem extends Item {
         super(properties);
     }
 
-    public static void setTarget(ItemStack stack, UUID uuid) {
-        stack.set(MalumDataComponents.SOUL_TAG_TARGET.get(), uuid);
+    public static void setTarget(
+            ItemStack stack,
+            SoulTagDataComponent data
+    ) {
+        stack.set(
+                MalumDataComponents.SOUL_TAG_DATA.get(),
+                data
+        );
     }
 
-    public static UUID getTarget(ItemStack stack) {
-        return stack.get(MalumDataComponents.SOUL_TAG_TARGET.get());
+    public static SoulTagDataComponent getTarget(ItemStack stack) {
+        return stack.get(
+                MalumDataComponents.SOUL_TAG_DATA.get()
+        );
     }
 
     public static boolean hasTarget(ItemStack stack) {
-        return stack.has(MalumDataComponents.SOUL_TAG_TARGET.get());
-    }
-
-    public static void setTargetName(ItemStack stack, Component name) {
-        stack.set(MalumDataComponents.SOUL_TAG_TARGET_NAME.get(),name);
-    }
-
-    public static Component getTargetName(ItemStack stack) {
-        return stack.get(MalumDataComponents.SOUL_TAG_TARGET_NAME.get());
-    }
-
-    public static boolean hasTargetName(ItemStack stack) {
-        return stack.has(MalumDataComponents.SOUL_TAG_TARGET_NAME.get());
+        return stack.has(
+                MalumDataComponents.SOUL_TAG_DATA.get()
+        );
     }
 
     @Override
     public boolean onDroppedByPlayer(ItemStack stack, Player player) {
         if (!player.level().isClientSide()) {
-
             SoulTagEntity entity = new SoulTagEntity(player.level());
 
-            entity.setItem(stack);
+            ItemStack thrownStack = stack.copy();
+            thrownStack.setCount(1);
+
+            entity.setItem(thrownStack);
 
             entity.setPos(
                     player.getX(),
@@ -59,26 +59,49 @@ public class SoulTagItem extends Item {
 
             Vec3 look = player.getLookAngle();
 
-            entity.setDeltaMovement(look.scale(3.35D));
+            entity.setDeltaMovement(look.scale(0.35D));
 
             player.level().addFreshEntity(entity);
         }
 
         return false;
     }
+    @Override
+    public Component getName(ItemStack stack) {
+
+        if (hasTarget(stack)) {
+            return Component.translatable(
+                    "item.malum.bound_soul_tag"
+            );
+        }
+
+        return super.getName(stack);
+    }
 
     @Override
-    public void appendHoverText(ItemStack stack, Item.TooltipContext context, List<Component> tooltip, TooltipFlag flag) {
-        super.appendHoverText(stack, context, tooltip, flag);
+    public void appendHoverText(
+            ItemStack stack,
+            Item.TooltipContext context,
+            List<Component> tooltip,
+            TooltipFlag flag
+    ) {
+        super.appendHoverText(
+                stack,
+                context,
+                tooltip,
+                flag
+        );
 
-        Component targetName = getTargetName(stack);
+        SoulTagDataComponent data = getTarget(stack);
 
-        if (targetName != null) {
+        if (data != null) {
             tooltip.add(
                     Component.translatable(
                             "item.malum.soul_tag.target",
-                            targetName
-                    ).withStyle(ChatFormatting.DARK_GREEN)
+                            data.targetName()
+                    ).withStyle(
+                            ChatFormatting.DARK_GREEN
+                    )
             );
         }
     }

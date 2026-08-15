@@ -13,6 +13,7 @@ import com.sammy.malum.common.effect.rite.aura.soulwood.*;
 import com.sammy.malum.common.effect.gluttony.*;
 import com.sammy.malum.common.entity.activator.*;
 import com.sammy.malum.common.entity.nitrate.*;
+import com.sammy.malum.common.entity.soulTag.SoulTagEntity;
 import com.sammy.malum.common.geas.pact.aerial.*;
 import com.sammy.malum.common.geas.pact.infernal.*;
 import com.sammy.malum.common.geas.pact.earthen.ProfaneAsceticGeas;
@@ -29,6 +30,7 @@ import com.sammy.malum.common.item.curiosities.tools.spellweaver.*;
 import com.sammy.malum.common.item.curiosities.weapons.greatsword.*;
 import com.sammy.malum.common.item.curiosities.weapons.scythe.MalumScytheItem;
 import com.sammy.malum.core.handlers.*;
+import net.minecraft.world.entity.LivingEntity;
 import net.neoforged.bus.api.*;
 import net.neoforged.fml.common.*;
 import net.neoforged.neoforge.event.*;
@@ -38,6 +40,9 @@ import net.neoforged.neoforge.event.entity.living.*;
 import net.neoforged.neoforge.event.entity.player.*;
 import net.neoforged.neoforge.event.level.*;
 import net.neoforged.neoforge.event.tick.*;
+import team.lodestar.wayward_attributes.WaywardTags;
+
+import java.util.List;
 
 @EventBusSubscriber()
 public class RuntimeEventHandler {
@@ -46,6 +51,44 @@ public class RuntimeEventHandler {
     public static void onEntityJoin(EntityJoinLevelEvent event) {
         SoulDataHandler.syncData(event);
         GeasEffectHandler.syncGeas(event);
+    }
+
+    @SubscribeEvent
+    public static void onLivingDamage(LivingDamageEvent.Post event) {
+        double RANGE = 8.0D;
+
+        LivingEntity damagedEntity = event.getEntity();
+
+        if (damagedEntity.level().isClientSide()) {
+            return;
+        }
+        if(!event.getSource().is(WaywardTags.DamageTypeTags.IS_MAGIC)) {
+            return;
+        }
+
+        if (event.getNewDamage() <= 0.0F) {
+            return;
+        }
+
+        double rangeSquared = RANGE * RANGE;
+
+        List<SoulTagEntity> soulTags =
+                damagedEntity.level().getEntitiesOfClass(
+                        SoulTagEntity.class,
+                        damagedEntity.getBoundingBox().inflate(RANGE),
+                        SoulTagEntity::isAlive
+                );
+
+        for (SoulTagEntity soulTag : soulTags) {
+
+            if (soulTag.distanceToSqr(damagedEntity) <= rangeSquared) {
+
+                soulTag.createSoulTag(
+                        damagedEntity
+                );
+                break;
+            }
+        }
     }
 
     @SubscribeEvent

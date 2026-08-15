@@ -291,6 +291,7 @@ public class MalumContent {
 
         }
 
+
         public static final BlockBlockItemHolder<Block, BlockItem> DEEPSLATE_SOULSTONE_ORE = registerBlock("deepslate_soulstone_ore", () -> new DropExperienceBlock(UniformInt.of(14, 18), MalumOreBlockProperties.SOULSTONE_ORE(true)));
         public static final BlockBlockItemHolder<Block, BlockItem> SOULSTONE_ORE = registerBlock("soulstone_ore", () -> new DropExperienceBlock(UniformInt.of(14, 18), MalumOreBlockProperties.SOULSTONE_ORE(false)));
         public static final BlockBlockItemHolder<Block, BlockItem> BRILLIANT_DEEPSLATE = registerBlock("brilliant_deepslate", () -> new DropExperienceBlock(UniformInt.of(16, 26), MalumOreBlockProperties.BRILLIANCE_ORE(true).setCutout()));
@@ -519,9 +520,6 @@ public class MalumContent {
         public static final BlockBlockItemHolder<Block, BlockItem> WEAVERS_WORKBENCH = registerBlock("weavers_workbench", () -> new WeaversWorkbenchBlock<>(MalumWoodBlockProperties.RUNEWOOD().setCutout().noOcclusion()));
 
         public static final BlockBlockItemHolder<Block, BlockItem> SOUL_BRAZIER = registerBlock("soulbinding_brazier", () -> new SoulBrazierBlock<>(SOUL_BRAZIER()));
-
-        public static final DeferredItem<Item> SOUL_TAG = register("soul_tag", MalumItemProperties::DEFAULT, SoulTagItem::new);
-
 
         public static final BlockBlockItemHolder<Block, MultiBlockItem> RUNEWOOD_OBELISK = registerMultiBlock("runewood_obelisk", () -> new RunewoodObeliskCoreBlock(MalumWoodBlockProperties.RUNEWOOD().setCutout().noOcclusion()), RunewoodObeliskBlockEntity.STRUCTURE);
         public static final DeferredHolder<Block, ObeliskComponentBlock> RUNEWOOD_OBELISK_COMPONENT = registerBlockNoItem("runewood_obelisk_component", () -> new ObeliskComponentBlock(MalumWoodBlockProperties.RUNEWOOD().setCutout().lootFrom(RUNEWOOD_OBELISK).noOcclusion()));

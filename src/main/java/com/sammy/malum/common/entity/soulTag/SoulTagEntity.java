@@ -1,5 +1,6 @@
 package com.sammy.malum.common.entity.soulTag;
 
+import com.sammy.malum.common.data.component.SoulTagDataComponent;
 import com.sammy.malum.common.item.soulTags.SoulTagItem;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
@@ -8,6 +9,7 @@ import net.minecraft.network.syncher.EntityDataSerializers;
 import net.minecraft.network.syncher.SynchedEntityData;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.MoverType;
 import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
@@ -71,7 +73,10 @@ public class SoulTagEntity extends Entity {
             setDeltaMovement(
                     motion.scale(0.92D)
             );
-
+            move(
+                    MoverType.SELF,
+                    getDeltaMovement()
+            );
         } else {
             setDeltaMovement(Vec3.ZERO);
         }
@@ -87,19 +92,24 @@ public class SoulTagEntity extends Entity {
         ItemStack stack = getItem().copy();
 
         if(target != null) {
-            UUID uuid = target.getUUID();
-            Component name = target.getDisplayName();
+            SoulTagDataComponent data =
+                    new SoulTagDataComponent(
+                            target.getUUID(),
+                            target.getDisplayName()
+                    );
 
-            // Store on the entity.
-            setTargetUUID(uuid);
-
-            // Store on the resulting item.
-            SoulTagItem.setTarget(stack, uuid);
-
-            SoulTagItem.setTargetName(stack, name);
+            SoulTagItem.setTarget(
+                    stack,
+                    data
+            );
         }
-
-        ItemEntity itemEntity = new ItemEntity(level(), getX(), getY(), getZ(), stack);
+        ItemEntity itemEntity = new ItemEntity(
+                level(),
+                getX(),
+                getY(),
+                getZ(),
+                stack
+        );
 
         itemEntity.setPickUpDelay(10);
 
