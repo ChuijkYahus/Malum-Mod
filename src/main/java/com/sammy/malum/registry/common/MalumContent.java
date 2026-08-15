@@ -512,6 +512,7 @@ public class MalumContent {
 
         }
 
+
         public static final BlockBlockItemHolder<Block, BlockItem> SPIRIT_ALTAR = registerBlock("spirit_altar", () -> new SpiritAltarBlock<>(RUNEWOOD_IMPLEMENT()));
         public static final BlockBlockItemHolder<Block, BlockItem> SPIRIT_JAR = registerBlock("spirit_jar", () -> new SpiritJarBlock<>(SPIRIT_JAR()), SpiritJarItem::new);
 
@@ -520,6 +521,8 @@ public class MalumContent {
         public static final BlockBlockItemHolder<Block, BlockItem> WEAVERS_WORKBENCH = registerBlock("weavers_workbench", () -> new WeaversWorkbenchBlock<>(MalumWoodBlockProperties.RUNEWOOD().setCutout().noOcclusion()));
 
         public static final BlockBlockItemHolder<Block, BlockItem> SOUL_BRAZIER = registerBlock("soulbinding_brazier", () -> new SoulBrazierBlock<>(SOUL_BRAZIER()));
+
+        public static final DeferredItem<Item> SOUL_TAG = register("soul_tag", MalumItemProperties::DEFAULT, SoulTagItem::new);
 
         public static final BlockBlockItemHolder<Block, MultiBlockItem> RUNEWOOD_OBELISK = registerMultiBlock("runewood_obelisk", () -> new RunewoodObeliskCoreBlock(MalumWoodBlockProperties.RUNEWOOD().setCutout().noOcclusion()), RunewoodObeliskBlockEntity.STRUCTURE);
         public static final DeferredHolder<Block, ObeliskComponentBlock> RUNEWOOD_OBELISK_COMPONENT = registerBlockNoItem("runewood_obelisk_component", () -> new ObeliskComponentBlock(MalumWoodBlockProperties.RUNEWOOD().setCutout().lootFrom(RUNEWOOD_OBELISK).noOcclusion()));
