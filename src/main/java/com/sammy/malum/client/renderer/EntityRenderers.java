@@ -29,6 +29,8 @@ public class EntityRenderers {
         register(MalumCultistEntityTypes.CULTIST_BLESSING.get(), CultistBlessingRenderer::new);
         register(MalumCultistEntityTypes.ENTROPY_CHARGE.get(), EntropyChargeRenderer::new);
 
+        register(MalumEntityTypes.SOUL_TAG_ENTITY.get(), SoulTagRenderer::new);
+
         register(MalumEntityTypes.ASCENDING_BLOCK.get(), AscendingBlockRenderer::new);
         register(MalumEntityTypes.PILLOW_SEAT.get(), NoopRenderer::new);
 
