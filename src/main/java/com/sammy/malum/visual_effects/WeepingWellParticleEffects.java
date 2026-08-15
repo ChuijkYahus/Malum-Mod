@@ -144,7 +144,7 @@ public class WeepingWellParticleEffects {
 
             if (rand.nextFloat() < 0.75f) {
                 int rotation = rand.nextInt(16);
-                Vec3 offsetPosition = VecHelper.rotatingRadialOffset(new Vec3(blockPos.getX() + 0.5f, blockPos.getY() + 0.75f, blockPos.getZ() + 0.5f), 3.5f, rotation, 16, level.getGameTime(), 640);
+                Vec3 offsetPosition = VecHelper.rotatingRadialOffset(new Vec3(blockPos.getX() + 0.5f, blockPos.getY() + 0.75f, blockPos.getZ() + 0.5f), 1.8f, rotation, 16, level.getGameTime(), 640);
                 float acceleration = Easing.SINE_IN_OUT.asWeighedRandom(rand, 0.002f, 0.02f);
                 long gameTime = level.getGameTime();
                 final Consumer<LodestoneWorldParticle> behavior = p -> {

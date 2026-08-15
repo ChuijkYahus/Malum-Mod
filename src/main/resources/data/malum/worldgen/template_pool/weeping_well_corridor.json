@@ -1,0 +1,15 @@
+{
+  "name": "malum:weeping_well_corridor",
+  "fallback": "minecraft:empty",
+  "elements": [
+    {
+      "weight": 1,
+      "element": {
+        "element_type": "minecraft:single_pool_element",
+        "projection": "rigid",
+        "location": "malum:weeping_well/containment/weeping_well_corridor_0",
+        "processors": "minecraft:empty"
+      }
+    }
+  ]
+}

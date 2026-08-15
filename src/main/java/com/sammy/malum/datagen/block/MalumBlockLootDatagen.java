@@ -120,6 +120,7 @@ public class MalumBlockLootDatagen extends BlockLootSubProvider {
 
         add(SOULWOVEN_BANNER.get(), createBannerDrop(SOULWOVEN_BANNER.get()));
 
+        add(STONE_BOOKSHELF.get(), b -> createSingleItemTableWithSilkTouch(b, Items.BOOK, ConstantValue.exactly(3.0F)));
 
         add(EtherBlock.class, this::createEtherDrop);
         add(SpiritJarBlock.class, this::createJarDrop);
