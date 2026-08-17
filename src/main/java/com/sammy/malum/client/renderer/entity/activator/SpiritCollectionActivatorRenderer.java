@@ -1,7 +1,8 @@
-package com.sammy.malum.client.renderer.entity;
+package com.sammy.malum.client.renderer.entity.activator;
 
 import com.mojang.blaze3d.vertex.*;
 import com.sammy.malum.client.*;
+import com.sammy.malum.client.renderer.entity.*;
 import com.sammy.malum.common.entity.activator.*;
 import com.sammy.malum.registry.client.*;
 import net.minecraft.client.renderer.*;

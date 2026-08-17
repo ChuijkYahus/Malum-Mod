@@ -71,7 +71,7 @@ public class MalumGearSoundEvents {
     public static final DeferredHolder<SoundEvent, SoundEvent> SUNDERING_ANCHOR_CATCH = MalumSoundEvents.registerVariable("sundering_anchor_returns_with_euphoria");
 
 
-    //Sundering Anchor
+    //Vindicative Brand
     public static final DeferredHolder<SoundEvent, SoundEvent> VINDICATIVE_BRAND_SWING = MalumSoundEvents.registerVariable("vindicative_brand_swings");
     public static final DeferredHolder<SoundEvent, SoundEvent> VINDICATIVE_BRAND_UNLEASHED_SWING = MalumSoundEvents.registerVariable("vindicative_brand_outright_devastates");
     public static final DeferredHolder<SoundEvent, SoundEvent> VINDICATIVE_BRAND_EXTRA_SWING = MalumSoundEvents.registerVariable("vindicative_brand_reverberates");

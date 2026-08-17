@@ -1,4 +1,4 @@
-package com.sammy.malum.client.renderer.entity;
+package com.sammy.malum.client.renderer.entity.activator;
 
 import com.mojang.blaze3d.vertex.*;
 import com.sammy.malum.client.*;
