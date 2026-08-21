@@ -18,6 +18,7 @@ public class RenderUtils {
     public static void renderEntityTrail(PoseStack poseStack, WorldVFXBuilder builder, TrailPointBuilder trailPointBuilder, Entity entity, SpiritLike spirit, float effectScalar, float partialTicks) {
         renderEntityTrail(poseStack, builder, trailPointBuilder, entity, spirit.getPrimaryColor(), spirit.getSecondaryColor(), effectScalar, effectScalar, partialTicks);
     }
+
     public static void renderEntityTrail(PoseStack poseStack, WorldVFXBuilder builder, TrailPointBuilder trailPointBuilder, Entity entity, Color primaryColor, Color secondaryColor, float effectScalar, float partialTicks) {
         renderEntityTrail(poseStack, builder, trailPointBuilder, entity, t -> primaryColor, t -> secondaryColor, effectScalar, effectScalar, partialTicks);
     }

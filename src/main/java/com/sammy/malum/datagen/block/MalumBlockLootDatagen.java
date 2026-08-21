@@ -70,7 +70,7 @@ public class MalumBlockLootDatagen extends BlockLootSubProvider {
                     new BlockPos(0, 1, 0)
             )
     ));
-    
+
     protected Set<Block> generatedValues = new HashSet<>();
 
     public MalumBlockLootDatagen(HolderLookup.Provider provider) {
@@ -168,8 +168,6 @@ public class MalumBlockLootDatagen extends BlockLootSubProvider {
 
     protected void addGeodeDrops(GeodeCrystalRegistrySet... sets) {
         for (GeodeCrystalRegistrySet set : sets) {
-
-
             var cluster = set.getCluster().block().get();
             add(cluster, LootTable.lootTable().withPool(applyExplosionCondition(cluster, LootPool.lootPool()
                                     .setRolls(ConstantValue.exactly(1.0F))
