@@ -1,0 +1,10 @@
+{
+  "effect": "malum:apply_good_tides_effect",
+  "id": "malum:rite_of_good_ties",
+  "is_soulwood": true,
+  "pattern": [
+    "malum:arcane",
+    "malum:aqueous",
+    "malum:aqueous"
+  ]
+}

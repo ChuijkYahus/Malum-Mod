@@ -13,6 +13,7 @@ import net.minecraft.world.entity.ai.attributes.Attribute;
 import net.minecraft.world.entity.ai.attributes.AttributeModifier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.item.TooltipFlag;
+import team.lodestar.wayward_attributes.core.registry.WaywardAttributeTypes;
 
 import java.util.function.Consumer;
 
@@ -29,7 +30,7 @@ public class DefianceGeas extends GeasEffect {
     }
     @Override
     public Multimap<Holder<Attribute>, AttributeModifier> createAttributeModifiers(LivingEntity entity, Multimap<Holder<Attribute>, AttributeModifier> modifiers) {
-        addAttributeModifier(modifiers, MalumAttributes.HEALING_MULTIPLIER, 0.4f, AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL);
+        addAttributeModifier(modifiers, WaywardAttributeTypes.HEALING_MULTIPLIER, 0.4f, AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL);
         addAttributeModifier(modifiers, Attributes.MAX_HEALTH, -0.2f, AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL);
         return modifiers;
     }

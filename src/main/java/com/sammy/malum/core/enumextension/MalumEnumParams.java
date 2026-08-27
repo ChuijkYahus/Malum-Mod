@@ -9,10 +9,10 @@ import net.neoforged.fml.common.asm.enumextension.EnumProxy;
 public class MalumEnumParams {
 
     public static final EnumProxy<Boat.Type> RUNEWOOD_BOAT_TYPE = new EnumProxy<>(
-            Boat.Type.class, MalumContent.BlockSets.RUNEWOOD_SET.planks.block, MalumMod.MALUM + ":runewood", MalumContent.BlockSets.RUNEWOOD_BOAT, MalumContent.BlockSets.RUNEWOOD_CHEST_BOAT, Items.STICK, false
+            Boat.Type.class, MalumContent.BuildingBlocks.RUNEWOOD_SET.planks.block, MalumMod.MALUM + ":runewood", MalumContent.BuildingBlocks.RUNEWOOD_BOAT, MalumContent.BuildingBlocks.RUNEWOOD_CHEST_BOAT, Items.STICK, false
     );
 
     public static final EnumProxy<Boat.Type> SOULWOOD_BOAT_TYPE = new EnumProxy<>(
-            Boat.Type.class, MalumContent.BlockSets.SOULWOOD_SET.planks.block, MalumMod.MALUM + ":soulwood", MalumContent.BlockSets.SOULWOOD_BOAT, MalumContent.BlockSets.SOULWOOD_CHEST_BOAT, Items.STICK, false
+            Boat.Type.class, MalumContent.BuildingBlocks.SOULWOOD_SET.planks.block, MalumMod.MALUM + ":soulwood", MalumContent.BuildingBlocks.SOULWOOD_BOAT, MalumContent.BuildingBlocks.SOULWOOD_CHEST_BOAT, Items.STICK, false
     );
 }

@@ -91,7 +91,6 @@ public class MalumMod {
 
         //Malum
         SPIRIT_TYPES.register(modEventBus);
-        RITE_TYPES.register(modEventBus);
         RITE_EFFECT_TYPES.register(modEventBus);
         GEAS_TYPES.register(modEventBus);
 

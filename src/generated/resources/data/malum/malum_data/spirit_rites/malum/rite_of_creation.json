@@ -1,0 +1,11 @@
+{
+  "effect": "malum:creation_effect",
+  "id": "malum:rite_of_creation",
+  "is_soulwood": false,
+  "pattern": [
+    "malum:eldritch",
+    "malum:arcane",
+    "malum:earthen",
+    "malum:earthen"
+  ]
+}

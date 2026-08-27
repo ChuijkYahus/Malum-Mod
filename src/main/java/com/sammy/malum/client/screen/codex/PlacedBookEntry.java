@@ -7,11 +7,11 @@ public class PlacedBookEntry {
 
     private final BookEntry entry;
     private final DisplayedGizmo icon;
+    private final BookObjectSupplier objectBuilder;
 
-    private final BookObjectBuilder objectBuilder;
     private final int x, y;
 
-    public PlacedBookEntry(BookEntry entry, DisplayedGizmo icon, BookObjectBuilder objectBuilder, int x, int y) {
+    public PlacedBookEntry(BookEntry entry, DisplayedGizmo icon, BookObjectSupplier objectBuilder, int x, int y) {
         this.entry = entry;
         this.icon = icon;
         this.objectBuilder = objectBuilder;
@@ -43,7 +43,7 @@ public class PlacedBookEntry {
         return objectBuilder.createBookObject(this);
     }
 
-    public interface BookObjectBuilder {
+    public interface BookObjectSupplier {
         ProgressionEntryObject createBookObject(PlacedBookEntry entry);
     }
 }

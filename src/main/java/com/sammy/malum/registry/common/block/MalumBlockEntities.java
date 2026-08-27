@@ -39,7 +39,6 @@ import com.sammy.malum.common.block.curiosities.totem.channel.*;
 import com.sammy.malum.common.block.curiosities.totem.spreader.*;
 import com.sammy.malum.common.block.curiosities.totem.unweaver.*;
 import com.sammy.malum.common.block.curiosities.totem.waveform.*;
-import com.sammy.malum.common.block.curiosities.weeping_well.void_depot.*;
 import com.sammy.malum.common.block.curiosities.weavers_workbench.*;
 import com.sammy.malum.common.block.curiosities.weeping_well.*;
 import com.sammy.malum.common.block.ether.*;
@@ -76,8 +75,8 @@ public class MalumBlockEntities {
     public static final Supplier<LodestoneBlockEntityType<ItemStandBlockEntity>> ITEM_STAND = BLOCK_ENTITY_TYPES.register("item_stand", () -> create(ItemStandBlockEntity::new, getBlocks(ItemStandBlock.class)).setTickerType(Type.CLIENT).build());
     public static final Supplier<LodestoneBlockEntityType<ItemPedestalBlockEntity>> ITEM_PEDESTAL = BLOCK_ENTITY_TYPES.register("item_pedestal", () -> create(ItemPedestalBlockEntity::new, getBlocks(ItemPedestalBlock.class)).setTickerType(Type.CLIENT).build());
 
-    public static final Supplier<LodestoneBlockEntityType<EtherBlockEntity>> ETHER = BLOCK_ENTITY_TYPES.register("ether", () -> create(EtherBlockEntity::new, MalumContent.BlockSets.ETHER, MalumContent.BlockSets.IRIDESCENT_ETHER).setTickerType(Type.CLIENT).build());
-    public static final Supplier<LodestoneBlockEntityType<EtherCandleBlockEntity>> ETHER_CANDLE = BLOCK_ENTITY_TYPES.register("ether_candle", () -> create(EtherCandleBlockEntity::new, MalumContent.BlockSets.ETHER_CANDLE, MalumContent.BlockSets.IRIDESCENT_ETHER_CANDLE).setTickerType(Type.CLIENT).build());
+    public static final Supplier<LodestoneBlockEntityType<EtherBlockEntity>> ETHER = BLOCK_ENTITY_TYPES.register("ether", () -> create(EtherBlockEntity::new, MalumContent.BuildingBlocks.ETHER, MalumContent.BuildingBlocks.IRIDESCENT_ETHER).setTickerType(Type.CLIENT).build());
+    public static final Supplier<LodestoneBlockEntityType<EtherCandleBlockEntity>> ETHER_CANDLE = BLOCK_ENTITY_TYPES.register("ether_candle", () -> create(EtherCandleBlockEntity::new, MalumContent.BuildingBlocks.ETHER_CANDLE, MalumContent.BuildingBlocks.IRIDESCENT_ETHER_CANDLE).setTickerType(Type.CLIENT).build());
     public static final Supplier<LodestoneBlockEntityType<EtherTorchBlockEntity>> ETHER_TORCH = BLOCK_ENTITY_TYPES.register("ether_torch", () -> create(EtherTorchBlockEntity::new, getBlocks(EtherTorchBlock.class, EtherWallTorchBlock.class)).setTickerType(Type.CLIENT).build());
     public static final Supplier<LodestoneBlockEntityType<EtherBrazierBlockEntity>> ETHER_BRAZIER = BLOCK_ENTITY_TYPES.register("ether_brazier", () -> create(EtherBrazierBlockEntity::new, getBlocks(EtherBrazierBlock.class)).setTickerType(Type.CLIENT).build());
     public static final Supplier<LodestoneBlockEntityType<EtherCressetBlockEntity>> ETHER_CRESSET = BLOCK_ENTITY_TYPES.register("ether_cresset", () -> create(EtherCressetBlockEntity::new, getBlocks(EtherCressetBlock.class)).setTickerType(Type.CLIENT).build());
@@ -121,13 +120,12 @@ public class MalumBlockEntities {
     public static final Supplier<LodestoneBlockEntityType<GustIgniterBlockEntity>> GUST_IGNITER = BLOCK_ENTITY_TYPES.register("gust_igniter", () -> create(GustIgniterBlockEntity::new, MalumContent.Artifice.GUST_IGNITER).setTickerType(Type.BOTH).build());
     public static final Supplier<LodestoneBlockEntityType<WindTunnelBlockEntity>> WIND_TUNNEL = BLOCK_ENTITY_TYPES.register("wind_tunnel", () -> create(WindTunnelBlockEntity::new, MalumContent.Artifice.WIND_TUNNEL).build());
 
-    public static final Supplier<LodestoneBlockEntityType<VoidConduitBlockEntity>> VOID_CONDUIT = BLOCK_ENTITY_TYPES.register("void_conduit", () -> create(VoidConduitBlockEntity::new, MalumContent.WeepingWell.VOID_CONDUIT).setTickerType(Type.BOTH).build());
-    public static final Supplier<LodestoneBlockEntityType<VoidDepotBlockEntity>> VOID_DEPOT = BLOCK_ENTITY_TYPES.register("void_depot", () -> create(VoidDepotBlockEntity::new, MalumContent.WeepingWell.VOID_DEPOT).setTickerType(Type.CLIENT).build());
+    public static final Supplier<LodestoneBlockEntityType<VoidConduitBlockEntity>> VOID_CONDUIT = BLOCK_ENTITY_TYPES.register("void_conduit", () -> create(VoidConduitBlockEntity::new, MalumContent.WeepingWell.WEEPING_WELL_CENTERPIECE).setTickerType(Type.BOTH).build());
 
 
     public static void bindBlockEntities(BlockEntityTypeAddBlocksEvent event) {
-        MalumContent.BlockSets.RUNEWOOD_SET.bindSigns(event);
-        MalumContent.BlockSets.SOULWOOD_SET.bindSigns(event);
+        MalumContent.BuildingBlocks.RUNEWOOD_SET.bindSigns(event);
+        MalumContent.BuildingBlocks.SOULWOOD_SET.bindSigns(event);
     }
 
     public static void registerCapabilities(RegisterCapabilitiesEvent event) {
@@ -167,9 +165,7 @@ public class MalumBlockEntities {
     public static class ClientOnly {
         @SubscribeEvent
         public static void registerRenderer(EntityRenderersEvent.RegisterRenderers event) {
-
             event.registerBlockEntityRenderer(VOID_CONDUIT.get(), VoidConduitRenderer::new);
-            event.registerBlockEntityRenderer(VOID_DEPOT.get(), VoidDepotRenderer::new);
 
             event.registerBlockEntityRenderer(SPIRIT_ALTAR.get(), SpiritAltarRenderer::new);
             event.registerBlockEntityRenderer(SPIRIT_JAR.get(), SpiritJarRenderer::new);

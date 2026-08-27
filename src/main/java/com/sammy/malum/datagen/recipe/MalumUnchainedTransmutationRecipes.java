@@ -5,7 +5,7 @@ import com.sammy.malum.*;
 import com.sammy.malum.datagen.recipe.builder.*;
 import com.sammy.malum.registry.common.*;
 import com.sammy.malum.registry.common.MalumContent.Blight;
-import com.sammy.malum.registry.common.MalumContent.BlockSets;
+import com.sammy.malum.registry.common.MalumContent.BuildingBlocks;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.data.recipes.*;
 import net.minecraft.world.item.BlockItem;
@@ -14,15 +14,15 @@ import team.lodestar.lodestone.modules.toolkit.block.BlockBlockItemHolder;
 
 import java.util.*;
 
-import static com.sammy.malum.registry.common.MalumContent.BlockSets.RUNEWOOD_SET;
-import static com.sammy.malum.registry.common.MalumContent.BlockSets.SOULWOOD_SET;
+import static com.sammy.malum.registry.common.MalumContent.BuildingBlocks.RUNEWOOD_SET;
+import static com.sammy.malum.registry.common.MalumContent.BuildingBlocks.SOULWOOD_SET;
 
 public class MalumUnchainedTransmutationRecipes {
 
     private static final List<Pair<BlockBlockItemHolder<Block, BlockItem>, BlockBlockItemHolder<Block, BlockItem>>> SOULWOOD_TRANSMUTATIONS = List.of(
             new Pair<>(MalumContent.Totemancy.RUNEWOOD_TOTEM_BASE, MalumContent.Totemancy.SOULWOOD_TOTEM_BASE),
-            new Pair<>(BlockSets.RUNEWOOD_SAPLING, BlockSets.SOULWOOD_SAPLING),
-            new Pair<>(BlockSets.RUNEWOOD_LEAVES, BlockSets.SOULWOOD_LEAVES),
+            new Pair<>(BuildingBlocks.RUNEWOOD_SAPLING, BuildingBlocks.SOULWOOD_SAPLING),
+            new Pair<>(BuildingBlocks.RUNEWOOD_LEAVES, BuildingBlocks.SOULWOOD_LEAVES),
             new Pair<>(RUNEWOOD_SET.strippedLog, SOULWOOD_SET.strippedLog),
             new Pair<>(RUNEWOOD_SET.strippedWood, SOULWOOD_SET.strippedWood),
             new Pair<>(RUNEWOOD_SET.strippedSappyLog, SOULWOOD_SET.strippedSappyLog),

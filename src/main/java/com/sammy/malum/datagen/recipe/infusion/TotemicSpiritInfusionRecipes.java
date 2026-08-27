@@ -5,7 +5,7 @@ import com.sammy.malum.registry.common.MalumContent;
 import net.minecraft.data.recipes.*;
 import net.neoforged.neoforge.common.crafting.*;
 
-import static com.sammy.malum.registry.common.MalumContent.BlockSets.*;
+import static com.sammy.malum.registry.common.MalumContent.BuildingBlocks.*;
 import static com.sammy.malum.registry.common.MalumContent.Sorcery.*;
 import static com.sammy.malum.registry.common.magic.MalumSpiritTypes.*;
 

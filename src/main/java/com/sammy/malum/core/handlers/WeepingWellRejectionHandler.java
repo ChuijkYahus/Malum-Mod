@@ -45,7 +45,7 @@ public class WeepingWellRejectionHandler {
         if (entity instanceof FloatingItemEntity) {
             return;
         }
-        entity.setDeltaMovement(entity.getDeltaMovement().scale(0.6f));
+        entity.setDeltaMovement(entity.getDeltaMovement().scale(0.3f));
     }
 
     public static void entityTick(EntityTickEvent.Pre event) {
@@ -80,9 +80,7 @@ public class WeepingWellRejectionHandler {
         int rejection = data.voidRejection;
         if (!level.isClientSide) {
             if (living instanceof Player && level.getGameTime() % 6L == 0) {
-                float volume = 0.5f + rejection * 0.02f;
-                float pitch = 0.5f + rejection * 0.03f;
-                SoundPlayer.create(MalumSoundEvents.SONG_OF_THE_VOID).volume(0.5f + rejection * 0.02f).pitch(pitch).play(living);
+                SoundPlayer.create(MalumSoundEvents.SONG_OF_THE_VOID).volume(0.5f + rejection * 0.02f).pitch(0.5f + rejection * 0.03f).play(living);
             }
             if (data.wasJustRejected()) {
                 if (!(living instanceof Player player)) {
@@ -95,7 +93,7 @@ public class WeepingWellRejectionHandler {
         if (data.isInRejectedState && rejection > 0) {
             float intensity = rejection / WeepingWellData.MAX_REJECTION;
             Vec3 movement = living.getDeltaMovement();
-            living.setDeltaMovement(movement.x, Math.pow(intensity, 2), movement.z);
+            living.setDeltaMovement(movement.x, Math.pow(intensity, 2)/2f, movement.z);
         }
     }
 
@@ -106,10 +104,6 @@ public class WeepingWellRejectionHandler {
             WeepingWellData.checkForWeepingWell(player).ifPresent(weepingWell -> {
                 BlockPos worldPosition = weepingWell.getBlockPos();
                 MalumParticleEffectTypes.WEEPING_WELL_REACTS.createEffect(worldPosition.getCenter()).spawn(serverLevel);
-                if (weepingWell.reachedStreakGoal) {
-                    GeasEffectHandler.addGeasEffect(player, MalumGeasEffectTypes.CREED_OF_THE_BLIGHT_EATER.get());
-                    weepingWell.reachedStreakGoal = false;
-                }
             });
             MalumParticleEffectTypes.WEEPING_WELL_REACTS.createEffect(player).spawn(serverLevel);
             if (!player.isCreative()) {

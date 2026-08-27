@@ -8,11 +8,9 @@ import com.sammy.malum.registry.common.sound.*;
 import net.minecraft.core.*;
 import net.minecraft.server.level.*;
 import net.minecraft.sounds.*;
-import net.minecraft.util.*;
 import net.minecraft.world.entity.*;
 import net.minecraft.world.entity.player.*;
 import net.minecraft.world.phys.*;
-import team.lodestar.lodestone.helpers.*;
 import team.lodestar.lodestone.modules.core.easing.Easing;
 import team.lodestar.lodestone.modules.toolkit.sound.SoundPlayer;
 
@@ -32,7 +30,7 @@ public abstract class SpiritRiteEntityEffect<T extends LivingEntity> extends Spi
     }
 
     @Override
-    public boolean triggerRiteEffect(ServerLevel level, BlockPos pos, SpiritArcanaType definingSpirit, RiteParameters parameters) {
+    public boolean triggerRiteEffect(ServerLevel level, BlockPos pos, SpiritArcanaType definingSpirit, RiteEffectConfig parameters) {
         List<T> nearbyTargets = findNearbyTargets(level, pos);
         if (nearbyTargets.isEmpty()) {
             return false;

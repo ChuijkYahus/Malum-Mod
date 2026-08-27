@@ -62,7 +62,7 @@ public record SoulwovenBannerPatternDataComponent(ResourceLocation type, Resourc
     }
 
     public ItemStack getDefaultStack() {
-        ItemStack stack = MalumContent.BlockSets.SOULWOVEN_BANNER.getItem().getDefaultInstance();
+        ItemStack stack = MalumContent.BuildingBlocks.SOULWOVEN_BANNER.getItem().getDefaultInstance();
         stack.set(MalumDataComponents.SOULWOVEN_BANNER_PATTERN, this);
         return stack;
     }

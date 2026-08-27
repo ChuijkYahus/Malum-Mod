@@ -58,8 +58,8 @@ public class ScreenParticleEffects {
         var color = spiritType.getPrimaryColor();
         var endColor = spiritType.getSecondaryColor();
         ScreenParticleBuilder.create(LodestoneScreenParticleTypes.SPARKLE, target)
-                .setTransparencyData(GenericParticleData.create(0.02f, 0f).setEasing(Easing.SINE_IN_OUT).build())
-                .setScaleData(GenericParticleData.create(0.8f + rand.nextFloat() * 0.1f, 0).setEasing(Easing.SINE_IN_OUT, Easing.BOUNCE_IN_OUT).build())
+                .setTransparencyData(GenericParticleData.create(0.025f, 0f).setEasing(Easing.SINE_IN_OUT).build())
+                .setScaleData(GenericParticleData.create(1.2f + rand.nextFloat() * 0.1f, 0).setEasing(Easing.SINE_IN_OUT, Easing.BOUNCE_IN_OUT).build())
                 .setColorData(ColorParticleData.create(color, endColor).setCoefficient(2f).build())
                 .setLifetime(10 + rand.nextInt(10))
                 .setRandomOffset(0.05f)
@@ -67,7 +67,7 @@ public class ScreenParticleEffects {
                 .spawnOnStack(0, 0);
 
         ScreenParticleBuilder.create(LodestoneScreenParticleTypes.WISP, target)
-                .setTransparencyData(GenericParticleData.create(0.02f, 0f).setEasing(Easing.SINE_IN_OUT).build())
+                .setTransparencyData(GenericParticleData.create(0.03f, 0f).setEasing(Easing.SINE_IN_OUT).build())
                 .setSpinData(SpinParticleData.create(nextFloat(rand, 0.2f, 0.4f)).setEasing(Easing.EXPO_OUT).build())
                 .setScaleData(GenericParticleData.create(0.6f + rand.nextFloat() * 0.4f, 0).setEasing(Easing.EXPO_OUT).build())
                 .setColorData(ColorParticleData.create(color, endColor).setCoefficient(1.25f).build())

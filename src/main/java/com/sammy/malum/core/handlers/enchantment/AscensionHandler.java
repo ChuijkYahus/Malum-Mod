@@ -83,12 +83,11 @@ public class AscensionHandler {
             particle = MalumParticleEffectTypes.SCYTHE_ASCENSION_SPIN.createEffect(player)
                     .mirroredRandomly(random);
         }
-        particle.color(scythe.getItem()).at(particlePosition).aimedAt(particleDirection).spawn(level);
+        particle.color(scythe).at(particlePosition).aimedAt(particleDirection).spawn(level);
     }
 
     protected static void dealAscensionDamage(ServerLevel level, Player player, boolean isUppercut) {
         boolean hasFunnyRing = CurioHelper.hasCurioEquipped(player, MalumContent.Gear.RING_OF_THE_RISING_EDGE.get());
-        var random = level.getRandom();
         float baseDamage = (float) player.getAttributes().getValue(Attributes.ATTACK_DAMAGE);
         float magicDamage = (float) player.getAttributes().getValue(WaywardAttributeTypes.MAGIC_DAMAGE);
         var area = player.getBoundingBox().inflate(4f, 1f, 4f);

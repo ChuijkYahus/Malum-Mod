@@ -88,36 +88,33 @@ public class GluttonyDamageActivator extends FloatingEntity {
     @Override
     public void tick() {
         if (level() instanceof ServerLevel) {
-            {
-                float windUpDuration = getWindUpDuration();
-                float delta = Mth.clamp(movementWindUp / windUpDuration, 0, 1);
-                var length = getDeltaMovement().length();
-                var disharmony = 0.25f * (1 - delta);
-                var addedOffset = new Vec3(
-                        Easing.SINE_IN_OUT.asWeighedRandom(random, -disharmony, disharmony),
-                        Easing.SINE_IN_OUT.asWeighedRandom(random, -disharmony, disharmony),
-                        Easing.SINE_IN_OUT.asWeighedRandom(random, -disharmony, disharmony)
-                );
-                var newMovement = getDeltaMovement().add(addedOffset).normalize().scale(length);
-                setDeltaMovement(newMovement);
-            }
-            {
-                float desiredY = (float) getY();
-                var mutable = blockPosition().mutable();
-                for (int i = 0; i < 4; i++) {
-                    mutable.move(Direction.DOWN);
+            float windUpDuration = getWindUpDuration();
+            float delta = Mth.clamp(movementWindUp / windUpDuration, 0, 1);
+            var length = getDeltaMovement().length();
+            var disharmony = 0.25f * (1 - delta);
+            var addedOffset = new Vec3(
+                    Easing.SINE_IN_OUT.asWeighedRandom(random, -disharmony, disharmony),
+                    Easing.SINE_IN_OUT.asWeighedRandom(random, -disharmony, disharmony),
+                    Easing.SINE_IN_OUT.asWeighedRandom(random, -disharmony, disharmony)
+            );
+            var newMovement = getDeltaMovement().add(addedOffset).normalize().scale(length);
+            setDeltaMovement(newMovement);
 
-                    BlockState state = level().getBlockState(mutable);
-                    if (state.isFaceSturdy(level(), mutable, Direction.UP)) {
-                        desiredY = Math.max(desiredY, mutable.getY() + 1.5f);
-                        break;
-                    }
+            float desiredY = (float) getY();
+            var mutable = blockPosition().mutable();
+            for (int i = 0; i < 4; i++) {
+                mutable.move(Direction.DOWN);
+
+                BlockState state = level().getBlockState(mutable);
+                if (state.isFaceSturdy(level(), mutable, Direction.UP)) {
+                    desiredY = Math.max(desiredY, mutable.getY() + 1.5f);
+                    break;
                 }
-                float difference = (float) (desiredY - getY());
-                float motion = difference * 0.015f;
-                if (motion != 0) {
-                    setDeltaMovement(getDeltaMovement().add(0, motion, 0).scale(0.9f));
-                }
+            }
+            float difference = (float) (desiredY - getY());
+            float motion = difference * 0.015f;
+            if (motion != 0) {
+                setDeltaMovement(getDeltaMovement().add(0, motion, 0).scale(0.9f));
             }
         }
         super.tick();

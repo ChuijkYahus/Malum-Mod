@@ -1,0 +1,11 @@
+{
+  "effect": "malum:soaking_effect",
+  "id": "malum:rite_of_soaking",
+  "is_soulwood": false,
+  "pattern": [
+    "malum:eldritch",
+    "malum:arcane",
+    "malum:aqueous",
+    "malum:aqueous"
+  ]
+}

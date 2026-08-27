@@ -1,6 +1,7 @@
 package com.sammy.malum.common.block.curiosities.totem;
 
 import com.sammy.malum.*;
+import com.sammy.malum.common.data.custom.rite.*;
 import com.sammy.malum.core.systems.rite.*;
 import com.sammy.malum.core.systems.spirit.SpiritArcanaType;
 import com.sammy.malum.registry.common.block.*;
@@ -13,6 +14,7 @@ import net.minecraft.world.*;
 import net.minecraft.world.entity.player.*;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.block.state.*;
+import org.jetbrains.annotations.NotNull;
 import team.lodestar.lodestone.helpers.block.*;
 import team.lodestar.lodestone.modules.toolkit.blockentity.*;
 
@@ -26,7 +28,7 @@ public class TotemBaseBlockEntity extends LodestoneBlockEntity {
     public enum TotemBaseState {
         INACTIVE,
         ASSEMBLING,
-        ACTIVE;
+        ACTIVE
     }
 
     protected TotemBaseState state = TotemBaseState.INACTIVE;
@@ -66,6 +68,7 @@ public class TotemBaseBlockEntity extends LodestoneBlockEntity {
             state = TotemBaseState.values()[compound.getInt("state")];
         }
         rite = SpiritRiteType.load(compound).orElse(null);
+
         if (compound.contains("direction")) {
             totemDirection = Direction.values()[compound.getInt("direction")];
         }
@@ -87,7 +90,7 @@ public class TotemBaseBlockEntity extends LodestoneBlockEntity {
                         timer = INTERVAL;
                         addTotemPole(level, pole);
                     } else {
-                        var rite = MalumSpiritRiteTypes.getRite(level, this);
+                        var rite = SpiritRiteTypeReloadListener.DATA.findMatching(level, this);
                         if (rite == null) {
                             setState(level, TotemBaseState.INACTIVE);
                             return;

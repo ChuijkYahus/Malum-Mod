@@ -1,0 +1,11 @@
+{
+  "effect": "malum:smelting_effect",
+  "id": "malum:rite_of_smelting",
+  "is_soulwood": false,
+  "pattern": [
+    "malum:eldritch",
+    "malum:arcane",
+    "malum:infernal",
+    "malum:infernal"
+  ]
+}

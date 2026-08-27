@@ -25,8 +25,8 @@ import java.util.Map;
 import static com.sammy.malum.common.block.blight.CreepingBlightBlock.BlightType.*;
 import static com.sammy.malum.common.worldgen.WorldgenHelper.*;
 import static com.sammy.malum.common.worldgen.tree.RunewoodTreeFeature.*;
-import static com.sammy.malum.registry.common.MalumContent.BlockSets.*;
-import static com.sammy.malum.registry.common.MalumContent.BlockSets.SOULWOOD_SET;
+import static com.sammy.malum.registry.common.MalumContent.BuildingBlocks.*;
+import static com.sammy.malum.registry.common.MalumContent.BuildingBlocks.SOULWOOD_SET;
 
 public class SoulwoodTreeFeature extends Feature<NoneFeatureConfiguration> {
 

@@ -1,0 +1,11 @@
+{
+  "effect": "malum:lust_effect",
+  "id": "malum:rite_of_lust",
+  "is_soulwood": true,
+  "pattern": [
+    "malum:eldritch",
+    "malum:arcane",
+    "malum:sacred",
+    "malum:sacred"
+  ]
+}

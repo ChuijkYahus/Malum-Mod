@@ -3,21 +3,35 @@ package com.sammy.malum.registry.common.item;
 import com.mojang.serialization.Codec;
 import com.sammy.malum.MalumMod;
 import com.sammy.malum.common.data.component.*;
+import com.sammy.malum.common.data.component.gear.*;
 import com.sammy.malum.common.data.component.pouch.*;
 import com.sammy.malum.common.data.component.soulstone.*;
 import com.sammy.malum.common.item.curiosities.TemporarilyDisabledItem.Disabled;
+import net.minecraft.core.UUIDUtil;
 import net.minecraft.core.component.DataComponentType;
 import net.minecraft.core.registries.Registries;
+import net.minecraft.network.chat.Component;
+import net.minecraft.network.chat.ComponentSerialization;
 import net.minecraft.network.codec.ByteBufCodecs;
 import net.minecraft.world.item.component.DyedItemColor;
 import net.neoforged.neoforge.registries.DeferredHolder;
 import net.neoforged.neoforge.registries.DeferredRegister;
 
+import java.util.UUID;
 import java.util.function.UnaryOperator;
+
+import static vectorwing.farmersdelight.common.registry.ModDataComponents.DATA_COMPONENTS;
 
 public class MalumDataComponents {
     public static final DeferredRegister<DataComponentType<?>> COMPONENTS = DeferredRegister.create(Registries.DATA_COMPONENT_TYPE, MalumMod.MALUM);
 
+    public static final DeferredHolder<DataComponentType<?>, DataComponentType<SoulTagDataComponent>> SOUL_TAG_DATA =
+            register(
+                    "soul_tag_data",
+                    builder -> builder
+                            .persistent(SoulTagDataComponent.CODEC)
+                            .networkSynchronized(SoulTagDataComponent.STREAM_CODEC)
+            );
 
     public static final DeferredHolder<DataComponentType<?>, DataComponentType<SoulstoneBudDataComponent>> SOULSTONE_BUD_DATA = register("soulstone_bud_data", builder ->
             builder.persistent(SoulstoneBudDataComponent.CODEC).networkSynchronized(SoulstoneBudDataComponent.STREAM_CODEC));
@@ -37,6 +51,8 @@ public class MalumDataComponents {
     public static final DeferredHolder<DataComponentType<?>, DataComponentType<ArtificeAugmentDataComponent>> ARTIFICE_AUGMENT = register("artifice_augment", builder ->
             builder.persistent(ArtificeAugmentDataComponent.CODEC).networkSynchronized(ArtificeAugmentDataComponent.STREAM_CODEC));
 
+    public static final DeferredHolder<DataComponentType<?>, DataComponentType<VindicativeBrandDataComponent>> VINDICATIVE_BRAND_UNLEASHED = register("vindicative_brand_state", builder ->
+            builder.persistent(VindicativeBrandDataComponent.CODEC).networkSynchronized(VindicativeBrandDataComponent.STREAM_CODEC));
 
     public static final DeferredHolder<DataComponentType<?>, DataComponentType<ItemSkinComponent>> ITEM_SKIN = register("item_skin", builder ->
             builder.persistent(ItemSkinComponent.CODEC).networkSynchronized(ItemSkinComponent.STREAM_CODEC));

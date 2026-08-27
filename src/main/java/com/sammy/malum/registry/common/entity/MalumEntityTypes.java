@@ -5,11 +5,13 @@ import com.sammy.malum.common.entity.*;
 import com.sammy.malum.common.entity.activator.*;
 import com.sammy.malum.common.entity.activator.gluttony.*;
 import com.sammy.malum.common.entity.activator.rite.*;
+import com.sammy.malum.common.entity.activator.vindicative_brand.*;
 import com.sammy.malum.common.entity.bolt.*;
 import com.sammy.malum.common.entity.hidden_blade.*;
 import com.sammy.malum.common.entity.nitrate.EthericNitrate;
 import com.sammy.malum.common.entity.nitrate.VividNitrate;
 import com.sammy.malum.common.entity.scythe.*;
+import com.sammy.malum.common.entity.soulTag.SoulTagEntity;
 import com.sammy.malum.common.entity.spirit.SpiritItemEntity;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.world.entity.Entity;
@@ -30,6 +32,8 @@ public class MalumEntityTypes {
         ENTITY_TYPES.register(modEventBus);
         MalumCultistEntityTypes.init();
     }
+
+    public static final DeferredHolder<EntityType<?>, EntityType<SoulTagEntity>> SOUL_TAG_ENTITY = register("soul_tag_entity", SoulTagEntity::new, 0.98F, 0.98F, 10, 20);
 
     public static final DeferredHolder<EntityType<?>, EntityType<AscendingBlock>> ASCENDING_BLOCK = register("ascending_block", AscendingBlock::new, 0.98F, 0.98F, 10, 20);
     public static final DeferredHolder<EntityType<?>, EntityType<PillowSeatEntity>> PILLOW_SEAT = register("pillow_seat", PillowSeatEntity::new, 0.25F, 0.25F, 2, 20);
@@ -59,6 +63,7 @@ public class MalumEntityTypes {
 
     public static final DeferredHolder<EntityType<?>, EntityType<SunderingAnchorProjectile>> SUNDERING_ANCHOR = register("sundering_anchor", SunderingAnchorProjectile::new, 2f, 2f, 10);
 
+    public static final DeferredHolder<EntityType<?>, EntityType<ResentmentRitualActivator>> RESENTMENT_RITUAL = register("resentment_ritual", ResentmentRitualActivator::new, 0.25f, 0.25f, 4, 1);
 
     protected static <T extends Entity> DeferredHolder<EntityType<?>, EntityType<T>> register(String name, MalumEntityFactory<T> factory, float width, float height, int trackingRange) {
         return register(name, factory, width, height, trackingRange, 3);

@@ -29,7 +29,7 @@ public class VoidConduitRenderer implements BlockEntityRenderer<VoidConduitBlock
     @Override
     public void render(VoidConduitBlockEntity blockEntityIn, float partialTicks, PoseStack poseStack, MultiBufferSource bufferIn, int combinedLightIn, int combinedOverlayIn) {
         float height = 0.375f;
-        float width = 1.5f;
+        float width = 4.5f;
 
         Vector3f[] positions = new Vector3f[]{new Vector3f(-width, height, width), new Vector3f(width, height, width), new Vector3f(width, height, -width), new Vector3f(-width, height, -width)};
         WorldVFXBuilder builder = VFXBuilders.createWorld();
@@ -38,8 +38,16 @@ public class VoidConduitRenderer implements BlockEntityRenderer<VoidConduitBlock
 
         var vignette = LodestoneRenderTypes.TRANSPARENT_TEXTURE.apply(MalumRenderTypeTokens.VOID_VIGNETTE);
         builder.replaceBufferSource(LodestoneRenderingSystem.LATE_DEFERRED_RENDER)
-                .setRenderType(vignette)
-                .renderQuad(poseStack, positions, 1f);
+                .setRenderType(vignette);
+
+        poseStack.pushPose();
+        for (int i = 0; i < 5; i++) {
+            float alpha = 0.75f - i * 0.1f;
+            builder.setAlpha(alpha).renderQuad(poseStack, positions);
+            poseStack.translate(0, 0.15f, 0);
+        }
+        poseStack.popPose();
+
         long gameTime = blockEntityIn.getLevel().getGameTime();
         float uOffset = ((gameTime + partialTicks) % 4000) / 2000f;
         float vOffset = ((gameTime + 500f + partialTicks) % 8000) / 8000f;
@@ -52,26 +60,25 @@ public class VoidConduitRenderer implements BlockEntityRenderer<VoidConduitBlock
                 MalumSpiritTypes.AQUEOUS_SPIRIT.getPrimaryColor(),
                 MalumSpiritTypes.AERIAL_SPIRIT.getSecondaryColor()
         };
-        for (int i = 0; i < 4; i++) {
+        for (int i = 0; i < 8; i++) {
             float speed = 1000f + 250f * i;
-            float alpha = 0.2f - i * 0.05f;
-
+            float alpha = 0.115f - i * 0.01f;
 
             ShaderUniformHandler uniforms = new ShaderUniformHandler()
                     .modifyUniform("Speed", speed)
                     .modifyUniform("Width", 1024f)
                     .modifyUniform("Height", 1024f)
                     .setSamplerTexture("Skybox", ParallelWorldRenderer.INSTANCE.getTarget().getColorTextureId());
-            var distortion = MalumRenderTypes.WEEPING_SPYHOLE.apply(MalumRenderTypeTokens.VOID_NOISE).withUniformHandler(uniforms);
 
-            builder.setColor(colors[i]).setRenderType(distortion);
+            var distortion = MalumRenderTypes.WEEPING_SPYHOLE.apply(MalumRenderTypeTokens.VOID_NOISE).withUniformHandler(uniforms);
+            builder.setColor(colors[i % 4]).setLightLevel(blockEntityIn.getBlockPos()).setRenderType(distortion);
 
             builder.setAlpha(alpha);
             builder.setUV(-uOffset, vOffset, 1 - uOffset, 1 + vOffset).renderQuad(poseStack, positions, 1f);
             builder.setUV(uOffset, -vOffset, 1 + uOffset, 1 - vOffset).renderQuad(poseStack, positions, 1f);
             uOffset = -uOffset - 0.2f;
-            vOffset = -vOffset + 0.4f;
-            poseStack.translate(0, 0.05f, 0);
+            vOffset = -vOffset + 0.7f;
+            poseStack.translate(0, 0.15f, 0);
             poseStack.mulPose(Axis.YP.rotationDegrees(90));
         }
         poseStack.popPose();
@@ -80,6 +87,6 @@ public class VoidConduitRenderer implements BlockEntityRenderer<VoidConduitBlock
     @Override
     public AABB getRenderBoundingBox(VoidConduitBlockEntity voidConduit) {
         var pos = voidConduit.getBlockPos();
-        return new AABB(pos.getX() - 2, pos.getY() - 2, pos.getZ() - 2, pos.getX() + 3, pos.getY() + 3, pos.getZ() + 3);
+        return new AABB(pos.getX() - 6, pos.getY() - 2, pos.getZ() - 6, pos.getX() + 7, pos.getY() + 3, pos.getZ() + 7);
     }
 }

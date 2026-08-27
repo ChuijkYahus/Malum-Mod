@@ -166,7 +166,7 @@ public class BlightFeature extends Feature<NoneFeatureConfiguration> {
                 }
                 Block block;
                 if (radius > 3 && !hasSoulwood && random.nextFloat() < 0.1f) {
-                    block = MalumContent.BlockSets.SOULWOOD_SAPLING.get();
+                    block = MalumContent.BuildingBlocks.SOULWOOD_SAPLING.get();
                     hasSoulwood = true;
                 } else if (random.nextFloat() < 0.4f) {
                     block = random.nextFloat() < 0.2f ? MalumContent.Blight.BLIGHTPEARL.get() : MalumContent.Blight.BLIGHTROOT.get();

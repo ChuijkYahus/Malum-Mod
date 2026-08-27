@@ -93,7 +93,7 @@ public class ReaperGeas extends GeasEffect {
                         .tiedToTarget()
                         .forwardOffset(-2f)
                         .upwardOffset(-0.5f)
-                        .color(scytheStack.getItem())
+                        .color(scytheStack)
                         .mirroredRandomly(random);
                 if (MalumScytheItem.canSweep(attacker)) {
                     MalumScytheItem.trySweep(attacker, target, event.getNewDamage());

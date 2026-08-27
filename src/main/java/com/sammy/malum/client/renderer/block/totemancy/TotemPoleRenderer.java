@@ -38,9 +38,10 @@ public class TotemPoleRenderer implements BlockEntityRenderer<TotemPoleBlockEnti
         float ease = Easing.SINE_OUT.ease(delta);
         float offsetDistance = 0.2f - ease * 0.2f;
         float wobbleStrength = 0.1f - ease * 0.075f;
+        var offset = 0.5125f;
         Vector3f[] vertices = new Vector3f[]{
-                new Vector3f(-0.5125f, 0f, 0.5125f), new Vector3f(0.5125f, 0f, 0.5125f),
-                new Vector3f(0.5125f, 1f, 0.5125f), new Vector3f(-0.5125f, 1f, 0.5125f)};
+                new Vector3f(-offset, 0f, offset), new Vector3f(offset, 0f, offset),
+                new Vector3f(offset, 1f, offset), new Vector3f(-offset, 1f, offset)};
 
         poseStack.pushPose();
         poseStack.translate(0.5f, 0, 0.5f);
@@ -51,18 +52,17 @@ public class TotemPoleRenderer implements BlockEntityRenderer<TotemPoleBlockEnti
         int time = 160;
         for (int i = 0; i < 4; i++) {
             var color = i <= 2 ? spiritType.getPrimaryColor() : spiritType.getSecondaryColor();
-            double offset = 0;
+            poseStack.pushPose();
             if (offsetDistance > 0) {
                 double angle = i / 4f * (Math.PI * 2);
                 angle += ((gameTime % time) / time) * (Math.PI * 2);
-                offset = (offsetDistance * Math.cos(angle));
+                double primingOffset = (offsetDistance * Math.cos(angle));
                 if (i % 2 == 0) {
-                    offset *= -1;
+                    primingOffset *= -1;
                 }
+                poseStack.translate(primingOffset, 0, 0);
             }
 
-            poseStack.pushPose();
-            poseStack.translate(offset, 0, 0);
             CubeVertexData.applyVertexWobble(vertices, 0, wobbleStrength);
             SpiritBasedWorldVFXBuilder.create(spiritType)
                     .setColor(color, alpha)

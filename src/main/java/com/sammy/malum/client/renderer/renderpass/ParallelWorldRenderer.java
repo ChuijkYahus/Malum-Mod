@@ -41,7 +41,7 @@ public class ParallelWorldRenderer extends BeforeLevelRenderPass {
         Minecraft mc = Minecraft.getInstance();
         long gameTime = mc.level.getGameTime();
         var partialTicks = deltaTracker.getGameTimeDeltaTicks();
-        float uOffset = ((gameTime + partialTicks) % 4000) / 2000f;
+        float uOffset = ((gameTime + partialTicks) % 8000) / 4000f;
         float vOffset = ((gameTime + 500f + partialTicks) % 8000) / 8000f;
 
         target.setClearColor(0, 0, 0, 0);
@@ -56,24 +56,23 @@ public class ParallelWorldRenderer extends BeforeLevelRenderPass {
 
         PoseStack poseStack = new PoseStack();
         poseStack.pushPose();
-        int cubeScale = 100;
+        int cubeScale = 200;
         poseStack.scale(cubeScale, cubeScale, cubeScale);
 //        Vector3f cameraPosition = camera.getPosition().toVector3f();
 //        poseStack.translate(-cameraPosition.x(), -cameraPosition.y(), -cameraPosition.z());
-        poseStack.mulPose(Axis.XP.rotationDegrees(((gameTime + partialTicks) * 0.4f) % 360));
-        poseStack.mulPose(Axis.YP.rotationDegrees(((gameTime + partialTicks) * 0.2f) % 360));
-        poseStack.mulPose(Axis.ZP.rotationDegrees(((gameTime + partialTicks) * 0.1f) % 360));
+        poseStack.mulPose(Axis.XP.rotationDegrees(((gameTime + partialTicks) * 0.2f) % 360));
+        poseStack.mulPose(Axis.YP.rotationDegrees(((gameTime + partialTicks) * 0.1f) % 360));
+        poseStack.mulPose(Axis.ZP.rotationDegrees(((gameTime + partialTicks) * 0.05f) % 360));
 
 
         for (int i = 0; i < 4; i++) {
-            float speed = 1000f + 750f * i;
+            float speed = 200f + 100f * i;
             float distortion = 4f + 2 * i;
             float scale = (2 - 0.05f * i);
             float red = 0.8f;
             float green = 0.6f;
             float blue = 0.7f;
             float alpha = 0.8f - i * 0.05f;
-            var color = new Color(red, green, blue);
 
             var uniforms = new ShaderUniformHandler()
                     .modifyUniform("Speed", speed)
@@ -90,7 +89,7 @@ public class ParallelWorldRenderer extends BeforeLevelRenderPass {
             var vfxBuilder = VFXBuilders.createWorld()
                     .setVertexConsumer(consumer)
                     .setRenderType(renderType)
-                    .setColor(color)
+                    .setColor(red, green, blue)
                     .setAlpha(alpha);
             var cubeData = CubeVertexData.makeCubePositions(-scale).applyWobble(0, 0.5f, 0.015f);
 

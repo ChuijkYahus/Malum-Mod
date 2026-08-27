@@ -38,7 +38,7 @@ public class SoulwovenBannerBlockItem extends BlockItem {
     }
 
     public static void addBannerVariantsToCreativeTab(BuildCreativeModeTabContentsEvent event) {
-        var source = MalumContent.BlockSets.SOULWOVEN_BANNER.getDefaultInstance();
+        var source = MalumContent.BuildingBlocks.SOULWOVEN_BANNER.getDefaultInstance();
         if (event.getParentEntries().contains(source)) {
             var patterns = new ArrayList<>(REGISTERED_PATTERNS);
             patterns.remove(DEFAULT);
@@ -61,7 +61,7 @@ public class SoulwovenBannerBlockItem extends BlockItem {
     }
 
     public static void tryAddBannerVariant(BuildCreativeModeTabContentsEvent event, SoulwovenBannerPatternDataComponent pattern, boolean before) {
-        var source = MalumContent.BlockSets.SOULWOVEN_BANNER.getDefaultInstance();
+        var source = MalumContent.BuildingBlocks.SOULWOVEN_BANNER.getDefaultInstance();
         var stack = pattern.getDefaultStack();
         if (!event.getParentEntries().contains(stack)) {
             if (before) {

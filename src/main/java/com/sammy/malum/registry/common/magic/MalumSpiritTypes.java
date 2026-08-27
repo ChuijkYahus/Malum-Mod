@@ -1,11 +1,14 @@
 package com.sammy.malum.registry.common.magic;
 
+import com.mojang.serialization.*;
 import com.sammy.malum.*;
 import com.sammy.malum.core.systems.registry.*;
+import com.sammy.malum.core.systems.rite.*;
 import com.sammy.malum.core.systems.spirit.*;
 import com.sammy.malum.core.systems.spirit.umbral.UmbralSpiritArcanaType;
 import com.sammy.malum.registry.common.MalumContent;
 
+import com.sammy.malum.registry.common.magic.rite.*;
 import net.minecraft.core.*;
 import net.minecraft.resources.*;
 import team.lodestar.lodestone.modules.core.easing.Easing;
@@ -18,6 +21,7 @@ public class MalumSpiritTypes {
     public static final DeferredSpiritTypes SPIRIT_TYPES = DeferredSpiritTypes.create(MalumMod.MALUM);
     public static final Registry<SpiritArcanaType> SPIRIT_TYPES_REGISTRY = SPIRIT_TYPES.makeRegistry(builder -> builder.sync(true)
             .defaultKey(MalumMod.malumPath("arcane")));
+
 
     public static SpiritColorProperties SACRED_COLORS() {
         return SpiritColorProperties.create(new Color(238, 44, 136), new Color(40, 143, 243))

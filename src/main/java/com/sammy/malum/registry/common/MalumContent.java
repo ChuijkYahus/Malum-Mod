@@ -13,6 +13,7 @@ import com.sammy.malum.common.block.curiosities.artifice.waveform.wavebanker.*;
 import com.sammy.malum.common.block.curiosities.artifice.waveform.wavebreaker.*;
 import com.sammy.malum.common.block.curiosities.artifice.waveform.wavecharger.*;
 import com.sammy.malum.common.block.curiosities.artifice.waveform.wavemaker.*;
+import com.sammy.malum.common.block.curiosities.decor.*;
 import com.sammy.malum.common.block.curiosities.sorcery.soul_brazier.*;
 import com.sammy.malum.common.block.curiosities.decor.banner.SoulwovenBannerBlock;
 import com.sammy.malum.common.block.curiosities.fluid.SapFilledCauldronBlock;
@@ -43,15 +44,9 @@ import com.sammy.malum.common.block.curiosities.totem.channel.RiteChannelBlock;
 import com.sammy.malum.common.block.curiosities.totem.spreader.RiteSpreaderBlock;
 import com.sammy.malum.common.block.curiosities.totem.unweaver.RiteUnweaverBlock;
 import com.sammy.malum.common.block.curiosities.totem.waveform.WaveformTotemBaseBlock;
-import com.sammy.malum.common.block.curiosities.weeping_well.void_depot.VoidDepotBlock;
 import com.sammy.malum.common.block.curiosities.weavers_workbench.WeaversWorkbenchBlock;
 import com.sammy.malum.common.block.curiosities.weeping_well.PrimordialSoupBlock;
 import com.sammy.malum.common.block.curiosities.weeping_well.VoidConduitBlock;
-import com.sammy.malum.common.block.curiosities.weeping_well.encasement.WeepingWellBlock;
-import com.sammy.malum.common.block.curiosities.weeping_well.encasement.WeepingWellDirectionalBlock;
-import com.sammy.malum.common.block.curiosities.weeping_well.encasement.WeepingWellLayeredBlock;
-import com.sammy.malum.common.block.curiosities.decor.SpiritedGlassBlock;
-import com.sammy.malum.common.block.curiosities.decor.VarnishedTerracottaBlock;
 import com.sammy.malum.common.block.dungeon.*;
 import com.sammy.malum.common.block.ether.*;
 import com.sammy.malum.common.block.flora.EbonySaplingBlock;
@@ -113,6 +108,7 @@ import com.sammy.malum.common.item.curiosities.tools.TinkeringToolItem;
 import com.sammy.malum.common.item.curiosities.tools.spellweaver.SpellweavingAxeItem;
 import com.sammy.malum.common.item.curiosities.tools.spellweaver.SpellweavingPickaxeItem;
 import com.sammy.malum.common.item.curiosities.weapons.*;
+import com.sammy.malum.common.item.curiosities.weapons.greatsword.*;
 import com.sammy.malum.common.item.curiosities.weapons.scythe.EdgeOfDeliveranceItem;
 import com.sammy.malum.common.item.curiosities.weapons.scythe.MagicScytheItem;
 import com.sammy.malum.common.item.curiosities.weapons.scythe.MalumScytheItem;
@@ -128,6 +124,7 @@ import com.sammy.malum.common.item.impetus.FracturedImpetusItem;
 import com.sammy.malum.common.item.impetus.ImpetusItem;
 import com.sammy.malum.common.item.nucleus.PyreNucleusItem;
 import com.sammy.malum.common.item.nucleus.WindNucleusItem;
+import com.sammy.malum.common.item.soulTags.SoulTagItem;
 import com.sammy.malum.common.item.spirit.FusedConsciousnessItem;
 import com.sammy.malum.common.item.spirit.SpiritJarItem;
 import com.sammy.malum.common.item.spirit.SpiritShardItem;
@@ -144,7 +141,7 @@ import com.sammy.malum.registry.common.item.MalumItemTiers;
 import com.sammy.malum.registry.common.magic.MalumSpiritTypes;
 import com.sammy.malum.registry.common.sound.MalumBlockSoundEvents;
 import com.sammy.malum.registry.common.util.*;
-import com.sammy.malum.registry.common.util.building.MinorBuildingSet;
+import com.sammy.malum.registry.common.util.building.CommonStoneBuildingSet;
 import com.sammy.malum.registry.common.util.building.RockBlockSet;
 import com.sammy.malum.registry.common.util.building.WoodBlockSet;
 import com.sammy.malum.registry.common.worldgen.MalumTreeGrowers;
@@ -189,7 +186,7 @@ public class MalumContent {
         CompactBlocks.init();
         Materials.init();
         Blight.init();
-        BlockSets.init();
+        BuildingBlocks.init();
         Sorcery.init();
         Poppetry.init();
         Totemancy.init();
@@ -413,7 +410,7 @@ public class MalumContent {
 
     }
 
-    public static class BlockSets {
+    public static class BuildingBlocks {
 
         public static void init() {
 
@@ -463,15 +460,17 @@ public class MalumContent {
                 () -> new EtherCressetBlock<>(MalumEtherBlockProperties.ETHER_CRESSET()), EtherCressetItem::iridescent);
 
 
-        public static final MinorBuildingSet SEED_QUARTZ = new MinorBuildingSet("seed_quartz", MalumBlockProperties::SEED_QUARTZ);
-        public static final MinorBuildingSet TRODDEN_STONE = new MinorBuildingSet("trodden_stone", MalumBlockProperties::TRODDEN_STONE);
-        public static final MinorBuildingSet IGNEOUS_ROCK = new MinorBuildingSet("igneous_rock", MalumBlockProperties::IGNEOUS_ROCK);
-        public static final MinorBuildingSet COMPOSITE_STONE = new MinorBuildingSet("composite_stone", MalumBlockProperties::COMPOSITE_STONE);
-        public static final MinorBuildingSet EBONSTONE = new MinorBuildingSet("ebonstone", MalumBlockProperties::EBONSTONE);
+        public static final CommonStoneBuildingSet SEED_QUARTZ = new CommonStoneBuildingSet("seed_quartz", MalumStoneBlockProperties::SEED_QUARTZ);
+        public static final CommonStoneBuildingSet TRODDEN_STONE = new CommonStoneBuildingSet("trodden_stone", MalumStoneBlockProperties::TRODDEN_STONE);
+        public static final CommonStoneBuildingSet IGNEOUS_ROCK = new CommonStoneBuildingSet("igneous_rock", MalumStoneBlockProperties::IGNEOUS_ROCK);
+        public static final CommonStoneBuildingSet COMPOSITE_STONE = new CommonStoneBuildingSet("composite_stone", MalumStoneBlockProperties::COMPOSITE_STONE);
+        public static final CommonStoneBuildingSet EBONSTONE = new CommonStoneBuildingSet("ebonstone", MalumStoneBlockProperties::EBONSTONE);
 
-        public static final RockBlockSet TAINTED_ROCK_SET = new RockBlockSet("tainted_rock", MalumBlockProperties::TAINTED_ROCK, MalumBlockProperties::TAINTED_ROCK_BRICKS, MalumBlockProperties::CHISELED_TAINTED_ROCK);
-        public static final RockBlockSet TWISTED_ROCK_SET = new RockBlockSet("twisted_rock", MalumBlockProperties::TWISTED_ROCK, MalumBlockProperties::TWISTED_ROCK_BRICKS, MalumBlockProperties::CHISELED_TWISTED_ROCK);
+        public static final RockBlockSet TAINTED_ROCK_SET = new RockBlockSet("tainted_rock", MalumStoneBlockProperties::TAINTED_ROCK, MalumStoneBlockProperties::TAINTED_ROCK_BRICKS, MalumStoneBlockProperties::CHISELED_TAINTED_ROCK);
+        public static final RockBlockSet TWISTED_ROCK_SET = new RockBlockSet("twisted_rock", MalumStoneBlockProperties::TWISTED_ROCK, MalumStoneBlockProperties::TWISTED_ROCK_BRICKS, MalumStoneBlockProperties::CHISELED_TWISTED_ROCK);
 
+
+        public static final BlockBlockItemHolder<Block, BlockItem> STONE_BOOKSHELF = registerBlock("stone_bookshelf", () -> new StoneBookshelfBlock(MalumStoneBlockProperties.STONE_BOOKSHELF()));
 
 
 
@@ -503,8 +502,8 @@ public class MalumContent {
         public static final DeferredBlock<Block> POTTED_BLIGHTPEARL = registerBlockNoItem("potted_blightpearl", () -> flowerPot(Blight.BLIGHTPEARL));
         public static final DeferredBlock<Block> POTTED_STRANGEROOT = registerBlockNoItem("potted_strangeroot", () -> flowerPot(Blight.STRANGEROOT));
 
-        public static final BlockBlockItemHolder<Block, BlockItem> THE_DEVICE = registerBlock("the_device", () -> new TheDevice(TAINTED_ROCK()));
-        public static final BlockBlockItemHolder<Block, BlockItem> THE_VESSEL = registerBlock("the_vessel", () -> new TheVessel(TWISTED_ROCK()));
+        public static final BlockBlockItemHolder<Block, BlockItem> THE_DEVICE = registerBlock("the_device", () -> new TheDevice(MalumStoneBlockProperties.TAINTED_ROCK()));
+        public static final BlockBlockItemHolder<Block, BlockItem> THE_VESSEL = registerBlock("the_vessel", () -> new TheVessel(MalumStoneBlockProperties.TWISTED_ROCK()));
     }
 
     public static class Sorcery {
@@ -512,6 +511,7 @@ public class MalumContent {
         public static void init() {
 
         }
+
 
         public static final BlockBlockItemHolder<Block, BlockItem> SPIRIT_ALTAR = registerBlock("spirit_altar", () -> new SpiritAltarBlock<>(RUNEWOOD_IMPLEMENT()));
         public static final BlockBlockItemHolder<Block, BlockItem> SPIRIT_JAR = registerBlock("spirit_jar", () -> new SpiritJarBlock<>(SPIRIT_JAR()), SpiritJarItem::new);
@@ -521,6 +521,8 @@ public class MalumContent {
         public static final BlockBlockItemHolder<Block, BlockItem> WEAVERS_WORKBENCH = registerBlock("weavers_workbench", () -> new WeaversWorkbenchBlock<>(MalumWoodBlockProperties.RUNEWOOD().setCutout().noOcclusion()));
 
         public static final BlockBlockItemHolder<Block, BlockItem> SOUL_BRAZIER = registerBlock("soulbinding_brazier", () -> new SoulBrazierBlock<>(SOUL_BRAZIER()));
+
+        public static final DeferredItem<Item> SOUL_TAG = register("soul_tag", MalumItemProperties::DEFAULT, SoulTagItem::new);
 
         public static final BlockBlockItemHolder<Block, MultiBlockItem> RUNEWOOD_OBELISK = registerMultiBlock("runewood_obelisk", () -> new RunewoodObeliskCoreBlock(MalumWoodBlockProperties.RUNEWOOD().setCutout().noOcclusion()), RunewoodObeliskBlockEntity.STRUCTURE);
         public static final DeferredHolder<Block, ObeliskComponentBlock> RUNEWOOD_OBELISK_COMPONENT = registerBlockNoItem("runewood_obelisk_component", () -> new ObeliskComponentBlock(MalumWoodBlockProperties.RUNEWOOD().setCutout().lootFrom(RUNEWOOD_OBELISK).noOcclusion()));
@@ -556,13 +558,13 @@ public class MalumContent {
         public static final BlockBlockItemHolder<Block, BlockItem> WAVEFORM_RUNEWOOD_TOTEM_BASE = registerBlock("waveform_runewood_totem_base", () -> new WaveformTotemBaseBlock<>(COPPER_ARTIFICE().addTag(IS_RITE_IMMUNE).noOcclusion(), false));
         public static final BlockBlockItemHolder<Block, BlockItem> WAVEFORM_SOULWOOD_TOTEM_BASE = registerBlock("waveform_soulwood_totem_base", () -> new WaveformTotemBaseBlock<>(COPPER_ARTIFICE().addTag(IS_RITE_IMMUNE).noOcclusion(), true));
 
-        public static final DeferredBlock<Block> RUNEWOOD_TOTEM_POLE = registerBlockNoItem("runewood_totem_pole", () -> new TotemPoleBlock<>(MalumWoodBlockProperties.RUNEWOOD().addTag(IS_RITE_IMMUNE).noOcclusion(), BlockSets.RUNEWOOD_SET.log));
-        public static final DeferredBlock<Block> SOULWOOD_TOTEM_POLE = registerBlockNoItem("soulwood_totem_pole", () -> new TotemPoleBlock<>(MalumWoodBlockProperties.SOULWOOD().addTag(IS_RITE_IMMUNE).noOcclusion(), BlockSets.SOULWOOD_SET.log));
+        public static final DeferredBlock<Block> RUNEWOOD_TOTEM_POLE = registerBlockNoItem("runewood_totem_pole", () -> new TotemPoleBlock<>(MalumWoodBlockProperties.RUNEWOOD().addTag(IS_RITE_IMMUNE).noOcclusion(), BuildingBlocks.RUNEWOOD_SET.log));
+        public static final DeferredBlock<Block> SOULWOOD_TOTEM_POLE = registerBlockNoItem("soulwood_totem_pole", () -> new TotemPoleBlock<>(MalumWoodBlockProperties.SOULWOOD().addTag(IS_RITE_IMMUNE).noOcclusion(), BuildingBlocks.SOULWOOD_SET.log));
 
-        public static final BlockBlockItemHolder<Block, BlockItem> RITE_ANCHOR = registerBlock("rite_anchor", () -> new RiteAnchorBlock(TAINTED_ROCK_TOTEMANCY()));
-        public static final BlockBlockItemHolder<Block, BlockItem> RITE_UNWEAVER = registerBlock("rite_unweaver", () -> new RiteUnweaverBlock(TWISTED_ROCK_TOTEMANCY()));
-        public static final BlockBlockItemHolder<Block, BlockItem> RITE_SPREADER = registerBlock("rite_spreader", () -> new RiteSpreaderBlock(TAINTED_ROCK_TOTEMANCY()));
-        public static final BlockBlockItemHolder<Block, BlockItem> RITE_CHANNEL = registerBlock("rite_channel", () -> new RiteChannelBlock(TAINTED_ROCK_TOTEMANCY()));
+        public static final BlockBlockItemHolder<Block, BlockItem> RITE_ANCHOR = registerBlock("rite_anchor", () -> new RiteAnchorBlock(MalumStoneBlockProperties.TAINTED_ROCK_TOTEMANCY()));
+        public static final BlockBlockItemHolder<Block, BlockItem> RITE_UNWEAVER = registerBlock("rite_unweaver", () -> new RiteUnweaverBlock(MalumStoneBlockProperties.TWISTED_ROCK_TOTEMANCY()));
+        public static final BlockBlockItemHolder<Block, BlockItem> RITE_SPREADER = registerBlock("rite_spreader", () -> new RiteSpreaderBlock(MalumStoneBlockProperties.TAINTED_ROCK_TOTEMANCY()));
+        public static final BlockBlockItemHolder<Block, BlockItem> RITE_CHANNEL = registerBlock("rite_channel", () -> new RiteChannelBlock(MalumStoneBlockProperties.TAINTED_ROCK_TOTEMANCY()));
     }
 
     public static class Artifice {
@@ -596,14 +598,14 @@ public class MalumContent {
 
         public static final DeferredItem<Item> TUNING_FORK = register("tuning_fork", MalumItemProperties::GEAR, TinkeringToolItem::new);
 
-        public static final BlockBlockItemHolder<Block, MultiBlockItem> SPIRIT_CRUCIBLE = registerMultiBlock("spirit_crucible", () -> new SpiritCrucibleCoreBlock<>(ARCANE_ROCK_ARTIFICE()), SpiritCrucibleCoreBlockEntity.STRUCTURE);
-        public static final DeferredHolder<Block, SpiritCrucibleComponentBlock> SPIRIT_CRUCIBLE_COMPONENT = registerBlockNoItem("spirit_crucible_component", () -> new SpiritCrucibleComponentBlock(ARCANE_ROCK_ARTIFICE().lootFrom(SPIRIT_CRUCIBLE)));
+        public static final BlockBlockItemHolder<Block, MultiBlockItem> SPIRIT_CRUCIBLE = registerMultiBlock("spirit_crucible", () -> new SpiritCrucibleCoreBlock<>(MalumStoneBlockProperties.ARCANE_ROCK_ARTIFICE()), SpiritCrucibleCoreBlockEntity.STRUCTURE);
+        public static final DeferredHolder<Block, SpiritCrucibleComponentBlock> SPIRIT_CRUCIBLE_COMPONENT = registerBlockNoItem("spirit_crucible_component", () -> new SpiritCrucibleComponentBlock(MalumStoneBlockProperties.ARCANE_ROCK_ARTIFICE().lootFrom(SPIRIT_CRUCIBLE)));
 
-        public static final BlockBlockItemHolder<Block, MultiBlockItem> SPIRIT_CATALYZER = registerMultiBlock("spirit_catalyzer", () -> new SpiritCatalyzerCoreBlock<>(ARCANE_ROCK_ARTIFICE()), SpiritCatalyzerCoreBlockEntity.STRUCTURE);
-        public static final DeferredHolder<Block, SpiritCatalyzerComponentBlock> SPIRIT_CATALYZER_COMPONENT = registerBlockNoItem("spirit_catalyzer_component", () -> new SpiritCatalyzerComponentBlock(ARCANE_ROCK_ARTIFICE().lootFrom(SPIRIT_CATALYZER)));
+        public static final BlockBlockItemHolder<Block, MultiBlockItem> SPIRIT_CATALYZER = registerMultiBlock("spirit_catalyzer", () -> new SpiritCatalyzerCoreBlock<>(MalumStoneBlockProperties.ARCANE_ROCK_ARTIFICE()), SpiritCatalyzerCoreBlockEntity.STRUCTURE);
+        public static final DeferredHolder<Block, SpiritCatalyzerComponentBlock> SPIRIT_CATALYZER_COMPONENT = registerBlockNoItem("spirit_catalyzer_component", () -> new SpiritCatalyzerComponentBlock(MalumStoneBlockProperties.ARCANE_ROCK_ARTIFICE().lootFrom(SPIRIT_CATALYZER)));
 
-        public static final BlockBlockItemHolder<Block, MultiBlockItem> REPAIR_PYLON = registerMultiBlock("repair_pylon", () -> new RepairPylonCoreBlock<>(ARCANE_ROCK_ARTIFICE()), RepairPylonCoreBlockEntity.STRUCTURE);
-        public static final DeferredHolder<Block, RepairPylonComponentBlock> REPAIR_PYLON_COMPONENT = registerBlockNoItem("repair_pylon_component", () -> new RepairPylonComponentBlock(ARCANE_ROCK_ARTIFICE().lootFrom(REPAIR_PYLON)));
+        public static final BlockBlockItemHolder<Block, MultiBlockItem> REPAIR_PYLON = registerMultiBlock("repair_pylon", () -> new RepairPylonCoreBlock<>(MalumStoneBlockProperties.ARCANE_ROCK_ARTIFICE()), RepairPylonCoreBlockEntity.STRUCTURE);
+        public static final DeferredHolder<Block, RepairPylonComponentBlock> REPAIR_PYLON_COMPONENT = registerBlockNoItem("repair_pylon_component", () -> new RepairPylonComponentBlock(MalumStoneBlockProperties.ARCANE_ROCK_ARTIFICE().lootFrom(REPAIR_PYLON)));
 
         public static final DeferredItem<Item> MENDING_DIFFUSER = register("mending_diffuser", MalumItemProperties::DEFAULT, MendingDiffuserItem::new);
         public static final DeferredItem<Item> IMPURITY_STABILIZER = register("impurity_stabilizer", MalumItemProperties::DEFAULT, ImpurityStabilizer::new);
@@ -659,7 +661,7 @@ public class MalumContent {
         public static final DeferredItem<Item> SOULWOVEN_POUCH = register("soulwoven_pouch", MalumItemProperties::GEAR, SoulwovenPouchItem::new);
         public static final DeferredItem<Item> RAVENOUS_POUCH = register("ravenous_pouch", MalumItemProperties::GEAR, RavenousPouchItem::new);
 
-        public static final DeferredItem<Item> CRUDE_SCYTHE = register("crude_scythe", MalumItemProperties::GEAR, (p) -> new MalumScytheItem(Tiers.IRON, 0, 0.1f, 0.5f, 1.5f, p.durability(500)));
+        public static final DeferredItem<Item> CRUDE_SCYTHE = register("crude_scythe", MalumItemProperties::GEAR, (p) -> new MalumScytheItem(Tiers.IRON, 4, 1f, 0.5f, 1.5f, p.durability(500)));
 
         public static final DeferredItem<Item> SOUL_HUNTER_CLOAK = register("soul_hunter_cloak", MalumItemProperties::GEAR, (p) -> new SoulHunterArmorItem(ArmorItem.Type.HELMET, p));
         public static final DeferredItem<Item> SOUL_HUNTER_ROBE = register("soul_hunter_robe", MalumItemProperties::GEAR, (p) -> new SoulHunterArmorItem(ArmorItem.Type.CHESTPLATE, p));
@@ -676,14 +678,14 @@ public class MalumContent {
         public static final DeferredItem<Item> MALIGNANT_STRONGHOLD_LEGGINGS = register("malignant_stronghold_leggings", MalumItemProperties::GEAR, (p) -> new MalignantStrongholdArmorItem(ArmorItem.Type.LEGGINGS, p));
         public static final DeferredItem<Item> MALIGNANT_STRONGHOLD_BOOTS = register("malignant_stronghold_boots", MalumItemProperties::GEAR, (p) -> new MalignantStrongholdArmorItem(ArmorItem.Type.BOOTS, p));
 
-        public static final DeferredItem<Item> SOUL_STAINED_STEEL_SCYTHE = register("soul_stained_steel_scythe", MalumItemProperties::GEAR, (p) -> new MagicScytheItem(SOUL_STAINED_STEEL, -3.5f, 0.2f, 4, 0.5f, 1.5f, p));
+        public static final DeferredItem<Item> SOUL_STAINED_STEEL_SCYTHE = register("soul_stained_steel_scythe", MalumItemProperties::GEAR, (p) -> new MagicScytheItem(SOUL_STAINED_STEEL, 3f, 1.2f, 4, 0.5f, 1.5f, p));
         public static final DeferredItem<Item> SOUL_STAINED_STEEL_KNIFE = register("soul_stained_steel_knife", MalumItemProperties::GEAR, (p) -> FarmersDelightCompat.LOADED ? FarmersDelightCompat.LoadedOnly.makeMagicKnife(p) : new Item(p));
-        public static final DeferredItem<Item> SOUL_STAINED_STEEL_SWORD = register("soul_stained_steel_sword", MalumItemProperties::GEAR, (p) -> new MagicSwordItem(SOUL_STAINED_STEEL, -3, 0, 3, p));
+        public static final DeferredItem<Item> SOUL_STAINED_STEEL_SWORD = register("soul_stained_steel_sword", MalumItemProperties::GEAR, (p) -> new MagicSwordItem(SOUL_STAINED_STEEL, 3, 1.6f, 3, p));
 
-        public static final DeferredItem<Item> SOUL_STAINED_STEEL_PICKAXE = register("soul_stained_steel_pickaxe", MalumItemProperties::GEAR, (p) -> new MagicPickaxeItem(SOUL_STAINED_STEEL, -2, 0, 2, p));
-        public static final DeferredItem<Item> SOUL_STAINED_STEEL_AXE = register("soul_stained_steel_axe", MalumItemProperties::GEAR, (p) -> new MagicAxeItem(SOUL_STAINED_STEEL, -3, 0, 4, p));
-        public static final DeferredItem<Item> SOUL_STAINED_STEEL_SHOVEL = register("soul_stained_steel_shovel", MalumItemProperties::GEAR, (p) -> new MagicShovelItem(SOUL_STAINED_STEEL, -2, 0, 2, p));
-        public static final DeferredItem<Item> SOUL_STAINED_STEEL_HOE = register("soul_stained_steel_hoe", MalumItemProperties::GEAR, (p) -> new MagicHoeItem(SOUL_STAINED_STEEL, 0, -1.5f, 1, p));
+        public static final DeferredItem<Item> SOUL_STAINED_STEEL_PICKAXE = register("soul_stained_steel_pickaxe", MalumItemProperties::GEAR, (p) -> new MagicPickaxeItem(SOUL_STAINED_STEEL, 2, 1.2f, 3, p));
+        public static final DeferredItem<Item> SOUL_STAINED_STEEL_AXE = register("soul_stained_steel_axe", MalumItemProperties::GEAR, (p) -> new MagicAxeItem(SOUL_STAINED_STEEL, 4, 0.9f, 5, p));
+        public static final DeferredItem<Item> SOUL_STAINED_STEEL_SHOVEL = register("soul_stained_steel_shovel", MalumItemProperties::GEAR, (p) -> new MagicShovelItem(SOUL_STAINED_STEEL, 2, 1, 3, p));
+        public static final DeferredItem<Item> SOUL_STAINED_STEEL_HOE = register("soul_stained_steel_hoe", MalumItemProperties::GEAR, (p) -> new MagicHoeItem(SOUL_STAINED_STEEL, 1, 4f, 1, p));
 
         public static final DeferredItem<Item> SPELLWEAVING_PICKAXE = register("spellweaving_pickaxe", MalumItemProperties::GEAR, (p) -> new SpellweavingPickaxeItem(SPELLWEAVING_TOOLS, -3, 0, 4, p));
         public static final DeferredItem<Item> SPELLWEAVING_AXE = register("spellweaving_axe", MalumItemProperties::GEAR, (p) -> new SpellweavingAxeItem(SPELLWEAVING_TOOLS, -4, 0, 6, p));
@@ -699,8 +701,9 @@ public class MalumContent {
         public static final DeferredItem<Item> WEIGHT_OF_WORLDS = register("weight_of_worlds", MalumItemProperties::GEAR, (p) -> new WeightOfWorldsItem(MalumItemTiers.MALIGNANT_ALLOY, 1, -0.2f, p));
         public static final DeferredItem<Item> EDGE_OF_DELIVERANCE = register("edge_of_deliverance", MalumItemProperties::GEAR, (p) -> new EdgeOfDeliveranceItem(MalumItemTiers.MALIGNANT_ALLOY, 2, -0.1f, p));
 
-        public static final DeferredItem<Item> UNWINDING_CHAOS = register("unwinding_chaos", () -> MalumItemProperties.GEAR().rarity(EPIC), (p) -> new UnwindingChaosStaffItem(HARNESSED_CHAOS, 5, 1.5f, 3, p));
-        public static final DeferredItem<Item> SUNDERING_ANCHOR = register("sundering_anchor", () -> MalumItemProperties.GEAR().rarity(EPIC), (p) -> new SunderingAnchorItem(HARNESSED_CHAOS, 4, p));
+        public static final DeferredItem<Item> UNWINDING_CHAOS = register("unwinding_chaos", MalumItemProperties::RELIC, (p) -> new UnwindingChaosStaffItem(HARNESSED_CHAOS, 5, 1.5f, 3, p));
+        public static final DeferredItem<Item> SUNDERING_ANCHOR = register("sundering_anchor", MalumItemProperties::RELIC, (p) -> new SunderingAnchorItem(HARNESSED_CHAOS, 4, p));
+        public static final DeferredItem<Item> VINDICATIVE_BRAND = register("vindicative_brand", MalumItemProperties::RELIC, VindicativeBrandSwordItem::new);
 
         public static final DeferredItem<Item> GILDED_RING = register("gilded_ring", MalumItemProperties::GEAR, CurioGildedRing::new);
         public static final DeferredItem<Item> GILDED_BELT = register("gilded_belt", MalumItemProperties::GEAR, CurioGildedBelt::new);
@@ -784,7 +787,6 @@ public class MalumContent {
         }
 
         public static final DeferredItem<Item> SHAPED_SLAB = register("shaped_slab", MalumItemProperties::GEAR, (p) -> new ShapedSlabSwordItem(ARCHAIC_SLATE, 2.5f, -0.8f, p));
-        public static final DeferredItem<Item> BROKEN_BLADE = register("broken_blade", MalumItemProperties::GEAR, (p) -> new BrokenBladeSwordItem(ARCHAIC_SLATE, -0.5f, -0.6f, p));
         public static final DeferredItem<Item> IRON_CROWN = register("iron_crown", MalumItemProperties::DEFAULT, Item::new);
     }
 
@@ -806,19 +808,8 @@ public class MalumContent {
 
         }
 
-        public static final BlockBlockItemHolder<Block, BlockItem> VOID_CONDUIT = registerBlock("void_conduit", () -> new VoidConduitBlock<>(PRIMORDIAL_SOUP()));
-        public static final BlockBlockItemHolder<Block, BlockItem> PRIMORDIAL_SOUP = registerBlock("primordial_soup", () -> new PrimordialSoupBlock(PRIMORDIAL_SOUP()));
-
-        public static final BlockBlockItemHolder<Block, BlockItem> VOID_DEPOT = registerBlock("void_depot", () -> new VoidDepotBlock<>(WEEPING_WELL()));
-
-        public static final BlockBlockItemHolder<Block, BlockItem> WEEPING_WELL_CENTER = registerBlock("weeping_well_center", () -> new WeepingWellLayeredBlock(WEEPING_WELL()));
-        public static final BlockBlockItemHolder<Block, BlockItem> WEEPING_WELL_SIDE = registerBlock("weeping_well_side", () -> new WeepingWellLayeredBlock(WEEPING_WELL()));
-        public static final BlockBlockItemHolder<Block, BlockItem> WEEPING_WELL_SIDE_MIRROR = registerBlock("weeping_well_side_mirror", () -> new WeepingWellLayeredBlock(WEEPING_WELL()));
-        public static final BlockBlockItemHolder<Block, BlockItem> WEEPING_WELL_CORNER = registerBlock("weeping_well_corner", () -> new WeepingWellLayeredBlock(WEEPING_WELL()));
-        public static final BlockBlockItemHolder<Block, BlockItem> WEEPING_WELL_FLAGSTONE = registerBlock("weeping_well_flagstone", () -> new WeepingWellBlock(WEEPING_WELL()));
-        public static final BlockBlockItemHolder<Block, BlockItem> WEEPING_WELL_COLUMN_BASE = registerBlock("weeping_well_column_base", () -> new WeepingWellDirectionalBlock(WEEPING_WELL()));
-        public static final BlockBlockItemHolder<Block, BlockItem> WEEPING_WELL_COLUMN = registerBlock("weeping_well_column", () -> new WeepingWellDirectionalBlock(WEEPING_WELL()));
-        public static final BlockBlockItemHolder<Block, BlockItem> WEEPING_WELL_COLUMN_CAP = registerBlock("weeping_well_column_cap", () -> new WeepingWellDirectionalBlock(WEEPING_WELL()));
+        public static final BlockBlockItemHolder<Block, BlockItem> WEEPING_WELL_CENTERPIECE = registerBlock("weeping_well_centerpiece", () -> new VoidConduitBlock<>(PRIMORDIAL_SOUP()));
+        public static final BlockBlockItemHolder<Block, BlockItem> WEEPING_WELL = registerBlock("weeping_well", () -> new PrimordialSoupBlock(PRIMORDIAL_SOUP()));
     }
 
 
@@ -887,11 +878,11 @@ public class MalumContent {
 
     public static void addPottedBlocks(FMLCommonSetupEvent event) {
         FlowerPotBlock flowerPot = (FlowerPotBlock) Blocks.FLOWER_POT;
-        flowerPot.addPlant(BlockSets.RUNEWOOD_SAPLING.block().getId(), BlockSets.POTTED_RUNEWOOD_SAPLING);
-        flowerPot.addPlant(BlockSets.AZURE_RUNEWOOD_SAPLING.block().getId(), BlockSets.POTTED_AZURE_RUNEWOOD_SAPLING);
-        flowerPot.addPlant(BlockSets.SOULWOOD_SAPLING.block().getId(), BlockSets.POTTED_SOULWOOD_SAPLING);
-        flowerPot.addPlant(Blight.BLIGHTROOT.block().getId(), BlockSets.POTTED_BLIGHTROOT);
-        flowerPot.addPlant(Blight.BLIGHTPEARL.block().getId(), BlockSets.POTTED_BLIGHTPEARL);
-        flowerPot.addPlant(Blight.STRANGEROOT.block().getId(), BlockSets.POTTED_STRANGEROOT);
+        flowerPot.addPlant(BuildingBlocks.RUNEWOOD_SAPLING.block().getId(), BuildingBlocks.POTTED_RUNEWOOD_SAPLING);
+        flowerPot.addPlant(BuildingBlocks.AZURE_RUNEWOOD_SAPLING.block().getId(), BuildingBlocks.POTTED_AZURE_RUNEWOOD_SAPLING);
+        flowerPot.addPlant(BuildingBlocks.SOULWOOD_SAPLING.block().getId(), BuildingBlocks.POTTED_SOULWOOD_SAPLING);
+        flowerPot.addPlant(Blight.BLIGHTROOT.block().getId(), BuildingBlocks.POTTED_BLIGHTROOT);
+        flowerPot.addPlant(Blight.BLIGHTPEARL.block().getId(), BuildingBlocks.POTTED_BLIGHTPEARL);
+        flowerPot.addPlant(Blight.STRANGEROOT.block().getId(), BuildingBlocks.POTTED_STRANGEROOT);
     }
 }

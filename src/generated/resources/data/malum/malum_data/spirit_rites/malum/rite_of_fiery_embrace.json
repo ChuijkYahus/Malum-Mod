@@ -1,0 +1,10 @@
+{
+  "effect": "malum:apply_fiery_embrace_effect",
+  "id": "malum:rite_of_fiery_embrace",
+  "is_soulwood": true,
+  "pattern": [
+    "malum:arcane",
+    "malum:infernal",
+    "malum:infernal"
+  ]
+}

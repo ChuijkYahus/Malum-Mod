@@ -1,0 +1,11 @@
+{
+  "effect": "malum:sapping_effect",
+  "id": "malum:rite_of_sapping",
+  "is_soulwood": true,
+  "pattern": [
+    "malum:eldritch",
+    "malum:arcane",
+    "malum:aqueous",
+    "malum:aqueous"
+  ]
+}

@@ -1,0 +1,10 @@
+{
+  "variants": {
+    "top=false": {
+      "model": "malum:block/weeping_well"
+    },
+    "top=true": {
+      "model": "malum:block/weeping_well_top"
+    }
+  }
+}

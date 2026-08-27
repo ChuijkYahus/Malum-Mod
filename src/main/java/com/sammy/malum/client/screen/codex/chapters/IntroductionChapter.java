@@ -5,7 +5,6 @@ import com.sammy.malum.client.screen.codex.EntryAcceptor;
 import com.sammy.malum.client.screen.codex.EntryBookmark;
 import com.sammy.malum.client.screen.codex.display.CodexIconRenderer;
 import com.sammy.malum.client.screen.codex.display.gizmo.DisplayedTexture;
-import com.sammy.malum.client.screen.codex.objects.subspace.SubspaceBookObjectBuilder;
 import com.sammy.malum.client.screen.codex.pages.CyclingPage;
 import com.sammy.malum.client.screen.codex.pages.PageSelectionPage;
 import com.sammy.malum.client.screen.codex.pages.display.SoulstoneGrowthStagePage;
@@ -27,7 +26,7 @@ import static com.sammy.malum.client.screen.codex.pages.recipe.vanilla.CraftingP
 import static com.sammy.malum.client.screen.codex.pages.text.HeadlineTextGizmoPage.headlineTextGizmoPage;
 import static com.sammy.malum.client.screen.codex.pages.text.HeadlineTextPage.headlineText;
 import static com.sammy.malum.client.screen.codex.pages.text.TextPage.textPage;
-import static com.sammy.malum.registry.common.MalumContent.BlockSets.*;
+import static com.sammy.malum.registry.common.MalumContent.BuildingBlocks.*;
 import static com.sammy.malum.registry.common.MalumContent.CompactBlocks.*;
 import static com.sammy.malum.registry.common.MalumContent.ENCYCLOPEDIA_ARCANA;
 import static net.minecraft.world.item.Items.GRASS_BLOCK;
@@ -41,7 +40,7 @@ public class IntroductionChapter extends BookChapter {
         var overworld = DisplayedTexture.texture(CodexIconRenderer.create("overworld", 16, 16));
         var creatureCores = DisplayedTexture.texture(CodexIconRenderer.create("core_keeping", 16, 16));
 
-        addEntry("introduction", 0, 0)
+        var introduction = addEntry("introduction", 0, 0)
                 .setIcon(item(ENCYCLOPEDIA_ARCANA))
                 .addPage(headlineTextGizmoPage("introduction", item(ENCYCLOPEDIA_ARCANA)))
                 .addPage(textPage("introduction.2"))
@@ -49,14 +48,15 @@ public class IntroductionChapter extends BookChapter {
                 .addPage(textPage("introduction.4"))
                 .addPage(textPage("introduction.5"));
 
-        addEntry("spirit_crystals", 1, 1)
+        var spiritCrystals = addEntry("spirit_crystals", 1, 1)
                 .setIcon(soulShard)
                 .addPage(headlineTextGizmoPage("spirit_crystals", soulShard))
                 .addPage(textPage("spirit_crystals.2"))
-                .addPage(textPage("spirit_crystals.3"));
+                .addPage(textPage("spirit_crystals.3"))
+                .requires(introduction);
 
 
-        addEntry("runewood", 0, 2)
+        var runewood = addEntry("runewood", 0, 2)
                 .setIcon(item(RUNEWOOD_SAPLING))
                 .addPage(headlineTextGizmoPage("runewood", item(RUNEWOOD_SAPLING)))
                 .addPage(PageSelectionPage.create(s -> s
@@ -82,16 +82,18 @@ public class IntroductionChapter extends BookChapter {
                                 .add(item(Materials.RUNIC_SAPBALL),
                                         crafting(item(Materials.RUNIC_SAPBALL), c -> c.top(item(WHEAT)).middle(item(Materials.RUNIC_SAP_BOTTLE))))
                         )
-                );
+                )
+                .requires(spiritCrystals);
 
-        addEntry("arcane_wonders", -1, 3)
+        var arcaneWonders = addEntry("arcane_wonders", -1, 3)
                 .setIcon(overworld)
                 .addPage(headlineTextGizmoPage("arcane_wonders", overworld))
                 .addPage(textPage("arcane_wonders.2"))
                 .addPage(textPage("arcane_wonders.3"))
-                .addPage(textPage("arcane_wonders.4"));
+                .addPage(textPage("arcane_wonders.4"))
+                .requires(runewood);
 
-        addEntry("soulstone", 0, 4)
+        var soulstone = addEntry("soulstone", 0, 4)
                 .setIcon(item(Materials.RAW_SOULSTONE))
                 .addPage(headlineTextGizmoPage("soulstone", item(Materials.RAW_SOULSTONE)))
                 .addPage(PageSelectionPage.create(s -> s
@@ -112,19 +114,21 @@ public class IntroductionChapter extends BookChapter {
                                 .add(item(BLOCK_OF_RAW_SOULSTONE),
                                         compacting(item(BLOCK_OF_RAW_SOULSTONE), item(Materials.RAW_SOULSTONE)))
                         )
-                );
+                ).requires(arcaneWonders);
 
-        addEntry("soulstone_buds", 2, 5)
+        var soulstoneBuds = addEntry("soulstone_buds", 2, 4)
                 .setIcon(item(Materials.SOULSTONE_BUD))
                 .addPage(headlineTextGizmoPage("soulstone_buds", item(Materials.SOULSTONE_BUD)))
                 .addPage(textPage("soulstone_buds.2"))
                 .addPage(headlineTextGizmoPage("realizing_soulstone_buds", item(Materials.REALIZED_SOULSTONE_BUD)))
-                .addPage(new SoulstoneGrowthStagePage());
+                .addPage(new SoulstoneGrowthStagePage())
+                .requires(soulstone);
 
-        addEntry("derealized_metal", 3, 4)
-                .setIcon(item(AlchemyAndMetallics.IRON_METALLICS.getDerealizedMetal()));
+        var derealizedMetal = addEntry("derealized_metal", 3, 3)
+                .setIcon(item(AlchemyAndMetallics.IRON_METALLICS.getDerealizedMetal()))
+                .requires(soulstoneBuds);
 
-        addEntry("scythes", 0, 6)
+        var scythes = addEntry("scythes", 0, 6)
                 .setIcon(item(Gear.CRUDE_SCYTHE))
                 .addPage(headlineTextGizmoPage("scythes", item(Gear.CRUDE_SCYTHE)))
                 .addPage(textPage("scythes.2"))
@@ -133,9 +137,10 @@ public class IntroductionChapter extends BookChapter {
                         .fill(item(Items.IRON_INGOT), CraftingGridContents::topLeft, CraftingGridContents::top, CraftingGridContents::right)
                         .fill(item(Items.STICK), CraftingGridContents::middle, CraftingGridContents::bottomLeft)
                         .fill(item(Materials.REFINED_SOULSTONE), CraftingGridContents::topRight)
-                ));
+                ))
+                .requires(soulstone);
 
-        addEntry("spirit_infusion", 0, 8)
+        var spiritInfusion = addEntry("spirit_infusion", 0, 8)
                 .setIcon(item(Sorcery.SPIRIT_ALTAR))
                 .addPage(headlineTextGizmoPage("spirit_infusion", item(Sorcery.SPIRIT_ALTAR)))
                 .addPage(textPage("spirit_infusion.2"))
@@ -150,9 +155,10 @@ public class IntroductionChapter extends BookChapter {
                                 .add(item(RUNEWOOD_SET.itemStand), CraftingPage.stand(RUNEWOOD_SET))
 
                         )
-                );
+                )
+                .requires(scythes);
 
-        addEntry("common_reagents", 2, 9)
+        var commonReagents = addEntry("common_reagents", 2, 9)
                 .setIcon(item(Materials.ALCHEMICAL_CALX))
                 .addPage(headlineText("common_reagents"))
                 .addPage(textPage("common_reagents.2"))
@@ -167,10 +173,11 @@ public class IntroductionChapter extends BookChapter {
                 .addRightBookmark(new EntryBookmark(item(Materials.ALCHEMICAL_CALX),
                         BookEntry.create("common_reagents.alchemical_calx")
                                 .addPage(headlineTextGizmoPage("common_reagents.alchemical_calx", item(Materials.ALCHEMICAL_CALX)))
-                ));
+                ))
+                .requires(spiritInfusion);
 
 
-        addEntry("esoteric_reaping", -2, 9)
+        var esotericReaping = addEntry("esoteric_reaping", -2, 9)
                 .setIcon(item(Materials.EERIE_WEAVE))
                 .addPage(headlineText("esoteric_reaping"))
                 .addPage(textPage("esoteric_reaping.2"))
@@ -205,21 +212,22 @@ public class IntroductionChapter extends BookChapter {
                                         BookEntry.create("common_reagents.core_keeping.pyre_nucleus")
                                                 .addPage(headlineTextGizmoPage("common_reagents.core_keeping.pyre_nucleus", item(Materials.PYRE_NUCLEUS)))
                                 ))
-                ));
+                ))
+                .requires(spiritInfusion);
 
-        var arcanas = addSubspaceEntry("the_arcanas", 0, 12, b -> b.setIcon(item(Spirits.ARCANE_SPIRIT)))
+        var theArcanas = addSubspaceEntry("the_arcanas", 0, 12, b -> b.setIcon(item(Spirits.ARCANE_SPIRIT)).requires(spiritInfusion))
                 .setSize(300);
 
-        addSpiritEntry(arcanas, MalumSpiritTypes.SACRED_SPIRIT, 2, -2);
-        addSpiritEntry(arcanas, MalumSpiritTypes.WICKED_SPIRIT, -2, 2);
+        addSpiritEntry(theArcanas, MalumSpiritTypes.SACRED_SPIRIT, 2, -2);
+        addSpiritEntry(theArcanas, MalumSpiritTypes.WICKED_SPIRIT, -2, 2);
 
-        addSpiritEntry(arcanas, MalumSpiritTypes.ARCANE_SPIRIT, -3, 0);
-        addSpiritEntry(arcanas, MalumSpiritTypes.ELDRITCH_SPIRIT, 3, 0);
+        addSpiritEntry(theArcanas, MalumSpiritTypes.ARCANE_SPIRIT, -3, 0);
+        addSpiritEntry(theArcanas, MalumSpiritTypes.ELDRITCH_SPIRIT, 3, 0);
 
-        addSpiritEntry(arcanas, MalumSpiritTypes.AERIAL_SPIRIT, -1, 0);
-        addSpiritEntry(arcanas, MalumSpiritTypes.AQUEOUS_SPIRIT, 0, -1);
-        addSpiritEntry(arcanas, MalumSpiritTypes.EARTHEN_SPIRIT, 1, 0);
-        addSpiritEntry(arcanas, MalumSpiritTypes.INFERNAL_SPIRIT, 0, 1);
+        addSpiritEntry(theArcanas, MalumSpiritTypes.AERIAL_SPIRIT, -1, 0);
+        addSpiritEntry(theArcanas, MalumSpiritTypes.AQUEOUS_SPIRIT, 0, -1);
+        addSpiritEntry(theArcanas, MalumSpiritTypes.EARTHEN_SPIRIT, 1, 0);
+        addSpiritEntry(theArcanas, MalumSpiritTypes.INFERNAL_SPIRIT, 0, 1);
     }
 
     public static void addSpiritEntry(EntryAcceptor acceptor, SpiritLike spirit, int x, int y) {

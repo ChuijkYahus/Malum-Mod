@@ -4,18 +4,10 @@ import com.sammy.malum.common.worldgen.tree.*;
 import com.sammy.malum.registry.common.worldgen.*;
 import com.sammy.malum.registry.common.worldgen.MalumFeatures.*;
 import net.minecraft.data.worldgen.*;
-import net.minecraft.tags.*;
-import net.minecraft.util.valueproviders.*;
-import net.minecraft.world.level.levelgen.*;
 import net.minecraft.world.level.levelgen.feature.*;
 import net.minecraft.world.level.levelgen.feature.configurations.*;
 
-import java.util.*;
-
-import static com.sammy.malum.registry.common.MalumContent.BlockSets.*;
-import static com.sammy.malum.registry.common.MalumContent.Materials.*;
-import static net.minecraft.world.level.block.Blocks.*;
-import static net.minecraft.world.level.levelgen.feature.stateproviders.BlockStateProvider.*;
+import static com.sammy.malum.registry.common.MalumContent.BuildingBlocks.*;
 
 public class TreeFeatureDatagen {
 

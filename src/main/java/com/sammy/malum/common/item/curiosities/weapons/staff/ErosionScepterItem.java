@@ -18,12 +18,9 @@ import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
 import net.neoforged.neoforge.client.event.AddAttributeTooltipsEvent;
 import net.neoforged.neoforge.event.entity.living.LivingDamageEvent;
-import team.lodestar.lodestone.handlers.*;
 import team.lodestar.lodestone.helpers.*;
 import team.lodestar.lodestone.modules.rendering.LodestoneRenderingSystem;
 import team.lodestar.lodestone.modules.toolkit.sound.SoundPlayer;
-import team.lodestar.lodestone.registry.common.*;
-import team.lodestar.lodestone.registry.common.tag.*;
 import team.lodestar.lodestone.modules.core.easing.Easing;
 import team.lodestar.lodestone.modules.toolkit.item.*;
 
@@ -55,7 +52,7 @@ public class ErosionScepterItem extends AbstractStaffItem implements ISpiritAffi
     }
 
     @Override
-    public SpiritLike getDefiningSpiritType() {
+    public SpiritLike getDefiningSpiritType(ItemStack stack) {
         return MalumSpiritTypes.UMBRAL_SPIRIT;
     }
     @Override

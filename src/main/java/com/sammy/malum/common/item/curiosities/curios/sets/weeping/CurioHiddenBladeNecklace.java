@@ -116,7 +116,7 @@ public class CurioHiddenBladeNecklace extends MalumCurioItem implements IMalumEv
                 MalumParticleEffectTypes.HIDDEN_BLADE_COUNTER_FLURRY.createEffect()
                         .originatesFrom(attacker)
                         .aimedAt(direction)
-                        .color(scytheWeapon.getItem())
+                        .color(scytheWeapon)
                         .mirroredRandomly(random)
                         .randomSlashRotation(random)
                         .spawn(level);

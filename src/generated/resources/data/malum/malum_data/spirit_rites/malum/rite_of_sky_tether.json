@@ -1,0 +1,10 @@
+{
+  "effect": "malum:apply_sky_tether_effect",
+  "id": "malum:rite_of_sky_tether",
+  "is_soulwood": true,
+  "pattern": [
+    "malum:arcane",
+    "malum:aerial",
+    "malum:aerial"
+  ]
+}

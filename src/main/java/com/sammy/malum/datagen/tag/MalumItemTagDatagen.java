@@ -28,14 +28,13 @@ import java.util.concurrent.*;
 
 import static com.sammy.malum.registry.common.MalumContent.AlchemyAndMetallics.*;
 import static com.sammy.malum.registry.common.MalumContent.Blight.BLIGHTED_GUNK;
-import static com.sammy.malum.registry.common.MalumContent.BlockSets.*;
+import static com.sammy.malum.registry.common.MalumContent.BuildingBlocks.*;
 import static com.sammy.malum.registry.common.MalumContent.CompactBlocks.*;
 import static com.sammy.malum.registry.common.MalumContent.DungeonGear.*;
 import static com.sammy.malum.registry.common.MalumContent.*;
 import static com.sammy.malum.registry.common.MalumContent.Gear.*;
 import static com.sammy.malum.registry.common.MalumContent.Materials.*;
 import static com.sammy.malum.registry.common.MalumContent.Spirits.*;
-import static com.sammy.malum.registry.common.MalumContent.Vanity.*;
 import static com.sammy.malum.registry.common.MalumTags.Items.*;
 import static com.sammy.malum.registry.common.MalumContent.BLOCKS;
 import static net.minecraft.world.item.Items.*;
@@ -86,15 +85,17 @@ public class MalumItemTagDatagen extends LodestoneItemTagsSystem {
 
         tag(SOUL_SHATTER_CAPABLE_WEAPON)
                 .addTags(SCYTHES, STAVES)
-                .add(SHAPED_SLAB.get(), BROKEN_BLADE.get())
-                .add(TYRVING.get(), WEIGHT_OF_WORLDS.get(), SUNDERING_ANCHOR.get())
                 .add(SOUL_STAINED_STEEL_AXE.get(), SOUL_STAINED_STEEL_PICKAXE.get(), SOUL_STAINED_STEEL_SHOVEL.get(), SOUL_STAINED_STEEL_SWORD.get(), SOUL_STAINED_STEEL_HOE.get(), SOUL_STAINED_STEEL_KNIFE.get())
-                .add(SPELLWEAVING_PICKAXE.get(), SPELLWEAVING_AXE.get());
+                .add(SHAPED_SLAB.get())
+                .add(TYRVING.get(), WEIGHT_OF_WORLDS.get())
+                .add(SPELLWEAVING_PICKAXE.get(), SPELLWEAVING_AXE.get())
+                .add(SUNDERING_ANCHOR.get(), VINDICATIVE_BRAND.get());
 
         tag(MAGIC_CAPABLE_WEAPON)
                 .addTags(SCYTHES, STAVES)
                 .add(SOUL_STAINED_STEEL_SWORD.get(), SOUL_STAINED_STEEL_KNIFE.get())
-                .add(GLUTTONOUS_BLUDGEON.get(), TYRVING.get(), SUNDERING_ANCHOR.get())
+                .add(GLUTTONOUS_BLUDGEON.get(), TYRVING.get())
+                .add(SUNDERING_ANCHOR.get(), VINDICATIVE_BRAND.get())
                 .remove(EDGE_OF_DELIVERANCE.get());
 
         tag(SCYTHES)
@@ -109,8 +110,8 @@ public class MalumItemTagDatagen extends LodestoneItemTagsSystem {
                 CRUDE_SCYTHE.get(), SOUL_STAINED_STEEL_SCYTHE.get(), RAVENOUS_SCYTHE.get(), EDGE_OF_DELIVERANCE.get(),
                 SOUL_STAINED_STEEL_KNIFE.get(), SOUL_STAINED_STEEL_SWORD.get(), SOUL_STAINED_STEEL_AXE.get(),
                 GLUTTONOUS_BLUDGEON.get(), TYRVING.get(),
-                MNEMONIC_HEX_STAFF.get(), EROSION_SCEPTER.get(), UNWINDING_CHAOS.get(),
-                SUNDERING_ANCHOR.get());
+                MNEMONIC_HEX_STAFF.get(), EROSION_SCEPTER.get(),
+                UNWINDING_CHAOS.get(), SUNDERING_ANCHOR.get(), VINDICATIVE_BRAND.get());
         tag(Tags.Items.RANGED_WEAPON_TOOLS).add(MNEMONIC_HEX_STAFF.get(), EROSION_SCEPTER.get(), UNWINDING_CHAOS.get(), SUNDERING_ANCHOR.get());
         tag(ItemTags.SWORDS).add(SOUL_STAINED_STEEL_SWORD.get(), TYRVING.get());
         tag(ItemTags.PICKAXES).add(SOUL_STAINED_STEEL_PICKAXE.get(), SPELLWEAVING_PICKAXE.get());

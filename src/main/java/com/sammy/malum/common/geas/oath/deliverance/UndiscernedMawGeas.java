@@ -13,6 +13,7 @@ import net.minecraft.world.entity.ai.attributes.*;
 import net.minecraft.world.entity.player.*;
 import net.minecraft.world.item.*;
 import net.neoforged.neoforge.event.tick.*;
+import team.lodestar.wayward_attributes.core.registry.WaywardAttributeTypes;
 
 import java.util.function.*;
 
@@ -46,7 +47,7 @@ public class UndiscernedMawGeas extends GeasEffect {
     @Override
     public Multimap<Holder<Attribute>, AttributeModifier> createAttributeModifiers(LivingEntity entity, Multimap<Holder<Attribute>, AttributeModifier> modifiers) {
         if (streak > 3) {
-            addAttributeModifier(modifiers, MalumAttributes.HEALING_MULTIPLIER, -0.05f * (streak - 3), AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL);
+            addAttributeModifier(modifiers, WaywardAttributeTypes.HEALING_MULTIPLIER, -0.05f * (streak - 3), AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL);
         }
         return modifiers;
     }
