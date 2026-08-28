@@ -46,8 +46,8 @@ public class MalumItemColors {
                     (stack, level, holder, holderID) -> SpellweavingPickaxeItem.getStateDisplay(stack));
 
             ItemProperties.register(
-                    MalumContent.Gear.VINDICATIVE_BRAND.get(), MalumMod.malumPath("unsealed"),
-                    (stack, level, holder, holderID) -> VindicativeBrandSwordItem.getUnsealedState(stack));
+                    MalumContent.Gear.VINDICTIVE_BRAND.get(), MalumMod.malumPath("unsealed"),
+                    (stack, level, holder, holderID) -> VindictiveBrandSwordItem.getUnsealedState(stack));
         });
     }
 

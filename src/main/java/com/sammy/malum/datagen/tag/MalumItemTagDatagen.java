@@ -89,13 +89,13 @@ public class MalumItemTagDatagen extends LodestoneItemTagsSystem {
                 .add(SHAPED_SLAB.get())
                 .add(TYRVING.get(), WEIGHT_OF_WORLDS.get())
                 .add(SPELLWEAVING_PICKAXE.get(), SPELLWEAVING_AXE.get())
-                .add(SUNDERING_ANCHOR.get(), VINDICATIVE_BRAND.get());
+                .add(SUNDERING_ANCHOR.get(), VINDICTIVE_BRAND.get());
 
         tag(MAGIC_CAPABLE_WEAPON)
                 .addTags(SCYTHES, STAVES)
                 .add(SOUL_STAINED_STEEL_SWORD.get(), SOUL_STAINED_STEEL_KNIFE.get())
                 .add(GLUTTONOUS_BLUDGEON.get(), TYRVING.get())
-                .add(SUNDERING_ANCHOR.get(), VINDICATIVE_BRAND.get())
+                .add(SUNDERING_ANCHOR.get(), VINDICTIVE_BRAND.get())
                 .remove(EDGE_OF_DELIVERANCE.get());
 
         tag(SCYTHES)
@@ -111,7 +111,7 @@ public class MalumItemTagDatagen extends LodestoneItemTagsSystem {
                 SOUL_STAINED_STEEL_KNIFE.get(), SOUL_STAINED_STEEL_SWORD.get(), SOUL_STAINED_STEEL_AXE.get(),
                 GLUTTONOUS_BLUDGEON.get(), TYRVING.get(),
                 MNEMONIC_HEX_STAFF.get(), EROSION_SCEPTER.get(),
-                UNWINDING_CHAOS.get(), SUNDERING_ANCHOR.get(), VINDICATIVE_BRAND.get());
+                UNWINDING_CHAOS.get(), SUNDERING_ANCHOR.get(), VINDICTIVE_BRAND.get());
         tag(Tags.Items.RANGED_WEAPON_TOOLS).add(MNEMONIC_HEX_STAFF.get(), EROSION_SCEPTER.get(), UNWINDING_CHAOS.get(), SUNDERING_ANCHOR.get());
         tag(ItemTags.SWORDS).add(SOUL_STAINED_STEEL_SWORD.get(), TYRVING.get());
         tag(ItemTags.PICKAXES).add(SOUL_STAINED_STEEL_PICKAXE.get(), SPELLWEAVING_PICKAXE.get());

@@ -1,4 +1,4 @@
-package com.sammy.malum.visual_effects.networked.attack.vindicative_brand.unleashed;
+package com.sammy.malum.visual_effects.networked.attack.vindictive_brand;
 
 import com.sammy.malum.registry.common.*;
 import com.sammy.malum.visual_effects.*;
@@ -13,26 +13,26 @@ import team.lodestar.lodestone.modules.rendering.particle.standard.world.behavio
 import team.lodestar.lodestone.systems.network.*;
 import team.lodestar.lodestone.systems.network.particle.*;
 
-public class VindicativeBrandExtraSlashParticleEffect extends MalumNetworkedWeaponParticleEffectType<WeaponParticleEffectType.WeaponParticleEffectData> {
+public class VindictiveBrandSlashParticleEffect extends MalumNetworkedWeaponParticleEffectType<WeaponParticleEffectType.WeaponParticleEffectData> {
 
-    public VindicativeBrandExtraSlashParticleEffect(String id) {
+    public VindictiveBrandSlashParticleEffect(String id) {
         super(id);
     }
 
     @OnlyIn(Dist.CLIENT)
     @Override
     public void act(Level level, RandomSource random, NetworkedParticleEffectPositionData positionData, MalumNetworkedParticleEffectColorData colorData, WeaponParticleEffectData extraData) {
+        var slash = WeaponParticleEffects.spawnSlashParticle(level, positionData.getAsVector(), MalumParticles.SLASH, colorData);
         var direction = extraData.getDirection();
-        var slash = WeaponParticleEffects.spawnSlashParticle(level, positionData.getAsVector().subtract(direction.scale(4)), MalumParticles.SLASH, colorData);
         slash.getBuilder()
+                .setSpinData(SpinParticleData.create(0).setSpinOffset(extraData.getSlashRotation()+(extraData.isMirrored()?3.14f:0)).build())
                 .setScaleData(GenericParticleData.create(Easing.SINE_IN_OUT.asWeighedRandom(random, 3f, 4f)).build())
                 .setMotion(direction.scale(Easing.SINE_IN_OUT.asWeighedRandom(random, 0.5f, 0.7f)))
                 .setBehavior(PointyDirectionalParticleBehavior.pointyDirectional(direction));
         for (int i = 0; i < 3; i++) {
-            float spin = random.nextFloat() * 6.28f;
+            var transparency = 1f - i * 0.4f;
             slash.getBuilder()
-                    .setSpinData(SpinParticleData.create(0).setSpinOffset(spin + extraData.getSlashRotation()+(extraData.isMirrored()?3.14f:0)).build())
-                    .setTransparencyData(GenericParticleData.create(1f - i * 0.4f).build())
+                    .setTransparencyData(GenericParticleData.create(transparency).build())
                     .setLifeDelay(i * 2);
             slash.spawnParticles();
 

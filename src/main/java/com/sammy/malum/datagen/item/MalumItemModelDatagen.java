@@ -56,7 +56,7 @@ public class MalumItemModelDatagen extends LodestoneItemModelSystem {
         MalumItemModelSmithTypes.HANDHELD_ITEM.act(data, MalumContent.Gear.SOUL_STAINED_STEEL_KNIFE, MalumContent.Gear.GLUTTONOUS_BLUDGEON, MalumContent.Focusing.TUNING_FORK, MalumContent.Artifice.ARTIFICERS_CLAW, MalumContent.Totemancy.TOTEMIC_STAFF);
         MalumItemModelSmithTypes.HANDHELD_ITEM.act(data, MalumContent.Gear.MNEMONIC_HEX_STAFF, MalumContent.Gear.EROSION_SCEPTER);
         MalumItemModelSmithTypes.SPELLWEAVING_TOOL.act(data, MalumContent.Gear.SPELLWEAVING_PICKAXE, MalumContent.Gear.SPELLWEAVING_AXE);
-        WeaponItemModelSmithTypes.VINDICATIVE_BRAND.act(data, MalumContent.Gear.VINDICATIVE_BRAND);
+        WeaponItemModelSmithTypes.VINDICTIVE_BRAND.act(data, MalumContent.Gear.VINDICTIVE_BRAND);
         MalumItemModelSmithTypes.CATALYST_LOBBER.act(data, MalumContent.Gear.CATALYST_LOBBER);
         MalumItemModelSmithTypes.POUCH.act(data, MalumContent.Gear.SOULWOVEN_POUCH, MalumContent.Gear.RAVENOUS_POUCH);
 

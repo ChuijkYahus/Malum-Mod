@@ -3,7 +3,7 @@ package com.sammy.malum.common.item.curiosities.weapons.greatsword;
 import com.sammy.malum.*;
 import com.sammy.malum.common.data.attachment.gear.*;
 import com.sammy.malum.common.data.component.gear.*;
-import com.sammy.malum.common.entity.activator.vindicative_brand.*;
+import com.sammy.malum.common.entity.activator.vindictive_brand.ResentmentRitualActivator;
 import com.sammy.malum.common.item.*;
 import com.sammy.malum.common.item.curiosities.weapons.*;
 import com.sammy.malum.common.item.spirit.*;
@@ -42,14 +42,14 @@ import java.util.function.*;
 
 import static team.lodestar.wayward_attributes.tweaks.SweepAttackTweaks.*;
 
-public class VindicativeBrandSwordItem extends LodestoneSwordItem implements IMalumEventResponder, ICustomMeleeDamageTypeItem, ISpiritAffiliatedItem {
+public class VindictiveBrandSwordItem extends LodestoneSwordItem implements IMalumEventResponder, ICustomMeleeDamageTypeItem, ISpiritAffiliatedItem {
 
-    public static final ResourceLocation BASE_INTERACTION_RANGE = MalumMod.malumPath("vindicative_brand.base_entity_interaction_range");
+    public static final ResourceLocation BASE_INTERACTION_RANGE = MalumMod.malumPath("vindictive_brand.base_entity_interaction_range");
 
     public static final int MAX_STACKS = 10;
     public static final int UNSEAL_DURATION = 300;
 
-    public VindicativeBrandSwordItem(LodestoneItemProperties properties) {
+    public VindictiveBrandSwordItem(LodestoneItemProperties properties) {
         super(MalumItemTiers.RELIC, 5f, 1f, properties.mergeAttributes(ItemAttributeModifiers.builder()
                 .add(Attributes.SWEEPING_DAMAGE_RATIO, new AttributeModifier(BASE_SWEEP_DAMAGE, 1f, AttributeModifier.Operation.ADD_VALUE), EquipmentSlotGroup.MAINHAND)
                 .add(WaywardAttributeTypes.SWEEPING_DAMAGE_RADIUS, new AttributeModifier(BASE_SWEEP_RADIUS, 3f, AttributeModifier.Operation.ADD_VALUE), EquipmentSlotGroup.MAINHAND)
@@ -65,12 +65,12 @@ public class VindicativeBrandSwordItem extends LodestoneSwordItem implements IMa
     }
 
     public static float getUnsealedState(ItemStack stack) {
-        return stack.has(MalumDataComponents.VINDICATIVE_BRAND_UNLEASHED) ? 1 : 0;
+        return stack.has(MalumDataComponents.VINDICTIVE_BRAND_UNLEASHED) ? 1 : 0;
     }
 
     public static void entityTick(EntityTickEvent.Pre event) {
         if (event.getEntity() instanceof Player player) {
-            player.getExistingData(MalumAttachmentTypes.VINDICATIVE_BRAND_DASH_DATA).ifPresent(d -> d.tickData(player));
+            player.getExistingData(MalumAttachmentTypes.VINDICTIVE_BRAND_DASH_DATA).ifPresent(d -> d.tickData(player));
         }
     }
 
@@ -81,19 +81,19 @@ public class VindicativeBrandSwordItem extends LodestoneSwordItem implements IMa
         float range = 5f;
         var area = player.getBoundingBox().inflate(range, 2f, range);
 
-        var physicalDamageType = DamageTypeHelper.create(level, MalumDamageTypes.VINDICATIVE_BRAND_SWEEP, player);
+        var physicalDamageType = DamageTypeHelper.create(level, MalumDamageTypes.VINDICTIVE_BRAND_SWEEP, player);
         var predicate = dashAttackDamagePredicate(player, range);
         for (Entity target : level.getEntitiesOfClass(LivingEntity.class, area, predicate)) {
             target.invulnerableTime = 0;
             target.hurt(physicalDamageType, baseDamage);
         }
 
-        MalumNetworkedWeaponParticleEffectType<?> particleType = MalumParticleEffectTypes.VINDICATIVE_BRAND_DASH_CLEAVE;
-        var sound = MalumGearSoundEvents.VINDICATIVE_BRAND_DASH_CLEAVE;
+        MalumNetworkedWeaponParticleEffectType<?> particleType = MalumParticleEffectTypes.VINDICTIVE_BRAND_DASH_CLEAVE;
+        var sound = MalumGearSoundEvents.VINDICTIVE_BRAND_DASH_CLEAVE;
 
-        if (weapon.has(MalumDataComponents.VINDICATIVE_BRAND_UNLEASHED)) {
-            particleType = MalumParticleEffectTypes.VINDICATIVE_BRAND_UNLEASHED_DASH_CLEAVE;
-            sound = MalumGearSoundEvents.VINDICATIVE_BRAND_UNLEASHED_DASH_CLEAVE;
+        if (weapon.has(MalumDataComponents.VINDICTIVE_BRAND_UNLEASHED)) {
+            particleType = MalumParticleEffectTypes.VINDICTIVE_BRAND_UNLEASHED_DASH_CLEAVE;
+            sound = MalumGearSoundEvents.VINDICTIVE_BRAND_UNLEASHED_DASH_CLEAVE;
         }
 
         particleType.createEffect()
@@ -115,10 +115,10 @@ public class VindicativeBrandSwordItem extends LodestoneSwordItem implements IMa
     public void inventoryTick(ItemStack stack, Level level, Entity entity, int slotId, boolean isSelected) {
         if (entity instanceof LivingEntity livingEntity) {
             if (livingEntity.hasEffect(MalumMobEffects.INSATIABLE_VINDICATION)) {
-                stack.set(MalumDataComponents.VINDICATIVE_BRAND_UNLEASHED, VindicativeBrandDataComponent.UNIT);
+                stack.set(MalumDataComponents.VINDICTIVE_BRAND_UNLEASHED, VindictiveBrandDataComponent.UNIT);
             }
             else {
-                stack.remove(MalumDataComponents.VINDICATIVE_BRAND_UNLEASHED);
+                stack.remove(MalumDataComponents.VINDICTIVE_BRAND_UNLEASHED);
             }
         }
     }
@@ -128,11 +128,11 @@ public class VindicativeBrandSwordItem extends LodestoneSwordItem implements IMa
         var cooldowns = player.getCooldowns();
         if (!cooldowns.isOnCooldown(this)) {
             var stack = player.getItemInHand(usedHand);
-            boolean isEmpowered = stack.has(MalumDataComponents.VINDICATIVE_BRAND_UNLEASHED);
+            boolean isEmpowered = stack.has(MalumDataComponents.VINDICTIVE_BRAND_UNLEASHED);
             var cooldown = isEmpowered ? 30 : 100;
             cooldowns.addCooldown(this, cooldown);
-            player.setData(MalumAttachmentTypes.VINDICATIVE_BRAND_DASH_DATA, new VindicativeBrandDashData(player, 5));
-            SoundPlayer.create(MalumGearSoundEvents.VINDICATIVE_BRAND_DASH).pitchVariance(0.2f).play(player);
+            player.setData(MalumAttachmentTypes.VINDICTIVE_BRAND_DASH_DATA, new VindictiveBrandDashData(player, 5));
+            SoundPlayer.create(MalumGearSoundEvents.VINDICTIVE_BRAND_DASH).pitchVariance(0.2f).play(player);
             return InteractionResultHolder.success(stack);
         }
         return super.use(level, player, usedHand);
@@ -163,7 +163,7 @@ public class VindicativeBrandSwordItem extends LodestoneSwordItem implements IMa
         );
         var position = target.position().add(0, target.getBbHeight() * 0.5f, 0);
         var gatheredResentment = new ResentmentRitualActivator(level, owner.getUUID(), amount, position, velocityVector);
-        SoundPlayer.create(MalumGearSoundEvents.VINDICATIVE_BRAND_SPROUT_RESENTMENT).pitchVariance(0.2f).play(target, owner.getSoundSource());
+        SoundPlayer.create(MalumGearSoundEvents.VINDICTIVE_BRAND_SPROUT_RESENTMENT).pitchVariance(0.2f).play(target, owner.getSoundSource());
         level.addFreshEntity(gatheredResentment);
     }
 
@@ -187,7 +187,7 @@ public class VindicativeBrandSwordItem extends LodestoneSwordItem implements IMa
         }
 
         float delta = stacks / (float)MAX_STACKS;
-        SoundPlayer.create(MalumGearSoundEvents.VINDICATIVE_BRAND_PROGRESS_RITUAL).pitch(1f + delta * 0.5f).play(target);
+        SoundPlayer.create(MalumGearSoundEvents.VINDICTIVE_BRAND_PROGRESS_RITUAL).pitch(1f + delta * 0.5f).play(target);
     }
 
     @Override
@@ -197,15 +197,15 @@ public class VindicativeBrandSwordItem extends LodestoneSwordItem implements IMa
             return;
         }
         var source = event.getSource();
-        if (!source.is(MalumDamageTypes.VINDICATIVE_BRAND_MELEE) && !source.is(MalumDamageTypes.INVERTED_HEART_PROPAGATION)) {
+        if (!source.is(MalumDamageTypes.VINDICTIVE_BRAND_MELEE) && !source.is(MalumDamageTypes.INVERTED_HEART_PROPAGATION)) {
             return;
         }
-        MalumNetworkedWeaponParticleEffectType<?> particleType = MalumParticleEffectTypes.VINDICATIVE_BRAND_SLASH;
-        var sound = MalumGearSoundEvents.VINDICATIVE_BRAND_SWING;
+        MalumNetworkedWeaponParticleEffectType<?> particleType = MalumParticleEffectTypes.VINDICTIVE_BRAND_SLASH;
+        var sound = MalumGearSoundEvents.VINDICTIVE_BRAND_SWING;
 
         if (attacker.hasEffect(MalumMobEffects.INSATIABLE_VINDICATION)) {
-            particleType = MalumParticleEffectTypes.VINDICATIVE_BRAND_UNLEASHED_SLASH;
-            sound = MalumGearSoundEvents.VINDICATIVE_BRAND_UNLEASHED_SWING;
+            particleType = MalumParticleEffectTypes.VINDICTIVE_BRAND_UNLEASHED_SLASH;
+            sound = MalumGearSoundEvents.VINDICTIVE_BRAND_UNLEASHED_SWING;
         }
 
         var particle = particleType.createEffect()
@@ -227,7 +227,7 @@ public class VindicativeBrandSwordItem extends LodestoneSwordItem implements IMa
     @Override
     public void outgoingDamageEvent(LivingIncomingDamageEvent event, LivingEntity attacker, LivingEntity target, ItemStack stack) {
         var source = event.getSource();
-        if (!source.is(MalumDamageTypes.VINDICATIVE_BRAND_MELEE) && !source.is(MalumDamageTypes.VINDICATIVE_BRAND_SWEEP) && !source.is(MalumDamageTypes.INVERTED_HEART_PROPAGATION)) {
+        if (!source.is(MalumDamageTypes.VINDICTIVE_BRAND_MELEE) && !source.is(MalumDamageTypes.VINDICTIVE_BRAND_SWEEP) && !source.is(MalumDamageTypes.INVERTED_HEART_PROPAGATION)) {
             return;
         }
         if (attacker.hasEffect(MalumMobEffects.INSATIABLE_VINDICATION)) {
@@ -238,10 +238,10 @@ public class VindicativeBrandSwordItem extends LodestoneSwordItem implements IMa
                     WorldEventHandler.addWorldEvent(level,
                             new DelayedDamageWorldEvent(target)
                                     .setAttacker(attacker)
-                                    .setImpactParticleEffect(MalumParticleEffectTypes.VINDICATIVE_BRAND_EXTRA_SLASH, new MalumNetworkedParticleEffectColorData(MalumSpiritTypes.ELDRITCH_SPIRIT))
+                                    .setImpactParticleEffect(MalumParticleEffectTypes.VINDICTIVE_BRAND_EXTRA_SLASH, new MalumNetworkedParticleEffectColorData(MalumSpiritTypes.ELDRITCH_SPIRIT))
                                     .setDamageData(0, 2, (i+1) * 8)
-                                    .setMagicDamageType(MalumDamageTypes.VINDICATIVE_BRAND_COMBO)
-                                    .setSound(MalumGearSoundEvents.VINDICATIVE_BRAND_EXTRA_SWING, 1.2f, 1.4f, 1.5f));
+                                    .setMagicDamageType(MalumDamageTypes.VINDICTIVE_BRAND_COMBO)
+                                    .setSound(MalumGearSoundEvents.VINDICTIVE_BRAND_EXTRA_SWING, 1.2f, 1.4f, 1.5f));
                 }
             }
 
@@ -295,17 +295,17 @@ public class VindicativeBrandSwordItem extends LodestoneSwordItem implements IMa
 
     @Override
     public ResourceKey<DamageType> getDirectDamageType(Player player, ItemStack weapon) {
-        return MalumDamageTypes.VINDICATIVE_BRAND_MELEE;
+        return MalumDamageTypes.VINDICTIVE_BRAND_MELEE;
     }
 
     @Override
     public ResourceKey<DamageType> getSweepingDamageType(Player player, ItemStack weapon) {
-        return MalumDamageTypes.VINDICATIVE_BRAND_SWEEP;
+        return MalumDamageTypes.VINDICTIVE_BRAND_SWEEP;
     }
 
     @Override
     public SpiritLike getDefiningSpiritType(ItemStack stack) {
-        if (stack.has(MalumDataComponents.VINDICATIVE_BRAND_UNLEASHED)) {
+        if (stack.has(MalumDataComponents.VINDICTIVE_BRAND_UNLEASHED)) {
             return MalumSpiritTypes.ELDRITCH_SPIRIT;
         }
         return null;

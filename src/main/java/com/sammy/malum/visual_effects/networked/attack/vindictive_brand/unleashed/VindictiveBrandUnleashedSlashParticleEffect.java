@@ -1,4 +1,4 @@
-package com.sammy.malum.visual_effects.networked.attack.vindicative_brand.unleashed;
+package com.sammy.malum.visual_effects.networked.attack.vindictive_brand.unleashed;
 
 import com.sammy.malum.registry.common.*;
 import com.sammy.malum.visual_effects.*;
@@ -13,9 +13,9 @@ import team.lodestar.lodestone.modules.rendering.particle.standard.world.behavio
 import team.lodestar.lodestone.systems.network.*;
 import team.lodestar.lodestone.systems.network.particle.*;
 
-public class VindicativeBrandUnleashedSlashParticleEffect extends MalumNetworkedWeaponParticleEffectType<WeaponParticleEffectType.WeaponParticleEffectData> {
+public class VindictiveBrandUnleashedSlashParticleEffect extends MalumNetworkedWeaponParticleEffectType<WeaponParticleEffectType.WeaponParticleEffectData> {
 
-    public VindicativeBrandUnleashedSlashParticleEffect(String id) {
+    public VindictiveBrandUnleashedSlashParticleEffect(String id) {
         super(id);
     }
 

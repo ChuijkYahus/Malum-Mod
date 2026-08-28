@@ -134,7 +134,7 @@ public class RuntimeEventHandler {
         CurioWatcherNecklace.entityTick(event);
         TouchOfDarknessHandler.entityTick(event);
         CurioHiddenBladeNecklace.entityTick(event);
-        VindicativeBrandSwordItem.entityTick(event);
+        VindictiveBrandSwordItem.entityTick(event);
         MalignantConversionHandler.entityTick(event);
         WeepingWellRejectionHandler.entityTick(event);
     }

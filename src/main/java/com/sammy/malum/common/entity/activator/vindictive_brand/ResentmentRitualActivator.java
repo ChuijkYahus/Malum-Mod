@@ -1,4 +1,4 @@
-package com.sammy.malum.common.entity.activator.vindicative_brand;
+package com.sammy.malum.common.entity.activator.vindictive_brand;
 
 import com.sammy.malum.common.entity.*;
 import com.sammy.malum.common.item.curiosities.weapons.greatsword.*;
@@ -69,7 +69,7 @@ public class ResentmentRitualActivator extends FloatingEntity {
     @Override
     public void collect(ServerLevel level) {
         getDestination().getEntityCollector(level)
-                .ifPresent(target -> VindicativeBrandSwordItem.progressRitual(target, storedResentment));
+                .ifPresent(target -> VindictiveBrandSwordItem.progressRitual(target, storedResentment));
     }
 
     @Override

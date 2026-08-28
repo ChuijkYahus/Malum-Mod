@@ -9,32 +9,32 @@ import net.minecraft.world.entity.*;
 import net.minecraft.world.entity.player.*;
 import net.minecraft.world.phys.*;
 
-public class VindicativeBrandDashData {
+public class VindictiveBrandDashData {
 
-    public static Codec<VindicativeBrandDashData> CODEC = RecordCodecBuilder.create(obj -> obj.group(
+    public static Codec<VindictiveBrandDashData> CODEC = RecordCodecBuilder.create(obj -> obj.group(
             Vec3.CODEC.optionalFieldOf("dash_direction", Vec3.ZERO).forGetter(c -> c.dashDirection),
             Codec.LONG.optionalFieldOf("dash_timing", -1L).forGetter(c -> c.dashTiming)
-    ).apply(obj, VindicativeBrandDashData::new));
+    ).apply(obj, VindictiveBrandDashData::new));
 
     protected Vec3 dashDirection;
     protected long dashTiming;
 
-    public VindicativeBrandDashData() {
+    public VindictiveBrandDashData() {
     }
 
-    public VindicativeBrandDashData(Player player, int dashDuration) {
+    public VindictiveBrandDashData(Player player, int dashDuration) {
         this.dashDirection = player.getLookAngle();
         this.dashTiming = player.level().getGameTime() + dashDuration;
     }
 
-    public VindicativeBrandDashData(Vec3 dashDirection, long dashTiming) {
+    public VindictiveBrandDashData(Vec3 dashDirection, long dashTiming) {
         this.dashDirection = dashDirection;
         this.dashTiming = dashTiming;
     }
 
     public void tickData(Player player) {
         var weapon = player.getMainHandItem();
-        if (weapon.getItem() instanceof VindicativeBrandSwordItem) {
+        if (weapon.getItem() instanceof VindictiveBrandSwordItem) {
             var velocity = dashDirection.scale(2.5f);
             player.setDeltaMovement(velocity);
             var level = player.level();
@@ -43,9 +43,9 @@ public class VindicativeBrandDashData {
             }
         }
         if (player.level() instanceof ServerLevel level) {
-            VindicativeBrandSwordItem.triggerDashAttack(level, player, weapon);
+            VindictiveBrandSwordItem.triggerDashAttack(level, player, weapon);
         }
         player.setDeltaMovement(Vec3.ZERO);
-        player.removeData(MalumAttachmentTypes.VINDICATIVE_BRAND_DASH_DATA);
+        player.removeData(MalumAttachmentTypes.VINDICTIVE_BRAND_DASH_DATA);
     }
 }

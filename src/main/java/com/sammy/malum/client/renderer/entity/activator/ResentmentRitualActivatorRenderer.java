@@ -2,7 +2,7 @@ package com.sammy.malum.client.renderer.entity.activator;
 
 import com.mojang.blaze3d.vertex.*;
 import com.sammy.malum.client.*;
-import com.sammy.malum.common.entity.activator.vindicative_brand.*;
+import com.sammy.malum.common.entity.activator.vindictive_brand.*;
 import com.sammy.malum.registry.client.*;
 import net.minecraft.client.renderer.*;
 import net.minecraft.client.renderer.entity.*;

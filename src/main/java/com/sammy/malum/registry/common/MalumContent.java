@@ -105,6 +105,7 @@ import com.sammy.malum.common.item.curiosities.pouch.RavenousPouchItem;
 import com.sammy.malum.common.item.curiosities.pouch.SoulwovenPouchItem;
 import com.sammy.malum.common.item.curiosities.tools.CatalystLobberItem;
 import com.sammy.malum.common.item.curiosities.tools.TinkeringToolItem;
+import com.sammy.malum.common.item.curiosities.tools.VisionaryScryglassItem;
 import com.sammy.malum.common.item.curiosities.tools.spellweaver.SpellweavingAxeItem;
 import com.sammy.malum.common.item.curiosities.tools.spellweaver.SpellweavingPickaxeItem;
 import com.sammy.malum.common.item.curiosities.weapons.*;
@@ -532,6 +533,9 @@ public class MalumContent {
 
         public static final BlockBlockItemHolder<Block, MultiBlockItem> ARCANA_PYLON = registerMultiBlock("arcana_pylon", () -> new ArcanaPylonCoreBlock(MalumWoodBlockProperties.SOULWOOD().setCutout().noOcclusion()), ArcanaPylonBlockEntity.STRUCTURE);
         public static final DeferredHolder<Block, ArcanaPylonComponentBlock> ARCANA_PYLON_COMPONENT = registerBlockNoItem("arcana_pylon_component", () -> new ArcanaPylonComponentBlock(MalumWoodBlockProperties.SOULWOOD().setCutout().lootFrom(ARCANA_PYLON).noOcclusion()));
+
+        public static final DeferredItem<Item> VISIONARY_SCRYGLASS = register("visionary_scryglass", MalumItemProperties::GEAR, VisionaryScryglassItem::new);
+
     }
 
     public static class Poppetry {
@@ -703,7 +707,7 @@ public class MalumContent {
 
         public static final DeferredItem<Item> UNWINDING_CHAOS = register("unwinding_chaos", MalumItemProperties::RELIC, (p) -> new UnwindingChaosStaffItem(HARNESSED_CHAOS, 5, 1.5f, 3, p));
         public static final DeferredItem<Item> SUNDERING_ANCHOR = register("sundering_anchor", MalumItemProperties::RELIC, (p) -> new SunderingAnchorItem(HARNESSED_CHAOS, 4, p));
-        public static final DeferredItem<Item> VINDICATIVE_BRAND = register("vindicative_brand", MalumItemProperties::RELIC, VindicativeBrandSwordItem::new);
+        public static final DeferredItem<Item> VINDICTIVE_BRAND = register("vindictive_brand", MalumItemProperties::RELIC, VindictiveBrandSwordItem::new);
 
         public static final DeferredItem<Item> GILDED_RING = register("gilded_ring", MalumItemProperties::GEAR, CurioGildedRing::new);
         public static final DeferredItem<Item> GILDED_BELT = register("gilded_belt", MalumItemProperties::GEAR, CurioGildedBelt::new);
