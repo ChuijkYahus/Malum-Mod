@@ -14,6 +14,7 @@ import com.sammy.malum.common.block.curiosities.artifice.waveform.wavebreaker.*;
 import com.sammy.malum.common.block.curiosities.artifice.waveform.wavecharger.*;
 import com.sammy.malum.common.block.curiosities.artifice.waveform.wavemaker.*;
 import com.sammy.malum.common.block.curiosities.decor.*;
+import com.sammy.malum.common.block.curiosities.escription.MyriadGatewayBlock;
 import com.sammy.malum.common.block.curiosities.sorcery.soul_brazier.*;
 import com.sammy.malum.common.block.curiosities.decor.banner.SoulwovenBannerBlock;
 import com.sammy.malum.common.block.curiosities.fluid.SapFilledCauldronBlock;
@@ -195,9 +196,7 @@ public class MalumContent {
         Focusing.init();
         AlchemyAndMetallics.init();
         Gear.init();
-        DungeonGear.init();
-        DungeonBlockSets.init();
-        WeepingWell.init();
+        Enscription.init();
         Vanity.init();
     }
 
@@ -784,38 +783,27 @@ public class MalumContent {
         public static final DeferredItem<Item> RUNE_OF_IGNEOUS_SOLACE = register("rune_of_igneous_solace", MalumItemProperties::GEAR, RuneIgneousSolaceItem::new);
     }
 
-    public static class DungeonGear {
+    public static class Enscription {
 
         public static void init() {
 
         }
+
+        public static final BlockBlockItemHolder<Block, BlockItem> MYRIAD_GATEWAY = registerBlock("myriad_gateway", () -> new MyriadGatewayBlock<>(MalumEnscriptionBlockProperties.MYRIAD_GATEWAY()));
+
+        public static final BlockBlockItemHolder<Block, BlockItem> MEDITATING_EFFIGY = registerBlock("meditating_effigy", () -> new MeditatingEffigyBlock(MalumEnscriptionBlockProperties.MEDITATING_EFFIGY()));
+
+        public static final BlockBlockItemHolder<Block, BlockItem> COLUMNAR_FLESH = registerBlock("columnar_flesh", () -> new ColumnarFleshBlock(MalumEnscriptionBlockProperties.FLESH_BLOCK()));
+        public static final BlockBlockItemHolder<Block, BlockItem> FLESHBULB = registerBlock("fleshbulb", () -> new FleshBulbBlock(MalumEnscriptionBlockProperties.FLESHBULB()));
+        public static final BlockBlockItemHolder<Block, BlockItem> WRITHING_FLESH = registerBlock("writhing_flesh", () -> new WrithingFleshBlock(MalumEnscriptionBlockProperties.WRITHING_FLESH()));
 
         public static final DeferredItem<Item> SHAPED_SLAB = register("shaped_slab", MalumItemProperties::GEAR, (p) -> new ShapedSlabSwordItem(ARCHAIC_SLATE, 2.5f, -0.8f, p));
         public static final DeferredItem<Item> IRON_CROWN = register("iron_crown", MalumItemProperties::DEFAULT, Item::new);
+
+        public static final BlockBlockItemHolder<Block, BlockItem> WEEPING_WELL = registerBlock("weeping_well", () -> new PrimordialSoupBlock(MalumEnscriptionBlockProperties.VOID_FLUID()));
+        public static final BlockBlockItemHolder<Block, BlockItem> WEEPING_WELL_CENTERPIECE = registerBlock("weeping_well_centerpiece", () -> new VoidConduitBlock<>(MalumEnscriptionBlockProperties.VOID_FLUID()));
+
     }
-
-    public static class DungeonBlockSets {
-
-        public static void init() {
-
-        }
-
-        public static final BlockBlockItemHolder<Block, BlockItem> MEDITATING_EFFIGY = registerBlock("meditating_effigy", () -> new MeditatingEffigyBlock(MalumDungeonBlockProperties.MEDITATING_EFFIGY()));
-
-        public static final BlockBlockItemHolder<Block, BlockItem> COLUMNAR_FLESH = registerBlock("columnar_flesh", () -> new ColumnarFleshBlock(MalumDungeonBlockProperties.FLESH_BLOCK()));
-        public static final BlockBlockItemHolder<Block, BlockItem> FLESHBULB = registerBlock("fleshbulb", () -> new FleshBulbBlock(MalumDungeonBlockProperties.FLESHBULB()));
-        public static final BlockBlockItemHolder<Block, BlockItem> WRITHING_FLESH = registerBlock("writhing_flesh", () -> new WrithingFleshBlock(MalumDungeonBlockProperties.WRITHING_FLESH()));
-    }
-
-    public static class WeepingWell {
-        public static void init() {
-
-        }
-
-        public static final BlockBlockItemHolder<Block, BlockItem> WEEPING_WELL_CENTERPIECE = registerBlock("weeping_well_centerpiece", () -> new VoidConduitBlock<>(PRIMORDIAL_SOUP()));
-        public static final BlockBlockItemHolder<Block, BlockItem> WEEPING_WELL = registerBlock("weeping_well", () -> new PrimordialSoupBlock(PRIMORDIAL_SOUP()));
-    }
-
 
     public static class Vanity {
 

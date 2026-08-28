@@ -77,8 +77,8 @@ public class MalumLangDatagen extends LanguageProvider {
         var soulwovenBanners = SoulwovenBannerPatternDataComponent.REGISTERED_PATTERNS;
         var crucibleAttributes = ArtificeAttributeType.CRUCIBLE_ATTRIBUTES;
 
-        add(DataHelper.take(blocks, MalumContent.WeepingWell.WEEPING_WELL.block()).get(), "The Weeping Well");
-        add(DataHelper.take(blocks, MalumContent.WeepingWell.WEEPING_WELL_CENTERPIECE.block()).get(), "The Weeping Well");
+        add(DataHelper.take(blocks, MalumContent.Enscription.WEEPING_WELL.block()).get(), "The Weeping Well");
+        add(DataHelper.take(blocks, MalumContent.Enscription.WEEPING_WELL_CENTERPIECE.block()).get(), "The Weeping Well");
 
         if (CreateCompat.LOADED) { //If Create is loaded, the copper nugget won't exist.
             add("item.malum.copper_nugget", "Copper Nugget");

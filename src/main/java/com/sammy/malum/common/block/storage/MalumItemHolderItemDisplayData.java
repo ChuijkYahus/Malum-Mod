@@ -13,27 +13,21 @@ import team.lodestar.lodestone.modules.toolkit.inventory.display.ItemDisplayData
 
 import java.util.Objects;
 
-public class ItemHolderItemDisplayData extends ItemStackHandlerItemDisplayData {
+public class MalumItemHolderItemDisplayData extends ItemStackHandlerItemDisplayData {
 
-    public ItemHolderItemDisplayData(LodestoneItemStackBlockHandler handler) {
+    public MalumItemHolderItemDisplayData(LodestoneItemStackBlockHandler handler) {
         super(handler);
     }
 
     @Override
     public ItemDisplayDataEntry addNewItem(int index, ItemStack stack) {
-        RandomSource random = Objects.requireNonNull(handler.getParent().getLevel()).random;
+        var random = Objects.requireNonNull(handler.getParent().getLevel()).random;
         return super.addNewItem(index, stack).setAngle(random.nextFloat() * 6.28f).setDistance(0.2f);
     }
 
     @Override
     public float getTurnRate() {
         return 0.2f;
-    }
-
-    @Override
-    public Vec3 getDisplayCenter(LodestoneBlockEntity parent, float partialTicks) {
-        var pos = parent.getBlockPos();
-        return new Vec3(pos.getX() + 0.5f, pos.getY() + 1.25f, pos.getZ() + 0.5f);
     }
 
     @Override

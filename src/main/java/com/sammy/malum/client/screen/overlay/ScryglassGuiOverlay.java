@@ -20,6 +20,7 @@ public class ScryglassGuiOverlay implements LayeredDraw.Layer {
 
 	private static final ResourceLocation VISIONARY_SCRYGLASS_SCOPE = MalumMod.malumPath("textures/misc/visionary_scryglass_scope.png");
 	private static final ResourceLocation VISIONARY_SCRYGLASS_OVERLAY = MalumMod.malumPath("textures/misc/visionary_scryglass_overlay.png");
+	private static final ResourceLocation VISIONARY_SCRYGLASS_GLASS = MalumMod.malumPath("textures/misc/visionary_scryglass_glass.png");
 
 	protected float scopeScale;
 
@@ -61,8 +62,10 @@ public class ScryglassGuiOverlay implements LayeredDraw.Layer {
 		var overlay = RenderType.guiOverlay();
 		var color = ColorHelper.getColor(0, 0, 0, 0.5f);
 
+		builder.setAlpha(0.5f).setTexture(VISIONARY_SCRYGLASS_GLASS).blit(poseStack);
+
 		var shaderInstance = LodestoneShaders.SCREEN_DISTORTED_TEXTURE.getShaderInstance();
-		builder.setShader(shaderInstance).setTexture(VISIONARY_SCRYGLASS_OVERLAY);
+		builder.setShader(shaderInstance).setAlpha(1f).setTexture(VISIONARY_SCRYGLASS_OVERLAY);
 
 		shaderInstance.safeGetUniform("LumiTransparency").set(1f);
 
@@ -75,8 +78,8 @@ public class ScryglassGuiOverlay implements LayeredDraw.Layer {
 			shaderInstance.safeGetUniform("Intensity").set(80f - 15f * index);
 
 			builder.setAlpha(1 / index).blit(poseStack);
-
 		}
+
 
 		guiGraphics.fill(overlay, 0, bottom, width, height, -90, color);
 		guiGraphics.fill(overlay, 0, 0, width, top, -90, color);

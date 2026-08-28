@@ -1,4 +1,4 @@
-package com.sammy.malum.client.renderer.block;
+package com.sammy.malum.client.renderer.block.enscription;
 
 import com.mojang.blaze3d.vertex.*;
 import com.mojang.math.*;
@@ -10,10 +10,8 @@ import net.minecraft.client.renderer.*;
 import net.minecraft.client.renderer.blockentity.*;
 import net.minecraft.world.phys.*;
 import org.joml.*;
-import team.lodestar.lodestone.handlers.*;
 import team.lodestar.lodestone.modules.rendering.LodestoneRenderingSystem;
 import team.lodestar.lodestone.registry.client.*;
-import team.lodestar.lodestone.systems.rendering.*;
 import team.lodestar.lodestone.systems.rendering.builder.VFXBuilders;
 import team.lodestar.lodestone.systems.rendering.builder.WorldVFXBuilder;
 import team.lodestar.lodestone.systems.rendering.rendeertype.*;

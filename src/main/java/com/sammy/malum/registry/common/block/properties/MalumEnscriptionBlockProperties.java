@@ -1,14 +1,22 @@
 package com.sammy.malum.registry.common.block.properties;
 
 import com.sammy.malum.registry.common.sound.*;
-import net.minecraft.world.item.*;
-import net.minecraft.world.level.block.state.properties.*;
+import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.material.*;
 import team.lodestar.lodestone.modules.toolkit.block.*;
 
+import static com.sammy.malum.registry.common.MalumTags.Blocks.WEEPING_WELL;
 import static net.minecraft.tags.BlockTags.*;
 
-public class MalumDungeonBlockProperties {
+public class MalumEnscriptionBlockProperties {
+
+    public static LodestoneBlockProperties MYRIAD_GATEWAY() {
+        return new LodestoneBlockProperties()
+                .strength(-1.0F, 3600000.0F)
+                .addTags(FEATURES_CANNOT_REPLACE)
+                .mapColor(MapColor.TERRACOTTA_GRAY)
+                .pushReaction(PushReaction.BLOCK);
+    }
 
     public static LodestoneBlockProperties MEDITATING_EFFIGY() {
         return MalumBlockProperties.CHISELED_DROSS_STONE()
@@ -16,6 +24,17 @@ public class MalumDungeonBlockProperties {
                 .setCutout()
                 .noOcclusion()
                 .strength(3.5F, -1.0F);
+    }
+
+    public static LodestoneBlockProperties VOID_FLUID() {
+        return new LodestoneBlockProperties()
+                .strength(-1.0F, 3600000.0F)
+                .addTags(FEATURES_CANNOT_REPLACE, WEEPING_WELL)
+                .sound(MalumBlockSoundEvents.BLIGHTED_EARTH)
+                .mapColor(MapColor.TERRACOTTA_BLACK)
+                .pushReaction(PushReaction.BLOCK)
+                .isSuffocating(Blocks::never)
+                .setCutout();
     }
 
     public static LodestoneBlockProperties FLESH() {

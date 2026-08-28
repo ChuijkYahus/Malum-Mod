@@ -4,6 +4,8 @@ import com.sammy.malum.*;
 import com.sammy.malum.client.renderer.block.*;
 import com.sammy.malum.client.renderer.block.artifice.SpiritCatalyzerRenderer;
 import com.sammy.malum.client.renderer.block.artifice.SpiritCrucibleRenderer;
+import com.sammy.malum.client.renderer.block.enscription.MyriadGatewayRenderer;
+import com.sammy.malum.client.renderer.block.enscription.VoidConduitRenderer;
 import com.sammy.malum.client.renderer.block.redstone.WaveMakerRenderer;
 import com.sammy.malum.client.renderer.block.redstone.WaveChargerRenderer;
 import com.sammy.malum.client.renderer.block.redstone.WavebankerRenderer;
@@ -13,6 +15,7 @@ import com.sammy.malum.common.block.curiosities.artifice.crystallarium.Conjunctu
 import com.sammy.malum.common.block.curiosities.artifice.elemental_artifice.aerial.GustIgniterBlockEntity;
 import com.sammy.malum.common.block.curiosities.artifice.elemental_artifice.aerial.WindTunnelBlockEntity;
 import com.sammy.malum.common.block.curiosities.decor.banner.*;
+import com.sammy.malum.common.block.curiosities.escription.MyriadGatewayBlockEntity;
 import com.sammy.malum.common.block.curiosities.obelisk.brilliant.*;
 import com.sammy.malum.common.block.curiosities.obelisk.rite_pylon.*;
 import com.sammy.malum.common.block.curiosities.obelisk.runewood.*;
@@ -120,7 +123,10 @@ public class MalumBlockEntities {
     public static final Supplier<LodestoneBlockEntityType<GustIgniterBlockEntity>> GUST_IGNITER = BLOCK_ENTITY_TYPES.register("gust_igniter", () -> create(GustIgniterBlockEntity::new, MalumContent.Artifice.GUST_IGNITER).setTickerType(Type.BOTH).build());
     public static final Supplier<LodestoneBlockEntityType<WindTunnelBlockEntity>> WIND_TUNNEL = BLOCK_ENTITY_TYPES.register("wind_tunnel", () -> create(WindTunnelBlockEntity::new, MalumContent.Artifice.WIND_TUNNEL).build());
 
-    public static final Supplier<LodestoneBlockEntityType<VoidConduitBlockEntity>> VOID_CONDUIT = BLOCK_ENTITY_TYPES.register("void_conduit", () -> create(VoidConduitBlockEntity::new, MalumContent.WeepingWell.WEEPING_WELL_CENTERPIECE).setTickerType(Type.BOTH).build());
+
+    public static final Supplier<LodestoneBlockEntityType<MyriadGatewayBlockEntity>> MYRIAD_GATEWAY = BLOCK_ENTITY_TYPES.register("myriad_gateway", () -> create(MyriadGatewayBlockEntity::new, MalumContent.Enscription.MYRIAD_GATEWAY).setTickerType(Type.BOTH).build());
+
+    public static final Supplier<LodestoneBlockEntityType<VoidConduitBlockEntity>> VOID_CONDUIT = BLOCK_ENTITY_TYPES.register("void_conduit", () -> create(VoidConduitBlockEntity::new, MalumContent.Enscription.WEEPING_WELL_CENTERPIECE).setTickerType(Type.BOTH).build());
 
 
     public static void bindBlockEntities(BlockEntityTypeAddBlocksEvent event) {
@@ -165,8 +171,6 @@ public class MalumBlockEntities {
     public static class ClientOnly {
         @SubscribeEvent
         public static void registerRenderer(EntityRenderersEvent.RegisterRenderers event) {
-            event.registerBlockEntityRenderer(VOID_CONDUIT.get(), VoidConduitRenderer::new);
-
             event.registerBlockEntityRenderer(SPIRIT_ALTAR.get(), SpiritAltarRenderer::new);
             event.registerBlockEntityRenderer(SPIRIT_JAR.get(), SpiritJarRenderer::new);
             event.registerBlockEntityRenderer(RUNIC_WORKBENCH.get(), MalumItemHolderRenderer::new);
@@ -193,6 +197,9 @@ public class MalumBlockEntities {
             event.registerBlockEntityRenderer(WIND_TUNNEL.get(), WindTunnelRenderer::new);
 
             event.registerBlockEntityRenderer(SOULWOVEN_BANNER.get(), SoulwovenBannerRenderer::new);
+
+            event.registerBlockEntityRenderer(MYRIAD_GATEWAY.get(), MyriadGatewayRenderer::new);
+
         }
     }
 }
