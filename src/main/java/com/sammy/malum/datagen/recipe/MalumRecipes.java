@@ -40,8 +40,8 @@ public class MalumRecipes extends VanillaRecipeProvider {
         MalumWoodSetDatagen.buildRecipes(recipeOutput);
         MalumRockSetDatagen.buildRecipes(recipeOutput);
 
-        for (MinorBuildingSet malumSet : MinorBuildingSet.getMalumSets()) {
-            malumSet.addRecipes(recipeOutput);
+        for (CommonStoneBuildingSet set : CommonStoneBuildingSet.getMalumSets()) {
+            set.addRecipes(recipeOutput);
         }
 
 

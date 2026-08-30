@@ -29,6 +29,8 @@ public class EntityRenderers {
         register(MalumCultistEntityTypes.CULTIST_BLESSING.get(), CultistBlessingRenderer::new);
         register(MalumCultistEntityTypes.ENTROPY_CHARGE.get(), EntropyChargeRenderer::new);
 
+        register(MalumEntityTypes.SOUL_TAG_ENTITY.get(), SoulTagRenderer::new);
+
         register(MalumEntityTypes.ASCENDING_BLOCK.get(), AscendingBlockRenderer::new);
         register(MalumEntityTypes.PILLOW_SEAT.get(), NoopRenderer::new);
 
@@ -38,7 +40,7 @@ public class EntityRenderers {
         register(MalumEntityTypes.SCYTHE_BOOMERANG.get(), ScytheBoomerangRenderer::new);
         register(MalumEntityTypes.SCYTHE_MAELSTROM.get(), NoopRenderer::new);
 
-        register(MalumEntityTypes.GLUTTONY_LOCUST.get(), GluttonyDamageActivatorRenderer::new);
+        register(MalumEntityTypes.GLUTTONY_LOCUST.get(), GluttonyLocustRenderer::new);
 
         register(MalumEntityTypes.ETHERIC_NITRATE.get(), EthericNitrateRenderer::new);
         register(MalumEntityTypes.VIVID_NITRATE.get(), VividNitrateRenderer::new);
@@ -56,6 +58,7 @@ public class EntityRenderers {
         register(MalumEntityTypes.ENTROPIC_FLAME_BOLT.get(), EntropicFlameBoltRenderer::new);
 
         register(MalumEntityTypes.SUNDERING_ANCHOR.get(), SunderingAnchorRenderer::new);
+        register(MalumEntityTypes.RESENTMENT_RITUAL.get(), ResentmentRitualActivatorRenderer::new);
 
     }
 }

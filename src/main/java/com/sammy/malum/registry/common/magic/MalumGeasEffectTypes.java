@@ -1,7 +1,6 @@
 package com.sammy.malum.registry.common.magic;
 
 import com.sammy.malum.*;
-import com.sammy.malum.common.geas.*;
 import com.sammy.malum.common.geas.authority.*;
 import com.sammy.malum.common.geas.oath.deliverance.*;
 import com.sammy.malum.common.geas.oath.staff.*;
@@ -45,7 +44,6 @@ public class MalumGeasEffectTypes {
 
     public static final GeasHolder<GeasEffectType> PACT_OF_SELF_CARE = GEAS_TYPES.register("pact_of_self_care", () -> new GeasEffectType(SelfCareGeas::new, AQUEOUS_SPIRIT, SACRED_SPIRIT));
     public static final GeasHolder<GeasEffectType> PACT_OF_THE_HIGH_PRIEST = GEAS_TYPES.register("pact_of_the_high_priest", () -> new GeasEffectType(HighPriestGeas::new, AQUEOUS_SPIRIT, AERIAL_SPIRIT));
-    public static final GeasHolder<GeasEffectType> PACT_OF_TIDAL_AFFINITY = GEAS_TYPES.register("pact_of_tidal_affinity", () -> new GeasEffectType(TidalAffinityGeas::new, AQUEOUS_SPIRIT, SACRED_SPIRIT));
     public static final GeasHolder<GeasEffectType> PACT_OF_PATIENCE_REPAID = GEAS_TYPES.register("pact_of_patience_repaid", () -> new GeasEffectType(PatienceRepaidGeas::new, AQUEOUS_SPIRIT, EARTHEN_SPIRIT));
 
     public static final GeasHolder<GeasEffectType> PACT_OF_THE_WINDSWEPT = GEAS_TYPES.register("pact_of_the_windswept", () -> new GeasEffectType(WindsweptGeas::new, AERIAL_SPIRIT, ARCANE_SPIRIT));
@@ -94,5 +92,4 @@ public class MalumGeasEffectTypes {
 //    public static final GeasHolder<GeasEffectType> AUTHORITY_OF_CRUSHING_MELANCHOLY = GEAS_TYPES.register("authority_of_crushing_melancholy", () -> new GeasEffectType(CrushingMelancholyAuthority::new, ARCANE_SPIRIT, AERIAL_SPIRIT, ELDRITCH_SPIRIT));
     public static final GeasHolder<GeasEffectType> AUTHORITY_OF_THE_GLEEFUL_TARGET = GEAS_TYPES.register("authority_of_the_gleeful_target", () -> new GeasEffectType(GleefulTargetAuthority::new, ARCANE_SPIRIT, AQUEOUS_SPIRIT, ELDRITCH_SPIRIT));
 
-    public static final GeasHolder<GeasEffectType> CREED_OF_THE_BLIGHT_EATER = GEAS_TYPES.register("creed_of_the_blight_eater", () -> new GeasEffectType(BlightEaterCreed::new, ELDRITCH_SPIRIT));
 }

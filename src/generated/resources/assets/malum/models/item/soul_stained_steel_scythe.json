@@ -1,21 +1,21 @@
 {
   "parent": "minecraft:item/handheld",
   "base": {
-    "parent": "malum:item/soul_stained_steel_scythe_huge"
+    "parent": "malum:item/soul_stained_steel_scythe_gui"
   },
   "loader": "neoforge:separate_transforms",
   "perspectives": {
-    "fixed": {
-      "parent": "malum:item/soul_stained_steel_scythe_gui"
+    "firstperson_lefthand": {
+      "parent": "malum:item/soul_stained_steel_scythe_huge"
     },
-    "ground": {
-      "parent": "malum:item/soul_stained_steel_scythe_gui"
+    "firstperson_righthand": {
+      "parent": "malum:item/soul_stained_steel_scythe_huge"
     },
-    "gui": {
-      "parent": "malum:item/soul_stained_steel_scythe_gui"
+    "thirdperson_lefthand": {
+      "parent": "malum:item/soul_stained_steel_scythe_huge"
+    },
+    "thirdperson_righthand": {
+      "parent": "malum:item/soul_stained_steel_scythe_huge"
     }
-  },
-  "textures": {
-    "layer0": "malum:item/soul_stained_steel_scythe"
   }
 }

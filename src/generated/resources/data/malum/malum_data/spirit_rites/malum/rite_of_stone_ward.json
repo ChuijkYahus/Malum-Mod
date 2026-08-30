@@ -1,0 +1,10 @@
+{
+  "effect": "malum:apply_stone_ward_effect",
+  "id": "malum:rite_of_stone_ward",
+  "is_soulwood": false,
+  "pattern": [
+    "malum:arcane",
+    "malum:earthen",
+    "malum:earthen"
+  ]
+}

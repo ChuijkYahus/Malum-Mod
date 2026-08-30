@@ -1,13 +1,13 @@
 package com.sammy.malum.client.screen.codex;
 
-import com.sammy.malum.client.screen.codex.objects.subspace.SubspaceBookObjectBuilder;
+import com.sammy.malum.client.screen.codex.objects.subspace.SubspaceBookObjectSupplier;
 
 import java.util.function.Consumer;
 
 public interface EntryAcceptor {
 
-    default SubspaceBookObjectBuilder addSubspaceEntry(String identifier, int x, int y, Consumer<PlacedBookEntryBuilder> config) {
-        var subspace = new SubspaceBookObjectBuilder(x, y);
+    default SubspaceBookObjectSupplier addSubspaceEntry(String identifier, int x, int y, Consumer<PlacedBookEntryBuilder> config) {
+        var subspace = new SubspaceBookObjectSupplier(x, y);
         var builder = addEntry(identifier, x, y);
         builder.setObjectBuilder(subspace);
         config.accept(builder);

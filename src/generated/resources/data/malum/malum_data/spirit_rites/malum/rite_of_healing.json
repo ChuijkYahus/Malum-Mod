@@ -1,0 +1,10 @@
+{
+  "effect": "malum:healing_effect",
+  "id": "malum:rite_of_healing",
+  "is_soulwood": false,
+  "pattern": [
+    "malum:arcane",
+    "malum:sacred",
+    "malum:sacred"
+  ]
+}

@@ -44,13 +44,12 @@ public record SoulwovenBannerPatternDataComponent(ResourceLocation type, Resourc
     public static final SoulwovenBannerPatternDataComponent HEFT = register("heft");
     public static final SoulwovenBannerPatternDataComponent HALLUCINATION = register("hallucination");
 
-
     public static final SoulwovenBannerPatternDataComponent COLORFUL_WORLD = register("colorful_world");
-
 
     public static SoulwovenBannerPatternDataComponent register(String type) {
         return register(MalumMod.malumPath(type));
     }
+
     public static SoulwovenBannerPatternDataComponent register(ResourceLocation type) {
         var pattern = new SoulwovenBannerPatternDataComponent(type, ResourceLocation.fromNamespaceAndPath(type.getNamespace(), "textures/block/banners/soulwoven_banner_" + type.getPath() + ".png"));
         REGISTERED_PATTERNS.add(pattern);
@@ -62,7 +61,7 @@ public record SoulwovenBannerPatternDataComponent(ResourceLocation type, Resourc
     }
 
     public ItemStack getDefaultStack() {
-        ItemStack stack = MalumContent.BlockSets.SOULWOVEN_BANNER.getItem().getDefaultInstance();
+        ItemStack stack = MalumContent.BuildingBlocks.SOULWOVEN_BANNER.getItem().getDefaultInstance();
         stack.set(MalumDataComponents.SOULWOVEN_BANNER_PATTERN, this);
         return stack;
     }

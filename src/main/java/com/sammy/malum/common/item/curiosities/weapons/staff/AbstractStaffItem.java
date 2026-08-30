@@ -62,7 +62,7 @@ public abstract class AbstractStaffItem extends LodestoneCombatItem implements I
             MalumParticleEffectTypes.STAFF_SLAM.createEffect()
                     .originatesFrom(attacker)
                     .targets(target)
-                    .color(stack.getItem())
+                    .color(stack)
                     .forwardOffset(1.4f).upwardOffset(0.3f)
                     .spawn(level);
             if (EnchantmentKeys.getEnchantmentLevel(level, EnchantmentKeys.REPLENISHING, stack) > 0) {

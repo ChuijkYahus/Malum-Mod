@@ -11,7 +11,6 @@ import org.joml.*;
 import org.lwjgl.opengl.*;
 import team.lodestar.lodestone.helpers.*;
 import team.lodestar.lodestone.registry.client.*;
-import team.lodestar.lodestone.systems.rendering.*;
 import team.lodestar.lodestone.systems.rendering.builder.ScreenVFXBuilder;
 import team.lodestar.lodestone.systems.rendering.builder.VFXBuilders;
 import team.lodestar.lodestone.systems.rendering.shader.*;
@@ -155,7 +154,7 @@ public class CodexRenderHelper {
     }
 
     public static void renderRiteIcon(SpiritRiteType rite, PoseStack stack, float x, float y) {
-        renderSpiritIcon(rite.getIcon(), stack, rite.getIdentifyingSpirit(), rite.isCorrupted(), x, y, 0);
+        renderSpiritIcon(rite.getIcon(), stack, rite.getIdentifyingSpirit(), rite.isSoulwood(), x, y, 0);
     }
 
 

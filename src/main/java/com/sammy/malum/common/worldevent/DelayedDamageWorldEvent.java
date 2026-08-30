@@ -140,9 +140,7 @@ public class DelayedDamageWorldEvent extends WorldEventInstance {
                     }
                     target.setDeltaMovement(deltaMovement);
                     if (soundEvent != null) {
-                        float pitch = Easing.SINE_IN_OUT.asWeighedRandom(serverLevel.getRandom(), minPitch, maxPitch);
-                        float volume = Easing.SINE_IN_OUT.asWeighedRandom(serverLevel.getRandom(), minVolume, maxVolume);
-                        SoundPlayer.create(soundEvent).pitch(minPitch, maxPitch).volume(minVolume, maxVolume).play(target);
+                        SoundPlayer.create(soundEvent).pitch(minPitch, maxPitch).volume(minVolume, maxVolume).play(target, SoundSource.PLAYERS);
                     }
                     if (particleEffect != null) {
                         if (particleEffect instanceof MalumNetworkedWeaponParticleEffectType weaponParticleEffect) {

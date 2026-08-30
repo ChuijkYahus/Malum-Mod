@@ -8,6 +8,8 @@ import com.sammy.malum.common.effect.rite.aura.soulwood.*;
 import com.sammy.malum.common.effect.geas.*;
 import com.sammy.malum.common.effect.gluttony.*;
 import com.sammy.malum.common.effect.rite.*;
+import com.sammy.malum.common.effect.weapon.*;
+import com.sammy.malum.common.effect.weapon.vindictive_brand.*;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.item.alchemy.PotionBrewing;
@@ -45,15 +47,6 @@ public class MalumMobEffects {
     public static final DeferredHolder<MobEffect, MobEffect> WYRD_EXHAUSTION = MOB_EFFECTS.register("wyrd_exhaustion", WyrdExhaustionEffect::new);
     public static final DeferredHolder<MobEffect, MobEffect> GLEEFUL_TARGET = MOB_EFFECTS.register("gleeful_target", GleefulTargetEffect::new);
 
-    //Trinket
-    public static final DeferredHolder<MobEffect, MobEffect> CANCEROUS_GROWTH = MOB_EFFECTS.register("cancerous_growth", GrowingFleshEffect::new);
-    public static final DeferredHolder<MobEffect, MobEffect> ECHOING_ARCANA = MOB_EFFECTS.register("echoing_arcana", EchoingArcanaEffect::new);
-    public static final DeferredHolder<MobEffect, MobEffect> WICKED_INTENT = MOB_EFFECTS.register("wicked_intent", WickedIntentEffect::new);
-
-    //Malignant
-    public static final DeferredHolder<MobEffect, MobEffect> GRIM_CERTAINTY = MOB_EFFECTS.register("grim_certainty", GrimCertaintyEffect::new);
-    public static final DeferredHolder<MobEffect, MobEffect> IMMINENT_DELIVERANCE = MOB_EFFECTS.register("imminent_deliverance", ImminentDeliveranceEffect::new);
-
     //Gluttony
     public static final DeferredHolder<MobEffect, MobEffect> GLUTTONY = MOB_EFFECTS.register("gluttony", GluttonyEffect::new);
     public static final DeferredHolder<MobEffect, MobEffect> TRIAL_OF_FAITH = MOB_EFFECTS.register("trial_of_faith", TrialOfFaithEffect::new);
@@ -61,6 +54,19 @@ public class MalumMobEffects {
 
     //Silence
     public static final DeferredHolder<MobEffect, MobEffect> SILENCED = MOB_EFFECTS.register("silenced", SilencedEffect::new);
+
+    //Trinket
+    public static final DeferredHolder<MobEffect, MobEffect> CANCEROUS_GROWTH = MOB_EFFECTS.register("cancerous_growth", GrowingFleshEffect::new);
+    public static final DeferredHolder<MobEffect, MobEffect> ECHOING_ARCANA = MOB_EFFECTS.register("echoing_arcana", EchoingArcanaEffect::new);
+    public static final DeferredHolder<MobEffect, MobEffect> WICKED_INTENT = MOB_EFFECTS.register("wicked_intent", WickedIntentEffect::new);
+
+    //Weapon
+    public static final DeferredHolder<MobEffect, MobEffect> GRIM_CERTAINTY = MOB_EFFECTS.register("grim_certainty", GrimCertaintyEffect::new);
+    public static final DeferredHolder<MobEffect, MobEffect> IMMINENT_DELIVERANCE = MOB_EFFECTS.register("imminent_deliverance", ImminentDeliveranceEffect::new);
+
+    public static final DeferredHolder<MobEffect, MobEffect> BURROWING_RESENTMENT = MOB_EFFECTS.register("burrowing_resentment", BurrowingResentmentEffect::new);
+    public static final DeferredHolder<MobEffect, MobEffect> UNSEALING_RITUAL = MOB_EFFECTS.register("unsealing_ritual", UnsealingRitualEffect::new);
+    public static final DeferredHolder<MobEffect, MobEffect> INSATIABLE_VINDICATION = MOB_EFFECTS.register("insatiable_vindication", InsatiableVindicationEffect::new);
 
     //Misc
     public static final DeferredHolder<MobEffect, MobEffect> ASCENSION = MOB_EFFECTS.register("ascension", AscensionEffect::new);

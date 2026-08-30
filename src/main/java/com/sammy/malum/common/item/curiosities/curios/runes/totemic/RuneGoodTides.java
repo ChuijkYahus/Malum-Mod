@@ -6,6 +6,6 @@ import com.sammy.malum.registry.common.magic.MalumSpiritTypes;
 
 public class RuneGoodTides extends TotemicRuneCurioItem {
     public RuneGoodTides(Properties builder) {
-        super(builder, MalumSpiritRiteEffectTypes.THE_GOOD_TIDES_EFFECT, MalumSpiritTypes.AQUEOUS_SPIRIT);
+        super(builder, MalumSpiritRiteEffectTypes.APPLY_GOOD_TIDES_EFFECT, MalumSpiritTypes.AQUEOUS_SPIRIT);
     }
 }

@@ -2,18 +2,11 @@ package com.sammy.malum.datagen.recipe;
 
 import com.sammy.malum.datagen.recipe.builder.*;
 import com.sammy.malum.registry.common.MalumContent;
-import com.sammy.malum.registry.common.MalumContent.BlockSets;
-import com.sammy.malum.registry.common.item.MalumItemProperties;
 import com.sammy.malum.registry.common.magic.MalumSpiritTypes;
 import net.minecraft.data.recipes.*;
-import net.minecraft.world.item.BlockItem;
-import net.minecraft.world.item.Item;
-import net.minecraft.world.level.block.Block;
 import net.neoforged.neoforge.common.conditions.IConditionBuilder;
-import net.neoforged.neoforge.registries.DeferredItem;
-import team.lodestar.lodestone.modules.toolkit.block.BlockBlockItemHolder;
 
-import static com.sammy.malum.registry.common.MalumContent.BlockSets.*;
+import static com.sammy.malum.registry.common.MalumContent.BuildingBlocks.*;
 
 public class MalumRuneworkingRecipes implements IConditionBuilder {
 

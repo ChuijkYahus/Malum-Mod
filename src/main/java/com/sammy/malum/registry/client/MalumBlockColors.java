@@ -19,6 +19,6 @@ public class MalumBlockColors {
                 }
             }
             return -1;
-        }, MalumContent.BlockSets.ETHER.get(), MalumContent.BlockSets.IRIDESCENT_ETHER.get());
+        }, MalumContent.BuildingBlocks.ETHER.get(), MalumContent.BuildingBlocks.IRIDESCENT_ETHER.get());
     }
 }

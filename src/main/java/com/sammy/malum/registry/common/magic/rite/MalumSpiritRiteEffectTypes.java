@@ -16,10 +16,8 @@ import net.minecraft.resources.*;
 public class MalumSpiritRiteEffectTypes {
 
     public static ResourceKey<Registry<SpiritRiteEffect>> EFFECT_KEY = ResourceKey.createRegistryKey(MalumMod.malumPath("rite_effect_types"));
-    public static final DeferredRiteEntityEffectTypes RITE_EFFECT_TYPES = DeferredRiteEntityEffectTypes.create(MalumMod.MALUM);
-    public static final Registry<SpiritRiteEffect> EFFECT_TYPE_REGISTRY = RITE_EFFECT_TYPES.makeRegistry(builder -> builder
-            .defaultKey(MalumMod.malumPath("heal"))
-            .sync(true));
+    public static final DeferredRiteEffectTypes RITE_EFFECT_TYPES = DeferredRiteEffectTypes.create(MalumMod.MALUM);
+    public static final Registry<SpiritRiteEffect> EFFECT_TYPE_REGISTRY = RITE_EFFECT_TYPES.makeRegistry(builder -> builder.defaultKey(MalumMod.malumPath("healing_effect")).sync(true));
 
     public static final RiteEffectHolder<UndirectedRiteEffect> UNDIRECTED_RITE_EFFECT = RITE_EFFECT_TYPES.register("undirected_rite_effect", UndirectedRiteEffect::new);
     public static final RiteEffectHolder<UnchainedRiteEffect> UNCHAINED_RITE_EFFECT = RITE_EFFECT_TYPES.register("unchained_rite_effect", UnchainedRiteEffect::new);
@@ -40,7 +38,7 @@ public class MalumSpiritRiteEffectTypes {
     public static final RiteEffectHolder<BlockAscensionRiteEffect> BLOCK_ASCENSION_EFFECT = RITE_EFFECT_TYPES.register("block_ascension_effect", BlockAscensionRiteEffect::new);
 
     public static final RiteEffectHolder<FlowingGraspRiteEffect> APPLY_FLOWING_GRASP_EFFECT = RITE_EFFECT_TYPES.register("apply_flowing_grasp_effect", FlowingGraspRiteEffect::new);
-    public static final RiteEffectHolder<GoodTidesRiteEffect> THE_GOOD_TIDES_EFFECT = RITE_EFFECT_TYPES.register("apply_good_tides_effect", GoodTidesRiteEffect::new);
+    public static final RiteEffectHolder<GoodTidesRiteEffect> APPLY_GOOD_TIDES_EFFECT = RITE_EFFECT_TYPES.register("apply_good_tides_effect", GoodTidesRiteEffect::new);
     public static final RiteEffectHolder<BlockGrowingRiteEffect> SOAKING_EFFECT = RITE_EFFECT_TYPES.register("soaking_effect", BlockGrowingRiteEffect::new);
     public static final RiteEffectHolder<DripstoneFluidExtractionRiteEffect> SAPPING_EFFECT = RITE_EFFECT_TYPES.register("sapping_effect", DripstoneFluidExtractionRiteEffect::new);
 

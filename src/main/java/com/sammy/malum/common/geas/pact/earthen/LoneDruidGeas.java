@@ -16,6 +16,7 @@ import net.minecraft.world.item.*;
 import net.neoforged.neoforge.event.tick.*;
 import team.lodestar.lodestone.handlers.*;
 import team.lodestar.lodestone.modules.toolkit.worldevent.WorldEventHandler;
+import team.lodestar.wayward_attributes.core.registry.WaywardAttributeTypes;
 
 import java.util.function.*;
 
@@ -32,7 +33,7 @@ public class LoneDruidGeas extends GeasEffect {
         if (bonus > 0) {
             addAttributeModifier(modifiers, Attributes.ARMOR, 5*bonus, AttributeModifier.Operation.ADD_VALUE);
             addAttributeModifier(modifiers, Attributes.ARMOR_TOUGHNESS, 2*bonus, AttributeModifier.Operation.ADD_VALUE);
-            addAttributeModifier(modifiers, MalumAttributes.HEALING_MULTIPLIER, 0.25f*bonus, AttributeModifier.Operation.ADD_VALUE);
+            addAttributeModifier(modifiers, WaywardAttributeTypes.HEALING_MULTIPLIER, 0.25f*bonus, AttributeModifier.Operation.ADD_VALUE);
         }
         return modifiers;
     }

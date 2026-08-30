@@ -8,7 +8,7 @@ public class PlacedBookEntryBuilder extends BookEntryBuilder {
     protected final int x, y;
     protected DisplayedGizmo icon;
 
-    protected PlacedBookEntry.BookObjectBuilder objectBuilder = ProgressionEntryObject::new;
+    protected PlacedBookEntry.BookObjectSupplier objectBuilder = ProgressionEntryObject::new;
 
     protected PlacedBookEntryBuilder(String identifier, int x, int y) {
         super(identifier);
@@ -21,7 +21,7 @@ public class PlacedBookEntryBuilder extends BookEntryBuilder {
         return this;
     }
 
-    public PlacedBookEntryBuilder setObjectBuilder(PlacedBookEntry.BookObjectBuilder objectBuilder) {
+    public PlacedBookEntryBuilder setObjectBuilder(PlacedBookEntry.BookObjectSupplier objectBuilder) {
         this.objectBuilder = objectBuilder;
         return this;
     }

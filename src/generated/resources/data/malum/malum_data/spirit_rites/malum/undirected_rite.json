@@ -1,0 +1,12 @@
+{
+  "effect": "malum:undirected_rite_effect",
+  "id": "malum:undirected_rite",
+  "is_soulwood": false,
+  "pattern": [
+    "malum:arcane",
+    "malum:arcane",
+    "malum:arcane",
+    "malum:arcane",
+    "malum:arcane"
+  ]
+}

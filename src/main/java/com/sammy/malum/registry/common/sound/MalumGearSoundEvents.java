@@ -1,6 +1,5 @@
 package com.sammy.malum.registry.common.sound;
 
-import com.sammy.malum.*;
 import net.minecraft.sounds.*;
 import net.neoforged.neoforge.registries.*;
 
@@ -64,18 +63,31 @@ public class MalumGearSoundEvents {
     public static final DeferredHolder<SoundEvent, SoundEvent> MALIGNANT_METAL_CRIT = MalumSoundEvents.registerVariable("malignant_deliverance_triggers");
     public static final DeferredHolder<SoundEvent, SoundEvent> MALIGNANT_METAL_COMBO = MalumSoundEvents.registerVariable("malignant_deliverance_strikes_again");
 
-    //Catalyst Lobber
-    public static final DeferredHolder<SoundEvent, SoundEvent> CATALYST_LOBBER_UNLOCKED = MalumSoundEvents.registerVariable("catalyst_lobber_unlocked");
-    public static final DeferredHolder<SoundEvent, SoundEvent> CATALYST_LOBBER_LOCKED = MalumSoundEvents.registerVariable("catalyst_lobber_locked");
-    public static final DeferredHolder<SoundEvent, SoundEvent> CATALYST_LOBBER_PRIMED = MalumSoundEvents.registerVariable("catalyst_lobber_primed");
-    public static final DeferredHolder<SoundEvent, SoundEvent> CATALYST_LOBBER_FIRED = MalumSoundEvents.registerVariable("catalyst_lobber_fired");
-
     //Sundering Anchor
     public static final DeferredHolder<SoundEvent, SoundEvent> SUNDERING_ANCHOR_SWING = MalumSoundEvents.registerVariable("sundering_anchor_cuts");
     public static final DeferredHolder<SoundEvent, SoundEvent> SUNDERING_ANCHOR_EXTRA_SWING = MalumSoundEvents.registerVariable("sundering_anchor_twists_gracefully");
     public static final DeferredHolder<SoundEvent, SoundEvent> SUNDERING_ANCHOR_PROJECTILE_SWING = MalumSoundEvents.registerVariable("sundering_anchor_lashes_out_ecstatically");
     public static final DeferredHolder<SoundEvent, SoundEvent> SUNDERING_ANCHOR_THROW = MalumSoundEvents.registerVariable("sundering_anchor_leaps_out_eagerly");
     public static final DeferredHolder<SoundEvent, SoundEvent> SUNDERING_ANCHOR_CATCH = MalumSoundEvents.registerVariable("sundering_anchor_returns_with_euphoria");
+
+
+    //Vindictive Brand
+    public static final DeferredHolder<SoundEvent, SoundEvent> VINDICTIVE_BRAND_SWING = MalumSoundEvents.registerVariable("vindictive_brand_swings");
+    public static final DeferredHolder<SoundEvent, SoundEvent> VINDICTIVE_BRAND_UNLEASHED_SWING = MalumSoundEvents.registerVariable("vindictive_brand_outright_devastates");
+    public static final DeferredHolder<SoundEvent, SoundEvent> VINDICTIVE_BRAND_EXTRA_SWING = MalumSoundEvents.registerVariable("vindictive_brand_reverberates");
+    public static final DeferredHolder<SoundEvent, SoundEvent> VINDICTIVE_BRAND_SPROUT_RESENTMENT = MalumSoundEvents.registerVariable("vindictive_brand_sprouts_resentment");
+    public static final DeferredHolder<SoundEvent, SoundEvent> VINDICTIVE_BRAND_PROGRESS_RITUAL = MalumSoundEvents.registerVariable("vindictive_brand_progresses_the_ritual");
+
+    public static final DeferredHolder<SoundEvent, SoundEvent> VINDICTIVE_BRAND_DASH = MalumSoundEvents.registerVariable("vindictive_brand_user_lunges_forward");
+    public static final DeferredHolder<SoundEvent, SoundEvent> VINDICTIVE_BRAND_DASH_CLEAVE = MalumSoundEvents.registerVariable("vindictive_brand_cleaves_the_world");
+    public static final DeferredHolder<SoundEvent, SoundEvent> VINDICTIVE_BRAND_UNLEASHED_DASH_CLEAVE = MalumSoundEvents.registerVariable("vindictive_brand_erases_the_world");
+
+
+    //Catalyst Lobber
+    public static final DeferredHolder<SoundEvent, SoundEvent> CATALYST_LOBBER_UNLOCKED = MalumSoundEvents.registerVariable("catalyst_lobber_unlocked");
+    public static final DeferredHolder<SoundEvent, SoundEvent> CATALYST_LOBBER_LOCKED = MalumSoundEvents.registerVariable("catalyst_lobber_locked");
+    public static final DeferredHolder<SoundEvent, SoundEvent> CATALYST_LOBBER_PRIMED = MalumSoundEvents.registerVariable("catalyst_lobber_primed");
+    public static final DeferredHolder<SoundEvent, SoundEvent> CATALYST_LOBBER_FIRED = MalumSoundEvents.registerVariable("catalyst_lobber_fired");
 
     //Misc Motifs
     public static final DeferredHolder<SoundEvent, SoundEvent> DRAINING_MOTIF = MalumSoundEvents.registerVariable("the_sound_of_silence");

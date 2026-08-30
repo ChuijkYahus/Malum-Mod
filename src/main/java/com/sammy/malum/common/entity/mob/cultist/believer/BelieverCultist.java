@@ -18,6 +18,7 @@ import net.minecraft.world.entity.ai.goal.RandomLookAroundGoal;
 import net.minecraft.world.entity.ai.goal.WaterAvoidingRandomStrollGoal;
 import net.minecraft.world.entity.ai.goal.target.NearestAttackableTargetGoal;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.*;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.ServerLevelAccessor;
 import net.minecraft.world.phys.Vec3;
@@ -74,7 +75,7 @@ public class BelieverCultist extends CultistMonster implements IAltarBlessingRec
     @Nullable
     @Override
     public SpawnGroupData finalizeSpawn(ServerLevelAccessor level, DifficultyInstance difficulty, MobSpawnType spawnType, @Nullable SpawnGroupData spawnGroupData) {
-        setItemSlot(EquipmentSlot.MAINHAND, MalumContent.DungeonGear.BROKEN_BLADE.get().getDefaultInstance());
+        setItemSlot(EquipmentSlot.MAINHAND, Items.STONE_SWORD.getDefaultInstance());
         enchantSpawnedWeapon(level, random, difficulty);
         return super.finalizeSpawn(level, difficulty, spawnType, spawnGroupData);
     }

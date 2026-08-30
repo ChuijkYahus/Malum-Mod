@@ -7,25 +7,19 @@ import com.sammy.malum.registry.common.MalumContent;
 import net.minecraft.advancements.*;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.data.recipes.*;
-import net.minecraft.resources.ResourceLocation;
-import net.minecraft.tags.ItemTags;
-import net.minecraft.tags.TagKey;
-import net.minecraft.world.item.*;
 import net.minecraft.world.item.crafting.*;
 import net.minecraft.world.level.*;
-import net.minecraft.world.level.block.Blocks;
 import net.neoforged.neoforge.common.Tags;
 import net.neoforged.neoforge.common.conditions.IConditionBuilder;
-import team.lodestar.lodestone.modules.toolkit.recipe.*;
 
 import static com.sammy.malum.MalumMod.*;
 import static com.sammy.malum.datagen.recipe.RecipeDatagenCommons.has;
 import static com.sammy.malum.datagen.recipe.RecipeDatagenCommons.smeltAndBlast;
 import static com.sammy.malum.registry.common.MalumContent.Blight.*;
-import static com.sammy.malum.registry.common.MalumContent.BlockSets.*;
+import static com.sammy.malum.registry.common.MalumContent.BuildingBlocks.*;
 import static com.sammy.malum.registry.common.MalumContent.CompactBlocks.*;
 import static com.sammy.malum.registry.common.MalumContent.Materials.*;
-import static com.sammy.malum.registry.common.MalumContent.BlockSets.THE_DEVICE;
+import static com.sammy.malum.registry.common.MalumContent.BuildingBlocks.THE_DEVICE;
 import static com.sammy.malum.registry.common.MalumContent.Vanity.*;
 import static net.minecraft.data.recipes.ShapedRecipeBuilder.*;
 import static net.minecraft.data.recipes.ShapelessRecipeBuilder.*;
@@ -43,6 +37,15 @@ public class MalumVanillaRecipes implements IConditionBuilder {
         Pair<String, Criterion<?>> hasSoulstone = Pair.of("has_soulstone", has(RAW_SOULSTONE));
 
         Pair<String, Criterion<?>> hasBlazingQuartz = Pair.of("has_blazing_quartz", has(BLAZING_QUARTZ));
+
+
+        shaped(RecipeCategory.MISC, STONE_BOOKSHELF)
+                .define('#', STONE_BRICKS)
+                .define('X', BOOK)
+                .pattern("###")
+                .pattern("XXX")
+                .pattern("###")
+                .unlockedBy("has_book", has(BOOK)).save(output);
 
 
         //KEY ITEMS

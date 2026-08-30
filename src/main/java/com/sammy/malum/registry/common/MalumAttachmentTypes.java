@@ -2,6 +2,7 @@ package com.sammy.malum.registry.common;
 
 import com.sammy.malum.*;
 import com.sammy.malum.common.data.attachment.*;
+import com.sammy.malum.common.data.attachment.gear.*;
 import com.sammy.malum.common.data.attachment.soul_data.*;
 import net.neoforged.neoforge.attachment.*;
 import net.neoforged.neoforge.registries.*;
@@ -23,6 +24,10 @@ public class MalumAttachmentTypes {
     public static final Supplier<AttachmentType<GeasSoulData>> GEAS_SOUL_INFO = ATTACHMENT_TYPES.register(
             "geas_soul_info", () -> AttachmentType.builder(GeasSoulData::new)
                     .serialize(GeasSoulData.CODEC).sync(GeasSoulData.STREAM_CODEC).copyOnDeath().build());
+
+    public static final Supplier<AttachmentType<WindTunnelData>> WIND_TUNNEL_INFO = ATTACHMENT_TYPES.register(
+            "wind_tunnel_info", () -> AttachmentType.builder(WindTunnelData::new)
+                    .serialize(WindTunnelData.CODEC).sync(WindTunnelData.STREAM_CODEC).build());
 
     public static final Supplier<AttachmentType<AvariceMarkData>> AVARICE_MARK = ATTACHMENT_TYPES.register(
             "avarice_mark", () -> AttachmentType.builder(AvariceMarkData::new)
@@ -48,9 +53,9 @@ public class MalumAttachmentTypes {
             "staff_abilities", () -> AttachmentType.builder(StaffAbilityData::new)
                     .serialize(StaffAbilityData.CODEC).sync(StaffAbilityData.STREAM_CODEC).build());
 
-    public static final Supplier<AttachmentType<WindTunnelData>> WIND_TUNNEL_INFO = ATTACHMENT_TYPES.register(
-            "wind_tunnel_info", () -> AttachmentType.builder(WindTunnelData::new)
-                    .serialize(WindTunnelData.CODEC).sync(WindTunnelData.STREAM_CODEC).build());
+    public static final Supplier<AttachmentType<VindictiveBrandDashData>> VINDICTIVE_BRAND_DASH_DATA = ATTACHMENT_TYPES.register(
+            "vindictive_brand_dash", () -> AttachmentType.builder(VindictiveBrandDashData::new)
+                    .serialize(VindictiveBrandDashData.CODEC).build());
 
     public static final Supplier<AttachmentType<WeepingWellData>> WEEPING_WELL_INFO = ATTACHMENT_TYPES.register(
             "weeping_well_info", () -> AttachmentType.builder(WeepingWellData::new)

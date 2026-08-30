@@ -2,6 +2,7 @@ package com.sammy.malum.mixin;
 
 import com.llamalad7.mixinextras.injector.wrapoperation.*;
 import com.sammy.malum.common.item.curiosities.tools.spellweaver.*;
+import com.sammy.malum.common.item.curiosities.weapons.greatsword.*;
 import net.minecraft.resources.*;
 import net.minecraft.world.entity.ai.attributes.*;
 import net.neoforged.neoforge.common.util.*;
@@ -15,6 +16,10 @@ public class AttributeUtilMixin {
             at = @At(value = "INVOKE", target = "Lnet/minecraft/world/entity/ai/attributes/Attribute;getBaseId()Lnet/minecraft/resources/ResourceLocation;"))
     private static ResourceLocation waywardAttributes$markAttributeAsBase(Attribute instance, Operation<ResourceLocation> original) {
         var id = SpellweavingPickaxeItem.getBaseId(instance);
+        if (id != null) {
+            return id;
+        }
+        id = VindictiveBrandSwordItem.getBaseId(instance);
         if (id != null) {
             return id;
         }

@@ -1,0 +1,11 @@
+{
+  "effect": "malum:monster_raising_effect",
+  "id": "malum:rite_of_raising",
+  "is_soulwood": true,
+  "pattern": [
+    "malum:eldritch",
+    "malum:arcane",
+    "malum:wicked",
+    "malum:wicked"
+  ]
+}

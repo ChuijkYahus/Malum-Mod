@@ -1,0 +1,11 @@
+{
+  "effect": "malum:quickening_effect",
+  "id": "malum:rite_of_quickening",
+  "is_soulwood": true,
+  "pattern": [
+    "malum:eldritch",
+    "malum:arcane",
+    "malum:infernal",
+    "malum:infernal"
+  ]
+}

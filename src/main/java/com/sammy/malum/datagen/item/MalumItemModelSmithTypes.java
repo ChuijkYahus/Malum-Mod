@@ -6,51 +6,13 @@ import com.sammy.malum.common.item.ether.EtherItem;
 import net.minecraft.Util;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.world.item.ItemDisplayContext;
-import net.neoforged.neoforge.client.model.generators.*;
 import team.lodestar.lodestone.modules.datagen.ItemModelSmithTypes;
 import team.lodestar.lodestone.modules.datagen.smith.itemmodel.ItemModelSmith;
-import team.lodestar.lodestone.modules.datagen.smith.itemmodel.ItemModelSmithResult;
 import team.lodestar.lodestone.modules.toolkit.item.LodestoneArmorItem;
 
-import java.util.function.Consumer;
 import java.util.function.Function;
 
 public class MalumItemModelSmithTypes extends ItemModelSmithTypes {
-
-    protected static final ResourceLocation LARGE_HANDHELD = MalumMod.malumPath("item/handheld_large");
-    protected static final ResourceLocation LARGE_GENERATED = MalumMod.malumPath("item/generated_large");
-    protected static final Function<ResourceLocation, Consumer<ItemModelSmithResult>> LARGE_ITEM = modelType -> result -> {
-        var provider = result.provider();
-        var existingFileHelper = provider.existingFileHelper;
-        var separateTransforms = result.addSeparateTransformData();
-        var firstPersonModel = ItemModelSmith.parentedItem(modelType, true)
-                .addModelPathAffix("_huge").addTextureNameAffix("_huge")
-                .act(provider, result.item());
-        var guiModel = ItemModelSmithTypes.GENERATED_ITEM
-                .addModelPathAffix("_gui")
-                .act(provider, result.item());
-        var reparent = guiModel.parentedToThis(existingFileHelper);
-        separateTransforms.perspective(ItemDisplayContext.GROUND, reparent);
-        separateTransforms.perspective(ItemDisplayContext.GUI, reparent);
-        separateTransforms.perspective(ItemDisplayContext.FIXED, reparent);
-        separateTransforms.base(firstPersonModel.parentedToThis(existingFileHelper));
-    };
-
-    public static ItemModelSmith LARGE_HANDHELD_ITEM = HANDHELD_ITEM.modifyResult(LARGE_ITEM.apply(LARGE_HANDHELD));
-    public static ItemModelSmith LARGE_GENERATED_ITEM = GENERATED_ITEM.modifyResult(LARGE_ITEM.apply(LARGE_GENERATED));
-
-    public static ItemModelSmith SOUL_OF_AN_ITEM = new ItemModelSmith((item, provider) -> provider.getBuilder(provider.getItemName(item)))
-                    .modifyResult(result -> {
-                        var provider = result.provider();
-                        var existingFileHelper = provider.existingFileHelper;
-                        var separateTransforms = result.addSeparateTransformData();
-                        var guiModel = ItemModelSmithTypes.GENERATED_ITEM.addModelPathAffix("_gui").act(provider, result.item());
-                        var reparent = guiModel.parentedToThis(existingFileHelper);
-                        separateTransforms.perspective(ItemDisplayContext.GUI, reparent);
-                        separateTransforms.perspective(ItemDisplayContext.FIXED, reparent);
-                        separateTransforms.base(provider.getBuilder("item/air"));
-                    });
 
 
     public static ItemModelSmith IMPETUS_ITEM = new ItemModelSmith((item, provider) -> {
@@ -165,17 +127,6 @@ public class MalumItemModelSmithTypes extends ItemModelSmithTypes {
         }
         return model;
     });
-
-
-    public static ItemModelSmith WEEPING_WELL_BLOCK_ITEM = new ItemModelSmith(((item, provider) -> {
-        String name = provider.getItemName(item);
-        return provider.getBuilder(name).parent(new ModelFile.UncheckedModelFile(provider.modLoc("block/weeping_well/" + name)));
-    }));
-    public static ItemModelSmith LAYERED_WEEPING_WELL_BLOCK_ITEM = new ItemModelSmith(((item, provider) -> {
-        String name = provider.getItemName(item);
-        return provider.getBuilder(name).parent(new ModelFile.UncheckedModelFile(provider.modLoc("block/weeping_well/" + name + "_0")));
-    }));
-
 
     public static ResourceLocation getDefaultPrideTexturePath(ItemSkinComponent skin, LodestoneArmorItem item) {
         ResourceLocation path = MalumMod.malumPath("item/cosmetic/armor_icons/pride/" + skin.name().getPath());

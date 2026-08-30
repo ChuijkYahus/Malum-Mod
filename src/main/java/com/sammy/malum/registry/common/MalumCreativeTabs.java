@@ -28,7 +28,7 @@ public class MalumCreativeTabs {
                     .withVisualInfo(MalumVisualInfo.VISUAL_INFO)
                     .title(Component.translatable(MalumMod.MALUM + ".itemGroup.malum_lesser_soulstuff"))
                     .withTabsBefore(ANCIENT_SORCERY)
-                    .icon(MalumContent.BlockSets.ETHER::getDefaultInstance).build()
+                    .icon(MalumContent.BuildingBlocks.ETHER::getDefaultInstance).build()
     );
 
     public static final DeferredHolder<CreativeModeTab, CreativeModeTab> ALCHEMY_AND_METALLICS = CREATIVE_MODE_TABS.register("malum_alchemy_and_metallics",
@@ -45,12 +45,7 @@ public class MalumCreativeTabs {
                     .withTabsBefore(ALCHEMY_AND_METALLICS.getId())
                     .displayItems((p, o) -> {
                         for (DeferredHolder<GeasEffectType, ? extends GeasEffectType> geasType : MalumGeasEffectTypes.GEAS_TYPES.getEntries()) {
-                            var geasEffectType = geasType.get();
-                            if (geasEffectType.equals(MalumGeasEffectTypes.CREED_OF_THE_BLIGHT_EATER.get())) {
-                                continue;
-                            }
-
-                            o.accept(geasEffectType.getDummyCreativeStack());
+                            o.accept(geasType.get().getDummyCreativeStack());
                         }
                     })
                     .icon(() -> MalumGeasEffectTypes.PACT_OF_THE_ARCANAPHAGE.get().createDefaultStack()).build()

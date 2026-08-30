@@ -68,9 +68,13 @@ public abstract class MalumNetworkedWeaponParticleEffectType<T extends WeaponPar
             super(type);
         }
 
-        public MalumWeaponParticleEffectBuilder<T> color(Item item) {
-            if (item instanceof ISpiritAffiliatedItem spiritAffiliatedItem) {
-                return color(new MalumNetworkedParticleEffectColorData(spiritAffiliatedItem.getDefiningSpiritType()));
+        public MalumWeaponParticleEffectBuilder<T> color(ItemStack stack) {
+            if (stack.getItem() instanceof ISpiritAffiliatedItem spiritAffiliatedItem) {
+                var definingSpiritType = spiritAffiliatedItem.getDefiningSpiritType(stack);
+                if (definingSpiritType == null) {
+                    return this;
+                }
+                return color(new MalumNetworkedParticleEffectColorData(definingSpiritType));
             }
             return this;
         }

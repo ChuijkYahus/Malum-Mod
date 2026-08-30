@@ -1,0 +1,10 @@
+{
+  "effect": "malum:empowerment_effect",
+  "id": "malum:rite_of_empowerment",
+  "is_soulwood": true,
+  "pattern": [
+    "malum:arcane",
+    "malum:wicked",
+    "malum:wicked"
+  ]
+}

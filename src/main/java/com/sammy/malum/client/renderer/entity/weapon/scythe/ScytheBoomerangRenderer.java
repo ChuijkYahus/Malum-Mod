@@ -15,7 +15,7 @@ import net.minecraft.client.renderer.texture.OverlayTexture;
 import net.minecraft.client.renderer.texture.TextureAtlas;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.*;
-import net.minecraft.world.item.ItemDisplayContext;
+import net.minecraft.world.item.*;
 import net.minecraft.world.phys.*;
 import team.lodestar.lodestone.registry.client.*;
 import team.lodestar.lodestone.systems.rendering.builder.VFXBuilders;
@@ -35,8 +35,8 @@ public class ScytheBoomerangRenderer extends EntityRenderer<ScytheBoomerang> {
     @Override
     public void render(ScytheBoomerang entityIn, float entityYaw, float partialTicks, PoseStack poseStack, MultiBufferSource bufferIn, int packedLightIn) {
         poseStack.pushPose();
-        var itemstack = entityIn.getItem();
-        var model = this.itemRenderer.getModel(itemstack, entityIn.level(), null, 1);
+        var stack = entityIn.getItem();
+        var model = this.itemRenderer.getModel(stack, entityIn.level(), null, 1);
         if (entityIn.isNarrow()) {
             Vec3 direction = entityIn.getDeltaMovement().normalize();
             float yRot = ((float) (Mth.atan2(direction.x, direction.z)));
@@ -47,10 +47,10 @@ public class ScytheBoomerangRenderer extends EntityRenderer<ScytheBoomerang> {
         }
         poseStack.mulPose(Axis.ZP.rotation((entityIn.age + partialTicks) * 0.9f));
         poseStack.scale(2f, 2, 1.5f);
-        itemRenderer.render(itemstack, itemstack.getItem() instanceof MalumScytheItem ? ItemDisplayContext.NONE : ItemDisplayContext.FIXED, false, poseStack, bufferIn, packedLightIn, OverlayTexture.NO_OVERLAY, model);
+        itemRenderer.render(stack, stack.getItem() instanceof MalumScytheItem ? ItemDisplayContext.NONE : ItemDisplayContext.FIXED, false, poseStack, bufferIn, packedLightIn, OverlayTexture.NO_OVERLAY, model);
         poseStack.popPose();
 
-        var spirit = entityIn.getItem().getItem() instanceof ISpiritAffiliatedItem affiliatedItem ? affiliatedItem.getDefiningSpiritType() : null;
+        var spirit = stack.getItem() instanceof ISpiritAffiliatedItem affiliatedItem ? affiliatedItem.getDefiningSpiritType(stack) : null;
         boolean isMagical = spirit != null;
         var renderType = isMagical ?
                 LodestoneRenderTypes.ADDITIVE_TWO_SIDED_TEXTURE_TRIANGLE.apply(MalumRenderTypeTokens.CONCENTRATED_TRAIL) :

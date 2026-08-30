@@ -21,8 +21,8 @@ import static net.minecraft.data.recipes.ShapelessRecipeBuilder.*;
 public class MalumWoodSetDatagen implements IConditionBuilder {
 
     public static void buildRecipes(RecipeOutput recipeOutput) {
-        buildRecipes(recipeOutput, MalumContent.BlockSets.RUNEWOOD_SET, MalumContent.BlockSets.RUNEWOOD_BOAT, MalumContent.Materials.HALLOWED_GOLD_NUGGET);
-        buildRecipes(recipeOutput, MalumContent.BlockSets.SOULWOOD_SET, MalumContent.BlockSets.SOULWOOD_BOAT, MalumContent.Materials.HALLOWED_GOLD_NUGGET);
+        buildRecipes(recipeOutput, MalumContent.BuildingBlocks.RUNEWOOD_SET, MalumContent.BuildingBlocks.RUNEWOOD_BOAT, MalumContent.Materials.HALLOWED_GOLD_NUGGET);
+        buildRecipes(recipeOutput, MalumContent.BuildingBlocks.SOULWOOD_SET, MalumContent.BuildingBlocks.SOULWOOD_BOAT, MalumContent.Materials.HALLOWED_GOLD_NUGGET);
     }
 
     protected static void buildRecipes(

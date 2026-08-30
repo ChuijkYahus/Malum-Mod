@@ -12,7 +12,7 @@ import com.sammy.malum.registry.common.*;
 import com.sammy.malum.registry.common.magic.*;
 import com.sammy.malum.registry.common.sound.*;
 import com.sammy.malum.visual_effects.networked.*;
-import com.sammy.malum.visual_effects.networked.attack.SunderingAnchorSlashParticleEffect;
+import com.sammy.malum.visual_effects.networked.attack.sundering_anchor.SunderingAnchorSlashParticleEffect;
 import net.minecraft.core.*;
 import net.minecraft.core.component.*;
 import net.minecraft.server.level.*;
@@ -31,13 +31,9 @@ import net.minecraft.world.level.block.*;
 import net.minecraft.world.phys.*;
 import net.neoforged.neoforge.client.event.*;
 import net.neoforged.neoforge.event.entity.living.*;
-import team.lodestar.lodestone.handlers.*;
 import team.lodestar.lodestone.helpers.*;
-import team.lodestar.lodestone.modules.core.easing.Easing;
 import team.lodestar.lodestone.modules.toolkit.sound.SoundPlayer;
 import team.lodestar.lodestone.modules.toolkit.worldevent.WorldEventHandler;
-import team.lodestar.lodestone.registry.common.*;
-import team.lodestar.lodestone.registry.common.tag.*;
 import team.lodestar.lodestone.modules.toolkit.item.*;
 import team.lodestar.wayward_attributes.WaywardTags;
 import team.lodestar.wayward_attributes.core.registry.WaywardAttributeTypes;
@@ -77,7 +73,7 @@ public class SunderingAnchorItem extends LodestoneCombatItem implements IMalumEv
     }
 
     @Override
-    public SpiritLike getDefiningSpiritType() {
+    public SpiritLike getDefiningSpiritType(ItemStack stack) {
         return getSunderingAnchorSpirit();
     }
 
@@ -119,7 +115,7 @@ public class SunderingAnchorItem extends LodestoneCombatItem implements IMalumEv
             if (source.is(WaywardTags.DamageTypeTags.IS_MAGIC)) {
                 applyHatred(target);
             }
-            if (source.is(WaywardTags.DamageTypeTags.CAN_TRIGGER_MAGIC_DAMAGE)) {
+            if (source.is(DamageTypeTags.IS_PLAYER_ATTACK)) {
                 int slashCount = 3 + Mth.floor(random.nextFloat() * 3);
                 float splitDamage = event.getNewDamage() / slashCount;
                 if (target.isAlive()) {

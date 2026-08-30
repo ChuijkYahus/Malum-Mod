@@ -3,19 +3,14 @@ package com.sammy.malum.datagen.recipe;
 import com.sammy.malum.*;
 import com.sammy.malum.datagen.recipe.builder.*;
 import com.sammy.malum.registry.common.*;
-import com.sammy.malum.registry.common.MalumContent;
-import com.sammy.malum.registry.common.MalumContent.Materials;
-import com.sammy.malum.registry.common.item.MalumItemProperties;
 
 import net.minecraft.data.recipes.*;
-import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.*;
 import net.neoforged.neoforge.common.Tags;
 
 import static com.sammy.malum.registry.common.MalumContent.*;
-import static com.sammy.malum.registry.common.MalumContent.BlockSets.*;
+import static com.sammy.malum.registry.common.MalumContent.BuildingBlocks.*;
 import static com.sammy.malum.registry.common.MalumContent.Materials.*;
-import static com.sammy.malum.registry.common.MalumContent.Vanity.*;
 import static net.minecraft.world.item.Items.*;
 
 

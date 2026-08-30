@@ -7,8 +7,8 @@ import net.minecraft.world.level.material.MapColor;
 import net.minecraft.world.level.material.PushReaction;
 import team.lodestar.lodestone.modules.toolkit.block.LodestoneBlockProperties;
 
-import static com.sammy.malum.registry.common.MalumContent.BlockSets.ETHER_TORCH;
-import static com.sammy.malum.registry.common.MalumContent.BlockSets.IRIDESCENT_ETHER_TORCH;
+import static com.sammy.malum.registry.common.MalumContent.BuildingBlocks.ETHER_TORCH;
+import static com.sammy.malum.registry.common.MalumContent.BuildingBlocks.IRIDESCENT_ETHER_TORCH;
 import static com.sammy.malum.registry.common.MalumTags.Blocks.FD_TRAY_HEAT_SOURCES;
 import static net.minecraft.tags.BlockTags.CANDLES;
 import static net.minecraft.tags.BlockTags.WALL_POST_OVERRIDE;

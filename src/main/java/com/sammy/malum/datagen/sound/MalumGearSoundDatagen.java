@@ -1,7 +1,5 @@
 package com.sammy.malum.datagen.sound;
 
-import com.sammy.malum.registry.common.sound.*;
-
 import static com.sammy.malum.registry.common.sound.MalumGearSoundEvents.*;
 import static team.lodestar.lodestone.modules.datagen.providers.sound.LodestoneSoundEventSystem.sound;
 
@@ -67,18 +65,31 @@ public class MalumGearSoundDatagen extends MalumSoundDatagenWrapper {
         add(MALIGNANT_METAL_CRIT, s -> s.with(allSounds("curiosities/motifs/malignant_crit")));
         add(MALIGNANT_METAL_COMBO, s -> s.with(allSounds("curiosities/motifs/malignant_crit")));
 
-        //Catalyst Lobber
-        add(CATALYST_LOBBER_UNLOCKED, s -> s.with(allSounds("curiosities/gear/catalyst_lobber/open")));
-        add(CATALYST_LOBBER_LOCKED, s -> s.with(allSounds("curiosities/gear/catalyst_lobber/open")));
-        add(CATALYST_LOBBER_PRIMED, s -> s.with(allSounds("curiosities/gear/catalyst_lobber/load")));
-        add(CATALYST_LOBBER_FIRED, s -> s.with(allSounds("curiosities/gear/catalyst_lobber/fire")));
-
         //Sundering Anchor
         add(SUNDERING_ANCHOR_SWING, s -> s.with(allSounds("curiosities/gear/weapons/sundering_anchor/swing")));
         add(SUNDERING_ANCHOR_EXTRA_SWING, s -> s.with(allSounds("curiosities/gear/weapons/sundering_anchor/extra_swing")));
         add(SUNDERING_ANCHOR_PROJECTILE_SWING, s -> s.with(allSounds("curiosities/gear/weapons/sundering_anchor/extra_swing")));
         add(SUNDERING_ANCHOR_THROW, s -> s.with(allSounds("curiosities/gear/weapons/scythe/throw")));
         add(SUNDERING_ANCHOR_CATCH, s -> s.with(allSounds("curiosities/gear/weapons/scythe/catch")));
+
+        //Vindictive Brand
+        add(VINDICTIVE_BRAND_SWING, s -> s.with(allSounds("curiosities/gear/weapons/vindictive_brand/swing")));
+        add(VINDICTIVE_BRAND_UNLEASHED_SWING, s -> s.with(allSounds("curiosities/gear/weapons/vindictive_brand/unleashed_swing")));
+        add(VINDICTIVE_BRAND_EXTRA_SWING, s -> s.with(allSounds("curiosities/gear/weapons/vindictive_brand/extra_swing")));
+        add(VINDICTIVE_BRAND_SPROUT_RESENTMENT, s -> s.with(allSounds("curiosities/gear/weapons/vindictive_brand/sprout")));
+        add(VINDICTIVE_BRAND_PROGRESS_RITUAL, s -> s.with(allSounds("curiosities/gear/weapons/vindictive_brand/ritual")));
+        add(VINDICTIVE_BRAND_DASH, s -> s.with(allSounds("curiosities/gear/weapons/vindictive_brand/dash")));
+        add(VINDICTIVE_BRAND_DASH_CLEAVE, s -> s.with(allSounds("curiosities/gear/weapons/vindictive_brand/dash_cleave")));
+        add(VINDICTIVE_BRAND_UNLEASHED_DASH_CLEAVE, s -> s.with(allSounds("curiosities/gear/weapons/vindictive_brand/unleashed_dash_cleave")));
+
+
+
+        //Catalyst Lobber
+        add(CATALYST_LOBBER_UNLOCKED, s -> s.with(allSounds("curiosities/gear/catalyst_lobber/open")));
+        add(CATALYST_LOBBER_LOCKED, s -> s.with(allSounds("curiosities/gear/catalyst_lobber/open")));
+        add(CATALYST_LOBBER_PRIMED, s -> s.with(allSounds("curiosities/gear/catalyst_lobber/load")));
+        add(CATALYST_LOBBER_FIRED, s -> s.with(allSounds("curiosities/gear/catalyst_lobber/fire")));
+
 
         //Misc Motifs
         add(DRAINING_MOTIF, s -> s.with(allSounds("curiosities/motifs/draining_bubbling")));

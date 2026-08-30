@@ -14,12 +14,8 @@ import net.minecraft.world.item.*;
 import net.minecraft.world.item.component.*;
 import net.neoforged.neoforge.client.event.*;
 import net.neoforged.neoforge.event.entity.living.*;
-import team.lodestar.lodestone.helpers.*;
-import team.lodestar.lodestone.modules.core.easing.Easing;
 import team.lodestar.lodestone.modules.toolkit.enchanting.LodestoneEnchantmentEffectCommonsHelper;
 import team.lodestar.lodestone.modules.toolkit.sound.SoundPlayer;
-import team.lodestar.lodestone.registry.common.*;
-import team.lodestar.lodestone.registry.common.tag.*;
 import team.lodestar.lodestone.modules.toolkit.item.*;
 import team.lodestar.wayward_attributes.WaywardTags;
 import team.lodestar.wayward_attributes.core.registry.WaywardAttributeTypes;
@@ -37,7 +33,7 @@ public class GluttonousBludgeonItem extends LodestoneCombatItem implements IMalu
     }
 
     @Override
-    public SpiritLike getDefiningSpiritType() {
+    public SpiritLike getDefiningSpiritType(ItemStack stack) {
         return MalumSpiritTypes.EARTHEN_SPIRIT;
     }
 
@@ -59,7 +55,7 @@ public class GluttonousBludgeonItem extends LodestoneCombatItem implements IMalu
                     MalumParticleEffectTypes.BLUDGEON_SLAM.createEffect()
                             .originatesFrom(attacker)
                             .targets(target)
-                            .color(stack.getItem())
+                            .color(stack)
                             .forwardOffset(1.1f).upwardOffset(0.7f)
                             .spawn(level);
                 }

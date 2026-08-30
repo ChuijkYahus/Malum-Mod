@@ -1,6 +1,5 @@
 package com.sammy.malum.common.worldgen.flora;
 
-import com.mojang.serialization.Codec;
 import com.sammy.malum.registry.common.MalumContent;
 import com.sammy.malum.registry.common.MalumTags;
 import net.minecraft.core.BlockPos;
@@ -57,7 +56,7 @@ public class EbonyFeature extends Feature<NoneFeatureConfiguration> {
     private void ebonifyArea(WorldGenLevel level, BlockPos centre, RandomSource random) {
         int radius = random.nextIntBetweenInclusive(4, 7);
 
-        BlockState ebonstone = MalumContent.BlockSets.EBONSTONE.getRaw().block.getDefaultState();
+        BlockState ebonstone = MalumContent.BuildingBlocks.EBONSTONE.getRaw().block.getDefaultState();
         BlockState stalk = MalumContent.Materials.EBONY_STALK.get().defaultBlockState();
 
         for (BlockPos pos : BlockPos.betweenClosed(

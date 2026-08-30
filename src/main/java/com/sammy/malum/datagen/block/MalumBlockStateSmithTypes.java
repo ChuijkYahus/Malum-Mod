@@ -3,18 +3,18 @@ package com.sammy.malum.datagen.block;
 import com.sammy.malum.*;
 import com.sammy.malum.common.block.blight.*;
 import com.sammy.malum.common.block.blight.scarstone.*;
+import com.sammy.malum.common.block.building.banner.MalumBannerBlock;
 import com.sammy.malum.common.block.curiosities.artifice.elemental_artifice.aerial.GustIgniterBlock;
 import com.sammy.malum.common.block.curiosities.artifice.elemental_artifice.base.ElementalArtificeBlock;
 import com.sammy.malum.common.block.curiosities.artifice.elemental_artifice.base.PrimaryArtificeBlock;
 import com.sammy.malum.common.block.curiosities.artifice.soul_link.SoulLinkBlock;
-import com.sammy.malum.common.block.curiosities.decor.banner.*;
 import com.sammy.malum.common.block.curiosities.artifice.waveform.SpiritDiodeBlock;
 import com.sammy.malum.common.block.curiosities.artifice.repair_pylon.*;
+import com.sammy.malum.common.block.building.banner.soulwoven.SoulwovenBannerBlock;
 import com.sammy.malum.common.block.curiosities.totem.TotemPoleBlock;
 import com.sammy.malum.common.block.curiosities.totem.channel.*;
 import com.sammy.malum.common.block.curiosities.weeping_well.*;
-import com.sammy.malum.common.block.curiosities.weeping_well.encasement.*;
-import com.sammy.malum.common.block.curiosities.decor.ColumnBlock;
+import com.sammy.malum.common.block.building.ColumnBlock;
 import com.sammy.malum.common.block.dungeon.WrithingFleshBlock;
 import com.sammy.malum.common.block.ether.*;
 import com.sammy.malum.common.block.flora.EbonyStalkBlock;
@@ -23,8 +23,6 @@ import com.sammy.malum.common.block.flora.wood.MalumLeavesBlock;
 import com.sammy.malum.common.block.geode.GeodeCrystalClusterBlock;
 import com.sammy.malum.common.block.soulstone.ArchaicSoulstoneBudBlock;
 import com.sammy.malum.common.block.soulstone.SoulstoneBudBlock;
-import com.sammy.malum.core.systems.registry.SpiritHolder;
-import com.sammy.malum.core.systems.spirit.SpiritArcanaType;
 import com.sammy.malum.datagen.item.MalumItemModelSmithTypes;
 import net.minecraft.core.*;
 import net.minecraft.resources.ResourceLocation;
@@ -189,14 +187,14 @@ public class MalumBlockStateSmithTypes {
         });
     });
 
-    public static BlockStateSmith<SoulwovenBannerBlock> SOULWOVEN_BANNER = new BlockStateSmith<>(SoulwovenBannerBlock.class, MalumItemModelSmithTypes.SOULWOVEN_BANNER, (block, provider) -> {
-        ResourceLocation hanging = malumPath("block/soulwoven_banner");
-        ResourceLocation mounted = malumPath("block/soulwoven_banner_directional");
+    public static BlockStateSmith<MalumBannerBlock> BANNER = new BlockStateSmith<>(MalumBannerBlock.class, MalumItemModelSmithTypes.NO_DATAGEN, (block, provider) -> {
+        var hanging = malumPath("block/banner/banner_holder");
+        var mounted = malumPath("block/banner/banner_holder_mounted");
         provider.getVariantBuilder(block).forAllStates(s -> {
-            var value = s.getValue(SoulwovenBannerBlock.BANNER_TYPE);
+            var value = s.getValue(MalumBannerBlock.BANNER_TYPE);
             boolean isVertical = value.direction.getAxis().isVertical();
-            Direction direction = isVertical ? (value.equals(SoulwovenBannerBlock.BannerType.HANGING_Z) ? Direction.NORTH : Direction.WEST) : value.direction;
-            ResourceLocation model = isVertical ? hanging : mounted;
+            var direction = isVertical ? (value.equals(MalumBannerBlock.BannerType.HANGING_Z) ? Direction.NORTH : Direction.WEST) : value.direction;
+            var model = isVertical ? hanging : mounted;
             return ConfiguredModel.builder().modelFile(provider.models().getExistingFile(model)).rotationY(((int) direction.toYRot()) % 360).build();
         });
     });
@@ -449,40 +447,10 @@ public class MalumBlockStateSmithTypes {
         });
     });
 
-    public static BlockStateSmith<WeepingWellBlock> WEEPING_WELL_BLOCK = new BlockStateSmith<>(WeepingWellBlock.class, MalumItemModelSmithTypes.WEEPING_WELL_BLOCK_ITEM, (block, provider) -> {
-        String name = provider.getBlockName(block);
-        ModelFile model = provider.models().getExistingFile(MalumMod.malumPath("block/weeping_well/" + name));
-        provider.getVariantBuilder(block).forAllStates(s -> ConfiguredModel.builder().modelFile(model).build());
-    });
-
-    public static BlockStateSmith<WeepingWellLayeredBlock> WEEPING_WELL_LAYERED_BLOCK = new BlockStateSmith<>(WeepingWellLayeredBlock.class, MalumItemModelSmithTypes.LAYERED_WEEPING_WELL_BLOCK_ITEM, (block, provider) -> {
-        String name = provider.getBlockName(block);
-
-        provider.getVariantBuilder(block).forAllStates(s -> {
-            ModelFile model = provider.models().getExistingFile(MalumMod.malumPath("block/weeping_well/" + name + "_" + s.getValue(WeepingWellLayeredBlock.LAYER)));
-            var direction = s.getValue(WeepingWellLayeredBlock.FACING);
-            return ConfiguredModel.builder().modelFile(model).rotationY((int) (direction.toYRot() % 360)).build();
-        });
-    });
-
-    public static BlockStateSmith<WeepingWellDirectionalBlock> WEEPING_WELL_DIRECTIONAL_BLOCK = new BlockStateSmith<>(WeepingWellDirectionalBlock.class, MalumItemModelSmithTypes.WEEPING_WELL_BLOCK_ITEM, (block, provider) -> {
-        String name = provider.getBlockName(block);
-        ModelFile model = provider.models().getExistingFile(MalumMod.malumPath("block/weeping_well/" + name));
-        provider.getVariantBuilder(block)
-                .forAllStates(state -> {
-                    Direction dir = state.getValue(BlockStateProperties.FACING);
-                    return ConfiguredModel.builder()
-                            .modelFile(model)
-                            .rotationX(dir == Direction.DOWN ? 180 : dir.getAxis().isHorizontal() ? 90 : 0)
-                            .rotationY(dir.getAxis().isVertical() ? 0 : (((int) dir.toYRot())) % 360)
-                            .build();
-                });
-    });
-
     public static BlockStateSmith<PrimordialSoupBlock> PRIMORDIAL_SOUP = new BlockStateSmith<>(PrimordialSoupBlock.class, ItemModelSmithTypes.BLOCK_MODEL_ITEM.addTextureNameAffix("_top"), (block, provider) -> {
         String name = provider.getBlockName(block);
-        ModelFile model = provider.models().withExistingParent(name, ResourceLocation.withDefaultNamespace("block/powder_snow")).texture("texture", malumPath("block/weeping_well/" + name));
-        ModelFile topModel = provider.models().getExistingFile(malumPath("block/" + name + "_top"));
+        var model = provider.models().withExistingParent(name, ResourceLocation.withDefaultNamespace("block/powder_snow")).texture("texture", malumPath("block/enscription/" + name));
+        var topModel = provider.models().getExistingFile(malumPath("block/" + name + "_top"));
         provider.getVariantBuilder(block).forAllStates(s -> ConfiguredModel.builder().modelFile(s.getValue(PrimordialSoupBlock.TOP) ? topModel : model).build());
     });
 

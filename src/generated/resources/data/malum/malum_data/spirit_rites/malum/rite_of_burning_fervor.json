@@ -1,0 +1,10 @@
+{
+  "effect": "malum:apply_burning_fervor_effect",
+  "id": "malum:rite_of_burning_fervor",
+  "is_soulwood": false,
+  "pattern": [
+    "malum:arcane",
+    "malum:infernal",
+    "malum:infernal"
+  ]
+}

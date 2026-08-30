@@ -1,6 +1,6 @@
 package com.sammy.malum.registry.common.util.building;
 
-import com.sammy.malum.common.block.curiosities.decor.ColumnBlock;
+import com.sammy.malum.common.block.building.ColumnBlock;
 import com.sammy.malum.common.block.storage.pedestal.ItemPedestalBlock;
 import com.sammy.malum.common.block.storage.stand.ItemStandBlock;
 import com.sammy.malum.datagen.block.MalumBlockStateDatagen;
@@ -29,7 +29,7 @@ public class RockBlockSet extends MalumRegistrySet {
 
 
     public static List<RockBlockSet> getMalumSets() {
-        return List.of(MalumContent.BlockSets.TAINTED_ROCK_SET, MalumContent.BlockSets.TWISTED_ROCK_SET);
+        return List.of(MalumContent.BuildingBlocks.TAINTED_ROCK_SET, MalumContent.BuildingBlocks.TWISTED_ROCK_SET);
     }
 
     public final BlockItemTagKey blocksTag;

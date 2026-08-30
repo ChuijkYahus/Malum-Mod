@@ -8,7 +8,6 @@ import com.sammy.malum.core.systems.artifice.ArtificeAttributeType;
 import com.sammy.malum.common.block.ether.EtherWallTorchBlock;
 import com.sammy.malum.core.systems.geas.*;
 import com.sammy.malum.core.systems.registry.*;
-import com.sammy.malum.core.systems.rite.*;
 import com.sammy.malum.core.systems.rite.effect.SpiritRiteEffectTag;
 import com.sammy.malum.core.systems.spirit.SpiritArcanaType;
 import com.sammy.malum.core.systems.spirit.SpiritTextData;
@@ -39,7 +38,6 @@ import static com.sammy.malum.registry.common.MalumAttributes.ATTRIBUTES;
 import static com.sammy.malum.registry.common.MalumMobEffects.MOB_EFFECTS;
 import static com.sammy.malum.registry.common.sound.MalumSoundEvents.SOUND_EVENTS;
 import static com.sammy.malum.registry.common.magic.MalumGeasEffectTypes.GEAS_TYPES;
-import static com.sammy.malum.registry.common.magic.rite.MalumSpiritRiteTypes.RITE_TYPES;
 import static com.sammy.malum.registry.common.MalumContent.BLOCKS;
 import static com.sammy.malum.registry.common.entity.MalumEntityTypes.ENTITY_TYPES;
 
@@ -75,13 +73,12 @@ public class MalumLangDatagen extends LanguageProvider {
         var effects = new HashSet<>(MOB_EFFECTS.getEntries());
         var attributes = new HashSet<>(ATTRIBUTES.getEntries());
         var entities = new HashSet<>(ENTITY_TYPES.getEntries());
-        var rites = new HashSet<>(RITE_TYPES.getEntries());
         var geasa = new HashSet<>(GEAS_TYPES.getEntries());
         var soulwovenBanners = SoulwovenBannerPatternDataComponent.REGISTERED_PATTERNS;
         var crucibleAttributes = ArtificeAttributeType.CRUCIBLE_ATTRIBUTES;
 
-        add(DataHelper.take(blocks, MalumContent.WeepingWell.PRIMORDIAL_SOUP.block()).get(), "The Weeping Well");
-        add(DataHelper.take(blocks, MalumContent.WeepingWell.VOID_CONDUIT.block()).get(), "The Weeping Well");
+        add(DataHelper.take(blocks, MalumContent.Enscription.WEEPING_WELL.block()).get(), "The Weeping Well");
+        add(DataHelper.take(blocks, MalumContent.Enscription.WEEPING_WELL_CENTERPIECE.block()).get(), "The Weeping Well");
 
         if (CreateCompat.LOADED) { //If Create is loaded, the copper nugget won't exist.
             add("item.malum.copper_nugget", "Copper Nugget");
@@ -122,11 +119,6 @@ public class MalumLangDatagen extends LanguageProvider {
         entities.forEach(e -> {
             String name = DataHelper.toTitleCase(e.getId().getPath(), "_");
             add("entity.malum." + BuiltInRegistries.ENTITY_TYPE.getKey(e.get()).getPath(), name);
-        });
-        rites.forEach(r -> {
-            SpiritRiteType rite = r.get();
-            String name = DataHelper.toTitleCase(rite.getName(), "_");
-            add(rite.getLangKey(), name);
         });
         geasa.forEach(g -> {
             GeasEffectType effect = g.get();
@@ -255,8 +247,6 @@ public class MalumLangDatagen extends LanguageProvider {
 //        addGeasDescription(MalumGeasEffectTypes.AUTHORITY_OF_CRUSHING_MELANCHOLY, "Dissociate from the weight of your existence");
         addGeasDescription(MalumGeasEffectTypes.AUTHORITY_OF_THE_GLEEFUL_TARGET, "Take it all, let it never stop, more, and more, and more");
 
-        addGeasDescription(MalumGeasEffectTypes.CREED_OF_THE_BLIGHT_EATER, "Mmmm... Blight... So Tasty..");
-
         add("jukebox_song.malum.arcane_elegy", "Kultik - Arcane Elegy");
         add("jukebox_song.malum.aesthetica", "Kultik - Aesthetica");
 
@@ -301,6 +291,10 @@ public class MalumLangDatagen extends LanguageProvider {
 
         addDeathMessage(MalumDamageTypes.SUNDERING_ANCHOR_PHYSICAL_COMBO, "%1$s was struck down through torment by %2$s", "%1$s was struck down through torment by %2$s using %3$s");
         addDeathMessage(MalumDamageTypes.SUNDERING_ANCHOR_MAGIC_COMBO, "%1$s had their soul struck down through torment by %2$s", "%1$s had their soul struck down through torment by %2$s using %3$s");
+
+        addDeathMessage(MalumDamageTypes.VINDICTIVE_BRAND_MELEE, "%1$s was marked by %2$s", "%1$s was marked by %2$s using %3$s");
+        addDeathMessage(MalumDamageTypes.VINDICTIVE_BRAND_SWEEP, "%1$s was marked by %2$s", "%1$s was marked by %2$s using %3$s");
+        addDeathMessage(MalumDamageTypes.VINDICTIVE_BRAND_COMBO, "%1$s was carved by %2$s", "%1$s was carved by %2$s using %3$s");
 
         addDeathMessage(MalumDamageTypes.WARLOCK_SPIRIT_IMPACT, "%1$s had their soul shattered by %2$s", "%1$s had their soul shattered by %2$s using %3$s");
         addDeathMessage(MalumDamageTypes.BERSERKER_SPIRIT_IMPACT, "%1$s had their soul shattered by %2$s", "%1$s had their soul shattered by %2$s using %3$s");
@@ -354,7 +348,7 @@ public class MalumLangDatagen extends LanguageProvider {
         addAttributeLibAttributeDescription(MalumAttributes.SPIRIT_SPOILS, "Flat increase to spirits looted from slain foes");
         addAttributeLibAttributeDescription(MalumAttributes.ARCANE_RESONANCE, "Bonus potency for spirit-collection effects");
 
-        addAttributeLibAttributeDescription(MalumAttributes.HEALING_MULTIPLIER, "An increase in healing received");
+        //addAttributeLibAttributeDescription(MalumAttributes.HEALING_MULTIPLIER, "An increase in healing received");
 
         addAttributeLibAttributeDescription(MalumAttributes.SOUL_WARD_INTEGRITY, "A percentile increase in durability for Soul Ward");
         addAttributeLibAttributeDescription(MalumAttributes.SOUL_WARD_RECOVERY_RATE, "A percentile increase in recovery rate for Soul Ward");

@@ -7,6 +7,7 @@ import com.sammy.malum.core.systems.spirit.SpiritArcanaType;
 import com.sammy.malum.core.systems.spirit.SpiritLike;
 import com.sammy.malum.registry.common.*;
 import com.sammy.malum.visual_effects.networked.MalumNetworkedParticleEffectColorData;
+import net.minecraft.world.item.*;
 import net.minecraft.world.level.*;
 import net.minecraft.world.phys.*;
 import team.lodestar.lodestone.modules.core.easing.Easing;
@@ -30,7 +31,8 @@ public class WeaponParticleEffects {
         var level = entity.level();
         if (level.getGameTime() % 2L == 0) {
             var random = level.getRandom();
-            var spirit = entity.getItem().getItem() instanceof ISpiritAffiliatedItem spiritItem ? spiritItem.getDefiningSpiritType() : null;
+            var stack = entity.getItem();
+            var spirit = stack.getItem() instanceof ISpiritAffiliatedItem spiritItem ? spiritItem.getDefiningSpiritType(stack) : null;
             var slash = WeaponParticleEffects.spawnSlashParticle(level, entity.position(), MalumParticles.ROUNDABOUT_SLASH, spirit);
             float spinOffset = Easing.SINE_IN_OUT.asWeighedRandom(random, -0.8f, 0.8f);
             int age = Easing.SINE_IN_OUT.asWeighedRandom(random, 8, 18);
@@ -63,6 +65,7 @@ public class WeaponParticleEffects {
         }
         return spawnSlashParticle(level, pos, particleType, color.getColor());
     }
+
     public static ParticleEffectSpawner spawnSlashParticle(Level level, Vec3 pos, Supplier<LodestoneWorldParticleType> particleType, SpiritLike spirit) {
         if (spirit == null) {
             return spawnSlashParticle(level, pos, particleType);

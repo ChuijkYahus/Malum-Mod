@@ -1,0 +1,11 @@
+{
+  "effect": "malum:culling_effect",
+  "id": "malum:rite_of_culling",
+  "is_soulwood": false,
+  "pattern": [
+    "malum:eldritch",
+    "malum:arcane",
+    "malum:wicked",
+    "malum:wicked"
+  ]
+}

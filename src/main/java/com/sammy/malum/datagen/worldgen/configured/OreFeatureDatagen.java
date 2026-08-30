@@ -2,16 +2,12 @@ package com.sammy.malum.datagen.worldgen.configured;
 
 import com.sammy.malum.common.block.soulstone.*;
 import com.sammy.malum.common.worldgen.ore.*;
-import com.sammy.malum.common.worldgen.ore.LayeredOreConfiguration.*;
-import com.sammy.malum.common.worldgen.tree.*;
 import com.sammy.malum.registry.common.worldgen.*;
 import com.sammy.malum.registry.common.worldgen.MalumFeatures.*;
 import net.minecraft.data.worldgen.*;
 import net.minecraft.tags.*;
 import net.minecraft.util.random.*;
-import net.minecraft.util.valueproviders.*;
 import net.minecraft.world.level.block.state.*;
-import net.minecraft.world.level.levelgen.*;
 import net.minecraft.world.level.levelgen.feature.*;
 import net.minecraft.world.level.levelgen.feature.configurations.*;
 import net.minecraft.world.level.levelgen.feature.stateproviders.*;
@@ -20,7 +16,6 @@ import net.minecraft.world.level.levelgen.structure.templatesystem.*;
 import java.util.*;
 
 import static com.sammy.malum.common.worldgen.ore.LayeredOreConfiguration.*;
-import static com.sammy.malum.registry.common.MalumContent.BlockSets.*;
 import static com.sammy.malum.registry.common.MalumContent.Materials.*;
 import static net.minecraft.world.level.block.Blocks.*;
 import static net.minecraft.world.level.levelgen.feature.stateproviders.BlockStateProvider.*;

@@ -1,0 +1,10 @@
+{
+  "effect": "malum:apply_howling_gale_effect",
+  "id": "malum:rite_of_howling_gale",
+  "is_soulwood": false,
+  "pattern": [
+    "malum:arcane",
+    "malum:aerial",
+    "malum:aerial"
+  ]
+}

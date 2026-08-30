@@ -1,0 +1,10 @@
+{
+  "effect": "malum:apply_oaken_might_effect",
+  "id": "malum:rite_of_oaken_might",
+  "is_soulwood": true,
+  "pattern": [
+    "malum:arcane",
+    "malum:earthen",
+    "malum:earthen"
+  ]
+}

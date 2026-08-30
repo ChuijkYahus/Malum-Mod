@@ -7,6 +7,7 @@ import com.sammy.malum.visual_effects.networked.*;
 import net.minecraft.core.Holder;
 import net.minecraft.server.level.*;
 import net.minecraft.sounds.*;
+import net.minecraft.tags.*;
 import net.minecraft.world.effect.*;
 import net.minecraft.world.entity.*;
 import net.minecraft.world.item.*;
@@ -58,32 +59,33 @@ public class WeightOfWorldsItem extends LodestoneAxeItem implements ItemEventHan
                 return;
             }
             var source = event.getSource();
-            if (source.is(WaywardTags.DamageTypeTags.CAN_TRIGGER_MAGIC_DAMAGE) || source.is(MalumDamageTypes.INVERTED_HEART_PROPAGATION)) {
-                MalumNetworkedWeaponParticleEffectType<?> particleEffectType = MalumParticleEffectTypes.SCYTHE_SLASH;
-                var effectType = MalumMobEffects.GRIM_CERTAINTY;
-                if (attacker.hasEffect(effectType) || level.random.nextFloat() < 0.25f) {
-                    if (triggerMalignantCrit(event.getContainer(), attacker, target)) {
-                        particleEffectType = MalumParticleEffectTypes.WEIGHT_OF_WORLDS_CRIT;
-                        attacker.removeEffect(effectType);
-                    }
-                } else {
-                    //We want only the crit to be present in case of exterior triggers such as Soulwashing
-                    //Regular swing animations are still tied to the melee attack only
-                    if (!source.is(WaywardTags.DamageTypeTags.CAN_TRIGGER_MAGIC_DAMAGE)) {
-                        return;
-                    }
-                }
-                var effectBuilder = particleEffectType.createEffect()
-                        .originatesFrom(attacker).targets(target)
-                        .verticalSlashRotation()
-                        .horizontalOffset(0.4f)
-                        .forwardOffset(0.8f);
-                if (source.is(MalumTags.DamageTypes.IS_INVERTED_HEART)) {
-                    effectBuilder.tiedToTarget().horizontalOffset(0.2f).horizontalDeviation(Easing.SINE_IN_OUT.asWeighedRandom(attacker.getRandom(), -0.5f, 0.5f)).forwardOffset(-0.8f);
-                }
-                effectBuilder.spawn(level);
-                SoundPlayer.create(MalumGearSoundEvents.WEIGHT_OF_WORLDS_CUT).volume(2f).pitch(0.75f).play(target, SoundSource.PLAYERS);
+            if (!source.is(DamageTypeTags.IS_PLAYER_ATTACK) && !source.is(MalumDamageTypes.INVERTED_HEART_PROPAGATION)) {
+                return;
             }
+            MalumNetworkedWeaponParticleEffectType<?> particleEffectType = MalumParticleEffectTypes.SCYTHE_SLASH;
+            var effectType = MalumMobEffects.GRIM_CERTAINTY;
+            if (attacker.hasEffect(effectType) || level.random.nextFloat() < 0.25f) {
+                if (triggerMalignantCrit(event.getContainer(), attacker, target)) {
+                    particleEffectType = MalumParticleEffectTypes.WEIGHT_OF_WORLDS_CRIT;
+                    attacker.removeEffect(effectType);
+                }
+            } else {
+                //We want only the crit to be present in case of exterior triggers such as Inverted Heart Propagation
+                //Regular swing animations are still tied to the melee attack only
+                if (!source.is(DamageTypeTags.IS_PLAYER_ATTACK)) {
+                    return;
+                }
+            }
+            var effectBuilder = particleEffectType.createEffect()
+                    .originatesFrom(attacker).targets(target)
+                    .verticalSlashRotation()
+                    .horizontalOffset(0.4f)
+                    .forwardOffset(0.8f);
+            if (source.is(MalumDamageTypes.INVERTED_HEART_PROPAGATION)) {
+                effectBuilder.tiedToTarget().horizontalOffset(0.2f).horizontalDeviation(Easing.SINE_IN_OUT.asWeighedRandom(attacker.getRandom(), -0.5f, 0.5f)).forwardOffset(-0.8f);
+            }
+            effectBuilder.spawn(level);
+            SoundPlayer.create(MalumGearSoundEvents.WEIGHT_OF_WORLDS_CUT).volume(2f).pitch(0.75f).play(target, SoundSource.PLAYERS);
         }
     }
 }

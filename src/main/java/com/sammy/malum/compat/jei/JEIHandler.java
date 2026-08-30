@@ -103,7 +103,6 @@ public class JEIHandler implements IModPlugin {
         registry.addRecipeCatalyst(new ItemStack(MalumContent.Focusing.REPAIR_PYLON.get()), SPIRIT_REPAIR);
         registry.addRecipeCatalyst(new ItemStack(MalumContent.Totemancy.SOULWOOD_TOTEM_BASE.get()), TRANSMUTATION);
         registry.addRecipeCatalyst(new ItemStack(MalumContent.Sorcery.RUNIC_WORKBENCH.get()), RUNEWORKING);
-        registry.addRecipeCatalyst(new ItemStack(MalumContent.WeepingWell.VOID_DEPOT.get()), VOID_FAVOR);
     }
 
 

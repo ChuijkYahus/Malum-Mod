@@ -1,5 +1,8 @@
 {
   "values": [
-    "malum:scythe_melee"
+    "malum:scythe_melee",
+    "malum:scythe_sweep",
+    "malum:vindictive_brand_melee",
+    "malum:vindictive_brand_sweep"
   ]
 }

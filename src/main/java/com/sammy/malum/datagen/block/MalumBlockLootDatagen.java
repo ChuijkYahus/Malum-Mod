@@ -38,7 +38,7 @@ import java.util.stream.Collectors;
 
 import static com.sammy.malum.registry.common.MalumContent.BLOCKS;
 import static com.sammy.malum.registry.common.MalumContent.Blight.*;
-import static com.sammy.malum.registry.common.MalumContent.BlockSets.*;
+import static com.sammy.malum.registry.common.MalumContent.BuildingBlocks.*;
 import static com.sammy.malum.registry.common.MalumContent.Materials.*;
 
 public class MalumBlockLootDatagen extends BlockLootSubProvider {
@@ -70,7 +70,7 @@ public class MalumBlockLootDatagen extends BlockLootSubProvider {
                     new BlockPos(0, 1, 0)
             )
     ));
-    
+
     protected Set<Block> generatedValues = new HashSet<>();
 
     public MalumBlockLootDatagen(HolderLookup.Provider provider) {
@@ -120,6 +120,7 @@ public class MalumBlockLootDatagen extends BlockLootSubProvider {
 
         add(SOULWOVEN_BANNER.get(), createBannerDrop(SOULWOVEN_BANNER.get()));
 
+        add(STONE_BOOKSHELF.get(), b -> createSingleItemTableWithSilkTouch(b, Items.BOOK, ConstantValue.exactly(3.0F)));
 
         add(EtherBlock.class, this::createEtherDrop);
         add(SpiritJarBlock.class, this::createJarDrop);
@@ -167,8 +168,6 @@ public class MalumBlockLootDatagen extends BlockLootSubProvider {
 
     protected void addGeodeDrops(GeodeCrystalRegistrySet... sets) {
         for (GeodeCrystalRegistrySet set : sets) {
-
-
             var cluster = set.getCluster().block().get();
             add(cluster, LootTable.lootTable().withPool(applyExplosionCondition(cluster, LootPool.lootPool()
                                     .setRolls(ConstantValue.exactly(1.0F))

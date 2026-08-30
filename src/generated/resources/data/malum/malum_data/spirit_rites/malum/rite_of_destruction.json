@@ -1,0 +1,11 @@
+{
+  "effect": "malum:destruction_effect",
+  "id": "malum:rite_of_destruction",
+  "is_soulwood": true,
+  "pattern": [
+    "malum:eldritch",
+    "malum:arcane",
+    "malum:earthen",
+    "malum:earthen"
+  ]
+}

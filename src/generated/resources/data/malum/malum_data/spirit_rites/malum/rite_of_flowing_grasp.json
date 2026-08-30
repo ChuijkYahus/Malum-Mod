@@ -1,0 +1,10 @@
+{
+  "effect": "malum:apply_flowing_grasp_effect",
+  "id": "malum:rite_of_flowing_grasp",
+  "is_soulwood": false,
+  "pattern": [
+    "malum:arcane",
+    "malum:aqueous",
+    "malum:aqueous"
+  ]
+}

@@ -1,0 +1,11 @@
+{
+  "effect": "malum:block_ascension_effect",
+  "id": "malum:rite_of_ascension",
+  "is_soulwood": true,
+  "pattern": [
+    "malum:eldritch",
+    "malum:arcane",
+    "malum:aerial",
+    "malum:aerial"
+  ]
+}

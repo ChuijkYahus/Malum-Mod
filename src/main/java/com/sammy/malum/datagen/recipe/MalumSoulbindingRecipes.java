@@ -124,15 +124,6 @@ public class MalumSoulbindingRecipes implements IConditionBuilder {
                 .addSpirit(AERIAL_SPIRIT, 16)
                 .addSpirit(EARTHEN_SPIRIT, 16)
                 .save(recipeOutput);
-        new SoulBindingRecipeBuilder(HEART_OF_THE_SEA, 1, MalumGeasEffectTypes.PACT_OF_TIDAL_AFFINITY)
-                .addExtraItem(PRISMARINE_SHARD, 8)
-                .addExtraItem(PRISMARINE_CRYSTALS, 8)
-                .addExtraItem(KELP, 8)
-                .addSpirit(AQUEOUS_SPIRIT, 32)
-                .addSpirit(SACRED_SPIRIT, 32)
-                .addSpirit(AERIAL_SPIRIT, 16)
-                .addSpirit(ELDRITCH_SPIRIT, 16)
-                .save(recipeOutput);
         new SoulBindingRecipeBuilder(HEART_OF_THE_SEA, 1, MalumGeasEffectTypes.PACT_OF_PATIENCE_REPAID)
                 .addExtraItem(PRISMARINE_SHARD, 8)
                 .addExtraItem(PRISMARINE_CRYSTALS, 8)

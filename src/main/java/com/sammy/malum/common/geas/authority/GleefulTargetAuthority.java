@@ -13,6 +13,7 @@ import net.minecraft.world.entity.ai.attributes.*;
 import net.minecraft.world.item.*;
 import net.neoforged.neoforge.event.entity.living.*;
 import team.lodestar.lodestone.helpers.*;
+import team.lodestar.wayward_attributes.core.registry.WaywardAttributeTypes;
 
 import java.util.function.*;
 
@@ -31,7 +32,7 @@ public class GleefulTargetAuthority extends GeasEffect {
 
     @Override
     public Multimap<Holder<Attribute>, AttributeModifier> createAttributeModifiers(LivingEntity entity, Multimap<Holder<Attribute>, AttributeModifier> modifiers) {
-        addAttributeModifier(modifiers, MalumAttributes.HEALING_MULTIPLIER, -0.75f, AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL);
+        addAttributeModifier(modifiers, WaywardAttributeTypes.HEALING_MULTIPLIER, -0.75f, AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL);
         return modifiers;
     }
 

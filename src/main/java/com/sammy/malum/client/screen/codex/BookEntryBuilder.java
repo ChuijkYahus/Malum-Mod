@@ -14,6 +14,8 @@ public class BookEntryBuilder {
     protected List<EntryBookmark> leftBookmarks = new ArrayList<>();
     protected List<EntryBookmark> rightBookmarks = new ArrayList<>();
 
+    protected List<String> predecessors = new ArrayList<>();
+
     protected BookEntryBuilder(String identifier) {
         this.identifier = identifier;
     }
@@ -35,10 +37,15 @@ public class BookEntryBuilder {
         return this;
     }
 
+    public BookEntryBuilder requires(BookEntryBuilder predecessor) {
+        predecessors.add(predecessor.identifier);
+        return this;
+    }
+
     public BookEntry build() {
         var pages = ImmutableList.copyOf(this.pages);
         var leftBookmarks = ImmutableList.copyOf(this.leftBookmarks);
         var rightBookmarks = ImmutableList.copyOf(this.rightBookmarks);
-        return new BookEntry(identifier, pages, leftBookmarks, rightBookmarks);
+        return new BookEntry(identifier, pages, leftBookmarks, rightBookmarks, predecessors);
     }
 }

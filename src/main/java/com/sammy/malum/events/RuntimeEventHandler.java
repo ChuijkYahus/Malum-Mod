@@ -2,16 +2,19 @@ package com.sammy.malum.events;
 
 import com.sammy.malum.common.block.storage.jar.*;
 import com.sammy.malum.common.data.attachment.AvariceMarkData;
-import com.sammy.malum.common.data.custom.malignant_conversion.MalignantConversionReloadListener;
-import com.sammy.malum.common.data.custom.reaping.ReapingDataReloadListener;
-import com.sammy.malum.common.data.custom.spellweaving.SpellweavingEqualityReloadListener;
-import com.sammy.malum.common.data.custom.spirit.SpiritDataReloadListener;
+import com.sammy.malum.common.data.listener.banner.MalumBannerPatternReloadListener;
+import com.sammy.malum.common.data.listener.malignant_conversion.MalignantConversionReloadListener;
+import com.sammy.malum.common.data.listener.reaping.ReapingDataReloadListener;
+import com.sammy.malum.common.data.listener.rite.*;
+import com.sammy.malum.common.data.listener.spellweaving.SpellweavingEqualityReloadListener;
+import com.sammy.malum.common.data.listener.spirit.SpiritDataReloadListener;
 import com.sammy.malum.common.effect.ascension.*;
 import com.sammy.malum.common.effect.rite.aura.*;
 import com.sammy.malum.common.effect.rite.aura.soulwood.*;
 import com.sammy.malum.common.effect.gluttony.*;
 import com.sammy.malum.common.entity.activator.*;
 import com.sammy.malum.common.entity.nitrate.*;
+import com.sammy.malum.common.entity.soulTag.SoulTagEntity;
 import com.sammy.malum.common.geas.pact.aerial.*;
 import com.sammy.malum.common.geas.pact.infernal.*;
 import com.sammy.malum.common.geas.pact.earthen.ProfaneAsceticGeas;
@@ -25,8 +28,10 @@ import com.sammy.malum.common.item.curiosities.curios.sets.rotten.*;
 import com.sammy.malum.common.item.curiosities.curios.sets.weeping.*;
 import com.sammy.malum.common.item.curiosities.pouch.*;
 import com.sammy.malum.common.item.curiosities.tools.spellweaver.*;
+import com.sammy.malum.common.item.curiosities.weapons.greatsword.*;
 import com.sammy.malum.common.item.curiosities.weapons.scythe.MalumScytheItem;
 import com.sammy.malum.core.handlers.*;
+import net.minecraft.world.entity.LivingEntity;
 import net.neoforged.bus.api.*;
 import net.neoforged.fml.common.*;
 import net.neoforged.neoforge.event.*;
@@ -36,6 +41,9 @@ import net.neoforged.neoforge.event.entity.living.*;
 import net.neoforged.neoforge.event.entity.player.*;
 import net.neoforged.neoforge.event.level.*;
 import net.neoforged.neoforge.event.tick.*;
+import team.lodestar.wayward_attributes.WaywardTags;
+
+import java.util.List;
 
 @EventBusSubscriber()
 public class RuntimeEventHandler {
@@ -44,6 +52,44 @@ public class RuntimeEventHandler {
     public static void onEntityJoin(EntityJoinLevelEvent event) {
         SoulDataHandler.syncData(event);
         GeasEffectHandler.syncGeas(event);
+    }
+
+    @SubscribeEvent
+    public static void onLivingDamage(LivingDamageEvent.Post event) {
+        double RANGE = 8.0D;
+
+        LivingEntity damagedEntity = event.getEntity();
+
+        if (damagedEntity.level().isClientSide()) {
+            return;
+        }
+        if(!event.getSource().is(WaywardTags.DamageTypeTags.IS_MAGIC)) {
+            return;
+        }
+
+        if (event.getNewDamage() <= 0.0F) {
+            return;
+        }
+
+        double rangeSquared = RANGE * RANGE;
+
+        List<SoulTagEntity> soulTags =
+                damagedEntity.level().getEntitiesOfClass(
+                        SoulTagEntity.class,
+                        damagedEntity.getBoundingBox().inflate(RANGE),
+                        SoulTagEntity::isAlive
+                );
+
+        for (SoulTagEntity soulTag : soulTags) {
+
+            if (soulTag.distanceToSqr(damagedEntity) <= rangeSquared) {
+
+                soulTag.createSoulTag(
+                        damagedEntity
+                );
+                break;
+            }
+        }
     }
 
     @SubscribeEvent
@@ -89,6 +135,7 @@ public class RuntimeEventHandler {
         CurioWatcherNecklace.entityTick(event);
         TouchOfDarknessHandler.entityTick(event);
         CurioHiddenBladeNecklace.entityTick(event);
+        VindictiveBrandSwordItem.entityTick(event);
         MalignantConversionHandler.entityTick(event);
         WeepingWellRejectionHandler.entityTick(event);
     }
@@ -115,8 +162,12 @@ public class RuntimeEventHandler {
 
     @SubscribeEvent
     public static void registerListeners(AddReloadListenerEvent event) {
-        SpellweavingEqualityReloadListener.register(event);
         SpiritDataReloadListener.register(event);
+        SpiritRiteTypeReloadListener.register(event);
+
+        MalumBannerPatternReloadListener.register(event);
+
+        SpellweavingEqualityReloadListener.register(event);
         ReapingDataReloadListener.register(event);
         MalignantConversionReloadListener.register(event);
     }
@@ -181,7 +232,6 @@ public class RuntimeEventHandler {
 
     @SubscribeEvent
     public static void onHeal(LivingHealEvent event) {
-        MalumAttributeEventHandler.heal(event);
         LifeweaverGeas.onHeal(event);
         TrialOfFaithEffect.spawnLocusts(event);
     }
