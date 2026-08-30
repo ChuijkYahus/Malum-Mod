@@ -19,11 +19,6 @@ public class MyriadGatewayDisplayData extends MalumItemHolderItemDisplayData {
     }
 
     @Override
-    public float getTurnRate() {
-        return 0.05f;
-    }
-
-    @Override
     public float getItemRotationRateForItem(ItemDisplayDataEntry item, int index, float total) {
         return super.getItemRotationRateForItem(item, index, total) * 0.4f;
     }

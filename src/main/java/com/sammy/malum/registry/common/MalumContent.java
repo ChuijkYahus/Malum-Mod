@@ -13,10 +13,10 @@ import com.sammy.malum.common.block.curiosities.artifice.waveform.wavebanker.*;
 import com.sammy.malum.common.block.curiosities.artifice.waveform.wavebreaker.*;
 import com.sammy.malum.common.block.curiosities.artifice.waveform.wavecharger.*;
 import com.sammy.malum.common.block.curiosities.artifice.waveform.wavemaker.*;
-import com.sammy.malum.common.block.curiosities.decor.*;
+import com.sammy.malum.common.block.building.*;
 import com.sammy.malum.common.block.curiosities.escription.MyriadGatewayBlock;
 import com.sammy.malum.common.block.curiosities.sorcery.soul_brazier.*;
-import com.sammy.malum.common.block.curiosities.decor.banner.SoulwovenBannerBlock;
+import com.sammy.malum.common.block.building.banner.soulwoven.SoulwovenBannerBlock;
 import com.sammy.malum.common.block.curiosities.fluid.SapFilledCauldronBlock;
 import com.sammy.malum.common.block.curiosities.obelisk.ObeliskComponentBlock;
 import com.sammy.malum.common.block.curiosities.obelisk.brilliant.BrillianceObeliskCoreBlock;
@@ -69,7 +69,7 @@ import com.sammy.malum.common.item.BrillianceChunkItem;
 import com.sammy.malum.common.item.GeasItem;
 import com.sammy.malum.common.item.augment.*;
 import com.sammy.malum.common.item.augment.core.*;
-import com.sammy.malum.common.block.curiosities.decor.banner.SoulwovenBannerBlockItem;
+import com.sammy.malum.common.block.building.banner.soulwoven.SoulwovenBannerBlockItem;
 import com.sammy.malum.common.item.codex.EncyclopediaArcanaItem;
 import com.sammy.malum.common.item.codex.EncyclopediaEsotericaItem;
 import com.sammy.malum.common.item.curiosities.TemporarilyDisabledItem;
@@ -146,6 +146,7 @@ import com.sammy.malum.registry.common.util.*;
 import com.sammy.malum.registry.common.util.building.CommonStoneBuildingSet;
 import com.sammy.malum.registry.common.util.building.RockBlockSet;
 import com.sammy.malum.registry.common.util.building.WoodBlockSet;
+import com.sammy.malum.registry.common.util.building.WoolRegistrySet;
 import com.sammy.malum.registry.common.worldgen.MalumTreeGrowers;
 import net.minecraft.util.valueproviders.UniformInt;
 import net.minecraft.world.food.FoodProperties;
@@ -469,9 +470,9 @@ public class MalumContent {
         public static final RockBlockSet TAINTED_ROCK_SET = new RockBlockSet("tainted_rock", MalumStoneBlockProperties::TAINTED_ROCK, MalumStoneBlockProperties::TAINTED_ROCK_BRICKS, MalumStoneBlockProperties::CHISELED_TAINTED_ROCK);
         public static final RockBlockSet TWISTED_ROCK_SET = new RockBlockSet("twisted_rock", MalumStoneBlockProperties::TWISTED_ROCK, MalumStoneBlockProperties::TWISTED_ROCK_BRICKS, MalumStoneBlockProperties::CHISELED_TWISTED_ROCK);
 
+        public static final WoolRegistrySet FANCY_WOOL = new WoolRegistrySet("fancy");
 
         public static final BlockBlockItemHolder<Block, BlockItem> STONE_BOOKSHELF = registerBlock("stone_bookshelf", () -> new StoneBookshelfBlock(MalumStoneBlockProperties.STONE_BOOKSHELF()));
-
 
 
         public static final BlockBlockItemHolder<Block, BlockItem> RUNEWOOD_SAPLING = registerBlock("runewood_sapling", () -> new MalumSaplingBlock(MalumTreeGrowers.RUNEWOOD, MalumWoodBlockProperties.RUNEWOOD_SAPLING()));

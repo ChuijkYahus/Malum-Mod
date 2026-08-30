@@ -8,6 +8,7 @@ import com.sammy.malum.registry.common.MalumContent;
 import com.sammy.malum.registry.common.MalumContent.*;
 import com.sammy.malum.registry.common.util.building.CommonStoneBuildingSet;
 import com.sammy.malum.registry.common.util.building.RockBlockSet;
+import com.sammy.malum.registry.common.util.building.WoolRegistrySet;
 import com.sammy.malum.registry.common.util.data.*;
 import net.minecraft.data.*;
 import net.minecraft.resources.*;
@@ -50,7 +51,7 @@ public class MalumBlockStateDatagen extends LodestoneBlockStateSystem {
 
 
         setTexturePath("banners");
-        MalumBlockStateSmithTypes.SOULWOVEN_BANNER.act(data, BuildingBlocks.SOULWOVEN_BANNER);
+        MalumBlockStateSmithTypes.BANNER.act(data, BuildingBlocks.SOULWOVEN_BANNER);
         setTexturePath("building/spirited_glass");
         BlockStateSmithTypes.FULL_BLOCK.act(data,
                 BuildingBlocks.SACRED_SPIRITED_GLASS, BuildingBlocks.WICKED_SPIRITED_GLASS, BuildingBlocks.ARCANE_SPIRITED_GLASS, BuildingBlocks.ELDRITCH_SPIRITED_GLASS,
@@ -71,6 +72,10 @@ public class MalumBlockStateDatagen extends LodestoneBlockStateSystem {
         }
 
         for (RockBlockSet malumSet : RockBlockSet.getMalumSets()) {
+            malumSet.addBlockStates(this, data);
+        }
+
+        for (WoolRegistrySet malumSet : WoolRegistrySet.getMalumSets()) {
             malumSet.addBlockStates(this, data);
         }
 
