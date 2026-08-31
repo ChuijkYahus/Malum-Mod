@@ -3,7 +3,7 @@ package com.sammy.malum.client.screen.codex.display;
 import com.mojang.blaze3d.systems.RenderSystem;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.sammy.malum.client.screen.codex.WidgetDesign;
-import com.sammy.malum.client.screen.codex.display.texture.DynamicTextureRenderer;
+import com.sammy.malum.client.screen.codex.display.texture.DynamicTextureBuilder;
 import com.sammy.malum.core.systems.spirit.SpiritArcanaType;
 import com.sammy.malum.registry.common.magic.MalumSpiritTypes;
 import it.unimi.dsi.fastutil.ints.Int2ObjectFunction;
@@ -127,9 +127,9 @@ public class CodexOutlineRenderer {
         var minecraft = Minecraft.getInstance();
         float delta = minecraft.getTimer().getGameTimeDeltaPartialTick(true);
 
-        var dynamicTexture = DynamicTextureRenderer.create(output)
+        var dynamicTexture = DynamicTextureBuilder.create(output)
                 .setTextureSize(width, height)
-                .requestOutline(sourceTexture, sourceWidth, sourceHeight, outlineWidth);
+                .bakeOutlineTexture(sourceTexture, sourceWidth, sourceHeight, outlineWidth);
         if (dynamicTexture == null) {
             return;
         }

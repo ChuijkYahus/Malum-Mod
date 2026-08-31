@@ -3,6 +3,7 @@ package com.sammy.malum.client.screen.codex.display.texture;
 import com.mojang.blaze3d.pipeline.RenderCall;
 import com.mojang.blaze3d.pipeline.RenderTarget;
 import com.mojang.blaze3d.pipeline.TextureTarget;
+import com.mojang.blaze3d.platform.NativeImage;
 import com.mojang.blaze3d.systems.RenderSystem;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.texture.AbstractTexture;
@@ -23,7 +24,6 @@ public class RenderableDynamicTexture extends DynamicTexture implements Tickable
     @NotNull
     protected final Consumer<RenderableDynamicTexture> drawingFunction;
 
-    private RenderTarget readTarget;
     private RenderTarget writeTarget;
 
     private final int width;
@@ -59,9 +59,6 @@ public class RenderableDynamicTexture extends DynamicTexture implements Tickable
         }
     }
 
-    /**
-     * Force redraw using provided render function. You can also redraw manually
-     */
     public void redraw() {
         if (closed) {
             return;
@@ -70,22 +67,8 @@ public class RenderableDynamicTexture extends DynamicTexture implements Tickable
             bind();
             writeTarget.bindWrite(true);
             drawingFunction.accept(this);
-            swapBackToFront();
             writeTarget.unbindWrite();
         });
-    }
-
-    @Override
-    public void load(ResourceManager manager) {
-    }
-
-    // Call after finish drawing
-    public void swapBackToFront() {
-        readTarget.bindWrite(true);
-        writeTarget.bindRead();
-        writeTarget.blitToScreen(readTarget.width, readTarget.height);
-        readTarget.unbindWrite();
-        writeTarget.unbindRead();
     }
 
     public RenderTarget getRenderTarget() {
@@ -99,7 +82,6 @@ public class RenderableDynamicTexture extends DynamicTexture implements Tickable
         RenderSystem.setShaderTexture(id, getRenderTarget().getColorTextureId());
     }
 
-    //bind read on the current texture
     @Override
     public void bind() {
         if (closed) {
@@ -108,23 +90,19 @@ public class RenderableDynamicTexture extends DynamicTexture implements Tickable
         super.bind();
     }
 
-    //gpu texture ID
     @Override
     public int getId() {
         if (closed) {
             return 0;
         }
         RenderSystem.assertOnRenderThreadOrInit();
-        //needs to be here since the super constructor calls this early
-        if (this.readTarget == null || this.writeTarget == null) {
-            int w = getPixels().getWidth();
-            int h = getPixels().getHeight();
-            this.readTarget = new TextureTarget(w, h, false, ON_OSX);
-            this.writeTarget = new TextureTarget(w, h, true, ON_OSX);
+        if (writeTarget == null) {
+            var pixels = getPixels();
+            int w = pixels.getWidth();
+            int h = pixels.getHeight();
+            writeTarget = new TextureTarget(w, h, true, ON_OSX);
         }
-        //must never change since its just queried when texture is registered
-        //this is what binds texture and frame buffers together
-        return this.readTarget.getColorTextureId();
+        return writeTarget.getColorTextureId();
     }
 
     public int getWidth() {
@@ -135,26 +113,18 @@ public class RenderableDynamicTexture extends DynamicTexture implements Tickable
         return height;
     }
 
-
     @Override
     public void releaseId() {
-        this.closed = true;
+        closed = true;
         super.releaseId();
         renderCall(() -> {
-            if (this.writeTarget != null) {
-                this.writeTarget.destroyBuffers();
-                this.writeTarget = null;
-            }
-            if (this.readTarget != null) {
-                this.readTarget.destroyBuffers();
-                this.readTarget = null;
+            if (writeTarget != null) {
+                writeTarget.destroyBuffers();
+                writeTarget = null;
             }
         });
     }
 
-    /**
-     * Downloads the GPU texture to CPU for edit
-     */
     public void download() {
         if (closed) {
             return;
@@ -181,16 +151,13 @@ public class RenderableDynamicTexture extends DynamicTexture implements Tickable
     }
 
     public void unregister() {
-        //this also calls close
-        TextureManager tm = Minecraft.getInstance().getTextureManager();
-        AbstractTexture t = tm.getTexture(writtenTextureLocation);
-        //if it's us we release it. Otherwise, it means we have already been closed
+        var tm = Minecraft.getInstance().getTextureManager();
+        var t = tm.getTexture(writtenTextureLocation);
         if (t == this) {
             tm.release(writtenTextureLocation);
         }
     }
 
-    //safeguard but shouldnt be needed
     public boolean isClosed() {
         return closed;
     }

@@ -111,17 +111,15 @@ public abstract class AbstractProgressionCodexScreen extends AbstractMalumCodexS
         int guiLeft = getGuiLeft();
         int guiTop = getGuiTop();
 
-        var cutout = MalumShaders.PROGRESSION_SCREEN.getShaderInstance();
+        RenderSystem.setShaderTexture(0, FRAME_TEXTURE);
         RenderSystem.setShaderTexture(1, FRAME_CUTOUT_TEXTURE);
         RenderSystem.setShaderTexture(2, target.getColorTextureId());
-
-        RenderSystem.setShaderTexture(0, FRAME_TEXTURE);
-        RenderSystem.setShader(() -> cutout);
+        RenderSystem.setShader(MalumShaders.PROGRESSION_SCREEN::getShaderInstance);
         var builder = Tesselator.getInstance().begin(VertexFormat.Mode.QUADS, DefaultVertexFormat.POSITION_TEX);
         var last = guiGraphics.pose().last();
 
-        Vector2ic size = new Vector2i(BOOK_WIDTH, BOOK_HEIGHT);
-        Vector2ic offset = new Vector2i(0, 0);
+        var size = new Vector2i(BOOK_WIDTH, BOOK_HEIGHT);
+        var offset = new Vector2i(0, 0);
 
         int x0 = guiLeft + offset.x();
         int y0 = guiTop + offset.y();
