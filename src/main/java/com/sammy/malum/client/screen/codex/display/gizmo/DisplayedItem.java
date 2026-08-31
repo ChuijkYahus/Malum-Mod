@@ -3,22 +3,17 @@ package com.sammy.malum.client.screen.codex.display.gizmo;
 import com.mojang.blaze3d.platform.GlStateManager;
 import com.mojang.blaze3d.systems.RenderSystem;
 import com.mojang.blaze3d.vertex.PoseStack;
-import com.sammy.malum.MalumMod;
 import com.sammy.malum.client.screen.codex.display.IGizmoHolder;
-import com.sammy.malum.client.screen.codex.display.texture.DynamicTextureRenderer;
+import com.sammy.malum.client.screen.codex.display.texture.DynamicTextureBuilder;
 import com.sammy.malum.client.screen.codex.screens.AbstractMalumCodexScreen;
 import com.sammy.malum.registry.common.magic.MalumSpiritTypes;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.client.renderer.GameRenderer;
-import net.minecraft.network.chat.Component;
-import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.ItemLike;
 import team.lodestar.lodestone.systems.rendering.builder.VFXBuilders;
-
-import java.util.List;
 
 public class DisplayedItem extends DisplayedGizmo {
 
@@ -42,8 +37,8 @@ public class DisplayedItem extends DisplayedGizmo {
 
     @Override
     public void renderDecals(AbstractMalumCodexScreen screen, IGizmoHolder holder, GuiGraphics guiGraphics, int x, int y, int mouseX, int mouseY) {
-        var dynamicTexture = DynamicTextureRenderer.create(itemDisplay.getItem())
-                .setTextureSize(16, 16).requestFlatItemTexture(itemDisplay.getItem().getDefaultInstance());
+        var dynamicTexture = DynamicTextureBuilder.create(itemDisplay.getItem())
+                .setTextureSize(16, 16).bakeItemTexture(itemDisplay.getItem().getDefaultInstance());
         if (dynamicTexture == null) {
             return;
         }

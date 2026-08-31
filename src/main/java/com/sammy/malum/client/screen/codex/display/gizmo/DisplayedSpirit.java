@@ -2,24 +2,14 @@ package com.sammy.malum.client.screen.codex.display.gizmo;
 
 import com.mojang.blaze3d.platform.GlStateManager;
 import com.mojang.blaze3d.systems.RenderSystem;
-import com.mojang.blaze3d.vertex.PoseStack;
-import com.sammy.malum.MalumMod;
 import com.sammy.malum.client.screen.codex.display.IGizmoHolder;
-import com.sammy.malum.client.screen.codex.display.texture.DynamicTextureRenderer;
+import com.sammy.malum.client.screen.codex.display.texture.DynamicTextureBuilder;
 import com.sammy.malum.client.screen.codex.screens.AbstractMalumCodexScreen;
 import com.sammy.malum.core.systems.spirit.SpiritLike;
 import com.sammy.malum.registry.common.magic.MalumSpiritTypes;
-import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiGraphics;
-import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.client.renderer.GameRenderer;
-import net.minecraft.network.chat.Component;
-import net.minecraft.resources.ResourceLocation;
-import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.level.ItemLike;
 import team.lodestar.lodestone.systems.rendering.builder.VFXBuilders;
-
-import java.util.List;
 
 public class DisplayedSpirit extends DisplayedGizmo {
 
@@ -39,9 +29,9 @@ public class DisplayedSpirit extends DisplayedGizmo {
             y -= 1;
         }
         var shard = spirit.getSpiritShard();
-        var dynamicTexture = DynamicTextureRenderer.create(shard)
+        var dynamicTexture = DynamicTextureBuilder.create(shard)
                 .setTextureSize(16, 16)
-                .requestFlatItemTexture(shard);
+                .bakeItemTexture(shard);
         if (dynamicTexture == null) {
             return;
         }
